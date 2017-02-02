@@ -1,0 +1,29 @@
+.panel-workspace{
+	margin-top: 135px;
+
+	.panel-workspace-container{
+		background: $navbar-bg-primary;
+		border: 1px solid $line-color-default;
+
+		h1, p{
+			margin: 0px;
+		}
+
+		.panel-workspace-header {
+			padding: 16px;
+			border-bottom: 1px solid $line-color-default;
+			overflow: hidden;
+
+			.title {
+				color: $font-color-primary;
+			}	
+				
+		}
+
+		.panel-workspace-content {
+			padding: 16px;
+			border-bottom: 1px solid $line-color-default;
+			overflow: auto;		
+		}
+	}
+}

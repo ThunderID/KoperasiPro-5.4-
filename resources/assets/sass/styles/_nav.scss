@@ -1,0 +1,98 @@
+.navbar {
+	border: none !important;
+	border-radius : 0px !important;
+
+	.navbar-right{
+		margin-right: 0px;
+	}
+}
+
+nav.layer1 {
+	p {
+		margin: 0px;
+		color: $font-color-default;	
+	}
+	.avatar {
+		height: 30px; 
+		width: 30px;
+		margin-top: 10px; 
+		margin-right: 15px; 
+		margin-bottom: 10px; 
+	}
+	.name {
+		margin-top: 9px;
+		font-weight: 600;
+		color: $font-color-primary;	
+	}
+	.role {
+		margin-bottom: 10px;
+	}	
+	.dropdown > p {
+		margin-top: -33px;
+	}
+}
+
+nav.layer2 {
+	margin-top: 50px;
+	padding: 0px;
+	background: $navbar-bg-default; 
+	min-height: 31px;
+
+	.menu-list {
+		.active {
+			a {
+				border-top: 2px solid $color-active; 
+				background: $navbar-bg-primary;
+				padding: 6px 16px;
+			    border-bottom: 1px solid $navbar-bg-primary;				
+			}
+		}
+		a {
+			color: $font-color-primary;	
+			padding: 8px 16px;
+			
+			&:hover {
+				background: $navbar-bg-primary;
+			}			
+		} 
+	}
+}
+
+nav.layer3 {
+	margin-top: 80px;
+	padding: 0px;
+	background: $navbar-bg-primary; 
+	min-height: 35px;
+	border-bottom: 1px solid $line-color-default !important;
+
+	.tab-pane {
+		display: none; 
+	}
+
+	.active {
+		display: block;
+	}
+
+	.menu-list {
+		left: 0;
+    	position: fixed;
+
+		.active {
+			a {
+				color: $font-color-active;
+				border-bottom: 2px solid $color-active; 
+				background: $navbar-bg-primary;
+				padding: 10px 16px;
+			}
+		}
+		a {
+			color: $font-color-primary;	
+			padding: 10px 16px;
+			
+			&:hover {
+				color: $font-color-active;
+				background: $navbar-bg-primary;
+			}			
+		} 
+	}
+}

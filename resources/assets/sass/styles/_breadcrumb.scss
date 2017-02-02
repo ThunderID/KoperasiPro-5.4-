@@ -1,0 +1,40 @@
+.breadcrumb {
+	margin-top:10px;
+	margin-bottom:0px;
+	background: none;
+	padding: 0px;
+	font-size: 11px;
+
+	li > a {
+		color: $font-color-default;
+		font-weight: 300;
+
+		&:hover {
+			color: $font-color-active;
+			text-decoration: none;
+		}				
+	}
+
+	li.active {
+		a {
+			font-size: 11px;
+			color: $font-color-primary;
+			cursor: default !important;
+			font-weight:600;
+
+			&:hover {
+				color: $font-color-primary;
+				text-decoration: none;
+			}
+		}
+	}	
+
+	li + li:before {
+	    content: "⟩ ";
+	    padding: 0 5px;
+	}	
+
+	.base i {
+		margin-right:2px;
+	}
+}	

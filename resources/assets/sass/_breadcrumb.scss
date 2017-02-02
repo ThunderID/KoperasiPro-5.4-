@@ -1,0 +1,10 @@
+.breadcrumb {
+	margin-top:10px;
+	margin-bottom:0px;
+	background: none;
+	padding: 0px;
+
+	li > a {
+		color: $font-color-default !important;
+	}	
+}	
