@@ -25,4 +25,9 @@ class DashboardController extends Controller
 
         return $this->generateView();
     }
+
+    public function store(Request $request){
+        $this->page_attributes->msg['error']       = ['hai','halo2', 'haloooooooo!!!'];
+        return $this->generateRedirect(route('dashboard.index'));
+    }
 }

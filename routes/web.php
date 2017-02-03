@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/index', ['uses' => 'dashboardController@index', 'as' => 'dashboard.index']);
+
+Route::get('/store', ['uses' => 'dashboardController@store', 'as' => 'dashboard.store']);

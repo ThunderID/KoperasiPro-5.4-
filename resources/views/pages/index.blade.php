@@ -1,12 +1,9 @@
 @extends('template.cms_template')
 
-@section('page-title')
-	Pengajuan Kredit Baru
-@endsection
-
-@section('content')
+@push('content')
 	'hi'
-@endsection
+	@include('components.alertbox')
+@endpush
 
 @push('scripts')
 	'hi'
