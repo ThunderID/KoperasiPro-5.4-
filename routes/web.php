@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/index', ['uses' => 'dashboardController@index', 'as' => 'dashboard.index']);
 
 Route::get('/store', ['uses' => 'dashboardController@store', 'as' => 'dashboard.store']);
+
+Route::group(['prefix' => 'kredit'], function()
+{
+	Route::get('/pengajuan', ['uses' => 'kreditController@index', 'as' => 'kredit.pengajuan']);
+});
