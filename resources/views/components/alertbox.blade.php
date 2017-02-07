@@ -11,6 +11,9 @@
     	            @foreach (Session::get('msg')[key(Session::get('msg'))] as $error)
 		                <p>{!! $error !!}</p>
 		            @endforeach
+    	            @foreach ($errors->all('<p>:message</p>') as $error)
+		                {!! $error !!}
+		            @endforeach
 		        </div>
 		    </div>
 		</div>
