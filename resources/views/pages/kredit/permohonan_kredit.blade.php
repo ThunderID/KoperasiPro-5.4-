@@ -1,7 +1,7 @@
 @extends('template.cms_template')
 
 @push('content')
-	<form>
+	{!! Form::open(['url' => route('kredit.pengajuan.store'), 'class' => 'form']) !!}
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="page-header">
@@ -13,7 +13,7 @@
 					<label for="">No. Permohonan Kredit</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('no_credit', null, ['class' => 'form-control', 'placeholder' => 'Ex. 09913365']) !!}
+							{!! Form::text('nomor_kredit', null, ['class' => 'form-control', 'placeholder' => 'Ex. 09913365']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -21,7 +21,7 @@
 					<label for="">Kemampuan Jumlah Angsuran</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('value_angsuran', null, ['class' => 'form-control', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
+							{!! Form::text('kemampuan_angsuran', null, ['class' => 'form-control', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
 						</div>
 						<div class="col-md-2">/ Bulan</div>
 					</div>
@@ -32,7 +32,7 @@
 					<label for="">Lama Angsuran</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('lama_angsuran', null, ['class' => 'form-control', 'placeholder' => 'Lama angsuran']) !!}
+							{!! Form::text('jangka_waktu', null, ['class' => 'form-control', 'placeholder' => 'Lama angsuran']) !!}
 						</div>
 						<div class="col-md-2">Bulan</div>
 					</div>
@@ -41,7 +41,7 @@
 					<label for="">Jumlah Pinjaman</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('jumlah_pinjaman', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pinjaman']) !!}
+							{!! Form::text('pengajuan_kredit', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pinjaman']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -59,211 +59,167 @@
 					<label for="">Nama</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ex. Suena Morn']) !!}
+							{!! Form::text('kreditur[nama]', null, ['class' => 'form-control', 'placeholder' => 'Ex. Suena Morn']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Jenis Kelamin</label>
+					<label for="">No. Rekening</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('gender', null, ['class' => 'form-control', 'placeholder' => 'Jenis kelamin']) !!}
+							{!! Form::text('kreditur[nomor_rekening]', null, ['class' => 'form-control', 'placeholder' => 'Jenis kelamin']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Tempat & Tgl Lahir</label>
+					<label for="">Tempat Lahir</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('tempat_lahir', null, ['class' => 'form-control', 'placeholder' => 'Tempat lahir']) !!}
-						</div>
-						<div class="col-md-5">
-							{!! Form::text('tgl_lahir', null, ['class' => 'form-control', 'placeholder' => 'Tanggal lahir']) !!}
+							{!! Form::text('kreditur[tempat_lahir]', null, ['class' => 'form-control', 'placeholder' => 'Tempat lahir']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Agama</label>
+					<label>Tanggal Lahir</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('agama', null, ['class' => 'form-control', 'placeholder' => 'agama']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Pendidikan terakhir</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('pendidikan_terakhir', null, ['class' => 'form-control', 'placeholder' => 'Pendidikan terakhir']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Nama Ibu Kandung</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('name_mother', null, ['class' => 'form-control', 'placeholder' => 'Nama ibu kandung']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Status</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('status', null, ['class' => 'form-control', 'placeholder' => 'Status Pernikahan']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Jumlah Tanggungan</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('jumlah_tanggungan', null, ['class' => 'form-control', 'placeholder' => 'Jumlah tanggungan']) !!}
+							{!! Form::text('kreditur[tanggal_lahir]', null, ['class' => 'form-control', 'placeholder' => 'Tanggal lahir']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<br />
 				<strong><h5>Alamat</h5></strong>
 				<fieldset class="form-group">
-					<label for="">Alamat KTP</label>
+					<label for="">Jalan</label>
 					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('alamat', null, ['class' => 'form-control', 'placeholder' => 'Alamat']) !!}
+						<div class="col-md-8">
+							{!! Form::text('kreditur[alamat][jalan]', null, ['class' => 'form-control', 'placeholder' => 'Nama Jalan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Kelurahan/Kecematan</label>
+					<label for="">Kelurahan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('kelurahan_kecamatan', null, ['class' => 'form-control', 'placeholder' => 'Kelurahan/Kecematan']) !!}
+							{!! Form::text('kreditur[alamat][kelurahan]', null, ['class' => 'form-control', 'placeholder' => 'Kelurahan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Kota/Kabupaten</label>
+					<label for="">Kecamatan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('kota_kabupaten', null, ['class' => 'form-control', 'placeholder' => 'Kota/Kabupaten']) !!}
+							{!! Form::text('kreditur[alamat][kecamatan]', null, ['class' => 'form-control', 'placeholder' => 'Kecamatan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Telp/HP</label>
+					<label for="">Kota</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('telp', null, ['class' => 'form-control', 'placeholder' => 'Telp/HP']) !!}
+							{!! Form::text('kreditur[alamat][kota]', null, ['class' => 'form-control', 'placeholder' => 'Kota']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<br />
+				<strong><h5>Kontak</h5></strong>
+				<fieldset class="form-group">
+					<label for="">No. Telp</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[kontak][telp]', null, ['class' => 'form-control', 'placeholder' => 'Nomor Telepon']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">No. Hp</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[kontak][handphone]', null, ['class' => 'form-control', 'placeholder' => 'Nomor Handphone']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<br />
 				<strong><h5>Pekerjaan</h5></strong>
 				<fieldset class="form-group">
-					<label for="">Jenis Pekerjaan</label>
+					<label for="">Jabatan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pekerjaan', null, ['class' => 'form-control', 'placeholder' => 'Jenis pekerjaan']) !!}
+							{!! Form::text('kreditur[pekerjaan][jabatan]', null, ['class' => 'form-control', 'placeholder' => 'Nomor Handphone']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Pekerjaan/Jabatan</label>
+					<label for="">Mulai Bekerja</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pekerjaan_jabatan', null, ['class' => 'form-control', 'placeholder' => 'Pekerjaan/Jabatan']) !!}
+							{!! Form::text('kreditur[pekerjaan][mulai_bekerja]', null, ['class' => 'form-control', 'placeholder' => 'Tanggal Mulai Bekerja']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Awal mulai Kerja/Usaha</label>
+					<label for="">Bidang Usaha</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('awal_kerja', null, ['class' => 'form-control', 'placeholder' => 'Awal mulai kerja/usaha']) !!}
+							{!! Form::text('kreditur[pekerjaan][bidang_usaha]', null, ['class' => 'form-control', 'placeholder' => 'Bidang Usaha']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Alamat Kantor/Usaha</label>
+					<label for="">Jalan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('alamat_kantor', null, ['class' => 'form-control', 'placeholder' => 'Alamat Kantor/Usaha']) !!}
+							{!! Form::text('kreditur[pekerjaan][alamat][jalan]', null, ['class' => 'form-control', 'placeholder' => 'Nama Jalan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Bidang Usaha Kantor</label>
+					<label for="">Kelurahan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('bidang_usaha_kantor', null, ['class' => 'form-control', 'placeholder' => 'Bidang usaha kantor']) !!}
+							{!! Form::text('kreditur[pekerjaan][alamat][kelurahan]', null, ['class' => 'form-control', 'placeholder' => 'Nama Kelurahan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Telp/HP Kantor</label>
+					<label for="">Kecamatan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('telp_kantor', null, ['class' => 'form-control', 'placeholder' => 'Telp/HP kantor']) !!}
-						</div>
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-md-6">
-				<strong><h5>Data Suami/Istri/Orang Tua</h5></strong>
-				<fieldset class="form-group">
-					<label for="">Nama</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('name_relasi', null, ['class' => 'form-control', 'placeholder' => 'Nama relasi']) !!}
+							{!! Form::text('kreditur[pekerjaan][alamat][kecamatan]', null, ['class' => 'form-control', 'placeholder' => 'Nama Kecamatan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Alamat</label>
+					<label for="">Kota</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('alamat_relasi', null, ['class' => 'form-control', 'placeholder' => 'Alamat relasi']) !!}
+							{!! Form::text('kreditur[pekerjaan][alamat][kota]', null, ['class' => 'form-control', 'placeholder' => 'Nama Kota']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Telp/HP</label>
+					<label for="">No. Telp</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('telp_relasi', null, ['class' => 'form-control', 'placeholder' => 'Telp relasi']) !!}
+							{!! Form::text('kreditur[pekerjaan][kontak][telepon]', null, ['class' => 'form-control', 'placeholder' => 'No Telepon']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Pekerjaan/Jabatan</label>
+					<label for="">No. Handphone</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pekerjaan_relasi', null, ['class' => 'form-control', 'placeholder' => 'Pekerjaan relasi']) !!}
+							{!! Form::text('kreditur[pekerjaan][kontak][handphone]', null, ['class' => 'form-control', 'placeholder' => 'No Handphone']) !!}
 						</div>
 					</div>
 				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Alamat Kantor</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('alamat_kantor_relasi', null, ['class' => 'form-control', 'placeholder' => 'Alamat kantor relasi']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="">Telp Kantor</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('telp_kantor_relasi', null, ['class' => 'form-control', 'placeholder' => 'Telp kantor relasi']) !!}
-						</div>
-					</div>
-				</fieldset>
-
-				{{-- referenesi --}}
+				<br />
+				<strong><h5>Keluarga</h5></strong>
 				<fieldset class="form-group">
 					<label for="">Hubungan Sebagai</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('referensi_sebagai', null, ['class' => 'form-control', 'placeholder' => 'Relasi sebagai']) !!}
+							{!! Form::text('kreditur[keluarga][][hubungan]', null, ['class' => 'form-control', 'placeholder' => 'Hubungan sebagai']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -271,7 +227,7 @@
 					<label for="">Nama</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('name_referensi', null, ['class' => 'form-control', 'placeholder' => 'Nama referensi']) !!}
+							{!! Form::text('kreditur[keluarga][][nama]', null, ['class' => 'form-control', 'placeholder' => 'Nama']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -279,15 +235,81 @@
 					<label for="">Alamat</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('alamat_referensi', null, ['class' => 'form-control', 'placeholder' => 'Alamat referensi']) !!}
+							{!! Form::text('kreditur[keluarga][][alamat][jalan]', null, ['class' => 'form-control', 'placeholder' => 'Alamat']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Telp/Hp Referensi</label>
+					<label for="">Kelurahan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('telp_referensi', null, ['class' => 'form-control', 'placeholder' => 'No. telp kantor referensi']) !!}
+							{!! Form::text('kreditur[keluarga][][alamat][kelurahan]', null, ['class' => 'form-control', 'placeholder' => 'Kelurahan']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">Kecamatan</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[keluargah][][alamat][kecamatan]', null, ['class' => 'form-control', 'placeholder' => 'Kecamatan']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">Kota</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[keluarga][][alamat][kota]', null, ['class' => 'form-control', 'placeholder' => 'Kota']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">No. Telp</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[keluarga][][kontak][telepon]', null, ['class' => 'form-control', 'placeholder' => 'No. Telp']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">No. Handphone</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[keluarga][][kontak][handphone]', null, ['class' => 'form-control', 'placeholder' => 'No Handphone']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<strong><h5>Pendapatan</h5></strong>
+				<fieldset class="form-group">
+					<label for="">Jenis</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[pendapatan][][jenis]', null, ['class' => 'form-control', 'placeholder' => 'Jenis pendapatan']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">Jumlah</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[pendapatan][][jumlah]', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pendapatan']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<strong><h5>Pengeluaran</h5></strong>
+				<fieldset class="form-group">
+					<label for="">Jenis</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[pengeluaran][][jenis]', null, ['class' => 'form-control', 'placeholder' => 'Jenis pengeluaran']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">Jumlah</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('kreditur[pengeluaran][][jumlah]', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pengeluaran']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -295,99 +317,112 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
+				{{-- penjamin  --}}
 				<div class="page-header text-center">
-				  	<h2>Keuangan</h2>
+				  	<h2>Penjamin</h2>
 				</div>
 			</div>
 			<div class="col-md-6">
-				<br />
-				<strong><h5>Pendapatan Perbulan</h5></strong>
 				<fieldset class="form-group">
-					<label for="">Pokok</label>
+					<label for="">Hubungan Sebagai</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pendapatan_pokok', null, ['class' => 'form-control', 'placeholder' => 'Lama angsuran']) !!}
+							{!! Form::text('penjamin[hubungan]', null, ['class' => 'form-control', 'placeholder' => 'Penjamin hubungan sebagai']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Suami/Istri*</label>
+					<label for="">Nama</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pendapatan_suami_istri', null, ['class' => 'form-control', 'placeholder' => 'Pendapatan dari suami/istri']) !!}
+							{!! Form::text('penjamin[nama]', null, ['class' => 'form-control', 'placeholder' => 'Nama penjamin']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Dari Usaha</label>
+					<label for="">Alamat</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pendapatan_dari_usaha', null, ['class' => 'form-control', 'placeholder' => 'Pendapatan dari usaha']) !!}
+							{!! Form::text('penjamin[alamat][jalan]', null, ['class' => 'form-control', 'placeholder' => 'Alamat']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Total Pendapatan</label>
+					<label for="">Kelurahan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pendapatan_dari_usaha', null, ['class' => 'form-control', 'placeholder' => 'Pendapatan dari usaha']) !!}
-						</div>
-					</div>
-				</fieldset>
-				<br />
-				<strong><h5>Pengeluaran perBulan</h5></strong>
-				<fieldset class="form-group">
-					<label for="">Rumah Tangga</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('pengeluaran_rumah_tangga', null, ['class' => 'form-control', 'placeholder' => 'Pengeluaran rumah tangga']) !!}
+							{!! Form::text('penjamin[alamat][kelurahan]', null, ['class' => 'form-control', 'placeholder' => 'kelurahan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Listrik/PDAM/Telp</label>
+					<label for="">Kecamatan</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pengeluaran_listrik', null, ['class' => 'form-control', 'placeholder' => 'Pengeluarang Listrik/PDAM/Telp']) !!}
+							{!! Form::text('penjamin[alamat][kecamatan]', null, ['class' => 'form-control', 'placeholder' => 'kecamatan']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Biaya Pendidikan</label>
+					<label for="">Kota</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('pengeluaran_pendidikan', null, ['class' => 'form-control', 'placeholder' => 'Pengeluaran pendidikan']) !!}
-						</div>
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-md-6">
-				<br />
-				<strong><h5>Jaminan</h5></strong>
-				<fieldset class="form-group">
-					<label for="">Status Jaminan</label>
-					<div class="row">
-						<div class="col-md-5">
-							{!! Form::text('status_jaminan', null, ['class' => 'form-control', 'placeholder' => 'Status jaminan']) !!}
+							{!! Form::text('penjamin[alamat][kota]', null, ['class' => 'form-control', 'placeholder' => 'kota']) !!}
 						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
-					<label for="">Jaminan</label>
+					<label for="">No. Telp</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('jaminan', null, ['class' => 'form-control', 'placeholder' => 'Jaminan']) !!}
+							{!! Form::text('penjamin[kontak][telepon]', null, ['class' => 'form-control', 'placeholder' => 'Nomor telepon']) !!}
 						</div>
 					</div>
 				</fieldset>
-				<br />
+				<fieldset class="form-group">
+					<label for="">Handphone</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('penjamin[kontak][handphone]', null, ['class' => 'form-control', 'placeholder' => 'Nomor handphone']) !!}
+						</div>
+					</div>
+				</fieldset>
+
+				{{-- jaminan --}}
+				<fieldset class="form-group">
+					<label for="">Jenis</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('jaminan[jenis]', null, ['class' => 'form-control', 'placeholder' => 'Jenis jaminan']) !!}
+						</div>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="">Kepemilikan</label>
+					<div class="row">
+						<div class="col-md-5">
+							{!! Form::text('jaminan[Kepemilikan]', null, ['class' => 'form-control', 'placeholder' => 'Pemilik jaminan']) !!}
+						</div>
+					</div>
+				</fieldset>
+
+				{{-- koperasi --}}
+				{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
+				{!! Form::hidden('koperasi[nama]', 'tanjung terang') !!}
+
+				{{-- status --}}
+				{!! Form::hidden('status[][status]', 'drafting') !!}
+				{!! Form::hidden('status[][keterangan]', 'dalam proses drafting') !!}
+				{!! Form::hidden('status[][tanggal]', 'today') !!}
+				{!! Form::hidden('status[][petugas][nip]', '1234567890') !!}
+				{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
 			</div>
 		</div>
 		<div class="text-right">
 			<a href="" class="btn btn-default">Batal</a>
 			<button type="submit" class="btn btn-primary">Simpan</button>
 		</div>
-	</form>
+	{!! Form::close() !!}
 @endpush
 
 @push('scripts')

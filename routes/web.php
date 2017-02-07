@@ -21,5 +21,6 @@ Route::get('/store', ['uses' => 'dashboardController@store', 'as' => 'dashboard.
 
 Route::group(['prefix' => 'kredit'], function()
 {
-	Route::get('/pengajuan', ['uses' => 'kreditController@index', 'as' => 'kredit.pengajuan']);
+	Route::get('/pengajuan', 		['uses' => 'kreditController@index', 'as' => 'kredit.pengajuan']);
+	Route::post('/pengajuan', 		['uses' => 'kreditController@store', 'as' => 'kredit.pengajuan.store']);
 });

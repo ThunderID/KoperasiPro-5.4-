@@ -26,6 +26,7 @@ class kreditController extends Controller
     }
 
     public function store(Request $request){
+        dd($request->all());
         $this->page_attributes->msg['error']       = ['hai','halo2', 'haloooooooo!!!'];
         return $this->generateRedirect(route('dashboard.index'));
     }
