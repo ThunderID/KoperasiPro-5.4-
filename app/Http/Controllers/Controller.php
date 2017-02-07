@@ -34,13 +34,14 @@ class Controller extends BaseController
 		// redirecting sequence: error, alert, info, success 
 
 		if(isset($this->page_attributes->msg['error'])){
-			return Redirect::back()
+			// return Redirect::back()
+			return Redirect::to($route_to)
 					->withInput(Request::all())
-					->with('msg', $this->page_attributes->msg)
+					->with('msg', ['danger' => $this->page_attributes->msg['error']])
 					;
 		}
 
-		if(isset($this->page_attributes->msg['alert'])){
+		if(isset($this->page_attributes->msg['warning'])){
 			return Redirect::to($route_to)
 					->with('msg', $this->page_attributes->msg)
 					;
