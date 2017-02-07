@@ -5,6 +5,7 @@ require('./plugins');
 
 //your js modules goes here
 // require('');
+require('./modules/push-notification');
 
 
 //draft

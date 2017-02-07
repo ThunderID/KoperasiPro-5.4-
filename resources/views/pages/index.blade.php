@@ -12,7 +12,7 @@
 		setTimeout(
 		  function() 
 		  {
-		  	new notify('halo','this is hello world');
+		  	notify('halo','this is hello world','success');
 		  }, 1000
 		);	
 	});
@@ -20,17 +20,15 @@
 	setTimeout(
 	  function() 
 	  {
-	    new notify('halo',"i'am sleep");
-	    new notify('halo',"i'am awake");
+	    notify('halo',"i'am sleep",'warning');
+	    notify('halo',"i'am awake");
 	  }, 5000
 	);	
 
-	function notify(msg, title){
-		toastr.options = {
-			"closeButton" : true,
-			"timeOut": "2000",
-			"onclick": null
-		};
-		toastr.success(title, msg);
-	}
+	setTimeout(
+	  function() 
+	  {
+	    notify('halo',"you're wrong!",'error');
+	  }, 15000
+	);		
 @endpush
