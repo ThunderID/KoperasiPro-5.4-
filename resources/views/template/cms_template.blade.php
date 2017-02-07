@@ -69,7 +69,7 @@
 					</h1>
 					@include('components.breadcrumb')
 				</div>
-				<div class="panel-workspace-content" style="height: 500px;">
+				<div class="panel-workspace-content">
 					@stack('content')
 				</div>
 			</div>
