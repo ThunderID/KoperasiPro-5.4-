@@ -7,7 +7,7 @@
 	}
 }
 
-nav.layer1 {
+nav.topbar {
 	p {
 		margin: 0px;
 		color: $font-color-default;	
@@ -32,7 +32,7 @@ nav.layer1 {
 	}
 }
 
-nav.layer2 {
+nav.layer1 {
 	margin-top: 50px;
 	padding: 0px;
 	background: $navbar-bg-default; 
@@ -58,7 +58,7 @@ nav.layer2 {
 	}
 }
 
-nav.layer3 {
+nav.layer2 {
 	margin-top: 80px;
 	padding: 0px;
 	background: $navbar-bg-primary; 
