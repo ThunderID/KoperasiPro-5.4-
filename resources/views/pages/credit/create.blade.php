@@ -1,24 +1,24 @@
 @extends('template.cms_template')
 
 @push('content')
-	{!! Form::open(['url' => route('kredit.pengajuan.store'), 'class' => 'form']) !!}
+	{!! Form::open(['url' => route('credit.store'), 'class' => 'form']) !!}
 		<div class="wizard">
 			{{-- untuk data kredit --}}
 			<h2>Data Kredit</h2>
 			<section>
-				@include ('pages.kredit.wizard.data_kredit')
+				@include ('pages.credit.wizard.data_kredit')
 			</section>
 			<h2>Data Pribadi</h2>
 			<section>
-				@include ('pages.kredit.wizard.data_pribadi')
+				@include ('pages.credit.wizard.data_pribadi')
 			</section>
 			<h2>Data Penjamin</h2>
 			<section>
-				@include ('pages.kredit.wizard.data_penjamin')
+				@include ('pages.credit.wizard.data_penjamin')
 			</section>
 			<h2>Data Jaminan</h2>
 			<section>
-				@include ('pages.kredit.wizard.data_jaminan')
+				@include ('pages.credit.wizard.data_jaminan')
 			</section>
 		</div>
 		{{-- koperasi --}}
@@ -35,5 +35,4 @@
 @endpush
 
 @push('scripts')
-	wizard('h2', 'section', '.wizard');
 @endpush

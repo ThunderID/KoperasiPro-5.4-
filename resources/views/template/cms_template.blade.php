@@ -63,7 +63,7 @@
 	<div id="pjax-container">
 
 		<!-- Navigation -->
-		@include('components.admin_navigation')
+		@include('components.navigation')
 
 		<!-- Content -->
 		<div class="panel-workspace">

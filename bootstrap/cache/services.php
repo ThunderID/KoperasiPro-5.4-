@@ -29,6 +29,10 @@
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Collective\\Html\\HtmlServiceProvider',
+    28 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    29 => 'App\\Web\\WebServiceProvider',
+    30 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
+    31 => 'Thunderlabid\\Credit\\CreditServiceProvider',
   ),
   'eager' => 
   array (
@@ -46,6 +50,10 @@
     11 => 'App\\Providers\\AuthServiceProvider',
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
+    14 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    15 => 'App\\Web\\WebServiceProvider',
+    16 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
+    17 => 'Thunderlabid\\Credit\\CreditServiceProvider',
   ),
   'deferred' => 
   array (
@@ -131,6 +139,7 @@
     'queue.failer' => 'Illuminate\\Queue\\QueueServiceProvider',
     'queue.connection' => 'Illuminate\\Queue\\QueueServiceProvider',
     'redis' => 'Illuminate\\Redis\\RedisServiceProvider',
+    'redis.connection' => 'Illuminate\\Redis\\RedisServiceProvider',
     'auth.password' => 'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider',
     'auth.password.broker' => 'Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider',
     'translator' => 'Illuminate\\Translation\\TranslationServiceProvider',
