@@ -1,28 +1,70 @@
-
-// Borders
+//== Bawaan dari laravel
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
 $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
-// Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+// Bawaan bootstrap yg di Custom
+//== Components
+// padding
+$padding-base-vertical:     	10px !default;
+$padding-base-horizontal:   	15px !default;
 
-// Navbar
-$navbar-default-bg: $navbar-bg-primary;
+$padding-large-vertical:    	18px !default;
+$padding-large-horizontal:  	27px !default;
 
-// Buttons
-$btn-default-color: $text-color;
+$padding-small-vertical:    	6px !default;
+$padding-small-horizontal:  	9px !default;
 
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
+$padding-xs-vertical:       	1px !default;
+$padding-xs-horizontal:     	5px !default;
 
-// Panels
-$panel-default-heading-bg: #fff;
+$line-height-large:         	1.3333333 !default; // extra decimals for Win 8.1 Chrome
+$line-height-small:         	1.5 !default;
+
+// border radius
+$border-radius-base:        	2px !default;
+$border-radius-large:       	2px !default;
+$border-radius-small:       	2px !default;
+
+//== Colors
+//
+//##
+$brand-primary: 				#3097D1;
+$brand-info: 					#8eb4cb;
+$brand-success: 				#2ab27b;
+$brand-warning: 				#cbb956;
+$brand-danger: 					#bf5329;
+
+//== Navbar
+//
+//##
+$navbar-default-bg: 			$navbar-bg-primary;
+
+//== Buttons
+//
+//##
+$btn-default-color: 			$text-color;
+
+//== Inputs
+//
+//##
+$input-border: 					lighten($text-color, 40%);
+$input-border-focus: 			lighten($brand-primary, 25%);
+$input-color-placeholder: 		lighten($text-color, 30%);
+
+//== Panels
+//
+//##
+$panel-default-heading-bg: 		#fff;
+
+//== Form
+//
+//##
+//** Border color for inputs on focus
+$input-border-focus:             $brand-primary !default;
+//** Disabled cursor for form controls and buttons.
+$cursor-disabled:                not-allowed !default;
+//** `.form-group` margin
+$form-group-margin-bottom:       24px !default;
