@@ -38,8 +38,8 @@
 				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[
-													'pengajuan_kredit_baru' => '',
-													'daftar_kredit' 		=> '',
+													'pengajuan_kredit_baru' => route('dashboard.index'),
+													'daftar_kredit' 		=> route('dashboard.index2'),
 													'pembayaran_angsuran' 	=> '',
 													'perpanjangan_angsuran' => '',
 													'pelunasan_angsuran' 	=> '',
