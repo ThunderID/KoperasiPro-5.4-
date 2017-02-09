@@ -56,24 +56,33 @@
 @extends('layout.layout')
 
 @section('template')
-	<!-- Navigation -->
-	@include('components.admin_navigation')
+	<!-- Topbar -->
+	@include('components.admin_topbar')
 
-	<!-- Content -->
-	<div id="pjax-container" class="panel-workspace" data-turbolinks-temporary>
-		<div class="container-fluid">
-			<div class="panel-workspace-container">
-				<div class="panel-workspace-header">
-					<h1 class="title">
-						{{ $page_attributes->title }}
-					</h1>
-					@include('components.breadcrumb')
-				</div>
-				<div class="panel-workspace-content">
-					@stack('content')
+	<!-- This for pjax fragment replacement -->
+	<div id="pjax-container">
+
+		<!-- Navigation -->
+		@include('components.admin_navigation')
+
+		<!-- Content -->
+		<div class="panel-workspace">
+			<div class="container-fluid">
+				<div class="panel-workspace-container">
+					<div class="panel-workspace-header">
+						<h1 class="title">
+							{{ $page_attributes->title }}
+						</h1>
+						@include('components.breadcrumb')
+					</div>
+					<div class="panel-workspace-content">
+						@stack('content')
+					</div>
 				</div>
 			</div>
 		</div>
+
+	<!-- End of pjax fragment replacement -->
 	</div>
 @endsection
 
