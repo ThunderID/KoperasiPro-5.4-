@@ -16,7 +16,7 @@
 	-------------------------------------------------------------------------------------------
 */
 
-window.$ = window.notify = function(msg, title, type){
+window.notify = function(msg, title, type){
 	// config toastr
 	toastr.options = {
 		tapToDismiss: false,
@@ -32,6 +32,7 @@ window.$ = window.notify = function(msg, title, type){
 		titleClass: 'toast-title',
 		messageClass: 'toast-message',	
 		closeButton : true,
+		preventDuplicates: true,
 	};
 
 	// check message type and display toastr notification

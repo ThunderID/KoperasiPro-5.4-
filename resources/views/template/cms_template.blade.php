@@ -60,7 +60,7 @@
 	@include('components.admin_navigation')
 
 	<!-- Content -->
-	<div class="panel-workspace">
+	<div id="pjax-container" class="panel-workspace" data-turbolinks-temporary>
 		<div class="container-fluid">
 			<div class="panel-workspace-container">
 				<div class="panel-workspace-header">

@@ -68,7 +68,6 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	</head>
-
 		<div class="wrapper">
 			@yield('template')			
 		</div>
@@ -78,8 +77,8 @@
 
 		<!-- script -->
 		<!-- common vendors -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 		<script src="{{ mix('js/app.js') }}"></script>
 		

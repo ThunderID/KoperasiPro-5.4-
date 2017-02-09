@@ -1,5 +1,8 @@
 window._ = require('lodash');
 
+// window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
+
+
 //js 3rd party plugins goes here
 require('./plugins');
 
