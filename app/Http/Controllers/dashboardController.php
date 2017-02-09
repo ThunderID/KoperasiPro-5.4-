@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     public function index2(){
         // init page attributes
-        $this->page_attributes->title              = "Pengajuan Kredit lama";
+        $this->page_attributes->title              = "Daftar Kredit";
         $this->page_attributes->breadcrumb         = [
                                                             'one'   => '#',
                                                             'two'   => '#',
