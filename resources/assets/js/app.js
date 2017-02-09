@@ -9,6 +9,7 @@ require('./plugins');
 //your js modules goes here
 // require('');
 require('./modules/push-notification');
+require('./modules/form-wizard');
 
 
 //draft
