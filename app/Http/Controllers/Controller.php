@@ -30,8 +30,6 @@ class Controller extends BaseController
 	} 
 
 	public function generateRedirect($route_to){
-		// dd(Request::all());
-		// redirecting sequence: error, alert, info, success 
 
 		if(isset($this->page_attributes->msg['error'])){
 			// return Redirect::back()

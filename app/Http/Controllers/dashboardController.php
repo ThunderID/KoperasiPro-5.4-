@@ -26,6 +26,20 @@ class DashboardController extends Controller
         return $this->generateView();
     }
 
+    public function index2(){
+        // init page attributes
+        $this->page_attributes->title              = "Pengajuan Kredit lama";
+        $this->page_attributes->breadcrumb         = [
+                                                            'one'   => '#',
+                                                            'two'   => '#',
+                                                            'three' => null,
+                                                     ];
+
+        $this->view                                = View('pages.index2');
+
+        return $this->generateView();
+    }    
+
     public function store(Request $request){
         $this->page_attributes->msg['error']       = ['hai','halo2', 'haloooooooo!!!'];
         return $this->generateRedirect(route('dashboard.index'));
