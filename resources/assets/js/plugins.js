@@ -27,11 +27,15 @@ Note :
 */
 window.pjax = require('./plugins/pjax/pjax');
 $(document).ready(function(){
-	$(document).pjax('a', '#pjax-container')
+    $(document).pjax('a', '#pjax-container');
 
     //using nprogress to indicate loading
-    $(document).on('pjax:start', function() { NProgress.start(); });
-	$(document).on('pjax:end',   function() { NProgress.done();  });
+    $(document).on('pjax:start', function() { 
+        NProgress.start();
+    });
+	$(document).on('pjax:end',   function() { 
+        NProgress.done();  
+    });
 
     // does current browser support PJAX
     if ($.support.pjax) {
@@ -39,6 +43,12 @@ $(document).ready(function(){
     }
 });
 
+/*
+4. jQuery Pjax
+Description : formating input masking
+Usage and Documentation : https://github.com/RobinHerbots/Inputmask
+*/
+window.inputmask = require('./plugins/inputmask/inputmask');
 
 
 // window.$ = window.budi = 'haloo ';
