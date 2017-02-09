@@ -82,17 +82,21 @@ nav.layer3 {
 				color: $font-color-active;
 				border-bottom: 2px solid $color-active; 
 				background: $navbar-bg-primary;
-				padding: 10px 16px;
+				padding: 9px 16px;
 			}
 		}
 		a {
 			color: $font-color-primary;	
-			padding: 10px 16px;
+			padding: 9px 16px;
 			
 			&:hover {
 				color: $font-color-active;
 				background: $navbar-bg-primary;
-			}			
+			}	
+
+			&:focus {
+				background: $navbar-bg-primary; 
+			}
 		} 
 	}
 }
