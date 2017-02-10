@@ -101,7 +101,7 @@
     	    <div class="col-xs-12">
         	    <div class="form-wrap">
                 <h1>KoperasiPro User Login</h1>
-                    <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+                    <form role="form" method="post" id="login-form" autocomplete="off" action="{{route('login.store')}}">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">

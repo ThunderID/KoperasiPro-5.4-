@@ -31,7 +31,9 @@ Route::group(['middleware' => 'pjax'], function()
 Route::group(['middleware' => 'pjax'], function()
 {
 	//Menu Login
-	Route::resource('login', 'LoginController');
+	Route::get('login', 	['uses' => 'LoginController@index', 'as' => 'login.index']);
+	Route::post('login',	['uses' => 'LoginController@logging', 'as' => 'login.store']);
+	Route::get('logout',	['uses' => 'LoginController@logout', 'as' => 'login.destroy']);
 });
 
 //here lies test routes

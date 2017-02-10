@@ -42,19 +42,34 @@ class LoginController extends Controller
 	}
 
 	/**
-	 * simpan kredit
+	 * login process
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function logging()
 	{
 		//get input
-		$credentials	= Input::only('email', 'password');
+		$credentials	= Input::only('email', 'key');
+		$credentials['password']	= $credentials['key'];
 
 		//do authenticate
 		$auth			= Auth::authenticate($credentials);
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('dashboard.index'));
+		return $this->generateRedirect(route('credit.index'));
+	}
+
+	/**
+	 * logout
+	 *
+	 * @return Response
+	 */
+	public function logout()
+	{
+		//do authenticate
+		$auth			= Auth::die();
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('login.index'));
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace App\Web\Services;
 
-use Session;
+use Session, Hash, Exception;
 use Thunderlabid\Registry\Repository\UserRepository;
 
 /**
@@ -15,10 +15,8 @@ use Thunderlabid\Registry\Repository\UserRepository;
 class Auth 
 {
 	/**
-	 * Membuat object asset baru dari data array
+	 * Mengecek user yang sedang login
 	 *
-	 * @param string $type
-	 * @param array $array
 	 */
 	public static function loggedUser()
 	{
@@ -28,10 +26,9 @@ class Auth
 	}
 
 	/**
-	 * Membuat object asset baru dari data array
+	 * Autentikasi user yang akan login
 	 *
-	 * @param string $type
-	 * @param array $array
+	 * @param array $credentials
 	 */
 	public static function authenticate($credentials)
 	{
@@ -45,6 +42,17 @@ class Auth
 		}
 
 		Session::put('logged.id', $data->id);
+
+		return true;
+	}
+
+	/**
+	 * Membuat object asset baru dari data array
+	 *
+	 */
+	public static function die()
+	{
+		Session::forget('logged.id');
 
 		return true;
 	}
