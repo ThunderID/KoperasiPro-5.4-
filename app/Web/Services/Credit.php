@@ -68,14 +68,14 @@ class Credit
 		$person_repo 		= new PersonRepository;
 		if($person instanceOf Person)
 		{
-			$person = $person_repo->store($person);
+			$person_repo->store($person);
 		}
 		elseif(is_array($person))
 		{
 			//need to place try catch
 			$registry_fact 	= new RegistryFactory;
 			$person 		= $registry_fact->buildPersonFromArray((array) $person);
-			$person  		= $person_repo->store($person);
+			$person_repo->store($person);
 		}
 		else
 		{
@@ -88,42 +88,42 @@ class Credit
 		//check if finance alredy exists
 		if($finance instanceOf Finance)
 		{
-			$finance 		= $finance_repo->store($finance);
+			$finance_repo->store($finance);
 		}
 		elseif(is_array($finance))
 		{
 			//need to place try catch
 			$finance['owner']	= ['id' => $person->id, 'name' => $person->name];
 			$finance 			= $credit_fact->buildFinanceFromArray((array) $finance);
-			$finance 			= $finance_repo->store($finance);
+			$finance_repo->store($finance);
 		}
 
 		$asset_repo 		= new AssetRepository;
 		//check if finance alredy exists
 		if($asset instanceOf Asset)
 		{
-			$asset 			= $asset_repo->store($asset);
+			$asset_repo->store($asset);
 		}
 		elseif(is_array($asset))
 		{
 			//need to place try catch
 			$asset['owner']		= ['id' => $person->id, 'name' => $person->name];
 			$asset 				= $credit_fact->buildAssetFromArray((array) $asset);
-			$asset 				= $asset_repo->store($asset);
+			$asset_repo->store($asset);
 		}
 
 		$credit_repo 		= new CreditRepository;
 		//check if finance alredy exists
 		if($credit instanceOf Credit)
 		{
-			$credit 			= $credit_repo->store($credit);
+			$credit_repo->store($credit);
 		}
 		elseif(is_array($credit))
 		{
 			//need to place try catch
 			$credit['creditor']		= ['id' => $person->id, 'name' => $person->name];
 			$credit 				= $credit_fact->buildCreditFromArray((array) $credit);
-			$credit 				= $credit_repo->store($credit);
+			$credit_repo->store($credit);
 		}
 
 		return self::merge_credit_detail($person, $finance, $asset, $credit);
@@ -134,11 +134,23 @@ class Credit
 	 *
 	 * @return array $all
 	 */
-	public static function all()
+	public static function all($status)
 	{
 		$data 	= new CreditRepository();
 
-		return $data->all();
+		return $data->findByStatus($status);
+	}
+
+	/**
+	 * Menampilkan semua data credit berdasarkan pencarian nama
+	 *
+	 * @return array $all
+	 */
+	public static function findByName($status, $name)
+	{
+		$data 	= new CreditRepository();
+
+		return $data->findByStatusAndName($status, $name);
 	}
 
 	/**
@@ -199,8 +211,8 @@ class Credit
 	public static function statusLists()
 	{
 		return 	[
-					'Drafting',
-					'Analizing'
+					'drafting' 		=> 'Drafting',
+					'analizing' 	=> 'Analizing'
 				]; 
 	}
 }
