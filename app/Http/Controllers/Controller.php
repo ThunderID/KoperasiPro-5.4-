@@ -25,7 +25,7 @@ class Controller extends BaseController
 	public function generateView(){
 		return $this->view
             ->with('page_attributes', $this->page_attributes)
-			->with('page_datas', $this->page_attributes)
+			->with('page_datas', $this->page_datas)
 			;
 	} 
 
