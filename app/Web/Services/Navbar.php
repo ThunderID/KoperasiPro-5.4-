@@ -7,7 +7,7 @@ namespace App\Web\Services;
  *
  * Digunakan generate Navbar berdasarkan policy.
  *
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     Budi P <budi@thunderlab.id>
  */
 class Navbar 
 {
@@ -18,16 +18,33 @@ class Navbar
 	 */
 	public static function all()
 	{
+		// Menu navigation manifests
+		// Build your sitemap using this data structure bellow
+
+		// Structure
+		/*
+			$nav =	[
+					$nav_caption	=> 	[
+											route 	=> $nav_routing,
+											sub 	=> 	[
+															$sub_nav_caption => $sub_nav_routing
+														]
+										]
+				]
+		*/
+
+		// note: if menu have sub's, route parameter should be assigned with null. this will prevent menu from redirecting rather than showing it's sub's navigation menu.
+
 		return [
 				'dashboard' => 	[
 									'route' => '#',
 									'sub'	=> []
 								],
-				'Kredit'	=>	[
+				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[
-													'Pengajuan Baru' 	=> route('credit.create'),
-													'Daftar Kredit' 	=> route('credit.index')
+													'pengajuan_baru' 	=> route('credit.create'),
+													'daftar_kredit' 	=> route('credit.index')
 												]				
 								],
 			]; 

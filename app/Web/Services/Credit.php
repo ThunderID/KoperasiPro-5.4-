@@ -190,4 +190,17 @@ class Credit
 
 		return $data->delete($credit);
 	}
+
+	/**
+	 * Menampilkan status yang ada dalam koperasi
+	 *
+	 * @return array $nav
+	 */
+	public static function statusLists()
+	{
+		return 	[
+					'Drafting',
+					'Analizing'
+				]; 
+	}
 }

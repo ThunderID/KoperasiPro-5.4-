@@ -1,5 +1,13 @@
 @extends('template.cms_template')
 
+@section('kredit')
+    active in
+@stop
+
+@section('pengajuan_baru')
+    active
+@stop
+
 @push('content')
 	{!! Form::open(['url' => route('credit.store'), 'class' => 'form']) !!}
 		<div class="wizard">

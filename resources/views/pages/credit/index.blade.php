@@ -4,7 +4,7 @@
     active in
 @stop
 
-@section('pengajuan_kredit_baru')
+@section('daftar_kredit')
     active
 @stop
 

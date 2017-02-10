@@ -1,3 +1,22 @@
+<?php
+	// Menu navigation manifests
+	// Build your sitemap using this data structure bellow
+
+	// Structure
+	/*
+		$nav =	[
+				$nav_caption	=> 	[
+										route 	=> $nav_routing,
+										sub 	=> 	[
+														$sub_nav_caption => $sub_nav_routing
+													]
+									]
+			]
+	*/
+
+	// note: if menu have sub's, route parameter should be assigned with null. this will prevent menu from redirecting rather than showing it's sub's navigation menu.
+?>
+
 <!-- first layer -->
 <nav class="navbar navbar-fixed-top layer1">
 	<div class="container-fluid p-l-none p-r-none">

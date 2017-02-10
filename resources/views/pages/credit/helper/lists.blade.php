@@ -1,7 +1,21 @@
 <form class="form">
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon3">
-            Cari
+        <span class="input-group-addon" id="basic-addon3" style="padding: 0px">
+            <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                @if(Input::has('status'))
+                    draft
+                @elseif(Input::has('wanita'))
+                    Wanita
+                @else
+                    Semua
+                @endif
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="{{route('credit.index', ['status' => true])}}">status</a></li>
+                <li><a href="{{route('credit.index', ['wanita' => true])}}">Wanita</a></li>
+                <li><a href="{{route('credit.index')}}">Semua</a></li>
+            </ul>
         </span>
         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
     </div>
