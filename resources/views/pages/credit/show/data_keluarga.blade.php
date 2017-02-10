@@ -26,7 +26,7 @@
 
 	<div class="row">
 		<div class="col-sm-12 text-right">
-			<h5><a href="{{route('address.show', ['id' => $value->nik, 'mode' => 'house'])}}">Lihat Alamat</a></h5>
+			<h5><a href="{{route('address.show', ['id' => $value->id, 'mode' => 'house'])}}">Lihat Alamat</a></h5>
 		</div>
 	</div>
 @endforeach

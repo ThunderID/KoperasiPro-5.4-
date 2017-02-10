@@ -37,21 +37,21 @@ class Navbar
 
 		return [
 				'dashboard' => 	[
-									'route' => '#',
+									'route' => route('dashboard.index'),
 									'sub'	=> []
+								],
+				'kredit'	=>	[
+									'route' => null,
+									'sub'	=> 	[
+													'daftar_kredit' 	=> route('credit.index'),
+													'pengajuan_baru' 	=> route('credit.create'),
+												]				
 								],
 				'registrasi'=>	[
 									'route' => null,
 									'sub'	=> 	[
 													// 'siapapun' 			=> route('person.index'),
 													'buku_alamat' 		=> route('address.index')
-												]				
-								],
-				'kredit'	=>	[
-									'route' => null,
-									'sub'	=> 	[
-													'pengajuan_baru' 	=> route('credit.create'),
-													'daftar_kredit' 	=> route('credit.index')
 												]				
 								],
 			]; 

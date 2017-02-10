@@ -121,6 +121,21 @@ class Credit
 		elseif(is_array($credit))
 		{
 			//need to place try catch
+			$credit['statuses']		= [
+				[
+					'status' 		=> 'pending',
+	 				'description' 	=> 'Menunggu notifikasi',
+	 				'date' 			=> 'today',
+	 				'author'		=> [
+	 					'id' 		=> TAuth::loggedUser()->id, 
+	 					'name' 		=> TAuth::loggedUser()->owner->name, 
+	 					'role' 		=> TAuth::activeOffice()->role
+		 			] 
+	 			] 
+			];
+
+			$credit['office']		= ['id' => TAuth::activeOffice()->office->id, 'name' => TAuth::activeOffice()->office->name];
+
 			$credit['creditor']		= ['id' => $person->id, 'name' => $person->name];
 			$credit 				= $credit_fact->buildCreditFromArray((array) $credit);
 			$credit_repo->store($credit);

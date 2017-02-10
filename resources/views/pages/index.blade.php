@@ -1,11 +1,7 @@
 @extends('template.cms_template')
 
-@section('kredit')
+@section('dashboard')
     active in
-@stop
-
-@section('pengajuan_kredit_baru')
-    active
 @stop
 
 @push('content')

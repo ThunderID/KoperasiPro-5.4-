@@ -18,7 +18,7 @@
 ?>
 
 <!-- first layer -->
-<nav class="navbar navbar-fixed-top layer1">
+<nav class="navbar navbar-fixed-top layer1" style="z-index: 99">
 	<div class="container-fluid p-l-none p-r-none">
 		<ul class="nav navbar-nav menu-list">
 			@foreach(App\Web\Services\Navbar::all() as $key => $item)
@@ -39,7 +39,7 @@
 </nav> 
 
 <!-- second layer -->
-<nav class="navbar navbar-fixed-top layer2">
+<nav class="navbar navbar-fixed-top layer2" style="z-index: 100">
 	<div class="container-fluid p-l-none p-r-none">
 		@foreach(App\Web\Services\Navbar::all() as $key => $item)
 		@if(count($item['sub']) > 0)

@@ -8,6 +8,10 @@ use Thunderlabid\Registry\Repository\AddressBookRepository;
 //Entity
 use Thunderlabid\Registry\Entity\AddressBook as AddressBookEntity;
 
+//ValueObject
+use Thunderlabid\Registry\Valueobject\Owner;
+use Thunderlabid\Registry\Valueobject\Office;
+
 /**
  * Kelas AddressBook
  *
@@ -61,6 +65,47 @@ class AddressBook
 		}
 
 		return $data->findByHouseOwnerName($name);
+	}
+
+	/**
+	 * Membuat object asset baru dari data array
+	 *
+	 * @param array $array
+	 * @return Asset $asset
+	 */
+	public static function save($address, $owner)
+	{
+		//check if address already exists
+		$address_repo 		= new AddressBookRepository;
+		if($address instanceOf AddressBook)
+		{
+			$address_repo->store($address);
+		}
+		elseif(is_array($address))
+		{
+			//need to place try catch
+			$registry_fact 	= new RegistryFactory;
+			$address 		= $registry_fact->buildAddressFromArray((array) $address);
+			$address_repo->store($address);
+		}
+		else
+		{
+			throw new Exception("Address should be an instance of Address Entity or array of person", 1);
+		}
+
+		//check if owner alredy exists
+		if($owner instanceOf Owner)
+		{
+			$address->addHouse($owner);
+			$address_repo->store($address);
+		}
+		if($owner instanceOf Office)
+		{
+			$address->addOffice($owner);
+			$address_repo->store($address);
+		}
+	
+		return $address;
 	}
 
 	/**

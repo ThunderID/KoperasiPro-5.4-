@@ -113,7 +113,7 @@
 
 	<div class="row">
 		<div class="col-sm-12 text-right">
-			<h5><a href="{{route('address.show', ['id' => $value->siup, 'mode' => 'office'])}}">Lihat Alamat</a></h5>
+			<h5><a href="{{route('address.show', ['id' => $value->office->id, 'mode' => 'office'])}}">Lihat Alamat</a></h5>
 		</div>
 	</div>
 @endforeach

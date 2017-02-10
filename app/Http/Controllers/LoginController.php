@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Web\Services\Auth;
-use Input;
+use App\Web\Services\TAuth;
+use Input, Exception, Redirect, URL;
 
 /**
  * Kelas LoginController
@@ -49,11 +49,26 @@ class LoginController extends Controller
 	public function logging()
 	{
 		//get input
-		$credentials	= Input::only('email', 'key');
+		$credentials				= Input::only('email', 'key');
 		$credentials['password']	= $credentials['key'];
 
-		//do authenticate
-		$auth			= Auth::authenticate($credentials);
+		try
+		{
+			//do authenticate
+			$auth			= TAuth::authenticate($credentials);
+		}
+		catch(Exception $e)
+		{
+			if(is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+			return $this->generateRedirect(route('login.index'));
+		}
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('credit.index'));
@@ -67,9 +82,41 @@ class LoginController extends Controller
 	public function logout()
 	{
 		//do authenticate
-		$auth			= Auth::die();
+		$auth			= TAuth::die();
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('login.index'));
+	}
+
+	/**
+	 * setting which office should be activate
+	 *
+	 * @return Response
+	 */
+	public function activateOffice($idx)
+	{
+		try
+		{
+			//do authenticate
+			$auth			= TAuth::setOffice($idx);
+		}
+		catch(Exception $e)
+		{
+			if(is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+
+			return Redirect::back()
+					->with('msg', $this->page_attributes->msg)
+					;
+		}
+
+		//function from parent to redirecting
+		return redirect(URL::previous());
 	}
 }

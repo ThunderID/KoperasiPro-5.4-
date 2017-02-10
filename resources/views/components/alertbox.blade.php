@@ -1,7 +1,3 @@
-<?php
-	// dd(key(Session::get('msg')));
-	// dd( Session::get('msg')[key(Session::get('msg'))] );
-?>
 @if(Session::has('msg'))
 	<div class="card-block" style="padding-top:0px;padding-bottom:0px;">
 		<div class="row">

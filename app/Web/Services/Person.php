@@ -2,6 +2,9 @@
 
 namespace App\Web\Services;
 
+//Factory
+use Thunderlabid\Registry\Factory\RegistryFactory;
+
 //Repository
 use Thunderlabid\Registry\Repository\PersonRepository;
 
@@ -17,6 +20,18 @@ use Thunderlabid\Registry\Entity\Person as PersonEntity;
  */
 class Person 
 {
+	/**
+	 * Menampilkan semua data Person
+	 *
+	 * @return array $build
+	 */
+	public static function build($array)
+	{
+		$data 	= new RegistryFactory();
+
+		return $data->buildPersonFromArray($array);
+	}
+
 	/**
 	 * Menampilkan semua data Person
 	 *

@@ -57,13 +57,13 @@ class AddressController extends Controller
 	public function show($id)
 	{
 		// set page attributes (please check parent variable)
-		$this->page_attributes->title              = "Daftar Kredit";
-		$this->page_attributes->breadcrumb         = [
-															'Kredit'   => route('address.index'),
+		$this->page_attributes->title				= "Buku Alamat";
+		$this->page_attributes->breadcrumb			= [
+															'Alamat'   => route('address.index'),
 													 ];
 
 		//initialize view
-		$this->view                                = view('pages.Address.show');
+		$this->view                                = view('pages.address.show');
 
 		//this function to set all needed variable in lists Address (sidebar)
 		$this->getAddressLists();
@@ -78,7 +78,7 @@ class AddressController extends Controller
 	/**
 	 * Fungsi ini untuk menampilkan Address lists, fungsi sidebar.
 	 * variable filter dan search juga di parse disini
-	 * data dari view pages.Address.lists diatur disini
+	 * data dari view pages.address.lists diatur disini
 	 */
 	private function getAddressLists()
 	{

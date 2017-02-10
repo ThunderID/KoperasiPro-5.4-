@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'pjax' =>  \App\Http\Middleware\PjaxMiddleware::class,
+        'authenticated' =>  \App\Http\Middleware\AuthenticatedMiddleware::class,
     ];
 }
