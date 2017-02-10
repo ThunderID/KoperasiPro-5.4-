@@ -50,6 +50,12 @@ Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
 window.inputmask = require('./plugins/inputmask/inputmask');
 
+/**
+ * 5. JjQuery Step (for wizard form)
+ * Description: form wizard
+ * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
+ */
+window.steps = require('./plugins/jquery-steps/jquery.steps');
 
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
