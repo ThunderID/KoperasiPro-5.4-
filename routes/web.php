@@ -16,10 +16,16 @@ Route::get('/', function ()
     return view('welcome');
 });
 
+Route::get('/login', function () 
+{
+    return view('pages.uac.login');
+});
+
 // Here lies credit controller all things started here
 Route::group(['middleware' => 'pjax'], function()
 {
 	Route::resource('credit', 'CreditController');
+
 });
 
 //here lies test routes
