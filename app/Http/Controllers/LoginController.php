@@ -33,12 +33,9 @@ class LoginController extends Controller
 	{
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title				= "Login";
-		$this->page_attributes->breadcrumb			= [
-															'Kredit'   => route('credit.index'),
-													 ];
 
 		//initialize view
-		$this->view									= view('pages.login.index');
+		$this->view									= view('pages.uac.login');
 
 		//function from parent to generate view
 		return $this->generateView();
