@@ -35,6 +35,9 @@ $(document).ready(function(){
     });
 	$(document).on('pjax:end',   function() { 
         NProgress.done();  
+
+        // call event form wizard();
+        wizard();
     });
 
     // does current browser support PJAX
@@ -56,6 +59,10 @@ window.inputmask = require('./plugins/inputmask/inputmask');
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
 window.steps = require('./plugins/jquery-steps/jquery.steps');
+$(document).ready(function() {
+    // call event form wizard();
+    wizard();
+});
 
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
