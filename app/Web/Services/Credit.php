@@ -156,9 +156,9 @@ class Credit
 	/**
 	 * Menampilkan semua data credit
 	 *
-	 * @return array $detailed
+	 * @return array $findByID
 	 */
-	public static function detailed($id)
+	public static function findByID($id)
 	{
 		$credit_repo 		= new CreditRepository();
 		$person_repo 		= new PersonRepository();

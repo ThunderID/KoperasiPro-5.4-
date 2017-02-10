@@ -40,6 +40,13 @@ class Navbar
 									'route' => '#',
 									'sub'	=> []
 								],
+				'registrasi'=>	[
+									'route' => null,
+									'sub'	=> 	[
+													// 'siapapun' 			=> route('person.index'),
+													'buku_alamat' 		=> route('address.index')
+												]				
+								],
 				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[

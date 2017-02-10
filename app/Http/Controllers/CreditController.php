@@ -102,10 +102,13 @@ class CreditController extends Controller
 													 ];
 
 		//initialize view
-		$this->view                                = view('pages.credit.show', compact('id'));
+		$this->view                                = view('pages.credit.show');
 
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getCreditLists();
+
+		//parsing master data here
+		$this->page_datas->credit 					= Credit::findByID($id);
 
 		//function from parent to generate view
 		return $this->generateView();

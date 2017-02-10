@@ -1,69 +1,80 @@
 @extends('template.cms_template')
 
 @section('kredit')
-    active in
+	active in
 @stop
 
 @section('daftar_kredit')
-    active
+	active
 @stop
 
 @push('content')
 	<div class="row" style="padding-top: 20px;">
-        <div class="col-sm-3">
-            @include('pages.credit.helper.lists')
-        </div>
-        <div class="col-sm-9">
-            <h3 style="margin-top: 5px">Data Kredit</h3>
-            <hr/>
-            <table>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Kreditur</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->creditor->name}}</h4>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Penjamin</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->credit->warrantor->name}}</h4>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Pengajuan Kredit</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->credit->credit_amount->IDR()}}</h4>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Kemampuan Angsur</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->credit->installment->IDR()}}</h4>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Lama Angsuran</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->credit->period}}</h4>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3"><h4><small>Tujuan Kredit</small></h4></td>
-                    <td class="col-sm-9">
-                        <h4>{{App\Web\Services\Credit::detailed($id)->credit->purpose}}</h4>
-                    </td>
-                </tr>
-                @foreach(App\Web\Services\Credit::detailed($id)->credit->collaterals as $key => $value)
-                    <tr class="row">
-                        <td class="col-sm-3"><h4><small>Jaminan {{($key + 1)}}</small></h4></td>
-                        <td class="col-sm-9">
-                            <h4>{{$value->legal}} <small>{{$value->type}}</small></h4>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-    </div>	
+		<div class="col-sm-3">
+			@include('pages.credit.helper.lists')
+		</div>
+		<div class="col-sm-9">
+
+			<!-- BLOCK 1 Display Data Rencana Kredit // -->
+			<div class="row">
+				<div class="col-sm-12">
+					@include('pages.credit.show.rencana_kredit')
+				</div>
+			</div>
+
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+		   
+			<!-- BLOCK 2 Display Data Pribadi,  Data Kelurga, Data Penjamin // -->
+			<div class="row">
+				<div class="col-sm-6">
+					@include('pages.credit.show.data_pribadi')
+				</div>
+				<div class="col-sm-6">
+					@include('pages.credit.show.data_keluarga')
+					@include('pages.credit.show.data_penjamin')
+				</div>
+			</div>
+
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+
+			<!-- BLOCK 3 Display Data Keuangan, Data Aset, Data Jaminan // -->
+			<div class="row">
+				<div class="col-sm-6">
+					@include('pages.credit.show.data_keuangan')
+				</div>
+				<div class="col-sm-6">
+					@include('pages.credit.show.data_aset')
+					@include('pages.credit.show.data_jaminan')
+				</div>
+			</div>
+
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			
+			<!-- BLOCK 4 Action Button // -->
+			<div class="row">
+				<div class="col-sm-6 text-left">
+					{{Form::open(['url' => route('credit.destroy', ['id' => $page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}
+						<button class="btn btn-danger">Tolak</button>
+					{{Form::close()}}
+				</div>
+				<div class="col-sm-6 text-right">
+					<a class="btn btn-primary">Ajukan</a>
+					<a class="btn btn-primary">Drafting</a>
+				</div>
+			</div>
+
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+
+		</div>
+	</div>	
 @endpush
 
 @push('scripts')

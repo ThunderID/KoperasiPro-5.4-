@@ -16,6 +16,8 @@
 		<!-- right section -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<div class="nav navbar-nav navbar-right">
+
+
 				<a class="profile" href="#">
 					<div class="col-xs-3">
 						<img src="https://lh3.ggpht.com/tQOw8-NUQPfJdBCPdMw10ub69krfnHUbtHYD9Z3FzoEuw_PdSleXgUaZl29CSobSGg=h900" class="img-circle avatar" alt="Profile">
@@ -30,6 +32,9 @@
 						</span>
 					</div >
 				</a>
+
+
+				
 			</div>
 		</div>
 	</div>

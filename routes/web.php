@@ -19,7 +19,19 @@ Route::get('/', function ()
 // Here lies credit controller all things started here
 Route::group(['middleware' => 'pjax'], function()
 {
+	//Menu Kredit
 	Route::resource('credit', 'CreditController');
+	
+	//Menu Registrasi
+	Route::resource('person', 'PersonController');
+	Route::resource('address', 'AddressController');
+});
+
+// Here lies login controller all things started here
+Route::group(['middleware' => 'pjax'], function()
+{
+	//Menu Login
+	Route::resource('login', 'LoginController');
 });
 
 //here lies test routes
