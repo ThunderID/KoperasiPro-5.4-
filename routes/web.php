@@ -21,3 +21,9 @@ Route::group(['middleware' => 'pjax'], function()
 {
 	Route::resource('credit', 'CreditController');
 });
+
+//here lies test routes
+Route::group(['middleware' => 'pjax'], function(){
+	Route::get('/index', ['uses' => 'dashboardController@index', 'as' => 'dashboard.index']);
+	Route::get('/index2', ['uses' => 'dashboardController@index2', 'as' => 'dashboard.index2']);
+});
