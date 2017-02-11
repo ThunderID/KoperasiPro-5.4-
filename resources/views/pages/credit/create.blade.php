@@ -9,6 +9,7 @@
 @stop
 
 @push('content')
+	<div style="padding: 16px 9px;">
 	{!! Form::open(['url' => route('credit.store'), 'class' => 'form']) !!}
 		<div class="wizard">
 			{{-- untuk data kredit --}}
@@ -40,6 +41,7 @@
 		{!! Form::hidden('status[][petugas][nip]', '1234567890') !!}
 		{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
 	{!! Form::close() !!}
+	</div>
 @endpush
 
 @push('scripts')
