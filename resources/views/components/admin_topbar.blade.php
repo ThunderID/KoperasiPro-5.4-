@@ -13,7 +13,7 @@
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="pull-right">
-				<div class="dropdown" style="z-index: 3; padding-top: 5px">
+				<div class="dropdown p-t-xs">
 					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 						{{App\Web\Services\TAuth::activeOffice()->office->name}}
 						<span class="caret"></span>
@@ -39,7 +39,7 @@
 						<p class="role">{{App\Web\Services\TAuth::activeOffice()->role}}</p>
 						
 					</div >
-					<div class="col-xs-3 p-r-none" style="padding-top: 15px;">
+					<div class="col-xs-3 p-r-none p-t-md">
 						<p>
 							<a href="{{route('login.destroy')}}">
 								<i class="fa fa-power-off" aria-hidden="true"></i>
