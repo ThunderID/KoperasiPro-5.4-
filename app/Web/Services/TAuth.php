@@ -105,7 +105,7 @@ class TAuth
 	 * Membuat object asset baru dari data array
 	 *
 	 */
-	public static function die()
+	public static function signoff()
 	{
 		Session::forget('logged.id');
 

@@ -27,8 +27,11 @@ nav.topbar {
 	.role {
 		margin-bottom: 10px;
 	}	
-	.dropdown > p {
-		margin-top: -33px;
+	.dropdown {
+		z-index: 3;
+		p {
+			margin-top: -33px;
+		}
 	}
 }
 

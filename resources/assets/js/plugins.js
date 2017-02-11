@@ -64,6 +64,16 @@ $(document).ready(function() {
     wizard();
 });
 
+/**
+ * 6. Jquery Validation
+ * Description: jquery validation for form
+ * Usage & Documentation: https://jqueryvalidation.org/
+ */
+window.validation = require('./plugins/jquery-validation/jquery.validate');
+$(document).ready(function() {
+    // call plugin jquery form validate
+    validation();
+});
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);
