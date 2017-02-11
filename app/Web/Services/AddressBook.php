@@ -5,6 +5,9 @@ namespace App\Web\Services;
 //Repository
 use Thunderlabid\Registry\Repository\AddressBookRepository;
 
+//Factory
+use Thunderlabid\Registry\Factory\RegistryFactory;
+
 //Entity
 use Thunderlabid\Registry\Entity\AddressBook as AddressBookEntity;
 
@@ -85,12 +88,12 @@ class AddressBook
 		{
 			//need to place try catch
 			$registry_fact 	= new RegistryFactory;
-			$address 		= $registry_fact->buildAddressFromArray((array) $address);
+			$address 		= $registry_fact->buildAddressBookFromArray((array) $address);
 			$address_repo->store($address);
 		}
 		else
 		{
-			throw new Exception("Address should be an instance of Address Entity or array of person", 1);
+			throw new Exception("Address should be an instance of Address Entity or array of address", 1);
 		}
 
 		//check if owner alredy exists

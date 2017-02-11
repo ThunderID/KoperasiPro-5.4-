@@ -16,6 +16,6 @@
 
 <div class="row">
 	<div class="col-sm-12 text-right">
-		<h5><a href="{{route('address.show', ['id' => $page_datas->credit->credit->warrantor->id, 'mode' => 'house'])}}">Lihat Alamat</a></h5>
+		<h5><a href="{{route('address.index', ['id' => $page_datas->credit->credit->warrantor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
 	</div>
 </div>

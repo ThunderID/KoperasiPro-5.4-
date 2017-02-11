@@ -79,7 +79,7 @@
 
 <div class="row">
 	<div class="col-sm-12 text-right">
-		<h5><a href="{{route('address.show', ['id' => $page_datas->credit->creditor->id, 'mode' => 'house'])}}">Lihat Alamat</a></h5>
+		<h5><a href="{{route('address.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
 	</div>
 </div>
 
@@ -113,7 +113,7 @@
 
 	<div class="row">
 		<div class="col-sm-12 text-right">
-			<h5><a href="{{route('address.show', ['id' => $value->office->id, 'mode' => 'office'])}}">Lihat Alamat</a></h5>
+			<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
 		</div>
 	</div>
 @endforeach

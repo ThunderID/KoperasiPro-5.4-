@@ -24,6 +24,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	
 	//Menu Registrasi
 	Route::resource('address', 'AddressController');
+	Route::resource('person', 'PersonController');
 });
 
 Route::group(['middleware' => ['pjax']], function()
