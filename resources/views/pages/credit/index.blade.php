@@ -18,11 +18,11 @@
 				<div class="search">
 					<form class="form" action="{{route('credit.index', Input::all())}}">
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder="Search">
+							<input class="form-control" type="text" placeholder="Search" value="{{ Input::get('q') }}">
 							<span class="input-group-btn group-btn-search">
-								<button class="btn" type="submit">
+								<a class="btn ajax-search" type="submit">
 									<i class="fa fa-search"></i>
-								</button>
+								</a>
 							</span>                        
 						</div>
 					</form>
