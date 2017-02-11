@@ -1,43 +1,20 @@
 <div class="page-header m-t-none m-b-xl p-b-xs">
 	<h2 class="m-t-none m-b-xs">Data Penjamin</h2>
 </div>
-<fieldset class="form-group">
-	<label for="">Hubungan Sebagai</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('penjamin[hubungan]', null, ['class' => 'form-control', 'placeholder' => 'Penjamin hubungan sebagai']) !!}
-		</div>
-	</div>
-</fieldset>
+
 <fieldset class="form-group">
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penjamin[nama]', null, ['class' => 'form-control', 'placeholder' => 'Nama penjamin']) !!}
+			{!! Form::text('warrantor[name]', null, ['class' => 'form-control', 'placeholder' => 'Nama penjamin']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Alamat</label>
+	<label for="">Jalan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penjamin[alamat][jalan]', null, ['class' => 'form-control', 'placeholder' => 'Alamat']) !!}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Kelurahan</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('penjamin[alamat][kelurahan]', null, ['class' => 'form-control', 'placeholder' => 'kelurahan']) !!}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Kecamatan</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('penjamin[alamat][kecamatan]', null, ['class' => 'form-control', 'placeholder' => 'kecamatan']) !!}
+			{!! Form::text('warrantor[address][street]', null, ['class' => 'form-control', 'placeholder' => 'Jalan']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -45,23 +22,23 @@
 	<label for="">Kota</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penjamin[alamat][kota]', null, ['class' => 'form-control', 'placeholder' => 'kota']) !!}
+			{!! Form::text('warrantor[address][city]', null, ['class' => 'form-control', 'placeholder' => 'Kota']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">No. Telp</label>
+	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penjamin[kontak][telepon]', null, ['class' => 'form-control', 'placeholder' => 'Nomor telepon']) !!}
+			{!! Form::text('warrantor[address][province]', null, ['class' => 'form-control', 'placeholder' => 'Provinsi']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Handphone</label>
+	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penjamin[kontak][handphone]', null, ['class' => 'form-control', 'placeholder' => 'Nomor handphone']) !!}
+			{!! Form::text('warrantor[address][country]', null, ['class' => 'form-control', 'placeholder' => 'Negara']) !!}
 		</div>
 	</div>
 </fieldset>

@@ -110,11 +110,11 @@ class Person
 	 */
 	private static function merge_credit_detail($person, $address)
 	{
-		$person 			= new PersonProxy();
+		$person_prox 			= new PersonProxy();
 
-		$person->person		= $person;
-		$person->address	= $address;
+		$person_prox->person	= $person;
+		$person_prox->address	= $address;
 
-		return $person;
+		return $person_prox;
 	}
 }

@@ -83,37 +83,39 @@
 	</div>
 </div>
 
-@foreach($page_datas->credit->creditor->works as $key => $value)
-	<div class="row">
-		<div class="col-sm-6">
-			<h4><small>Jenis Pekerjaan</small></h4>
+@if(isset($page_datas->credit->creditor->works))
+	@foreach($page_datas->credit->creditor->works as $key => $value)
+		<div class="row">
+			<div class="col-sm-6">
+				<h4><small>Jenis Pekerjaan</small></h4>
+			</div>
+			<div class="col-sm-6">
+				<h4>{{$value->area}}</h4>
+			</div>
 		</div>
-		<div class="col-sm-6">
-			<h4>{{$value->area}}</h4>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-sm-6">
-			<h4><small>Posisi</small></h4>
+		<div class="row">
+			<div class="col-sm-6">
+				<h4><small>Posisi</small></h4>
+			</div>
+			<div class="col-sm-6">
+				<h4>{{$value->position}}</h4>
+			</div>
 		</div>
-		<div class="col-sm-6">
-			<h4>{{$value->position}}</h4>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-sm-6">
-			<h4><small>Sejak</small></h4>
+		<div class="row">
+			<div class="col-sm-6">
+				<h4><small>Sejak</small></h4>
+			</div>
+			<div class="col-sm-6">
+				<h4>{{$value->since->format('d M Y')}}</h4>
+			</div>
 		</div>
-		<div class="col-sm-6">
-			<h4>{{$value->since->format('d M Y')}}</h4>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-sm-12 text-right">
-			<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
+		<div class="row">
+			<div class="col-sm-12 text-right">
+				<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
+			</div>
 		</div>
-	</div>
-@endforeach
+	@endforeach
+@endif

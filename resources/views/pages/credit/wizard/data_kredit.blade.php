@@ -2,19 +2,20 @@
 	<h2 class="m-t-none m-b-xs">Data Kredit</h2>
 </div>
 <fieldset class="form-group">
-	<label for="">No. Permohonan Kredit</label>
+	<label for="">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('nomor_kredit', null, ['class' => 'form-control', 'placeholder' => 'Ex. 09913365']) !!}
+			{!! Form::text('credit[credit_amount]', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pinjaman']) !!}
 		</div>
 	</div>
 </fieldset>
+
 <fieldset class="form-group">
 	<label for="">Kemampuan Jumlah Angsuran</label>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">
-				{!! Form::text('kemampuan_angsuran', null, ['class' => 'form-control', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
+				{!! Form::text('credit[installment]', null, ['class' => 'form-control', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
 				<div class="input-group-addon">/ Bulan</div>
 			</div>
 		</div>
@@ -25,17 +26,20 @@
 	<div class="row">
 		<div class="col-md-5">
 			<div class="input-group">
-				{!! Form::text('jangka_waktu', null, ['class' => 'form-control', 'placeholder' => 'Lama angsuran']) !!}
+				{!! Form::text('credit[period]', null, ['class' => 'form-control', 'placeholder' => 'Lama angsuran']) !!}
 				<div class="input-group-addon">Bulan</div>
 			</div>
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jumlah Pinjaman</label>
+	<label for="">Tujuan Kredit</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('pengajuan_kredit', null, ['class' => 'form-control', 'placeholder' => 'Jumlah pinjaman']) !!}
+			<div class="input-group">
+				{!! Form::text('credit[purpose]', null, ['class' => 'form-control', 'placeholder' => 'Tujuan kredit']) !!}
+				<div class="input-group-addon">Bulan</div>
+			</div>
 		</div>
 	</div>
 </fieldset>

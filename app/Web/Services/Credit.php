@@ -14,6 +14,11 @@ use Thunderlabid\Registry\Repository\PersonRepository;
 
 //Entity
 use Thunderlabid\Credit\Entity\Credit as CreditEntity;
+use Thunderlabid\Registry\Entity\Person as PersonEntity;
+use Thunderlabid\Credit\Entity\Finance as FinanceEntity;
+use Thunderlabid\Credit\Entity\Asset as AssetEntity;
+
+use Exception;
 
 /**
  * Kelas Credit
@@ -62,11 +67,12 @@ class Credit
 	 * @param array $array
 	 * @return Asset $asset
 	 */
+
 	public static function save($person, $finance, $asset, $credit)
 	{
 		//check if person alredy exists
 		$person_repo 		= new PersonRepository;
-		if($person instanceOf Person)
+		if($person instanceOf PersonEntity)
 		{
 			$person_repo->store($person);
 		}
@@ -86,7 +92,7 @@ class Credit
 		$finance_repo 		= new FinanceRepository;
 		
 		//check if finance alredy exists
-		if($finance instanceOf Finance)
+		if($finance instanceOf FinanceEntity)
 		{
 			$finance_repo->store($finance);
 		}
@@ -100,7 +106,7 @@ class Credit
 
 		$asset_repo 		= new AssetRepository;
 		//check if finance alredy exists
-		if($asset instanceOf Asset)
+		if($asset instanceOf AssetEntity)
 		{
 			$asset_repo->store($asset);
 		}
@@ -114,7 +120,7 @@ class Credit
 
 		$credit_repo 		= new CreditRepository;
 		//check if finance alredy exists
-		if($credit instanceOf Credit)
+		if($credit instanceOf CreditEntity)
 		{
 			$credit_repo->store($credit);
 		}

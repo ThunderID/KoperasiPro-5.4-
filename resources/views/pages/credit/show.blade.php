@@ -42,10 +42,14 @@
 			<!-- BLOCK 3 Display Data Keuangan, Data Aset, Data Jaminan // -->
 			<div class="row">
 				<div class="col-sm-6">
-					@include('pages.credit.show.data_keuangan')
+					@if(isset($page_datas->credit->finance))
+						@include('pages.credit.show.data_keuangan')
+					@endif
 				</div>
 				<div class="col-sm-6">
-					@include('pages.credit.show.data_aset')
+					@if(isset($page_datas->credit->asset))
+						@include('pages.credit.show.data_aset')
+					@endif
 					@include('pages.credit.show.data_jaminan')
 				</div>
 			</div>
