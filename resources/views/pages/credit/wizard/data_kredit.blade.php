@@ -38,7 +38,6 @@
 		<div class="col-md-5">
 			<div class="input-group">
 				{!! Form::text('credit[purpose]', null, ['class' => 'form-control', 'placeholder' => 'Tujuan kredit']) !!}
-				<div class="input-group-addon">Bulan</div>
 			</div>
 		</div>
 	</div>
