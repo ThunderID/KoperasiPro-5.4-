@@ -82,7 +82,7 @@ class LoginController extends Controller
 	public function logout()
 	{
 		//do authenticate
-		$auth			= TAuth::die();
+		$auth			= TAuth::signoff();
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('login.index'));
