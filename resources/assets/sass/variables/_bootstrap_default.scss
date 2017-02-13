@@ -34,8 +34,8 @@ $border-radius-small:       	2px !default;
 $brand-primary: 				$color-active;
 $brand-info: 					#8eb4cb;
 $brand-success: 				#3097D1;
-$brand-warning: 				#cbb956;
-$brand-danger: 					#bf5329;
+$brand-warning: 				#f39c12;
+$brand-danger: 					#e74c3c;
 
 //== Navbar
 //
@@ -69,9 +69,3 @@ $cursor-disabled:                not-allowed !default;
 $form-group-margin-bottom:       24px !default;
 //** `.form-group` margin
 $form-group-margin-bottom:       15px !default;
-
-// $legend-color:                   $text-color !default;
-$legend-border-color:            transparent !default;
-
-//** Border color for textual input addons
-$input-group-addon-border-color: $input-border !default;

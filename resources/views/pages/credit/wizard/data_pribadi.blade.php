@@ -1,4 +1,4 @@
-<div class="page-header m-t-none m-b-xl p-b-xs">
+<div class="m-t-none m-b-md">
 	<h4 class="m-t-none m-b-xs">Data Pribadi</h4>
 </div>
 {{-- informasi umum --}}
@@ -7,8 +7,8 @@
 <fieldset class="form-group">
 	<label for="">NIK</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control', 'placeholder' => 'NIK']) !!}
+		<div class="col-md-4">
+			{!! Form::text('person[nik]', null, ['class' => 'form-control number', 'placeholder' => 'NIK']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -16,8 +16,8 @@
 <fieldset class="form-group">
 	<label for="">Nama</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('person[name]', null, ['class' => 'form-control', 'placeholder' => 'Ex. Suena Morn']) !!}
+		<div class="col-md-6">
+			{!! Form::text('person[name]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Suena Morn']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -25,16 +25,16 @@
 <fieldset class="form-group">
 	<label for="">Tempat Lahir</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control', 'placeholder' => 'Tempat lahir']) !!}
+		<div class="col-md-4">
+			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label>Tanggal Lahir</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control', 'placeholder' => 'Tanggal lahir']) !!}
+		<div class="col-md-3">
+			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control dateFormat date_format', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -43,7 +43,12 @@
 	<label for="">Jenis Kelamin</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[gender]', null, ['class' => 'form-control', 'placeholder' => 'Jenis Kelamin']) !!}
+			<label class="radio-inline">
+				{!! Form::radio('person[gender]', 'male', true) !!} Laki-laki
+			</label>
+			<label class="radio-inline">
+				{!! Form::radio('person[gender]', 'female') !!} Perempuan
+			</label>
 		</div>
 	</div>
 </fieldset>
@@ -51,7 +56,13 @@
 	<label for="">Agama</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[religion]', null, ['class' => 'form-control', 'placeholder' => 'Agama']) !!}
+			{!! Form::select('person[religion]', [
+				'buddha' 	=> 'Buddha', 
+				'hindu' 	=> 'Hindu',
+				'islam'		=> 'Islam',
+				'protestan'	=> 'Kristen Protestan',
+				'katolik'	=> 'Kristen Katolik'
+			], null, ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -59,7 +70,7 @@
 	<label for="">Pendidikan Terakhir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[highest_education]', null, ['class' => 'form-control', 'placeholder' => 'Pendidikan Terakhir']) !!}
+			{!! Form::text('person[highest_education]', null, ['class' => 'form-control required', 'placeholder' => 'Pendidikan Terakhir']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -67,7 +78,11 @@
 	<label for="">Status Pernikahan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[marital_status]', null, ['class' => 'form-control', 'placeholder' => 'Status pernikahan']) !!}
+			{!! Form::select('person[marital_status]', [
+				'cerai'		=> 'Cerai',
+				'single' 	=> 'Single',
+				'menikah'	=> 'Menikah',
+			], null, ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>

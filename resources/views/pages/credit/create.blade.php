@@ -10,29 +10,27 @@
 
 @push('content')
 	<div class="p-content">
-		{!! Form::open(['url' => route('credit.store'), 'class' => 'form']) !!}
-			<div class="page-header m-t-none m-b-xl p-b-xs">
-				<h2 class="m-t-none m-b-xs">Pengajuan Baru</h2>
-			</div>
-			<div class="wizard">
-				{{-- untuk data kredit --}}
-				<h2>Data Kredit</h2>
-				<section>
-					@include ('pages.credit.wizard.data_kredit')
-				</section>
-				<h2>Data Pribadi</h2>
-				<section>
-					@include ('pages.credit.wizard.data_pribadi')
-				</section>
-				<h2>Data Penjamin</h2>
-				<section>
-					@include ('pages.credit.wizard.data_penjamin')
-				</section>
-				<h2>Data Jaminan</h2>
-				<section>
-					@include ('pages.credit.wizard.data_jaminan')
-				</section>
-			</div>
+		<div class="page-header m-t-none m-b-xl p-b-xs">
+			<h2 class="m-t-none m-b-xs">Pengajuan Baru</h2>
+		</div>
+		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard']) !!}
+			{{-- untuk data kredit --}}
+			<h3>Data Kredit</h3>
+			<section>
+				@include ('pages.credit.wizard.data_kredit')
+			</section>
+			<h3>Data Pribadi</h3>
+			<section>
+				@include ('pages.credit.wizard.data_pribadi')
+			</section>
+			<h3>Data Penjamin</h3>
+			<section>
+				@include ('pages.credit.wizard.data_penjamin')
+			</section>
+			<h3>Data Jaminan</h3>
+			<section>
+				@include ('pages.credit.wizard.data_jaminan')
+			</section>
 			{{-- koperasi --}}
 			{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
 			{!! Form::hidden('koperasi[nama]', 'tanjung terang') !!}

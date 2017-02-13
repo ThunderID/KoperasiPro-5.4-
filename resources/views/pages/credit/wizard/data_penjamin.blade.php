@@ -1,4 +1,4 @@
-<div class="page-header m-t-none m-b-xl p-b-xs">
+<div class="m-t-none m-b-md">
 	<h4 class="m-t-none m-b-xs">Data Penjamin</h4>
 </div>
 
