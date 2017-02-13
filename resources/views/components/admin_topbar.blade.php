@@ -41,7 +41,7 @@
 					</div >
 					<div class="col-xs-3 p-r-none p-t-md">
 						<p>
-							<a href="{{route('login.destroy')}}">
+							<a href="{{route('login.destroy')}}" no-data-pjax>
 								<i class="fa fa-power-off" aria-hidden="true"></i>
 							</a>
 						</p>

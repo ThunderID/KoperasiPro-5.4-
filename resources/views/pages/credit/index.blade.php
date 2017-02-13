@@ -14,8 +14,8 @@
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
-					'status'			=> 	['analyzing','drafting']
-					'status_default'	=> 'semua',
+					'status'			=> 	['analyzing','drafting'],
+					'status_default'	=> 'semua'
 				]])
 			</div>
 

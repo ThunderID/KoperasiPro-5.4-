@@ -27,7 +27,7 @@ Note :
 */
 window.pjax = require('./plugins/pjax/pjax');
 $(document).ready(function(){
-    $(document).pjax('a', '#pjax-container');
+    $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
     //using nprogress to indicate loading
     $(document).on('pjax:start', function() { 
