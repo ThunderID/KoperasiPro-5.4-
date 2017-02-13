@@ -1,5 +1,7 @@
 @import "variables/spacing";
 
+.p-content { padding: 			$space-content;}
+
 .m-r-none { margin-right:		0px }
 .m-r-xs { margin-right:			$space-xs; }
 .m-r-sm { margin-right:			$space-sm; }

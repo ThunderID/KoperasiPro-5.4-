@@ -11,7 +11,7 @@ window.wizard = function(){
 			current: "current step:",
 			pagination: "Pagination",
 			finish: "Simpan",
-			next: "SeLanjutnya",
+			next: "Selanjutnya",
 			previous: "Sebelumnya",
 			loading: "Loading ..."
 		},

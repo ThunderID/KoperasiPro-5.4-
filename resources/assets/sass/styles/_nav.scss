@@ -5,6 +5,10 @@
 	.navbar-right{
 		margin-right: 0px;
 	}
+
+	.navbar-brand {
+		border-right: 2px solid $border-color-default;
+	}
 }
 
 nav.topbar {
