@@ -40,6 +40,11 @@ $(document).ready(function(){
         wizard();
     });
 
+    // Form Submit with get method
+    $(document).on('submit', 'form[data-pjax]', function(event) {
+      $.pjax.submit(event, '#pjax-container')
+    })    
+
     // does current browser support PJAX
     if ($.support.pjax) {
         $.pjax.defaults.timeout = 5000; // time in milliseconds
@@ -69,11 +74,11 @@ $(document).ready(function() {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validation = require('./plugins/jquery-validation/jquery.validate');
-$(document).ready(function() {
-    // call plugin jquery form validate
-    validation();
-});
+// window.validation = require('./plugins/jquery-validation/jquery.validate');
+// $(document).ready(function() {
+//     // call plugin jquery form validate
+//     validation();
+// });
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);

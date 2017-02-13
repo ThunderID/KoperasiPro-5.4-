@@ -16,13 +16,16 @@
 					<h2>Data Kredit</h2>
 				</div>
 				<div class="search">
-					<form class="form" action="{{route('credit.index', Input::all())}}">
+					<form class="form" action="{{route('credit.index', Input::only('status','sort'))}}" data-pjax=true>
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder="Search" value="{{ Input::get('q') }}">
+							<input class="form-control" name="q" type="text" placeholder="Cari Data Kredit" value="{{ Input::get('q') }}">
 							<span class="input-group-btn group-btn-search">
-								<a class="btn ajax-search" type="submit">
-									<i class="fa fa-search"></i>
-								</a>
+								<a class="btn clear-search {{ !Input::has('q') ? 'disabled' : '' }}" href="{{route('credit.index', Input::only('status','sort'))}}" data-toggle="tooltip" title="Hapus pencarian">
+									<i class="fa fa-window-close" aria-hidden="true"></i>
+								</a>							
+								<button class="btn" type="submit" data-toggle="tooltip" title="Cari data">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
 							</span>                        
 						</div>
 					</form>
@@ -41,9 +44,9 @@
 								</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="{{ route('credit.index') }}">Semua</a></li>
-								<li><a href="{{ route('credit.index', Input::only('q','sort')) }}status=drafting">Drafting</a></li>
-								<li><a href="{{ route('credit.index', Input::only('q','sort')) }}status=analyzing">Analyzing</a></li>
+								<li><a href="{{ route('credit.index', Input::only('q','sort')) }}">Semua</a></li>
+								<li><a href="{{ route('credit.index', Input::only('q','sort')) }}&status=drafting">Drafting</a></li>
+								<li><a href="{{ route('credit.index', Input::only('q','sort')) }}&status=analyzing">Analyzing</a></li>
 							</ul>
 						</div>
 					
