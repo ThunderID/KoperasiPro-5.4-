@@ -10,6 +10,7 @@ require('./plugins');
 // require('');
 require('./modules/push-notification');
 require('./modules/form-wizard');
+require('./modules/uac');
 
 
 //draft

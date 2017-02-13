@@ -27,7 +27,7 @@ Note :
 */
 window.pjax = require('./plugins/pjax/pjax');
 $(document).ready(function(){
-	$(document).pjax('a', '#pjax-container');
+    $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
 	//using nprogress to indicate loading
 	$(document).on('pjax:start', function() { 
@@ -40,10 +40,15 @@ $(document).ready(function(){
 		wizard();
 	});
 
-	// does current browser support PJAX
-	if ($.support.pjax) {
-		$.pjax.defaults.timeout = 5000; // time in milliseconds
-	}
+    // Form Submit with get method
+    $(document).on('submit', 'form[data-pjax]', function(event) {
+      $.pjax.submit(event, '#pjax-container')
+    })    
+
+    // does current browser support PJAX
+    if ($.support.pjax) {
+        $.pjax.defaults.timeout = 5000; // time in milliseconds
+    }
 });
 
 /**
