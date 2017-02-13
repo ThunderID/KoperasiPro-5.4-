@@ -9,3 +9,6 @@ input {
     @include box-shadow(none);
   }
 }
+.input-group-addon {
+	border-width: 2px !important;
+}

@@ -1,5 +1,5 @@
 <div class="page-header m-t-none m-b-xl p-b-xs">
-	<h2 class="m-t-none m-b-xs">Data Pribadi</h2>
+	<h4 class="m-t-none m-b-xs">Data Pribadi</h4>
 </div>
 {{-- informasi umum --}}
 <b><h5>Info Umum</h5></b>

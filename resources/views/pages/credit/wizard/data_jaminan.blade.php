@@ -1,5 +1,5 @@
 <div class="page-header m-t-none m-b-xl p-b-xs">
-	<h2 class="m-t-none m-b-xs">Data Jaminan</h2>
+	<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
 </div>
 <fieldset class="form-group">
 	<label for="">Jenis</label>

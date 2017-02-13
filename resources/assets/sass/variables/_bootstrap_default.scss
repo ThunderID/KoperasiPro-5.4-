@@ -31,9 +31,9 @@ $border-radius-small:       	2px !default;
 //== Colors
 //
 //##
-$brand-primary: 				#3097D1;
+$brand-primary: 				$color-active;
 $brand-info: 					#8eb4cb;
-$brand-success: 				#2ab27b;
+$brand-success: 				#3097D1;
 $brand-warning: 				#cbb956;
 $brand-danger: 					#bf5329;
 
@@ -60,7 +60,6 @@ $input-color-placeholder: 		lighten($text-color, 30%);
 $panel-default-heading-bg: 		#fff;
 
 //== Form
-//
 //##
 //** Border color for inputs on focus
 $input-border-focus:             $brand-primary !default;
@@ -68,3 +67,11 @@ $input-border-focus:             $brand-primary !default;
 $cursor-disabled:                not-allowed !default;
 //** `.form-group` margin
 $form-group-margin-bottom:       24px !default;
+//** `.form-group` margin
+$form-group-margin-bottom:       15px !default;
+
+// $legend-color:                   $text-color !default;
+$legend-border-color:            transparent !default;
+
+//** Border color for textual input addons
+$input-group-addon-border-color: $input-border !default;

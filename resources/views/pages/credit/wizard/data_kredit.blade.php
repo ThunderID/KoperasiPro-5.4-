@@ -1,5 +1,5 @@
 <div class="page-header m-t-none m-b-xl p-b-xs">
-	<h2 class="m-t-none m-b-xs">Data Kredit</h2>
+	<h4 class="m-t-none m-b-xs">Data Kredit</h4>
 </div>
 <fieldset class="form-group">
 	<label for="">Jumlah Pinjaman</label>

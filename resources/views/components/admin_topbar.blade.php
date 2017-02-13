@@ -12,11 +12,11 @@
 			<a class="navbar-brand" href="#">KoperasiPRO</a>
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
-			<span class="pull-right">
+			<span class="pull-right m-l-xs">
 				<div class="dropdown p-t-xs">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-						{{App\Web\Services\TAuth::activeOffice()->office->name}}
-						<span class="caret"></span>
+					<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ App\Web\Services\TAuth::activeOffice()->office->name }}
+						&nbsp;&nbsp;<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
 						@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
