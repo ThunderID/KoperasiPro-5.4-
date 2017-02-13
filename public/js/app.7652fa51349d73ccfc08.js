@@ -10337,6 +10337,7 @@ __webpack_require__(7);
 // require('');
 __webpack_require__(6);
 __webpack_require__(5);
+__webpack_require__(35);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10543,8 +10544,8 @@ Note : will be use on pjax
 */
 window.NProgress = __webpack_require__(11);
 NProgress.configure({
-	showSpinner: false,
-	trickleSpeed: 300
+  showSpinner: false,
+  trickleSpeed: 300
 });
 
 /*
@@ -10557,23 +10558,28 @@ Note :
 */
 window.pjax = __webpack_require__(12);
 $(document).ready(function () {
-	$(document).pjax('a', '#pjax-container');
+  $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
-	//using nprogress to indicate loading
-	$(document).on('pjax:start', function () {
-		NProgress.start();
-	});
-	$(document).on('pjax:end', function () {
-		NProgress.done();
+  //using nprogress to indicate loading
+  $(document).on('pjax:start', function () {
+    NProgress.start();
+  });
+  $(document).on('pjax:end', function () {
+    NProgress.done();
 
-		// call event form wizard();
-		wizard();
-	});
+    // call event form wizard();
+    wizard();
+  });
 
-	// does current browser support PJAX
-	if ($.support.pjax) {
-		$.pjax.defaults.timeout = 5000; // time in milliseconds
-	}
+  // Form Submit with get method
+  $(document).on('submit', 'form[data-pjax]', function (event) {
+    $.pjax.submit(event, '#pjax-container');
+  });
+
+  // does current browser support PJAX
+  if ($.support.pjax) {
+    $.pjax.defaults.timeout = 5000; // time in milliseconds
+  }
 });
 
 /**
@@ -10583,8 +10589,8 @@ $(document).ready(function () {
  */
 window.steps = __webpack_require__(9);
 $(document).ready(function () {
-	// call event form wizard();
-	wizard();
+  // call event form wizard();
+  wizard();
 });
 
 /**
@@ -10609,12 +10615,12 @@ Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 window.inputmask = __webpack_require__(8);
 // class for inputmask
 $(document).ready(function () {
-	$(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
-	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
-	$(".date_format").inputmask({
-		placeholder: "dd/mm/yyyy",
-		alias: 'dd/mm/yyyy'
-	});
+  $(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
+  $(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
+  $(".date_format").inputmask({
+    placeholder: "dd/mm/yyyy",
+    alias: 'dd/mm/yyyy'
+  });
 });
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
@@ -47679,6 +47685,27 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 
 	return init(function () {});
 });
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {// login section
+window.showPassword = function showPassword() {
+
+	var key_attr = $('#key').attr('type');
+
+	if (key_attr != 'text') {
+
+		$('.checkbox').addClass('show');
+		$('#key').attr('type', 'text');
+	} else {
+
+		$('.checkbox').removeClass('show');
+		$('#key').attr('type', 'password');
+	}
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
