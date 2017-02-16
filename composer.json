@@ -12,7 +12,9 @@
         "symfony/dom-crawler": "^3.2",
         "jenssegers/mongodb": "^3.0",
         "thunderlabid/credit": "dev-master",
-        "thunderlabid/registry": "dev-master"
+        "thunderlabid/registry": "dev-master",
+        "thunderlabid/notification": "dev-master",
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

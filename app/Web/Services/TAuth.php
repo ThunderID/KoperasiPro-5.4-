@@ -111,4 +111,31 @@ class TAuth
 
 		return true;
 	}
+
+	/**
+	 * Membuat object asset baru dari data array
+	 *
+	 */
+	public static function allowedCreditStatus()
+	{
+		if($logged = self::activeOffice())
+		{
+			switch (strtolower($logged->role)) 
+			{
+				case 'marketing':
+					$status 	= ['drafting'];
+					break;
+				case 'developer':
+					$status 	= ['drafting', 'analizing'];
+					break;
+				default:
+					$status 	= ['drafting'];
+					break;
+			}
+
+			return $status;
+		}
+		
+		throw new Exception("User not Logged", 1);
+	}
 }

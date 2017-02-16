@@ -157,9 +157,11 @@ class Credit
 	 */
 	public static function all($status)
 	{
+		$status = TAuth::allowedCreditStatus();
+
 		$data 	= new CreditRepository();
 
-		return $data->findByStatus($status);
+		return $data->findByStatusInOffice($status, TAuth::activeOffice()->office->id);
 	}
 
 	/**
@@ -171,7 +173,7 @@ class Credit
 	{
 		$data 	= new CreditRepository();
 
-		return $data->findByStatusAndName($status, $name);
+		return $data->findByStatusInOfficeAndName($status, TAuth::activeOffice()->office->id, $name);
 	}
 
 	/**
@@ -188,11 +190,17 @@ class Credit
 
 		$credit 			= new CreditProxy();
 		$credit->credit		= $credit_repo->findByID($id);
-		$credit->creditor	= $person_repo->findByID($credit->credit->creditor->id);
-		$credit->finance	= $finance_repo->findByOwnerID($credit->credit->creditor->id);
-		$credit->asset		= $asset_repo->findByOwnerID($credit->credit->creditor->id);
 
-		return $credit;
+		if($credit->credit && str_is($credit->credit->office->id, TAuth::activeOffice()->office->id) && in_array($credit->credit->status, TAuth::allowedCreditStatus()))
+		{
+			$credit->creditor	= $person_repo->findByID($credit->credit->creditor->id);
+			$credit->finance	= $finance_repo->findByOwnerID($credit->credit->creditor->id);
+			$credit->asset		= $asset_repo->findByOwnerID($credit->credit->creditor->id);
+
+			return $credit;
+		}
+	
+		throw new Exception(" Forbidden ", 1);
 	}
 
 	/** Private function to merge credit detail information 
