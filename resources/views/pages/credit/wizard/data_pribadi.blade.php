@@ -42,27 +42,25 @@
 <fieldset class="form-group">
 	<label for="">Jenis Kelamin</label>
 	<div class="row">
-		<div class="col-md-5">
-			<label class="radio-inline">
-				{!! Form::radio('person[gender]', 'male', true) !!} Laki-laki
-			</label>
-			<label class="radio-inline">
-				{!! Form::radio('person[gender]', 'female') !!} Perempuan
-			</label>
+		<div class="col-md-6">
+			{!! Form::select('person[gender]', [
+				'male'		=> 'Laki-laki',
+				'female'	=> 'Perempuan'
+			], null, ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label for="">Agama</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-12">
 			{!! Form::select('person[religion]', [
 				'buddha' 	=> 'Buddha', 
 				'hindu' 	=> 'Hindu',
 				'islam'		=> 'Islam',
 				'protestan'	=> 'Kristen Protestan',
 				'katolik'	=> 'Kristen Katolik'
-			], null, ['class' => 'form-control']) !!}
+			], null, ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -82,7 +80,7 @@
 				'cerai'		=> 'Cerai',
 				'single' 	=> 'Single',
 				'menikah'	=> 'Menikah',
-			], null, ['class' => 'form-control']) !!}
+			], null, ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>

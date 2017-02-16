@@ -92,6 +92,30 @@ $(document).ready( function() {
 		alias: 'dd/mm/yyyy'
 	});
 });
+
+/**
+ * 8. jQuery quick selection
+ * Description: plugin jQuery for select box with quick click
+ * Usage & Documentation: http://quick-select.wstone.io/
+ */
+window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
+$(document).ready( function() {
+	$('.quick-select').quickselect({
+		buttonTag: 'a',
+		activeButtonClass: 'btn-primary active',
+		breakOutAll: true,
+		buttonClass: 'btn btn-default btn-sm',
+		wrapperClass: 'btn-group'
+	});
+});
+
+/**
+ * 9. jQuery abpetkov switchery
+ * Description: plugin jQuery for switch button
+ * Usage & Documentation: https://github.com/abpetkov/switchery
+ */
+window.Switchery = require('./plugins/switchery/switchery.min');
+Switchery('.switch');
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);
