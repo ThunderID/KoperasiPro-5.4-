@@ -10,8 +10,18 @@
 
 @push('content')
 	<div class="row" style="padding-top: 20px;">
-		<div class="col-sm-3">
-			@include('pages.credit.helper.lists')
+		<div class="col-sm-3 content-sidebar">
+			<div class="sidebar-header p-b-sm">
+				@include('components.sidebar.basic_header',[ 'param' => [
+					'title' 			=> 'Data Kredit',
+					'status'			=> 	['analyzing','drafting'],
+					'status_default'	=> 'semua'
+				]])
+			</div>
+
+			<div class="sidebar-content">
+				@include('pages.credit.helper.lists')
+			</div>
 		</div>
 		<div class="col-sm-9">
 

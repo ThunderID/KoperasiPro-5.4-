@@ -9,10 +9,21 @@
 @stop
 
 @push('content')
-	<div class="row" style="padding-top: 20px;">
-		<div class="col-sm-3">
-			@include('pages.person.helper.lists')
+	<div class="row">
+		<div class="col-sm-3 content-sidebar">
+			<div class="sidebar-header p-b-sm">
+				@include('components.sidebar.basic_header',[ 'param' => [
+					'title' 			=> 'Data Kreditur',
+					'status'			=> 	['rumah','kantor'],
+					'status_default'	=> 'semua'
+				]])
+			</div>
+
+			<div class="sidebar-content">
+				@include('pages.person.helper.lists')
+			</div>
 		</div>
+
 		<div class="col-sm-9">
 			@if(count($page_datas->address))
 				@foreach($page_datas->address as $key => $value)
