@@ -35,9 +35,9 @@
 <fieldset class="form-group">
 	<label for="">Tujuan Kredit</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-12">
 			<div class="input-group">
-				{!! Form::text('credit[purpose]', null, ['class' => 'form-control required', 'placeholder' => 'Tujuan kredit']) !!}
+				{!! Form::textarea('credit[purpose]', null, ['class' => 'form-control no-resize required', 'placeholder' => 'Tujuan kredit', 'rows' => '2', 'cols' => '120']) !!}
 			</div>
 		</div>
 	</div>

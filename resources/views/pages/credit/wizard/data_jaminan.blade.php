@@ -5,15 +5,15 @@
 	<label for="">Jenis</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('credit[collaterals][0][type]', null, ['class' => 'form-control', 'placeholder' => 'Jenis jaminan']) !!}
+			{!! Form::text('credit[collaterals][0][type]', null, ['class' => 'form-control required', 'placeholder' => 'Jenis jaminan']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label for="">Kepemilikan</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('credit[collaterals][0][ownership_status]', null, ['class' => 'form-control', 'placeholder' => 'Pemilik jaminan']) !!}
+		<div class="col-md-6">
+			{!! Form::text('credit[collaterals][0][ownership_status]', null, ['class' => 'form-control required', 'placeholder' => 'Pemilik jaminan']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -21,7 +21,7 @@
 	<label for="">Legalitas</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('credit[collaterals][0][legal]', null, ['class' => 'form-control', 'placeholder' => 'ex BPKB']) !!}
+			{!! Form::text('credit[collaterals][0][legal]', null, ['class' => 'form-control required', 'placeholder' => 'ex BPKB']) !!}
 		</div>
 	</div>
 </fieldset>

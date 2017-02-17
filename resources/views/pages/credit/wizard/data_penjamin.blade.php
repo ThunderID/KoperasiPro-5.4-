@@ -5,32 +5,19 @@
 <fieldset class="form-group">
 	<label for="">Nama</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('warrantor[name]', null, ['class' => 'form-control', 'placeholder' => 'Nama penjamin']) !!}
+		<div class="col-md-6">
+			{!! Form::text('warrantor[name]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Sudarsono']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label for="">Jalan</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('warrantor[address][street]', null, ['class' => 'form-control', 'placeholder' => 'Jalan']) !!}
+		<div class="col-md-8">
+			{!! Form::text('warrantor[address][street]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Kota</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('warrantor[address][city]', null, ['class' => 'form-control', 'placeholder' => 'Kota']) !!}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Provinsi</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('warrantor[address][province]', null, ['class' => 'form-control', 'placeholder' => 'Provinsi']) !!}
+		<div class="col-md-3 p-l-none">
+			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div>
 	</div>
 </fieldset>
@@ -38,7 +25,23 @@
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('warrantor[address][country]', null, ['class' => 'form-control', 'placeholder' => 'Negara']) !!}
+			{!! Form::text('warrantor[address][country]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Indonesia']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label for="">Provinsi</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('warrantor[address][province]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jawa Timur']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label for="">Kota</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('warrantor[address][city]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>

@@ -63,7 +63,7 @@ $(document).ready(function() {
 });
 
 /**
- * 5. Jquery Validation
+ * 5. Jquery Validation & Additional
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
@@ -89,7 +89,7 @@ $(document).ready( function() {
 	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
 	$(".date_format").inputmask({
 		placeholder: "dd/mm/yyyy",
-		alias: 'dd/mm/yyyy'
+		alias: "dd/mm/yyyy"
 	});
 });
 
@@ -109,13 +109,23 @@ $(document).ready( function() {
 	});
 });
 
+// /**
+//  * 9. jQuery bootstrap toggle
+//  * Description: plugin jQuery switch bootstrap toggle 
+//  * Usage & Documentation: http://www.bootstraptoggle.com/
+//  */
+// window.bootstrapToggle = require('./plugins/bootstrap-toggle/bootstrap-toggle');
+// $(document).ready( function() {
+// 	$('.switch').bootstrapToggle({
+// 	});
+// });
+
 /**
- * 9. jQuery abpetkov switchery
- * Description: plugin jQuery for switch button
- * Usage & Documentation: https://github.com/abpetkov/switchery
+ * 10. jQuery Auto tabIndex
+ * Description: plugin jQuery for auto tabindex for form
+ * Usage & Documentation: https://github.com/VTwo-Group/Auto-TabIndex
  */
-window.Switchery = require('./plugins/switchery/switchery.min');
-Switchery('.switch');
+window.autotabindex = require('./plugins/auto-tabindex/autotabindex');
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);

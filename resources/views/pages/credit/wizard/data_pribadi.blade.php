@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control number', 'placeholder' => 'NIK']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control number', 'placeholder' => 'Ex. 11003608760001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control dateFormat date_format', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date_format', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -67,8 +67,16 @@
 <fieldset class="form-group">
 	<label for="">Pendidikan Terakhir</label>
 	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('person[highest_education]', null, ['class' => 'form-control required', 'placeholder' => 'Pendidikan Terakhir']) !!}
+		<div class="col-md-12">
+			{!! Form::select('person[highest_education', [
+				'tk'			=> 'TK',
+				'sd'			=> 'SD',
+				'smp'			=> 'SMP',
+				'sma'			=> 'SMA/Sederajat',
+				'sarjana'		=> 'S1',
+				'magister'		=> 'S2',
+				'doctor'		=> 'S3'
+			], null, ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -92,23 +100,10 @@
 	<label for="">Jalan</label>
 	<div class="row">
 		<div class="col-md-8">
-			{!! Form::text('address[street]', null, ['class' => 'form-control', 'placeholder' => 'Nama Jalan']) !!}
+			{!! Form::text('address[street]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Kota</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('address[city]', null, ['class' => 'form-control', 'placeholder' => 'Kota']) !!}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Provinsi</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('address[province]', null, ['class' => 'form-control', 'placeholder' => 'Provinsi']) !!}
+		<div class="col-md-3 p-l-none">
+			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div>
 	</div>
 </fieldset>
@@ -116,7 +111,23 @@
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[country]', null, ['class' => 'form-control', 'placeholder' => 'Negara']) !!}
+			{!! Form::text('address[country]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Indonesia']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label for="">Provinsi</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('address[province]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jawa Timur']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label for="">Kota</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('address[city]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -128,7 +139,7 @@
 	<label for="">No. Hp</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[phone_number]', null, ['class' => 'form-control', 'placeholder' => 'Nomor Handphone']) !!}
+			{!! Form::text('person[phone_number]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. 081223399001']) !!}
 		</div>
 	</div>
 </fieldset>
