@@ -18,6 +18,9 @@ use Thunderlabid\Registry\Entity\Person as PersonEntity;
 use Thunderlabid\Credit\Entity\Finance as FinanceEntity;
 use Thunderlabid\Credit\Entity\Asset as AssetEntity;
 
+// Services
+use App\Web\Services\Person;
+
 use Exception;
 
 /**
@@ -27,8 +30,16 @@ use Exception;
  *
  * @author     C Mooy <chelsymooy1108@gmail.com>
  */
-class Credit 
+class Credit extends baseService
 {
+	/**
+	 * Creates construct from services to get instate some stuffs
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	/**
 	 * Membuat object asset baru dari data array
 	 *
@@ -66,12 +77,26 @@ class Credit
 	 *
 	 * @param array $array
 	 * @return Asset $asset
+
+	Parameter Requirements
+	1. person entity
+	2. address entity
+	3. warrantor entity
+	4. credit entity
+	5. 
 	 */
 
-	public static function save($person, $finance, $asset, $credit)
+	public function save()
 	{
+		//store warrantor
+		$warrantor  	  		= Person::save($this->datas->warrantor, $this->datas->warrantor['address']);
+
+		//store person
+		$person  		  		= Person::save($this->datas->person, $this->datas->address);
+		// dd($person);
+
 		//check if person alredy exists
-		$person_repo 		= new PersonRepository;
+		$person_repo 			= new PersonRepository;
 		if($person instanceOf PersonEntity)
 		{
 			$person_repo->store($person);
@@ -79,8 +104,8 @@ class Credit
 		elseif(is_array($person))
 		{
 			//need to place try catch
-			$registry_fact 	= new RegistryFactory;
-			$person 		= $registry_fact->buildPersonFromArray((array) $person);
+			$registry_fact 		= new RegistryFactory;
+			$person 			= $registry_fact->buildPersonFromArray((array) $person);
 			$person_repo->store($person);
 		}
 		else
@@ -88,66 +113,84 @@ class Credit
 			throw new Exception("Person should be an instance of Person Entity or array of person", 1);
 		}
 
-		$credit_fact 		= new CreditFactory;
-		$finance_repo 		= new FinanceRepository;
-		
+		//credit 
+		$credit_fact 			= new CreditFactory;
+		$finance_repo 			= new FinanceRepository;
+
+		$this->datas->credit['warrantor'] 		= 	[
+														'id' => $warrantor->id,
+														'name' => $warrantor->name
+													];
+
 		//check if finance alredy exists
-		if($finance instanceOf FinanceEntity)
+		if($this->datas->finance instanceOf FinanceEntity)
 		{
-			$finance_repo->store($finance);
+			$finance_repo->store($this->datas->finance );
 		}
-		elseif(is_array($finance))
+		elseif(is_array($this->datas->finance ))
 		{
 			//need to place try catch
-			$finance['owner']	= ['id' => $person->id, 'name' => $person->name];
-			$finance 			= $credit_fact->buildFinanceFromArray((array) $finance);
-			$finance_repo->store($finance);
+			$this->datas->finance['owner']		= 	[
+														'id' => $person->id, 
+														'name' => $person->name
+													];
+			$this->datas->finance  				= $credit_fact->buildFinanceFromArray((array) $this->datas->finance );
+			$finance_repo->store($this->datas->finance );
 		}
 
-		$asset_repo 		= new AssetRepository;
 		//check if finance alredy exists
-		if($asset instanceOf AssetEntity)
+		$asset_repo 			= new AssetRepository;
+		if($this->datas->asset instanceOf AssetEntity)
 		{
-			$asset_repo->store($asset);
+			$asset_repo->store($this->datas->asset);
 		}
-		elseif(is_array($asset))
+		elseif(is_array($this->datas->asset))
 		{
 			//need to place try catch
-			$asset['owner']		= ['id' => $person->id, 'name' => $person->name];
-			$asset 				= $credit_fact->buildAssetFromArray((array) $asset);
-			$asset_repo->store($asset);
+			$this->datas->asset['owner']		= 	[
+														'id' 	=> $person->id,
+														'name' 	=> $person->name
+													];
+			$this->datas->asset 				= $credit_fact->buildAssetFromArray((array) $this->datas->asset);
+			$asset_repo->store($this->datas->asset);
 		}
 
-		$credit_repo 		= new CreditRepository;
 		//check if finance alredy exists
-		if($credit instanceOf CreditEntity)
+		$credit_repo 			= new CreditRepository;
+		if($this->datas->credit instanceOf CreditEntity)
 		{
-			$credit_repo->store($credit);
+			$credit_repo->store($this->datas->credit);
 		}
-		elseif(is_array($credit))
+		elseif(is_array($this->datas->credit))
 		{
 			//need to place try catch
-			$credit['statuses']		= [
-				[
-					'status' 		=> 'pending',
-	 				'description' 	=> 'Menunggu notifikasi',
-	 				'date' 			=> 'today',
-	 				'author'		=> [
-	 					'id' 		=> TAuth::loggedUser()->id, 
-	 					'name' 		=> TAuth::loggedUser()->owner->name, 
-	 					'role' 		=> TAuth::activeOffice()->role
-		 			] 
-	 			] 
-			];
+			$this->datas->credit['statuses']	= 	[
+														[
+															'status' 		=> 'pending',
+											 				'description' 	=> 'Menunggu notifikasi',
+											 				'date' 			=> 'today',
+											 				'author'		=> [
+											 					'id' 		=> TAuth::loggedUser()->id, 
+											 					'name' 		=> TAuth::loggedUser()->owner->name, 
+											 					'role' 		=> TAuth::activeOffice()->role
+												 			] 
+											 			] 
+													];
 
-			$credit['office']		= ['id' => TAuth::activeOffice()->office->id, 'name' => TAuth::activeOffice()->office->name];
+			$this->datas->credit['office']		= 	[
+														'id' 	=> TAuth::activeOffice()->office->id, 
+														'name' 	=> TAuth::activeOffice()->office->name
+													];
 
-			$credit['creditor']		= ['id' => $person->id, 'name' => $person->name];
-			$credit 				= $credit_fact->buildCreditFromArray((array) $credit);
-			$credit_repo->store($credit);
+			$this->datas->credit['creditor']	= 	[
+														'id' 	=> $person->id, 
+														'name' => $person->name
+													];
+			$this->datas->credit 				= $credit_fact->buildCreditFromArray((array) $this->datas->credit);
+			$credit_repo->store($this->datas->credit);
 		}
 
-		return self::merge_credit_detail($person, $finance, $asset, $credit);
+		return self::merge_credit_detail($person, $finance, $this->datas->asset, $this->datas->credit);
 	}
 
 	/**

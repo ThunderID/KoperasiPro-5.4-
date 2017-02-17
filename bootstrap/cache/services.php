@@ -30,9 +30,11 @@
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Collective\\Html\\HtmlServiceProvider',
     28 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    29 => 'App\\Web\\WebServiceProvider',
-    30 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
-    31 => 'Thunderlabid\\Credit\\CreditServiceProvider',
+    29 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    30 => 'App\\Web\\WebServiceProvider',
+    31 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
+    32 => 'Thunderlabid\\Credit\\CreditServiceProvider',
+    33 => 'Thunderlabid\\Notification\\NotificationServiceProvider',
   ),
   'eager' => 
   array (
@@ -51,9 +53,11 @@
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    15 => 'App\\Web\\WebServiceProvider',
-    16 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
-    17 => 'Thunderlabid\\Credit\\CreditServiceProvider',
+    15 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    16 => 'App\\Web\\WebServiceProvider',
+    17 => 'Thunderlabid\\Registry\\RegistryServiceProvider',
+    18 => 'Thunderlabid\\Credit\\CreditServiceProvider',
+    19 => 'Thunderlabid\\Notification\\NotificationServiceProvider',
   ),
   'deferred' => 
   array (
