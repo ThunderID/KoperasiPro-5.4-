@@ -55,6 +55,10 @@
 
 @extends('layout.layout')
 
+@section('template-styles')
+	@stack('styles')
+@endsection
+
 @section('template')
 	<!-- Topbar -->
 	@include('components.admin_topbar')

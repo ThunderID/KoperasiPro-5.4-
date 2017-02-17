@@ -32,9 +32,12 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<div class="nav navbar-nav navbar-right">
 
-
 				<div class="profile">
-					<div class="col-xs-9 p-r-none">
+					<div class="col-xs-3 p-r-none">
+						@include('components.notification')
+					</div >
+					<div class="col-xs-6 p-r-none">
+
 						<p class="name">{{App\Web\Services\TAuth::loggedUser()->owner->name}}</p>
 						<p class="role">{{App\Web\Services\TAuth::activeOffice()->role}}</p>
 						
