@@ -102,7 +102,7 @@ class Person
 			$address_repo->store($address);
 		}
 
-		return self::merge_credit_detail($person, $address);
+		return $person;
 	}
 
 	/** Private function to merge credit detail information 
