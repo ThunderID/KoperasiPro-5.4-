@@ -75,52 +75,61 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
+		// use service 
+		$credit 													= new Credit;
+
 		//get input
-		$person    		 		= Input::get('person');
-		$person['id']			= null;
-		$person['works']		= [];
-		$person['relatives']	= [];
 
-		$address 				= Input::get('address');
-		$address['id']			= null;
-		$address['latitude']	= null;
-		$address['longitude']	= null;
+		//person
+		$credit->datas->person										= Input::get('person');
+		$credit->datas->person['id']								= null;
+		$credit->datas->person['works']								= null;
+		$credit->datas->person['relatives']							= null;
 
-		$warrantor 							= Input::get('warrantor');
-		$warrantor['id']					= null;
-		$warrantor['nik']					= null;
-		$warrantor['place_of_birth']		= null;
-		$warrantor['date_of_birth']			= null;
 
-		$warrantor['religion']				= null;
-		$warrantor['highest_education']		= null;
-		$warrantor['marital_status']		= null;
-		$warrantor['phone_number']			= null;
-		$warrantor['works']					= [];
-		$warrantor['relatives']				= [];
 
-		$warrantor['address']['id']			= null;
-		$warrantor['address']['latitude']	= null;
-		$warrantor['address']['longitude']	= null;
+		//address
+		$credit->datas->address										= Input::get('address');
+		$credit->datas->address['id']								= null;
+		$credit->datas->address['houses']							= null;
+		$credit->datas->address['offices']							= null;
+		$credit->datas->address['latitude']							= null;
+		$credit->datas->address['longitude']						= null;
 
-		$warrantor['gender']				= 'female';
-		//store warrantor person & address
-		$warrantor  	  		= Person::save($warrantor, $warrantor['address']);
 
-		//store person
-		$person  		  		= Person::save($person, $address);
-		
-		$finance    			= null;
-		$asset     		 		= null;
+		// warrantor
+		$credit->datas->warrantor 									= Input::get('warrantor');
+		$credit->datas->warrantor['id']								= null;
+		$credit->datas->warrantor['nik']							= null;
+		$credit->datas->warrantor['place_of_birth']					= null;
+		$credit->datas->warrantor['date_of_birth']					= null;
+
+		$credit->datas->warrantor['religion']						= null;
+		$credit->datas->warrantor['highest_education']				= null;
+		$credit->datas->warrantor['marital_status']					= null;
+		$credit->datas->warrantor['phone_number']					= null;
+		$credit->datas->warrantor['works']							= [];
+		$credit->datas->warrantor['relatives']						= [];
+
+		$credit->datas->warrantor['address']['id']					= null;
+		$credit->datas->warrantor['address']['latitude']			= null;
+		$credit->datas->warrantor['address']['longitude']			= null;
+
+		$credit->datas->warrantor['gender']							= 'male';
+
 
 		//credit
-		$credit     			= Input::get('credit');
-		$credit['id']			= null;
+		$credit->datas->credit										= Input::get('credit');
+		$credit->datas->credit['id']								= null;
 
-		$credit['warrantor'] 	= ['id' => $warrantor->person->id, 'name' => $warrantor->person->name];
+
+		$credit->datas->finance										= null;
+		$credit->datas->asset										= null;
+
 
 		//store all data that shaped an entity
-		$tcredit				= Credit::save($person->person, $finance, $asset, $credit);
+		$result														= $credit->save();
+		dd($result);
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('credit.index'));

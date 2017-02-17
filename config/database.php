@@ -68,9 +68,9 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'port'     => env('DB_PORT', '27017'),
+            'host'     => '128.199.145.173',
+            'database' => 'koperasi_dev',
+            'port'     => '8448',
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset'  => env('DB_CHARSET', 'utf8'),
