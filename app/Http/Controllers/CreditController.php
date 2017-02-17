@@ -148,6 +148,7 @@ class CreditController extends Controller
 
 		//parsing master data here
 		$this->page_datas->credit 					= Credit::findByID($id);
+		$this->page_datas->id 						= $id;
 
 		//function from parent to generate view
 		return $this->generateView();

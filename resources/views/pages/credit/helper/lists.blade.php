@@ -25,7 +25,7 @@
 
 <div class="list-group">
     @foreach($page_datas->credits as $key => $value)
-        <a href="{{route('credit.show', array_merge(['id' => $value->id], Input::all()))}}" class="list-group-item {{$key == 0? 'first': ''}}">
+        <a href="{{route('credit.show', array_merge(['id' => $value->id], Input::all()))}}" class="list-group-item {{$key == 0? 'first': ''}} {{((isset($page_datas->id) && $page_datas->id == $value->id) ? 'active' : '')}} " >
             <h4 class="list-group-item-heading">
                 {{$value->creditor->name}} 
                 <span class="badge pull-right">{{$value->status}}</span>

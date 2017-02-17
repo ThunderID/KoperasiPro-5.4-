@@ -67,6 +67,10 @@
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+		<style>
+			@yield('template-styles')
+		</style>	
 	</head>
 		<div class="wrapper">
 			@yield('template')			

@@ -30,15 +30,21 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 Route::group(['middleware' => ['pjax']], function()
 {
 	//Menu Login
-	Route::get('login', 	['uses' => 'LoginController@index', 'as' => 'login.index']);
-	Route::post('login',	['uses' => 'LoginController@logging', 'as' => 'login.store']);
-	Route::get('logout',	['uses' => 'LoginController@logout', 'as' => 'login.destroy']);
+	Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
+	Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
+	Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
 
 	//Menu Settings
 	//This one to change which office currently active
 	Route::get('activate/{idx}', 	['uses' => 'LoginController@activateOffice', 'as' => 'office.activate']);
 
+	//Dashboard page
+	Route::get('/', 				['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
+	
+	//Notification page
+	Route::get('/notification',		['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
+
 	//here lies test routes
-	Route::get('/index', ['uses' => 'dashboardController@index', 'as' => 'dashboard.index']);
-	Route::get('/index2', ['uses' => 'dashboardController@index2', 'as' => 'dashboard.index2']);
+	Route::get('/index', 	['uses' => 'DashboardController@indextest1', 'as' => 'dashboard.sample.index']);
+	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
 });
