@@ -15,10 +15,6 @@
 		</div>
 		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard']) !!}
 			{{-- untuk data kredit --}}
-			<h3>Data Jaminan</h3>
-			<section>
-				@include ('pages.credit.wizard.data_jaminan')
-			</section>
 			<h3>Data Kredit</h3>
 			<section>
 				@include ('pages.credit.wizard.data_kredit')
@@ -30,6 +26,10 @@
 			<h3>Data Penjamin</h3>
 			<section>
 				@include ('pages.credit.wizard.data_penjamin')
+			</section>
+			<h3>Data Jaminan</h3>
+			<section>
+				@include ('pages.credit.wizard.data_jaminan')
 			</section>
 			{{-- koperasi --}}
 			{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
