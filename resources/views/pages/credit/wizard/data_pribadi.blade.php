@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control number', 'placeholder' => 'Ex. 11003608760001']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control number auto-tabindex', 'placeholder' => 'Ex. 11003608760001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -17,7 +17,7 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text('person[name]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Suena Morn']) !!}
+			{!! Form::text('person[name]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Suena Morn']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -26,7 +26,7 @@
 	<label for="">Tempat Lahir</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date_format', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date_format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -100,10 +100,10 @@
 	<label for="">Jalan</label>
 	<div class="row">
 		<div class="col-md-8">
-			{!! Form::text('address[street]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
+			{!! Form::text('address[street]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
 		<div class="col-md-3 p-l-none">
-			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
+			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal auto-tabindex" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div>
 	</div>
 </fieldset>
@@ -111,7 +111,7 @@
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[country]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Indonesia']) !!}
+			{!! Form::text('address[country]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Indonesia']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -119,7 +119,7 @@
 	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[province]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Jawa Timur']) !!}
+			{!! Form::text('address[province]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Jawa Timur']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -127,7 +127,7 @@
 	<label for="">Kota</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[city]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::text('address[city]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -139,7 +139,7 @@
 	<label for="">No. Hp</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[phone_number]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. 081223399001']) !!}
+			{!! Form::text('person[phone_number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
 		</div>
 	</div>
 </fieldset>

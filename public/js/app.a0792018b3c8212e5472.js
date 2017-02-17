@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,19 +10325,23 @@ module.exports = function(module) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(20);
+window._ = __webpack_require__(21);
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(8);
+__webpack_require__(10);
 
 //your js modules goes here
 // require('');
-__webpack_require__(6);
-__webpack_require__(5);
 __webpack_require__(7);
+__webpack_require__(6);
+__webpack_require__(9);
+// add module auto-tabindex form
+__webpack_require__(5);
+// add module template clone
+__webpack_require__(8);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10358,14 +10362,14 @@ __webpack_require__(7);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(18);
+/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(19);
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(19);
+__webpack_require__(20);
 
 // require('./vendors/jquery-2.2.4.js');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
@@ -10380,8 +10384,24 @@ __webpack_require__(19);
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {/**
+ * Module auto tab-index
+ * Description: modul untuk otomatis tab-index sesuai dgn urutannya,
+ * dengan menambahkan class auto-tabindex
+ */
+$(function () {
+  $('.auto-tabindex').attr('tabindex', function (index, attr) {
+    return index + 1;
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
-	vali_dation();
+	_validation();
 	contentWizard = $('.wizard');
 	contentWizard.steps({
 		headerTag: 'h3',
@@ -10448,7 +10468,7 @@ __webpack_require__(19);
 	}
 };
 
-function vali_dation() {
+function _validation() {
 	// add rules validation class
 	$.validator.addClassRules({
 		required: {
@@ -10484,7 +10504,7 @@ function vali_dation() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -10544,7 +10564,30 @@ window.notify = function (msg, title, type) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(function () {
+	i = 1;
+	$('.add').click(function () {
+		template_add();
+		$('.wizard .content').css({ height: $('.body.current').outerHeight() });
+		i++;
+		console.log(i);
+	});
+});
+
+function template_add() {
+	tmp = $('#template-clone');
+	dest = $('#content-clone');
+
+	tmp.clone();
+	dest.append(tmp);
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {// login section
@@ -10565,7 +10608,7 @@ window.showPassword = function showPassword() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10573,7 +10616,7 @@ window.showPassword = function showPassword() {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(17);
+window.toastr = __webpack_require__(18);
 
 /*
 2. nprogress
@@ -10581,10 +10624,10 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(14);
+window.NProgress = __webpack_require__(16);
 NProgress.configure({
-  showSpinner: false,
-  trickleSpeed: 300
+	showSpinner: false,
+	trickleSpeed: 300
 });
 
 /*
@@ -10595,30 +10638,30 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(15);
+window.pjax = __webpack_require__(17);
 $(document).ready(function () {
-  $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
+	$(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
-  //using nprogress to indicate loading
-  $(document).on('pjax:start', function () {
-    NProgress.start();
-  });
-  $(document).on('pjax:end', function () {
-    NProgress.done();
+	//using nprogress to indicate loading
+	$(document).on('pjax:start', function () {
+		NProgress.start();
+	});
+	$(document).on('pjax:end', function () {
+		NProgress.done();
 
-    // call event form wizard();
-    wizard();
-  });
+		// call event form wizard();
+		wizard();
+	});
 
-  // Form Submit with get method
-  $(document).on('submit', 'form[data-pjax]', function (event) {
-    $.pjax.submit(event, '#pjax-container');
-  });
+	// Form Submit with get method
+	$(document).on('submit', 'form[data-pjax]', function (event) {
+		$.pjax.submit(event, '#pjax-container');
+	});
 
-  // does current browser support PJAX
-  if ($.support.pjax) {
-    $.pjax.defaults.timeout = 5000; // time in milliseconds
-  }
+	// does current browser support PJAX
+	if ($.support.pjax) {
+		$.pjax.defaults.timeout = 5000; // time in milliseconds
+	}
 });
 
 /**
@@ -10626,10 +10669,10 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(12);
+window.steps = __webpack_require__(14);
 $(document).ready(function () {
-  // call event form wizard();
-  wizard();
+	// call event form wizard();
+	wizard();
 });
 
 /**
@@ -10637,29 +10680,29 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(13);
+window.validate = __webpack_require__(15);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(10);
+window.cookies = __webpack_require__(12);
 
 /*
 7. jQuery Inputmask
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(9);
+window.inputmask = __webpack_require__(11);
 // class for inputmask
 $(document).ready(function () {
-  $(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
-  $(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
-  $(".date_format").inputmask({
-    placeholder: "dd/mm/yyyy",
-    alias: "dd/mm/yyyy"
-  });
+	$(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
+	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
+	$(".date_format").inputmask({
+		placeholder: "dd/mm/yyyy",
+		alias: "dd/mm/yyyy"
+	});
 });
 
 /**
@@ -10667,33 +10710,28 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(11);
+window.quickselect = __webpack_require__(13);
 $(document).ready(function () {
-  $('.quick-select').quickselect({
-    buttonTag: 'a',
-    activeButtonClass: 'btn-primary active',
-    breakOutAll: true,
-    buttonClass: 'btn btn-default btn-sm',
-    wrapperClass: 'btn-group'
-  });
+	$('.quick-select').quickselect({
+		buttonTag: 'a',
+		activeButtonClass: 'btn-primary active',
+		breakOutAll: true,
+		buttonClass: 'btn btn-default btn-sm auto-tabindex',
+		wrapperClass: 'btn-group'
+	});
 });
 
-/**
- * 9. jQuery bootstrap toggle
- * Description: plugin jQuery switch bootstrap toggle 
- * Usage & Documentation: http://www.bootstraptoggle.com/
- */
-window.bootstrapToggle = __webpack_require__(39);
-$(document).ready(function () {
-  $('.switch').bootstrapToggle({});
-});
+// /**
+//  * 9. jQuery bootstrap toggle
+//  * Description: plugin jQuery switch bootstrap toggle 
+//  * Usage & Documentation: http://www.bootstraptoggle.com/
+//  */
+// window.bootstrapToggle = require('./plugins/bootstrap-toggle/bootstrap-toggle');
+// $(document).ready( function() {
+// 	$('.switch').bootstrapToggle({
+// 	});
+// });
 
-/**
- * 10. jQuery Auto tabIndex
- * Description: plugin jQuery for auto tabindex for form
- * Usage & Documentation: https://github.com/VTwo-Group/Auto-TabIndex
- */
-window.autotabindex = __webpack_require__(37);
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);
@@ -10703,7 +10741,7 @@ window.autotabindex = __webpack_require__(37);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13362,7 +13400,7 @@ window.autotabindex = __webpack_require__(37);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13521,7 +13559,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13574,7 +13612,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15452,7 +15490,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17008,7 +17046,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17500,7 +17538,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -18433,8 +18471,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */,
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -18864,10 +18901,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(21));
+})(__webpack_require__(22));
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -28278,7 +28315,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -30662,7 +30699,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -47751,10 +47788,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(1)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23), __webpack_require__(1)(module)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -47763,7 +47800,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 var g;
@@ -47790,249 +47827,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
-
-/***/ }),
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(jQuery) {/**
- * @name        jQuery Auto TabIndex Plugin
- * @author      VTwo Group
- * @version     0.1
- * @url         http://vtwo.org/jquery/plugin/autotabindex/
- * @license     MIT License
- */
-(function ($) {
-   $.fn.autotabindex = function (options) {
-
-      var settings = $.extend({
-         list: '',
-         classname: ''
-      }, options);
-
-      //Remove all 
-      var counter = 1;
-      var el = $('*');
-      var kids = el.children();
-      kids.removeAttr('tabindex');
-
-      if (settings.list != '') {
-         var array = settings.list.split(',');
-         for (var i = 0; i < array.length; i++) {
-            kids.filter(array[i]).attr('tabindex', counter);
-
-            //Add and Remove Class
-            if (settings.classname) {
-               kids.filter(array[i]).focusin(function () {
-                  $(this).addClass(settings.classname);
-               });
-
-               kids.focusout(array[i]).blur(function () {
-                  $(this).removeClass(settings.classname);
-               });
-            }
-
-            counter++;
-         }
-      }
-   };
-})(jQuery);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 38 */,
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/*! ========================================================================
- * Bootstrap Toggle: bootstrap-toggle.js v2.2.0
- * http://www.bootstraptoggle.com
- * ========================================================================
- * Copyright 2014 Min Hur, The New York Times Company
- * Licensed under MIT
- * ======================================================================== */
-
-+function ($) {
-	'use strict';
-
-	// TOGGLE PUBLIC CLASS DEFINITION
-	// ==============================
-
-	var Toggle = function Toggle(element, options) {
-		this.$element = $(element);
-		this.options = $.extend({}, this.defaults(), options);
-		this.render();
-	};
-
-	Toggle.VERSION = '2.2.0';
-
-	Toggle.DEFAULTS = {
-		on: 'On',
-		off: 'Off',
-		onstyle: 'primary',
-		offstyle: 'default',
-		size: 'normal',
-		style: '',
-		width: null,
-		height: null
-	};
-
-	Toggle.prototype.defaults = function () {
-		return {
-			on: this.$element.attr('data-on') || Toggle.DEFAULTS.on,
-			off: this.$element.attr('data-off') || Toggle.DEFAULTS.off,
-			onstyle: this.$element.attr('data-onstyle') || Toggle.DEFAULTS.onstyle,
-			offstyle: this.$element.attr('data-offstyle') || Toggle.DEFAULTS.offstyle,
-			size: this.$element.attr('data-size') || Toggle.DEFAULTS.size,
-			style: this.$element.attr('data-style') || Toggle.DEFAULTS.style,
-			width: this.$element.attr('data-width') || Toggle.DEFAULTS.width,
-			height: this.$element.attr('data-height') || Toggle.DEFAULTS.height
-		};
-	};
-
-	Toggle.prototype.render = function () {
-		this._onstyle = 'btn-' + this.options.onstyle;
-		this._offstyle = 'btn-' + this.options.offstyle;
-		var size = this.options.size === 'large' ? 'btn-lg' : this.options.size === 'small' ? 'btn-sm' : this.options.size === 'mini' ? 'btn-xs' : '';
-		var $toggleOn = $('<label class="btn">').html(this.options.on).addClass(this._onstyle + ' ' + size);
-		var $toggleOff = $('<label class="btn">').html(this.options.off).addClass(this._offstyle + ' ' + size + ' active');
-		var $toggleHandle = $('<span class="toggle-handle btn btn-default">').addClass(size);
-		var $toggleGroup = $('<div class="toggle-group">').append($toggleOn, $toggleOff, $toggleHandle);
-		var $toggle = $('<div class="toggle btn" data-toggle="toggle">').addClass(this.$element.prop('checked') ? this._onstyle : this._offstyle + ' off').addClass(size).addClass(this.options.style);
-
-		this.$element.wrap($toggle);
-		$.extend(this, {
-			$toggle: this.$element.parent(),
-			$toggleOn: $toggleOn,
-			$toggleOff: $toggleOff,
-			$toggleGroup: $toggleGroup
-		});
-		this.$toggle.append($toggleGroup);
-
-		var width = this.options.width || Math.max($toggleOn.outerWidth(), $toggleOff.outerWidth()) + $toggleHandle.outerWidth() / 2;
-		var height = this.options.height || Math.max($toggleOn.outerHeight(), $toggleOff.outerHeight());
-		$toggleOn.addClass('toggle-on');
-		$toggleOff.addClass('toggle-off');
-		this.$toggle.css({ width: width, height: height });
-		if (this.options.height) {
-			$toggleOn.css('line-height', $toggleOn.height() + 'px');
-			$toggleOff.css('line-height', $toggleOff.height() + 'px');
-		}
-		this.update(true);
-		this.trigger(true);
-	};
-
-	Toggle.prototype.toggle = function () {
-		if (this.$element.prop('checked')) this.off();else this.on();
-	};
-
-	Toggle.prototype.on = function (silent) {
-		if (this.$element.prop('disabled')) return false;
-		this.$toggle.removeClass(this._offstyle + ' off').addClass(this._onstyle);
-		this.$element.prop('checked', true);
-		if (!silent) this.trigger();
-	};
-
-	Toggle.prototype.off = function (silent) {
-		if (this.$element.prop('disabled')) return false;
-		this.$toggle.removeClass(this._onstyle).addClass(this._offstyle + ' off');
-		this.$element.prop('checked', false);
-		if (!silent) this.trigger();
-	};
-
-	Toggle.prototype.enable = function () {
-		this.$toggle.removeAttr('disabled');
-		this.$element.prop('disabled', false);
-	};
-
-	Toggle.prototype.disable = function () {
-		this.$toggle.attr('disabled', 'disabled');
-		this.$element.prop('disabled', true);
-	};
-
-	Toggle.prototype.update = function (silent) {
-		if (this.$element.prop('disabled')) this.disable();else this.enable();
-		if (this.$element.prop('checked')) this.on(silent);else this.off(silent);
-	};
-
-	Toggle.prototype.trigger = function (silent) {
-		this.$element.off('change.bs.toggle');
-		if (!silent) this.$element.change();
-		this.$element.on('change.bs.toggle', $.proxy(function () {
-			this.update();
-		}, this));
-	};
-
-	Toggle.prototype.destroy = function () {
-		this.$element.off('change.bs.toggle');
-		this.$toggleGroup.remove();
-		this.$element.removeData('bs.toggle');
-		this.$element.unwrap();
-	};
-
-	// TOGGLE PLUGIN DEFINITION
-	// ========================
-
-	function Plugin(option) {
-		return this.each(function () {
-			var $this = $(this);
-			var data = $this.data('bs.toggle');
-			var options = (typeof option === 'undefined' ? 'undefined' : _typeof(option)) == 'object' && option;
-
-			if (!data) $this.data('bs.toggle', data = new Toggle(this, options));
-			if (typeof option == 'string' && data[option]) data[option]();
-		});
-	}
-
-	var old = $.fn.bootstrapToggle;
-
-	$.fn.bootstrapToggle = Plugin;
-	$.fn.bootstrapToggle.Constructor = Toggle;
-
-	// TOGGLE NO CONFLICT
-	// ==================
-
-	$.fn.toggle.noConflict = function () {
-		$.fn.bootstrapToggle = old;
-		return this;
-	};
-
-	// TOGGLE DATA-API
-	// ===============
-
-	$(function () {
-		$('input[type=checkbox][data-toggle^=toggle]').bootstrapToggle();
-	});
-
-	$(document).on('click.bs.toggle', 'div[data-toggle^=toggle]', function (e) {
-		var $checkbox = $(this).find('input[type=checkbox]');
-		$checkbox.bootstrapToggle('toggle');
-		e.preventDefault();
-	});
-}(jQuery);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

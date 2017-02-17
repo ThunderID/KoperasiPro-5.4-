@@ -1,5 +1,5 @@
 window.wizard = function(){
-	vali_dation();
+	_validation();
 	contentWizard = $('.wizard');
 	contentWizard.steps({
 		headerTag: 'h3',
@@ -67,7 +67,7 @@ window.wizard = function(){
 	}
 }
 
-function vali_dation()
+function _validation()
 {
 	// add rules validation class
 	$.validator.addClassRules({

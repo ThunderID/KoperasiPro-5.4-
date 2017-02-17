@@ -85,8 +85,8 @@ Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 window.inputmask = require('./plugins/inputmask/inputmask');
 // class for inputmask
 $(document).ready( function() {
-	$(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });              
-	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 });
+	$(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
+	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
 	$(".date_format").inputmask({
 		placeholder: "dd/mm/yyyy",
 		alias: "dd/mm/yyyy"
@@ -104,7 +104,7 @@ $(document).ready( function() {
 		buttonTag: 'a',
 		activeButtonClass: 'btn-primary active',
 		breakOutAll: true,
-		buttonClass: 'btn btn-default btn-sm',
+		buttonClass: 'btn btn-default btn-sm auto-tabindex',
 		wrapperClass: 'btn-group'
 	});
 });
@@ -120,12 +120,6 @@ $(document).ready( function() {
 // 	});
 // });
 
-/**
- * 10. jQuery Auto tabIndex
- * Description: plugin jQuery for auto tabindex for form
- * Usage & Documentation: https://github.com/VTwo-Group/Auto-TabIndex
- */
-window.autotabindex = require('./plugins/auto-tabindex/autotabindex');
 // window.$ = window.budi = 'haloo ';
 // $.hi = window.hi = function(){
 // 	alert(1);

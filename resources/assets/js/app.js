@@ -11,6 +11,10 @@ require('./plugins');
 require('./modules/push-notification');
 require('./modules/form-wizard');
 require('./modules/uac');
+// add module auto-tabindex form
+require('./modules/auto-tabindex');
+// add module template clone
+require('./modules/template-clone');
 
 
 //draft
