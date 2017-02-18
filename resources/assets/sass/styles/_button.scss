@@ -2,6 +2,9 @@
 .btn.active.focus {
 	outline: none !important;
 }
+.btn:hover{
+	text-decoration: none;
+}
 .btn:active {
   @include box-shadow(none);
 }
