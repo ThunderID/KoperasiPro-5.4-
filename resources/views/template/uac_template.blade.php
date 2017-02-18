@@ -47,9 +47,6 @@
 			</div>
 		</footer>	
 	</section>
-@endsection
-
-@section('template-modals')
 	@stack('modals')
 @endsection
 

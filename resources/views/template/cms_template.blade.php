@@ -88,12 +88,9 @@
 			</div>
 		</div>
 
+	@stack('modals')
 	<!-- End of pjax fragment replacement -->
 	</div>
-@endsection
-
-@section('template-modals')
-	@stack('modals')
 @endsection
 
 @section('template-scripts')
