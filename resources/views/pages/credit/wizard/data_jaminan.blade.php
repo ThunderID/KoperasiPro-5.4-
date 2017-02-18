@@ -5,11 +5,7 @@
 <div class="template-content">
 	<div id="content-clone"></div>
 	<fieldset class="form-group">
-		<div class="row">
-			<div class="col-md-5">
-				<a href="javascript:void(0);" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add"><i class="fa fa-plus"></i> Jaminan</a>
-			</div>
-		</div>
+		<a href="javascript:void(0);" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add"><i class="fa fa-plus"></i> Jaminan</a>
 	</fieldset>
 </div>
 
@@ -20,7 +16,7 @@
 			<label for="">Jenis</label>
 			<div class="row">
 				<div class="col-md-5">
-					{!! Form::text('credit[collaterals][][type]', null, ['class' => 'form-control required', 'placeholder' => 'Jenis jaminan']) !!}
+					{!! Form::text('credit[collaterals][][type]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Jenis jaminan']) !!}
 				</div>
 			</div>
 		</fieldset>
@@ -28,7 +24,7 @@
 			<label for="">Kepemilikan</label>
 			<div class="row">
 				<div class="col-md-6">
-					{!! Form::text('credit[collaterals][][ownership_status]', null, ['class' => 'form-control required', 'placeholder' => 'Pemilik jaminan']) !!}
+					{!! Form::text('credit[collaterals][][ownership_status]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Pemilik jaminan']) !!}
 				</div>
 			</div>
 		</fieldset>
@@ -36,7 +32,7 @@
 			<label for="">Legalitas</label>
 			<div class="row">
 				<div class="col-md-5">
-					{!! Form::text('credit[collaterals][][legal]', null, ['class' => 'form-control required', 'placeholder' => 'ex BPKB']) !!}
+					{!! Form::text('credit[collaterals][][legal]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'ex BPKB']) !!}
 				</div>
 			</div>
 		</fieldset>

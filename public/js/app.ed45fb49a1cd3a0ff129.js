@@ -10577,6 +10577,10 @@ window.notify = function (msg, title, type) {
 	});
 });
 
+$(document).ready(function () {
+	$('.template-content').find('.add').trigger('click');
+});
+
 function template_add() {
 	tmp = $('#template-clone');
 	dest = $('#content-clone');
