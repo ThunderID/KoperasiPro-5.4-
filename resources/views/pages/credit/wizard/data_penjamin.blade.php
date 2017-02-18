@@ -21,14 +21,14 @@
 		</div>
 	</div>
 </fieldset>
-<!-- <fieldset class="form-group">
+<fieldset class="form-group">
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('warrantor[address][country]', null, ['class' => 'form-control required', 'placeholder' => 'Ex. Indonesia']) !!}
 		</div>
 	</div>
-</fieldset> -->
+</fieldset>
 <fieldset class="form-group">
 	<label for="">Provinsi</label>
 	<div class="row">
