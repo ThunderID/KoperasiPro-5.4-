@@ -1,0 +1,11 @@
+.btn, .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus,
+.btn.active.focus {
+	outline: none !important;
+}
+.btn:active {
+  @include box-shadow(none);
+}
+
+.btn-group.open .dropdown-toggle {
+  @include box-shadow(none);
+}

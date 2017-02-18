@@ -46,7 +46,7 @@
 			{!! Form::select('person[gender]', [
 				'male'		=> 'Laki-laki',
 				'female'	=> 'Perempuan'
-			], null, ['class' => 'form-control quick-select']) !!}
+			], 'male', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -59,8 +59,9 @@
 				'hindu' 	=> 'Hindu',
 				'islam'		=> 'Islam',
 				'protestan'	=> 'Kristen Protestan',
-				'katolik'	=> 'Kristen Katolik'
-			], null, ['class' => 'form-control quick-select']) !!}
+				'katolik'	=> 'Kristen Katolik',
+				'konghucu'	=> 'Konghucu'
+			], 'buddha', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -76,7 +77,7 @@
 				'sarjana'		=> 'S1',
 				'magister'		=> 'S2',
 				'doctor'		=> 'S3'
-			], null, ['class' => 'form-control quick-select']) !!}
+			], 'tk', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -85,10 +86,9 @@
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('person[marital_status]', [
-				'cerai'		=> 'Cerai',
-				'single' 	=> 'Single',
-				'menikah'	=> 'Menikah',
-			], null, ['class' => 'form-control quick-select']) !!}
+				'kawin' 		=> 'Kawin',
+				'tidak_kawin'	=> 'Tidak Kawin',
+			], 'kawin', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>

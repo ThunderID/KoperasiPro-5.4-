@@ -8,6 +8,10 @@ $(function (){
 	});
 });
 
+$(document).ready( function() {
+	$('.template-content').find('.add').trigger('click');
+});
+
 function template_add() {
 	tmp = $('#template-clone');
 	dest = $('#content-clone');
