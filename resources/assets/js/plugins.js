@@ -40,6 +40,8 @@ $(document).ready(function(){
 		wizard();
 		// call module plugin inputmask
 		formInputMask();
+		//optimize height
+		optimizeHeight();
 	});
 
     // Form Submit with get method
@@ -124,8 +126,5 @@ $(document).ready( function() {
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
 window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
-$(document).ready( function() { 
-    $(".window").niceScroll();
-});
 
 
