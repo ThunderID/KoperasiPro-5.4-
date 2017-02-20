@@ -125,7 +125,7 @@ $(document).ready( function() {
  */
 window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
 $(document).ready( function() { 
-    $("html").niceScroll();
+    $(".window").niceScroll();
 });
 
 
