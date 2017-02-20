@@ -36,10 +36,10 @@ window.wizard = function(){
 			return contentWizard.valid();
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
-			resizeJquerySteps();
+			window.resizeWizard();
 		}, 
 		onInit: function (event, currentIndex) {
-			resizeJquerySteps();
+			window.resizeWizard();
 		},
 		onFinished: function (event, currentIndex) {
 			$('.form').submit();
@@ -58,13 +58,14 @@ window.wizard = function(){
 			} else {
 				parent.parent().parent().append(error)
 			}
-			resizeJquerySteps();
+			window.resizeWizard();
 		}
 	});
-	// fungsi otomatis resize content wizard
-	function resizeJquerySteps() {
-		$('.wizard .content').css({ height: $('.body.current').outerHeight() });
-	}
+}
+
+// fungsi otomatis resize content wizard
+window.resizeWizard = function () {
+	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
 }
 
 function _validation()

@@ -15,6 +15,8 @@ require('./modules/uac');
 require('./modules/auto-tabindex');
 // add module template clone
 require('./modules/template-clone');
+// add module choice select
+require('./modules/form-inputmask');
 
 
 //draft

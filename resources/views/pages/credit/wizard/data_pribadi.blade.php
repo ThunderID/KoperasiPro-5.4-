@@ -34,7 +34,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date_format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>

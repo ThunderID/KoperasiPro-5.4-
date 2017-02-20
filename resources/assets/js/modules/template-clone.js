@@ -1,21 +1,19 @@
 $(function (){
-	i=1;
 	$('.add').click( function (){
 		template_add();
-		$('.wizard .content').css({ height: $('.body.current').outerHeight() });
-		i++;
-		console.log(i);
+		// form wizard automatic height after add template
+		window.resizeWizard();
 	});
 });
 
 $(document).ready( function() {
-	$('.template-content').find('.add').trigger('click');
+	$('.content-clone').find('.add').trigger('click');
 });
 
 function template_add() {
-	tmp = $('#template-clone');
-	dest = $('#content-clone');
+	elClone = $('#template-clone');
+	contentClone = $('#section-clone');
 
-	tmp.clone();
-	dest.append(tmp);
+	temp = elClone.clone();
+	contentClone.append(temp);
 }
