@@ -36,9 +36,7 @@
 	<label for="">Tujuan Kredit</label>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="input-group">
-				{!! Form::textarea('credit[purpose]', null, ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Tujuan kredit', 'rows' => '2', 'cols' => '120']) !!}
-			</div>
+			{!! Form::text('credit[purpose]', null, ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Tujuan kredit']) !!}
 		</div>
 	</div>
 </fieldset>

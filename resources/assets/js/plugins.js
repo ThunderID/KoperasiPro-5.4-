@@ -36,8 +36,10 @@ $(document).ready(function(){
 	$(document).on('pjax:end',   function() { 
 		NProgress.done();  
 
-		// call event form wizard();
+		// call module form wizard();
 		wizard();
+		// call module plugin inputmask
+		formInputMask();
 	});
 
     // Form Submit with get method
@@ -85,12 +87,8 @@ Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 window.inputmask = require('./plugins/inputmask/inputmask');
 // class for inputmask
 $(document).ready( function() {
-	$(".money").inputmask({ rightAlign: false, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
-	$(".money_right").inputmask({ rightAlign: true, alias: "numeric", prefix: 'IDR ', radixPoint: '', placeholder: "", autoGroup: !0, digitsOptional: !1, groupSeparator: '.', groupSize: 3, repeat: 15 }, 'unmaskedvalue');
-	$(".date_format").inputmask({
-		placeholder: "dd/mm/yyyy",
-		alias: "dd/mm/yyyy"
-	});
+	// call module form input mask 
+	formInputMask();
 });
 
 /**
