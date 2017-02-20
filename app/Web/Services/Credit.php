@@ -228,8 +228,8 @@ class Credit extends baseService
 	{
 		$credit_repo 		= new CreditRepository();
 		$person_repo 		= new PersonRepository();
-		$finance_repo 		= new FinanceRepository();
-		$asset_repo 		= new AssetRepository();
+		// $finance_repo 		= new FinanceRepository();
+		// $asset_repo 		= new AssetRepository();
 
 		$credit 			= new CreditProxy();
 		$credit->credit		= $credit_repo->findByID($id);
@@ -237,8 +237,8 @@ class Credit extends baseService
 		if($credit->credit && str_is($credit->credit->office->id, TAuth::activeOffice()->office->id) && in_array($credit->credit->status, TAuth::allowedCreditStatus()))
 		{
 			$credit->creditor	= $person_repo->findByID($credit->credit->creditor->id);
-			$credit->finance	= $finance_repo->findByOwnerID($credit->credit->creditor->id);
-			$credit->asset		= $asset_repo->findByOwnerID($credit->credit->creditor->id);
+			// $credit->finance	= $finance_repo->findByOwnerID($credit->credit->creditor->id);
+			// $credit->asset		= $asset_repo->findByOwnerID($credit->credit->creditor->id);
 
 			return $credit;
 		}

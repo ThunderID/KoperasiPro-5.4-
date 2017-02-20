@@ -139,7 +139,7 @@
 	<label for="">No. Hp</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('person[phone_number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
+			{!! Form::text('phone[0][number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
 		</div>
 	</div>
 </fieldset>
