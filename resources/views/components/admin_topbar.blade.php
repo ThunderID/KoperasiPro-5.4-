@@ -20,7 +20,7 @@
 					</button>
 					<ul class="dropdown-menu">
 						@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
-							<li><a href="{{route('office.activate', ['idx' => $key])}}">{{$value->office->name}}</a></li>
+							<li><a href="{{route('office.activate', ['idx' => $value->office->id])}}">{{$value->office->name}}</a></li>
 						@endforeach
 					</ul>
 				</div>

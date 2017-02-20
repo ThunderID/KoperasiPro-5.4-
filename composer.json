@@ -11,9 +11,6 @@
         "laravelcollective/html": "^5.3.0",
         "symfony/dom-crawler": "^3.2",
         "jenssegers/mongodb": "^3.0",
-        "thunderlabid/credit": "dev-master",
-        "thunderlabid/registry": "dev-master",
-        "thunderlabid/notification": "dev-master",
         "barryvdh/laravel-debugbar": "^2.3"
     },
     "require-dev": {
@@ -26,7 +23,10 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Thunderlabid\\Credit\\": "app/thunderlabid/credit/src/",
+            "Thunderlabid\\Registry\\": "app/thunderlabid/registry/src/",
+            "Thunderlabid\\Notification\\": "app/thunderlabid/notification/src/"
         }
     },
     "autoload-dev": {

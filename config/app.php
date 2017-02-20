@@ -240,8 +240,8 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
 		// 'Credit' => Thunderlabid\Credit\Facades\Credit::class,
-		// 'Registry' => Thunderlabid\Registry\Facades\Registry::class,
-		'Notification' => Thunderlabid\Notification\Facades\Notification::class,
+		'Registry' => Thunderlabid\Registry\Facades\Registry::class,
+		// 'Notification' => Thunderlabid\Notification\Facades\Notification::class,
 	],
 
 ];
