@@ -22,7 +22,11 @@
 
 		.panel-workspace-content {
 			border-bottom: 1px solid $line-color-default;
-			overflow: auto;		
+			// overflow: auto;		
+
+			.field{
+				margin: 0;
+			}
 		}
 	}
 }

@@ -55,10 +55,20 @@ class TAuth
 	 */
 	public static function activeOffice()
 	{
+		$acc_id	= Session::get('accesses.idx');
+
 		$data 	= new UserRepository;
 		$data 	= $data->findByID(Session::get('logged.id'));
 		
-		return $data->accesses[Session::get('accesses.idx')];
+		foreach ($data->accesses as $key => $value) 
+		{
+			if(str_is($value->office->id, $acc_id))
+			{
+				return $value;
+			}
+		}
+
+		throw new Exception(" Forbidden ", 1);
 	}
 
 	/**
@@ -96,7 +106,7 @@ class TAuth
 		}
 
 		Session::put('logged.id', $data->id);
-		Session::put('accesses.idx', 0);
+		Session::put('accesses.idx', $data->accesses[0]->office->id);
 
 		return true;
 	}

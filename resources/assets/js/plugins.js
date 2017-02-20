@@ -118,9 +118,14 @@ $(document).ready( function() {
 // 	});
 // });
 
-// window.$ = window.budi = 'haloo ';
-// $.hi = window.hi = function(){
-// 	alert(1);
-// };
+/**
+ * 10. jQuery Nice Scroll
+ * Description: plugin jQuery for better look of scrollbar
+ * Usage & Documentation: http://nicescroll.areaaperta.com/
+ */
+window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
+$(document).ready( function() { 
+    $("html").niceScroll();
+});
 
-// $.budi = 'hihih';
+
