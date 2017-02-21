@@ -10342,8 +10342,10 @@ __webpack_require__(10);
 __webpack_require__(5);
 // add module template clone
 __webpack_require__(9);
-// add module choice select
+// add module input mask
 __webpack_require__(6);
+// add module quick select
+__webpack_require__(40);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10615,23 +10617,66 @@ window.notify = function (msg, title, type) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
+	cobaa = 1;
 	$('.add').click(function () {
 		template_add();
 		// form wizard automatic height after add template
 		window.resizeWizard();
+		// call plugin quick-select
+		$('.quick-select').choiceSelect();
 	});
 });
 
 $(document).ready(function () {
 	$('.content-clone').find('.add').trigger('click');
+	selectTypeJaminan();
+	selectLegal();
 });
 
+/**
+ * function template add
+ * 
+ */
 function template_add() {
-	elClone = $('#template-clone');
-	contentClone = $('#section-clone');
+	temp = $('#template-clone').children().clone();
+	replaceQuickSelect(temp);
+	$('#section-clone').append(temp);
+}
 
-	temp = elClone.clone();
-	contentClone.append(temp);
+/**
+ * function replaceQuickSelect
+ * description: untuk mereplace nama class quick-select-clone
+ */
+function replaceQuickSelect(el) {
+	el.find('.quick-select-clone').removeClass('quick-select-clone').addClass('quick-select');
+}
+
+/**
+ * function selectTypeJaminan
+ * Description: show/hide jaminan legal dan mengeset value default dari jaminan legal yang sedang aktif 
+ */
+function selectTypeJaminan() {
+	$('.quick-select-type').on('change', function () {
+		$('.quick-select-legal').hide();
+		val = $(this).find('option:selected').val();
+		$('.' + val).show();
+		// untuk mengisi inputan jaminan legal secara default
+		valLegal = $('.' + val).children().find('option:selected').val();
+		$('.' + val).siblings('.credit-collaterals-legal').val(valLegal);
+	});
+}
+
+/**
+ * function selectLegal
+ * Description: ketika select option jaminan legal yang sedang aktif dan dipilih salah satu maka select option value jaminan legal
+ * yg sedang terselect akan dimasukkan ke value inputan jaminan legal
+ */
+function selectLegal() {
+	$('.quick-select-legal').on('change', function () {
+		console.log('yes');
+		val = $(this).find('option:selected').val();
+		$(this).parent().siblings('.credit-collaterals-legal').val(val);
+	});
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10758,15 +10803,6 @@ $(document).ready(function () {
  * Usage & Documentation: http://quick-select.wstone.io/
  */
 window.quickselect = __webpack_require__(14);
-$(document).ready(function () {
-  $('.quick-select').quickselect({
-    buttonTag: 'a',
-    activeButtonClass: 'btn-primary active',
-    breakOutAll: true,
-    buttonClass: 'btn btn-default btn-sm auto-tabindex',
-    wrapperClass: 'btn-group'
-  });
-});
 
 // /**
 //  * 9. jQuery bootstrap toggle
@@ -51097,6 +51133,25 @@ module.exports = __webpack_require__(4);
     $.nicescroll.options = _globaloptions;
   }
 })(jQuery);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {// window.choiceSelect = function () {
+$.fn.choiceSelect = function () {
+	$(this).quickselect({
+		buttonTag: 'a',
+		activeButtonClass: 'btn-primary active',
+		breakOutAll: true,
+		buttonClass: 'btn btn-default btn-sm auto-tabindex',
+		wrapperClass: 'btn-group'
+	});
+};
+$(document).ready(function () {
+	$('.quick-select').choiceSelect();
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
