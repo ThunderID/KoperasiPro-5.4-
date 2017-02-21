@@ -5,7 +5,7 @@
 	<label for="">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('credit[credit_amount]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Jumlah pinjaman']) !!}
+			{!! Form::text('credit[credit_amount]', null, ['class' => 'form-control required money auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman']) !!}
 		</div>
 	</div>
 </fieldset>

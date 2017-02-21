@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control number auto-tabindex', 'placeholder' => 'Ex. 11003608760001']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control number auto-tabindex focus', 'placeholder' => 'Ex. 11003608760001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -103,7 +103,7 @@
 			{!! Form::text('address[street]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
 		<div class="col-md-3 p-l-none">
-			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal auto-tabindex" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
+			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div>
 	</div>
 </fieldset>
@@ -111,7 +111,7 @@
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[country]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Indonesia']) !!}
+			{!! Form::text('address[country]', 'Indonesia', ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Indonesia']) !!}
 		</div>
 	</div>
 </fieldset>

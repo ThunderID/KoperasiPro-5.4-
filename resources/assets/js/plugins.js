@@ -101,15 +101,11 @@ $(document).ready( function() {
 window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
 
 // /**
-//  * 9. jQuery bootstrap toggle
-//  * Description: plugin jQuery switch bootstrap toggle 
-//  * Usage & Documentation: http://www.bootstraptoggle.com/
+//  * 9. jQuery selectize
+//  * Description: plugin jQuery customize select options 
+//  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-// window.bootstrapToggle = require('./plugins/bootstrap-toggle/bootstrap-toggle');
-// $(document).ready( function() {
-// 	$('.switch').bootstrapToggle({
-// 	});
-// });
+window.selectize = require('./plugins/selectize/selectize.min');
 
 /**
  * 10. jQuery Nice Scroll

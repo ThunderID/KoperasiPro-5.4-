@@ -56,7 +56,7 @@
 							{!! Form::select('credit[collaterals][][type]', [
 								'kendaraan'			=> 'Kendaraan',
 								'tanah_bangunan'	=> 'Tanah / Bangunan'
-							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type']) !!}
+							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type focus']) !!}
 						</div>
 					</div>
 				</fieldset>

@@ -1,5 +1,5 @@
 window.wizard = function(){
-	_validation();
+	window.__validation();
 	contentWizard = $('.wizard');
 	contentWizard.steps({
 		headerTag: 'h3',
@@ -7,6 +7,7 @@ window.wizard = function(){
 		transitionEffect: "slideLeft",
 		stepsOrientation: "vertical",
 		titleTemplate: '<span class="number">Step #index# :</span> #title#',
+		actionContainerTag: 'div',
 		/* Labels */
 		labels: {
 			cancel: "Cancel",
@@ -37,9 +38,12 @@ window.wizard = function(){
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();
+			window.setFocus();
 		}, 
 		onInit: function (event, currentIndex) {
 			window.resizeWizard();
+			window.setFocus();
+			window.customButtonActions();
 		},
 		onFinished: function (event, currentIndex) {
 			$('.form').submit();
@@ -68,39 +72,10 @@ window.resizeWizard = function () {
 	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
 }
 
-function _validation()
-{
-	// add rules validation class
-	$.validator.addClassRules({
-		required: {
-			required: true,
-		}, 
-		email: {
-			required: true,
-			email: true
-		},
-		password: {
-			required: true
-		},
-		number: {
-			required: true,
-			number: true
-		},
-		date: {
-			required: true,
-			dateIND: true
-		}
-	});
+window.setFocus = function () {
+	$('.focus').focus();
+}
 
-	// custom error message jQuery validation
-	$.extend($.validator.messages, {
-		required: "Inputan harus diisi",
-		'email': "Silahkan inputkan dengan format email",
-		'number': "Silahkan inputkan dengan format angka"
-	});
-	$.validator.addMethod(
-		"dateIND", function (val, el){
-			return val.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-		}, "Silahkan inputkan dengan format tanggal (dd/mm/yyyy)");
-
+window.customButtonActions = function() {
+	$('.wizard .actions').find('a').addClass('btn');
 }
