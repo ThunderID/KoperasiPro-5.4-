@@ -97,15 +97,6 @@ $(document).ready( function() {
  * Usage & Documentation: http://quick-select.wstone.io/
  */
 window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
-$(document).ready( function() {
-	$('.quick-select').quickselect({
-		buttonTag: 'a',
-		activeButtonClass: 'btn-primary active',
-		breakOutAll: true,
-		buttonClass: 'btn btn-default btn-sm auto-tabindex',
-		wrapperClass: 'btn-group'
-	});
-});
 
 // /**
 //  * 9. jQuery bootstrap toggle
