@@ -10342,10 +10342,10 @@ __webpack_require__(11);
 __webpack_require__(5);
 // add module template clone
 __webpack_require__(10);
-// add module input mask
+// add module choice select
 __webpack_require__(7);
-// add module quick select
-__webpack_require__(6);
+// add module set workspace height
+__webpack_require__(41);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10401,25 +10401,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {// window.choiceSelect = function () {
-$.fn.choiceSelect = function () {
-	$(this).quickselect({
-		buttonTag: 'a',
-		activeButtonClass: 'btn-primary active',
-		breakOutAll: true,
-		buttonClass: 'btn btn-default btn-sm auto-tabindex',
-		wrapperClass: 'btn-group'
-	});
-};
-$(document).ready(function () {
-	$('.quick-select').choiceSelect();
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 6 */,
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10775,6 +10757,8 @@ $(document).ready(function () {
     wizard();
     // call module plugin inputmask
     formInputMask();
+    //optimize height
+    optimizeHeight();
   });
 
   // Form Submit with get method
@@ -10849,9 +10833,6 @@ window.quickselect = __webpack_require__(15);
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
 window.nicescroll = __webpack_require__(18);
-$(document).ready(function () {
-  $(".window").niceScroll();
-});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -51149,6 +51130,53 @@ __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
+
+/***/ }),
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.optimizeHeight = function () {
+	$('._window').each(function () {
+		$(this).optHeight();
+	});
+};
+
+$.fn.optHeight = function () {
+	if ($(this).data("padd-top") == 'auto') {
+		padd_top = $(this).offset().top;
+	} else {
+		padd_top = $(this).data("padd-top");
+	}
+
+	h = $(window).height() - (padd_top + $(this).data("padd-bottom"));
+	$(this).css('height', h);
+	$(this).niceScroll();
+};
+
+$(window).load(function () {
+	$('._window').each(function () {
+		$(this).optHeight();
+	});
+});
+$(window).resize(function () {
+	$('._window').each(function () {
+		$(this).optHeight();
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
