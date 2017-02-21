@@ -4,7 +4,9 @@
             <h4 class="list-group-item-heading">
                 {{$value->name}} 
             </h4>
-            <p class="list-group-item-text text-right">{{$value->phone_number}}</p>
+            @foreach($value->phones as $phone)
+	            <p class="list-group-item-text text-right">{{$phone->number}}</p>
+        	@endforeach
         </a>
     @endforeach
 </div>

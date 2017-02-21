@@ -56,11 +56,16 @@ class PersonController extends Controller
 						'office' 		=> ['id' => '589d9c415590a800073cd078', 'name' => 'Thunderlab Indonesia'], 
 					]
 				],
-				'relatives'					=> [
+				'relatives'				=> [
 					[
 						'relation' 		=> 'ibu', 
 						'id' 			=> '897daec75590a8000818784e', 
 						'name' 			=> 'Lolita Li', 
+					]
+				],
+				'phones'				=> [
+					[
+						'number' 		=> '089654592911', 
 					]
 				],
 			];

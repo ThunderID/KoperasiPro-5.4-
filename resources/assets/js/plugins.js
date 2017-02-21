@@ -116,7 +116,7 @@ window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselec
  */
 window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
 $(document).ready( function() { 
-    $("html").niceScroll();
+    $(".window").niceScroll();
 });
 
 

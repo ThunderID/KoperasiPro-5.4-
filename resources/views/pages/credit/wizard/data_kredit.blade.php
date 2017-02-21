@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">
-				{!! Form::text('credit[installment]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
+				{!! Form::text('credit[installment_capacity]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
 				<div class="input-group-addon">/ Bulan</div>
 			</div>
 		</div>
