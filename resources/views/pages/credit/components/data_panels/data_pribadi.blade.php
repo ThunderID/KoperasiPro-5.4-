@@ -75,9 +75,11 @@
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
 				<p style="margin-bottom: 7px;"><strong>Nomor Telepon</strong></p>
-				<p>
-					{{$page_datas->credit->creditor->phone_number}}
-				</p>
+				@foreach((array)$page_datas->credit->creditor->phones as $phone)
+					<p>
+						{{$phone->number}}
+					</p>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -95,7 +97,6 @@
 	</div>
 </div>
 
-<div class="clearfix">&nbsp;</div>
 
 <div class="row">
 	@if(isset($page_datas->credit->creditor->works))
