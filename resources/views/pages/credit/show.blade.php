@@ -5,28 +5,82 @@
 	<!-- BLOCK 1 Display Data Rencana Kredit // -->
 	<div class="row">
 		<div class="col-sm-12">
+		<?php
+			// A ver.
+		?>
 			@include('pages.credit.components.data_panels.rencana_kredit')
+		<?php
+			// B ver.
+			// @include('pages.credit.components.data_panels.[b]rencana_kredit')
+		?>
+		<?php
+			// C ver.
+			// @include('pages.credit.components.data_panels.[c]rencana_kredit')
+		?>
 		</div>
 	</div>
 
 	<div class="clearfix">&nbsp;</div>
-	<div class="clearfix">&nbsp;</div>
-   
-	<!-- BLOCK 2 Display Data Pribadi,  Data Kelurga, Data Penjamin // -->
+
+	<!-- BLOCK 2 Display Data Rencana Kredit // -->
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
+		<?php
+			// A ver.
+		?>
 			@include('pages.credit.components.data_panels.data_pribadi')
+		<?php
+			// B ver.
+			// @include('pages.credit.components.data_panels.[b]data_pribadi')
+		?>
+		<?php
+			// C ver.
+			// @include('pages.credit.components.data_panels.[c]data_pribadi')
+		?>
 		</div>
-		<div class="col-sm-6">
-			@include('pages.credit.components.data_panels.data_keluarga')
-			@include('pages.credit.components.data_panels.data_penjamin')
+	</div>
+
+   <!-- 3 Data Kelurga // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_keluarga')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_keluarga')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_keluarga')
+			?>
 		</div>
 	</div>
 
 	<div class="clearfix">&nbsp;</div>
+
+   <!-- 4 Data Data Penjamin // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_penjamin')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_penjamin')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_penjamin')
+			?>
+		</div>
+	</div>
+
 	<div class="clearfix">&nbsp;</div>
 
-	<!-- BLOCK 3 Display Data Keuangan, Data Aset, Data Jaminan // -->
+	<!-- BLOCK 5 & 6 Display Data Keuangan, Data Aset // -->
 	<div class="row">
 		<div class="col-sm-6">
 			@if(isset($page_datas->credit->finance))
@@ -37,14 +91,31 @@
 			@if(isset($page_datas->credit->asset))
 				@include('pages.credit.components.data_panels.data_aset')
 			@endif
-			@include('pages.credit.components.data_panels.data_jaminan')
+		</div>
+	</div>
+
+   <!-- BLOCK 7 Data Kelurga, Data Penjamin // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_jaminan')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_jaminan')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_jaminan')
+			?>
 		</div>
 	</div>
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
 	
-	<!-- BLOCK 4 Action Button // -->
+	<!-- BLOCK 8 Action Button // -->
 	<div class="row">
 		<div class="col-sm-6 text-left">
 			{{Form::open(['url' => route('credit.destroy', ['id' => $page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}

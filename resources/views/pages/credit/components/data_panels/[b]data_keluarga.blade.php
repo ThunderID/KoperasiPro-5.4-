@@ -11,11 +11,11 @@
 			<div class="col-sm-6">
 
 				<div class="row m-b-xl">
-					<div class="col-sm-12">
-						<p style="margin-bottom: 7px;"><strong>Nama</strong></p>
-						<p>
-							{{$value->name}}
-						</p>
+					<div class="col-sm-6">
+						<p>Nama</p>
+					</div>
+					<div class="col-sm-6">
+						<p><strong>{{$value->name}}</strong></p>
 					</div>
 				</div>
 
@@ -23,11 +23,11 @@
 			<div class="col-sm-6">
 
 				<div class="row m-b-xl">
-					<div class="col-sm-12">
-						<p style="margin-bottom: 7px;"><strong>Hubungan</strong></p>
-						<p>
-							{{$value->relation}}
-						</p>
+					<div class="col-sm-6">
+						<p>Hubungan</p>
+					</div>
+					<div class="col-sm-6">
+						<p><strong>{{$value->relation}}</strong></p>
 					</div>
 				</div>
 
