@@ -1,99 +1,134 @@
-@extends('template.cms_template')
+@extends('pages.credit.templates.index_show_template')
 
-@section('kredit')
-	active in
+@section('page_content')
+
+	<!-- BLOCK 1 Display Data Rencana Kredit // -->
+	<div class="row">
+		<div class="col-sm-12">
+		<?php
+			// A ver.
+		?>
+			@include('pages.credit.components.data_panels.rencana_kredit')
+		<?php
+			// B ver.
+			// @include('pages.credit.components.data_panels.[b]rencana_kredit')
+		?>
+		<?php
+			// C ver.
+			// @include('pages.credit.components.data_panels.[c]rencana_kredit')
+		?>
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+
+	<!-- BLOCK 2 Display Data Rencana Kredit // -->
+	<div class="row">
+		<div class="col-sm-12">
+		<?php
+			// A ver.
+		?>
+			@include('pages.credit.components.data_panels.data_pribadi')
+		<?php
+			// B ver.
+			// @include('pages.credit.components.data_panels.[b]data_pribadi')
+		?>
+		<?php
+			// C ver.
+			// @include('pages.credit.components.data_panels.[c]data_pribadi')
+		?>
+		</div>
+	</div>
+
+   <!-- 3 Data Kelurga // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_keluarga')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_keluarga')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_keluarga')
+			?>
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+
+   <!-- 4 Data Data Penjamin // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_penjamin')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_penjamin')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_penjamin')
+			?>
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+
+	<!-- BLOCK 5 & 6 Display Data Keuangan, Data Aset // -->
+	<div class="row">
+		<div class="col-sm-6">
+			@if(isset($page_datas->credit->finance))
+				@include('pages.credit.components.data_panels.data_keuangan')
+			@endif
+		</div>
+		<div class="col-sm-6">
+			@if(isset($page_datas->credit->asset))
+				@include('pages.credit.components.data_panels.data_aset')
+			@endif
+		</div>
+	</div>
+
+   <!-- BLOCK 7 Data Kelurga, Data Penjamin // -->
+	<div class="row">
+		<div class="col-sm-12">
+			<?php
+				// A ver.
+			?>
+				@include('pages.credit.components.data_panels.data_jaminan')
+			<?php
+				// B ver.
+				// @include('pages.credit.components.data_panels.[b]data_jaminan')
+			?>
+			<?php
+				// C ver.
+				// @include('pages.credit.components.data_panels.[c]data_jaminan')
+			?>
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
+	
+	<!-- BLOCK 8 Action Button // -->
+	<div class="row">
+		<div class="col-sm-6 text-left">
+			{{Form::open(['url' => route('credit.destroy', ['id' => $page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}
+				<button class="btn btn-danger">Tolak</button>
+			{{Form::close()}}
+		</div>
+		<div class="col-sm-6 text-right">
+			<a class="btn btn-primary">Ajukan</a>
+			<a class="btn btn-primary">Drafting</a>
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+
 @stop
 
-@section('daftar_kredit')
-	active
-@stop
-
-@push('content')
-	<div class="row field">
-		<div class="col-sm-3 content-sidebar">
-			<div class="sidebar-header p-b-sm">
-				@include('components.sidebar.basic_header',[ 'param' => [
-					'title' 			=> 'Data Kredit',
-					'status'			=> 	['analyzing','drafting'],
-					'status_default'	=> 'semua'
-				]])
-			</div>
-
-			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="32">
-				@include('pages.credit.helper.lists')
-			</div>
-		</div>
-		<div class="col-sm-9">
-
-			<div class="_window" data-padd-top="auto" data-padd-bottom="32" style="padding-top:16px;padding-bottom: 16px;overflow-y: auto;margin-right: -15px; padding-right: 16px;">
-
-				<!-- BLOCK 1 Display Data Rencana Kredit // -->
-				<div class="row">
-					<div class="col-sm-12">
-						@include('pages.credit.show.rencana_kredit')
-					</div>
-				</div>
-
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-			   
-				<!-- BLOCK 2 Display Data Pribadi,  Data Kelurga, Data Penjamin // -->
-				<div class="row">
-					<div class="col-sm-6">
-						@include('pages.credit.show.data_pribadi')
-					</div>
-					<div class="col-sm-6">
-						@include('pages.credit.show.data_keluarga')
-						@include('pages.credit.show.data_penjamin')
-					</div>
-				</div>
-
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-
-				<!-- BLOCK 3 Display Data Keuangan, Data Aset, Data Jaminan // -->
-				<div class="row">
-					<div class="col-sm-6">
-						@if(isset($page_datas->credit->finance))
-							@include('pages.credit.show.data_keuangan')
-						@endif
-					</div>
-					<div class="col-sm-6">
-						@if(isset($page_datas->credit->asset))
-							@include('pages.credit.show.data_aset')
-						@endif
-						@include('pages.credit.show.data_jaminan')
-					</div>
-				</div>
-
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				
-				<!-- BLOCK 4 Action Button // -->
-				<div class="row">
-					<div class="col-sm-6 text-left">
-						{{Form::open(['url' => route('credit.destroy', ['id' => $page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}
-							<button class="btn btn-danger">Tolak</button>
-						{{Form::close()}}
-					</div>
-					<div class="col-sm-6 text-right">
-						<a class="btn btn-primary">Ajukan</a>
-						<a class="btn btn-primary">Drafting</a>
-					</div>
-				</div>
-
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-				<div class="clearfix">&nbsp;</div>
-
-			</div>
-
-		</div>
-	</div>	
-@endpush
-
-@push('scripts')
-@endpush
