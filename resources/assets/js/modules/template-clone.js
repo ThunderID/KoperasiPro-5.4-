@@ -10,6 +10,8 @@ $(function (){
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
+		} else if ($(this).data('active') === 'contact') {
+			window.formInputMask();
 		}
 	});
 });

@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control number auto-tabindex focus', 'placeholder' => 'Ex. 11003608760001']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus id-card', 'placeholder' => 'Ex. 11003608760001']) !!}
 		</div>
 	</div>
 </fieldset>

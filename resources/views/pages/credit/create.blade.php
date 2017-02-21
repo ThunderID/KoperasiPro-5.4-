@@ -15,13 +15,13 @@
 		</div>
 		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard']) !!}
 			{{-- untuk data kredit --}}
-			<h3>Data Kredit</h3>
-			<section>
-				@include ('pages.credit.wizard.data_kredit')
-			</section>
 			<h3>Data Pribadi</h3>
 			<section>
 				@include ('pages.credit.wizard.data_pribadi')
+			</section>
+			<h3>Data Kredit</h3>
+			<section>
+				@include ('pages.credit.wizard.data_kredit')
 			</section>
 			<h3>Data Penjamin</h3>
 			<section>
@@ -100,7 +100,7 @@
 					<label for="">No. Hp</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('phone[][number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
+							{!! Form::text('phone[][number]', null, ['class' => 'form-control required auto-tabindex no-hp', 'placeholder' => 'Ex. 0812 2339 9001']) !!}
 						</div>
 					</div>
 				</fieldset>
