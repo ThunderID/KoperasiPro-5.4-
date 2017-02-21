@@ -135,11 +135,9 @@
 {{-- informasi kontak --}}
 <br />
 <strong><h5>Kontak</h5></strong>
-<fieldset class="form-group">
-	<label for="">No. Hp</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::text('phone[0][number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
-		</div>
-	</div>
-</fieldset>
+<div class="content-clone-contact">
+	<div id="section-clone-contact"></div>
+	<fieldset class="form-group">
+		<a href="javascript:void(0);" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add" data-active="contact"><i class="fa fa-plus"></i> No. Handphone</a>
+	</fieldset>
+</div>

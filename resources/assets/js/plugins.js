@@ -40,6 +40,8 @@ $(document).ready(function(){
 		wizard();
 		// call module plugin inputmask
 		formInputMask();
+		//optimize height
+		optimizeHeight();
 	});
 
     // Form Submit with get method
@@ -97,15 +99,6 @@ $(document).ready( function() {
  * Usage & Documentation: http://quick-select.wstone.io/
  */
 window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
-$(document).ready( function() {
-	$('.quick-select').quickselect({
-		buttonTag: 'a',
-		activeButtonClass: 'btn-primary active',
-		breakOutAll: true,
-		buttonClass: 'btn btn-default btn-sm auto-tabindex',
-		wrapperClass: 'btn-group'
-	});
-});
 
 // /**
 //  * 9. jQuery bootstrap toggle
@@ -124,8 +117,5 @@ $(document).ready( function() {
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
 window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
-$(document).ready( function() { 
-    $(".window").niceScroll();
-});
 
 

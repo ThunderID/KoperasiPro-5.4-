@@ -17,6 +17,9 @@ require('./modules/auto-tabindex');
 require('./modules/template-clone');
 // add module choice select
 require('./modules/form-inputmask');
+// add module set workspace height
+require('./modules/height-optimizer');
+
 
 
 //draft
