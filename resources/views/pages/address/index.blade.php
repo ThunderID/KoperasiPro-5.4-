@@ -9,7 +9,7 @@
 @stop
 
 @push('content')
-	<div class="row">
+	<div class="row field">
 		<div class="col-sm-3 content-sidebar">
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
