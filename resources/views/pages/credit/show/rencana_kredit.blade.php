@@ -24,7 +24,9 @@
 		<h4><small>Kemampuan Angsur</small></h4>
 	</div>
 	<div class="col-sm-3" style="color: red">
-		<h4>{{$page_datas->credit->credit->installment->IDR()}}</h4>
+<?php
+		// <h4>{{$page_datas->credit->credit->installment_capacity->IDR()}}</h4>
+?>
 	</div>
 
 	<div class="col-sm-3">

@@ -136,7 +136,7 @@ class TAuth
 					$status 	= ['drafting'];
 					break;
 				case 'developer':
-					$status 	= ['drafting', 'analizing'];
+					$status 	= ['drafting', 'analyzing'];
 					break;
 				default:
 					$status 	= ['drafting'];

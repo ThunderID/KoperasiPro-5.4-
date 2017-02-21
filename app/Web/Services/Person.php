@@ -50,6 +50,18 @@ class Person
 	 *
 	 * @return array $all
 	 */
+	public static function findByID($id)
+	{
+		$data 	= new PersonRepository();
+
+		return $data->findByID($id);
+	}
+
+	/**
+	 * Menampilkan semua data Person berdasarkan nama
+	 *
+	 * @return array $all
+	 */
 	public static function findByName($name)
 	{
 		$data 	= new PersonRepository();

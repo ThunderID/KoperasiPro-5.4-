@@ -17,10 +17,15 @@ Route::get('/', function ()
 });
 
 // Here lies credit controller all things started here
-Route::group(['middleware' => ['pjax', 'authenticated']], function()
+Route::group(['middleware' => []], function()
 {
 	//Menu Kredit
 	Route::resource('credit', 'CreditController');
+	//Menu Survey
+	Route::resource('survey', 'CreditSurveyController');
+
+	//Menu Status Kredit
+	Route::any('propose/credit/{id}',		['uses' => 'CreditStatusController@propose', 	'as' => 'credit.propose']);
 	
 	//Menu Registrasi
 	Route::resource('address', 'AddressController');

@@ -73,7 +73,9 @@
 		<h4><small>Nomor Telepon</small></h4>
 	</div>
 	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->phone_number}}</h4>
+		@foreach((array)$page_datas->credit->creditor->phones as $phone)
+			<h4>{{$phone->number}}</h4>
+		@endforeach
 	</div>
 </div>
 
