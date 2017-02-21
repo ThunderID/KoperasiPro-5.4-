@@ -1,9 +1,3 @@
-window.optimizeHeight = function () {
-	$('._window').each(function() {
-		$(this).optHeight();
-	});
-};
-
 $.fn.optHeight = function(){
 	if($(this).data( "padd-top" ) == 'auto'){
 		padd_top = $(this).offset().top;
@@ -16,10 +10,14 @@ $.fn.optHeight = function(){
     $(this).niceScroll();
 };
 
-$( window ).load(function() { 
+window.optimizeHeight = function () {
 	$('._window').each(function() {
 		$(this).optHeight();
 	});
+};
+
+$('._window').each(function() {
+	$(this).optHeight();
 });
 $( window ).resize(function() {
 	$('._window').each(function() {

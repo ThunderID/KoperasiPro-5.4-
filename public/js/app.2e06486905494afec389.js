@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,27 +10325,27 @@ module.exports = function(module) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(24);
+window._ = __webpack_require__(23);
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(12);
+__webpack_require__(11);
 
 //your js modules goes here
 // require('');
-__webpack_require__(9);
 __webpack_require__(8);
-__webpack_require__(11);
+__webpack_require__(7);
+__webpack_require__(10);
 // add module auto-tabindex form
 __webpack_require__(5);
 // add module template clone
-__webpack_require__(10);
+__webpack_require__(9);
 // add module choice select
-__webpack_require__(7);
+__webpack_require__(6);
 // add module set workspace height
-__webpack_require__(41);
+__webpack_require__(40);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10366,14 +10366,14 @@ __webpack_require__(41);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(22);
+/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(21);
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(23);
+__webpack_require__(22);
 
 // require('./vendors/jquery-2.2.4.js');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
@@ -10401,8 +10401,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
@@ -10446,7 +10445,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
@@ -10554,7 +10553,7 @@ function _validation() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /*
@@ -10614,7 +10613,7 @@ window.notify = function (msg, title, type) {
 };
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -10691,7 +10690,7 @@ function selectLegal() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {// login section
@@ -10712,7 +10711,7 @@ window.showPassword = function showPassword() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10720,7 +10719,7 @@ window.showPassword = function showPassword() {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(21);
+window.toastr = __webpack_require__(20);
 
 /*
 2. nprogress
@@ -10728,7 +10727,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(19);
+window.NProgress = __webpack_require__(18);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -10742,7 +10741,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(20);
+window.pjax = __webpack_require__(19);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -10777,7 +10776,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(16);
+window.steps = __webpack_require__(15);
 $(document).ready(function () {
   // call event form wizard();
   wizard();
@@ -10788,21 +10787,21 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(17);
+window.validate = __webpack_require__(16);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(14);
+window.cookies = __webpack_require__(13);
 
 /*
 7. jQuery Inputmask
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(13);
+window.inputmask = __webpack_require__(12);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -10814,7 +10813,7 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(15);
+window.quickselect = __webpack_require__(14);
 
 // /**
 //  * 9. jQuery bootstrap toggle
@@ -10832,11 +10831,11 @@ window.quickselect = __webpack_require__(15);
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(18);
+window.nicescroll = __webpack_require__(17);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13495,7 +13494,7 @@ window.nicescroll = __webpack_require__(18);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13654,7 +13653,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13707,7 +13706,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15585,7 +15584,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17141,7 +17140,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -20342,7 +20341,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -20834,7 +20833,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -21767,7 +21766,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -22197,10 +22196,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(25));
+})(__webpack_require__(24));
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -31611,7 +31610,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -33995,7 +33994,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -51084,10 +51083,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26), __webpack_require__(1)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25), __webpack_require__(1)(module)))
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -51096,7 +51095,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 var g;
@@ -51123,7 +51122,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
@@ -51132,6 +51131,7 @@ module.exports = __webpack_require__(4);
 
 
 /***/ }),
+/* 27 */,
 /* 28 */,
 /* 29 */,
 /* 30 */,
@@ -51144,17 +51144,10 @@ module.exports = __webpack_require__(4);
 /* 37 */,
 /* 38 */,
 /* 39 */,
-/* 40 */,
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {window.optimizeHeight = function () {
-	$('._window').each(function () {
-		$(this).optHeight();
-	});
-};
-
-$.fn.optHeight = function () {
+/* WEBPACK VAR INJECTION */(function($) {$.fn.optHeight = function () {
 	if ($(this).data("padd-top") == 'auto') {
 		padd_top = $(this).offset().top;
 	} else {
@@ -51166,10 +51159,14 @@ $.fn.optHeight = function () {
 	$(this).niceScroll();
 };
 
-$(window).load(function () {
+window.optimizeHeight = function () {
 	$('._window').each(function () {
 		$(this).optHeight();
 	});
+};
+
+$('._window').each(function () {
+	$(this).optHeight();
 });
 $(window).resize(function () {
 	$('._window').each(function () {
