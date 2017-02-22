@@ -39,11 +39,4 @@
 			</div>
 		</div>	
 	</div>
-
-	<div class="col-sm-3">
-		<h4><small>Tujuan Kredit</small></h4>
-	</div>
-	<div class="col-sm-3">
-		<h4>{{$page_datas->credit->credit->purpose}}</h4>
-	</div>
 </div>
