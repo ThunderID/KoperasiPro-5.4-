@@ -80,20 +80,21 @@ class AddressBookRepository implements IRepository {
 	/**
 	* Menampilkan data AddressBook berdasarkan pencarian id pemilik dari rumah
 	*
-	* @param string $name, $take, string $skip
+	* @param string $id
 	* @return array of object
 	*/
-	public static function FindByHouseOwnerID($name, $take = SELF::PER_PAGE, $skip = 0)
+	public static function findByHouseOwnerID($id)
 	{
-		$data = AddressBookModel::where('houses.id', $name)
-					->orderBy('houses.id')
-					->skip($skip)
-					->take($take)
-					->get();
+		$data = AddressBookModel::where('houses.id', $id)
+					->orderBy('created_at', 'desc')
+					->first();
 
-		return $data->map(function($item){
-					return Static::toEntity($item);
-				});
+		if($data->count())
+		{
+			return Static::toEntity($data);
+		}
+
+		return Static::toEntity(new AddressBookModel);
 	}
 
 	/**
@@ -102,7 +103,7 @@ class AddressBookRepository implements IRepository {
 	* @param string $name, $take, string $skip
 	* @return array of object
 	*/
-	public static function FindByOfficeID($name, $take = SELF::PER_PAGE, $skip = 0)
+	public static function fndByOfficeID($name, $take = SELF::PER_PAGE, $skip = 0)
 	{
 		$data = AddressBookModel::where('offices.id', $name)
 					->orderBy('offices.id')
@@ -121,7 +122,7 @@ class AddressBookRepository implements IRepository {
 	* @param string $name, $take, string $skip
 	* @return array of object
 	*/
-	public static function FindByHouseOwnerName($name, $take = SELF::PER_PAGE, $skip = 0)
+	public static function findByHouseOwnerName($name, $take = SELF::PER_PAGE, $skip = 0)
 	{
 		$data = AddressBookModel::where('houses.name', 'like', '%'.$name.'%')
 					->orderBy('houses.name')
@@ -140,7 +141,7 @@ class AddressBookRepository implements IRepository {
 	* @param string $name, $take, string $skip
 	* @return array of object
 	*/
-	public static function FindByOfficeName($name, $take = SELF::PER_PAGE, $skip = 0)
+	public static function findByOfficeName($name, $take = SELF::PER_PAGE, $skip = 0)
 	{
 		$data = AddressBookModel::where('offices.name', 'like', '%'.$name.'%')
 					->orderBy('offices.name')

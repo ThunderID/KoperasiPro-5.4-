@@ -104,7 +104,7 @@ class EcoMacro implements IEntity, IAggregateRoot
 	 * @param string		$other [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function addOther(string $other)
+	public function addOther($other)
 	{
 		$isInList = false;
 
@@ -146,7 +146,7 @@ class EcoMacro implements IEntity, IAggregateRoot
 	 * @param  string 	$other [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function removeOther(string $other)
+	public function removeOther($other)
 	{
 		$isInList 			= false;
 

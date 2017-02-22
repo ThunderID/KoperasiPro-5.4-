@@ -169,7 +169,7 @@ class Personality implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['character' => (string) $character], ['character' => 'string']);
+		$validator 	= Validator::make(['character' => $character], ['character' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -201,7 +201,7 @@ class Personality implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['lifestyle' => (string) $lifestyle], ['lifestyle' => 'string']);
+		$validator 	= Validator::make(['lifestyle' => $lifestyle], ['lifestyle' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
