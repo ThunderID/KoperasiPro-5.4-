@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">KoperasiPRO</a>
+			<a class="navbar-brand" href="#">{{ Config::get('app.name') }}</a>
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="pull-right m-l-xs">

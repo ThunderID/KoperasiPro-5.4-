@@ -40,8 +40,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-						<p>KoperasiPro © - 2017</p>
-						<p>Powered by <strong><a href="#" no-data-pjax>Thunderlab.id</a></strong></p>
+						<p>{{ Config::get('app.name') }} © - 2017</p>
+						<p>Powered by <strong><a href="#" no-data-pjax>{{ Config::get('app.developer') }}</a></strong></p>
 					</div>
 				</div>
 			</div>
