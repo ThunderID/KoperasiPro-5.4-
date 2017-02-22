@@ -28,7 +28,6 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('propose/credit/{id}',		['uses' => 'CreditStatusController@propose', 	'as' => 'credit.propose']);
 	
 	//Menu Registrasi
-	Route::resource('address', 'AddressController');
 	Route::resource('person', 'PersonController');
 });
 

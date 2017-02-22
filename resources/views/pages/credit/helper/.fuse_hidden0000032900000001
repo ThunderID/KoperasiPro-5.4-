@@ -1,0 +1,13 @@
+
+<div class="list-group">
+    @foreach($page_datas->credits as $key => $value)
+        <a href="{{route('survey.show', array_merge(['id' => $value->id], Input::all()))}}" class="list-group-item {{$key == 0? 'first': ''}} {{((isset($page_datas->id) && $page_datas->id == $value->id) ? 'active' : '')}} " >
+            <h4 class="list-group-item-heading">
+                {{$value->creditor->name}} 
+                <span class="badge pull-right">{{$value->status}}</span>
+            </h4>
+            <p>{{$value->id}}</p>
+            <p class="list-group-item-text p-t-xs">{{$value->credit_amount->IDR()}}</p>
+        </a>
+    @endforeach
+</div>

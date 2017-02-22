@@ -1,6 +1,6 @@
 <div class="list-group">
     @foreach($page_datas->persons as $key => $value)
-		<a href="{{route(Route::currentRouteName(), array_merge(Input::all(), ['id' => $value->id]))}}" class="list-group-item {{$key == 0? 'first': ''}}">
+		<a href="{{route('person.show', ['id' => $value->id])}}" class="list-group-item {{$key == 0? 'first': ''}}">
             <h4 class="list-group-item-heading">
                 {{$value->name}} 
             </h4>

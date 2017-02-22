@@ -96,12 +96,12 @@ class Credit extends baseService
 		}
 
 		$data 				= new CreditFactory;
-		$data->buildCreditFromArray($array);
+		$data 				= $data->buildCreditFromArray($array);
 
 		$credit_repo 		= new CreditRepository;
 		$credit_entity 		= $credit_repo->store($data);
 
-		return $credit_entity;
+		return $data;
 	}
 
 	/**
@@ -335,10 +335,10 @@ class Credit extends baseService
 	{
 		if(empty($status))
 		{
-			$status 	= TAuth::allowedCreditStatus();
+			$status 	= self::allowedStatus();
 		}
 
-		$data 			= new CreditRepository();
+		$data 			= new CreditRepository;
 
 		return $data->findByStatusInOffice($status, TAuth::activeOffice()->office->id);
 	}
@@ -352,10 +352,10 @@ class Credit extends baseService
 	{
 		if(empty($status))
 		{
-			$status 	= TAuth::allowedCreditStatus();
+			$status 	= self::allowedStatus();
 		}
 
-		$data 			= new CreditRepository();
+		$data 			= new CreditRepository;
 
 		return $data->findByStatusInOfficeAndName($status, TAuth::activeOffice()->office->id, $name);
 	}
@@ -498,40 +498,40 @@ class Credit extends baseService
 	 */
 	public static function findByID($id)
 	{
-		$credit_repo 		= new CreditRepository();
+		$credit_repo 		= new CreditRepository;
 		$credit_entity		= $credit_repo->findByID($id);
 
-		if($credit_entity && str_is($credit_entity->office->id, TAuth::activeOffice()->office->id) && in_array($credit_entity->status, TAuth::allowedCreditStatus()))
+		if($credit_entity && str_is($credit_entity->office->id, TAuth::activeOffice()->office->id) && in_array($credit_entity->status, self::allowedStatus()))
 		{
 			$credit			= new \Stdclass;
 			$credit->credit = $credit_entity;
 			
-			$person 			= new PersonRepository();
+			$person 			= new PersonRepository;
 			$credit->creditor 	= $person->findByID($credit_entity->creditor->id);
 
 			//check autorizhed user
-			if(self::whitelists('survey'))
+			if(in_array('analyzing', self::allowedStatus()))
 			{
 				$credit->survey 				= new \Stdclass;
 
 				//data personality
-				$personality 					= new PersonalityRepository();
+				$personality 					= new PersonalityRepository;
 				$credit->survey->personality 	= $personality->findByOwnerID($credit->creditor->id);
 
 				//data macro
-				$macro 							= new EcoMacroRepository();
+				$macro 							= new EcoMacroRepository;
 				$credit->survey->macro 			= $macro->FindByCreditID($credit->credit->id);
 
 				//data asset
-				$asset 							= new AssetRepository();
+				$asset 							= new AssetRepository;
 				$credit->survey->asset 			= $asset->findByOwnerID($credit->creditor->id);
 
 				//data finance
-				$finance 						= new FinanceRepository();
+				$finance 						= new FinanceRepository;
 				$credit->survey->finance 		= $finance->findByOwnerID($credit->creditor->id);
 
 				//data collateral
-				$collateral 					= new CollateralRepository();
+				$collateral 					= new CollateralRepository;
 				$credit->survey->collateral 	= $collateral->FindByCreditID($credit->credit->id);
 			}
 
@@ -548,7 +548,7 @@ class Credit extends baseService
 	 */
 	public static function delete($id)
 	{
-		$data 		= new CreditRepository();
+		$data 		= new CreditRepository;
 
 		$credit		= $data->findByID($id);
 
@@ -568,32 +568,30 @@ class Credit extends baseService
 				]; 
 	}
 
-	public static function whitelists($role)
+	/**
+	 * Membuat object asset baru dari data array
+	 *
+	 */
+	public static function allowedStatus()
 	{
-		if(is_array($role))
+		if($logged = TAuth::activeOffice())
 		{
-
-		}
-		else
-		{
-			switch (strtolower($role)) 
+			switch (strtolower($logged->role)) 
 			{
-				case 'survey':
-					if(in_array('analyzing', TAuth::allowedCreditStatus()))
-					{
-						return true;
-					}
-
-					return false;
-					
+				case 'marketing':
+					$status 	= ['drafting'];
 					break;
-				
+				case 'developer':
+					$status 	= ['drafting', 'analyzing'];
+					break;
 				default:
-					# code...
+					$status 	= ['drafting'];
 					break;
 			}
-		}
 
-		return false;
+			return $status;
+		}
+		
+		throw new Exception("User not Logged", 1);
 	}
 }

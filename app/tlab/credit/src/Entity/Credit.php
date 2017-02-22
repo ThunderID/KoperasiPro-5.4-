@@ -140,7 +140,7 @@ class Credit implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['credit_amount' => (int) $credit_amount], ['credit_amount' => 'numeric']);
+		$validator 	= Validator::make(['credit_amount' => (int) (string) $credit_amount], ['credit_amount' => 'numeric']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -163,7 +163,7 @@ class Credit implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['installment_capacity' => (int) $installment_capacity], ['installment_capacity' => 'numeric']);
+		$validator 	= Validator::make(['installment_capacity' => (int) (string) $installment_capacity], ['installment_capacity' => 'numeric']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);

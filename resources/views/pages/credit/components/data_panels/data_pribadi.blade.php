@@ -93,7 +93,7 @@
 	<div class="col-sm-12">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<h5><a href="{{route('address.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
+				<h5><a href="{{route('person.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
 			</div>
 		</div>
 	</div>
@@ -133,7 +133,7 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div class="col-sm-12">
-				<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
+				<h5><a href="#">Lihat Alamat</a></h5>
 			</div>
 		@endforeach
 	@endif

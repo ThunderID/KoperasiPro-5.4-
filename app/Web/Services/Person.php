@@ -11,6 +11,7 @@ use Thunderlabid\Registry\Repository\AddressBookRepository;
 
 //Entity
 use Thunderlabid\Registry\Entity\Person as PersonEntity;
+use Thunderlabid\Registry\Entity\AddressBook as AddressEntity;
 
 /**
  * Kelas Person
@@ -19,18 +20,79 @@ use Thunderlabid\Registry\Entity\Person as PersonEntity;
  *
  * @author     C Mooy <chelsymooy1108@gmail.com>
  */
-class Person 
+class Person extends baseService
 {
+	/**
+	 * Creates construct from services to get instate some stuffs
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+
 	/**
 	 * Menampilkan semua data Person
 	 *
-	 * @return array $build
+	 * @return array $array
 	 */
-	public static function build($array)
+	public static function store($array)
 	{
-		$data 	= new RegistryFactory();
+		$data 				= new RegistryFactory;
+		$data 				= $data->buildPersonFromArray($array);
 
-		return $data->buildPersonFromArray($array);
+		$person_repo 		= new PersonRepository;
+		$person_entity 		= $person_repo->store($data);
+
+		return $data;
+	}
+
+	/**
+	 * Update Object
+	 *
+	 * @return array $all
+	 */
+	public function update($type, $array, PersonEntity $person)
+	{
+		switch (strtolower($type)) 
+		{
+			case 'alamat':
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
+				$array['houses'][0]['id']	= $person->id;
+				$array['houses'][0]['name']	= $person->name;
+
+				$array['offices']			= null;
+
+				$address 					= new RegistryFactory;
+				$address 					= $address->buildAddressBookFromArray($array);
+
+				$address_repo 				= new AddressBookRepository;
+				$address_repo->store($address);			
+			break;
+		}
+
+		$person_repo 						= new PersonRepository;
+		$person_repo->store($person);
+
+		return $person_repo;
+	}
+
+
+	public static function findByID($id)
+	{
+
+		$person				= new \Stdclass;
+		
+		$person_repo 		= new PersonRepository();
+		$person->person 	= $person_repo->findByID($id);
+
+		$address_repo 		= new AddressBookRepository();
+		$person->address 	= $address_repo->findByHouseOwnerID($id);
+
+		return $person;
 	}
 
 	/**
@@ -45,17 +107,6 @@ class Person
 		return $data->all();
 	}
 
-	/**
-	 * Menampilkan semua data Person berdasarkan nama
-	 *
-	 * @return array $all
-	 */
-	public static function findByID($id)
-	{
-		$data 	= new PersonRepository();
-
-		return $data->findByID($id);
-	}
 
 	/**
 	 * Menampilkan semua data Person berdasarkan nama
@@ -67,66 +118,5 @@ class Person
 		$data 	= new PersonRepository();
 
 		return $data->findByName($name);
-	}
-
-	/**
-	 * Menyimpan data person
-	 *
-	 * @param array $array
-	 * @return Asset $asset
-	 */
-	public static function save($person, $address)
-	{
-		$registry_fact 		= new RegistryFactory;
-
-		//check if person alredy exists
-		$person_repo 		= new PersonRepository;
-		if($person instanceOf Person)
-		{
-			$person_repo->store($person);
-		}
-		elseif(is_array($person))
-		{
-			//need to place try catch
-			$person 		= $registry_fact->buildPersonFromArray((array) $person);
-			$person_repo->store($person);
-		}
-		else
-		{
-			throw new Exception("Person should be an instance of Person Entity or array of person", 1);
-		}
-
-		$address_repo 		= new AddressBookRepository;
-		
-		//check if finance alredy exists
-		if($address instanceOf AddressBook)
-		{
-			$address->addHouse(new Owner($person->id, $person->name));
-
-			$address_repo->store($address);
-		}
-		elseif(is_array($address))
-		{
-			//need to place try catch
-			$address['houses']	= [['id' => $person->id, 'name' => $person->name]];
-			$address['offices']	= null;
-			$address 			= $registry_fact->buildAddressBookFromArray((array) $address);
-			$address_repo->store($address);
-		}
-
-		return $person;
-	}
-
-	/** Private function to merge credit detail information 
-	 *
-	 */
-	private static function merge_credit_detail($person, $address)
-	{
-		$person_prox 			= new PersonProxy();
-
-		$person_prox->person	= $person;
-		$person_prox->address	= $address;
-
-		return $person_prox;
 	}
 }
