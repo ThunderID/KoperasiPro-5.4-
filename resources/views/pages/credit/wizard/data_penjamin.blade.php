@@ -33,7 +33,7 @@
 	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('warrantor[address][province]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Ex. Jawa Timur']) !!}
+			{!! Form::select('address[province]', $page_datas->province, null, ['class' => 'form-control auto-tabindex select select-province', 'placeholder' => 'Pilih Provinsi', 'data-placeholder' => 'Pilih Provinsi', 'data-url' => route('cities.index')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -41,7 +41,7 @@
 	<label for="">Kota</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('warrantor[address][city]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::select('address[city]', $page_datas->cities, null, ['class' => 'form-control auto-tabindex select select-cities', 'placeholder' => 'Pilih Kota', 'data-placeholder' => 'Pilih Kota']) !!}
 		</div>
 	</div>
 </fieldset>

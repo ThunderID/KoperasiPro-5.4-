@@ -46,6 +46,7 @@ window.wizard = function(){
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
+			// window.select();
 		},
 		onFinished: function (event, currentIndex) {
 			$('.form').submit();

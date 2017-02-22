@@ -110,7 +110,7 @@ window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselec
 //  */
 window.select2 = require('./plugins/select2/select2.min');
 $(document).ready( function() {
-	window.select();
+	// window.select();
 });
 
 /**

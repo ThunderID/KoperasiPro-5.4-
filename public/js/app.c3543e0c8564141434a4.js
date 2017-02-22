@@ -10590,6 +10590,7 @@ $(document).ready(function () {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
+			// window.select();
 		},
 		onFinished: function onFinished(event, currentIndex) {
 			$('.form').submit();
@@ -10959,7 +10960,7 @@ window.quickselect = __webpack_require__(18);
 //  */
 window.select2 = __webpack_require__(47);
 $(document).ready(function () {
-  window.select();
+  // window.select();
 });
 
 /**
@@ -51279,25 +51280,32 @@ module.exports = __webpack_require__(4);
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function () {
 	$('.select').select2({
-		theme: "bootstrap"
+		theme: "bootstrap",
+		allowClear: true
 	});
 
 	$('.select-province').on('select2:select', function (evt) {
 		url = $(this).data('url');
 		val = $(this).find('option:selected').val();
-		$('.select-cities').select2({
-			ajax: {
-				url: url,
-				dataType: 'json',
-				data: function data(term, page) {
-					return { q: term };
-				},
-				results: function results(data, page) {
-					return { results: data };
-				},
-				cache: true
+		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-province
+		rootSelect.find('.select-cities').html('');
+
+		$.ajax({
+			type: "GET",
+			url: url,
+			data: { id: val },
+			cache: true,
+			success: function success(data) {
+				// set select2 city option, value province selected from ajax
+				$.each(data, function (i, v) {
+					$option = $("<option></option>");
+					$option.val(v.city_id).text(v.city_name_full);
+					rootSelect.find('.select-cities').append($option);
+				});
 			}
 		});
+		// after get data set focus to select-cities
+		rootSelect.find('.select-cities').focus();
 	});
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))

@@ -29,6 +29,10 @@
 	visibility: hidden;
 	padding: 0;
 }
+.quickselect__btn {
+	// border-width: 2px !important;
+}
 .quickselect__btn.btn.active {
 	box-shadow: none !important;
+	background-color: transparent !important;
 }

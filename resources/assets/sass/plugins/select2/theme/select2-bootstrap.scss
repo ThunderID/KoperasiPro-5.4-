@@ -406,9 +406,9 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
   \*------------------------------------*/
 
   .select2-selection--single {
-    height: $s2bs-input-height-base;
-    line-height: $s2bs-line-height-base;
-    padding: $s2bs-padding-base-vertical ($s2bs-padding-base-horizontal + $s2bs-caret-width-base*3) $s2bs-padding-base-vertical $s2bs-padding-base-horizontal;
+    height: $s2bs-input-height-base + 1;
+    line-height: $s2bs-line-height-base - 0.1;
+    padding: ($s2bs-padding-base-vertical - 1) ($s2bs-padding-base-horizontal + $s2bs-caret-width-base*3) $s2bs-padding-base-vertical $s2bs-padding-base-horizontal;
 
     /**
      * Adjust the single Select2's dropdown arrow button appearance.
@@ -437,7 +437,7 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
 
     .select2-selection__rendered {
       color: $s2bs-input-color;
-      padding: 0;
+      padding: 1px;
     }
 
     .select2-selection__placeholder {

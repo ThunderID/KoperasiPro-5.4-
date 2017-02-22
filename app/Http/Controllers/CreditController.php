@@ -62,9 +62,19 @@ class CreditController extends Controller
 														];
 		//initialize view
 		$this->view 								= view('pages.credit.create');
+		// get data province
+		$data										= new \App\UI\CountryLists\Model\Province;
+		// sort data province by 'province_name'
+		$data 										= $data->sortBy('province_name');
 
-		$data										= new \App\UI\CountryLists\Model\Province();
-		$this->page_datas->province					= $data->pluck('province_name', 'province_id');
+		// get province first to set list cities
+		$province_id 								= $data->first()['province_id'];
+		$cities_first								= $data->where('province_id', $province_id)->withCities()->all();
+		$cities_first								= $cities_first[0]['cities'];
+		$cities_first 								= $cities_first->sortBy('city_name_full');
+
+		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
+		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
 
 		//function from parent to generate view
 		return $this->generateView();
