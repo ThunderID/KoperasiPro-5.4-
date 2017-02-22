@@ -24,9 +24,9 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Thunderlabid\\Credit\\": "app/thunderlabid/credit/src/",
-            "Thunderlabid\\Registry\\": "app/thunderlabid/registry/src/",
-            "Thunderlabid\\Notification\\": "app/thunderlabid/notification/src/"
+            "Thunderlabid\\Credit\\": "app/tlab/credit/src/",
+            "Thunderlabid\\Registry\\": "app/tlab/registry/src/",
+            "Thunderlabid\\Notification\\": "app/tlab/notification/src/"
         }
     },
     "autoload-dev": {

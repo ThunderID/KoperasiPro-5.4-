@@ -17,7 +17,7 @@ Route::get('/', function ()
 });
 
 // Here lies credit controller all things started here
-Route::group(['middleware' => []], function()
+Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 	//Menu Kredit
 	Route::resource('credit', 'CreditController');

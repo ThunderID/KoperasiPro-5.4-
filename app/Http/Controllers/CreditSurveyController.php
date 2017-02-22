@@ -82,12 +82,24 @@ class CreditSurveyController extends Controller
 	 */
 	public function store()
 	{
-		$personality 			= Input::get('personality');
-		$ecomacro 				= Input::get('ecomacro');
-		$asset 					= Input::get('asset');
-		$finance 				= Input::get('finance');
-		$collateral 			= Input::get('collateral');
-	
+		// $credit_id 				= Input::get('id');
+		$credit_id 				= '2C12544C-3E18-4BFE-9D69-354FEA20B90D';
+
+		$kepribadian 			= Input::get('kepribadian');
+		$makro 					= Input::get('makro');
+		$aset 					= Input::get('aset');
+		$keuangan 				= Input::get('keuangan');
+		$jaminan 				= Input::get('jaminan');
+
+		$credit 				= Credit::findByID($credit_id);
+
+		$service 				= new Credit;
+		$service->update('kepribadian', $kepribadian, $credit->credit);
+		$service->update('makro', $makro, $credit->credit);
+		$service->update('aset', $aset, $credit->credit);
+		$service->update('keuangan', $keuangan, $credit->credit);
+		$service->update('jaminan', $jaminan, $credit->credit);
+
 		//function from parent to redirecting
 		return $this->generateRedirect(route('survey.index'));
 	}
