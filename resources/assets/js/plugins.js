@@ -32,6 +32,9 @@ $(document).ready(function(){
 	//using nprogress to indicate loading
 	$(document).on('pjax:start', function() { 
 		NProgress.start();
+
+		//fix nice scroll bug: remove nice scroll
+		$("div[id^='ascrail']").remove();
 	});
 	$(document).on('pjax:end',   function() { 
 		NProgress.done();  
