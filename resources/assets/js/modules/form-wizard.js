@@ -50,6 +50,8 @@ window.wizard = function(){
 		},
 		onFinished: function (event, currentIndex) {
 			$('.form').submit();
+			// add disabled button simpan & replace text button
+			$('.wizard .actions').find('a[href$="#finish"]').attr('disabled', true).html('Tersimpan...');
 		},
 	})
 	.validate({
@@ -81,6 +83,6 @@ window.setFocus = function () {
 
 window.customButtonActions = function() {
 	$('.wizard .actions').find('a').addClass('btn');
-	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary').addClass('btn-default');
+	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary');
 	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
 }

@@ -10594,6 +10594,8 @@ $(document).ready(function () {
 		},
 		onFinished: function onFinished(event, currentIndex) {
 			$('.form').submit();
+			// add disabled button simpan & replace text button
+			$('.wizard .actions').find('a[href$="#finish"]').attr('disabled', true).html('Tersimpan...');
 		}
 	}).validate({
 		errorPlacement: function errorPlacement(error, element) {
@@ -10624,7 +10626,7 @@ window.setFocus = function () {
 
 window.customButtonActions = function () {
 	$('.wizard .actions').find('a').addClass('btn');
-	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary').addClass('btn-default');
+	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary');
 	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
