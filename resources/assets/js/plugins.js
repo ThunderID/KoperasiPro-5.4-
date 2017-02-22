@@ -34,7 +34,7 @@ $(document).ready(function(){
 		NProgress.start();
 
 		//fix nice scroll bug: remove nice scroll
-		$("div[id^='ascrail']").remove();
+		$("div[class^='nicescroll-rails']").remove();
 	});
 	$(document).on('pjax:end',   function() { 
 		NProgress.done();  
