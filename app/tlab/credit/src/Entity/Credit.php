@@ -297,7 +297,7 @@ class Credit implements IEntity, IAggregateRoot
 		{
 			$this->attributes['statuses'][] = $status;
 			$this->attributes['status'] 	= $latest_status;
-
+			
 			return true;
 		}
 	}
