@@ -47,6 +47,14 @@ $navbar-default-bg: 			$navbar-bg-primary;
 //##
 $btn-default-color: 			$text-color;
 
+$btn-primary-color:             $color-active !default;
+$btn-primary-bg:                #fff !default;
+$btn-primary-border:            $color-active !default;
+
+$btn-danger-color:             #e74c3c !default;
+$btn-danger-bg:                #fff !default;
+$btn-danger-border:            #e74c3c !default;
+
 //== Inputs
 //
 //##
