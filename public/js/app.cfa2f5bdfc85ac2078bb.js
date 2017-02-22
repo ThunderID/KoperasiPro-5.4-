@@ -51281,6 +51281,24 @@ module.exports = __webpack_require__(4);
 	$('.select').select2({
 		theme: "bootstrap"
 	});
+
+	$('.select-province').on('select2:select', function (evt) {
+		url = $(this).data('url');
+		val = $(this).find('option:selected').val();
+		$('.select-cities').select2({
+			ajax: {
+				url: url,
+				dataType: 'json',
+				data: function data(term, page) {
+					return { q: term };
+				},
+				results: function results(data, page) {
+					return { results: data };
+				},
+				cache: true
+			}
+		});
+	});
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

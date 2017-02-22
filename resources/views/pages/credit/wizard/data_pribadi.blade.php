@@ -119,7 +119,7 @@
 	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('address[province]', $page_datas->province, 11, ['class' => 'form-control required auto-tabindex select']) !!}
+			{!! Form::select('address[province]', $page_datas->province, 11, ['class' => 'form-control required auto-tabindex select select-province', 'data-url' => route('cities.index')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -127,7 +127,7 @@
 	<label for="">Kota</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[city]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::select('address[city]', [], null, ['class' => 'form-control required auto-tabindex select select-cities', 'placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>

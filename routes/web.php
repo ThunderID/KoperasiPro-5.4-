@@ -54,4 +54,4 @@ Route::group(['middleware' => ['pjax']], function()
 	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
 });
 
-Route::any('cities/{id}',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);
+Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);

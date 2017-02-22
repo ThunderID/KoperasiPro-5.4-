@@ -13,9 +13,14 @@ Class HelperController extends Controller
 	 * fungsi get cities
 	 * Description: berfungsi untuk mendapatkan city dari id province tertentu
 	 */
-	function getCities($id)
+	function getCities($id = null)
 	{
-		$data = new \App\UI\CountryLists\Model\City();
-        dd($data->where('province_id', 11));
+		$data = new \App\UI\CountryLists\Model\City;
+		$temp = $data->where('province_id', 11);
+		$cities = $temp->map(function ($item) {
+		   return ['id' => $item['city_id'], 'text' => $item['city_name']];
+		});
+        
+        return response()->json($cities);
 	}
 }

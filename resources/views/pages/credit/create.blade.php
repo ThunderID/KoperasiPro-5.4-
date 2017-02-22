@@ -111,6 +111,7 @@
 @endpush
 
 @push('modals')
+	tes
 @endpush
 
 @push('scripts')
