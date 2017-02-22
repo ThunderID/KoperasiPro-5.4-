@@ -1,6 +1,6 @@
 // Forms ======================================================================
 
-.form-control, input {
+.form-control, input, select {
 	border-width: 2px;
 	height: 38px;
 	@include box-shadow(none);

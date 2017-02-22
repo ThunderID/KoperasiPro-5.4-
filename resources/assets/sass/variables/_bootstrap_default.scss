@@ -1,9 +1,9 @@
 //== Bawaan dari laravel
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+$laravel-border-color: 			darken($body-bg, 10%);
+$list-group-border: 			$laravel-border-color;
+$navbar-default-border: 		$laravel-border-color;
+$panel-default-border: 			$laravel-border-color;
+$panel-inner-border: 			$laravel-border-color;
 
 // Bawaan bootstrap yg di Custom
 //== Components
@@ -46,6 +46,14 @@ $navbar-default-bg: 			$navbar-bg-primary;
 //
 //##
 $btn-default-color: 			$text-color;
+
+$btn-primary-color:             $color-active !default;
+$btn-primary-bg:                #fff !default;
+$btn-primary-border:            $color-active !default;
+
+$btn-danger-color:             #e74c3c !default;
+$btn-danger-bg:                #fff !default;
+$btn-danger-border:            #e74c3c !default;
 
 //== Inputs
 //

@@ -1,29 +1,8 @@
-@extends('template.cms_template')
+@extends('pages.survey.templates.index_show_template')
 
-@section('kredit')
-	active in
-@stop
-
-@section('survey_kredit')
-	active
-@stop
-
-@push('content')
-	<div class="row field">
-		<div class="col-sm-3 content-sidebar">
-			<div class="sidebar-header p-b-sm">
-				@include('components.sidebar.basic_header',[ 'param' => [
-					'title' 			=> 'Data Kredit',
-					'status'			=> 	[],
-					'status_default'	=> 'analyzing'
-				]])
-			</div>
-
-			<div class="sidebar-content">
-				@include('pages.credit.helper.lists', ['param' => 'survey.show'])
-			</div>
-		</div>
-		<div class="col-sm-9">
+@section('page_content')
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="p-content">
 				<div class="page-header m-t-none m-b-xl p-b-xs">
 					<h2 class="m-t-none m-b-xs">Survey Kredit</h2>
@@ -34,7 +13,7 @@
 					<!-- BLOCK 1 Display Data Rencana Kredit // -->
 					<h3>Data Kredit</h3>
 					<section>
-						@include('pages.credit.show.rencana_kredit')
+						@include('pages.credit.components.data_panels.rencana_kredit')
 					</section>
 
 					<!-- BLOCK 2 Display Data Kepribadian // -->
@@ -73,8 +52,5 @@
 				{!! Form::close() !!}
 			</div>
 		</div>
-	</div>	
-@endpush
-
-@push('scripts')
-@endpush
+	</div>
+@stop
