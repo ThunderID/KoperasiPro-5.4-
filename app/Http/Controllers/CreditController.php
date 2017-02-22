@@ -129,7 +129,6 @@ class CreditController extends Controller
 
 		//store all data that shaped an entity
 		$result														= $credit->save();
-		dd($result);
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('credit.index'));
@@ -186,7 +185,7 @@ class CreditController extends Controller
 	private function getCreditLists()
 	{
 		//1. Parsing status
-		$status 									= 'drafting'; 
+		$status 									= null; 
 		if(Input::has('status'))
 		{
 			$status 								= Input::get('status');
