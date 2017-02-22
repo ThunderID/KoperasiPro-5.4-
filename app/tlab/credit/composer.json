@@ -1,0 +1,18 @@
+{
+    "name": "thunderlabid/credit",
+    "description": "Credit Domain",
+    "authors": [
+        {
+            "name": "Chelsy Mooy",
+            "email": "chelsy@thunderlab.id"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.*"
+    },
+    "autoload": {
+        "psr-0": { "Thunderlabid\\Credit": "src/" }
+    },
+    "minimum-stability": "dev"
+}

@@ -4,7 +4,7 @@ namespace App\Web\Services;
 
 //Factory
 use Thunderlabid\Credit\Factory\CreditFactory;
-use Thunderlabid\Credit\Factory\RegistryFactory;
+use Thunderlabid\Registry\Factory\RegistryFactory;
 
 //Repository
 use Thunderlabid\Credit\Repository\CreditRepository;
@@ -54,7 +54,7 @@ class Credit extends baseService
 	 * @param PersonEntity $warrantor
 	 * @return CreditEntity $credit_entity
 	 */
-	public static function new($array, PersonEntity $person, PersonEntity $warrantor)
+	public static function store($array, PersonEntity $person, PersonEntity $warrantor)
 	{
 		$array['statuses']	= 	[
 									[
@@ -207,11 +207,11 @@ class Credit extends baseService
 	 * @param numeric $array['vehicles'][*]['bank'] 				[if:jaminan]
 	 *
 	 *
-	 * @param string $array['residence'][acquinted] 			[if:kepribadian|in:dikenal,kurang_dikenal,tidak_dikenal]
-	 * @param string $array['workplace'][acquinted] 			[if:kepribadian|in:dikenal,kurang_dikenal,tidak_dikenal]
-	 * @param string $array['character'][acquinted] 			[if:kepribadian|in:baik,cukup_baik,tidak_baik]
-	 * @param string $array['lifestyle'][acquinted] 			[if:kepribadian|in:sederhana,mewah]
-	 * @param string $array['notes'][*][description] 			[if:kepribadian]
+	 * @param string $array['residence']['acquinted'] 			[if:kepribadian|in:dikenal,kurang_dikenal,tidak_dikenal]
+	 * @param string $array['workplace']['acquinted'] 			[if:kepribadian|in:dikenal,kurang_dikenal,tidak_dikenal]
+	 * @param string $array['character'] 						[if:kepribadian|in:baik,cukup_baik,tidak_baik]
+	 * @param string $array['lifestyle'] 						[if:kepribadian|in:sederhana,mewah]
+	 * @param string $array['notes'][*]['description'] 			[if:kepribadian]
 	 *
 	 *
 	 * @param string $array['competition'] 						[if:makro|in:padat,sedang,biasa]
@@ -230,66 +230,92 @@ class Credit extends baseService
 		switch (strtolower($type)) 
 		{
 			case 'status':
-				$array['status']['date']	= 'today';
-				$array['status']['author']	= 	[
-								 					'id' 		=> TAuth::loggedUser()->id, 
-								 					'name' 		=> TAuth::loggedUser()->owner->name, 
-								 					'role' 		=> TAuth::activeOffice()->role
-												];
+				$array['date']		= 'today';
+				$array['author']	= 	[
+					 					'id' 		=> TAuth::loggedUser()->id, 
+					 					'name' 		=> TAuth::loggedUser()->owner->name, 
+					 					'role' 		=> TAuth::activeOffice()->role
+									];
 
-				$status 					= new CreditFactory;
-				$status->buildStatusFromArray($array['status']);
+				$status 			= new CreditFactory;
+				$status 			= $status->buildStatusFromArray($array);
 
 				$credit->addStatus($status);
 			break;
 			case 'keuangan':
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
+
 				$array['owner']['id']		= $credit->creditor->id;
 				$array['owner']['name']		= $credit->creditor->name;
 
 				$finance 					= new RegistryFactory;
-				$finance->buildFinanceFromArray($array);
+				$finance 					= $finance->buildFinanceFromArray($array);
 
 				$finance_repo 				= new FinanceRepository;
-				$finance_repo->save($finance);
+				$finance_repo->store($finance);
 			break;
 			case 'aset':
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
+				
 				$array['owner']['id']		= $credit->creditor->id;
 				$array['owner']['name']		= $credit->creditor->name;
 
 				$asset 						= new RegistryFactory;
-				$asset->buildAssetFromArray($array);
+				$asset 						= $asset->buildAssetFromArray($array);
 
 				$asset_repo 				= new AssetRepository;
-				$asset_repo->save($asset);
+				$asset_repo->store($asset);
 			break;
 			case 'jaminan':
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
+
 				$array['credit']['id']		= $credit->id;
 
-				$collateral 				= new CreditRepository;
-				$collateral->buildCollateralFromArray($array);
+				$collateral 				= new CreditFactory;
+				$collateral 				= $collateral->buildCollateralFromArray($array);
 
 				$collateral_repo 			= new CollateralRepository;
-				$collateral_repo->save($collateral);
+				$collateral_repo->store($collateral);
 			break;
 			case 'kepribadian':
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
 				$array['owner']['id']		= $credit->creditor->id;
 				$array['owner']['name']		= $credit->creditor->name;
 
 				$personality 				= new RegistryFactory;
-				$personality->buildPersonalityFromArray($array);
+				$personality 				= $personality->buildPersonalityFromArray($array);
 
 				$personality_repo 			= new PersonalityRepository;
-				$personality_repo->save($personality);
+				$personality_repo->store($personality);
 			break;
 			case 'makro':
-				$array['owner']['id']		= $credit->creditor->id;
-				$array['owner']['name']		= $credit->creditor->name;
+				if(!isset($array['id']))
+				{
+					$array['id']			= null;
+				}
 
-				$makro 						= new CreditFactory;
-				$makro->buildEcoMacroFromArray($array);
+				$array['credit']['id']		= $credit->id;
+	
+				if(self::whitelists('survey'))
+				{				
+					$makro 						= new CreditFactory;
+					$makro 						= $makro->buildEcoMacroFromArray($array);
+				}
 
-				$makro_repo 			= new EcoMacroRepository;
-				$makro_repo->save($makro);
+				$makro_repo 				= new EcoMacroRepository;
+				$makro_repo->store($makro);
 			break;
 		}
 
@@ -337,7 +363,138 @@ class Credit extends baseService
 	/**
 	 * Menampilkan data credit tertentu berdasarkan ID
 	 *
-	 * @return CreditEntity $credit_entity
+	 * @return string $credit->credit->id 
+	 * @return IDR $credit->credit->credit_amount 
+	 * @return IDR $credit->credit->installment_capacity 
+	 * @return string $credit->credit->period 
+	 * @return string $credit->credit->purpose 
+	 * @return string $credit->credit->status 
+	 *
+	 *
+	 * @return string $credit->creditor->id 
+	 * @return string $credit->creditor->name 
+	 * @return string $credit->creditor->place_of_birth 
+	 * @return Carbon $credit->creditor->date_of_birth 
+	 * @return string $credit->creditor->gender 
+	 * @return string $credit->creditor->nik 
+	 * @return string $credit->creditor->religion 
+	 * @return string $credit->creditor->highest_education 
+	 * @return string $credit->creditor->marital_status 
+	 * @return array $credit->creditor->phones 
+	 * @return array $credit->creditor->works 
+	 * @return array $credit->creditor->relatives 
+	 *
+	 *
+	 * @return string $credit->survey->personality->id
+	 * @return string $credit->survey->personality->character
+	 * @return string $credit->survey->personality->lifestyle
+	 * @return string $credit->survey->personality->residence['acquinted']
+	 * @return string $credit->survey->personality->workplace['acquinted']
+	 * @return string $credit->survey->personality->notes[*]['description']
+	 *
+	 *
+	 * @return string $credit->survey->macro->competition
+	 * @return string $credit->survey->macro->prospect
+	 * @return string $credit->survey->macro->turn_over
+	 * @return string $credit->survey->macro->experience 
+	 * @return string $credit->survey->macro->risk 
+	 * @return numeric $credit->survey->macro->daily_customer
+	 * @return string $credit->survey->macro->others[*]
+	 *
+	 *
+	 * @return string $credit->survey->asset->houses[*]->ownership_status
+	 * @return string $credit->survey->asset->houses[*]->since 		
+	 * @return string $credit->survey->asset->houses[*]->to 			
+	 * @return numeric $credit->survey->asset->houses[*]->installment 
+	 * @return numeric $credit->survey->asset->houses[*]->installment_period 
+	 * @return numeric $credit->survey->asset->houses[*]->size 		
+	 * @return IDR $credit->survey->asset->houses[*]->worth 		
+	 *
+	 * @return string $credit->survey->asset->companies[*]->ownership_status 
+	 * @return numeric $credit->survey->asset->companies[*]->share 	
+	 * @return string $credit->survey->asset->companies[*]->name 	
+	 * @return string $credit->survey->asset->companies[*]->area 	
+	 * @return string $credit->survey->asset->companies[*]->since 	
+	 * @return IDR $credit->survey->asset->companies[*]->worth 	
+	 *
+	 * @return numeric $credit->survey->asset->vehicles[*]->four_wheels 
+	 * @return numeric $credit->survey->asset->vehicles[*]->two_wheels 
+	 * @return IDR $credit->survey->asset->vehicles[*]->worth 	
+	 *
+	 *
+	 * @return string $credit->survey->finance->incomes[*]->description 
+	 * @return numeric $credit->survey->finance->incomes[*]->amount 	
+	 * @return string $credit->survey->finance->expenses[*]->description 
+	 * @return numeric $credit->survey->finance->expenses[*]->amount 	
+	 *
+	 *
+	 * @return string $credit->survey->collateral->lands[*]->name 			
+	 * @return string $credit->survey->collateral->lands[*]->address 			
+	 * @return string $credit->survey->collateral->lands[*]->certification 		
+	 * @return numeric $credit->survey->collateral->lands[*]->surface_area 	
+	 * @return string $credit->survey->collateral->lands[*]->road 			
+	 * @return numeric $credit->survey->collateral->lands[*]->road_wide 		
+	 * @return string $credit->survey->collateral->lands[*]->location_by_street 
+	 * @return string $credit->survey->collateral->lands[*]->environment 			
+	 * @return boolean $credit->survey->collateral->lands[*]->deed 			
+	 * @return boolean $credit->survey->collateral->lands[*]->lastest_pbb 	
+	 * @return boolean $credit->survey->collateral->lands[*]->insurance 		
+	 * @return numeric $credit->survey->collateral->lands[*]->pbb_value 		
+	 * @return numeric $credit->survey->collateral->lands[*]->liquidation_value 
+	 * @return numeric $credit->survey->collateral->lands[*]->assessed 		
+	 * @return numeric $credit->survey->collateral->lands[*]->land_value 		
+	 *
+	 * @return string $credit->survey->collateral->buildings[*]->name 			
+	 * @return string $credit->survey->collateral->buildings[*]->address 			
+	 * @return string $credit->survey->collateral->buildings[*]->certification 		
+	 * @return numeric $credit->survey->collateral->buildings[*]->surface_area 	
+	 * @return string $credit->survey->collateral->buildings[*]->building_area 	
+	 * @return string $credit->survey->collateral->buildings[*]->building_function 
+	 * @return string $credit->survey->collateral->buildings[*]->building_shape 	
+	 * @return string $credit->survey->collateral->buildings[*]->building_construction	 
+	 * @return string $credit->survey->collateral->buildings[*]->floor 			
+	 * @return string $credit->survey->collateral->buildings[*]->wall 			
+	 * @return string $credit->survey->collateral->buildings[*]->electricity 		
+	 * @return string $credit->survey->collateral->buildings[*]->water 			
+	 * @return boolean $credit->survey->collateral->buildings[*]->telephone 		
+	 * @return boolean $credit->survey->collateral->buildings[*]->air_conditioner 
+	 * @return string $credit->survey->collateral->buildings[*]->others 			
+	 * @return string $credit->survey->collateral->buildings[*]->road 			
+	 * @return numeric $credit->survey->collateral->buildings[*]->road_wide 		
+	 * @return string $credit->survey->collateral->buildings[*]->location_by_street 
+	 * @return string $credit->survey->collateral->buildings[*]->environment 			
+	 * @return boolean $credit->survey->collateral->buildings[*]->deed 			
+	 * @return boolean $credit->survey->collateral->buildings[*]->lastest_pbb 	
+	 * @return boolean $credit->survey->collateral->buildings[*]->insurance 		
+	 * @return numeric $credit->survey->collateral->buildings[*]->pbb_value 		
+	 * @return numeric $credit->survey->collateral->buildings[*]->liquidation_value 
+	 * @return numeric $credit->survey->collateral->buildings[*]->assessed 		
+	 * @return numeric $credit->survey->collateral->buildings[*]->land_value 		
+	 * @return numeric $credit->survey->collateral->buildings[*]->building_value 	
+	 *
+	 * @return string $credit->survey->collateral->vehicles[*]->merk 			
+	 * @return string $credit->survey->collateral->vehicles[*]->type 			
+	 * @return string $credit->survey->collateral->vehicles[*]->police_number 
+	 * @return string $credit->survey->collateral->vehicles[*]->color 		
+	 * @return string $credit->survey->collateral->vehicles[*]->year 			
+	 * @return string $credit->survey->collateral->vehicles[*]->name 			
+	 * @return string $credit->survey->collateral->vehicles[*]->address 		
+	 * @return string $credit->survey->collateral->vehicles[*]->bpkb_number	
+	 * @return string $credit->survey->collateral->vehicles[*]->machine_number 
+	 * @return string $credit->survey->collateral->vehicles[*]->frame_number 	
+	 * @return string $credit->survey->collateral->vehicles[*]->valid_until 	
+	 * @return string $credit->survey->collateral->vehicles[*]->functions 	
+	 * @return boolean $credit->survey->collateral->vehicles[*]->invoice 		
+	 * @return boolean $credit->survey->collateral->vehicles[*]->purchase_memo 
+	 * @return boolean $credit->survey->collateral->vehicles[*]->memo 		
+	 * @return boolean $credit->survey->collateral->vehicles[*]->valid_ktp 	
+	 * @return string $credit->survey->collateral->vehicles[*]->physical_condition 	
+	 * @return string $credit->survey->collateral->vehicles[*]->ownership_status 		
+	 * @return boolean $credit->survey->collateral->vehicles[*]->insurance 		
+	 * @return numeric $credit->survey->collateral->vehicles[*]->market_value 	
+	 * @return numeric $credit->survey->collateral->vehicles[*]->assessed 		
+	 * @return numeric $credit->survey->collateral->vehicles[*]->bank 			
+	 *
 	 */
 	public static function findByID($id)
 	{
@@ -351,6 +508,32 @@ class Credit extends baseService
 			
 			$person 			= new PersonRepository();
 			$credit->creditor 	= $person->findByID($credit_entity->creditor->id);
+
+			//check autorizhed user
+			if(self::whitelists('survey'))
+			{
+				$credit->survey 				= new \Stdclass;
+
+				//data personality
+				$personality 					= new PersonalityRepository();
+				$credit->survey->personality 	= $personality->findByOwnerID($credit->creditor->id);
+
+				//data macro
+				$macro 							= new EcoMacroRepository();
+				$credit->survey->macro 			= $macro->FindByCreditID($credit->credit->id);
+
+				//data asset
+				$asset 							= new AssetRepository();
+				$credit->survey->asset 			= $asset->findByOwnerID($credit->creditor->id);
+
+				//data finance
+				$finance 						= new FinanceRepository();
+				$credit->survey->finance 		= $finance->findByOwnerID($credit->creditor->id);
+
+				//data collateral
+				$collateral 					= new CollateralRepository();
+				$credit->survey->collateral 	= $collateral->FindByCreditID($credit->credit->id);
+			}
 
 			return $credit;
 		}
@@ -383,5 +566,34 @@ class Credit extends baseService
 					'drafting' 		=> 'Drafting',
 					'analyzing' 	=> 'Analyzing'
 				]; 
+	}
+
+	public static function whitelists($role)
+	{
+		if(is_array($role))
+		{
+
+		}
+		else
+		{
+			switch (strtolower($role)) 
+			{
+				case 'survey':
+					if(in_array('analyzing', TAuth::allowedCreditStatus()))
+					{
+						return true;
+					}
+
+					return false;
+					
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+		}
+
+		return false;
 	}
 }

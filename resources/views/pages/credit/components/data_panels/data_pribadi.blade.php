@@ -75,11 +75,13 @@
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
 				<p style="margin-bottom: 7px;"><strong>Nomor Telepon</strong></p>
-				@foreach((array)$page_datas->credit->creditor->phones as $phone)
-					<p>
-						{{$phone->number}}
-					</p>
-				@endforeach
+				<?php
+				// @foreach((array)$page_datas->credit->creditor->phones as $phone)
+				// 	<p>
+				// 		{{$phone->number}}
+				// 	</p>
+				// @endforeach
+				?>
 			</div>
 		</div>
 	</div>
