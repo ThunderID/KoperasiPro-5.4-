@@ -56,13 +56,15 @@ class CreditController extends Controller
 	public function create()
 	{
 		// set page attributes (please check parent variable)
-		$this->page_attributes->title              = "Kredit Baru";
-		$this->page_attributes->breadcrumb         = [
+		$this->page_attributes->title 				= "Kredit Baru";
+		$this->page_attributes->breadcrumb 			= [
 															'Kredit'   => route('credit.create'),
-													 ];
-
+														];
 		//initialize view
-		$this->view                                = view('pages.credit.create');
+		$this->view 								= view('pages.credit.create');
+
+		$data										= new \App\UI\CountryLists\Model\Province();
+		$this->page_datas->province					= $data->pluck('province_name', 'province_id');
 
 		//function from parent to generate view
 		return $this->generateView();

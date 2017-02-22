@@ -119,7 +119,7 @@
 	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('address[province]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Jawa Timur']) !!}
+			{!! Form::select('address[province]', $page_datas->province, 11, ['class' => 'form-control required auto-tabindex select', 'placeholder' => 'Ex. Jawa Timur']) !!}
 		</div>
 	</div>
 </fieldset>

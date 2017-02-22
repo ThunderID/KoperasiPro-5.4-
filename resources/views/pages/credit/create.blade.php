@@ -15,13 +15,13 @@
 		</div>
 		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard']) !!}
 			{{-- untuk data kredit --}}
-			<h3>Data Pribadi</h3>
-			<section>
-				@include ('pages.credit.wizard.data_pribadi')
-			</section>
 			<h3>Data Kredit</h3>
 			<section>
 				@include ('pages.credit.wizard.data_kredit')
+			</section>
+			<h3>Data Pribadi</h3>
+			<section>
+				@include ('pages.credit.wizard.data_pribadi')
 			</section>
 			<h3>Data Penjamin</h3>
 			<section>
@@ -89,6 +89,7 @@
 								], 'bpkb_2', ['class' => 'form-control quick-select-clone quick-select-legal']) !!}
 							</div>
 							{!! Form::hidden('credit[collaterals][][legal]', null, ['class' => 'credit-collaterals-legal']) !!}
+						</div>
 					</div>
 				</fieldset>
 			</div>

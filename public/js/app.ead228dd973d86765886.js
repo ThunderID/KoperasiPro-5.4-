@@ -10352,6 +10352,8 @@ __webpack_require__(6);
 __webpack_require__(5);
 // add module form input key enter to tab
 __webpack_require__(7);
+// add module selectize
+__webpack_require__(45);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10581,6 +10583,8 @@ $(document).ready(function () {
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
 			window.setFocus();
+			window.customButtonActions();
+			window.selectize();
 		},
 		onInit: function onInit(event, currentIndex) {
 			window.resizeWizard();
@@ -10619,6 +10623,8 @@ window.setFocus = function () {
 
 window.customButtonActions = function () {
 	$('.wizard .actions').find('a').addClass('btn');
+	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary').addClass('btn-default');
+	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -52114,6 +52120,28 @@ __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.selectize = function () {
+	$('.select').selectize({});
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

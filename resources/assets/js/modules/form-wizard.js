@@ -39,6 +39,8 @@ window.wizard = function(){
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();
 			window.setFocus();
+			window.customButtonActions();
+			window.selectize();
 		}, 
 		onInit: function (event, currentIndex) {
 			window.resizeWizard();
@@ -78,4 +80,6 @@ window.setFocus = function () {
 
 window.customButtonActions = function() {
 	$('.wizard .actions').find('a').addClass('btn');
+	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary').addClass('btn-default');
+	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
 }

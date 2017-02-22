@@ -1,13 +1,12 @@
 // Forms ======================================================================
 
-.form-control,
-input {
-  border-width: 2px;
-  @include box-shadow(none);
-
-  &:focus {
-    @include box-shadow(none);
-  }
+.form-control, input {
+	border-width: 2px;
+	height: 38px;
+	@include box-shadow(none);
+	&:focus {
+		@include box-shadow(none);
+	}
 }
 .input-group-addon {
 	border-width: 2px !important;
