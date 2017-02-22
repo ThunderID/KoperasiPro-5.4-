@@ -1,9 +1,3 @@
-/**
- * on document ready triger click btn 'add' for template clone
- */
-$(document).ready( function() {
-	// $('.content-clone').find('.add').trigger('click');
-});
 
 $(function (){
 	$('.add').click( function (){
@@ -16,10 +10,18 @@ $(function (){
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
+		} else if ($(this).data('active') === 'contact') {
+			window.formInputMask();
 		}
 	});
 });
-
+/**
+ * on document ready triger click btn 'add' for template clone
+ */
+$(document).ready( function() {
+	$('.content-clone-contact').find('.add').trigger('click');
+	$('.content-clone-jaminan').find('.add').trigger('click');
+});
 /**
  * function template add
  * description: ...
@@ -55,6 +57,9 @@ function selectTypeJaminan() {
 		rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
 		valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
 		$('.' + val).siblings('.credit-collaterals-legal').val(valLegal);
+
+		window.resizeWizard(); // form wizard automatic height after add template
+		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
 
@@ -67,5 +72,6 @@ function selectLegal() {
 	$('.quick-select-legal').on('change', function() {
 		val = $(this).find('option:selected').val();
 		$(this).parent().siblings('.credit-collaterals-legal').val(val);
+		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }

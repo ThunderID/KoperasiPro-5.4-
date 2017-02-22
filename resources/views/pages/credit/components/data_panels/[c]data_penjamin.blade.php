@@ -9,11 +9,11 @@
 	<div class="col-sm-12">
 
 		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Nama</strong></p>
-				<p>
-					{{$page_datas->credit->credit->warrantor->name}}
-				</p>
+			<div class="col-sm-4">
+				<p>Nama</p>
+			</div>
+			<div class="col-sm-8">
+				<p><strong>{{$page_datas->credit->credit->warrantor->name}}</strong></p>
 			</div>
 		</div>
 

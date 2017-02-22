@@ -56,7 +56,7 @@
 							{!! Form::select('credit[collaterals][][type]', [
 								'kendaraan'			=> 'Kendaraan',
 								'tanah_bangunan'	=> 'Tanah / Bangunan'
-							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type']) !!}
+							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type focus']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -89,6 +89,7 @@
 								], 'bpkb_2', ['class' => 'form-control quick-select-clone quick-select-legal']) !!}
 							</div>
 							{!! Form::hidden('credit[collaterals][][legal]', null, ['class' => 'credit-collaterals-legal']) !!}
+						</div>
 					</div>
 				</fieldset>
 			</div>
@@ -100,7 +101,7 @@
 					<label for="">No. Hp</label>
 					<div class="row">
 						<div class="col-md-5">
-							{!! Form::text('phone[][number]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. 081223399001']) !!}
+							{!! Form::text('phone[][number]', null, ['class' => 'form-control required auto-tabindex no-hp', 'placeholder' => 'Ex. 0812 2339 9001']) !!}
 						</div>
 					</div>
 				</fieldset>

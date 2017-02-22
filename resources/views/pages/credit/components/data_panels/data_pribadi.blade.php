@@ -1,123 +1,138 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h3>DATA PRIBADI</h3>
+		<h4>DATA PRIBADI</h4>
 		<hr/>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-sm-6">
-		<h4><small>Nama</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->name}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Tempat Lahir</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->place_of_birth}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Tanggal Lahir</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->date_of_birth->format('d M Y')}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Jenis Kelamin</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->gender}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Agama</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->religion}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Pendidikan Terakhir</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->highest_education}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Status Pernikahan</small></h4>
-	</div>
-	<div class="col-sm-6">
-		<h4>{{$page_datas->credit->creditor->marital_status}}</h4>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-6">
-		<h4><small>Nomor Telepon</small></h4>
-	</div>
-	<div class="col-sm-6">
-		@foreach((array)$page_datas->credit->creditor->phones as $phone)
-			<h4>{{$phone->number}}</h4>
-		@endforeach
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-sm-12 text-right">
-		<h5><a href="{{route('address.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
-	</div>
-</div>
-
-@if(isset($page_datas->credit->creditor->works))
-	@foreach($page_datas->credit->creditor->works as $key => $value)
-		<div class="row">
-			<div class="col-sm-6">
-				<h4><small>Jenis Pekerjaan</small></h4>
-			</div>
-			<div class="col-sm-6">
-				<h4>{{$value->area}}</h4>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Nama</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->name}}
+				</p>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h4><small>Posisi</small></h4>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Jenis Kelamin</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->gender}}
+				</p>
 			</div>
-			<div class="col-sm-6">
-				<h4>{{$value->position}}</h4>
+		</div>	
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Tanggal Lahir</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->date_of_birth->format('d M Y')}}
+				</p>
+			</div>
+		</div>	
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Tempat Lahir</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->place_of_birth}}
+				</p>
+			</div>
+		</div>		
+	</div>
+	<div class="col-sm-6">
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Pendidikan Terakhir</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->highest_education}}
+				</p>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h4><small>Sejak</small></h4>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Status Pernikahan</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->marital_status}}
+				</p>
 			</div>
-			<div class="col-sm-6">
-				<h4>{{$value->since->format('d M Y')}}</h4>
+		</div>		
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Agama</strong></p>
+				<p>
+					{{$page_datas->credit->creditor->religion}}
+				</p>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<div class="row">
-			<div class="col-sm-12 text-right">
+<div class="clearfix">&nbsp;</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p style="margin-bottom: 7px;"><strong>Nomor Telepon</strong></p>
+				@foreach((array)$page_datas->credit->creditor->phones as $phone)
+					<p>
+						{{$phone->number}}
+					</p>
+				@endforeach
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<h5><a href="{{route('address.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	@if(isset($page_datas->credit->creditor->works))
+		@foreach($page_datas->credit->creditor->works as $key => $value)
+			<div class="col-sm-6">
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<p style="margin-bottom: 7px;"><strong>Jenis Pekerjaan</strong></p>
+						<p>
+							{{$value->area}}
+						</p>
+					</div>
+				</div>
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<p style="margin-bottom: 7px;"><strong>Posisi</strong></p>
+						<p>
+							{{$value->position}}
+						</p>
+					</div>
+				</div>					
+			</div>
+			<div class="col-sm-6">
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<p style="margin-bottom: 7px;"><strong>Sejak</strong></p>
+						<p>
+							{{$value->since->format('d M Y')}}
+						</p>
+					</div>
+				</div>				
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="col-sm-12">
 				<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
 			</div>
-		</div>
-	@endforeach
-@endif
+		@endforeach
+	@endif
+</div>

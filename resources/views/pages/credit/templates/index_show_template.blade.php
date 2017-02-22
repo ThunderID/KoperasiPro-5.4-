@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-9 text-center">
+		<div class="col-sm-9">
 			<div class="_window" data-padd-top="auto" data-padd-bottom="32" style="padding-top:16px;padding-bottom: 16px;overflow-y: auto;margin-right: -15px; padding-right: 16px;">
 					@yield('page_content')
 			</div>

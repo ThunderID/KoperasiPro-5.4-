@@ -37,4 +37,7 @@ window.formInputMask = function () {
 		placeholder: "dd/mm/yyyy",
 		alias: "dd/mm/yyyy"
 	});
+
+	$('.id-card').inputmask('99-99-99-99-99-99-9999');
+	$('.no-hp').inputmask('9999 9999 9999');
 }

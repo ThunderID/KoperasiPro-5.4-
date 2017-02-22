@@ -6,7 +6,7 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text('warrantor[name]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Ex. Sudarsono']) !!}
+			{!! Form::text('warrantor[name]', null, ['class' => 'form-control auto-tabindex focus', 'placeholder' => 'Ex. Sudarsono']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -17,7 +17,7 @@
 			{!! Form::text('warrantor[address][street]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
 		<div class="col-md-3 p-l-none">
-			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal auto-tabindex" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
+			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div>
 	</div>
 </fieldset>
@@ -25,7 +25,7 @@
 	<label for="">Negara</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('warrantor[address][country]', null, ['class' => 'form-control', 'placeholder' => 'Ex. Indonesia']) !!}
+			{!! Form::text('warrantor[address][country]', 'Indonesia', ['class' => 'form-control', 'placeholder auto-tabindex' => 'Ex. Indonesia']) !!}
 		</div>
 	</div>
 </fieldset>

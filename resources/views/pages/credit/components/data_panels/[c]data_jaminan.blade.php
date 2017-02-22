@@ -10,11 +10,11 @@
 		<div class="col-sm-6">
 
 			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>{{ucwords($value->type)}}</strong></p>
-					<p>
-						{{strtoupper($value->legal)}}
-					</p>
+				<div class="col-sm-4">
+					<p>{{ucwords($value->type)}}</p>
+				</div>
+				<div class="col-sm-8">
+					<p><strong>{{strtoupper($value->legal)}}</strong></p>
 				</div>
 			</div>
 
@@ -22,11 +22,11 @@
 		<div class="col-sm-6">
 
 			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>Status</strong></p>
-					<p>
-						{{ucwords(str_replace('_', ' ', $value->ownership_status))}}
-					</p>
+				<div class="col-sm-4">
+					<p>Status</p>
+				</div>
+				<div class="col-sm-8">
+					<p><strong>{{ucwords(str_replace('_', ' ', $value->ownership_status))}}</strong></p>
 				</div>
 			</div>
 

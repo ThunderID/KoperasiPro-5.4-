@@ -205,24 +205,24 @@
 .wizard > .actions a,
 .wizard > .actions a:hover,
 .wizard > .actions a:active {
-    background: $brand-primary;
-    color: #fff;
-    display: block;
-    padding: $padding-base-vertical $padding-base-horizontal;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
-    text-decoration: none;
+    // background: $brand-primary;
+    // color: #fff;
+    // display: block;
+    // padding: $padding-base-vertical $padding-base-horizontal;
+    // font-size: $font-size-base;
+    // line-height: $line-height-base;
+    // text-decoration: none;
 
-    -webkit-border-radius: $border-radius-base;
-    -moz-border-radius: $border-radius-base;
-    border-radius: $border-radius-base;
+    // -webkit-border-radius: $border-radius-base;
+    // -moz-border-radius: $border-radius-base;
+    // border-radius: $border-radius-base;
 }
 
 .wizard > .actions .disabled a,
 .wizard > .actions .disabled a:hover,
 .wizard > .actions .disabled a:active {
-    background: #eee;
-    color: #aaa;
+    // background: #eee;
+    // color: #aaa;
 }
 
 .wizard > .loading {}

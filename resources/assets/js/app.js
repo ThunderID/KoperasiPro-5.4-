@@ -9,18 +9,24 @@ require('./plugins');
 //your js modules goes here
 // require('');
 require('./modules/push-notification');
+// add module form validation
+require('./modules/form-validate');
 require('./modules/form-wizard');
 require('./modules/uac');
-// add module auto-tabindex form
-require('./modules/auto-tabindex');
 // add module template clone
 require('./modules/template-clone');
 // add module choice select
 require('./modules/form-inputmask');
 // add module set workspace height
 require('./modules/height-optimizer');
-
-
+// add module choice select
+require('./modules/choice-select');
+// add module auto-tabindex form
+require('./modules/auto-tabindex');
+// add module form input key enter to tab
+require('./modules/form-enter-to-tab');
+// add module selectize
+require('./modules/selectize');
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
