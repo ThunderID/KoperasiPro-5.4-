@@ -112,7 +112,7 @@ class User implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['email' => (string) $email], ['email' => 'email']);
+		$validator 	= Validator::make(['email' => $email], ['email' => 'email']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -144,7 +144,7 @@ class User implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['password' => (string) $password], ['password' => 'string']);
+		$validator 	= Validator::make(['password' => $password], ['password' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);

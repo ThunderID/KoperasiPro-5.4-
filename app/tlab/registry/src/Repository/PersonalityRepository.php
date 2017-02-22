@@ -80,7 +80,7 @@ class PersonalityRepository implements IRepository {
 	* @param string $name, $take, string $skip
 	* @return array of object
 	*/
-	public static function FindByName($name, $take = SELF::PER_PAGE, $skip = 0)
+	public static function findByName($name, $take = SELF::PER_PAGE, $skip = 0)
 	{
 		$data = PersonalityModel::where('owner.name', 'like', '%'.$name.'%')
 					->orderBy('owner.name')
@@ -99,7 +99,7 @@ class PersonalityRepository implements IRepository {
 	* @param string $id
 	* @return array of object
 	*/
-	public static function FindByOwnerID($id)
+	public static function findByOwnerID($id)
 	{
 		$data = PersonalityModel::where('owner.id', $id)->orderBy('created_at', 'desc')
 					->first();

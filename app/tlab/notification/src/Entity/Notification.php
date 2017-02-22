@@ -112,7 +112,7 @@ class Notification implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['description' => (string) $description], ['description' => 'string']);
+		$validator 	= Validator::make(['description' => $description], ['description' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -172,7 +172,7 @@ class Notification implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['link' => (string) $link], ['link' => 'string']);
+		$validator 	= Validator::make(['link' => $link], ['link' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -215,7 +215,7 @@ class Notification implements IEntity, IAggregateRoot
 	 * @param string		$label [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function addLabel(string $label)
+	public function addLabel($label)
 	{
 		$isInList = false;
 
@@ -257,7 +257,7 @@ class Notification implements IEntity, IAggregateRoot
 	 * @param  string 	$label [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function removeLabel(string $label)
+	public function removeLabel($label)
 	{
 		$isInList 			= false;
 
