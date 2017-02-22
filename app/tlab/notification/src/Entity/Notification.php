@@ -112,7 +112,7 @@ class Notification implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['description' => (\string) $description], ['description' => 'string']);
+		$validator 	= Validator::make(['description' => $description], ['description' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -172,7 +172,7 @@ class Notification implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['link' => (\string) $link], ['link' => 'string']);
+		$validator 	= Validator::make(['link' => $link], ['link' => 'string']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
