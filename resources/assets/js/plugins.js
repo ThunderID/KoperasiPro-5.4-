@@ -108,7 +108,10 @@ window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselec
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.selectize = require('./plugins/selectize/selectize.min');
+window.select2 = require('./plugins/select2/select2.min');
+$(document).ready( function() {
+	window.select();
+});
 
 /**
  * 10. jQuery Nice Scroll

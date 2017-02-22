@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus id-card', 'placeholder' => 'Ex. 11003608760001']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus id-card', 'placeholder' => 'Ex. 11 00 36 08 76 0001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -119,7 +119,7 @@
 	<label for="">Provinsi</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('address[province]', $page_datas->province, 11, ['class' => 'form-control required auto-tabindex select', 'placeholder' => 'Ex. Jawa Timur']) !!}
+			{!! Form::select('address[province]', $page_datas->province, 11, ['class' => 'form-control required auto-tabindex select']) !!}
 		</div>
 	</div>
 </fieldset>

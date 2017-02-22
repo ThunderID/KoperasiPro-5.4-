@@ -40,7 +40,7 @@ window.wizard = function(){
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
-			window.selectize();
+			window.select();
 		}, 
 		onInit: function (event, currentIndex) {
 			window.resizeWizard();

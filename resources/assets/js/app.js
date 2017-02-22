@@ -25,8 +25,8 @@ require('./modules/choice-select');
 require('./modules/auto-tabindex');
 // add module form input key enter to tab
 require('./modules/form-enter-to-tab');
-// add module selectize
-require('./modules/selectize');
+// add module select
+require('./modules/select');
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
