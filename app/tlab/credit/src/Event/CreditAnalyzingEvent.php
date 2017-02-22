@@ -5,7 +5,7 @@ namespace Thunderlabid\Credit\Event;
 use Thunderlabid\Credit\Entity\Credit;
 use Illuminate\Queue\SerializesModels;
 
-class CreditAnalizingEvent
+class CreditAnalyzingEvent
 {
     use SerializesModels;
 

@@ -18,7 +18,7 @@ class RegistryServiceProvider extends ServiceProvider
 
 		$this->publishViews();
 
-		$this->publishRoutes();
+		// $this->publishRoutes();
 	}
 
 	/**

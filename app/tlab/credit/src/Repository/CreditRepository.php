@@ -33,7 +33,7 @@ use Thunderlabid\Credit\Entity\Credit;
 // Event //
 ///////////
 use Thunderlabid\Credit\Event\CreditDraftingEvent;
-use Thunderlabid\Credit\Event\CreditAnalizingEvent;
+use Thunderlabid\Credit\Event\CreditAnalyzingEvent;
 use Thunderlabid\Credit\Event\CreditProposingEvent;
 use Thunderlabid\Credit\Event\CreditAcceptedEvent;
 use Thunderlabid\Credit\Event\CreditDeclinedEvent;
@@ -407,8 +407,8 @@ class CreditRepository implements IRepository {
 		//jika data lama adakah perubahan status
 		switch($credit_entity->status)
 		{
-			case 'analizing':
-				event(new CreditAnalizingEvent($credit_entity));
+			case 'analyzing':
+				event(new CreditAnalyzingEvent($credit_entity));
 				break;
 			case 'proposing':
 				event(new CreditProposingEvent($credit_entity));

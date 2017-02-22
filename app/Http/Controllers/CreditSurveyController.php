@@ -82,8 +82,7 @@ class CreditSurveyController extends Controller
 	 */
 	public function store()
 	{
-		// $credit_id 				= Input::get('id');
-		$credit_id 				= '2C12544C-3E18-4BFE-9D69-354FEA20B90D';
+		$credit_id 				= Input::get('id');
 
 		$kepribadian 			= Input::get('kepribadian');
 		$makro 					= Input::get('makro');

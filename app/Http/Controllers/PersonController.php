@@ -25,65 +25,105 @@ class PersonController extends Controller
 	}
 
 	/**
+	 * lihat semua data person
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title				= "Data Orang";
+		$this->page_attributes->breadcrumb			= [
+															'Data Orang'   => route('person.index'),
+													 ];
+
+		//this function to set all needed variable in lists person (sidebar)
+		$this->getPersonLists();
+
+		//initialize view
+		$this->view									= view('pages.person.index');
+
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
+	/**
+	 * lihat data person tertentu
+	 *
+	 * @param string $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title				= "Data Orang";
+		$this->page_attributes->breadcrumb         = [
+															'Data Orang'   => route('person.index'),
+													 ];
+
+		//initialize view
+		$this->view                                = view('pages.person.show');
+
+		//this function to set all needed variable in lists credit (sidebar)
+		$this->getPersonLists();
+
+		//parsing master data here
+		$this->page_datas->person 					= Person::findByID($id);
+		$this->page_datas->id 						= $id;
+
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
+	/**
 	 * simpan data Person tertentu
 	 *
 	 * @param string $id
 	 * @return Response
 	 */
-	public function store()
+	public function store($id = null)
 	{
-		//get input
-		$person     = Input::only('person');
-		$address    = Input::only('address');
+		$id 					= '3B14A88B-158A-4AD0-93F5-D7623EA9BC57';
 
-		//here
-		$person  =   [
-				'id'					=> '1280651E-D780-48C6-8857-68A401F7D901',
-				'nik'					=> '123456789',
-				'name'					=> 'Annita Li',
-				'place_of_birth'		=> 'Dili',
-				'date_of_birth'			=> '23 years ago',
-				'gender'				=> 'female',
-				'religion'				=> 'Christian',
-				'highest_education'		=> 'Bachelor',
-				'marital_status'		=> 'single',
-				'phone_number'			=> '089654562911',
-				'works'					=> [
-					[
-						'position' 		=> 'Web Developer', 
-						'area' 			=> 'IT', 
-						'since' 		=> '3 years ago', 
-						'office' 		=> ['id' => '589d9c415590a800073cd078', 'name' => 'Thunderlab Indonesia'], 
-					]
-				],
-				'relatives'				=> [
-					[
-						'relation' 		=> 'ibu', 
-						'id' 			=> '897daec75590a8000818784e', 
-						'name' 			=> 'Lolita Li', 
-					]
-				],
-				'phones'				=> [
-					[
-						'number' 		=> '089654592911', 
-					]
-				],
-			];
+		if(is_null($id))
+		{
+			$data_person 		= Input::all();
+			$data_person['id']	= null;
 
-		$address  =   [
-				'id'					=> null,
-				'street'				=> 'Puri Cempaka Putih II AS 86',
-				'city'					=> 'Malang',
-				'province'				=> 'East Java',
-				'country'				=> 'Indonesia',
-				'latitude'				=> -8.0295309,
-				'longitude'				=> 112.6389624,
-			];
-		//store all data that shaped an entity
-		$address    = Person::save($person, $address);
+			$person 			= Person::store($data_person);
+		}
+		else
+		{
+			$person_whole 		= Person::findByID($id);
+			$person 			= $person_whole->person;
+		}
+
+		$alamat 				= Input::get('alamat');
+
+		$service 				= new Person;
+		$service->update('alamat', $alamat, $person);
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('person.index'));
+	}
+
+
+	/**
+	 * Fungsi ini untuk menampilkan person lists, fungsi sidebar.
+	 * variable filter dan search juga di parse disini
+	 * data dari view pages.address.lists diatur disini
+	 */
+	private function getPersonLists()
+	{
+		//1. Parsing search box
+		if(Input::has('q') && str_is($status, 'rumah'))
+		{
+			$this->page_datas->persons			= Person::findByName(Input::get('q'));
+		}
+		else
+		{
+			$this->page_datas->persons			= Person::all();
+		}
 	}
 }
 

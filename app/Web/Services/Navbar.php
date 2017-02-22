@@ -51,8 +51,7 @@ class Navbar
 				'registrasi'=>	[
 									'route' => null,
 									'sub'	=> 	[
-													// 'siapapun' 			=> route('person.index'),
-													'buku_alamat' 		=> route('address.index')
+													'data_orang' 		=> route('person.index')
 												]				
 								],
 			]; 
