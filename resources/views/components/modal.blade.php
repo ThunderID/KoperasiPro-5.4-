@@ -79,7 +79,12 @@
 				parameters  : 	
 								title : string
 								style : danger, default, primary, 
-										warning, info, or success															
+										warning, info, or success		
+
+		d.  hide_buttons
+		   	required 	: no
+			value 		: boolean (true/false)
+			description : is modal has action button or not																							
 	*/
 ?>
 
@@ -100,14 +105,28 @@
 			<div class="modal-body">
 				{{ $slot }}
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
-					{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
-				</button>
-				<button type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}">
-					{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
-				</button>
-			</div>
+			@if(isset($settings['hide_buttons']))
+				@if($settings['hide_buttons'] == true)
+				@else
+					<div class="modal-footer">
+						<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
+							{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
+						</button>
+						<button type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}">
+							{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
+						</button>
+					</div>				
+				@endif
+			@else
+				<div class="modal-footer">
+					<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
+						{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
+					</button>
+					<button type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}">
+						{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
+					</button>
+				</div>
+			@endif
 		</div>
 	</div>
 </div>
