@@ -85,10 +85,18 @@
 		   	required 	: no
 			value 		: boolean (true/false)
 			description : is modal has action button or not																							
+	===================================================================
 	*/
+
+	// Functions
+	// show button parameter
+	$hide_buttons = false;
+	if(isset($settings['hide_buttons'])){
+		if($settings['hide_buttons'] == true){
+			$hide_buttons = true;
+		}
+	}	
 ?>
-
-
 
 <div id="{{ $id }}" class="modal fade">
 	<div class="modal-dialog">
@@ -105,19 +113,8 @@
 			<div class="modal-body">
 				{{ $slot }}
 			</div>
-			@if(isset($settings['hide_buttons']))
-				@if($settings['hide_buttons'] == true)
-				@else
-					<div class="modal-footer">
-						<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
-							{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
-						</button>
-						<button type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}">
-							{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
-						</button>
-					</div>				
-				@endif
-			@else
+
+			@if($hide_buttons == false)
 				<div class="modal-footer">
 					<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
 						{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
