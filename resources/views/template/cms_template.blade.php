@@ -90,6 +90,7 @@
 
 		@stack('modals')
 	<!-- End of pjax fragment replacement -->
+
 	</div>
 @endsection
 
@@ -97,6 +98,19 @@
 	@stack('scripts')
 @endsection
 
-@push('modal')
-	modal
-@endpush
+{{-- modal confirmation logout --}}
+@component('components.modal', [
+		'id'			=> 'modal-logout',
+		'title'			=> 'Logout',
+		'settings'		=> [
+			'hide_buttons'	=> true
+		]
+	])
+    <p>Apakah anda yakin ingin Logout ?</p>
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="text-right">
+	    <a href="javascript:void(0);" class="btn btn-default" data-dismiss="modal">Batal</a>
+	    <a href="{{ route('login.destroy') }}" class="btn btn-primary" no-data-pjax>Logout Sekarang</a>
+    </div>
+@endcomponent

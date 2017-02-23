@@ -44,7 +44,7 @@
 					</div >
 					<div class="col-xs-3 p-r-none p-t-md">
 						<p>
-							<a href="{{route('login.destroy')}}" no-data-pjax>
+							<a href="javascript:void(0);" data-target="#modal-logout" data-toggle="modal" no-data-pjax>
 								<i class="fa fa-power-off" aria-hidden="true"></i>
 							</a>
 						</p>
