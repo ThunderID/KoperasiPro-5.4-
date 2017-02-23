@@ -42,5 +42,6 @@
 	</div>  
 @endpush
 
-@push('scripts')
+@push('modals')
+	@yield('page_modals')
 @endpush
