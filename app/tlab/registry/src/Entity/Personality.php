@@ -74,11 +74,16 @@ class Personality implements IEntity, IAggregateRoot
 		}
 
 		#residence
-		$this->addResidence($residence);
+		if(!empty($residence))
+		{
+			$this->addResidence($residence);
+		}
 
 		#workplace
-		$this->addWorkplace($workplace);
-
+		if(!empty($workplace))
+		{
+			$this->addWorkplace($workplace);
+		}
 
 		#notes
 		if (isset($notes[0]))
@@ -169,11 +174,11 @@ class Personality implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['character' => $character], ['character' => 'string']);
-		if ($validator->fails())
-		{
-			throw new Exception($validator->messages(), 1);
-		}
+		// $validator 	= Validator::make(['character' => $character], ['character' => 'string']);
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
 
 		//make sure here should be checking the unique number
 
@@ -201,11 +206,11 @@ class Personality implements IEntity, IAggregateRoot
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make(['lifestyle' => $lifestyle], ['lifestyle' => 'string']);
-		if ($validator->fails())
-		{
-			throw new Exception($validator->messages(), 1);
-		}
+		// $validator 	= Validator::make(['lifestyle' => $lifestyle], ['lifestyle' => 'string']);
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
 
 		//make sure here should be checking the unique number
 

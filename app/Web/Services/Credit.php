@@ -579,13 +579,13 @@ class Credit extends baseService
 			switch (strtolower($logged->role)) 
 			{
 				case 'marketing':
-					$status 	= ['drafting'];
+					$status 	= ['drafting', 'pending'];
 					break;
 				case 'developer':
-					$status 	= ['drafting', 'analyzing'];
+					$status 	= ['drafting', 'pending', 'analyzing'];
 					break;
 				default:
-					$status 	= ['drafting'];
+					$status 	= ['drafting', 'pending'];
 					break;
 			}
 
