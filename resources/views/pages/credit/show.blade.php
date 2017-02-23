@@ -1,7 +1,6 @@
 @extends('pages.credit.templates.index_show_template')
 
 @section('page_content')
-
 	<!-- BLOCK 1 Display Data Rencana Kredit // -->
 	<div class="row">
 		<div class="col-sm-12">

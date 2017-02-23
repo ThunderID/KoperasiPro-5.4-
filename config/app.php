@@ -12,7 +12,8 @@ return [
 	| any other location as required by the application or its packages.
 	*/
 
-	'name' => 'Laravel',
+	'name' => env('APP_NAME', 'tes'),
+	'developer' => env('APP_DEVELOPER', ''),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -180,7 +181,7 @@ return [
 		// 3rd party
 		Collective\Html\HtmlServiceProvider::class,
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
 
 		//Application level and 3rd party stuffs       
 		App\Web\WebServiceProvider::class,

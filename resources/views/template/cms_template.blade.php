@@ -97,3 +97,6 @@
 	@stack('scripts')
 @endsection
 
+@push('modal')
+	modal
+@endpush
