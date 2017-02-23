@@ -1,56 +1,107 @@
 @extends('pages.survey.templates.index_show_template')
 
 @section('page_content')
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="p-content">
-				<div class="page-header m-t-none m-b-xl p-b-xs">
-					<h2 class="m-t-none m-b-xs">Survey Kredit</h2>
-				</div>
-				{!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
-					{{-- untuk data kredit --}}
-
-					<!-- BLOCK 1 Display Data Rencana Kredit // -->
-					<h3>Data Kredit</h3>
-					<section>
-						@include('pages.credit.components.data_panels.rencana_kredit')
-					</section>
-
-					<!-- BLOCK 2 Display Data Kepribadian // -->
-					<h3>Data Kepribadian</h3>
-					<section>
-						@include('pages.survey.form.data_kepribadian')
-					</section>
-
-					<!-- BLOCK 3 Display Ekonomi Makro // -->
-					<h3>Data Ekonomi Makro</h3>
-					<section>
-						@include('pages.survey.form.eco_macro')
-					</section>
-
-					<!-- BLOCK 4 Display Data Usaha // -->
-					<h3>Data Usaha</h3>
-					<section>
-						@include('pages.survey.form.data_aset')
-					</section>
-
-					<!-- BLOCK 5 Display Data Keuangan // -->
-					<h3>Data Keuangan</h3>
-					<section>
-						@include('pages.survey.form.data_keuangan')
-					</section>
-
-					<!-- BLOCK 6 Display Data Jaminan // -->
-					<h3>Data Jaminan</h3>
-					<section>
-						@include('pages.survey.form.data_jaminan')
-					</section>
-
-					<!-- BLOCK 7 action // -->
-					<button type="submit">TEST</button>
-
-				{!! Form::close() !!}
+	{!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
+	
+		<!-- BLOCK 1 Display Data Rencana Kredit // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.credit.components.data_panels.rencana_kredit')
 			</div>
 		</div>
+
+		<div class="clearfix">&nbsp;</div>
+
+		<!-- BLOCK 2 Display Data Kepribadian // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.data_kepribadian')
+			</div>
+		</div>		
+
+		<div class="clearfix">&nbsp;</div>
+
+		<!-- BLOCK 3 Display Ekonomi Makro // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.eco_macro')
+			</div>
+		</div>		
+
+		<div class="clearfix">&nbsp;</div>		
+
+		<!-- BLOCK 4 Display Data Usaha // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.data_usaha')
+			</div>
+		</div>	
+
+		<!-- BLOCK 5 Display Data Keuangan // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.data_keuangan')
+			</div>
+		</div>	
+		<!-- BLOCK 6 Display Data Jaminan // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.data_jaminan')
+			</div>
+		</div>	
+
+		<!-- BLOCK 7 Action Button // -->
+		<div class="row">
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-success pull-right">Simpan</button>
+			</div>
+		</div>
+
+		<div class="clearfix">&nbsp;</div>		
+
 	</div>
+	{!! Form::close() !!}
+@stop
+
+@section('page_modals')
+
+	<!-- Data kepribadian // -->
+	@component('components.modal', [
+		'id' 		=> 'data_kepribadian',
+		'title'		=> 'Entri Data Kepribadian',	
+	])
+		@include('pages.survey.components.form.data_kepribadian')
+	@endcomponent
+
+	<!-- Data ekonomi makro // -->
+	@component('components.modal', [
+		'id' 		=> 'eco_macro',
+		'title'		=> 'Entri Ekonomi Makro',	
+	])
+		@include('pages.survey.components.form.eco_macro')
+	@endcomponent
+
+	<!-- Data usaha // -->
+	@component('components.modal', [
+		'id' 		=> 'data_usaha',
+		'title'		=> 'Entri Data Usaha',	
+	])
+		@include('pages.survey.components.form.eco_macro')
+	@endcomponent	
+
+	<!-- Data keuangan // -->
+	@component('components.modal', [
+		'id' 		=> 'data_keuangan',
+		'title'		=> 'Entri Data Keuangan',	
+	])
+		@include('pages.survey.components.form.data_keuangan')
+	@endcomponent	
+
+	<!-- Data jaminan // -->
+	@component('components.modal', [
+		'id' 		=> 'data_aset',
+		'title'		=> 'Entri Data Jaminan',	
+	])
+		@include('pages.survey.components.form.data_aset')
+	@endcomponent	
 @stop

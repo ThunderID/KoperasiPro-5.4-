@@ -71,6 +71,7 @@
 								title : string
 								style : danger, default, primary, 
 										warning, info, or success
+								link  : url										
 
 			c.2	action_cancel
 				required 	: no
@@ -79,7 +80,8 @@
 				parameters  : 	
 								title : string
 								style : danger, default, primary, 
-										warning, info, or success		
+										warning, info, or success	
+								link  : url										
 
 		d.  hide_buttons
 		   	required 	: no
@@ -116,12 +118,13 @@
 
 			@if($hide_buttons == false)
 				<div class="modal-footer">
-					<button type="button" class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss="modal">
+					<a type='button' class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss='modal' 
+					{{ isset($settings['overrides']['action_cancel']['link']) ? "href=''" : "no-data-pjax"}} >
 						{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
-					</button>
-					<button type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}">
+					</a>
+					<a type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}" {{ isset($settings['overrides']['action_ok']['link']) ? "href=''" : "no-data-pjax"}} >
 						{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
-					</button>
+					</a>
 				</div>
 			@endif
 		</div>
