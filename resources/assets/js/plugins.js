@@ -82,7 +82,9 @@ window.validate = require('./plugins/jquery-validate/jquery.validate');
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
 window.cookies = require('./plugins/jquery-cookie/js.cookie.js');
-
+$(document).ready( function() {
+	window.cookies();
+});
 
 /*
 7. jQuery Inputmask

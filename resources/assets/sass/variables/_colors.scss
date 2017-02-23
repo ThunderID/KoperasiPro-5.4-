@@ -3,7 +3,8 @@ $color-primary			: #515151;
 $color-active			: #46BE8A; 
 $color-default			: #848484; 
 $color-secondary		: #EEEEEE; 
-$color-light-gray		: #b5b5b5; 
+$color-light-gray		: #b5b5b5;
+$color-white 			: #ffffff; 
 
 // Font Color
 $font-color-primary		: $color-primary; 
@@ -16,7 +17,7 @@ $font-color-light-gray  : $color-light-gray;
 $body-bg				: #f7f7f7;
 
 // Navbar Color
-$navbar-bg-primary		: #ffffff;
+$navbar-bg-primary		: $color-white;
 $navbar-bg-default		: #E9E9E9;
 $navbar-bg-secondary	: #EEEEEE; 
 
@@ -25,4 +26,4 @@ $line-color-default		: #E6E8E6;
 $border-color-default 	: #CED0CE; 
 
 // Content color
-$content-bg				: #ffffff;
+$content-bg				: $color-white;

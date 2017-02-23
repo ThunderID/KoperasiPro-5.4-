@@ -1,3 +1,62 @@
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant-lines($color, $background, $border) {
+	color: $color;
+	background-color: $background;
+	border-color: $border;
+
+	&:focus,
+	&.focus {
+		color: $background;
+		background-color: $color;
+			border-color: $border;
+	}
+	&:hover {
+		color: $background;
+		background-color: $color;
+			border-color: $border;
+	}
+	&:active,
+	&.active,
+	.open > &.dropdown-toggle {
+		color: $background;
+		background-color: $color;
+			border-color: $border;
+
+		&:hover,
+		&:focus,
+		&.focus {
+			color: $background;
+			background-color: darken($color, 17%);
+				border-color: darken($border, 25%);
+		}
+	}
+	&:active,
+	&.active,
+	.open > &.dropdown-toggle {
+		background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&:hover,
+		&:focus,
+		&.focus {
+			background-color: $color;
+				border-color: $border;
+		}
+  	}
+
+	.badge {
+		color: $color;
+		background-color: $background;
+		border-color: $border;
+	}
+}
+
 .btn, .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus,
 .btn.active.focus {
 	outline: none !important;
@@ -11,4 +70,28 @@
 
 .btn-group.open .dropdown-toggle {
   @include box-shadow(none);
+}
+
+// Alternate buttons
+// Custom color button for variant-lines (outlined)
+// --------------------------------------------------
+
+.btn-default {
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+// Success appears as green
+.btn-success {
+  @include button-variant-lines($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  @include button-variant-lines($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  @include button-variant-lines($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  @include button-variant-lines($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
