@@ -104,7 +104,7 @@ class PersonalityRepository implements IRepository {
 		$data = PersonalityModel::where('owner.id', $id)->orderBy('created_at', 'desc')
 					->first();
 
-		if($data->count())
+		if($data)
 		{
 			return Static::toEntity($data);
 		}
