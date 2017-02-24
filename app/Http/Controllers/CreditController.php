@@ -166,6 +166,18 @@ class CreditController extends Controller
 		$this->page_datas->credit 					= Credit::findByID($id);
 		$this->page_datas->id 						= $id;
 
+		// get active address on person
+		$person_id 									= $this->page_datas->credit->credit->creditor->id;
+		$this->page_datas->creditor_address_active	= Person::findByID($person_id);
+
+		// check address for warrator (penjamin)
+		if (($this->page_datas->credit->credit->warrantor))
+		{
+			$person_id 									= $this->page_datas->credit->credit->warrantor->id;
+			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
+			
+		}
+
 		//function from parent to generate view
 		return $this->generateView();
 	}
