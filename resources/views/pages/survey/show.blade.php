@@ -66,7 +66,6 @@
 @stop
 
 @section('page_modals')
-	<p>ha</p> 
 
 	<!-- Data kepribadian // -->
 	@component('components.modal', [
