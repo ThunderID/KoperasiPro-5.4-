@@ -19,7 +19,12 @@ class IDR implements IValueObject {
 	*/
 	function __construct($value)
 	{
-		$this->value 	= $value;
+		$this->value 		= $value;
+
+		if(empty($this->value) || is_null($this->value))
+		{
+			$this->value 	= 0;
+		}
 	}
 
 	/**
@@ -39,7 +44,7 @@ class IDR implements IValueObject {
 	*/
 	public function IDR()
 	{
-		$this->value 	= number_format($this->value);
+		// $this->value 	= number_format($this->value);
 		
 		return 'IDR '.$this->value;
 	}
