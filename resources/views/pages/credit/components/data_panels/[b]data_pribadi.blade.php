@@ -46,7 +46,7 @@
 				<p>Pendidikan Terakhir</p>
 			</div>
 			<div class="col-sm-6">
-				<p><strong>{{{$page_datas->credit->creditor->highest_education}}</strong></p>
+				<p><strong>{{$page_datas->credit->creditor->highest_education}}</strong></p>
 			</div>
 		</div>		
 		<div class="row m-b-xl">
@@ -95,7 +95,7 @@
 	<div class="col-sm-12">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<h5><a href="{{route('address.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5>
+				<h5><a href="#">Lihat Alamat</a></h5>
 			</div>
 		</div>
 	</div>
@@ -112,7 +112,7 @@
 						<p>Jenis Pekerjaan</p>
 					</div>
 					<div class="col-sm-6">
-						<p><strong>{{{$value->area}}</strong></p>
+						<p><strong>{{$value->area}}</strong></p>
 					</div>
 				</div>
 				<div class="row m-b-xl">
@@ -136,7 +136,7 @@
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			<div class="col-sm-12">
-				<h5><a href="{{route('address.index', ['id' => $value->office->id, 'status' => 'kantor'])}}">Lihat Alamat</a></h5>
+				<h5><a href="#">Lihat Alamat</a></h5>
 			</div>
 		@endforeach
 	@endif

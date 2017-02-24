@@ -20,7 +20,9 @@
 				<p>Kemampuan Angsur</p>
 			</div>
 			<div class="col-sm-6">
-				<p><strong>{{$page_datas->credit->credit->installment->IDR()}}</strong></p>
+				<?php
+					//  <p><strong>{{$page_datas->credit->credit->installment_capacity->IDR()}}</strong></p>
+				?>
 			</div>
 		</div>				
 		<div class="row m-b-xl">
