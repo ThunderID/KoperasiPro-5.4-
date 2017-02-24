@@ -68,7 +68,20 @@
 	<!-- Data kepribadian // -->
 	@component('components.modal', [
 		'id' 		=> 'data_kepribadian',
-		'title'		=> 'Entri Data Kepribadian',	
+		'title'		=> 'Entri Data Kepribadian',
+		'settings'	=> [
+			'overrides'		=> [
+				'action_ok'		=> [
+					'title'			=> 'Simpan',
+					'style'			=> 'success',
+					'link'			=> '#'
+				],
+				'action_cancel'	=> [
+					'title'			=> 'Batal',
+					'style'			=> 'default',
+				]
+			]
+		]	
 	])
 		@include('pages.survey.components.form.data_kepribadian')
 	@endcomponent
@@ -76,7 +89,20 @@
 	<!-- Data ekonomi makro // -->
 	@component('components.modal', [
 		'id' 		=> 'eco_macro',
-		'title'		=> 'Entri Ekonomi Makro',	
+		'title'		=> 'Entri Ekonomi Makro',
+		'settings'	=> [
+			'overrides'		=> [
+				'action_ok'		=> [
+					'title'			=> 'Simpan',
+					'style'			=> 'success',
+					'link'			=> '#'
+				],
+				'action_cancel'	=> [
+					'title'			=> 'Batal',
+					'style'			=> 'default',
+				]
+			]
+		]		
 	])
 		@include('pages.survey.components.form.eco_macro')
 	@endcomponent
@@ -84,7 +110,20 @@
 	<!-- Data usaha // -->
 	@component('components.modal', [
 		'id' 		=> 'data_usaha',
-		'title'		=> 'Entri Data Usaha',	
+		'title'		=> 'Entri Data Usaha',
+		'settings'	=> [
+			'overrides'		=> [
+				'action_ok'		=> [
+					'title'			=> 'Simpan',
+					'style'			=> 'success',
+					'link'			=> '#'
+				],
+				'action_cancel'	=> [
+					'title'			=> 'Batal',
+					'style'			=> 'default',
+				]
+			]
+		]	
 	])
 		@include('pages.survey.components.form.eco_macro')
 	@endcomponent	
@@ -92,7 +131,20 @@
 	<!-- Data keuangan // -->
 	@component('components.modal', [
 		'id' 		=> 'data_keuangan',
-		'title'		=> 'Entri Data Keuangan',	
+		'title'		=> 'Entri Data Keuangan',
+		'settings'	=> [
+			'overrides'		=> [
+				'action_ok'		=> [
+					'title'			=> 'Simpan',
+					'style'			=> 'success',
+					'link'			=> '#'
+				],
+				'action_cancel'	=> [
+					'title'			=> 'Batal',
+					'style'			=> 'default',
+				]
+			]
+		]	
 	])
 		@include('pages.survey.components.form.data_keuangan')
 	@endcomponent	
@@ -100,7 +152,20 @@
 	<!-- Data jaminan // -->
 	@component('components.modal', [
 		'id' 		=> 'data_aset',
-		'title'		=> 'Entri Data Jaminan',	
+		'title'		=> 'Entri Data Jaminan',
+		'settings'	=> [
+			'overrides'		=> [
+				'action_ok'		=> [
+					'title'			=> 'Simpan',
+					'style'			=> 'success',
+					'link'			=> '#'
+				],
+				'action_cancel'	=> [
+					'title'			=> 'Batal',
+					'style'			=> 'default',
+				]
+			]
+		]	
 	])
 		@include('pages.survey.components.form.data_aset')
 	@endcomponent	
