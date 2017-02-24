@@ -60,11 +60,11 @@
 @endsection
 
 @section('template')
-	<!-- Topbar -->
-	@include('components.admin_topbar')
-
 	<!-- This for pjax fragment replacement -->
 	<div id="pjax-container">
+
+		<!-- Topbar -->
+		@include('components.admin_topbar')
 
 		<!-- Navigation -->
 		@include('components.navigation')
