@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-sm-12">
 		<div class="row m-b-xl">
 			<div class="col-sm-4">
 				<p>Pengajuan Kredit</p>
@@ -20,7 +20,9 @@
 				<p>Kemampuan Angsur</p>
 			</div>
 			<div class="col-sm-8">
-				<p><strong>{{$page_datas->credit->credit->installment->IDR()}}</strong></p>
+				<?php
+					//  <p><strong>{{$page_datas->credit->credit->installment_capacity->IDR()}}</strong></p>
+				?>			
 			</div>
 		</div>				
 		<div class="row m-b-xl">

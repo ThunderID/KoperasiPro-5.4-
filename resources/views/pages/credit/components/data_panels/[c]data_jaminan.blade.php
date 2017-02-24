@@ -7,7 +7,7 @@
 
 <div class="row">
 	@foreach($page_datas->credit->credit->collaterals as $key => $value)
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 
 			<div class="row m-b-xl">
 				<div class="col-sm-4">
@@ -17,9 +17,6 @@
 					<p><strong>{{strtoupper($value->legal)}}</strong></p>
 				</div>
 			</div>
-
-		</div>
-		<div class="col-sm-6">
 
 			<div class="row m-b-xl">
 				<div class="col-sm-4">

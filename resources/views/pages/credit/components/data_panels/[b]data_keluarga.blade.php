@@ -43,15 +43,11 @@
 		</div>
 	@endforeach
 @else
-	<div class="row">
-		<div class="col-sm-6">
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p>
-						Belum ada data keluarga
-					</p>
-				</div>
-			</div>
+	<div class="row m-b-xl">
+		<div class="col-sm-12">
+			<p>
+				Belum ada data keluarga
+			</p>
 		</div>
 	</div>
 @endif
