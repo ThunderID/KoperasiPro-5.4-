@@ -30,20 +30,14 @@
 
 		<div class="clearfix">&nbsp;</div>		
 
-		<!-- BLOCK 4 Display Data Usaha // -->
-		<div class="row">
-			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_usaha')
-			</div>
-		</div>	
-
-		<!-- BLOCK 5 Display Data Keuangan // -->
+		<!-- BLOCK 4 Display Data Keuangan // -->
 		<div class="row">
 			<div class="col-sm-12">
 				@include('pages.survey.components.data_panels.data_keuangan')
 			</div>
 		</div>	
-		<!-- BLOCK 6 Display Data Jaminan // -->
+		
+		<!-- BLOCK 5 Display Data Jaminan // -->
 		<div class="row">
 			<div class="col-sm-12">
 				@include('pages.survey.components.data_panels.data_jaminan')
@@ -53,7 +47,7 @@
 		<div class="clearfix">&nbsp;</div>
 		<div class="clearfix">&nbsp;</div>		
 
-		<!-- BLOCK 7 Action Button // -->
+		<!-- BLOCK 6 Action Button // -->
 		<div class="row">
 			<div class="col-sm-12">
 				<button type="submit" class="btn btn-success pull-right">Simpan</button>
