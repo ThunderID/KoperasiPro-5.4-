@@ -92,25 +92,35 @@
 	<!-- End of pjax fragment replacement -->
 
 	</div>
+	{{-- modal confirmation logout --}}
+	@component('components.modal', [
+			'id'			=> 'modal-logout',
+			'title'			=> 'Logout',
+			'settings'		=> [
+				'overrides'		=> [
+					'action_ok'		=> [
+						'title'			=> 'Iya, Logout Sekarang',
+						'style'			=> 'danger',
+						'link'			=> route('login.destroy')
+					],
+					'action_cancel'	=> [
+						'title'			=> 'Batal',
+						'style'			=> 'default',
+						'link'			=> 'javascript:void(0);'
+					]
+				]
+			]
+		])
+	    <p>Apakah anda yakin ingin Logout ?</p>
+	    <div class="clearfix">&nbsp;</div>
+	    <div class="clearfix">&nbsp;</div>
+	    {{-- <div class="text-right">
+		    <a href="javascript:void(0);" class="btn btn-default" data-dismiss="modal">Batal</a>
+		    <a href="{{ route('login.destroy') }}" class="btn btn-primary" no-data-pjax>Logout Sekarang</a>
+	    </div> --}}
+	@endcomponent
 @endsection
 
 @section('template-scripts')
 	@stack('scripts')
 @endsection
-
-{{-- modal confirmation logout --}}
-@component('components.modal', [
-		'id'			=> 'modal-logout',
-		'title'			=> 'Logout',
-		'settings'		=> [
-			'hide_buttons'	=> true
-		]
-	])
-    <p>Apakah anda yakin ingin Logout ?</p>
-    <div class="clearfix">&nbsp;</div>
-    <div class="clearfix">&nbsp;</div>
-    <div class="text-right">
-	    <a href="javascript:void(0);" class="btn btn-default" data-dismiss="modal">Batal</a>
-	    <a href="{{ route('login.destroy') }}" class="btn btn-primary" no-data-pjax>Logout Sekarang</a>
-    </div>
-@endcomponent
