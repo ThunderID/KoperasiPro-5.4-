@@ -22,7 +22,7 @@
 						<span class="character-checkbox" onclick="showPassword()"></span>
 						<span class="label">Show password</span>
 					</div>
-					<input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
+					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Log in">
 				</form>
 				<a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a>
 				<hr>
