@@ -34,14 +34,14 @@
 <div class="row filters">
 	<div class="col-sm-6 left">
 		<div class="dropdown">
-			<a class="btn" type="button" data-toggle="dropdown">
+			<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
 				@if(Input::has('status'))
 		           {{ ucwords(Input::get('status')) }}
 				@else
 					{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
 				@endif
 				<span>
-					<i class="fa fa-angle-down" aria-hidden="true"></i>
+					<i class="fa fa-lg fa-angle-down" aria-hidden="true"></i>
 				</span>
 			</a>
 			<ul class="dropdown-menu">
