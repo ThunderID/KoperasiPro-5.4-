@@ -59,11 +59,11 @@
 
 		<div class="clearfix">&nbsp;</div>		
 
-	</div>
 	{!! Form::close() !!}
 @stop
 
 @section('page_modals')
+	<p>ha</p> 
 
 	<!-- Data kepribadian // -->
 	@component('components.modal', [
@@ -104,4 +104,4 @@
 	])
 		@include('pages.survey.components.form.data_aset')
 	@endcomponent	
-@stop
+@append
