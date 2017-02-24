@@ -122,8 +122,8 @@
 			{{Form::close()}}
 		</div>
 		<div class="col-sm-6 text-right">
-			<a class="btn btn-primary">Ajukan</a>
-			<a class="btn btn-primary">Drafting</a>
+			<a class="btn btn-success">Ajukan</a>
+			<a class="btn btn-success">Drafting</a>
 		</div>
 	</div>
 
