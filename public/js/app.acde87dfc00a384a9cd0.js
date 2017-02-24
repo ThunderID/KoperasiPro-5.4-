@@ -10416,7 +10416,7 @@ $(function () {
 $.fn.choiceSelect = function () {
 	$(this).quickselect({
 		buttonTag: 'a',
-		activeButtonClass: 'btn-primary active',
+		activeButtonClass: 'btn-success active',
 		breakOutAll: true,
 		buttonClass: 'btn btn-default btn-sm auto-tabindex',
 		wrapperClass: 'btn-group'
