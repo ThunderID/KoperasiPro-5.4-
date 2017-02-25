@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4>Data Keuangan</h4>
+		<h4 class="text-uppercase">Data Keuangan</h4>
 		<hr/>
 	</div>
 </div>
@@ -16,6 +16,9 @@
 <div class="row clearfix">&nbsp;</div>
 <div class="row clearfix">&nbsp;</div> -->
 
+<?php
+	// dd($page_datas->credit->survey->finance)
+?>
 <!-- with data -->
 <div class="row">
 
@@ -28,51 +31,23 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6">
 
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Gaji / Upah Kerja</strong></p>
-				<p>
-					Dummy
-				</p>
+	@foreach($page_datas->credit->survey->finance->incomes as $income)
+		<div class="col-sm-6">
+
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<p style="margin-bottom: 7px;"><strong>{{ ucWords($income->description ) }}</strong></p>
+					<p>
+						{{$income->amount->IDR()}}
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Penghasilan Usaha/Dagang/Tani</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
 
-	</div>
-
-	<div class="col-sm-6">
-
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Penghasilan Suami/Istri</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
 		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Lain Lain</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-
-	</div>
+	@endforeach
 	
-	<div class="col-sm-12">
-		<div class="row clearfix">&nbsp;</div>
-	</div>
+	<div class="clearfix">&nbsp;</div>
 
 	<div class="col-sm-12">
 		<div class="row m-b-xl">
@@ -83,54 +58,23 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6">
+	@foreach($page_datas->credit->survey->finance->expenses as $expense)
+		<div class="col-sm-6">
 
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Biaya Produksi</strong></p>
-				<p>
-					Dummy
-				</p>
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<p style="margin-bottom: 7px;"><strong>{{ ucWords($expense->description ) }}</strong></p>
+					<p>
+						{{$expense->amount->IDR()}}
+					</p>
+				</div>
 			</div>
+
 		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Biaya Rumah Tangga</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Biaya Listrik/PDAM/Telepon</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>				
+	@endforeach
 
-	</div>
-
-	<div class="col-sm-6">
-
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Biaya Pendidikan</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Lain Lain</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-
-	</div>	
+	<div class="clearfix">&nbsp;</div>
+	
+	<div class="clearfix">&nbsp;</div>
 
 </div>

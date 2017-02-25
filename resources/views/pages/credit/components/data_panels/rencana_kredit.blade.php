@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4>RENCANA KREDIT</h4>
+		<h4 class="text-uppercase">RENCANA KREDIT</h4>
 		<hr/>
 	</div>
 </div>

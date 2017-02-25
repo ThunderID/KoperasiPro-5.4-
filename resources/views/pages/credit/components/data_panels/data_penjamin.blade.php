@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4>DATA PENJAMIN</h4>
+		<h4 class="text-uppercase">DATA PENJAMIN</h4>
 		<hr/>
 	</div>
 </div>
