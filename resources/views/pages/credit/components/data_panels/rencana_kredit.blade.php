@@ -9,33 +9,28 @@
 	<div class="col-sm-6">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Pengajuan Kredit</strong></p>
-				<p>{{$page_datas->credit->credit->credit_amount->IDR()}}</p>
+				<p class="p-b-sm"><strong>Pengajuan Kredit</strong></p>
+				<p>{{ $page_datas->credit->credit->credit_amount->IDR() }}</p>
 			</div>
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Kemampuan Angsur</strong></p>
-				<?php
-					// <h4>{{$page_datas->credit->credit->installment_capacity->IDR()}}</h4>
-				?>
-				<?php
-					// <p>{{$page_datas->credit->credit->installment->IDR()}}</p>
-				?>
+				<p class="p-b-sm"><strong>Kemampuan Angsur</strong></p>
+				<p>{{ $page_datas->credit->credit->installment_capacity->IDR() }}</p>
 			</div>
 		</div>		
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Jangka Waktu</strong></p>
-				<p>{{$page_datas->credit->credit->period}} bulan</p>
+				<p class="p-b-sm"><strong>Jangka Waktu</strong></p>
+				<p>{{ $page_datas->credit->credit->period }} bulan</p>
 			</div>
 		</div>			
 	</div>
 	<div class="col-sm-6">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Tujuan Kredit</strong></p>
-				<p>{{$page_datas->credit->credit->purpose}}</p>
+				<p class="p-b-sm"><strong>Tujuan Kredit</strong></p>
+				<p>{{ $page_datas->credit->credit->purpose }}</p>
 			</div>
 		</div>	
 	</div>

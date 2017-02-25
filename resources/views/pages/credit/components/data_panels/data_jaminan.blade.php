@@ -11,9 +11,9 @@
 
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>{{ucwords($value->type)}}</strong></p>
+					<p class="p-b-sm"><strong>{{ ucwords($value->type) }}</strong></p>
 					<p>
-						{{strtoupper($value->legal)}}
+						{{ strtoupper($value->legal) }}
 					</p>
 				</div>
 			</div>
@@ -23,9 +23,9 @@
 
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>Status</strong></p>
+					<p class="p-b-sm"><strong>Status</strong></p>
 					<p>
-						{{ucwords(str_replace('_', ' ', $value->ownership_status))}}
+						{{ ucwords(str_replace('_', ' ', $value->ownership_status)) }}
 					</p>
 				</div>
 			</div>

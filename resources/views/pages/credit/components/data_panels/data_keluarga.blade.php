@@ -12,9 +12,9 @@
 
 				<div class="row m-b-xl">
 					<div class="col-sm-12">
-						<p style="margin-bottom: 7px;"><strong>Nama</strong></p>
+						<p class="p-b-sm"><strong>Nama</strong></p>
 						<p>
-							{{$value->name}}
+							{{ $value->name }}
 						</p>
 					</div>
 				</div>
@@ -24,9 +24,9 @@
 
 				<div class="row m-b-xl">
 					<div class="col-sm-12">
-						<p style="margin-bottom: 7px;"><strong>Hubungan</strong></p>
+						<p class="p-b-sm"><strong>Hubungan</strong></p>
 						<p>
-							{{$value->relation}}
+							{{ $value->relation }}
 						</p>
 					</div>
 				</div>
@@ -47,9 +47,7 @@
 		<div class="col-sm-6">
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
-					<p>
-						Belum ada data keluarga
-					</p>
+					<p>Belum ada data disimpan. <a href="#" data-toggle="modal" data-target="#" no-data-pjax> Tambahkan Sekarang </a></p>
 				</div>
 			</div>
 		</div>

@@ -90,8 +90,33 @@
 
 		@stack('modals')
 	<!-- End of pjax fragment replacement -->
-
 	</div>
+	{{-- modal change koperasi --}}
+	@component('components.modal', [
+			'id'			=> 'modal-change-koperasi',
+			'title'			=> 'Pindah Koperasi',
+			'settings'		=> [
+				'hide_buttons'	=> true
+			]
+		])
+		<fieldset class="form-group">
+			<div class="row">
+				<div class="col-md-12">
+					{!! Form::text('search_koperasi', null, ['class' => 'form-control']) !!}
+					<span class="form-control-feedback m-r-md" aria-hidden="true"><i class="fa fa-search"></i></span>
+				</div>
+				<div class="col-md-12">
+					<ul class="p-l-none list-unstyled list-group">
+						@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
+							<li class="list-group-item"><a href="{{ route('office.activate', ['idx' => $value->office->id]) }}"><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value->office->name }}</a></li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+	    <div class="clearfix">&nbsp;</div>
+	@endcomponent
+
 	{{-- modal confirmation logout --}}
 	@component('components.modal', [
 			'id'			=> 'modal-logout',
@@ -110,8 +135,8 @@
 				]
 			]
 		])
-	    <p>Apakah anda ingin Logout ?</p>
-	    <div class="clearfix">&nbsp;</div>
+		<p>Apakah anda ingin Logout ?</p>
+		<div class="clearfix">&nbsp;</div>
 	@endcomponent
 @endsection
 

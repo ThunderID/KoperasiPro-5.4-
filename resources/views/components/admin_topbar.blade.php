@@ -14,15 +14,9 @@
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="pull-right m-l-xs">
 				<div class="dropdown p-t-xs">
-					<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
-						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ App\Web\Services\TAuth::activeOffice()->office->name }}
-						&nbsp;&nbsp;<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
-							<li><a href="{{route('office.activate', ['idx' => $value->office->id])}}">{{$value->office->name}}</a></li>
-						@endforeach
-					</ul>
+					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
+						<i class="fa fa-building"></i>&nbsp;&nbsp;  {{ App\Web\Services\TAuth::activeOffice()->office->name }} &nbsp;&nbsp;<span class="caret"></span>
+					</a>
 				</div>
 			</span>
 			<!-- END OF SHOULD BE MODIFIED OFFICE SELECTOR -->

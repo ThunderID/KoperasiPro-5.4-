@@ -86,8 +86,8 @@
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('person[marital_status]', [
-				'kawin' 		=> 'Kawin',
-				'tidak_kawin'	=> 'Tidak Kawin',
+				'married' 		=> 'Menikah',
+				'single'		=> 'Belum Menikah',
 			], 'kawin', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
