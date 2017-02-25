@@ -92,6 +92,10 @@ class EcoMacro implements IEntity, IAggregateRoot
 		{
 			$this->addOther($others);
 		}
+		else
+		{
+			$this->attributes['others']	= [];
+		}
 
 		//////////////////
 		// Set Original //
