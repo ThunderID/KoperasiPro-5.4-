@@ -122,7 +122,7 @@
 			{{Form::close()}}
 		</div>
 		<div class="col-sm-6 text-right">
-			<a class="btn btn-success">Ajukan</a>
+			<a class="btn btn-success" href="{{route('credit.propose', ['id' => $page_datas->credit->credit->id])}}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
 		</div>
 	</div>

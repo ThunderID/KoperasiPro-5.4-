@@ -44,7 +44,7 @@ class IDR implements IValueObject {
 	*/
 	public function IDR()
 	{
-		$this->value 	= number_format($this->value);
+		$this->value 	= number_format($this->value, 0, ',', '.');
 		
 		return 'IDR '.$this->value;
 	}
