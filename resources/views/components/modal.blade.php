@@ -98,6 +98,14 @@
 			$hide_buttons = true;
 		}
 	}	
+
+	// ok only
+	$ok_only = false;
+	if(isset($settings['ok_only'])){
+		if($settings['ok_only'] == true){
+			$ok_only = true;
+		}
+	}		
 ?>
 
 <div id="{{ $id }}" class="modal fade">
@@ -118,10 +126,12 @@
 
 			@if($hide_buttons == false)
 				<div class="modal-footer">
+					@if($ok_only == false)
 					<a type='button' class="btn btn-{{ isset($settings['overrides']['action_cancel']['style']) ? $settings['overrides']['action_cancel']['style'] : 'default' }}" data-dismiss='modal' 
 					{{ isset($settings['overrides']['action_cancel']['link']) ? "href=''" : "no-data-pjax"}} >
 						{{ isset($settings['overrides']['action_cancel']['title']) ? $settings['overrides']['action_cancel']['title'] : 'Cancel' }}
 					</a>
+					@endif
 					<a type="button" class="btn btn-{{ isset($settings['overrides']['action_ok']['style']) ? $settings['overrides']['action_ok']['style'] : 'success' }}" {{ isset($settings['overrides']['action_ok']['link']) ? "href=''" : "no-data-pjax"}} >
 						{{ isset($settings['overrides']['action_ok']['title']) ? $settings['overrides']['action_ok']['title'] : 'Ok' }}
 					</a>
