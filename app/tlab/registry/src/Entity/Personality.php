@@ -78,11 +78,19 @@ class Personality implements IEntity, IAggregateRoot
 		{
 			$this->addResidence($residence);
 		}
+		else
+		{
+			$this->attributes['residence']	= null;
+		}
 
 		#workplace
 		if(!empty($workplace))
 		{
 			$this->addWorkplace($workplace);
+		}
+		else
+		{
+			$this->attributes['workplace']	= null;
 		}
 
 		#notes
