@@ -22,8 +22,8 @@ class CollateralAssess implements IValueObject {
 	 */
 	public function __construct($market_value, $assess)
 	{
-		$this->market_value		= $market_value;
-		$this->assess			= $assess;
+		$this->market_value		= new IDR($market_value);
+		$this->assess			= new IDR($assess);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

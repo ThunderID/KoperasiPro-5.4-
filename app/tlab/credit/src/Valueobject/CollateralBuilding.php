@@ -94,10 +94,10 @@ class CollateralBuilding implements IValueObject {
 		$this->deed					= $deed;
 		$this->lastest_pbb			= $lastest_pbb;
 		$this->insurance			= $insurance;
-		$this->pbb_value			= $pbb_value;
-		$this->liquidation_value	= $liquidation_value;
-		$this->land_value			= $land_value;
-		$this->building_value		= $building_value;
+		$this->pbb_value			= new IDR($pbb_value);
+		$this->liquidation_value	= new IDR($liquidation_value);
+		$this->land_value			= new IDR($land_value);
+		$this->building_value		= new IDR($building_value);
 		$this->assessed				= $assessed;
 	}
 

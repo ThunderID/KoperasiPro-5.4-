@@ -57,8 +57,8 @@ class CollateralLand implements IValueObject {
 		$this->deed					= $deed;
 		$this->lastest_pbb			= $lastest_pbb;
 		$this->insurance			= $insurance;
-		$this->pbb_value			= $pbb_value;
-		$this->liquidation_value	= $liquidation_value;
+		$this->pbb_value			= new IDR($pbb_value);
+		$this->liquidation_value	= new IDR($liquidation_value);
 		$this->assessed				= $assessed;
 	}
 

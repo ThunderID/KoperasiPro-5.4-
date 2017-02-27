@@ -22,8 +22,8 @@ class CollateralBank implements IValueObject {
 	 */
 	public function __construct($market_value, $percentage)
 	{
-		$this->market_value		= $market_value;
-		$this->percentage		= $percentage;
+		$this->market_value		= new IDR($market_value);
+		$this->percentage		= new IDR($percentage);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
