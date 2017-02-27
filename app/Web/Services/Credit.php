@@ -294,6 +294,10 @@ class Credit extends baseService
 				$array['owner']['id']		= $credit->creditor->id;
 				$array['owner']['name']		= $credit->creditor->name;
 
+				//temporary
+				$array['residence']			= null;
+				$array['workplace']			= null;
+
 				$personality 				= new RegistryFactory;
 				$personality 				= $personality->buildPersonalityFromArray($array);
 
