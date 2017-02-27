@@ -29,6 +29,9 @@ require('./modules/form-enter-to-tab');
 require('./modules/select');
 // add module list-js
 require('./modules/list');
+// add module modal
+require('./modules/modal');
+
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
