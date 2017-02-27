@@ -117,7 +117,7 @@ class CreditSurveyController extends Controller
 
 			$service->update('keuangan', $keuangan, $credit->credit);
 		}
-		if(!is_null($keuangan)){
+		if(!is_null($jaminan)){
 			$service->update('jaminan', $jaminan, $credit->credit);
 		}
 
