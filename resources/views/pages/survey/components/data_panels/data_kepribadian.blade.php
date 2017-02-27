@@ -1,18 +1,30 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Kepribadian</h4>
+		<h4 class="text-uppercase">Data Kepribadian
+			@if(!is_null($page_datas->credit->survey->personality->character))
+			<span class="pull-right">
+				<small>
+				<a href="#data-kepribadian" data-toggle="modal" data-target="#data_kepribadian" no-data-pjax>
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+					 Edit
+				</a>
+				</small>
+			</span>
+			@endif
+		</h4>
 		<hr/>
 	</div>
 </div>
 
 
-@if(empty($page_datas->credit->survey->personality ))
+@if(is_null($page_datas->credit->survey->personality->character))
 <!-- no data -->
 <div class="row">
 	<div class="col-sm-12">
 		<p>Belum ada data disimpan. <a href="#data-kepribadian" data-toggle="modal" data-target="#data_kepribadian" no-data-pjax> Tambahkan Sekarang </a></p>
 	</div>
 </div> 
+<div class="row clearfix">&nbsp;</div>
 <div class="row clearfix">&nbsp;</div>
 @else
 <!-- with data -->

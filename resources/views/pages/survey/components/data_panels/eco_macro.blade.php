@@ -1,17 +1,29 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Ekonomi Makro</h4>
+		<h4 class="text-uppercase">Data Ekonomi Makro
+			@if(!is_null($page_datas->credit->survey->macro->prospect))
+			<span class="pull-right">
+				<small>
+				<a href="#ekonomi-macro" data-toggle="modal" data-target="#eco_macro" no-data-pjax>
+					<i class="fa fa-pencil" aria-hidden="true"></i>
+					 Edit
+				</a>
+				</small>
+			</span>
+			@endif
+		</h4>
 		<hr/>
 	</div>
 </div>
 
-@if(empty($page_datas->credit->survey->macro))
+@if(is_null($page_datas->credit->survey->macro->prospect))
 <!-- No Data -->
 <div class="row">
 	<div class="col-sm-12">
 		<p>Belum ada data disimpan. <a href="#ekonomi-makro" data-toggle="modal" data-target="#eco_macro" no-data-pjax> Tambahkan Sekarang </a></p>
 	</div>
 </div>
+<div class="row clearfix">&nbsp;</div>
 <div class="row clearfix">&nbsp;</div>
 @else
 <!-- With Data -->
