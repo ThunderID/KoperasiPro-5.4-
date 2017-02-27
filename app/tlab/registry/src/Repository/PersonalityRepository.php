@@ -146,7 +146,15 @@ class PersonalityRepository implements IRepository {
 		$personality_model->workplace	= $personality_entity->workplace;
 		$personality_model->character	= $personality_entity->character;
 		$personality_model->lifestyle	= $personality_entity->lifestyle;
-		$personality_model->notes		= $personality_entity->notes;
+
+		$notes 							= [];
+
+		foreach ((array)$personality_entity->notes as $key => $value) 
+		{
+			$notes[]['description']		= $value;
+		}
+		
+		$personality_model->notes		= $notes;
 		
 		///////////////////////
 		// Store personality //

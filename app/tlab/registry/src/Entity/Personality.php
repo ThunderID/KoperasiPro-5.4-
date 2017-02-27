@@ -231,10 +231,10 @@ class Personality implements IEntity, IAggregateRoot
 
 	/**
 	 * [addNote description]
-	 * @param array		$note [description]
+	 * @param string		$note [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function addNote(array $note)
+	public function addNote($note)
 	{
 		$isInList = false;
 
@@ -273,10 +273,10 @@ class Personality implements IEntity, IAggregateRoot
 
 	/**
 	 * [removeNote description]
-	 * @param  array 	$note [description]
+	 * @param  string 	$note [description]
 	 * @return [boolean]	[true if success, exception if fail]
 	 */
-	public function removeNote(array $note)
+	public function removeNote($note)
 	{
 		$isInList 			= false;
 

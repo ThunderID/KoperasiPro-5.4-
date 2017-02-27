@@ -59,7 +59,7 @@ class EcoMacro extends BaseModel
 											'turn_over'		=> 'in:padat,sedang,lambat',
 											'experience'	=> 'required',
 											'risk'			=> 'in:bagus,biasa,suram',
-											'daily_customer'=> 'numeric',
+											'daily_customer'=> 'required',
 											'others.*'		=> 'required|max:255',
 										];
 	/**

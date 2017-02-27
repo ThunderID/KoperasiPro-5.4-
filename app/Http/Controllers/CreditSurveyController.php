@@ -90,17 +90,28 @@ class CreditSurveyController extends Controller
 		$keuangan 				= Input::get('keuangan');
 		$jaminan 				= Input::get('jaminan');
 
+
 		$credit 				= Credit::findByID($credit_id);
 
 		$service 				= new Credit;
-		$service->update('kepribadian', $kepribadian, $credit->credit);
-		$service->update('makro', $makro, $credit->credit);
-		$service->update('aset', $aset, $credit->credit);
-		$service->update('keuangan', $keuangan, $credit->credit);
-		$service->update('jaminan', $jaminan, $credit->credit);
+		if(!is_null($kepribadian)){
+			$service->update('kepribadian', $kepribadian, $credit->credit);
+		}
+		if(!is_null($makro)){
+			$service->update('makro', $makro, $credit->credit);
+		}
+		if(!is_null($aset)){
+			$service->update('aset', $aset, $credit->credit);
+		}
+		if(!is_null($keuangan)){
+			$service->update('keuangan', $keuangan, $credit->credit);
+		}
+		if(!is_null($keuangan)){
+			$service->update('jaminan', $jaminan, $credit->credit);
+		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('survey.index'));
+		return $this->generateRedirect(route('survey.show',['id' => $credit_id]));
 	}
 
 	/**

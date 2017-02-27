@@ -294,6 +294,11 @@ class Credit extends baseService
 				$array['owner']['id']		= $credit->creditor->id;
 				$array['owner']['name']		= $credit->creditor->name;
 
+				//temporary
+				$array['residence']			= null;
+				$array['workplace']			= null;
+				$array['character']			= null;
+
 				$personality 				= new RegistryFactory;
 				$personality 				= $personality->buildPersonalityFromArray($array);
 
@@ -307,12 +312,12 @@ class Credit extends baseService
 				}
 
 				$array['credit']['id']		= $credit->id;
+
+				$array['competition']		= null;
+				$array['prospect']			= null;
 	
-				if(self::whitelists('survey'))
-				{				
-					$makro 						= new CreditFactory;
-					$makro 						= $makro->buildEcoMacroFromArray($array);
-				}
+				$makro 						= new CreditFactory;
+				$makro 						= $makro->buildEcoMacroFromArray($array);
 
 				$makro_repo 				= new EcoMacroRepository;
 				$makro_repo->store($makro);
