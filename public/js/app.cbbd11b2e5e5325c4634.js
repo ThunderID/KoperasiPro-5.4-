@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,23 +10325,23 @@ module.exports = function(module) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(29);
+window._ = __webpack_require__(31);
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(16);
+__webpack_require__(17);
 
 //your js modules goes here
 // require('');
-__webpack_require__(12);
+__webpack_require__(13);
 // add module form validation
 __webpack_require__(9);
 __webpack_require__(10);
-__webpack_require__(15);
+__webpack_require__(16);
 // add module template clone
-__webpack_require__(14);
+__webpack_require__(15);
 // add module choice select
 __webpack_require__(8);
 // add module set workspace height
@@ -10353,7 +10353,9 @@ __webpack_require__(5);
 // add module form input key enter to tab
 __webpack_require__(7);
 // add module select
-__webpack_require__(13);
+__webpack_require__(14);
+// add module list-js
+__webpack_require__(12);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10374,14 +10376,14 @@ __webpack_require__(13);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(27);
+/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(29);
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(28);
+__webpack_require__(30);
 
 // require('./vendors/jquery-2.2.4.js');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
@@ -10687,6 +10689,16 @@ $('._window').each(function () {
 /* 12 */
 /***/ (function(module, exports) {
 
+
+options = {
+    valueNames: ['name']
+};
+var xxx = new List('list-koperasi', options);
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
 /*
 	-------------------------------------------------------------------------------------------
 	Readme
@@ -10744,7 +10756,7 @@ window.notify = function (msg, title, type) {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function () {
@@ -10780,7 +10792,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -10863,7 +10875,7 @@ function selectLegal() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {// login section
@@ -10884,7 +10896,7 @@ window.showPassword = function showPassword() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10892,7 +10904,7 @@ window.showPassword = function showPassword() {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(26);
+window.toastr = __webpack_require__(28);
 
 /*
 2. nprogress
@@ -10900,7 +10912,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(23);
+window.NProgress = __webpack_require__(25);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -10914,7 +10926,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(24);
+window.pjax = __webpack_require__(26);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -10952,7 +10964,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(20);
+window.steps = __webpack_require__(21);
 $(document).ready(function () {
   // call event form wizard();
   wizard();
@@ -10963,14 +10975,14 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(21);
+window.validate = __webpack_require__(22);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(18);
+window.cookies = __webpack_require__(19);
 $(document).ready(function () {
   window.cookies();
 });
@@ -10980,7 +10992,7 @@ $(document).ready(function () {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(17);
+window.inputmask = __webpack_require__(18);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -10992,14 +11004,14 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(19);
+window.quickselect = __webpack_require__(20);
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.select2 = __webpack_require__(25);
+window.select2 = __webpack_require__(27);
 $(document).ready(function () {
   // window.select();
 });
@@ -11009,11 +11021,18 @@ $(document).ready(function () {
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(22);
+window.nicescroll = __webpack_require__(24);
+
+/**
+ * 11. jQuery plugin List-js
+ * Description: plugin jQuery for list & search
+ * Usage & Documentation: http://listjs.com/docs/
+ */
+window.list = __webpack_require__(23);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13672,7 +13691,7 @@ window.nicescroll = __webpack_require__(22);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13831,7 +13850,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13884,7 +13903,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15762,7 +15781,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17318,7 +17337,1331 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 22 */
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;if (!u && a) return require(o, !0);if (i) return i(o, !0);var f = new Error("Cannot find module '" + o + "'");throw f.code = "MODULE_NOT_FOUND", f;
+      }var l = n[o] = { exports: {} };t[o][0].call(l.exports, function (e) {
+        var n = t[o][1][e];return s(n ? n : e);
+      }, l, l.exports, e, t, n, r);
+    }return n[o].exports;
+  }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+    s(r[o]);
+  }return s;
+})({ 1: [function (require, module, exports) {
+    'use strict';
+
+    var alphabet;
+    var alphabetIndexMap;
+    var alphabetIndexMapLength = 0;
+
+    function isNumberCode(code) {
+      return code >= 48 && code <= 57;
+    }
+
+    function naturalCompare(a, b) {
+      var lengthA = (a += '').length;
+      var lengthB = (b += '').length;
+      var aIndex = 0;
+      var bIndex = 0;
+
+      while (aIndex < lengthA && bIndex < lengthB) {
+        var charCodeA = a.charCodeAt(aIndex);
+        var charCodeB = b.charCodeAt(bIndex);
+
+        if (isNumberCode(charCodeA)) {
+          if (!isNumberCode(charCodeB)) {
+            return charCodeA - charCodeB;
+          }
+
+          var numStartA = aIndex;
+          var numStartB = bIndex;
+
+          while (charCodeA === 48 && ++numStartA < lengthA) {
+            charCodeA = a.charCodeAt(numStartA);
+          }
+          while (charCodeB === 48 && ++numStartB < lengthB) {
+            charCodeB = b.charCodeAt(numStartB);
+          }
+
+          var numEndA = numStartA;
+          var numEndB = numStartB;
+
+          while (numEndA < lengthA && isNumberCode(a.charCodeAt(numEndA))) {
+            ++numEndA;
+          }
+          while (numEndB < lengthB && isNumberCode(b.charCodeAt(numEndB))) {
+            ++numEndB;
+          }
+
+          var difference = numEndA - numStartA - numEndB + numStartB; // numA length - numB length
+          if (difference) {
+            return difference;
+          }
+
+          while (numStartA < numEndA) {
+            difference = a.charCodeAt(numStartA++) - b.charCodeAt(numStartB++);
+            if (difference) {
+              return difference;
+            }
+          }
+
+          aIndex = numEndA;
+          bIndex = numEndB;
+          continue;
+        }
+
+        if (charCodeA !== charCodeB) {
+          if (charCodeA < alphabetIndexMapLength && charCodeB < alphabetIndexMapLength && alphabetIndexMap[charCodeA] !== -1 && alphabetIndexMap[charCodeB] !== -1) {
+            return alphabetIndexMap[charCodeA] - alphabetIndexMap[charCodeB];
+          }
+
+          return charCodeA - charCodeB;
+        }
+
+        ++aIndex;
+        ++bIndex;
+      }
+
+      return lengthA - lengthB;
+    }
+
+    naturalCompare.caseInsensitive = naturalCompare.i = function (a, b) {
+      return naturalCompare(('' + a).toLowerCase(), ('' + b).toLowerCase());
+    };
+
+    Object.defineProperties(naturalCompare, {
+      alphabet: {
+        get: function get() {
+          return alphabet;
+        },
+        set: function set(value) {
+          alphabet = value;
+          alphabetIndexMap = [];
+          var i = 0;
+          if (alphabet) {
+            for (; i < alphabet.length; i++) {
+              alphabetIndexMap[alphabet.charCodeAt(i)] = i;
+            }
+          }
+          alphabetIndexMapLength = alphabetIndexMap.length;
+          for (i = 0; i < alphabetIndexMapLength; i++) {
+            if (alphabetIndexMap[i] === undefined) {
+              alphabetIndexMap[i] = -1;
+            }
+          }
+        }
+      }
+    });
+
+    module.exports = naturalCompare;
+  }, {}], 2: [function (require, module, exports) {
+    module.exports = function (list) {
+      var addAsync = function addAsync(values, callback, items) {
+        var valuesToAdd = values.splice(0, 50);
+        items = items || [];
+        items = items.concat(list.add(valuesToAdd));
+        if (values.length > 0) {
+          setTimeout(function () {
+            addAsync(values, callback, items);
+          }, 1);
+        } else {
+          list.update();
+          callback(items);
+        }
+      };
+      return addAsync;
+    };
+  }, {}], 3: [function (require, module, exports) {
+    module.exports = function (list) {
+
+      // Add handlers
+      list.handlers.filterStart = list.handlers.filterStart || [];
+      list.handlers.filterComplete = list.handlers.filterComplete || [];
+
+      return function (filterFunction) {
+        list.trigger('filterStart');
+        list.i = 1; // Reset paging
+        list.reset.filter();
+        if (filterFunction === undefined) {
+          list.filtered = false;
+        } else {
+          list.filtered = true;
+          var is = list.items;
+          for (var i = 0, il = is.length; i < il; i++) {
+            var item = is[i];
+            if (filterFunction(item)) {
+              item.filtered = true;
+            } else {
+              item.filtered = false;
+            }
+          }
+        }
+        list.update();
+        list.trigger('filterComplete');
+        return list.visibleItems;
+      };
+    };
+  }, {}], 4: [function (require, module, exports) {
+    (function (window, undefined) {
+      "use strict";
+
+      var document = window.document,
+          naturalSort = require('string-natural-compare'),
+          getByClass = require('./utils/get-by-class'),
+          extend = require('./utils/extend'),
+          indexOf = require('./utils/index-of'),
+          events = require('./utils/events'),
+          toString = require('./utils/to-string'),
+          classes = require('./utils/classes'),
+          getAttribute = require('./utils/get-attribute'),
+          toArray = require('./utils/to-array');
+
+      var List = function List(id, options, values) {
+
+        var self = this,
+            init,
+            Item = require('./item')(self),
+            addAsync = require('./add-async')(self);
+
+        init = {
+          start: function start() {
+            self.listClass = "list";
+            self.searchClass = "search";
+            self.sortClass = "sort";
+            self.page = 10000;
+            self.i = 1;
+            self.items = [];
+            self.visibleItems = [];
+            self.matchingItems = [];
+            self.searched = false;
+            self.filtered = false;
+            self.searchColumns = undefined;
+            self.handlers = { 'updated': [] };
+            self.plugins = {};
+            self.valueNames = [];
+            self.utils = {
+              getByClass: getByClass,
+              extend: extend,
+              indexOf: indexOf,
+              events: events,
+              toString: toString,
+              naturalSort: naturalSort,
+              classes: classes,
+              getAttribute: getAttribute,
+              toArray: toArray
+            };
+
+            self.utils.extend(self, options);
+
+            self.listContainer = typeof id === 'string' ? document.getElementById(id) : id;
+            if (!self.listContainer) {
+              return;
+            }
+            self.list = getByClass(self.listContainer, self.listClass, true);
+
+            self.parse = require('./parse')(self);
+            self.templater = require('./templater')(self);
+            self.search = require('./search')(self);
+            self.filter = require('./filter')(self);
+            self.sort = require('./sort')(self);
+
+            this.handlers();
+            this.items();
+            self.update();
+            this.plugins();
+          },
+          handlers: function handlers() {
+            for (var handler in self.handlers) {
+              if (self[handler]) {
+                self.on(handler, self[handler]);
+              }
+            }
+          },
+          items: function items() {
+            self.parse(self.list);
+            if (values !== undefined) {
+              self.add(values);
+            }
+          },
+          plugins: function plugins() {
+            for (var i = 0; i < self.plugins.length; i++) {
+              var plugin = self.plugins[i];
+              self[plugin.name] = plugin;
+              plugin.init(self, List);
+            }
+          }
+        };
+
+        /*
+        * Re-parse the List, use if html have changed
+        */
+        this.reIndex = function () {
+          self.items = [];
+          self.visibleItems = [];
+          self.matchingItems = [];
+          self.searched = false;
+          self.filtered = false;
+          self.parse(self.list);
+        };
+
+        this.toJSON = function () {
+          var json = [];
+          for (var i = 0, il = self.items.length; i < il; i++) {
+            json.push(self.items[i].values());
+          }
+          return json;
+        };
+
+        /*
+        * Add object to list
+        */
+        this.add = function (values, callback) {
+          if (values.length === 0) {
+            return;
+          }
+          if (callback) {
+            addAsync(values, callback);
+            return;
+          }
+          var added = [],
+              notCreate = false;
+          if (values[0] === undefined) {
+            values = [values];
+          }
+          for (var i = 0, il = values.length; i < il; i++) {
+            var item = null;
+            notCreate = self.items.length > self.page ? true : false;
+            item = new Item(values[i], undefined, notCreate);
+            self.items.push(item);
+            added.push(item);
+          }
+          self.update();
+          return added;
+        };
+
+        this.show = function (i, page) {
+          this.i = i;
+          this.page = page;
+          self.update();
+          return self;
+        };
+
+        /* Removes object from list.
+        * Loops through the list and removes objects where
+        * property "valuename" === value
+        */
+        this.remove = function (valueName, value, options) {
+          var found = 0;
+          for (var i = 0, il = self.items.length; i < il; i++) {
+            if (self.items[i].values()[valueName] == value) {
+              self.templater.remove(self.items[i], options);
+              self.items.splice(i, 1);
+              il--;
+              i--;
+              found++;
+            }
+          }
+          self.update();
+          return found;
+        };
+
+        /* Gets the objects in the list which
+        * property "valueName" === value
+        */
+        this.get = function (valueName, value) {
+          var matchedItems = [];
+          for (var i = 0, il = self.items.length; i < il; i++) {
+            var item = self.items[i];
+            if (item.values()[valueName] == value) {
+              matchedItems.push(item);
+            }
+          }
+          return matchedItems;
+        };
+
+        /*
+        * Get size of the list
+        */
+        this.size = function () {
+          return self.items.length;
+        };
+
+        /*
+        * Removes all items from the list
+        */
+        this.clear = function () {
+          self.templater.clear();
+          self.items = [];
+          return self;
+        };
+
+        this.on = function (event, callback) {
+          self.handlers[event].push(callback);
+          return self;
+        };
+
+        this.off = function (event, callback) {
+          var e = self.handlers[event];
+          var index = indexOf(e, callback);
+          if (index > -1) {
+            e.splice(index, 1);
+          }
+          return self;
+        };
+
+        this.trigger = function (event) {
+          var i = self.handlers[event].length;
+          while (i--) {
+            self.handlers[event][i](self);
+          }
+          return self;
+        };
+
+        this.reset = {
+          filter: function filter() {
+            var is = self.items,
+                il = is.length;
+            while (il--) {
+              is[il].filtered = false;
+            }
+            return self;
+          },
+          search: function search() {
+            var is = self.items,
+                il = is.length;
+            while (il--) {
+              is[il].found = false;
+            }
+            return self;
+          }
+        };
+
+        this.update = function () {
+          var is = self.items,
+              il = is.length;
+
+          self.visibleItems = [];
+          self.matchingItems = [];
+          self.templater.clear();
+          for (var i = 0; i < il; i++) {
+            if (is[i].matching() && self.matchingItems.length + 1 >= self.i && self.visibleItems.length < self.page) {
+              is[i].show();
+              self.visibleItems.push(is[i]);
+              self.matchingItems.push(is[i]);
+            } else if (is[i].matching()) {
+              self.matchingItems.push(is[i]);
+              is[i].hide();
+            } else {
+              is[i].hide();
+            }
+          }
+          self.trigger('updated');
+          return self;
+        };
+
+        init.start();
+      };
+
+      // AMD support
+      if (true) {
+        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+          return List;
+        }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+      }
+      module.exports = List;
+      window.List = List;
+    })(window);
+  }, { "./add-async": 2, "./filter": 3, "./item": 5, "./parse": 6, "./search": 7, "./sort": 8, "./templater": 9, "./utils/classes": 10, "./utils/events": 11, "./utils/extend": 12, "./utils/get-attribute": 13, "./utils/get-by-class": 14, "./utils/index-of": 15, "./utils/to-array": 16, "./utils/to-string": 17, "string-natural-compare": 1 }], 5: [function (require, module, exports) {
+    module.exports = function (list) {
+      return function (initValues, element, notCreate) {
+        var item = this;
+
+        this._values = {};
+
+        this.found = false; // Show if list.searched == true and this.found == true
+        this.filtered = false; // Show if list.filtered == true and this.filtered == true
+
+        var init = function init(initValues, element, notCreate) {
+          if (element === undefined) {
+            if (notCreate) {
+              item.values(initValues, notCreate);
+            } else {
+              item.values(initValues);
+            }
+          } else {
+            item.elm = element;
+            var values = list.templater.get(item, initValues);
+            item.values(values);
+          }
+        };
+
+        this.values = function (newValues, notCreate) {
+          if (newValues !== undefined) {
+            for (var name in newValues) {
+              item._values[name] = newValues[name];
+            }
+            if (notCreate !== true) {
+              list.templater.set(item, item.values());
+            }
+          } else {
+            return item._values;
+          }
+        };
+
+        this.show = function () {
+          list.templater.show(item);
+        };
+
+        this.hide = function () {
+          list.templater.hide(item);
+        };
+
+        this.matching = function () {
+          return list.filtered && list.searched && item.found && item.filtered || list.filtered && !list.searched && item.filtered || !list.filtered && list.searched && item.found || !list.filtered && !list.searched;
+        };
+
+        this.visible = function () {
+          return item.elm && item.elm.parentNode == list.list ? true : false;
+        };
+
+        init(initValues, element, notCreate);
+      };
+    };
+  }, {}], 6: [function (require, module, exports) {
+    module.exports = function (list) {
+
+      var Item = require('./item')(list);
+
+      var getChildren = function getChildren(parent) {
+        var nodes = parent.childNodes,
+            items = [];
+        for (var i = 0, il = nodes.length; i < il; i++) {
+          // Only textnodes have a data attribute
+          if (nodes[i].data === undefined) {
+            items.push(nodes[i]);
+          }
+        }
+        return items;
+      };
+
+      var parse = function parse(itemElements, valueNames) {
+        for (var i = 0, il = itemElements.length; i < il; i++) {
+          list.items.push(new Item(valueNames, itemElements[i]));
+        }
+      };
+      var parseAsync = function parseAsync(itemElements, valueNames) {
+        var itemsToIndex = itemElements.splice(0, 50); // TODO: If < 100 items, what happens in IE etc?
+        parse(itemsToIndex, valueNames);
+        if (itemElements.length > 0) {
+          setTimeout(function () {
+            parseAsync(itemElements, valueNames);
+          }, 1);
+        } else {
+          list.update();
+          list.trigger('parseComplete');
+        }
+      };
+
+      list.handlers.parseComplete = list.handlers.parseComplete || [];
+
+      return function () {
+        var itemsToIndex = getChildren(list.list),
+            valueNames = list.valueNames;
+
+        if (list.indexAsync) {
+          parseAsync(itemsToIndex, valueNames);
+        } else {
+          parse(itemsToIndex, valueNames);
+        }
+      };
+    };
+  }, { "./item": 5 }], 7: [function (require, module, exports) {
+    module.exports = function (_list) {
+      var item, text, columns, searchString, customSearch;
+
+      var prepare = {
+        resetList: function resetList() {
+          _list.i = 1;
+          _list.templater.clear();
+          customSearch = undefined;
+        },
+        setOptions: function setOptions(args) {
+          if (args.length == 2 && args[1] instanceof Array) {
+            columns = args[1];
+          } else if (args.length == 2 && typeof args[1] == "function") {
+            columns = undefined;
+            customSearch = args[1];
+          } else if (args.length == 3) {
+            columns = args[1];
+            customSearch = args[2];
+          } else {
+            columns = undefined;
+          }
+        },
+        setColumns: function setColumns() {
+          if (_list.items.length === 0) return;
+          if (columns === undefined) {
+            columns = _list.searchColumns === undefined ? prepare.toArray(_list.items[0].values()) : _list.searchColumns;
+          }
+        },
+        setSearchString: function setSearchString(s) {
+          s = _list.utils.toString(s).toLowerCase();
+          s = s.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&"); // Escape regular expression characters
+          searchString = s;
+        },
+        toArray: function toArray(values) {
+          var tmpColumn = [];
+          for (var name in values) {
+            tmpColumn.push(name);
+          }
+          return tmpColumn;
+        }
+      };
+      var search = {
+        list: function list() {
+          for (var k = 0, kl = _list.items.length; k < kl; k++) {
+            search.item(_list.items[k]);
+          }
+        },
+        item: function item(_item) {
+          _item.found = false;
+          for (var j = 0, jl = columns.length; j < jl; j++) {
+            if (search.values(_item.values(), columns[j])) {
+              _item.found = true;
+              return;
+            }
+          }
+        },
+        values: function values(_values, column) {
+          if (_values.hasOwnProperty(column)) {
+            text = _list.utils.toString(_values[column]).toLowerCase();
+            if (searchString !== "" && text.search(searchString) > -1) {
+              return true;
+            }
+          }
+          return false;
+        },
+        reset: function reset() {
+          _list.reset.search();
+          _list.searched = false;
+        }
+      };
+
+      var searchMethod = function searchMethod(str) {
+        _list.trigger('searchStart');
+
+        prepare.resetList();
+        prepare.setSearchString(str);
+        prepare.setOptions(arguments); // str, cols|searchFunction, searchFunction
+        prepare.setColumns();
+
+        if (searchString === "") {
+          search.reset();
+        } else {
+          _list.searched = true;
+          if (customSearch) {
+            customSearch(searchString, columns);
+          } else {
+            search.list();
+          }
+        }
+
+        _list.update();
+        _list.trigger('searchComplete');
+        return _list.visibleItems;
+      };
+
+      _list.handlers.searchStart = _list.handlers.searchStart || [];
+      _list.handlers.searchComplete = _list.handlers.searchComplete || [];
+
+      _list.utils.events.bind(_list.utils.getByClass(_list.listContainer, _list.searchClass), 'keyup', function (e) {
+        var target = e.target || e.srcElement,
+            // IE have srcElement
+        alreadyCleared = target.value === "" && !_list.searched;
+        if (!alreadyCleared) {
+          // If oninput already have resetted the list, do nothing
+          searchMethod(target.value);
+        }
+      });
+
+      // Used to detect click on HTML5 clear button
+      _list.utils.events.bind(_list.utils.getByClass(_list.listContainer, _list.searchClass), 'input', function (e) {
+        var target = e.target || e.srcElement;
+        if (target.value === "") {
+          searchMethod('');
+        }
+      });
+
+      return searchMethod;
+    };
+  }, {}], 8: [function (require, module, exports) {
+    module.exports = function (list) {
+
+      var buttons = {
+        els: undefined,
+        clear: function clear() {
+          for (var i = 0, il = buttons.els.length; i < il; i++) {
+            list.utils.classes(buttons.els[i]).remove('asc');
+            list.utils.classes(buttons.els[i]).remove('desc');
+          }
+        },
+        getOrder: function getOrder(btn) {
+          var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
+          if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+            return predefinedOrder;
+          } else if (list.utils.classes(btn).has('desc')) {
+            return "asc";
+          } else if (list.utils.classes(btn).has('asc')) {
+            return "desc";
+          } else {
+            return "asc";
+          }
+        },
+        getInSensitive: function getInSensitive(btn, options) {
+          var insensitive = list.utils.getAttribute(btn, 'data-insensitive');
+          if (insensitive === "false") {
+            options.insensitive = false;
+          } else {
+            options.insensitive = true;
+          }
+        },
+        setOrder: function setOrder(options) {
+          for (var i = 0, il = buttons.els.length; i < il; i++) {
+            var btn = buttons.els[i];
+            if (list.utils.getAttribute(btn, 'data-sort') !== options.valueName) {
+              continue;
+            }
+            var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
+            if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+              if (predefinedOrder == options.order) {
+                list.utils.classes(btn).add(options.order);
+              }
+            } else {
+              list.utils.classes(btn).add(options.order);
+            }
+          }
+        }
+      };
+
+      var sort = function sort() {
+        list.trigger('sortStart');
+        var options = {};
+
+        var target = arguments[0].currentTarget || arguments[0].srcElement || undefined;
+
+        if (target) {
+          options.valueName = list.utils.getAttribute(target, 'data-sort');
+          buttons.getInSensitive(target, options);
+          options.order = buttons.getOrder(target);
+        } else {
+          options = arguments[1] || options;
+          options.valueName = arguments[0];
+          options.order = options.order || "asc";
+          options.insensitive = typeof options.insensitive == "undefined" ? true : options.insensitive;
+        }
+
+        buttons.clear();
+        buttons.setOrder(options);
+
+        // caseInsensitive
+        // alphabet
+        var customSortFunction = options.sortFunction || list.sortFunction || null,
+            multi = options.order === 'desc' ? -1 : 1,
+            sortFunction;
+
+        if (customSortFunction) {
+          sortFunction = function sortFunction(itemA, itemB) {
+            return customSortFunction(itemA, itemB, options) * multi;
+          };
+        } else {
+          sortFunction = function sortFunction(itemA, itemB) {
+            var sort = list.utils.naturalSort;
+            sort.alphabet = list.alphabet || options.alphabet || undefined;
+            if (!sort.alphabet && options.insensitive) {
+              sort = list.utils.naturalSort.caseInsensitive;
+            }
+            return sort(itemA.values()[options.valueName], itemB.values()[options.valueName]) * multi;
+          };
+        }
+
+        list.items.sort(sortFunction);
+        list.update();
+        list.trigger('sortComplete');
+      };
+
+      // Add handlers
+      list.handlers.sortStart = list.handlers.sortStart || [];
+      list.handlers.sortComplete = list.handlers.sortComplete || [];
+
+      buttons.els = list.utils.getByClass(list.listContainer, list.sortClass);
+      list.utils.events.bind(buttons.els, 'click', sort);
+      list.on('searchStart', buttons.clear);
+      list.on('filterStart', buttons.clear);
+
+      return sort;
+    };
+  }, {}], 9: [function (require, module, exports) {
+    var Templater = function Templater(list) {
+      var itemSource,
+          templater = this;
+
+      var init = function init() {
+        itemSource = templater.getItemSource(list.item);
+        if (itemSource) {
+          itemSource = templater.clearSourceItem(itemSource, list.valueNames);
+        }
+      };
+
+      this.clearSourceItem = function (el, valueNames) {
+        for (var i = 0, il = valueNames.length; i < il; i++) {
+          var elm;
+          if (valueNames[i].data) {
+            for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
+              el.setAttribute('data-' + valueNames[i].data[j], '');
+            }
+          } else if (valueNames[i].attr && valueNames[i].name) {
+            elm = list.utils.getByClass(el, valueNames[i].name, true);
+            if (elm) {
+              elm.setAttribute(valueNames[i].attr, "");
+            }
+          } else {
+            elm = list.utils.getByClass(el, valueNames[i], true);
+            if (elm) {
+              elm.innerHTML = "";
+            }
+          }
+          elm = undefined;
+        }
+        return el;
+      };
+
+      this.getItemSource = function (item) {
+        if (item === undefined) {
+          var nodes = list.list.childNodes,
+              items = [];
+
+          for (var i = 0, il = nodes.length; i < il; i++) {
+            // Only textnodes have a data attribute
+            if (nodes[i].data === undefined) {
+              return nodes[i].cloneNode(true);
+            }
+          }
+        } else if (/<tr[\s>]/g.exec(item)) {
+          var tbody = document.createElement('tbody');
+          tbody.innerHTML = item;
+          return tbody.firstChild;
+        } else if (item.indexOf("<") !== -1) {
+          var div = document.createElement('div');
+          div.innerHTML = item;
+          return div.firstChild;
+        } else {
+          var source = document.getElementById(list.item);
+          if (source) {
+            return source;
+          }
+        }
+        return undefined;
+      };
+
+      this.get = function (item, valueNames) {
+        templater.create(item);
+        var values = {};
+        for (var i = 0, il = valueNames.length; i < il; i++) {
+          var elm;
+          if (valueNames[i].data) {
+            for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
+              values[valueNames[i].data[j]] = list.utils.getAttribute(item.elm, 'data-' + valueNames[i].data[j]);
+            }
+          } else if (valueNames[i].attr && valueNames[i].name) {
+            elm = list.utils.getByClass(item.elm, valueNames[i].name, true);
+            values[valueNames[i].name] = elm ? list.utils.getAttribute(elm, valueNames[i].attr) : "";
+          } else {
+            elm = list.utils.getByClass(item.elm, valueNames[i], true);
+            values[valueNames[i]] = elm ? elm.innerHTML : "";
+          }
+          elm = undefined;
+        }
+        return values;
+      };
+
+      this.set = function (item, values) {
+        var getValueName = function getValueName(name) {
+          for (var i = 0, il = list.valueNames.length; i < il; i++) {
+            if (list.valueNames[i].data) {
+              var data = list.valueNames[i].data;
+              for (var j = 0, jl = data.length; j < jl; j++) {
+                if (data[j] === name) {
+                  return { data: name };
+                }
+              }
+            } else if (list.valueNames[i].attr && list.valueNames[i].name && list.valueNames[i].name == name) {
+              return list.valueNames[i];
+            } else if (list.valueNames[i] === name) {
+              return name;
+            }
+          }
+        };
+        var setValue = function setValue(name, value) {
+          var elm;
+          var valueName = getValueName(name);
+          if (!valueName) return;
+          if (valueName.data) {
+            item.elm.setAttribute('data-' + valueName.data, value);
+          } else if (valueName.attr && valueName.name) {
+            elm = list.utils.getByClass(item.elm, valueName.name, true);
+            if (elm) {
+              elm.setAttribute(valueName.attr, value);
+            }
+          } else {
+            elm = list.utils.getByClass(item.elm, valueName, true);
+            if (elm) {
+              elm.innerHTML = value;
+            }
+          }
+          elm = undefined;
+        };
+        if (!templater.create(item)) {
+          for (var v in values) {
+            if (values.hasOwnProperty(v)) {
+              setValue(v, values[v]);
+            }
+          }
+        }
+      };
+
+      this.create = function (item) {
+        if (item.elm !== undefined) {
+          return false;
+        }
+        if (itemSource === undefined) {
+          throw new Error("The list need to have at list one item on init otherwise you'll have to add a template.");
+        }
+        /* If item source does not exists, use the first item in list as
+        source for new items */
+        var newItem = itemSource.cloneNode(true);
+        newItem.removeAttribute('id');
+        item.elm = newItem;
+        templater.set(item, item.values());
+        return true;
+      };
+      this.remove = function (item) {
+        if (item.elm.parentNode === list.list) {
+          list.list.removeChild(item.elm);
+        }
+      };
+      this.show = function (item) {
+        templater.create(item);
+        list.list.appendChild(item.elm);
+      };
+      this.hide = function (item) {
+        if (item.elm !== undefined && item.elm.parentNode === list.list) {
+          list.list.removeChild(item.elm);
+        }
+      };
+      this.clear = function () {
+        /* .innerHTML = ''; fucks up IE */
+        if (list.list.hasChildNodes()) {
+          while (list.list.childNodes.length >= 1) {
+            list.list.removeChild(list.list.firstChild);
+          }
+        }
+      };
+
+      init();
+    };
+
+    module.exports = function (list) {
+      return new Templater(list);
+    };
+  }, {}], 10: [function (require, module, exports) {
+    /**
+     * Module dependencies.
+     */
+
+    var index = require('./index-of');
+
+    /**
+     * Whitespace regexp.
+     */
+
+    var re = /\s+/;
+
+    /**
+     * toString reference.
+     */
+
+    var toString = Object.prototype.toString;
+
+    /**
+     * Wrap `el` in a `ClassList`.
+     *
+     * @param {Element} el
+     * @return {ClassList}
+     * @api public
+     */
+
+    module.exports = function (el) {
+      return new ClassList(el);
+    };
+
+    /**
+     * Initialize a new ClassList for `el`.
+     *
+     * @param {Element} el
+     * @api private
+     */
+
+    function ClassList(el) {
+      if (!el || !el.nodeType) {
+        throw new Error('A DOM element reference is required');
+      }
+      this.el = el;
+      this.list = el.classList;
+    }
+
+    /**
+     * Add class `name` if not already present.
+     *
+     * @param {String} name
+     * @return {ClassList}
+     * @api public
+     */
+
+    ClassList.prototype.add = function (name) {
+      // classList
+      if (this.list) {
+        this.list.add(name);
+        return this;
+      }
+
+      // fallback
+      var arr = this.array();
+      var i = index(arr, name);
+      if (!~i) arr.push(name);
+      this.el.className = arr.join(' ');
+      return this;
+    };
+
+    /**
+     * Remove class `name` when present, or
+     * pass a regular expression to remove
+     * any which match.
+     *
+     * @param {String|RegExp} name
+     * @return {ClassList}
+     * @api public
+     */
+
+    ClassList.prototype.remove = function (name) {
+      if ('[object RegExp]' == toString.call(name)) {
+        return this.removeMatching(name);
+      }
+
+      // classList
+      if (this.list) {
+        this.list.remove(name);
+        return this;
+      }
+
+      // fallback
+      var arr = this.array();
+      var i = index(arr, name);
+      if (~i) arr.splice(i, 1);
+      this.el.className = arr.join(' ');
+      return this;
+    };
+
+    /**
+     * Remove all classes matching `re`.
+     *
+     * @param {RegExp} re
+     * @return {ClassList}
+     * @api private
+     */
+
+    ClassList.prototype.removeMatching = function (re) {
+      var arr = this.array();
+      for (var i = 0; i < arr.length; i++) {
+        if (re.test(arr[i])) {
+          this.remove(arr[i]);
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Toggle class `name`, can force state via `force`.
+     *
+     * For browsers that support classList, but do not support `force` yet,
+     * the mistake will be detected and corrected.
+     *
+     * @param {String} name
+     * @param {Boolean} force
+     * @return {ClassList}
+     * @api public
+     */
+
+    ClassList.prototype.toggle = function (name, force) {
+      // classList
+      if (this.list) {
+        if ("undefined" !== typeof force) {
+          if (force !== this.list.toggle(name, force)) {
+            this.list.toggle(name); // toggle again to correct
+          }
+        } else {
+          this.list.toggle(name);
+        }
+        return this;
+      }
+
+      // fallback
+      if ("undefined" !== typeof force) {
+        if (!force) {
+          this.remove(name);
+        } else {
+          this.add(name);
+        }
+      } else {
+        if (this.has(name)) {
+          this.remove(name);
+        } else {
+          this.add(name);
+        }
+      }
+
+      return this;
+    };
+
+    /**
+     * Return an array of classes.
+     *
+     * @return {Array}
+     * @api public
+     */
+
+    ClassList.prototype.array = function () {
+      var className = this.el.getAttribute('class') || '';
+      var str = className.replace(/^\s+|\s+$/g, '');
+      var arr = str.split(re);
+      if ('' === arr[0]) arr.shift();
+      return arr;
+    };
+
+    /**
+     * Check if class `name` is present.
+     *
+     * @param {String} name
+     * @return {ClassList}
+     * @api public
+     */
+
+    ClassList.prototype.has = ClassList.prototype.contains = function (name) {
+      return this.list ? this.list.contains(name) : !!~index(this.array(), name);
+    };
+  }, { "./index-of": 15 }], 11: [function (require, module, exports) {
+    var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
+        unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
+        prefix = bind !== 'addEventListener' ? 'on' : '',
+        toArray = require('./to-array');
+
+    /**
+     * Bind `el` event `type` to `fn`.
+     *
+     * @param {Element} el, NodeList, HTMLCollection or Array
+     * @param {String} type
+     * @param {Function} fn
+     * @param {Boolean} capture
+     * @api public
+     */
+
+    exports.bind = function (el, type, fn, capture) {
+      el = toArray(el);
+      for (var i = 0; i < el.length; i++) {
+        el[i][bind](prefix + type, fn, capture || false);
+      }
+    };
+
+    /**
+     * Unbind `el` event `type`'s callback `fn`.
+     *
+     * @param {Element} el, NodeList, HTMLCollection or Array
+     * @param {String} type
+     * @param {Function} fn
+     * @param {Boolean} capture
+     * @api public
+     */
+
+    exports.unbind = function (el, type, fn, capture) {
+      el = toArray(el);
+      for (var i = 0; i < el.length; i++) {
+        el[i][unbind](prefix + type, fn, capture || false);
+      }
+    };
+  }, { "./to-array": 16 }], 12: [function (require, module, exports) {
+    /*
+     * Source: https://github.com/segmentio/extend
+     */
+
+    module.exports = function extend(object) {
+      // Takes an unlimited number of extenders.
+      var args = Array.prototype.slice.call(arguments, 1);
+
+      // For each extender, copy their properties on our object.
+      for (var i = 0, source; source = args[i]; i++) {
+        if (!source) continue;
+        for (var property in source) {
+          object[property] = source[property];
+        }
+      }
+
+      return object;
+    };
+  }, {}], 13: [function (require, module, exports) {
+    /**
+     * A cross-browser implementation of getAttribute.
+     * Source found here: http://stackoverflow.com/a/3755343/361337 written by Vivin Paliath
+     *
+     * Return the value for `attr` at `element`.
+     *
+     * @param {Element} el
+     * @param {String} attr
+     * @api public
+     */
+
+    module.exports = function (el, attr) {
+      var result = el.getAttribute && el.getAttribute(attr) || null;
+      if (!result) {
+        var attrs = el.attributes;
+        var length = attrs.length;
+        for (var i = 0; i < length; i++) {
+          if (attr[i] !== undefined) {
+            if (attr[i].nodeName === attr) {
+              result = attr[i].nodeValue;
+            }
+          }
+        }
+      }
+      return result;
+    };
+  }, {}], 14: [function (require, module, exports) {
+    /**
+     * A cross-browser implementation of getElementsByClass.
+     * Heavily based on Dustin Diaz's function: http://dustindiaz.com/getelementsbyclass.
+     *
+     * Find all elements with class `className` inside `container`.
+     * Use `single = true` to increase performance in older browsers
+     * when only one element is needed.
+     *
+     * @param {String} className
+     * @param {Element} container
+     * @param {Boolean} single
+     * @api public
+     */
+
+    module.exports = function () {
+      if (document.getElementsByClassName) {
+        return function (container, className, single) {
+          if (single) {
+            return container.getElementsByClassName(className)[0];
+          } else {
+            return container.getElementsByClassName(className);
+          }
+        };
+      } else if (document.querySelector) {
+        return function (container, className, single) {
+          className = '.' + className;
+          if (single) {
+            return container.querySelector(className);
+          } else {
+            return container.querySelectorAll(className);
+          }
+        };
+      } else {
+        return function (container, className, single) {
+          var classElements = [],
+              tag = '*';
+          if (container === null) {
+            container = document;
+          }
+          var els = container.getElementsByTagName(tag);
+          var elsLen = els.length;
+          var pattern = new RegExp("(^|\\s)" + className + "(\\s|$)");
+          for (var i = 0, j = 0; i < elsLen; i++) {
+            if (pattern.test(els[i].className)) {
+              if (single) {
+                return els[i];
+              } else {
+                classElements[j] = els[i];
+                j++;
+              }
+            }
+          }
+          return classElements;
+        };
+      }
+    }();
+  }, {}], 15: [function (require, module, exports) {
+    var indexOf = [].indexOf;
+
+    module.exports = function (arr, obj) {
+      if (indexOf) return arr.indexOf(obj);
+      for (var i = 0; i < arr.length; ++i) {
+        if (arr[i] === obj) return i;
+      }
+      return -1;
+    };
+  }, {}], 16: [function (require, module, exports) {
+    /**
+     * Source: https://github.com/timoxley/to-array
+     *
+     * Convert an array-like object into an `Array`.
+     * If `collection` is already an `Array`, then will return a clone of `collection`.
+     *
+     * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`
+     * @return {Array} Naive conversion of `collection` to a new `Array`.
+     * @api public
+     */
+
+    module.exports = function toArray(collection) {
+      if (typeof collection === 'undefined') return [];
+      if (collection === null) return [null];
+      if (collection === window) return [window];
+      if (typeof collection === 'string') return [collection];
+      if (isArray(collection)) return collection;
+      if (typeof collection.length != 'number') return [collection];
+      if (typeof collection === 'function' && collection instanceof Function) return [collection];
+
+      var arr = [];
+      for (var i = 0; i < collection.length; i++) {
+        if (Object.prototype.hasOwnProperty.call(collection, i) || i in collection) {
+          arr.push(collection[i]);
+        }
+      }
+      if (!arr.length) return [];
+      return arr;
+    };
+
+    function isArray(arr) {
+      return Object.prototype.toString.call(arr) === "[object Array]";
+    }
+  }, {}], 17: [function (require, module, exports) {
+    module.exports = function (s) {
+      s = s === undefined ? "" : s;
+      s = s === null ? "" : s;
+      s = s.toString();
+      return s;
+    };
+  }, {}] }, {}, [4]);
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -20511,7 +21854,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -21003,7 +22346,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -21936,7 +23279,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23062,7 +24405,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -23492,10 +24835,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(30));
+})(__webpack_require__(32));
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -32906,7 +34249,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -35290,7 +36633,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -52379,10 +53722,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31), __webpack_require__(1)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33), __webpack_require__(1)(module)))
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -52391,7 +53734,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 var g;
@@ -52418,7 +53761,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);

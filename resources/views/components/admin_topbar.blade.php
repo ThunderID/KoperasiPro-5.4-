@@ -15,7 +15,7 @@
 			<span class="pull-right m-l-xs">
 				<div class="dropdown p-t-xs">
 					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
-						<i class="fa fa-building"></i>&nbsp;&nbsp;  {{ App\Web\Services\TAuth::activeOffice()->office->name }} &nbsp;&nbsp;<span class="caret"></span>
+						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ App\Web\Services\TAuth::activeOffice()->office->name }} &nbsp;&nbsp;<span class="caret"></span>
 					</a>
 				</div>
 			</span>

@@ -122,4 +122,9 @@ $(document).ready( function() {
  */
 window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
 
-
+/**
+ * 11. jQuery plugin List-js
+ * Description: plugin jQuery for list & search
+ * Usage & Documentation: http://listjs.com/docs/
+ */
+window.list = require('./plugins/list-js/list.js');

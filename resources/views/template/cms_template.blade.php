@@ -97,22 +97,27 @@
 				'hide_buttons'	=> true
 			]
 		])
-		<fieldset class="form-group">
-			<div class="row">
-				<div class="col-md-12">
-					{!! Form::text('search_koperasi', null, ['class' => 'form-control']) !!}
-					<span class="form-control-feedback m-r-md" aria-hidden="true"><i class="fa fa-search"></i></span>
-				</div>
-				<div class="col-md-12">
-					<ul class="p-l-none list-unstyled list-group">
-						@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
-							<li class="list-group-item"><a href="{{ route('office.activate', ['idx' => $value->office->id]) }}"><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value->office->name }}</a></li>
-						@endforeach
-					</ul>
-				</div>
+		<div id="list-koperasi">
+			<div class="form-group has-feedback">
+				<input type="text" class="search form-control" placeholder="cari nama koperasi">
+				<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
 			</div>
-		</fieldset>
-	    <div class="clearfix">&nbsp;</div>
+			<ul class="list-group list">
+				@foreach(App\Web\Services\TAuth::loggedUser()->accesses as $key => $value)
+					<li class="list-group-item">
+						<a class="name" href="{{ route('office.activate', ['idx' => $value->office->id]) }}"><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value->office->name }}</a>
+					</li>
+				@endforeach
+			</ul>
+		</div>
+		
+		<div class="clearfix">&nbsp;</div>
+		<div class="modal-footer" style="margin-left: -15px; margin-right: -15px;">
+			<p class="text-left m-b-none">
+				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ App\Web\Services\TAuth::activeOffice()->office->name }}
+				</span>
+			</p>
+		</div>
 	@endcomponent
 
 	{{-- modal confirmation logout --}}

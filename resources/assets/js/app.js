@@ -27,6 +27,8 @@ require('./modules/auto-tabindex');
 require('./modules/form-enter-to-tab');
 // add module select
 require('./modules/select');
+// add module list-js
+require('./modules/list');
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
