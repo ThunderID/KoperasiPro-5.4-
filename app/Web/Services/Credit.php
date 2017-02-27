@@ -311,6 +311,8 @@ class Credit extends baseService
 				}
 
 				$array['credit']['id']		= $credit->id;
+
+				$array['competition']		= null;
 	
 				$makro 						= new CreditFactory;
 				$makro 						= $makro->buildEcoMacroFromArray($array);
