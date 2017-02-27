@@ -35,8 +35,19 @@
 				@include('pages.survey.components.data_panels.data_keuangan')
 			</div>
 		</div>	
+
+		<div class="clearfix">&nbsp;</div>		
+
+		<!-- BLOCK 5 Display Data Aset // -->
+		<div class="row">
+			<div class="col-sm-12">
+				@include('pages.survey.components.data_panels.data_aset')
+			</div>
+		</div>		
+
+		<div class="clearfix">&nbsp;</div>		
 		
-		<!-- BLOCK 5 Display Data Jaminan // -->
+		<!-- BLOCK 6 Display Data Jaminan // -->
 		<div class="row">
 			<div class="col-sm-12">
 				@include('pages.survey.components.data_panels.data_jaminan')
@@ -46,7 +57,7 @@
 		<div class="clearfix">&nbsp;</div>
 		<div class="clearfix">&nbsp;</div>		
 
-		<!-- BLOCK 6 Action Button // -->
+		<!-- BLOCK 7 Action Button // -->
 <!-- 		<div class="row">
 			<div class="col-sm-12">
 				<button type="submit" class="btn btn-success pull-right">Simpan</button>
@@ -62,7 +73,7 @@
 	<!-- Data kepribadian // -->
 	@component('components.modal', [
 		'id' 		=> 'data_kepribadian',
-		'title'		=> 'Entri Data Kepribadian',
+		'title'		=> 'Data Kepribadian',
 		'settings'	=> [
 			'hide_buttons'	=> true
 		]	
@@ -73,7 +84,7 @@
 	<!-- Data ekonomi makro // -->
 	@component('components.modal', [
 		'id' 		=> 'eco_macro',
-		'title'		=> 'Entri Ekonomi Makro',
+		'title'		=> 'Ekonomi Makro',
 		'settings'	=> [
 			'hide_buttons'	=> true
 		]
@@ -81,10 +92,21 @@
 		@include('pages.survey.components.form.eco_macro')
 	@endcomponent
 
+	<!-- Data aset // -->
+	@component('components.modal', [
+		'id' 		=> 'data_aset',
+		'title'		=> 'Data Aset',
+		'settings'	=> [
+			'hide_buttons'	=> true
+		]	
+	])
+		@include('pages.survey.components.form.data_aset')
+	@endcomponent		
+
 	<!-- Data keuangan // -->
 	@component('components.modal', [
 		'id' 		=> 'data_keuangan',
-		'title'		=> 'Entri Data Keuangan',
+		'title'		=> 'Data Keuangan',
 		'settings'	=> [
 			'hide_buttons'	=> true
 		]	
@@ -94,22 +116,13 @@
 
 	<!-- Data jaminan // -->
 	@component('components.modal', [
-		'id' 		=> 'data_aset',
-		'title'		=> 'Entri Data Jaminan',
+		'id' 		=> 'data_jaminan',
+		'title'		=> 'Data Jaminan',
 		'settings'	=> [
-			'overrides'		=> [
-				'action_ok'		=> [
-					'title'			=> 'Simpan',
-					'style'			=> 'success',
-					'link'			=> '#'
-				],
-				'action_cancel'	=> [
-					'title'			=> 'Batal',
-					'style'			=> 'default',
-				]
-			]
+			'hide_buttons'	=> true
 		]	
 	])
-		@include('pages.survey.components.form.data_aset')
-	@endcomponent	
+		@include('pages.survey.components.form.data_jaminan')
+	@endcomponent		
+
 @append
