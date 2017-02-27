@@ -130,7 +130,14 @@ class EcoMacroRepository implements IRepository {
 		$eco_macro_model->risk 				= (string)$eco_macro_entity->risk;
 		$eco_macro_model->experience 		= (string)$eco_macro_entity->experience;
 		$eco_macro_model->daily_customer 	= (string)$eco_macro_entity->daily_customer;
-		$eco_macro_model->others 			= (array)$eco_macro_entity->others;
+
+		$others 							= [];
+		foreach ((array)$eco_macro_entity->others as $key => $value) 
+		{
+			$others[]						= (string) $value;
+		}
+
+		$eco_macro_model->others 			= $others;
 
 		///////////////////////
 		// Store EcoMacro //

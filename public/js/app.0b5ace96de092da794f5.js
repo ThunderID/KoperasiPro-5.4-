@@ -10356,6 +10356,8 @@ __webpack_require__(7);
 __webpack_require__(14);
 // add module list-js
 __webpack_require__(12);
+// add module modal
+__webpack_require__(48);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -53768,6 +53770,31 @@ __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
+
+/***/ }),
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$('.modal').on('show.bs.modal', function (e) {
+	modal = $(this);
+	$(document).on('pjax:end', function () {
+		modal.modal('hide');
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
