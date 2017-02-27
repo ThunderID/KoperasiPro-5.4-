@@ -312,11 +312,8 @@ class Credit extends baseService
 
 				$array['credit']['id']		= $credit->id;
 	
-				if(self::whitelists('survey'))
-				{				
-					$makro 						= new CreditFactory;
-					$makro 						= $makro->buildEcoMacroFromArray($array);
-				}
+				$makro 						= new CreditFactory;
+				$makro 						= $makro->buildEcoMacroFromArray($array);
 
 				$makro_repo 				= new EcoMacroRepository;
 				$makro_repo->store($makro);
