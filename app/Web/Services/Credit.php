@@ -297,6 +297,7 @@ class Credit extends baseService
 				//temporary
 				$array['residence']			= null;
 				$array['workplace']			= null;
+				$array['character']			= null;
 
 				$personality 				= new RegistryFactory;
 				$personality 				= $personality->buildPersonalityFromArray($array);
@@ -313,6 +314,7 @@ class Credit extends baseService
 				$array['credit']['id']		= $credit->id;
 
 				$array['competition']		= null;
+				$array['prospect']			= null;
 	
 				$makro 						= new CreditFactory;
 				$makro 						= $makro->buildEcoMacroFromArray($array);
