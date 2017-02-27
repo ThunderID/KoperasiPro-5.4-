@@ -104,6 +104,17 @@ class CreditSurveyController extends Controller
 			$service->update('aset', $aset, $credit->credit);
 		}
 		if(!is_null($keuangan)){
+			//temporary parsing IDR
+			foreach ($keuangan['incomes'] as $key => $value) 
+			{
+				$keuangan['incomes'][$key]['amount']	= (str_replace('.', '', (str_replace('IDR', '', $value['amount'])))) * 1;
+			}
+
+			foreach ($keuangan['expenses'] as $key => $value) 
+			{
+				$keuangan['expenses'][$key]['amount']	= (str_replace('.', '', (str_replace('IDR', '', $value['amount'])))) * 1;
+			}
+
 			$service->update('keuangan', $keuangan, $credit->credit);
 		}
 		if(!is_null($keuangan)){
