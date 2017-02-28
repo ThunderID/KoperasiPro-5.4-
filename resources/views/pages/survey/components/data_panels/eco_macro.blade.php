@@ -28,12 +28,10 @@
 @else
 <!-- With Data -->
 <div class="row">
-
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Prospek Usaha</strong></p>
+				<p class="p-b-sm"><strong>Prospek Usaha</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->prospect) }}
 				</p>
@@ -41,7 +39,7 @@
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Persaingan Usaha</strong></p>
+				<p class="p-b-sm"><strong>Persaingan Usaha</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->competition) }}
 				</p>
@@ -49,7 +47,7 @@
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Perputaran Usaha</strong></p>
+				<p class="p-b-sm"><strong>Perputaran Usaha</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->turn_over) }}
 				</p>
@@ -57,7 +55,7 @@
 		</div>	
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Jumlah Pelanggan Harian</strong></p>
+				<p class="p-b-sm"><strong>Jumlah Pelanggan Harian</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->daily_customer) }}
 				</p>
@@ -71,7 +69,7 @@
 
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Resiko Usaha</strong></p>
+				<p class="p-b-sm"><strong>Resiko Usaha</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->risk) }}
 				</p>
@@ -79,7 +77,7 @@
 		</div>	
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Pengalaman Usaha</strong></p>
+				<p class="p-b-sm"><strong>Pengalaman Usaha</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->macro->experience) }}
 				</p>
@@ -87,7 +85,7 @@
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Keterangan Lain</strong></p>
+				<p class="p-b-sm"><strong>Keterangan Lain</strong></p>
 				<ul>
 					@foreach($page_datas->credit->survey->macro->others as $other)
 						<li>

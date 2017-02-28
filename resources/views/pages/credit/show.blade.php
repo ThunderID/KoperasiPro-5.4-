@@ -117,11 +117,12 @@
 	<!-- BLOCK 8 Action Button // -->
 	<div class="row">
 		<div class="col-sm-6 text-left">
-			{{Form::open(['url' => route('credit.destroy', ['id' => $page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}
+			{{Form::open(['url' => route('credit.destroy', [$page_datas->credit->credit->id]), 'class' => 'form form-inline'])}}
 				<button class="btn btn-danger">Tolak</button>
 			{{Form::close()}}
 		</div>
 		<div class="col-sm-6 text-right">
+			<a href="{{ route('credit.print', ['id' => $page_datas->credit->credit->id]) }}" class="btn btn-success">Print</a>
 			<a class="btn btn-success" href="{{route('credit.propose', ['id' => $page_datas->credit->credit->id])}}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
 		</div>

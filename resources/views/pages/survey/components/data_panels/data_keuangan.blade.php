@@ -4,10 +4,10 @@
 			@if(count($page_datas->credit->survey->finance->incomes) > 0)
 			<span class="pull-right">
 				<small>
-				<a href="#data-keuangan" data-toggle="modal" data-target="#data_keuangan" no-data-pjax>
-					<i class="fa fa-pencil" aria-hidden="true"></i>
-					 Edit
-				</a>
+					<a href="#data-keuangan" data-toggle="modal" data-target="#data_keuangan" no-data-pjax>
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						Edit
+					</a>
 				</small>
 			</span>
 			@endif
@@ -34,55 +34,54 @@
 	<div class="col-sm-12">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<h4 style="margin-top:0px;font-weight: 100px; font-size: 16px;">Penghasilan</h4>
-				</hr>
-			</div>
+				<h4 class="title-section light m-t-none">Penghasilan</h4>
+			</hr>
 		</div>
 	</div>
-	@foreach($page_datas->credit->survey->finance->incomes as $income)
-		<div class="col-sm-6">
+</div>
+@foreach($page_datas->credit->survey->finance->incomes as $income)
+<div class="col-sm-6">
 
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>{{ ucWords($income->description ) }}</strong></p>
-					<p>
-						{{$income->amount->IDR()}}
-					</p>
-				</div>
-			</div>
-
-		</div>
-	@endforeach
-	
-	<div class="clearfix">&nbsp;</div>
-
-	<div class="col-sm-12">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<h4 style="font-weight: 100px; font-size: 16px;">Pengeluaran</h4>
-				</hr>
-			</div>
+	<div class="row m-b-xl">
+		<div class="col-sm-12">
+			<p class="p-b-sm"><strong>{{ ucwords($income->description ) }}</strong></p>
+			<p>
+				{{$income->amount->IDR()}}
+			</p>
 		</div>
 	</div>
 
-	@foreach($page_datas->credit->survey->finance->expenses as $expense)
-		<div class="col-sm-6">
+</div>
+@endforeach
 
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p style="margin-bottom: 7px;"><strong>{{ ucWords($expense->description ) }}</strong></p>
-					<p>
-						{{$expense->amount->IDR()}}
-					</p>
-				</div>
-			</div>
+<div class="clearfix">&nbsp;</div>
 
+<div class="col-sm-12">
+	<div class="row m-b-xl">
+		<div class="col-sm-12">
+			<h4 class="title-section light m-t-none">Pengeluaran</h4>
+		</hr>
+	</div>
+</div>
+</div>
+
+@foreach($page_datas->credit->survey->finance->expenses as $expense)
+<div class="col-sm-6">
+
+	<div class="row m-b-xl">
+		<div class="col-sm-12">
+			<p class="p-b-sm"><strong>{{ ucwords($expense->description ) }}</strong></p>
+			<p>
+				{{$expense->amount->IDR()}}
+			</p>
 		</div>
-	@endforeach
+	</div>
 
-	<div class="clearfix">&nbsp;</div>
-	
-	<div class="clearfix">&nbsp;</div>
+</div>
+@endforeach
+
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
 
 </div>
 @endif

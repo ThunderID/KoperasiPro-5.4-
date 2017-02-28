@@ -33,15 +33,15 @@
 
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Karakter</strong></p>
+				<p class="p-b-sm"><strong>Karakter</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->personality->character) }}
+					{{ ucwords(str_replace('_', ' ', $page_datas->credit->survey->personality->character)) }}
 				</p>
 			</div>
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Lingkungan Tinggal</strong></p>
+				<p class="p-b-sm"><strong>Lingkungan Tinggal</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->personality->residence['acquinted']) }}
 				</p>
@@ -49,7 +49,7 @@
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Lingkungan Kerja</strong></p>
+				<p class="p-b-sm"><strong>Lingkungan Kerja</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->personality->workplace['acquinted']) }}
 				</p>
@@ -61,7 +61,7 @@
 
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Pola Hidup</strong></p>
+				<p class="p-b-sm"><strong>Pola Hidup</strong></p>
 				<p>
 					{{ ucwords($page_datas->credit->survey->personality->lifestyle) }}
 				</p>
@@ -70,7 +70,7 @@
 
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Keterangan Lain</strong></p>
+				<p class="p-b-sm"><strong>Keterangan Lain</strong></p>
 				<ul>
 					@foreach($page_datas->credit->survey->personality->notes as $note)
 						<li>

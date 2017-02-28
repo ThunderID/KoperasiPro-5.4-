@@ -1,13 +1,13 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4>Data Aset
-			@if(!empty($page_datas->credit->survey->asset))
+		<h4 class="text-uppercase">Data Aset
+			@if(!is_null($page_datas->credit->survey->asset))
 			<span class="pull-right">
 				<small>
-				<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
-					<i class="fa fa-pencil" aria-hidden="true"></i>
-					 Edit
-				</a>
+					<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						Edit
+					</a>
 				</small>
 			</span>
 			@endif
@@ -16,7 +16,7 @@
 	</div>
 </div>
 
-@if(empty($page_datas->credit->survey->asset))
+@if(is_null($page_datas->credit->survey->asset))
 <!-- no data -->
 <div class="row">
 	<div class="col-sm-12">
@@ -30,163 +30,177 @@
 <!-- with data -->
 <div class="row">
 	<div class="col-sm-12">
+		@if (is_null($page_datas->credit->survey->asset->houses))
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Rumah/Tanah</h4>
+					<p>Belum ada asset</p>
+				</div>
+			</div>
+		@else
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Rumah/Tanah</h4>
+				</div>
+			</div>
+		@endif
+	</div>
+
+	@foreach ((array)$page_datas->credit->survey->asset->houses as $value)
+	<div class="col-sm-6">
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<h4 style="margin-top:0px;font-weight: 100px; font-size: 16px;">Rumah/Tanah</h4>
-				</hr>
+				<p class="p-b-sm"><strong>Status Rumah</strong></p>
+				<p>
+					{{ str_replace('_', ' ', $value->ownership_status) }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p class="p-b-sm"><strong>Nilai Rumah/Tanah</strong></p>
+				<p>
+					{{ $value->worth->IDR() }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p class="p-b-sm"><strong>Luas Rumah/Tanah</strong></p>
+				<p>
+					{{ $value->size }}
+				</p>
 			</div>
 		</div>
 	</div>
-
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Status Rumah</strong></p>
+				<p class="p-b-sm"><strong>Sejak</strong></p>
 				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Nilai Rumah/Tanah</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Luas Rumah/Tanah</strong></p>
-				<p>
-					Dummy
-				</p>
-			</div>
-		</div>
-
-	</div>
-	<div class="col-sm-6">
-
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Sejak</strong></p>
-				<p>
-					Dummy
+					{{ $value->since->format('d/m/Y') }}
 				</p>
 			</div>
 		</div>	
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Angsuran/KPR</strong></p>
+				<p class="p-b-sm"><strong>Angsuran/KPR</strong></p>
 				<p>
-					Dummy
+					{{ $value->installment_period }}
 				</p>
 			</div>
-		</div>			
-
+		</div>
 	</div>
+	@endforeach
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
 
 	<div class="col-sm-12">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<h4 style="margin-top:0px;font-weight: 100px; font-size: 16px;">Kendaraan</h4>
-				</hr>
+		@if (is_null($page_datas->credit->survey->asset->vehicles))
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Kendaraan</h4>
+				</div>
 			</div>
-		</div>
+		@else
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Kendaraan</h4>
+					<p>Belum ada asset</p>
+				</div>
+			</div>
+		@endif
 	</div>	
 
+	@foreach ((array)$page_datas->credit->survey->asset->vehicles as $value)
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Jumlah Kendaraan</strong></p>
+				<p class="p-b-sm"><strong>Jumlah Kendaraan</strong></p>
 				<p>
-					Dummy
+					{{ ( $value->four_wheels + $value->two_wheels) }}
 				</p>
 			</div>
 		</div>
-
 	</div>
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Nilai Kendaraan</strong></p>
+				<p class="p-b-sm"><strong>Nilai Kendaraan</strong></p>
 				<p>
-					Dummy
+					{{ $value->worth->IDR() }}
 				</p>
 			</div>
-		</div>		
-
+		</div>
 	</div>
+	@endforeach
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
 
 	<div class="col-sm-12">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<h4 style="margin-top:0px;font-weight: 100px; font-size: 16px;">Usaha/Perusahaan</h4>
-				</hr>
+		@if ($page_datas->credit->survey->asset->companies)
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Usaha/Perusahaan</h4>
+				</div>
 			</div>
-		</div>
+		@else
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Usaha/Perusahaan</h4>
+					<p>Belum ada asset</p>
+				</div>
+			</div>
+		@endif
 	</div>	
 
+	@foreach ((array)$page_datas->credit->survey->asset->companies as $value)
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Nama Perusahaan/Usaha</strong></p>
+				<p class="p-b-sm"><strong>Nama Perusahaan/Usaha</strong></p>
 				<p>
-					Dummy
+					{{ $value->name }}
 				</p>
 			</div>
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Bidang Usaha</strong></p>
+				<p class="p-b-sm"><strong>Bidang Usaha</strong></p>
 				<p>
-					Dummy
+					{{ $value->area }}
 				</p>
 			</div>
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Status Usaha</strong></p>
+				<p class="p-b-sm"><strong>Status Usaha</strong></p>
 				<p>
-					Dummy
+					{{ str_replace('_', ' ', $value->ownership_status) }}
 				</p>
 			</div>
-		</div>			
-
+		</div>
 	</div>
 	<div class="col-sm-6">
-
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Kerjasama Bagi Hasil</strong></p>
+				<p class="p-b-sm"><strong>Kerjasama Bagi Hasil</strong></p>
 				<p>
-					Dummy
+					{{ $value->share }}
 				</p>
 			</div>
 		</div>		
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p style="margin-bottom: 7px;"><strong>Nilai Asset Perusahaan</strong></p>
+				<p class="p-b-sm"><strong>Nilai Asset Perusahaan</strong></p>
 				<p>
-					Dummy
+					{{ $value->worth->IDR() }}
 				</p>
 			</div>
-		</div>				
-
-	</div>	
-
+		</div>
+	</div>
+	@endforeach
 </div>
 @endif
