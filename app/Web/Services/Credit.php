@@ -297,7 +297,6 @@ class Credit extends baseService
 				//temporary
 				$array['residence']			= null;
 				$array['workplace']			= null;
-				$array['character']			= null;
 
 				$personality 				= new RegistryFactory;
 				$personality 				= $personality->buildPersonalityFromArray($array);
