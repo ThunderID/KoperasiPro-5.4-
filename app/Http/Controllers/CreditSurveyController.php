@@ -44,6 +44,9 @@ class CreditSurveyController extends Controller
 		//initialize view
 		$this->view									= view('pages.survey.index');
 
+		// Paginate
+		$this->paginate(route('credit.index'),100,1,10);
+
 		//function from parent to generate view
 		return $this->generateView();
 	}
@@ -66,6 +69,9 @@ class CreditSurveyController extends Controller
 
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getSurveyLists();
+
+		// Paginate
+		$this->paginate(route('credit.index'),100,1,10);		
 
 		//parsing master data here
 		$this->page_datas->credit 					= Credit::findByID($id);
@@ -95,6 +101,7 @@ class CreditSurveyController extends Controller
 
 		$service 				= new Credit;
 		if(!is_null($kepribadian)){
+			dd($kepribadian);
 			$service->update('kepribadian', $kepribadian, $credit->credit);
 		}
 		if(!is_null($makro)){
