@@ -19,7 +19,7 @@
 				]])
 			</div>
 
-			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="2">
+			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
 				    @foreach($page_datas->credits as $key => $value)
 				        <a href="{{route('credit.show', array_merge(['id' => $value->id], Input::all()))}}" class="list-group-item {{$key == 0? 'first': ''}} {{((isset($page_datas->id) && $page_datas->id == $value->id) ? 'active' : '')}} " >
@@ -33,6 +33,13 @@
 				    @endforeach
 				</div>
 			</div>
+			<div class="sidebar-footer">
+				<div class="col-md-12 p-l-none text-center">
+					@include('components.custom_paginator',[
+						'range' 	=> 5
+					])
+				</div>
+			</div>			
 		</div>
 		<div class="col-sm-9">
 			<div class="_window" data-padd-top="auto" data-padd-bottom="2" style="padding-top:16px;padding-bottom: 16px;overflow-y: auto;margin-right: -15px; padding-right: 16px;">
