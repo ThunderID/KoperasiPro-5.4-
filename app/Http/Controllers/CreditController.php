@@ -41,6 +41,9 @@ class CreditController extends Controller
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getCreditLists();
 
+		// Paginate
+		$this->paginate(route('credit.index'),100,1,10);
+
 		//initialize view
 		$this->view									= view('pages.credit.index');
 
@@ -161,6 +164,9 @@ class CreditController extends Controller
 
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getCreditLists();
+
+		// Paginate
+		$this->paginate(route('credit.index'),100,1,10);	
 
 		//parsing master data here
 		$this->page_datas->credit 					= Credit::findByID($id);

@@ -54,17 +54,17 @@
 			</div>
 		</div>	
 
-		<div class="clearfix">&nbsp;</div>
-		<div class="clearfix">&nbsp;</div>		
+		<!-- <div class="clearfix">&nbsp;</div> -->
+		<!-- <div class="clearfix">&nbsp;</div>		 -->
 
 		<!-- BLOCK 7 Action Button // -->
 <!-- 		<div class="row">
 			<div class="col-sm-12">
 				<button type="submit" class="btn btn-success pull-right">Simpan</button>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="clearfix">&nbsp;</div>		 -->
+		<div class="clearfix">&nbsp;</div>		
 
 @stop
 
