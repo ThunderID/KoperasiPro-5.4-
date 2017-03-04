@@ -21,6 +21,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 	//Menu Kredit
 	Route::resource('credit', 'CreditController');
+
 	//Menu Survey
 	Route::resource('survey', 'CreditSurveyController');
 
@@ -52,5 +53,8 @@ Route::group(['middleware' => ['pjax']], function()
 	Route::get('/index', 	['uses' => 'DashboardController@indextest1', 'as' => 'dashboard.sample.index']);
 	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
 });
+
+// route for print credit
+Route::get('credit/print/rencana-kredit/{id}', ['uses' => 'CreditController@print',			'as' => 'credit.print']);
 
 Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);

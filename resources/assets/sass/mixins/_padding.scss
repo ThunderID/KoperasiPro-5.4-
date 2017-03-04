@@ -1,0 +1,14 @@
+@mixin make-padding($label, $value) {
+	.p-r-#{$label} {
+		padding-right: $value !important;
+	}
+	.p-l-#{$label} {
+		padding-left: $value !important;
+	}
+	.p-b-#{$label} {
+		padding-bottom: $value !important;
+	}
+	.p-t-#{$label} {
+		padding-top: $value !important;
+	}
+}
