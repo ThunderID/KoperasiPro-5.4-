@@ -23,7 +23,11 @@
 @extends('layout.layout')
 
 @section('template')
-	<div class="container">
+	<div class="container print-area">
 		@stack('content')
 	</div>
+@endsection
+
+@section('template-styles')
+	body{ background-color: #fff; }
 @endsection

@@ -1,0 +1,14 @@
+@mixin make-margin($label, $value) {
+	.m-r-#{$label} { 
+		margin-right: $value !important;
+	}
+	.m-l-#{$label} {
+		margin-left: $value !important;
+	}
+	.m-b-#{$label} {
+		margin-bottom: $value !important;
+	}
+	.m-t-#{$label} {
+		margin-top: $value !important;
+	}	
+}

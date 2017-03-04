@@ -1,0 +1,44 @@
+@media print {
+	body {
+		background-color: $color-white;
+		font-size: 10px;
+	}
+	h4 {
+		font-size: 14px;
+	}
+	h4.title-section {
+		font-size: 12px;
+	}
+	p {
+		margin-bottom: $space-xs !important;
+	}
+
+	hr.print {
+		border-width: 2px;
+	}
+
+	@include make-grid(sm);
+
+	// margin value negatif
+	// margin sm, xl
+	@include make-margin(xs-m-print, - ($space-xs - 2));
+	@include make-margin(sm-m-print, - ($space-sm - 2));
+	@include make-margin(md-m-print, - ($space-md - 2));
+	@include make-margin(xl-m-print, - ($space-xl - 2));
+	
+	// margin value positif
+	// margin xs, sm, md, lg, xl
+	@include make-margin(xs-print, $space-xs - 2);
+	@include make-margin(sm-print, $space-sm - 2);
+	@include make-margin(md-print, $space-md - 2);
+	@include make-margin(lg-print, $space-lg - 2);
+	@include make-margin(xl-print, $space-xl - 2);
+
+	// padding
+	// padding xs, sm, md, lg, xl
+	@include make-padding(xs-print, $space-xs - 2);
+	@include make-padding(sm-print, $space-sm - 2);
+	@include make-padding(md-print, $space-md - 2);
+	@include make-padding(lg-print, $space-lg - 2);
+	@include make-padding(xl-print, $space-xl - 2);
+}

@@ -115,7 +115,7 @@
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
-	
+
 	<!-- BLOCK 8 Action Button // -->
 	<div class="row">
 		<div class="col-sm-6 text-left">
@@ -124,13 +124,38 @@
 			{{Form::close()}}
 		</div>
 		<div class="col-sm-6 text-right">
-			<a href="{{ route('credit.print', ['id' => $page_datas->credit->credit->id]) }}" class="btn btn-success">Print</a>
+			<a data-url="{{ route('credit.print', ['id' => $page_datas->credit->credit->id]) }}" data-id="" class="btn btn-success btn-print" >Print</a>
 			<a class="btn btn-success" href="{{route('credit.propose', ['id' => $page_datas->credit->credit->id])}}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
 		</div>
 	</div>
 
 	<div class="clearfix">&nbsp;</div>
-
+	<div class="print-page hide" data-print="false"></div>
 @stop
 
+@push('scripts')
+	$('document').ready( function() {
+		$('.btn-print').click( function() {
+			url = $(this).data('url');
+			printDiv(url);
+		});
+
+		function printDiv(url) {
+			//page = location.href(url);
+			//var mywindow = window.open("http://mlmarketing.ir/1/printtarget.php");
+			//mywindow.document.write('<p>' + document.getElementById('news').innerHTML + '</p>');
+			//newWindow.open('');
+	
+
+			newWindow = window.open(url, 'test', 'directories=no, titlebar=no, toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no');
+
+			newWindow.document.write(newWindow.innertHtml());
+			newWindow.print();
+			newWindow.close();
+			$('#print-page').addClass('hide');
+			//window.open('/pageaddress.html','winname','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=350');
+
+		}
+	});	
+@endpush
