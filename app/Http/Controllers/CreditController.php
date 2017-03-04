@@ -91,10 +91,11 @@ class CreditController extends Controller
 	public function store()
 	{
 		//creditor
-		$person['id']			= null;
 		$person					= Input::get('person');
+		$person['id']			= null;
 		$person['works']		= null;
 		$person['relatives']	= null;
+		$person['phones']		= null;
 
 		//only happen if person id = null
 		if(is_null($person['id']))
@@ -103,7 +104,7 @@ class CreditController extends Controller
 			$person_entity		= $person_service->store($person);
 	
 			//alamat
-			$alamat				= Input::get('alamat');
+			$alamat				= Input::get('address');
 			$alamat['id']		= null;
 			$alamat['latitude']	= null;
 			$alamat['longitude']= null;
@@ -112,10 +113,10 @@ class CreditController extends Controller
 		}
 
 		// warrantor
-		$warrantor['id']		= null;
 		$warrantor 				= Input::get('warrantor');
-	
-		if(is_null($warrantor['id']))
+		$warrantor['id']		= null;
+
+		if(is_null($warrantor['id']) && isset($warrantor['name']))
 		{
 			$warrantor['nik']					= null;
 			$warrantor['place_of_birth']		= null;
@@ -123,7 +124,7 @@ class CreditController extends Controller
 			$warrantor['religion']				= null;
 			$warrantor['highest_education']		= null;
 			$warrantor['marital_status']		= null;
-			$warrantor['phone_number']			= null;
+			$warrantor['phones']				= [];
 			$warrantor['works']					= [];
 			$warrantor['relatives']				= [];
 
@@ -132,11 +133,18 @@ class CreditController extends Controller
 			$warrantor_service 	= new Person;
 			$warrantor_entity	= $warrantor_service->store($warrantor);
 		}
+		else
+		{
+			$warrantor_entity 					= null;
+		}
 
 
 		//credit
-		$credit_array['id']		= null;
 		$credit_array			= Input::get('credit');
+		$credit_array['id']		= null;
+
+		$credit_array['credit_amount']			= str_replace('IDR', '', str_replace('.', '', $credit_array['credit_amount']));
+		$credit_array['installment_capacity']	= str_replace('IDR', '', str_replace('.', '', $credit_array['installment_capacity']));
 
 		$credit_service 		= new Credit;
 		$result					= $credit_service->store($credit_array, $person_entity, $warrantor_entity);
@@ -177,7 +185,7 @@ class CreditController extends Controller
 		$this->page_datas->creditor_address_active	= Person::findByID($person_id);
 
 		// check address for warrator (penjamin)
-		if (($this->page_datas->credit->credit->warrantor))
+		if (($this->page_datas->credit->credit->warrantor) && !is_null($this->page_datas->credit->credit->warrantor->id))
 		{
 			$person_id 									= $this->page_datas->credit->credit->warrantor->id;
 			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);

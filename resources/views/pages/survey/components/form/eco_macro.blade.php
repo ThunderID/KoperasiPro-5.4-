@@ -86,7 +86,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('makro[others][0]', $page_datas->credit->survey->macro->others[0], ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('makro[others][0]', (!empty($page_datas->credit->survey->macro->others[0]) ? $page_datas->credit->survey->macro->others[0] : '') , ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>

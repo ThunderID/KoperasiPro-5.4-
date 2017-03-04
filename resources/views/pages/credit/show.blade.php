@@ -65,7 +65,9 @@
 			<?php
 				// A ver.
 			?>
-				@include('pages.credit.components.data_panels.data_penjamin')
+				@if(isset($page_datas->warrantor_address_active))
+					@include('pages.credit.components.data_panels.data_penjamin')
+				@endif
 			<?php
 				// B ver.
 				// @include('pages.credit.components.data_panels.[b]data_penjamin')

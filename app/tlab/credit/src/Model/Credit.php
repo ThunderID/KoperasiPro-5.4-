@@ -57,7 +57,7 @@ class Credit extends BaseModel
 											'creditor.id'					=> 'required|max:255',
 											'creditor.name'					=> 'max:255',
 											
-											'warrantor.id'					=> 'required|max:255',
+											'warrantor.id'					=> 'max:255',
 											'warrantor.name'				=> 'max:255',
 
 											'credit_amount'					=> 'numeric',
