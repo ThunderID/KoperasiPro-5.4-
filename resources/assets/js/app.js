@@ -12,6 +12,7 @@ require('./modules/push-notification');
 // add module form validation
 require('./modules/form-validate');
 require('./modules/form-wizard');
+require('./modules/form-ajax-submit');
 require('./modules/uac');
 // add module template clone
 require('./modules/template-clone');
