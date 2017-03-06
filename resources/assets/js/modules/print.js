@@ -24,3 +24,7 @@ function openWindow(url) {
 	newWindow.print();
 	// newWindow.close();
 }
+
+$(document).ready( function() {
+	print();
+});

@@ -10741,6 +10741,10 @@ function openWindow(url) {
 	newWindow.print();
 	// newWindow.close();
 }
+
+$(document).ready(function () {
+	print();
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -10836,6 +10840,18 @@ window.notify = function (msg, title, type) {
 		// after get data set focus to select-cities
 		rootSelect.find('.select-cities').focus();
 	});
+
+	// on event select2 'cities' on selected after focus to 'input-kodepos' on form kontak
+	$('.select-cities').on('select2:select', function (evt) {
+		rootSelect = $(this).parent().parent().parent().parent();
+		rootSelect.find('.input-kodepos').focus();
+	});
+
+	// on event select2 'pekerjaan' on selected after focus to 'input-jabatan' on form pekerjaan
+	$('.select-pekerjaan').on('select2:select', function (evt) {
+		rootSelect = $(this).parent().parent().parent().parent();
+		rootSelect.find('.input-jabatan').focus();
+	});
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10847,7 +10863,7 @@ window.notify = function (msg, title, type) {
 $(function () {
 	$('.add').click(function () {
 		dataFlag = $(this).data('active');
-		template_add(dataFlag);
+		template_add(dataFlag, $(this));
 		window.resizeWizard(); // form wizard automatic height after add template
 
 		// call plugin quick-select if data active 'jaminan'
@@ -10871,14 +10887,14 @@ $(document).ready(function () {
  * function template add
  * description: ...
  */
-function template_add(flag) {
+function template_add(flag, element) {
 	temp = $('#template-clone-' + flag).children().clone();
 	// check data is clone jaminan
 	if (flag === 'jaminan') {
 		replaceQuickSelect(temp); // replace name to 'quick-select'
 	}
-
-	$('#section-clone-' + flag).append(temp);
+	// append template to section clone
+	element.parent().parent().find('.section-clone-' + flag).append(temp);
 }
 
 /**

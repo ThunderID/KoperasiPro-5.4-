@@ -27,4 +27,16 @@ window.select = function() {
 		// after get data set focus to select-cities
 		rootSelect.find('.select-cities').focus();
 	});
+
+	// on event select2 'cities' on selected after focus to 'input-kodepos' on form kontak
+	$('.select-cities').on('select2:select', function(evt) {
+		rootSelect = $(this).parent().parent().parent().parent();
+		rootSelect.find('.input-kodepos').focus();
+	});
+
+	// on event select2 'pekerjaan' on selected after focus to 'input-jabatan' on form pekerjaan
+	$('.select-pekerjaan').on('select2:select', function(evt) {
+		rootSelect = $(this).parent().parent().parent().parent();
+		rootSelect.find('.input-jabatan').focus();
+	});
 }

@@ -23,15 +23,15 @@
 			<section>
 				@include ('pages.credit.components.form.data_pribadi')
 			</section>
-			<h3>Data Penjamin</h3>
+			<h3>Data Pekerjaan</h3>
 			<section>
-				@include ('pages.credit.components.form.data_penjamin')
+				@include ('pages.credit.components.form.data_pekerjaan')
 			</section>
 			<h3>Data Jaminan</h3>
 			<section>
 				@include ('pages.credit.components.form.data_jaminan')
 			</section>
-			
+
 			{{-- koperasi --}}
 			{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
 			{!! Form::hidden('koperasi[nama]', 'tanjung terang') !!}
@@ -47,14 +47,12 @@
 
 	{{-- template clone --}}
 	<div class="hidden">
-		{{-- template clone untuk data jaminan --}}
+		{{-- template clone untuk data form jaminan --}}
 		@include('pages.credit.components.form.widget_jaminan')
-		{{-- template clone untuk data kontak --}}
-		@include('pages.credit.components.form.widget_no_telp')
+		{{-- template clone untuk data form contact --}}
+		@include('components.helpers.forms.contact')
 	</div>
 @endpush
-
-
 
 @push('scripts')
 @endpush

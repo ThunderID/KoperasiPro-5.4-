@@ -4,7 +4,7 @@
 </div>
 
 <div class="content-clone-jaminan">
-	<div id="section-clone-jaminan"></div>
+	<div class="section-clone-jaminan"></div>
 	<fieldset class="form-group">
 		<a href="javascript:void(0);" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add" data-active="jaminan"><i class="fa fa-plus"></i> Jaminan</a>
 	</fieldset>
