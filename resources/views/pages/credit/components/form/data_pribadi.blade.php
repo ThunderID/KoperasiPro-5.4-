@@ -133,6 +133,7 @@
 </fieldset>
 
 {{-- informasi kontak --}}
+{{-- don't forget to include widget_no_telp --}}
 <br />
 <strong><h5>Kontak</h5></strong>
 <div class="content-clone-contact">

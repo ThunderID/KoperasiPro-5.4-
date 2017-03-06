@@ -45,6 +45,8 @@ $(document).ready(function(){
 		formInputMask();
 		//optimize height
 		optimizeHeight();
+		// call module plugin print
+		print();
 	});
 
     // Form Submit with get method
