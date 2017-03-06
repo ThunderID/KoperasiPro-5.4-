@@ -1,15 +1,23 @@
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Aset
 			@if(!is_null($page_datas->credit->survey->asset))
-			<span class="pull-right">
-				<small>
-					<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
-						<i class="fa fa-pencil" aria-hidden="true"></i>
-						Edit
-					</a>
-				</small>
-			</span>
+				@if($edit == true)
+					<span class="pull-right">
+						<small>
+							<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+								Edit
+							</a>
+						</small>
+					</span>
+				@endif
 			@endif
 		</h4>
 		<hr/>
@@ -204,3 +212,20 @@
 	@endforeach
 </div>
 @endif
+
+@push('show_modals')
+	@if($edit == true)
+
+		<!-- Data aset // -->
+		@component('components.modal', [
+			'id' 		=> 'data_aset',
+			'title'		=> 'Data Aset',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]	
+		])
+			@include('pages.survey.components.form.data_aset')
+		@endcomponent	
+
+	@endif
+@endpush
