@@ -1,3 +1,9 @@
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Jaminan</h4>
@@ -549,3 +555,21 @@
 	@endforeach
 	<div class="clearfix">&nbsp;</div>
 </div>
+
+
+@push('show_modals')
+	@if($edit == true)
+
+		<!-- Data jaminan // -->
+		@component('components.modal', [
+			'id' 		=> 'data_jaminan',
+			'title'		=> 'Data Jaminan',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]	
+		])
+			@include('pages.survey.components.form.data_jaminan')
+		@endcomponent	
+
+	@endif
+@endpush

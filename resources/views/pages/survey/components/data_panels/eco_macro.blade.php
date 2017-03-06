@@ -1,15 +1,23 @@
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Ekonomi Makro
 			@if(!is_null($page_datas->credit->survey->macro->prospect))
-			<span class="pull-right">
-				<small>
-				<a href="#ekonomi-macro" data-toggle="modal" data-target="#eco_macro" no-data-pjax>
-					<i class="fa fa-pencil" aria-hidden="true"></i>
-					 Edit
-				</a>
-				</small>
-			</span>
+				@if($edit == true)
+					<span class="pull-right">
+						<small>
+						<a href="#ekonomi-macro" data-toggle="modal" data-target="#eco_macro" no-data-pjax>
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+							 Edit
+						</a>
+						</small>
+					</span>
+				@endif
 			@endif
 		</h4>
 		<hr/>
@@ -99,3 +107,20 @@
 	</div>
 </div>
 @endif
+
+@push('show_modals')
+	@if($edit == true)
+
+		<!-- Data ekonomi makro // -->
+		@component('components.modal', [
+			'id' 		=> 'eco_macro',
+			'title'		=> 'Ekonomi Makro',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]
+		])
+			@include('pages.survey.components.form.eco_macro')
+		@endcomponent
+
+	@endif
+@endpush	

@@ -1,15 +1,23 @@
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Keuangan
 			@if(count($page_datas->credit->survey->finance->incomes) > 0)
-			<span class="pull-right">
-				<small>
-					<a href="#data-keuangan" data-toggle="modal" data-target="#data_keuangan" no-data-pjax>
-						<i class="fa fa-pencil" aria-hidden="true"></i>
-						Edit
-					</a>
-				</small>
-			</span>
+				@if($edit == true)
+					<span class="pull-right">
+						<small>
+							<a href="#data-keuangan" data-toggle="modal" data-target="#data_keuangan" no-data-pjax>
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+								Edit
+							</a>
+						</small>
+					</span>
+				@endif
 			@endif
 		</h4>
 		<hr/>
@@ -85,3 +93,20 @@
 
 </div>
 @endif
+
+@push('show_modals')
+	@if($edit == true)
+
+		<!-- Data keuangan // -->
+		@component('components.modal', [
+			'id' 		=> 'data_keuangan',
+			'title'		=> 'Data Keuangan',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]	
+		])
+			@include('pages.survey.components.form.data_keuangan')
+		@endcomponent	
+
+	@endif
+@endpush	

@@ -1,15 +1,23 @@
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Kepribadian
 			@if(!is_null($page_datas->credit->survey->personality->character))
-			<span class="pull-right">
-				<small>
-				<a href="#data-kepribadian" data-toggle="modal" data-target="#data_kepribadian" no-data-pjax>
-					<i class="fa fa-pencil" aria-hidden="true"></i>
-					 Edit
-				</a>
-				</small>
-			</span>
+				@if($edit == true)
+					<span class="pull-right">
+						<small>
+						<a href="#data-kepribadian" data-toggle="modal" data-target="#data_kepribadian" no-data-pjax>
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+							 Edit
+						</a>
+						</small>
+					</span>
+				@endif
 			@endif
 		</h4>
 		<hr/>
@@ -84,3 +92,20 @@
 	</div>
 </div>
 @endif
+
+@push('show_modals')
+	@if($edit == true)
+
+		<!-- Data kepribadian // -->
+		@component('components.modal', [
+			'id' 		=> 'data_kepribadian',
+			'title'		=> 'Data Kepribadian',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]	
+		])
+			@include('pages.survey.components.form.data_kepribadian')
+		@endcomponent
+
+	@endif
+@endpush

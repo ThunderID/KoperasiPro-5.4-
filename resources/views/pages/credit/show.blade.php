@@ -20,7 +20,9 @@
    <!-- 3 Data Kelurga // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_keluarga')
+			@include('pages.credit.components.data_panels.data_keluarga',[
+				'edit' => true
+			])
 		</div>
 	</div>
 
@@ -77,5 +79,6 @@
 	<div class="clearfix">&nbsp;</div>
 @stop
 
-@push('scripts')
-@endpush
+@section('page_modals')
+	@stack('show_modals')
+@append

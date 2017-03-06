@@ -14,7 +14,9 @@
 		<!-- BLOCK 2 Display Data Kepribadian // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_kepribadian')
+				@include('pages.survey.components.data_panels.data_kepribadian',[
+					'edit' => true
+				])
 			</div>
 		</div>		
 
@@ -23,7 +25,9 @@
 		<!-- BLOCK 3 Display Ekonomi Makro // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.eco_macro')
+				@include('pages.survey.components.data_panels.eco_macro',[
+					'edit' => true
+				])
 			</div>
 		</div>		
 
@@ -32,7 +36,9 @@
 		<!-- BLOCK 4 Display Data Keuangan // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_keuangan')
+				@include('pages.survey.components.data_panels.data_keuangan',[
+					'edit' => true
+				])
 			</div>
 		</div>	
 
@@ -41,7 +47,9 @@
 		<!-- BLOCK 5 Display Data Aset // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_aset')
+				@include('pages.survey.components.data_panels.data_aset',[
+					'edit' => true
+				])
 			</div>
 		</div>		
 
@@ -50,7 +58,9 @@
 		<!-- BLOCK 6 Display Data Jaminan // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_jaminan')
+				@include('pages.survey.components.data_panels.data_jaminan',[
+					'edit' => true
+				])
 			</div>
 		</div>	
 
@@ -69,60 +79,5 @@
 @stop
 
 @section('page_modals')
-
-	<!-- Data kepribadian // -->
-	@component('components.modal', [
-		'id' 		=> 'data_kepribadian',
-		'title'		=> 'Data Kepribadian',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		@include('pages.survey.components.form.data_kepribadian')
-	@endcomponent
-
-	<!-- Data ekonomi makro // -->
-	@component('components.modal', [
-		'id' 		=> 'eco_macro',
-		'title'		=> 'Ekonomi Makro',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]
-	])
-		@include('pages.survey.components.form.eco_macro')
-	@endcomponent
-
-	<!-- Data aset // -->
-	@component('components.modal', [
-		'id' 		=> 'data_aset',
-		'title'		=> 'Data Aset',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		@include('pages.survey.components.form.data_aset')
-	@endcomponent		
-
-	<!-- Data keuangan // -->
-	@component('components.modal', [
-		'id' 		=> 'data_keuangan',
-		'title'		=> 'Data Keuangan',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		@include('pages.survey.components.form.data_keuangan')
-	@endcomponent	
-
-	<!-- Data jaminan // -->
-	@component('components.modal', [
-		'id' 		=> 'data_jaminan',
-		'title'		=> 'Data Jaminan',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		@include('pages.survey.components.form.data_jaminan')
-	@endcomponent		
-
+	@stack('show_modals')
 @append
