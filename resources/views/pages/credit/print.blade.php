@@ -7,8 +7,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.rencana_kredit')
-			{{-- @include('pages.credit.components.data_panels.[b]rencana_kredit') --}}
+			@include('pages.credit.components.data_panels.print_rencana_kredit')
 		</div>
 	</div>
 
@@ -17,8 +16,7 @@
 	<!-- BLOCK 2 Display Data Rencana Kredit // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_pribadi')
-			{{-- @include('pages.credit.components.data_panels.[b]data_pribadi') --}}
+			@include('pages.credit.components.data_panels.print_data_pribadi')
 		</div>
 	</div>
 
@@ -27,8 +25,7 @@
    <!-- 3 Data Kelurga // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_keluarga')
-			{{-- @include('pages.credit.components.data_panels.[b]data_keluarga') --}}
+			@include('pages.credit.components.data_panels.print_data_keluarga')
 		</div>
 	</div>
 
@@ -37,8 +34,7 @@
    <!-- 4 Data Data Penjamin // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_penjamin')
-			{{-- @include('pages.credit.components.data_panels.[b]data_penjamin') --}}
+			@include('pages.credit.components.data_panels.print_data_penjamin')
 		</div>
 	</div>
 
@@ -48,14 +44,12 @@
 	<div class="row">
 		<div class="col-sm-6">
 			@if(isset($page_datas->credit->finance))
-				@include('pages.credit.components.data_panels.data_keuangan')
-				{{-- @include('pages.credit.components.data_panels.[b]data_keuangan') --}}
+				@include('pages.credit.components.data_panels.print_data_keuangan')
 			@endif
 		</div>
 		<div class="col-sm-6">
 			@if(isset($page_datas->credit->asset))
-				@include('pages.credit.components.data_panels.data_aset')
-				{{-- @include('pages.credit.components.data_panels.[b]data_aset') --}}
+				@include('pages.credit.components.data_panels.print_data_aset')
 			@endif
 		</div>
 	</div>
@@ -65,8 +59,7 @@
    <!-- BLOCK 7 Data Kelurga, Data Penjamin // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_jaminan')
-			{{-- @include('pages.credit.components.data_panels.[b]data_jaminan') --}}
+			@include('pages.credit.components.data_panels.print_data_jaminan')
 		</div>
 	</div>
 	

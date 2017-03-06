@@ -31,6 +31,8 @@ require('./modules/select');
 require('./modules/list');
 // add module modal
 require('./modules/modal');
+// add module button print show window
+require('./modules/print');
 
 
 //draft
