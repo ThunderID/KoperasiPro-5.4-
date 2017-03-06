@@ -57,7 +57,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('kepribadian[notes][0]', $page_datas->credit->survey->personality->notes[0]['description'], ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('kepribadian[notes][0]', (!empty($page_datas->credit->survey->personality->notes) ? $page_datas->credit->survey->personality->notes[0]['description'] : ''), ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>

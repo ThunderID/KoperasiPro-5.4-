@@ -54,7 +54,7 @@ class Credit extends baseService
 	 * @param PersonEntity $warrantor
 	 * @return CreditEntity $credit_entity
 	 */
-	public static function store($array, PersonEntity $person, PersonEntity $warrantor)
+	public static function store($array, PersonEntity $person, $warrantor = null)
 	{
 		$array['statuses']	= 	[
 									[

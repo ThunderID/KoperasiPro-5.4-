@@ -69,7 +69,7 @@
 	<label for="">Pendidikan Terakhir</label>
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::select('person[highest_education', [
+			{!! Form::select('person[highest_education]', [
 				'tk'			=> 'TK',
 				'sd'			=> 'SD',
 				'smp'			=> 'SMP',

@@ -29,7 +29,9 @@
    <!-- 4 Data Data Penjamin // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@include('pages.credit.components.data_panels.data_penjamin')
+			@if(isset($page_datas->warrantor_address_active))
+				@include('pages.credit.components.data_panels.data_penjamin')
+			@endif
 		</div>
 	</div>
 

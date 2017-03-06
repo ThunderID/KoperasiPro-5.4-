@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () 
+Route::get('/check', function () 
 {
-    return view('welcome');
+	$data 	= new Thunderlabid\Application\Services\ReadUserService;
+
+	dd($data->execute(1));
+    // return view('welcome');
 });
 
 // Here lies credit controller all things started here
@@ -54,7 +57,7 @@ Route::group(['middleware' => ['pjax']], function()
 	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
 });
 
+Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);
+
 // route for print credit
 Route::get('credit/print/rencana-kredit/{id}', ['uses' => 'CreditController@print',			'as' => 'credit.print']);
-
-Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);

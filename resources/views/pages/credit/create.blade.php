@@ -53,7 +53,7 @@
 					<label for="">Jenis</label>
 					<div class="row">
 						<div class="col-md-12">
-							{!! Form::select('credit[collaterals][][type]', [
+							{!! Form::select('credit[collaterals][0][type]', [
 								'kendaraan'			=> 'Kendaraan',
 								'tanah_bangunan'	=> 'Tanah / Bangunan'
 							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type focus']) !!}
@@ -64,7 +64,7 @@
 					<label for="">Kepemilikan</label>
 					<div class="row">
 						<div class="col-md-6">
-							{!! Form::text('credit[collaterals][][ownership_status]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Pemilik jaminan']) !!}
+							{!! Form::text('credit[collaterals][0][ownership_status]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Pemilik jaminan']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -88,7 +88,7 @@
 									'stnk_r4'	=> 'STNK R4'
 								], 'bpkb_2', ['class' => 'form-control quick-select-clone quick-select-legal']) !!}
 							</div>
-							{!! Form::hidden('credit[collaterals][][legal]', null, ['class' => 'credit-collaterals-legal']) !!}
+							{!! Form::hidden('credit[collaterals][0][legal]', null, ['class' => 'credit-collaterals-legal']) !!}
 						</div>
 					</div>
 				</fieldset>
