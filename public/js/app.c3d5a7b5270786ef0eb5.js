@@ -10339,6 +10339,7 @@ __webpack_require__(15);
 // add module form validation
 __webpack_require__(9);
 __webpack_require__(10);
+__webpack_require__(50);
 __webpack_require__(18);
 // add module template clone
 __webpack_require__(17);
@@ -53834,6 +53835,30 @@ __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$("form").submit(function () {
+	el = $(this).find('button[type="submit"]');
+	el.prop('disabled', true);
+	el.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Saving");
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
