@@ -1,3 +1,4 @@
+{{-- in use this blade, don't forget include widget_jaminan --}}
 <div class="m-t-none m-b-md">
 	<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
 </div>
