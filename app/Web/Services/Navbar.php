@@ -43,8 +43,8 @@ class Navbar
 				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[
-													'daftar_kredit' 	=> route('credit.index'),
 													'pengajuan_baru' 	=> route('credit.create'),
+													'daftar_kredit' 	=> route('credit.index'),
 													'survey_kredit' 	=> route('survey.index'),
 												]				
 								],
