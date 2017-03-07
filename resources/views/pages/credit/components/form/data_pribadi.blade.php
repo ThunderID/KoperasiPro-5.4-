@@ -99,6 +99,7 @@
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
+		'prefix'	=> 'person',
 		'province' 	=> $page_datas->province,
 		'cities'	=> $page_datas->cities
 	]
@@ -107,6 +108,7 @@
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 
-	'variable'	=> [
-		'phone'		=> 'person[kontak][]'
+	'param'	=> [
+		'target'	=> 'template-contact-person',
+		'prefix'	=> 'person'
 ]])

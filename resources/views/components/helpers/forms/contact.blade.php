@@ -2,8 +2,8 @@
 	Plugin Form Contact
 	Description: form untuk kontak
 	Usage:
-	- variable['phone']
-
+	- Param
+		$param['prefix']: prefix variable input
  --}}
 
 <div class="root-clone">
@@ -11,7 +11,7 @@
 		<label for="">No. Hp</label>
 		<div class="row">
 			<div class="col-md-5">
-				{!! Form::text(($variable["phone"] ? $variable["phone"] : 'kontak[telepon][]'), null, ['class' => 'form-control required auto-tabindex no-hp', 'placeholder' => 'Ex. 0812 2339 9001']) !!}
+				{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[kontak]' : 'kontak') . '[telepon][]', null, ['class' => 'form-control required auto-tabindex no-hp', 'placeholder' => 'Ex. 0812 2339 9001']) !!}
 			</div>
 		</div>
 	</fieldset>
