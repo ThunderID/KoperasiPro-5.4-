@@ -10769,22 +10769,23 @@ $(document).ready(function () {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {s; /*
-   -------------------------------------------------------------------------------------------
-   Readme
-   -------------------------------------------------------------------------------------------
-   author 		: budi
-   description : this is push notification module using pre-configured toastr jQuery plugins
-   usage		: notify(TITLE,MESSAGE,MESSAGE TYPE[can be: error, success, info, or warning]);
-   requirement	: toastr(https://github.com/CodeSeven/toastr). Don't forget register toastr to 
-   			  global variable in your app.js file (or where you include this module). 
-   				
-   			  	window.$ = window.toastr = require(YOUR TOASTR PATH);
-   
-   note 		: by registering toastr as global, you can create your custom notification 
-   			  (beside this one) by call toastr.PROCEDURE (read toastr documentation). 
-   	-------------------------------------------------------------------------------------------
-   */
+/* WEBPACK VAR INJECTION */(function($) {/*
+	-------------------------------------------------------------------------------------------
+	Readme
+	-------------------------------------------------------------------------------------------
+	author 		: budi
+	description : this is push notification module using pre-configured toastr jQuery plugins
+	usage		: notify(TITLE,MESSAGE,MESSAGE TYPE[can be: error, success, info, or warning]);
+	requirement	: toastr(https://github.com/CodeSeven/toastr). Don't forget register toastr to 
+				  global variable in your app.js file (or where you include this module). 
+					
+				  	window.$ = window.toastr = require(YOUR TOASTR PATH);
+	
+	note 		: by registering toastr as global, you can create your custom notification 
+				  (beside this one) by call toastr.PROCEDURE (read toastr documentation). 
+
+	-------------------------------------------------------------------------------------------
+*/
 
 // Auto check notification on document load
 $(document).ready(function () {

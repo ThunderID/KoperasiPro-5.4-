@@ -182,7 +182,7 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
-        // Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
 		//Application level and 3rd party stuffs       
 		App\Web\WebServiceProvider::class,
