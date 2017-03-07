@@ -21,10 +21,9 @@ htmlNotify();
 
 // Bind from html element 
 window.htmlNotify = function(){
-	$('#push-notification').find('.message').first(){
-		notify($(this).text(),$(this).attr('data-title'),$(this).attr('data-type'));
-		$(this).remove();
-	}
+	el = $('#push-notification').find('.message').first()
+	notify(el.text(),$(this).attr('data-title'),$(this).attr('data-type'));
+	el.remove();
 }
 
 // Manual binding
