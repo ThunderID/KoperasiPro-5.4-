@@ -92,7 +92,7 @@
 			}
 
 			.dropdown.open .dropdown-toggle {
-			    color: $font-color-primary;
+			    color: $font-color-active;
 			}			
 
 
@@ -100,11 +100,11 @@
 				margin-top: 2px;
 				padding-left: 0px;
 				background-color: transperant !important;
-				color: $font-color-light-gray ; 
+				color: $font-color-primary; 
 				border: none;
 
 				&:hover, &:focus, &:active {
-					color: $font-color-primary; 
+					color: $font-color-active; 
 				}				
 			}
 

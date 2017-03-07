@@ -14,10 +14,42 @@
 
 
 <div class="title">
-	<h2>{{$param['title']}}</h2>
+	<div class="row">
+		<div class="col-md-6">
+			<h2>{{$param['title']}}</h2>
+		</div>
+		<div class="col-md-6 p-r-none text-right filters" style="margin-top: -6px;">
+			<div class="dropdown">
+				<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
+					@if(Input::has('status'))
+			           {{ ucwords(Input::get('status')) }}
+					@else
+						{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
+					@endif
+					<span>
+						<i class="fa fa-lg fa-angle-down" aria-hidden="true"></i>
+					</span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="{{ route(Route::currentRouteName(), Input::only('q','sort')) }}">
+							{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
+						</a>
+					</li>
+					@foreach($param['status'] as $item)
+						<li>
+							<a href="{{ route(Route::currentRouteName(), Input::only('q','sort')) }}&status={{$item}}">
+								{{ ucWords(str_replace('_', ' ', $item)) }}
+							</a>
+						</li>
+					@endforeach
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="search">
-	<form class="form" action="{{route(Route::currentRouteName(), Input::only('status','sort'))}}" data-pjax=true>
+	<form class="form" action="{{route(Route::currentRouteName(), Input::only('status','sort'))}}" data-pjax=true data-ajax-submit=false>
 		<div class="input-group">
 			<input class="form-control" name="q" type="text" placeholder="Cari Data Kredit" value="{{ Input::get('q') }}">
 			<span class="input-group-btn group-btn-search">
@@ -31,35 +63,11 @@
 		</div>
 	</form>
 </div>
+<div class="row">
+	&nbsp;
+</div>
 <div class="row filters">
 	<div class="col-sm-6 left">
-		<div class="dropdown">
-			<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
-				@if(Input::has('status'))
-		           {{ ucwords(Input::get('status')) }}
-				@else
-					{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
-				@endif
-				<span>
-					<i class="fa fa-lg fa-angle-down" aria-hidden="true"></i>
-				</span>
-			</a>
-			<ul class="dropdown-menu">
-				<li>
-					<a href="{{ route(Route::currentRouteName(), Input::only('q','sort')) }}">
-						{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
-					</a>
-				</li>
-				@foreach($param['status'] as $item)
-					<li>
-						<a href="{{ route(Route::currentRouteName(), Input::only('q','sort')) }}&status={{$item}}">
-							{{ ucWords(str_replace('_', ' ', $item)) }}
-						</a>
-					</li>
-				@endforeach
-			</ul>
-		</div>
-	
 	</div>
 	<div class="col-sm-6 right">
 	</div>
