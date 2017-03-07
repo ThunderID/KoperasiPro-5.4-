@@ -17,7 +17,9 @@ s/*
 */
 
 // Auto check notification on document load
-htmlNotify();
+$(document).ready( function() {
+	htmlNotify();
+});
 
 // Bind from html element 
 window.htmlNotify = function(){

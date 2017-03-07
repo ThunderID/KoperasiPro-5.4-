@@ -90,12 +90,14 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
+		dd(Input::all());
 		//creditor
 		$person					= Input::get('person');
 		$person['id']			= null;
 		$person['works']		= null;
 		$person['relatives']	= null;
 		$person['phones']		= null;
+		dd($person);
 
 		//only happen if person id = null
 		if(is_null($person['id']))
@@ -270,11 +272,42 @@ class CreditController extends Controller
 		}
 
 		//function from parent to generate view
-		// dd($this->page_datas);
 		return $this->generateView();
-		// $pdf = PDF::loadView('pages.credit.print', ['page_datas' => $this->page_datas]);
-		// $pdf = App::make('dompdf.wrapper');
-		// $pdf->loadHTML('<h1>Test</h1>');
-		// return $pdf->stream();
+	}
+
+	/**
+	 * fungsi untuk menjadikan pdf form pengajuan credit
+	 */
+	public function pdf($id)
+	{
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title              = "Daftar Kredit";
+		$this->page_attributes->breadcrumb         = [
+															'Kredit'   => route('credit.index'),
+													 ];
+
+		//initialize view
+		$this->view                                = view('pages.credit.print');
+
+		//parsing master data here
+		$this->page_datas->credit 					= Credit::findByID($id);
+		$this->page_datas->id 						= $id;
+
+		// get active address on person
+		$person_id 									= $this->page_datas->credit->credit->creditor->id;
+		$this->page_datas->creditor_address_active	= Person::findByID($person_id);
+
+		// check address for warrator (penjamin)
+		if (($this->page_datas->credit->credit->warrantor))
+		{
+			$person_id 									= $this->page_datas->credit->credit->warrantor->id;
+			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
+			
+		}
+
+		//function from parent to generate view
+		$pdf = PDF::loadView('pages.credit.print', ['page_datas' => $this->page_datas]);
+		
+		return $pdf->stream();
 	}
 }

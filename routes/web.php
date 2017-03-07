@@ -60,4 +60,6 @@ Route::group(['middleware' => ['pjax']], function()
 Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);
 
 // route for print credit
-Route::get('credit/print/rencana-kredit/{id}', ['uses' => 'CreditController@print',			'as' => 'credit.print']);
+Route::get('credit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);
+// route for pdf credit
+Route::get('credit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);

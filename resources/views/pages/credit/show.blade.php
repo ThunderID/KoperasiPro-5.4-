@@ -71,6 +71,7 @@
 			{{Form::close()}}
 		</div>
 		<div class="col-sm-6 text-right">
+			<a data-url="{{ route('credit.pdf', ['id' => $page_datas->credit->credit->id]) }}" data-id="" class="btn btn-success btn-pdf">PDF</a>
 			<a data-url="{{ route('credit.print', ['id' => $page_datas->credit->credit->id]) }}" data-id="" class="btn btn-success btn-print" >Print</a>
 			<a class="btn btn-success" href="{{ route('credit.propose', ['id' => $page_datas->credit->credit->id]) }}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
