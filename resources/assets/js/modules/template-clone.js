@@ -27,7 +27,8 @@ $(document).ready( function() {
  * description: ...
  */
 function template_add(flag, element) {
-	temp = $('#template-clone-' + flag).children().clone();
+	target = element.data('target');
+	temp = $('#' + target).children().clone();
 	// check data is clone jaminan
 	if (flag === 'jaminan') {
 		replaceQuickSelect(temp); // replace name to 'quick-select'
