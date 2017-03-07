@@ -25,7 +25,7 @@ $(document).ready( function() {
 window.htmlNotify = function(){
 	el = $('#push-notification').find('.message').first()
 	notify(el.text(),$(this).attr('data-title'),$(this).attr('data-type'));
-	el.remove();
+	console.log(el);
 }
 
 // Manual binding
