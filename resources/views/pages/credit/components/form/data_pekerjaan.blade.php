@@ -34,7 +34,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="input-group">
-				{!! Form::number('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required', 'placeholder' => 'Masa kerja']) !!}
+				{!! Form::text('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required date-format', 'placeholder' => 'Masa kerja']) !!}
 				<div class="input-group-addon">Tahun</div>
 			</div>
 		</div>

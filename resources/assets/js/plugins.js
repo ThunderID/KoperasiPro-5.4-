@@ -39,6 +39,10 @@ $(document).ready(function(){
 	$(document).on('pjax:end',   function() { 
 		NProgress.done();  
 
+		// call module enter to tabs
+		formEntertoTabs();
+		// call choice select again
+		$('.quick-select').choiceSelect();
 		// call module form wizard();
 		wizard();
 		// call module plugin inputmask
