@@ -13,7 +13,7 @@ require('./modules/push-notification');
 require('./modules/form-validate');
 require('./modules/form-wizard');
 require('./modules/form-ajax-submit');
-require('./modules/uac');
+// require('./modules/uac');
 // add module template clone
 require('./modules/template-clone');
 // add module choice select
