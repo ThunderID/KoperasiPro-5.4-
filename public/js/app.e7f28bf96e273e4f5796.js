@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,42 +10325,42 @@ module.exports = function(module) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(33);
+window._ = __webpack_require__(34);
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(19);
+__webpack_require__(20);
 
 //your js modules goes here
 // require('');
-__webpack_require__(15);
+__webpack_require__(16);
 // add module form validation
-__webpack_require__(9);
 __webpack_require__(10);
-__webpack_require__(50);
-__webpack_require__(18);
-// add module template clone
-__webpack_require__(17);
-// add module choice select
-__webpack_require__(8);
-// add module set workspace height
 __webpack_require__(11);
+__webpack_require__(7);
+__webpack_require__(19);
+// add module template clone
+__webpack_require__(18);
+// add module choice select
+__webpack_require__(9);
+// add module set workspace height
+__webpack_require__(12);
 // add module choice select
 __webpack_require__(6);
 // add module auto-tabindex form
 __webpack_require__(5);
 // add module form input key enter to tab
-__webpack_require__(7);
+__webpack_require__(8);
 // add module select
-__webpack_require__(16);
+__webpack_require__(17);
 // add module list-js
-__webpack_require__(12);
-// add module modal
 __webpack_require__(13);
-// add module button print show window
+// add module modal
 __webpack_require__(14);
+// add module button print show window
+__webpack_require__(15);
 
 //draft
 // // window.$ = window.jQuery = require('jquery');
@@ -10381,14 +10381,14 @@ __webpack_require__(14);
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(31);
+/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(32);
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(32);
+__webpack_require__(33);
 
 // require('./vendors/jquery-2.2.4.js');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
@@ -10438,6 +10438,23 @@ $(document).ready(function () {
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('submit', "form", function () {
+	// disable the form 
+	$(this).find(":input").prop("disabled", true);
+	$(this).find("a").each(function () {
+		$(this).addClass('disabled');
+	});
+
+	// loading effect
+	btn_submit = $(this).find('button[type="submit"]');
+	btn_submit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Saving");
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {window.formEntertoTabs = function () {
 	$('input, a').on('keypress', function (e) {
 		if (e.keyCode == 13) {
@@ -10460,7 +10477,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
@@ -10507,7 +10524,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.__validation = function () {
@@ -10546,7 +10563,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
@@ -10639,7 +10656,7 @@ window.customButtonActions = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10691,7 +10708,7 @@ $('._window').each(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 
@@ -10701,7 +10718,7 @@ options = {
 var xxx = new List('list-koperasi', options);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$('.modal').on('show.bs.modal', function (e) {
@@ -10713,7 +10730,7 @@ var xxx = new List('list-koperasi', options);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -10749,67 +10766,78 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/*
-	-------------------------------------------------------------------------------------------
-	Readme
-	-------------------------------------------------------------------------------------------
-	author 		: budi
-	description : this is push notification module using pre-configured toastr jQuery plugins
-	usage		: notify(TITLE,MESSAGE,MESSAGE TYPE[can be: error, success, info, or warning]);
-	requirement	: toastr(https://github.com/CodeSeven/toastr). Don't forget register toastr to 
-				  global variable in your app.js file (or where you include this module). 
-					
-				  	window.$ = window.toastr = require(YOUR TOASTR PATH);
-	
-	note 		: by registering toastr as global, you can create your custom notification 
-				  (beside this one) by call toastr.PROCEDURE (read toastr documentation). 
+/* WEBPACK VAR INJECTION */(function($) {s; /*
+   -------------------------------------------------------------------------------------------
+   Readme
+   -------------------------------------------------------------------------------------------
+   author 		: budi
+   description : this is push notification module using pre-configured toastr jQuery plugins
+   usage		: notify(TITLE,MESSAGE,MESSAGE TYPE[can be: error, success, info, or warning]);
+   requirement	: toastr(https://github.com/CodeSeven/toastr). Don't forget register toastr to 
+   			  global variable in your app.js file (or where you include this module). 
+   				
+   			  	window.$ = window.toastr = require(YOUR TOASTR PATH);
+   
+   note 		: by registering toastr as global, you can create your custom notification 
+   			  (beside this one) by call toastr.PROCEDURE (read toastr documentation). 
+   	-------------------------------------------------------------------------------------------
+   */
 
-	-------------------------------------------------------------------------------------------
-*/
+// Auto check notification on document load
+htmlNotify();
 
-window.notify = function (msg, title, type) {
-		// config toastr
-		toastr.options = {
-				tapToDismiss: false,
-				toastClass: 'toast',
-				containerId: 'toast-container',
-				debug: false,
-				fadeIn: 300,
-				fadeOut: 1000,
-				extendedTimeOut: 0,
-				iconClass: 'toast-info',
-				positionClass: 'toast-top-right',
-				timeOut: 0,
-				titleClass: 'toast-title',
-				messageClass: 'toast-message',
-				closeButton: true,
-				preventDuplicates: true
-		};
-
-		// check message type and display toastr notification
-		switch (type) {
-				case 'success':
-						toastr.success(title, msg);
-						break;
-				case 'error':
-						toastr.error(title, msg);
-						break;
-				case 'warning':
-						toastr.warning(title, msg);
-						break;
-				case 'info':
-						toastr.info(title, msg);
-						break;
-				default:
-						toastr.info(title, msg);
-		}
+// Bind from html element 
+window.htmlNotify = function () {
+	el = $('#push-notification').find('.message').first();
+	notify(el.text(), $(this).attr('data-title'), $(this).attr('data-type'));
+	el.remove();
 };
 
+// Manual binding
+window.notify = function (msg, title, type) {
+	// config toastr
+	toastr.options = {
+		tapToDismiss: false,
+		toastClass: 'toast',
+		containerId: 'toast-container',
+		debug: false,
+		fadeIn: 300,
+		fadeOut: 1000,
+		extendedTimeOut: 0,
+		iconClass: 'toast-info',
+		positionClass: 'toast-top-right',
+		timeOut: 0,
+		titleClass: 'toast-title',
+		messageClass: 'toast-message',
+		closeButton: true,
+		preventDuplicates: true
+	};
+
+	// check message type and display toastr notification
+	switch (type) {
+		case 'success':
+			toastr.success(title, msg);
+			break;
+		case 'error':
+			toastr.error(title, msg);
+			break;
+		case 'warning':
+			toastr.warning(title, msg);
+			break;
+		case 'info':
+			toastr.info(title, msg);
+			break;
+		default:
+			toastr.info(title, msg);
+	}
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function () {
@@ -10857,7 +10885,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -10889,7 +10917,8 @@ $(document).ready(function () {
  * description: ...
  */
 function template_add(flag, element) {
-	temp = $('#template-clone-' + flag).children().clone();
+	target = element.data('target');
+	temp = $('#' + target).children().clone();
 	// check data is clone jaminan
 	if (flag === 'jaminan') {
 		replaceQuickSelect(temp); // replace name to 'quick-select'
@@ -10940,7 +10969,7 @@ function selectLegal() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {// login section
@@ -10961,7 +10990,7 @@ window.showPassword = function showPassword() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10969,7 +10998,7 @@ window.showPassword = function showPassword() {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(30);
+window.toastr = __webpack_require__(31);
 
 /*
 2. nprogress
@@ -10977,7 +11006,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(27);
+window.NProgress = __webpack_require__(28);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -10991,7 +11020,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(28);
+window.pjax = __webpack_require__(29);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -11005,6 +11034,12 @@ $(document).ready(function () {
   $(document).on('pjax:end', function () {
     NProgress.done();
 
+    // push notification
+    htmlNotify();
+    // call module enter to tabs
+    formEntertoTabs();
+    // call choice select again
+    $('.quick-select').choiceSelect();
     // call module form wizard();
     wizard();
     // call module plugin inputmask
@@ -11031,7 +11066,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(23);
+window.steps = __webpack_require__(24);
 $(document).ready(function () {
   // call event form wizard();
   wizard();
@@ -11042,14 +11077,14 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(24);
+window.validate = __webpack_require__(25);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(21);
+window.cookies = __webpack_require__(22);
 $(document).ready(function () {
   window.cookies();
 });
@@ -11059,7 +11094,7 @@ $(document).ready(function () {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(20);
+window.inputmask = __webpack_require__(21);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -11071,14 +11106,14 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(22);
+window.quickselect = __webpack_require__(23);
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.select2 = __webpack_require__(29);
+window.select2 = __webpack_require__(30);
 $(document).ready(function () {
   // window.select();
 });
@@ -11088,18 +11123,18 @@ $(document).ready(function () {
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(26);
+window.nicescroll = __webpack_require__(27);
 
 /**
  * 11. jQuery plugin List-js
  * Description: plugin jQuery for list & search
  * Usage & Documentation: http://listjs.com/docs/
  */
-window.list = __webpack_require__(25);
+window.list = __webpack_require__(26);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13758,7 +13793,7 @@ window.list = __webpack_require__(25);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13917,7 +13952,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -13970,7 +14005,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15848,7 +15883,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17404,7 +17439,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
@@ -18728,7 +18763,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
   }, {}] }, {}, [4]);
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -21921,7 +21956,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -22413,7 +22448,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23346,7 +23381,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -24472,7 +24507,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -24902,10 +24937,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(34));
+})(__webpack_require__(35));
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -34316,7 +34351,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -36700,7 +36735,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -53789,10 +53824,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35), __webpack_require__(1)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36), __webpack_require__(1)(module)))
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -53801,7 +53836,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 var g;
@@ -53828,37 +53863,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
-
-/***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {$("form").submit(function () {
-	el = $(this).find('button[type="submit"]');
-	el.prop('disabled', true);
-	el.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Saving");
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

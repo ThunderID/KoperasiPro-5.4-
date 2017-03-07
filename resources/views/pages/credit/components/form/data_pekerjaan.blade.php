@@ -33,10 +33,7 @@
 	<label for="">Masa Kerja</label>
 	<div class="row">
 		<div class="col-md-4">
-			<div class="input-group">
-				{!! Form::number('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required', 'placeholder' => 'Masa kerja']) !!}
-				<div class="input-group-addon">Tahun</div>
-			</div>
+			{!! Form::text('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required date-format', 'placeholder' => 'Masa kerja']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -44,6 +41,7 @@
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
+		'prefix'		=> 'pekerjaan',
 		'province' 		=> $page_datas->province,
 		'cities'		=> $page_datas->cities
 	]
@@ -51,4 +49,8 @@
 <br />
 
 {{-- panel contact --}}
-@include('components.helpers.panels.contact')
+@include('components.helpers.panels.contact', [ 
+	'param'	=> [
+		'target'		=> 'template-contact-pekerjaan',
+		'prefix'		=> 'pekerjaan'
+]])

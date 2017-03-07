@@ -44,14 +44,6 @@
 			{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
 		{!! Form::close() !!}
 	</div>
-
-	{{-- template clone --}}
-	<div class="hidden">
-		{{-- template clone untuk data form jaminan --}}
-		@include('pages.credit.components.form.widget_jaminan')
-		{{-- template clone untuk data form contact --}}
-		@include('components.helpers.forms.contact')
-	</div>
 @endpush
 
 @push('scripts')
