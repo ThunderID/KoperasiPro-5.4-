@@ -106,7 +106,8 @@ class CreditController extends Controller
 			$person_entity		= $person_service->store($person);
 	
 			//alamat
-			$alamat				= Input::get('address');
+			$alamat				= Input::get('alamat');
+			$alamat['country']	= 'Indonesia';
 			$alamat['id']		= null;
 			$alamat['latitude']	= null;
 			$alamat['longitude']= null;
