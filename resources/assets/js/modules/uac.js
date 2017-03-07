@@ -1,4 +1,6 @@
 // login section
+/*
+Not used in this poject
 window.showPassword = function showPassword() {
 		
 	var key_attr = $('#key').attr('type');
@@ -15,3 +17,4 @@ window.showPassword = function showPassword() {
 		
 	}
 }
+/*

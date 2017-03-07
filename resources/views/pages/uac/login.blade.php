@@ -5,7 +5,9 @@
 		<div class="col-xs-12">
 			<div class="form-wrap">
 				<h1>KoperasiPRO</h1> 
-				<h3>User Login</h3>
+				</br>
+				<p>Silahkan masukkan email dan password Anda!</p>
+				</br>
 
 				@include('components.alertbox')
 				
@@ -18,13 +20,21 @@
 						<label for="key" class="sr-only">Password</label>
 						<input type="password" name="key" id="key" class="form-control" placeholder="Password">
 					</div>
+					<?php
+					/*
 					<div class="checkbox">
 						<span class="character-checkbox" onclick="showPassword()"></span>
 						<span class="label">Show password</span>
 					</div>
+					*/
+					?>
 					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Log in">
 				</form>
+				<?php
+				/*				
 				<a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a>
+				*/
+				?>				
 				<hr>
 			</div>
 		</div>
