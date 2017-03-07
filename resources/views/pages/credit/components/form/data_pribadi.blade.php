@@ -99,13 +99,14 @@
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
-		'province' 		=> $page_datas->province,
-		'cities'		=> $page_datas->cities
+		'province' 	=> $page_datas->province,
+		'cities'	=> $page_datas->cities
 	]
 ])
 <br />
 
 {{-- panel contact --}}
-@include('components.helpers.panels.contact', [ 'variable'	=> [
-	'phone'		=> 'person[contact]'
+@include('components.helpers.panels.contact', [ 
+	'variable'	=> [
+		'phone'		=> 'person[kontak][]'
 ]])
