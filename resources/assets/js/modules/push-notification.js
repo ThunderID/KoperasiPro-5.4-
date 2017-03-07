@@ -23,9 +23,9 @@ $(document).ready( function() {
 
 // Bind from html element 
 window.htmlNotify = function(){
-	el = $('#push-notification').find('.message').first()
-	notify(el.text(),$(this).attr('data-title'),$(this).attr('data-type'));
-	console.log(el);
+	$('#push-notification').find('.message').each( function( index ){
+		notify($(this).data('msg'), $(this).text(),$(this).data('type'));
+	});
 }
 
 // Manual binding

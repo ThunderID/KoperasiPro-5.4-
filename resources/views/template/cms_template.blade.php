@@ -87,6 +87,9 @@
 		</div>
 
 		@stack('modals')
+
+		@include('components.push_notification')
+
 	<!-- End of pjax fragment replacement -->
 	</div>
 	{{-- modal change koperasi --}}
