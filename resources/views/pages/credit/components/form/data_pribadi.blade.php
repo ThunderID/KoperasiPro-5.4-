@@ -106,4 +106,6 @@
 <br />
 
 {{-- panel contact --}}
-@include('components.helpers.panels.contact')
+@include('components.helpers.panels.contact', [ 'variable'	=> [
+	'phone'		=> 'person[contact]'
+]])

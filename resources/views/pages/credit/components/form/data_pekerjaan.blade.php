@@ -51,4 +51,4 @@
 <br />
 
 {{-- panel contact --}}
-@include('components.helpers.panels.contact')
+

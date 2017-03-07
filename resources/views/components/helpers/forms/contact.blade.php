@@ -1,4 +1,13 @@
+@php 
+	dd($);
+@endphp
+{{-- 
+	Plugin Contact
+	Description: form untuk kontak
+	Usage:
+	- variable['phone']
 
+ --}}
 <div id="template-clone-contact">
 	<div class="root-clone">
 		<fieldset class="form-group">

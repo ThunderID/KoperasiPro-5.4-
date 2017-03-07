@@ -10438,7 +10438,7 @@ $(document).ready(function () {
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$("form").submit(function () {
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('submit', "form", function () {
 	el = $(this).find('button[type="submit"]');
 	el.prop('disabled', true);
 	el.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Saving");

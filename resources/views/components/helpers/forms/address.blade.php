@@ -1,7 +1,11 @@
 {{-- 
-	Param for alamat
-	$param['province']: list province indonesian
-	$param['cities']: list cities for province selected
+	Plugin address
+	Description: form untuk alamat
+	Usage:
+	- Variable
+	- Param
+		$param['province']: list province indonesian
+		$param['cities']: list cities for province selected
  --}}
 <fieldset class="form-group">
 	<label for="">Jalan</label>
