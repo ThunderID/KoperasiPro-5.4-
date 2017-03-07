@@ -1,4 +1,4 @@
-/*
+s/*
 	-------------------------------------------------------------------------------------------
 	Readme
 	-------------------------------------------------------------------------------------------
@@ -16,6 +16,18 @@
 	-------------------------------------------------------------------------------------------
 */
 
+// Auto check notification on document load
+htmlNotify();
+
+// Bind from html element 
+window.htmlNotify = function(){
+	$('#push-notification').find('.message').first(){
+		notify($(this).text(),$(this).attr('data-title'),$(this).attr('data-type'));
+		$(this).remove();
+	}
+}
+
+// Manual binding
 window.notify = function(msg, title, type){
 	// config toastr
 	toastr.options = {
