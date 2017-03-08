@@ -10531,6 +10531,7 @@ $(document).ready(function () {
 	$('.mask-no-telp').inputmask('9999 9999 9999');
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
+	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
