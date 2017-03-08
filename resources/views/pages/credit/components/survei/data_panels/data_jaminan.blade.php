@@ -226,7 +226,7 @@
 				<div class="col-sm-6">
 					<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
 					<p>
-						{{ $tanah_bangunan['tipe_jaminan'] }}
+						{{ ucWords(str_replace('_', ' ', $tanah_bangunan['tipe_jaminan'])) }}
 					</p>
 				</div>
 

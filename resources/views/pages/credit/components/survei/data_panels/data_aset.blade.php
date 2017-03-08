@@ -44,7 +44,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Status Kepemilikan</strong></p>
 					<p>
-						{{ str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['rumah']['status']) }}
+						{{ ucwords(str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['rumah']['status'])) }}
 					</p>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Status Usaha</strong></p>
 					<p>
-						{{ str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['usaha']['status_usaha']) }}
+						{{ ucwords(str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['usaha']['status_usaha'])) }}
 					</p>
 				</div>
 			</div>
