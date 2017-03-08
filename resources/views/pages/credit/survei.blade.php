@@ -14,7 +14,7 @@
 		<!-- BLOCK 2 Display Data Kepribadian // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_kepribadian',[
+				@include('pages.credit.components.survei.data_panels.data_kepribadian',[
 					'edit' => true
 				])
 			</div>
@@ -25,7 +25,7 @@
 		<!-- BLOCK 3 Display Ekonomi Makro // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.eco_macro',[
+				@include('pages.credit.components.survei.data_panels.eco_macro',[
 					'edit' => true
 				])
 			</div>
@@ -36,7 +36,7 @@
 		<!-- BLOCK 4 Display Data Keuangan // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_keuangan',[
+				@include('pages.credit.components.survei.data_panels.data_keuangan',[
 					'edit' => true
 				])
 			</div>
@@ -44,10 +44,14 @@
 
 		<div class="clearfix">&nbsp;</div>		
 
+		<?php
+		// dd($page_datas->credit);
+
+		/*
 		<!-- BLOCK 5 Display Data Aset // -->
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_aset',[
+				@include('pages.credit.components.survei.data_panels.data_aset',[
 					'edit' => true
 				])
 			</div>
@@ -56,13 +60,16 @@
 		<div class="clearfix">&nbsp;</div>		
 		
 		<!-- BLOCK 6 Display Data Jaminan // -->
+
 		<div class="row">
 			<div class="col-sm-12">
-				@include('pages.survey.components.data_panels.data_jaminan',[
+				@include('pages.credit.components.survei.data_panels.data_jaminan',[
 					'edit' => true
 				])
 			</div>
 		</div>	
+		*/
+		?>
 
 		<!-- <div class="clearfix">&nbsp;</div> -->
 		<!-- <div class="clearfix">&nbsp;</div>		 -->

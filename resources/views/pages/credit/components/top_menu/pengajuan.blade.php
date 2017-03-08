@@ -8,10 +8,10 @@
 				</a>
 			</div>
 			<div class="col-sm-6 text-right">
-				<a href="#" class="btn p-r-sm p-l-sm danger">
+				<a href="{{route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'tolak'])}}" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>
-				<a href="#" class="btn p-r-none p-l-sm success">
+				<a href="{{route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']])}}" class="btn p-r-none p-l-sm success">
 					<i class="fa fa-check" aria-hidden="true"></i> Setujui
 				</a>
 			</div>

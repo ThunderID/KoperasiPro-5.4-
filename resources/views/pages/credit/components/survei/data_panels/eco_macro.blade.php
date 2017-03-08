@@ -115,7 +115,7 @@
 				'hide_buttons'	=> true
 			]
 		])
-			@include('pages.survey.components.form.eco_macro')
+			@include('pages.credit.components.survei.form.eco_macro')
 		@endcomponent
 
 	@endif

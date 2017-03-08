@@ -27,12 +27,13 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	//Menu Kredit
 	Route::resource('credit', 'CreditController');
 
+	//Menu Status Kredit
+	Route::any('credit/{id}/{status}',		['uses' => 'CreditController@status', 	'as' => 'credit.status']);
+
+	///NO USE
 	//Menu Survey
 	Route::resource('survey', 'CreditSurveyController');
 
-	//Menu Status Kredit
-	Route::any('propose/credit/{id}',		['uses' => 'CreditStatusController@propose', 	'as' => 'credit.propose']);
-	
 	//Menu Registrasi
 	Route::resource('person', 'PersonController');
 });

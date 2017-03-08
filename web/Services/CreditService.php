@@ -115,7 +115,9 @@ class CreditService implements IService
 												$data['koperasi'], 
 												$data['penjamin'], 
 												$data['status'], 
-												$data['riwayat_status']
+												$data['riwayat_status'],
+												$data['jaminan_kendaraan'],
+												$data['jaminan_tanah_bangunan']
 											);
 
 		$saved 				= $this->repository->store($credit);
@@ -392,6 +394,19 @@ class CreditService implements IService
 		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
 		$credit 			= $credit[0];
 		$parsed_credit 		= $this->transformer->read($credit);
+
+		switch (strtolower($parsed_credit['status'])) 
+		{
+			case 'pengajuan':
+				$parsed_credit['status_berikutnya']	= 'survei';
+				break;
+			case 'survei':
+				$parsed_credit['status_berikutnya']	= 'realisasi';
+				break;
+			default:
+				$parsed_credit['status_berikutnya']	= '';
+				break;
+		}
 
 		$person				= new PersonRepository;
 		$person				= $person->query([new SpecificationByPersonID($credit->kreditur['id'])]);

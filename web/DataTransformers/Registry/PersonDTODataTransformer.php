@@ -70,6 +70,18 @@ class PersonDTODataTransformer implements IDataTransformer
 									'pendapatan'			=> $person->keuangan->pendapatan,
 									'pengeluaran'			=> $person->keuangan->pengeluaran,
 			];
+
+			$keuangan['pendapatan']['penghasilan_gaji']		= $keuangan['pendapatan']['penghasilan_gaji']->IDR();
+			$keuangan['pendapatan']['penghasilan_non_gaji']	= $keuangan['pendapatan']['penghasilan_non_gaji']->IDR();
+			$keuangan['pendapatan']['penghasilan_lain']		= $keuangan['pendapatan']['penghasilan_lain']->IDR();
+		
+			$keuangan['pengeluaran']['biaya_rumah_tangga']	= $keuangan['pengeluaran']['biaya_rumah_tangga']->IDR();
+			$keuangan['pengeluaran']['biaya_pendidikan']	= $keuangan['pengeluaran']['biaya_pendidikan']->IDR();
+			$keuangan['pengeluaran']['biaya_telepon']		= $keuangan['pengeluaran']['biaya_telepon']->IDR();
+			$keuangan['pengeluaran']['biaya_pdam']			= $keuangan['pengeluaran']['biaya_pdam']->IDR();
+			$keuangan['pengeluaran']['biaya_listrik']		= $keuangan['pengeluaran']['biaya_listrik']->IDR();
+			$keuangan['pengeluaran']['biaya_produksi']		= $keuangan['pengeluaran']['biaya_produksi']->IDR();
+			$keuangan['pengeluaran']['pengeluaran_lain']	= $keuangan['pengeluaran']['pengeluaran_lain']->IDR();
 		}
 
 		$aset 					= [];
@@ -82,6 +94,9 @@ class PersonDTODataTransformer implements IDataTransformer
 									'kendaraan'				=> $person->aset->kendaraan,
 									'usaha'					=> $person->aset->usaha,
 			];
+
+			$aset['rumah']['nilai_rumah']			= $aset['rumah']['nilai_rumah']->IDR();
+			$aset['kendaraan']['nilai_kendaraan']	= $aset['kendaraan']['nilai_kendaraan']->IDR();
 		}
 
 		$makro 					= [];

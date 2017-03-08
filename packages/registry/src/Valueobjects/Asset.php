@@ -36,9 +36,11 @@ class Asset implements IValueObject {
 			throw new Exception($validator->messages(), 1);
 		}
 
-		$this->attributes['rumah']				= $rumah;
-		$this->attributes['kendaraan']			= $kendaraan;
-		$this->attributes['usaha']				= $usaha;
+		$this->attributes['rumah']							= $rumah;
+		$this->attributes['rumah']['nilai_rumah']			= new IDR($rumah['nilai_rumah']);
+		$this->attributes['kendaraan']						= $kendaraan;
+		$this->attributes['kendaraan']['nilai_kendaraan']	= new IDR($kendaraan['nilai_kendaraan']);
+		$this->attributes['usaha']							= $usaha;
 	}
 
 	public function equals($asset)

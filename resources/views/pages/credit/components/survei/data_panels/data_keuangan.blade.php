@@ -98,7 +98,16 @@
 	@if($edit == true)
 
 		<!-- Data keuangan // -->
-		
+				<!-- Data kepribadian // -->
+		@component('components.modal', [
+			'id' 		=> 'data_keuangan',
+			'title'		=> 'Data Keuangan',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]	
+		])
+			@include('pages.credit.components.survei.form.data_keuangan')
+		@endcomponent
 
 	@endif
 @endpush	
