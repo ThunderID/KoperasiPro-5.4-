@@ -25,6 +25,11 @@ class Asset implements IValueObject {
 		{
 			$rumah['nilai_rumah'] = 0;
 		}
+
+		if(empty($rumah['angsuran']))
+		{
+			$rumah['angsuran'] = 0;
+		}
 	
 		// if ($validator->fails())
 		// {
@@ -50,6 +55,7 @@ class Asset implements IValueObject {
 
 		$this->attributes['rumah']							= $rumah;
 		$this->attributes['rumah']['nilai_rumah']			= new IDR($rumah['nilai_rumah']);
+		$this->attributes['rumah']['angsuran']				= new IDR($rumah['angsuran']);
 		$this->attributes['kendaraan']						= $kendaraan;
 		$this->attributes['kendaraan']['nilai_kendaraan']	= new IDR($kendaraan['nilai_kendaraan']);
 		$this->attributes['usaha']							= $usaha;

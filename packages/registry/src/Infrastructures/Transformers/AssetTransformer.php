@@ -57,8 +57,16 @@ class AssetTransformer implements ITransformer {
 		}
 		
 		$model->person 				= ['id' => $entity->id];
-		$model->rumah 				= $entity->aset->rumah;
-		$model->kendaraan 			= $entity->aset->kendaraan;
+
+		$rumah						= $entity->aset->rumah;
+		$rumah['angsuran']			= (string)($entity->aset->rumah['angsuran']) * 1;
+		$rumah['nilai_rumah']		= (string)($entity->aset->rumah['nilai_rumah']) * 1;
+		$model->rumah 				= $rumah;
+
+		$kendaraan						= $entity->aset->kendaraan;
+		$kendaraan['nilai_kendaraan']	= (string)($entity->aset->kendaraan['nilai_kendaraan']) * 1;
+		$model->kendaraan 				= $kendaraan;
+
 		$model->usaha 				= $entity->aset->usaha;
 
 		return $model;
