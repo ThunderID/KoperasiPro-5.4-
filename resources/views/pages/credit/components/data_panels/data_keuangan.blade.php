@@ -12,13 +12,13 @@
 	</div>
 </div>
 
-@foreach($page_datas->credit->finance->incomes() as $key => $value)
+@foreach($page_datas->credit['keuangan']['pendapatan'] as $key => $value)
 	<div class="row">
 		<div class="col-sm-6">
-			<h4><small>{{$value->description}}</small></h4>
+			<h4><small>{{ $key }}</small></h4>
 		</div>
 		<div class="col-sm-6 text-right">
-			<h4>{{$value->amount->IDR()}}</h4>
+			<h4>{{ $value }}</h4>
 		</div>
 	</div>
 @endforeach
@@ -30,13 +30,13 @@
 	</div>
 </div>
 
-@foreach($page_datas->credit->finance->expenses() as $key => $value)
+@foreach($page_datas->credit['keuangan']['pengeluaran'] as $key => $value)
 	<div class="row">
 		<div class="col-sm-6">
-			<h4><small>{{$value->description}}</small></h4>
+			<h4><small>{{ $key }}</small></h4>
 		</div>
 		<div class="col-sm-6 text-right">
-			<h4>{{$value->amount->IDR()}}</h4>
+			<h4>{{ $value }}</h4>
 		</div>
 	</div>
 @endforeach
@@ -47,7 +47,7 @@
 		<h4>Pendapatan Bersih</h4>
 	</div>
 	<div class="col-sm-6 text-right" style="color: red">
-		<h4>{{$page_datas->credit->finance->netIncome()->IDR()}}</h4>
+		{{-- <h4>{{$page_datas->credit->finance->netIncome()->IDR()}}</h4> --}}
 	</div>
 </div>
 <div class="row">
@@ -55,6 +55,6 @@
 		<h4>Repayment Capacity</h4>
 	</div>
 	<div class="col-sm-6 text-right" style="color: red">
-		<h4>{{$page_datas->credit->finance->repaymentCapacity()->IDR()}}</h4>
+		{{-- <h4>{{$page_datas->credit->finance->repaymentCapacity()->IDR()}}</h4> --}}
 	</div>
 </div>

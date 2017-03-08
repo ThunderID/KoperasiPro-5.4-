@@ -65,7 +65,7 @@
 	<div class="clearfix">&nbsp;</div>
 
 	<!-- BLOCK 8 Action Button // -->
-	<div class="row">
+	{{-- <div class="row">
 		<div class="col-sm-6 text-left">
 			{{Form::open(['url' => route('credit.destroy', [$page_datas->credit['id']]), 'class' => 'form form-inline'])}}
 				<button class="btn btn-danger">Tolak</button>
@@ -77,7 +77,7 @@
 			<a class="btn btn-success" href="{{ route('credit.propose', ['id' => $page_datas->credit['id']]) }}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
 		</div>
-	</div>
+	</div> --}}
 	<div class="clearfix">&nbsp;</div>
 @stop
 
