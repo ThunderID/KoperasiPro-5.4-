@@ -38,9 +38,18 @@ class JaminanKendaraan implements IValueObject {
 			'nilai.fungsi' 				=> 'string', 
 			'nilai.kondisi' 			=> 'string', 
 			'nilai.asuransi' 			=> 'boolean', 
-			'nilai.harga_taksasi' 		=> 'numeric', 
-			'nilai.harga_bank' 			=> 'numeric', 
+			// 'nilai.harga_taksasi' 		=> 'numeric', 
+			// 'nilai.harga_bank' 			=> 'numeric', 
 		]);
+
+		if(empty($jaminan_kendaraan['nilai']['harga_taksasi']))
+		{
+			$jaminan_kendaraan['nilai']['harga_taksasi'] = 0;
+		}
+		if(empty($jaminan_kendaraan['nilai']['harga_bank']))
+		{
+			$jaminan_kendaraan['nilai']['harga_bank'] = 0;
+		}
 
 		if ($validator->fails())
 		{
@@ -53,6 +62,7 @@ class JaminanKendaraan implements IValueObject {
 		$this->attributes['tahun']		= $jaminan_kendaraan['tahun'];
 		$this->attributes['legal']		= $jaminan_kendaraan['legal'];
 		$this->attributes['nilai']		= $jaminan_kendaraan['nilai'];
+
 		$this->attributes['nilai']['harga_taksasi']		= new IDR($jaminan_kendaraan['nilai']['harga_taksasi']);
 		$this->attributes['nilai']['harga_bank']		= new IDR($jaminan_kendaraan['nilai']['harga_bank']);
 	}

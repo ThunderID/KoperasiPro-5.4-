@@ -115,7 +115,9 @@ class CreditService implements IService
 												$data['koperasi'], 
 												$data['penjamin'], 
 												$data['status'], 
-												$data['riwayat_status']
+												$data['riwayat_status'],
+												$data['jaminan_kendaraan'],
+												$data['jaminan_tanah_bangunan']
 											);
 
 		$saved 				= $this->repository->store($credit);

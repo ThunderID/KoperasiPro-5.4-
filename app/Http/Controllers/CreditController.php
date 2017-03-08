@@ -140,6 +140,55 @@ class CreditController extends Controller
 		$kredit['pengajuan_kredit']		= str_replace('IDR', '', str_replace('.', '', $kredit['pengajuan_kredit']));
 		$kredit['kemampuan_angsur']		= str_replace('IDR', '', str_replace('.', '', $kredit['kemampuan_angsur']));
 
+		//parse jaminan
+		$kredit['jaminan_kendaraan']		= [];
+		$kredit['jaminan_tanah_bangunan']	= [];
+		
+		if(isset(Input::get('jaminan')['kendaraan']))
+		{
+			foreach (Input::get('jaminan')['kendaraan'] as $key => $value) 
+			{
+				if(str_is($value['legalitas'], 'bpkb_r2'))
+				{
+					$legal 						= 'Kendaraan Roda 2';
+				}
+				else
+				{
+					$legal 						= 'Kendaraan Roda 4';
+				}
+
+				$kredit['jaminan_kendaraan'][$key]	= [
+					'merk' 						=> 'null', 
+					'jenis' 					=> $legal, 
+					'warna' 					=> 'null', 
+					'tahun' 					=> 'null', 
+
+					'legal'						=> [
+						'atas_nama' 			=> 'null', 
+						'alamat' 				=> 'null', 
+						'nomor_polisi' 			=> 'null', 
+						'no_bpkb' 				=> 'null', 
+						'no_mesin' 				=> 'null', 
+						'no_rangka' 			=> 'null', 
+						'masa_berlaku_stnk' 	=> Carbon::now()->format('Y-m-d'), 
+						'faktur' 				=> true, 
+						'kuitansi_jual_beli' 	=> true, 
+						'kuitansi_kosong_bpkb'	=> true, 
+						'ktp_bpkb' 				=> true, 
+						'status_kepemilikan' 	=> $value['status_kepemilikan'], 
+					],
+
+					'nilai'						=> [
+						'fungsi' 				=> 'null', 
+						'kondisi' 				=> 'null', 
+						'asuransi' 				=> true, 
+						'harga_taksasi' 		=> 0, 
+						'harga_bank' 			=> 0, 
+					],
+				]; 
+			}
+		}
+
 		$result					= $this->service->pengajuan($pribadi, $kredit);
 
 		//function from parent to redirecting
