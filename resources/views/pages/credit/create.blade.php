@@ -38,17 +38,6 @@
 				]]])
 			</section>
 
-			{{-- koperasi --}}
-			{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
-			{!! Form::hidden('koperasi[nama]', 'tanjung terang') !!}
-
-			{{-- status --}}
-			{!! Form::hidden('status[][status]', 'drafting') !!}
-			{!! Form::hidden('status[][keterangan]', 'dalam proses drafting') !!}
-			{!! Form::hidden('status[][tanggal]', 'today') !!}
-			{!! Form::hidden('status[][petugas][nip]', '1234567890') !!}
-			{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
-			{!! Form::submit('tes') !!}
 		{!! Form::close() !!}
 	</div>
 @endpush

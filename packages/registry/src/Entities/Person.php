@@ -470,6 +470,28 @@ class Person implements IEntity
 	}
 
 	/**
+	 * [changeRelasi description]
+	 * @param array $status [description]
+	 * @return [boolean]	[true if success, exception if fail]
+	 */
+	public function changeRelasi($relasi)
+	{
+		//////////////
+		// Validate //
+		//////////////
+		$validator 	= Validator::make($relasi, ['id' => 'required|string', 'nama' => 'required|string', 'hubungan' => 'required|string']);
+		if ($validator->fails())
+		{
+			throw new Exception($validator->messages(), 1);
+		}
+
+		/////////
+		// Set //
+		/////////
+		$this->attributes['relasi'][0] 	= $relasi;
+	}
+
+	/**
 	 * [addPekerjaan description]
 	 * @param array $status [description]
 	 * @return [boolean]	[true if success, exception if fail]
