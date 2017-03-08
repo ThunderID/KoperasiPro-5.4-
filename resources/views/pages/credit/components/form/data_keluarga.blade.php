@@ -1,4 +1,4 @@
-{!! Form::open(['url' => route('credit.update', ['id', $page_datas->credit['id']]), 'class' => '']) !!}
+{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
 
 <div class="m-t-none m-b-md">
 	<h4 class="m-t-none m-b-xs">Data keluarga</h4>

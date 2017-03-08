@@ -18,16 +18,59 @@ class Finance implements IValueObject {
 	public function __construct($pendapatan, $pengeluaran)
 	{
 		$validator 	= Validator::make($pendapatan, ['penghasilan_gaji' => 'numeric', 'penghasilan_non_gaji' => 'numeric', 'penghasilan_lain' => 'numeric', 'sumber_penghasilan_lain' => 'string']);
-		if ($validator->fails())
+
+		if(empty($pendapatan['penghasilan_gaji']))
 		{
-			throw new Exception($validator->messages(), 1);
+			$pendapatan['penghasilan_gaji'] = 0;
+		}
+		if(empty($pendapatan['penghasilan_non_gaji']))
+		{
+			$pendapatan['penghasilan_non_gaji'] = 0;
+		}
+		if(empty($pendapatan['penghasilan_lain']))
+		{
+			$pendapatan['penghasilan_lain'] = 0;
 		}
 
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
+
 		$validator 	= Validator::make($pengeluaran, ['biaya_rumah_tangga' => 'numeric', 'biaya_pendidikan' => 'numeric', 'biaya_telepon' => 'numeric', 'biaya_pdam' => 'numeric', 'biaya_listrik' => 'numeric', 'biaya_produksi' => 'numeric', 'pengeluaran_lain' => 'numeric']);
-		if ($validator->fails())
+		if(empty($pengeluaran['biaya_rumah_tangga']))
 		{
-			throw new Exception($validator->messages(), 1);
+			$pengeluaran['biaya_rumah_tangga'] = 0;
 		}
+		if(empty($pengeluaran['biaya_pendidikan']))
+		{
+			$pengeluaran['biaya_pendidikan'] = 0;
+		}
+		if(empty($pengeluaran['biaya_telepon']))
+		{
+			$pengeluaran['biaya_telepon'] = 0;
+		}
+		if(empty($pengeluaran['biaya_pdam']))
+		{
+			$pengeluaran['biaya_pdam'] = 0;
+		}
+		if(empty($pengeluaran['biaya_listrik']))
+		{
+			$pengeluaran['biaya_listrik'] = 0;
+		}
+		if(empty($pengeluaran['biaya_produksi']))
+		{
+			$pengeluaran['biaya_produksi'] = 0;
+		}
+		if(empty($pengeluaran['pengeluaran_lain']))
+		{
+			$pengeluaran['pengeluaran_lain'] = 0;
+		}
+		
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
 
 		$this->attributes['pendapatan']								= $pendapatan;
 		$this->attributes['pendapatan']['penghasilan_gaji']			= new IDR($pendapatan['penghasilan_gaji']);

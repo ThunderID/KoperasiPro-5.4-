@@ -1,6 +1,4 @@
-{!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
-
-	{{ Form::hidden('id', $page_datas->credit['id']) }}
+{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
 
 	<fieldset class="form-group">
 		<label for="">Dilingkungan Tinggal</label>
