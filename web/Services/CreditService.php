@@ -395,6 +395,19 @@ class CreditService implements IService
 		$credit 			= $credit[0];
 		$parsed_credit 		= $this->transformer->read($credit);
 
+		switch (strtolower($parsed_credit['status'])) 
+		{
+			case 'pengajuan':
+				$parsed_credit['status_berikutnya']	= 'survei';
+				break;
+			case 'survei':
+				$parsed_credit['status_berikutnya']	= 'realisasi';
+				break;
+			default:
+				$parsed_credit['status_berikutnya']	= '';
+				break;
+		}
+
 		$person				= new PersonRepository;
 		$person				= $person->query([new SpecificationByPersonID($credit->kreditur['id'])]);
 		$person 			= $person[0];

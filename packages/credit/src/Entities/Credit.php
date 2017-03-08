@@ -298,6 +298,10 @@ class Credit implements IEntity
 				$this->attributes['status']	= $status;
 				// $this->addEvent(new \Thunderlabid\Credit\Jobs\FirePengajuanKreditEvent($this));
 				break;
+			case 'tolak':
+				$this->attributes['status']	= $status;
+				// $this->addEvent(new \Thunderlabid\Credit\Jobs\FirePengajuanKreditEvent($this));
+				break;
 			default:
 				throw new Exception('Invalid Status', 1);
 				break;
