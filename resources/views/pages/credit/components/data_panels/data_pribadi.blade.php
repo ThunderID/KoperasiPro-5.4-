@@ -1,6 +1,3 @@
-@php 
-	dd($page_datas);
-@endphp
 <div class="row m-t-sm-m-print">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase m-b-sm-m-print">DATA PRIBADI</h4>
@@ -30,7 +27,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Tanggal Lahir</strong></p>
 				<p>
-					{{ $page_datas->credit->creditor->date_of_birth->format('d/m/Y') }}
+					{{ $page_datas->credit['kreditur']['tanggal_lahir'] }}
 				</p>
 			</div>
 		</div>	
@@ -38,7 +35,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Tempat Lahir</strong></p>
 				<p>
-					{{ $page_datas->credit->creditor->place_of_birth }}
+					{{ $page_datas->credit['kreditur']['tempat_lahir'] }}
 				</p>
 			</div>
 		</div>		
@@ -48,7 +45,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Pendidikan Terakhir</strong></p>
 				<p>
-					{{ $page_datas->credit->creditor->highest_education }}
+					{{ $page_datas->credit['kreditur']['pendidikan_terakhir'] }}
 				</p>
 			</div>
 		</div>
@@ -56,7 +53,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Status Pernikahan</strong></p>
 				<p>
-					@marital($page_datas->credit->creditor->marital_status)
+					@marital($page_datas->credit['kreditur']['status_perkawinan'])
 				</p>
 			</div>
 		</div>		
@@ -64,7 +61,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Agama</strong></p>
 				<p>
-					{{ $page_datas->credit->creditor->religion }}
+					{{ $page_datas->credit['kreditur']['agama'] }}
 				</p>
 			</div>
 		</div>
