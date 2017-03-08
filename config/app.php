@@ -182,13 +182,10 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        // Barryvdh\DomPDF\ServiceProvider::class,
+		Jenssegers\Mongodb\MongodbServiceProvider::class,
 
-		//Application level and 3rd party stuffs       
-		App\Web\WebServiceProvider::class,
-		Thunderlabid\Registry\RegistryServiceProvider::class,
-		Thunderlabid\Credit\CreditServiceProvider::class,
-		Thunderlabid\Notification\NotificationServiceProvider::class,
+        Thunderlabid\Application\WebServiceProvider::class,
 	],
 
 	/*
@@ -242,9 +239,8 @@ return [
 		'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
-		// 'Credit' => Thunderlabid\Credit\Facades\Credit::class,
-		'Registry' => Thunderlabid\Registry\Facades\Registry::class,
-		// 'Notification' => Thunderlabid\Notification\Facades\Notification::class,
+
+		'TAuth' => Thunderlabid\Application\Facades\TAuth::class,
 	],
 
 ];

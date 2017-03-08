@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Web\Services\TAuth;
-use Input, Exception, Redirect, URL;
+use Thunderlabid\Application\Services\SessionBasedAuthenticator;
+use Input, Exception, Redirect, URL, TAuth;
 
 /**
  * Kelas LoginController
@@ -52,10 +52,13 @@ class LoginController extends Controller
 		$credentials				= Input::only('email', 'key');
 		$credentials['password']	= $credentials['key'];
 
+		$credentials['email']		= 'admin@ksp.id';
+		$credentials['password']	= 'admin';
+
 		try
 		{
 			//do authenticate
-			$auth			= TAuth::authenticate($credentials);
+			$auth			= TAuth::login($credentials);
 		}
 		catch(Exception $e)
 		{

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="form-wrap">
-				<h1>KoperasiPRO</h1> 
+				<h1>Chayono Group</h1> 
 				</br>
 				<p>Silahkan masukkan email dan password Anda!</p>
 				</br>

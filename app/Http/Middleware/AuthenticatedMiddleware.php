@@ -1,9 +1,8 @@
 <?php
 namespace App\Http\Middleware;
 
-use Closure;
+use Closure, TAuth;
 use Illuminate\Http\Request;
-use App\Web\Services\TAuth;
 
 class AuthenticatedMiddleware
 {

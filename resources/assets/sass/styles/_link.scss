@@ -8,3 +8,33 @@ a {
 		text-decoration: none;
 	}
 }
+
+a.primary {
+	color : $color-primary;
+
+	&:focus,
+	&.focus,
+	&:hover {
+		color : $color-active;
+	}
+}
+
+a.danger {
+	color : $brand-danger;
+
+	&:focus,
+	&.focus,
+	&:hover {
+		color : darken($brand-danger, 15%);
+	}
+}
+
+a.success {
+	color : $color-active;
+
+	&:focus,
+	&.focus,
+	&:hover {
+		color : darken($color-active, 15%);
+	}
+}

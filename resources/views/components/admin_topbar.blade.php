@@ -15,7 +15,7 @@
 			<span class="pull-right m-l-xs">
 				<div class="dropdown p-t-xs">
 					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
-						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ App\Web\Services\TAuth::activeOffice()->office->name }} &nbsp;&nbsp;<span class="caret"></span>
+						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ TAuth::activeOffice()['office']['name'] }} &nbsp;&nbsp;<span class="caret"></span>
 					</a>
 				</div>
 			</span>
@@ -32,8 +32,8 @@
 					</div >
 					<div class="col-xs-6 p-r-none">
 
-						<p class="name">{{App\Web\Services\TAuth::loggedUser()->owner->name}}</p>
-						<p class="role">{{App\Web\Services\TAuth::activeOffice()->role}}</p>
+						<p class="name">{{TAuth::loggedUser()['name']}}</p>
+						<p class="role">{{TAuth::activeOffice()['role']}}</p>
 						
 					</div >
 					<div class="col-xs-3 p-r-none p-t-md">

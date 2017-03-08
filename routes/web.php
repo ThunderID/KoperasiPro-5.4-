@@ -10,14 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/check', function () 
+Route::get('/test', function () 
 {
-	$data 	= new Thunderlabid\Application\Services\ReadUserService;
 
-	dd($data->execute(1));
-    // return view('welcome');
 });
+
+//Menu Login
+Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
+Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
+Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
+
 
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
@@ -35,12 +37,9 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::resource('person', 'PersonController');
 });
 
+
 Route::group(['middleware' => ['pjax']], function()
 {
-	//Menu Login
-	Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
-	Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
-	Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
 
 	//Menu Settings
 	//This one to change which office currently active

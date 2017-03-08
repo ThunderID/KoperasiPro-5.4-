@@ -25,9 +25,11 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Thunderlabid\\Credit\\": "app/tlab/credit/src/",
-            "Thunderlabid\\Registry\\": "app/tlab/registry/src/",
-            "Thunderlabid\\Notification\\": "app/tlab/notification/src/"
+            "Thunderlabid\\Immigration\\": "packages/immigration/src/",
+            "Thunderlabid\\Indonesia\\": "packages/indonesia/src/",
+            "Thunderlabid\\Credit\\": "packages/credit/src/",
+            "Thunderlabid\\Registry\\": "packages/registry/src/",
+            "Thunderlabid\\": "web/"
         }
     },
     "autoload-dev": {
