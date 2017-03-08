@@ -16,12 +16,12 @@ Class HelperController extends Controller
 	function getCities()
 	{
 		$id 			= request()->input('id');
-		$data 			= new \App\UI\CountryLists\Model\City;
+		$cities 		= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 
 		// sort data city by 'city_name'
-		$data 			= $data->sortBy('city_name_full');
+		$cities 		= $cities->sortBy('city_name_full');
 		// set data city where 'province_id'
-		$cities 		= $data->where('province_id', $id)->values()->all();
+		$cities 		= $cities->where('province_id', $id)->values()->all();
 
         return response()->json($cities);
 	}
