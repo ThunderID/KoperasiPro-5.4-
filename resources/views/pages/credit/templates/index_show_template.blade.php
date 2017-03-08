@@ -44,9 +44,13 @@
 			</div>			
 		</div>
 		<div class="col-sm-9">
-			<div class="_window" data-padd-top="auto" data-padd-bottom="2" style="padding-top:16px;padding-bottom: 16px;overflow-y: auto;margin-right: -15px; padding-right: 16px;">
+			@include('pages.credit.components.top_menu.pengajuan')
+
+			<div class="row _window" data-padd-top="auto" data-padd-bottom="39" style="padding:16px;overflow-y: auto;">
 					@yield('page_content')
 			</div>
+
+			@include('pages.credit.components.bottom_menu.pengajuan')
 		</div>
 	</div>  
 @endpush
