@@ -75,11 +75,13 @@ class CreditController extends Controller
 		$this->view 								= view('pages.credit.create');
 		// get data province
 		$data										= new ProvinceService;
-		$data 										= collect($data->read());
 
 		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 		// sort cities by 'city_name_full'
 		$cities										= $cities->sortBy('city_name_full');
+
+		// sort data province by 'province_name'
+		$data 										= collect($data->read());
 
 		// get province first to set list cities
 		$cities_first								= collect($data[0]['cities']);

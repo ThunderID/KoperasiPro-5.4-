@@ -4,6 +4,14 @@ namespace Thunderlabid\Application\DataTransformers\Registry;
 
 use Thunderlabid\Application\DataTransformers\Interfaces\IDataTransformer;
 
+/////////////////
+// Valueobject //
+/////////////////
+use Thunderlabid\Registry\Valueobjects\Personality as PersonalityVO;
+use Thunderlabid\Registry\Valueobjects\Finance as FinanceVO;
+use Thunderlabid\Registry\Valueobjects\Asset as AssetVO;
+use Thunderlabid\Registry\Valueobjects\Macro as MacroVO;
+
 /**
  * Interface class untuk Services Application
  *
@@ -41,7 +49,8 @@ class PersonDTODataTransformer implements IDataTransformer
 
 		//parse kepribadian
 		$kepribadian 			= [];
-		if(!empty($person->keuangan))
+		
+		if($person->kepribadian instanceOf PersonalityVO)
 		{
 			$kepribadian 		= [
 									'lingkungan_tinggal'	=> $person->kepribadian->lingkungan_tinggal,
@@ -53,7 +62,8 @@ class PersonDTODataTransformer implements IDataTransformer
 		}
 
 		$keuangan 				= [];
-		if(!empty($person->keuangan))
+		
+		if($person->keuangan instanceOf FinanceVO)
 		{
 			//parse keuangan
 			$keuangan 			= [
@@ -63,13 +73,29 @@ class PersonDTODataTransformer implements IDataTransformer
 		}
 
 		$aset 					= [];
-		if(!empty($person->aset))
+
+		if($person->aset instanceOf AssetVO)
 		{
 			//parse aset
 			$aset 				= [
 									'rumah'					=> $person->aset->rumah,
 									'kendaraan'				=> $person->aset->kendaraan,
 									'usaha'					=> $person->aset->usaha,
+			];
+		}
+
+		$makro 					= [];
+		if($person->makro instanceOf MacroVO)
+		{
+			//parse makro
+			$makro 				= [
+									'persaingan_usaha'			=> $person->makro->persaingan_usaha,
+									'prospek_usaha'				=> $person->makro->prospek_usaha,
+									'perputaran_usaha'			=> $person->makro->perputaran_usaha,
+									'pengalaman_usaha'			=> $person->makro->pengalaman_usaha,
+									'resiko_usaha'				=> $person->makro->resiko_usaha,
+									'jumlah_pelanggan_harian'	=> $person->makro->jumlah_pelanggan_harian,
+									'keterangan'				=> $person->makro->keterangan,
 			];
 		}
 
@@ -88,8 +114,9 @@ class PersonDTODataTransformer implements IDataTransformer
 				'relasi' 				=> $person->relasi, 
 				'pekerjaan' 			=> $person->pekerjaan, 
 				'kepribadian' 			=> $kepribadian,
-				'keuangan' 				=> $keuangan, 
-				'aset' 					=> $aset 
+				'keuangan' 				=> $keuangan,
+				'aset' 					=> $aset, 
+				'makro' 				=> $makro 
 				];
 	}
 }
