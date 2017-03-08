@@ -23,6 +23,7 @@ use Thunderlabid\Registry\Repositories\Specifications\Interfaces\ISpecification;
 // Transformers //
 //////////////////
 use Thunderlabid\Registry\Infrastructures\Transformers\PersonTransformer as Transformer;
+use Thunderlabid\Registry\Infrastructures\Transformers\MacroTransformer;
 use Thunderlabid\Registry\Infrastructures\Transformers\AssetTransformer;
 use Thunderlabid\Registry\Infrastructures\Transformers\FinanceTransformer;
 use Thunderlabid\Registry\Infrastructures\Transformers\PersonalityTransformer;
@@ -34,6 +35,7 @@ use Thunderlabid\Registry\Infrastructures\Models\Person as Model;
 use Thunderlabid\Registry\Infrastructures\Models\Personality;
 use Thunderlabid\Registry\Infrastructures\Models\Finance;
 use Thunderlabid\Registry\Infrastructures\Models\Asset;
+use Thunderlabid\Registry\Infrastructures\Models\Macro;
 
 ///////////////
 // Utilities //
@@ -106,6 +108,11 @@ class PersonRepository implements IRepository
 			$aset 			= new Asset;
 			$aset 			= $aset->personid($x->_id)->first();
 			$x->aset 		= $aset;
+
+			//makro
+			$makro 			= new Macro;
+			$makro 			= $makro->personid($x->_id)->first();
+			$x->makro 		= $makro;
 
 			$entities[] 	= $this->transformer->toEntity($x);
 		}
@@ -205,6 +212,17 @@ class PersonRepository implements IRepository
 				$aset_model 		= $aset_model->toEloquent($entity);
 
 				$aset_model->save();
+			}
+
+			///////////////
+			// Save Macro //
+			///////////////
+			if(!empty($entity->macro))
+			{
+				$macro_model 		= new MacroTransformer;
+				$macro_model 		= $macro_model->toEloquent($entity);
+
+				$macro_model->save();
 			}
 
 			//////////////////

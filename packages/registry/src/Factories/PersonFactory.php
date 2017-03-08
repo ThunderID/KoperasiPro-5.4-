@@ -9,6 +9,7 @@ use Thunderlabid\Registry\Entities\Person;
 use Thunderlabid\Registry\Valueobjects\Personality;
 use Thunderlabid\Registry\Valueobjects\Finance;
 use Thunderlabid\Registry\Valueobjects\Asset;
+use Thunderlabid\Registry\Valueobjects\Macro;
 
 /**
  * Class untuk Factories Person
@@ -26,7 +27,7 @@ class PersonFactory implements IFactory
 	 * @param array $data
 	 * @return Person $person
 	 */
-	public static function build($id, $nik, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pendidikan_terakhir, $status_perkawinan, $kewarganegaraan, $alamat, $kontak, $relasi, $pekerjaan, $personality = [], $finance = [], $asset = [])
+	public static function build($id, $nik, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pendidikan_terakhir, $status_perkawinan, $kewarganegaraan, $alamat, $kontak, $relasi, $pekerjaan, $personality = [], $finance = [], $asset = [], $makro = [])
 	{
 
 		if(!empty($personality))
@@ -42,6 +43,11 @@ class PersonFactory implements IFactory
 		if(!empty($asset))
 		{
 			$asset 			= new Asset($asset['rumah'], $asset['kendaraan'], $asset['usaha']);
+		}
+
+		if(!empty($makro))
+		{
+			$makro 	= new Macro($makro['persaingan_usaha'], $makro['prospek_usaha'], $makro['perputaran_usaha'], $makro['pengalaman_usaha'], $makro['resiko_usaha'], $makro['jumlah_pelanggan_harian'], $makro['keterangan']);
 		}
 
 		$person 	= 	new Person(
@@ -61,7 +67,8 @@ class PersonFactory implements IFactory
 						$pekerjaan,
 						$personality,
 						$finance,
-						$asset
+						$asset,
+						$makro
 					);
 
 		return $person;

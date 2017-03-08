@@ -196,6 +196,39 @@ class CreditService implements IService
 		return $this->transformer->read($credit[0]);
 	}
 
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function simpanSurveyMakro($credit_id, $data)
+	{
+		//fixing 
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+
+		$person_repository	= new PersonRepository;
+		$person 			= $person_repository->query([new PersonSpecificationByID($credit[0]->kreditur['id'])]);
+
+		$person 			= $person[0];
+
+		$factory 			= new MacroFactory;
+
+		$person->changeAset($factory->build($data['persaingan_usaha'],
+											$data['prospek_usaha'],
+											$data['perputaran_usaha'],
+											$data['pengalaman_usaha'],
+											$data['resiko_usaha'],
+											$data['jumlah_pelanggan_harian'],
+											$data['keterangan']
+		));
+
+		$saved 				= $person_repository->store($person);
+
+		return $this->transformer->read($credit[0]);
+	}
+
 	/**
 	 * this function mean keep executing
 	 * @param array $data
