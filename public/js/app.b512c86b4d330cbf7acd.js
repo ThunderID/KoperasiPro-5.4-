@@ -10602,18 +10602,18 @@ $(document).ready(function () {
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
 			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
-				return true;
-			}
+			// if (currentIndex > newIndex) {
+			return true;
+			// }
 
 			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// if (currentIndex < newIndex) {
+			// 	contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
+			// 	contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			return contentWizard.valid();
+			// contentWizard.validate().settings.ignore = ":disabled,:hidden";
+			// return contentWizard.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10989,9 +10989,18 @@ function selectTypeJaminan() {
 		rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
 
 		val = $(this).find('option:selected').val();
+		setName = $(this).find('option:selected').data('name');
+
 		rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
 		valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
-		$('.' + val).siblings('.credit-collaterals-legal').val(valLegal);
+
+		// change parsing name input sesuai dengan type jaminan nya
+		// change name input status kepemilikan
+		rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
+
+		// change name & value input legalitas
+		$('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
+		$('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
 
 		window.resizeWizard(); // form wizard automatic height after add template
 		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
@@ -11006,7 +11015,9 @@ function selectTypeJaminan() {
 function selectLegal() {
 	$('.quick-select-legal').on('change', function () {
 		val = $(this).find('option:selected').val();
-		$(this).parent().siblings('.credit-collaterals-legal').val(val);
+		name = $(this).data('name');
+		$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
+		$(this).parent().siblings('.credit-jaminan-legal').val(val);
 		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
