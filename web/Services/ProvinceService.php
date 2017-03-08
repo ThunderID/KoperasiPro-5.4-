@@ -18,7 +18,7 @@ use Thunderlabid\Indonesia\Repositories\Specifications\PageSpecification;
 ///////////////////
 //  Transformer  //
 ///////////////////
-use Thunderlabid\Application\DataTransformers\Province\ProvinceDTODataTransformer as DataTransformer;
+use Thunderlabid\Application\DataTransformers\Indonesia\ProvinceDTODataTransformer as DataTransformer;
 
 ///////////////////
 //    Factory    //
@@ -42,7 +42,7 @@ class ProvinceService implements IService
 	public function __construct() 
 	{
 		$this->repository 			= new Repository;
-		// $this->transformer 			= new DataTransformer;
+		$this->transformer 			= new DataTransformer;
 	}
 
 	/**
@@ -51,12 +51,10 @@ class ProvinceService implements IService
 	 * 
 	 * @return ProvinceDTODataTransformer $data
 	 */
-	public function read($page, $per_page = 15)
+	public function read()
 	{
-		$data 						= $this->repository->query([new PageSpecification($page, $per_page)]);
+		$data 						= $this->repository->query([]);
 
-		return $data;
-		
 		$province_entities 			= [];
 
 		foreach ($data as $key => $value) 

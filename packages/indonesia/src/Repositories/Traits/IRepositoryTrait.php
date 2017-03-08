@@ -82,14 +82,14 @@ trait IRepositoryTrait
 		//////////////////////////////
 		// Apply each specification //
 		//////////////////////////////
-		$model = $this->model;
+		$model = $this->model->withCities();
 		foreach ($specifications as $specification)
 		{
 			$model = $specification->apply($model);
 		}
 
 		$entities = [];
-		$data 		= $model;
+		$data 		= $model->sortby('province_name');
 		foreach ($data as $x)
 		{
 			$entities[] = $this->transformer->toEntity($x);

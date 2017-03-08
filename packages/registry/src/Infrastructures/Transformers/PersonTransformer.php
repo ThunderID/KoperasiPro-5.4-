@@ -30,7 +30,7 @@ class PersonTransformer implements ITransformer {
 		//////////////////
 		// Build Entity //
 		//////////////////
-		return Factory::build($model->_id, $model->nik, $model->nama, $model->tempat_lahir, $model->tanggal_lahir, $model->jenis_kelamin, $model->agama, $model->pendidikan_terakhir, $model->status_perkawinan, $model->kewarganegaraan, $model->alamat, $model->kontak, $model->relasi, $model->pekerjaan, $model->kepribadian, $model->keuangan, $model->aset);
+		return Factory::build($model->_id, $model->nik, $model->nama, $model->tempat_lahir, $model->tanggal_lahir, $model->jenis_kelamin, $model->agama, $model->pendidikan_terakhir, $model->status_perkawinan, $model->kewarganegaraan, $model->alamat, $model->kontak, $model->relasi, $model->pekerjaan, $model->kepribadian, $model->keuangan, $model->aset, $model->makro);
 	}
 
 	/**

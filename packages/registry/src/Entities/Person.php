@@ -9,6 +9,7 @@ use Thunderlabid\Registry\Valueobjects\IDR;
 use Thunderlabid\Registry\Valueobjects\Asset;
 use Thunderlabid\Registry\Valueobjects\Finance;
 use Thunderlabid\Registry\Valueobjects\Personality;
+use Thunderlabid\Registry\Valueobjects\Macro;
 
 /////////////
 // Entity  //
@@ -59,8 +60,9 @@ class Person implements IEntity
 	 * @param Personality  	$kepribadian 
 	 * @param Finance  		$keuangan 
 	 * @param Asset  		$aset 
+	 * @param Macro  		$makro 
 	 */
-	public function __construct($id, $nik, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pendidikan_terakhir, $status_perkawinan, $kewarganegaraan, $alamat = [], $kontak = [], $relasi = [], $pekerjaan = [], $kepribadian, $keuangan, $aset)
+	public function __construct($id, $nik, $nama, $tempat_lahir, $tanggal_lahir, $jenis_kelamin, $agama, $pendidikan_terakhir, $status_perkawinan, $kewarganegaraan, $alamat = [], $kontak = [], $relasi = [], $pekerjaan = [], $kepribadian, $keuangan, $aset, $makro)
 	{
 		if(!$id)
 		{
@@ -120,6 +122,12 @@ class Person implements IEntity
 			{
 				$this->attributes['aset']			= $aset;
 			}
+
+			$this->attributes['makro'] = [];
+			if ($makro instanceOf Macro)
+			{
+				$this->attributes['makro']			= $makro;
+			}
 		}
 		else
 		{
@@ -178,6 +186,12 @@ class Person implements IEntity
 			if ($aset instanceOf Asset)
 			{
 				$this->attributes['aset']			= $aset;
+			}
+
+			$this->attributes['makro'] = [];
+			if ($makro instanceOf Macro)
+			{
+				$this->attributes['makro']			= $makro;
 			}
 		}
 	}
@@ -511,5 +525,17 @@ class Person implements IEntity
 		// Set //
 		/////////
 		$this->attributes['aset'] 	= $aset;
+	}
+
+	/**
+	 * [changeMacro description]
+	 * @param Macro $makro [description]
+	 */
+	public function changeMacro(Macro $makro)
+	{
+		/////////
+		// Set //
+		/////////
+		$this->attributes['makro'] 	= $makro;
 	}
 }
