@@ -46,7 +46,13 @@
 		<div class="col-sm-9">
 
 			@if(isset($page_datas->credit['kreditur']['id']))
-				@include('pages.credit.components.top_menu.pengajuan')
+				@if($page_datas->credit['status'] == 'pengajuan')
+					@include('pages.credit.components.top_menu.pengajuan')
+				@elseif($page_datas->credit['status'] == 'survei')
+					@include('pages.credit.components.top_menu.survei')
+				@else
+					@include('pages.credit.components.top_menu.realisasi')
+				@endif
 			@endif
 
 			<div class="row _window" data-padd-top="auto" data-padd-bottom="39" style="padding:16px;overflow-y: auto;">
@@ -54,7 +60,13 @@
 			</div>
 
 			@if(isset($page_datas->credit['kreditur']['id']))
-				@include('pages.credit.components.bottom_menu.pengajuan')
+				@if($page_datas->credit['status'] == 'pengajuan')
+					@include('pages.credit.components.bottom_menu.pengajuan')
+				@elseif($page_datas->credit['status'] == 'survei')
+					@include('pages.credit.components.bottom_menu.survei')
+				@else
+					@include('pages.credit.components.bottom_menu.realisasi')
+				@endif
 			@endif
 				
 		</div>
