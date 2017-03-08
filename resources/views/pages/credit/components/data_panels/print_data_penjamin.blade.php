@@ -4,15 +4,27 @@
 		<hr class="print"/>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-6">
-		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
-				<p>Nama</p>
-			</div>
-			<div class="col-sm-8">
-				<p><strong>{{ $page_datas->credit->credit->warrantor->name }}</strong></p>
+@if(!empty($page_datas->credit['penjamin']))
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="row m-b-xl m-b-sm-print">
+				<div class="col-sm-4">
+					<p>Nama</p>
+				</div>
+				<div class="col-sm-8">
+					<p><strong>{{ $page_datas->credit['penjamin']['nama'] }}</strong></p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+@else
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="row m-b-xl m-b-sm-print">
+				<div class="col-sm-12">
+					<p>Belum ada data disimpan.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+@endif
