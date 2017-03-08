@@ -40,23 +40,7 @@
 
 	<div class="clearfix hidden-print">&nbsp;</div>
 
-	<!-- BLOCK 5 & 6 Display Data Keuangan, Data Aset // -->
-	<div class="row">
-		<div class="col-sm-6">
-			@if(isset($page_datas->credit->finance))
-				@include('pages.credit.components.data_panels.print_data_keuangan')
-			@endif
-		</div>
-		<div class="col-sm-6">
-			@if(isset($page_datas->credit->asset))
-				@include('pages.credit.components.data_panels.print_data_aset')
-			@endif
-		</div>
-	</div>
-
-	<div class="clearfix hidden-print">&nbsp;</div>
-
-   <!-- BLOCK 7 Data Kelurga, Data Penjamin // -->
+   <!-- BLOCK 5 Data Jaminan // -->
 	<div class="row">
 		<div class="col-sm-12">
 			@include('pages.credit.components.data_panels.print_data_jaminan')

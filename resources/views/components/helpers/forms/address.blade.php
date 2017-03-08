@@ -42,7 +42,7 @@
 	<label for="">Kodepos</label>
 	<div class="row">
 		<div class="col-md-2">
-			{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[kodepos]', null, ['class' => 'form-control auto-tabindex required input-kodepos mask-kodepos', 'placeholder' => 'Kodepos']) !!}
+			{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[kode_pos]', null, ['class' => 'form-control auto-tabindex required input-kodepos mask-kodepos', 'placeholder' => 'Kodepos']) !!}
 		</div>
 	</div>
 </fieldset>

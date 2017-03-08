@@ -12,7 +12,28 @@
 */
 Route::get('/test', function () 
 {
+$model = new Thunderlabid\Registry\Infrastructures\Models\Asset;
+$model 	= $model->first();
 
+$model->rumah 	= [
+	"status" => "milik_sendiri",
+      "angsuran" => 0,
+      "tenor_angsuran" => 0,
+      "masa_sewa" => 0,
+      "sejak" => "2016-07-03",
+      "luas" => 36,
+      "nilai_rumah" => 400000000
+];
+
+$model->usaha 	= [
+	"nama" => "Software House",
+      "bidang_usaha" => "IT",
+      "sejak" => "2016-07-03",
+      "status_usaha" => "milik_sendiri",
+      "saham_usaha" => 50
+];
+dd($model);
+dd($model->first());
 });
 
 //Menu Login
@@ -29,6 +50,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 
 	//Menu Status Kredit
 	Route::any('credit/{id}/{status}',		['uses' => 'CreditController@status', 	'as' => 'credit.status']);
+	Route::post('updating/credit/{id}',		['uses' => 'CreditController@update', 	'as' => 'credit.updating']);
 
 	///NO USE
 	//Menu Survey

@@ -32,7 +32,17 @@
 @endif
 
 @push('show_modals')
+	@if($edit == true)
 
-		
+		@component('components.modal', [
+			'id' 		=> 'data_penjamin',
+			'title'		=> 'Data Penjamin',
+			'settings'	=> [
+				'hide_buttons'	=> true
+			]
+		])
+			@include('pages.credit.components.form.data_penjamin')
+		@endcomponent
 
+	@endif
 @endpush

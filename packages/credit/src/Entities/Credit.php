@@ -282,6 +282,16 @@ class Credit implements IEntity
 	}
 
 	/**
+	 * [changePenjamin description]
+	 * @param array $penjamin [description]
+	 * @return [boolean]	[true if success, exception if fail]
+	 */
+	private function changePenjamin($penjamin)
+	{
+		$this->penjamin 	= $penjamin;
+	}
+
+	/**
 	 * [changeStatus description]
 	 * @param array $status [description]
 	 * @return [boolean]	[true if success, exception if fail]

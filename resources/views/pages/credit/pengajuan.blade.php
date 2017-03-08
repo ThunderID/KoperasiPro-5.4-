@@ -32,9 +32,9 @@
    <!-- 4 Data Data Penjamin // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@if (isset($page_datas->credit['penjamin']))
-				@include('pages.credit.components.data_panels.data_penjamin')
-			@endif
+			@include('pages.credit.components.data_panels.data_penjamin',[
+				'edit' => true
+			])
 		</div>
 	</div>
 

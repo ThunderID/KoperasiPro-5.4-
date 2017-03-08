@@ -116,9 +116,8 @@ class CreditController extends Controller
 		$pribadi['relasi']		= null;
 		$pribadi['pekerjaan'][0]			= Input::get('pekerjaan');
 		$pribadi['pekerjaan'][0]['sejak']	= Carbon::createFromFormat('d/m/Y', $pribadi['pekerjaan'][0]['sejak'])->format('Y-m-d');
-		$pribadi['alamat'][0]			= Input::get('orang')['alamat'];
+		$pribadi['alamat'][0]				= Input::get('orang')['alamat'];
 		$pribadi['alamat'][0]['negara']		= 'Indonesia';
-		$pribadi['alamat'][0]['kode_pos']	= $pribadi['alamat'][0]['kodepos'];
 		$new_kontak 			= [];
 
 		foreach ($pribadi['kontak']['telepon'] as $key => $value) 
@@ -143,7 +142,7 @@ class CreditController extends Controller
 		//parse jaminan
 		$kredit['jaminan_kendaraan']		= [];
 		$kredit['jaminan_tanah_bangunan']	= [];
-		
+		dd(Input::all());
 		if(isset(Input::get('jaminan')['kendaraan']))
 		{
 			foreach (Input::get('jaminan')['kendaraan'] as $key => $value) 
@@ -202,6 +201,30 @@ class CreditController extends Controller
 	 */
 	public function update($id)
 	{
+		// if(Input::has('keluarga'))
+		// {
+		// 	$data		= Input::get('keluarga');
+		// 	$result		= $this->service->simpanRelasi($id, $data);
+		// }
+
+		if(Input::has('penjamin'))
+		{
+			$data						= Input::get('penjamin');
+			$data['alamat']['negara']	= 'Indonesia';
+			$temp_alamat 				= $data['alamat'];
+			unset($data['alamat']);
+			unset($data['kontak']);
+
+			$data['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $data['tanggal_lahir'])->format('Y-m-d');
+
+			$data['alamat'][] 	= $temp_alamat;
+			$data['kontak'][] 	= [];
+			$data['relasi'] 	= null;
+			$data['pekerjaan'] 	= null;
+
+			$result		= $this->service->simpanPenjamin($id, $data);
+		}
+
 		if(Input::has('jaminan_kendaraan'))
 		{
 			$data		= Input::get('jaminan_kendaraan');
@@ -289,16 +312,7 @@ class CreditController extends Controller
 
 		// get active address on person
 		$person_id 									= $this->page_datas->credit['kreditur']['id'];
-		// $this->page_datas->creditor_address_active	= Person::findByID($person_id);
-
-		// // check address for warrator (penjamin)
-		// if (($this->page_datas->credit->credit->warrantor) && !is_null($this->page_datas->credit->credit->warrantor->id))
-		// {
-		// 	$person_id 									= $this->page_datas->credit->credit->warrantor->id;
-		// 	$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
-			
-		// }
-
+		
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
 			case 'pengajuan':
@@ -318,7 +332,32 @@ class CreditController extends Controller
 				break;
 		}
 
-													 
+		
+		// get data province
+		$data										= new ProvinceService;
+
+		// sort data province by 'province_name'
+		$data 										= collect($data->read());
+
+		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
+		// sort cities by 'city_name_full'
+		$cities										= $cities->sortBy('city_name_full');
+
+		// get province first to set list cities
+		$cities_first								= collect($data[0]['cities']);
+		$cities_first 								= $cities_first->sortBy('city_name_full');
+
+		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
+		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
+		$this->page_datas->cities_all				= $cities->pluck('city_name_full', 'city_name_full');
+		// get province first to set list cities
+		$cities_first								= collect($data[0]['cities']);
+		$cities_first 								= $cities_first->sortBy('city_name_full');
+
+		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
+		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
+
+											 
 		//function from parent to generate view
 		return $this->generateView();
 	}
@@ -383,20 +422,20 @@ class CreditController extends Controller
 		$this->view                                = view('pages.credit.print');
 
 		//parsing master data here
-		$this->page_datas->credit 					= Credit::findByID($id);
+		$this->page_datas->credit 					= $this->service->detailed($id);
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit->credit->creditor->id;
-		$this->page_datas->creditor_address_active	= Person::findByID($person_id);
+		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		// $this->page_datas->creditor_address_active	= Person::findByID($person_id);
 
-		// check address for warrator (penjamin)
-		if (($this->page_datas->credit->credit->warrantor))
-		{
-			$person_id 									= $this->page_datas->credit->credit->warrantor->id;
-			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
+		// // check address for warrator (penjamin)
+		// if (($this->page_datas->credit->credit->warrantor))
+		// {
+		// 	$person_id 									= $this->page_datas->credit->credit->warrantor->id;
+		// 	$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
 			
-		}
+		// }
 
 		//function from parent to generate view
 		return $this->generateView();

@@ -5,39 +5,39 @@
 	</div>
 </div>
 
-@if(isset($page_datas->credit->creditor->relatives))
-@foreach($page_datas->credit->creditor->relatives as $key => $value)
-<div class="row">
-	<div class="col-sm-6">
-		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
-				<p>Nama</p>
+@forelse ($page_datas->credit['kreditur']['relasi'] as $key => $value)
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row m-b-xl m-b-sm-print">
+				<div class="col-sm-4">
+					<p>Nama</p>
+				</div>
+				<div class="col-sm-8">
+					<p>{{ $value['nama'] }}</p>
+				</div>
 			</div>
-			<div class="col-sm-8">
-				<p><strong>{{ $value->name }}</strong></p>
+		</div>
+		<div class="col-sm-6">
+
+			<div class="row m-b-xl m-b-sm-print">
+				<div class="col-sm-4">
+					<p>Hubungan</p>
+				</div>
+				<div class="col-sm-8">
+					<p>{{ $value['relasi'] }}</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+@empty
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="row m-b-xl m-b-sm-print">
+				<div class="col-sm-12">
+					<p>Belum ada data disimpan.</p>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6">
-
-		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
-				<p>Hubungan</p>
-			</div>
-			<div class="col-sm-8">
-				<p><strong>{{ $value->relation }}</strong></p>
-			</div>
-		</div>
-
-	</div>
-</div>
-@endforeach
-@else
-<div class="row m-b-xl m-b-sm-print">
-	<div class="col-sm-12">
-		<p>
-			Belum ada data keluarga
-		</p>
-	</div>
-</div>
-@endif
+@endforelse

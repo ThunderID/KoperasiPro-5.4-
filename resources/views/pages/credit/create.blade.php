@@ -13,7 +13,7 @@
 		<div class="page-header m-t-none m-b-xl p-b-xs">
 			<h2 class="m-t-none m-b-xs">Pengajuan Baru</h2>
 		</div>
-		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard']) !!}
+		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard', 'data-ajax-submit' => false]) !!}
 			{{-- untuk data kredit --}}
 			<h3>Data Kredit</h3>
 			<section>
@@ -38,17 +38,6 @@
 				]]])
 			</section>
 
-			{{-- koperasi --}}
-			{!! Form::hidden('koperasi[kode]', 'ksu_tt') !!}
-			{!! Form::hidden('koperasi[nama]', 'tanjung terang') !!}
-
-			{{-- status --}}
-			{!! Form::hidden('status[][status]', 'drafting') !!}
-			{!! Form::hidden('status[][keterangan]', 'dalam proses drafting') !!}
-			{!! Form::hidden('status[][tanggal]', 'today') !!}
-			{!! Form::hidden('status[][petugas][nip]', '1234567890') !!}
-			{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
-			{!! Form::submit('tes') !!}
 		{!! Form::close() !!}
 	</div>
 @endpush

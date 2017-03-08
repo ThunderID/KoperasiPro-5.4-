@@ -141,6 +141,6 @@ class Credit extends BaseModel
 	 */	
 	public function scopeNamaKreditur($query, $variable)
 	{
-		return 	$query->where('kreditur.name', 'like', '%'.$variable.'%');
+		return 	$query->where('kreditur.nama', 'like', '%'.$variable.'%');
 	}
 }

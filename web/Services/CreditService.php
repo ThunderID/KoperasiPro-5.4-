@@ -158,6 +158,54 @@ class CreditService implements IService
 	 * 
 	 * @return CreditDTODataTransformer $data
 	 */
+	public function simpanPenjamin($credit_id, $data)
+	{
+		//simpan data pribadi
+		$person_service 			= new PersonService;
+		$person_service 			= $person_service->register($data);
+
+		//fixing 
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+		$credit 			= $credit[0];
+
+		$credit->changePenjamin($person_service);
+
+		$saved 				= $this->repository->store($credit);
+
+		return $this->transformer->read($credit);
+	}
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function simpanRelasi($credit_id, $data)
+	{
+		//simpan data pribadi
+		$person_service 			= new PersonService;
+		$person_service 			= $person_service->register($data);
+
+		//fixing 
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+		$credit 			= $credit[0];
+
+		$person_repository	= new PersonRepository;
+		$person 			= $person_repository->query([new PersonSpecificationByID($credit[0]->kreditur['id'])]);
+
+		$person 			= $person[0];
+		$person->changeRelasi($person_service);
+
+		return $this->transformer->read($credit);
+	}
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
 	public function simpanSurveyKepribadian($credit_id, $data)
 	{
 		//fixing 
@@ -290,7 +338,6 @@ class CreditService implements IService
 
 		return $this->transformer->read($credit);
 	}
-
 
 	/**
 	 * this function mean keep executing
