@@ -13,6 +13,8 @@ use Thunderlabid\Registry\Repositories\PersonRepository;
 ///////////////////
 // Specification //
 ///////////////////
+use Thunderlabid\Registry\Repositories\Specifications\SpecificationByID as SpecificationByPersonID;
+
 use Thunderlabid\Credit\Repositories\Specifications\SpecificationByID;
 use Thunderlabid\Credit\Repositories\Specifications\PageSpecification;
 use Thunderlabid\Credit\Repositories\Specifications\SpecificationByStatus;
@@ -24,6 +26,7 @@ use Thunderlabid\Registry\Repositories\Specifications\SpecificationByID as Perso
 ///////////////////
 //  Transformer  //
 ///////////////////
+use Thunderlabid\Application\DataTransformers\Registry\PersonDTODataTransformer;
 use Thunderlabid\Application\DataTransformers\Credit\CreditDTODataTransformer as DataTransformer;
 
 ///////////////////
@@ -32,6 +35,7 @@ use Thunderlabid\Application\DataTransformers\Credit\CreditDTODataTransformer as
 use Thunderlabid\Credit\Factories\VisaFactory;
 use Thunderlabid\Credit\Factories\CreditFactory as Factory;
 
+use Thunderlabid\Registry\Factories\MacroFactory;
 use Thunderlabid\Registry\Factories\AssetFactory;
 use Thunderlabid\Registry\Factories\FinanceFactory;
 use Thunderlabid\Registry\Factories\CollateralFactory;
@@ -242,7 +246,7 @@ class CreditService implements IService
 
 		$factory 			= new MacroFactory;
 
-		$person->changeAset($factory->build($data['persaingan_usaha'],
+		$person->changeMakro($factory->build($data['persaingan_usaha'],
 											$data['prospek_usaha'],
 											$data['perputaran_usaha'],
 											$data['pengalaman_usaha'],
@@ -379,8 +383,17 @@ class CreditService implements IService
 	{
 		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
 		$credit 			= $credit[0];
+		$parsed_credit 		= $this->transformer->read($credit);
 
-		return $this->transformer->read($credit);
+		$person				= new PersonRepository;
+		$person				= $person->query([new SpecificationByPersonID($credit->kreditur['id'])]);
+		$person 			= $person[0];
+		$person_transformer	=  new PersonDTODataTransformer;
+		$person				= $person_transformer->read($person);
+
+		$parsed_credit['kreditur']	= $person;
+
+		return $parsed_credit;
 	}
 
 

@@ -79,6 +79,17 @@ class CreditController extends Controller
 		// sort data province by 'province_name'
 		$data 										= collect($data->read());
 
+		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
+		// sort cities by 'city_name_full'
+		$cities										= $cities->sortBy('city_name_full');
+
+		// get province first to set list cities
+		$cities_first								= collect($data[0]['cities']);
+		$cities_first 								= $cities_first->sortBy('city_name_full');
+
+		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
+		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
+		$this->page_datas->cities_all				= $cities->pluck('city_name_full', 'city_name_full');
 		// get province first to set list cities
 		$cities_first								= collect($data[0]['cities']);
 		$cities_first 								= $cities_first->sortBy('city_name_full');
@@ -90,6 +101,7 @@ class CreditController extends Controller
 		return $this->generateView();
 	}
 
+
 	/**
 	 * simpan kredit
 	 *
@@ -97,66 +109,79 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
-		//creditor
-		$person					= Input::get('person');
-		$person['id']			= null;
-		$person['works']		= null;
-		$person['relatives']	= null;
-		$person['phones']		= null;
-		dd($person);
+		//data pribadi
+		$pribadi 				= Input::get('pribadi');
+		$pribadi['id']			= null;
+		$person['relasi']		= null;
 
-		//only happen if person id = null
-		if(is_null($person['id']))
+		//data kredit
+		$kredit 				= Input::get('kredit');
+		$kredit['id']			= null;
+
+		$kredit['pengajuan_kredit']		= str_replace('IDR', '', str_replace('.', '', $kredit['pengajuan_kredit']));
+		$kredit['kemampuan_angsur']		= str_replace('IDR', '', str_replace('.', '', $kredit['kemampuan_angsur']));
+
+		$result					= $this->service->pengajuan($pribadi, $kredit);
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('credit.index'));
+	}
+
+	/**
+	 * update kredit
+	 *
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		if(Input::has('jaminan_kendaraan'))
 		{
-			$person_service 	= new Person;
-			$person_entity		= $person_service->store($person);
-	
-			//alamat
-			$alamat				= Input::get('alamat');
-			$alamat['country']	= 'Indonesia';
-			$alamat['id']		= null;
-			$alamat['latitude']	= null;
-			$alamat['longitude']= null;
-
-			$final_entity_person= $person_service->update('alamat', $alamat, $person_entity);
+			$data		= Input::get('jaminan_kendaraan');
+			$result		= $this->service->tambahJaminanKendaraan($id, $data);
 		}
 
-		// warrantor
-		$warrantor 				= Input::get('warrantor');
-		$warrantor['id']		= null;
-
-		if(is_null($warrantor['id']) && isset($warrantor['name']))
+		if(Input::has('jaminan_tanah_bangunan'))
 		{
-			$warrantor['nik']					= null;
-			$warrantor['place_of_birth']		= null;
-			$warrantor['date_of_birth']			= null;
-			$warrantor['religion']				= null;
-			$warrantor['highest_education']		= null;
-			$warrantor['marital_status']		= null;
-			$warrantor['phones']				= [];
-			$warrantor['works']					= [];
-			$warrantor['relatives']				= [];
-
-			$warrantor['gender']				= 'male';
-
-			$warrantor_service 	= new Person;
-			$warrantor_entity	= $warrantor_service->store($warrantor);
-		}
-		else
-		{
-			$warrantor_entity 					= null;
+			$data		= Input::get('jaminan_tanah_bangunan');
+			$result		= $this->service->tambahJaminanTanahBangunan($id, $data);
 		}
 
+		if(Input::has('kepribadian'))
+		{
+			$data		= Input::get('kepribadian');
+			$result		= $this->service->simpanSurveyKepribadian($id, $data);
+		}
 
-		//credit
-		$credit_array			= Input::get('credit');
-		$credit_array['id']		= null;
+		if(Input::has('keuangan'))
+		{
+			$data		= Input::get('keuangan');
+			$result		= $this->service->simpanSurveyKeuangan($id, $data);
+		}
 
-		$credit_array['credit_amount']			= str_replace('IDR', '', str_replace('.', '', $credit_array['credit_amount']));
-		$credit_array['installment_capacity']	= str_replace('IDR', '', str_replace('.', '', $credit_array['installment_capacity']));
+		if(Input::has('aset'))
+		{
+			$data		= Input::get('aset');
+			$result		= $this->service->simpanSurveyAset($id, $data);
+		}
 
-		$credit_service 		= new Credit;
-		$result					= $credit_service->store($credit_array, $person_entity, $warrantor_entity);
+		if(Input::has('makro'))
+		{
+			$data		= Input::get('makro');
+			$result		= $this->service->simpanSurveyMakro($id, $data);
+		}
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('credit.index'));
+	}
+
+	/**
+	 * status kredit
+	 *
+	 * @return Response
+	 */
+	public function status($id, $status)
+	{
+		$result		= $this->service->updateStatus($id, $status);
 
 		//function from parent to redirecting
 		return $this->generateRedirect(route('credit.index'));

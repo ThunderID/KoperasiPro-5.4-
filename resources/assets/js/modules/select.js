@@ -17,6 +17,7 @@ window.select = function() {
 			cache: true,
 			success: function(data) {
 				// set select2 city option, value province selected from ajax
+				rootSelect.find('.select-cities').html('');
 				$.each(data, function(i, v) {
 					$option = $("<option></option>");
 					$option.val(v.city_id).text(v.city_name_full);
@@ -37,6 +38,6 @@ window.select = function() {
 	// on event select2 'pekerjaan' on selected after focus to 'input-jabatan' on form pekerjaan
 	$('.select-pekerjaan').on('select2:select', function(evt) {
 		rootSelect = $(this).parent().parent().parent().parent();
-		rootSelect.find('.input-jabatan').focus();
+		rootSelect.find('.input-instansi').focus();
 	});
 }

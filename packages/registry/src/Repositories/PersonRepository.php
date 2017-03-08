@@ -37,6 +37,14 @@ use Thunderlabid\Registry\Infrastructures\Models\Finance;
 use Thunderlabid\Registry\Infrastructures\Models\Asset;
 use Thunderlabid\Registry\Infrastructures\Models\Macro;
 
+/////////////////
+// Valueobject //
+/////////////////
+use Thunderlabid\Registry\Valueobjects\Personality as PersonalityVO;
+use Thunderlabid\Registry\Valueobjects\Finance as FinanceVO;
+use Thunderlabid\Registry\Valueobjects\Asset as AssetVO;
+use Thunderlabid\Registry\Valueobjects\Macro as MacroVO;
+
 ///////////////
 // Utilities //
 ///////////////
@@ -184,7 +192,7 @@ class PersonRepository implements IRepository
 			//////////////////////
 			// Save kepribadian //
 			//////////////////////
-			if(!empty($entity->kepribadian))
+			if($entity->kepribadian instanceOf PersonalityVO)
 			{
 				$kepribadian_model 	= new PersonalityTransformer;
 				$kepribadian_model 	= $kepribadian_model->toEloquent($entity);
@@ -195,7 +203,7 @@ class PersonRepository implements IRepository
 			///////////////////
 			// Save Keuangan //
 			///////////////////
-			if(!empty($entity->keuangan))
+			if($entity->keuangan instanceOf FinanceVO)
 			{
 				$keuangan_model 	= new FinanceTransformer;
 				$keuangan_model 	= $keuangan_model->toEloquent($entity);
@@ -206,7 +214,7 @@ class PersonRepository implements IRepository
 			///////////////
 			// Save Aset //
 			///////////////
-			if(!empty($entity->aset))
+			if($entity->aset instanceOf AssetVO)
 			{
 				$aset_model 		= new AssetTransformer;
 				$aset_model 		= $aset_model->toEloquent($entity);
@@ -217,7 +225,7 @@ class PersonRepository implements IRepository
 			///////////////
 			// Save Macro //
 			///////////////
-			if(!empty($entity->macro))
+			if($entity->makro instanceOf MacroVO)
 			{
 				$macro_model 		= new MacroTransformer;
 				$macro_model 		= $macro_model->toEloquent($entity);

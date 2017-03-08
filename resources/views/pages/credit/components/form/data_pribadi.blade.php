@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus id-card', 'placeholder' => 'Ex. 11 00 36 08 76 0001']) !!}
+			{!! Form::text('pribadi[nik]', null, ['class' => 'form-control required auto-tabindex focus mask-id-card', 'placeholder' => 'Ex. 11 00 36 08 76 0001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -17,7 +17,7 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text('person[name]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Suena Morn']) !!}
+			{!! Form::text('pribadi[nama]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Suena Morn']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -26,7 +26,7 @@
 	<label for="">Tempat Lahir</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::select('pribadi[tempat_lahir]', $page_datas->cities_all, null, ['class' => 'form-control select required auto-tabindex', 'placeholder' => 'Ex. Surabaya', 'data-placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('pribadi[tanggal_lahir]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -43,7 +43,7 @@
 	<label for="">Jenis Kelamin</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select('person[gender]', [
+			{!! Form::select('pribadi[jenis_kelamin]', [
 				'male'		=> 'Laki-laki',
 				'female'	=> 'Perempuan'
 			], 'male', ['class' => 'form-control quick-select']) !!}
@@ -55,7 +55,7 @@
 	<label for="">Agama</label>
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::select('person[religion]', [
+			{!! Form::select('pribadi[agama]', [
 				'buddha' 	=> 'Buddha', 
 				'hindu' 	=> 'Hindu',
 				'islam'		=> 'Islam',
@@ -66,11 +66,24 @@
 		</div>
 	</div>
 </fieldset>
+
+<fieldset class="form-group">
+	<label for="">Status Pernikahan</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::select('pribadi[status_perkawinan]', [
+				'married' 		=> 'Menikah',
+				'single'		=> 'Belum Menikah',
+			], 'married', ['class' => 'form-control quick-select']) !!}
+		</div>
+	</div>
+</fieldset>
+
 <fieldset class="form-group">
 	<label for="">Pendidikan Terakhir</label>
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::select('person[highest_education]', [
+			{!! Form::select('pribadi[pendidikan_terakhir]', [
 				'tk'			=> 'TK',
 				'sd'			=> 'SD',
 				'smp'			=> 'SMP',
@@ -83,32 +96,42 @@
 	</div>
 </fieldset>
 
+
 <fieldset class="form-group">
-	<label for="">Status Pernikahan</label>
+	<label for="">Kewarganegaraan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('person[marital_status]', [
-				'married' 		=> 'Menikah',
-				'single'		=> 'Belum Menikah',
-			], 'kawin', ['class' => 'form-control quick-select']) !!}
+			{!! Form::select('pribadi[kewarganegaraan]', [
+				'wni' 		=> 'WNI',
+				'wna'		=> 'WNA',
+			], 'wni', ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
-<br />
+
+
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
-		'prefix'	=> 'person',
+		'prefix'	=> 'pribadi',
 		'province' 	=> $page_datas->province,
 		'cities'	=> $page_datas->cities
 	]
 ])
-<br />
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 
 	'param'	=> [
 		'target'	=> 'template-contact-person',
-		'prefix'	=> 'person'
+		'prefix'	=> 'pribadi',
+		'class'		=> [
+			'init_add'		=> 'init-add-one'
+		]
 ]])
