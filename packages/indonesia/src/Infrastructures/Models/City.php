@@ -10,7 +10,7 @@ class City extends Collection
 	{
 		if(empty($collection))
 		{
-			$city   	= file_get_contents('/var/www/html/packages/indonesia/src/Infrastructures/Libraries/json/cities.json');
+			$city		= file_get_contents(app_path().'/../packages/indonesia/src/Infrastructures/Libraries/json/cities.json');
 		
 			$collection = json_decode($city, true);
 		}

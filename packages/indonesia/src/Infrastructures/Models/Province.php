@@ -10,7 +10,7 @@ class Province extends Collection
 	{
 		if(empty($collection))
 		{
-			$province   = file_get_contents('/var/www/html/packages/indonesia/src/Infrastructures/Libraries/json/provinces.json');
+			$province   = file_get_contents(app_path().'/../packages/indonesia/src/Infrastructures/Libraries/json/provinces.json');
 		
 			$collection = json_decode($province, true);
 		}
