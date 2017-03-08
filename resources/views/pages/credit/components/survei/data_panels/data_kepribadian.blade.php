@@ -100,7 +100,7 @@
 				'hide_buttons'	=> true
 			]	
 		])
-			@include('pages.survey.components.form.data_kepribadian')
+			@include('pages.credit.components.survei.form.data_kepribadian')
 		@endcomponent
 
 	@endif
