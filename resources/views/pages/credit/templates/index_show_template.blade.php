@@ -44,13 +44,19 @@
 			</div>			
 		</div>
 		<div class="col-sm-9">
-			@include('pages.credit.components.top_menu.pengajuan')
+
+			@if(isset($page_datas->credit['kreditur']['id']))
+				@include('pages.credit.components.top_menu.pengajuan')
+			@endif
 
 			<div class="row _window" data-padd-top="auto" data-padd-bottom="39" style="padding:16px;overflow-y: auto;">
 					@yield('page_content')
 			</div>
 
-			@include('pages.credit.components.bottom_menu.pengajuan')
+			@if(isset($page_datas->credit['kreditur']['id']))
+				@include('pages.credit.components.bottom_menu.pengajuan')
+			@endif
+				
 		</div>
 	</div>  
 @endpush
