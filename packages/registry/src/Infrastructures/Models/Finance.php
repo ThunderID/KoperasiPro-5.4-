@@ -37,6 +37,7 @@ class Finance extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
+											'person'				,
 											'pendapatan'			,
 											'pengeluaran'			,
 										];
