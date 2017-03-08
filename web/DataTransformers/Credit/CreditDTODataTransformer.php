@@ -55,6 +55,8 @@ class CreditDTODataTransformer implements IDataTransformer
 				$jaminan['kendaraan'][$i]['tahun']	= $value->tahun;
 				$jaminan['kendaraan'][$i]['legal']	= $value->legal;
 				$jaminan['kendaraan'][$i]['nilai']	= $value->nilai;
+				$jaminan['kendaraan'][$i]['nilai']['harga_taksasi']	= $value->nilai['harga_taksasi']->IDR();
+				$jaminan['kendaraan'][$i]['nilai']['harga_bank']	= $value->nilai['harga_bank']->IDR();
 				$i++;
 			}
 
@@ -66,6 +68,10 @@ class CreditDTODataTransformer implements IDataTransformer
 				$jaminan['tanah_bangunan'][$j]['legal']					= $value->legal;
 				$jaminan['tanah_bangunan'][$j]['alamat']				= $value->alamat;
 				$jaminan['tanah_bangunan'][$j]['nilai']					= $value->nilai;
+				$jaminan['tanah_bangunan'][$j]['nilai']['harga_njop']		= $value->nilai['harga_njop']->IDR();
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_tanah']		= $value->nilai['nilai_tanah']->IDR();
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_bangunan']	= $value->nilai['nilai_bangunan']->IDR();
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_taksasi']	= $value->nilai['nilai_taksasi']->IDR();
 				$j++;
 			}
 		}

@@ -65,6 +65,10 @@ class JaminanTanahBangunan implements IValueObject {
 		$this->attributes['legal']						= $jaminan_tanah_bangunan['legal'];
 		$this->attributes['alamat']						= $jaminan_tanah_bangunan['alamat'];
 		$this->attributes['nilai']						= $jaminan_tanah_bangunan['nilai'];
+		$this->attributes['nilai']['harga_njop']		= new IDR($jaminan_tanah_bangunan['nilai']['harga_njop']);
+		$this->attributes['nilai']['nilai_tanah']		= new IDR($jaminan_tanah_bangunan['nilai']['nilai_tanah']);
+		$this->attributes['nilai']['nilai_bangunan']	= new IDR($jaminan_tanah_bangunan['nilai']['nilai_bangunan']);
+		$this->attributes['nilai']['nilai_taksasi']		= new IDR($jaminan_tanah_bangunan['nilai']['nilai_taksasi']);
 	}
 
 	public function equals($jaminan_tanah_bangunan)

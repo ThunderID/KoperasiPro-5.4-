@@ -1,16 +1,16 @@
 {!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
 
-	{{ Form::hidden('id', $page_datas->credit->credit->id) }}
+	{{ Form::hidden('id', $page_datas->credit['id']) }}
 
 	<fieldset class="form-group">
 		<label for="">Dilingkungan Tinggal</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('kepribadian[residence][acquinted]', [
+				{!! Form::select('kepribadian[lingkungan_tinggal]', [
 					'dikenal'			=> 'Dikenal',
 					'kurang_dikenal'	=> 'Kurang Dikenal',
 					'tidak_dikenal'		=> 'Tidak Dikenal'
-				], $page_datas->credit->survey->personality->residence['acquinted'], ['class' => 'form-control quick-select residence-acquinted']) !!}
+				], $page_datas->credit['kreditur']['kepribadian']['lingkungan_tinggal'], ['class' => 'form-control quick-select residence-acquinted']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -19,11 +19,11 @@
 		<label for="">Dilingkungan Kerja</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('kepribadian[workplace][acquinted]', [
+				{!! Form::select('kepribadian[lingkungan_pekerjaan]', [
 					'dikenal'			=> 'Dikenal',
 					'kurang_dikenal'	=> 'Kurang Dikenal',
 					'tidak_dikenal'		=> 'Tidak Dikenal'
-				], $page_datas->credit->survey->personality->workplace['acquinted'], ['class' => 'form-control quick-select workplace-acquinted']) !!}
+				], $page_datas->credit['kreditur']['kepribadian']['lingkungan_pekerjaan'], ['class' => 'form-control quick-select workplace-acquinted']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -32,11 +32,11 @@
 		<label for="">Karakter</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('kepribadian[character]', [
+				{!! Form::select('kepribadian[karakter]', [
 					'baik'			=> 'Baik',
 					'cukup_baik'	=> 'Cukup Baik',
 					'tidak_baik'	=> 'Tidak Baik'
-				], $page_datas->credit->survey->personality->character , ['class' => 'form-control quick-select character']) !!}
+				], $page_datas->credit['kreditur']['kepribadian']['karakter'] , ['class' => 'form-control quick-select karakter']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -45,10 +45,10 @@
 		<label for="">Pola Hidup</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('kepribadian[lifestyle]', [
+				{!! Form::select('kepribadian[pola_hidup]', [
 					'sederhana'		=> 'Sederhana',
 					'mewah'			=> 'Mewah'
-				], $page_datas->credit->survey->personality->lifestyle, ['class' => 'form-control quick-select lifestyle']) !!}
+				], $page_datas->credit['kreditur']['kepribadian']['pola_hidup'], ['class' => 'form-control quick-select pola_hidup']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -57,7 +57,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('kepribadian[notes][0]', (!empty($page_datas->credit->survey->personality->notes) ? $page_datas->credit->survey->personality->notes[0]['description'] : ''), ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('kepribadian[keterangan]', $page_datas->credit['kreditur']['kepribadian']['keterangan'], ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>

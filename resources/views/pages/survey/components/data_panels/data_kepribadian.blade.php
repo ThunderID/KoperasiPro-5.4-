@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Kepribadian
-			@if(!is_null($page_datas->credit->survey->personality->character))
+			@if(!is_null($page_datas->credit['kreditur']['kepribadian']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -25,7 +25,7 @@
 </div>
 
 
-@if(is_null($page_datas->credit->survey->personality->character))
+@if(is_null($page_datas->credit['kreditur']['kepribadian']))
 <!-- no data -->
 <div class="row">
 	<div class="col-sm-12">
@@ -43,7 +43,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Karakter</strong></p>
 				<p>
-					{{ ucwords(str_replace('_', ' ', $page_datas->credit->survey->personality->character)) }}
+					{{ ucwords(str_replace('_', ' ', $page_datas->credit['kreditur']['kepribadian']['karakter'])) }}
 				</p>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Lingkungan Tinggal</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->personality->residence['acquinted']) }}
+					{{ ucwords($page_datas->credit['kreditur']['kepribadian']['lingkungan_tinggal']) }}
 				</p>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Lingkungan Kerja</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->personality->workplace['acquinted']) }}
+					{{ ucwords($page_datas->credit['kreditur']['kepribadian']['lingkungan_pekerjaan']) }}
 				</p>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Pola Hidup</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->personality->lifestyle) }}
+					{{ ucwords($page_datas->credit['kreditur']['kepribadian']['pola_hidup']) }}
 				</p>
 			</div>
 		</div>		
@@ -79,13 +79,9 @@
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Keterangan Lain</strong></p>
-				<ul>
-					@foreach($page_datas->credit->survey->personality->notes as $note)
-						<li>
-							{{ ucfirst($note['description']) }}
-						</li>
-					@endforeach
-				</ul>
+				<p>
+					{{ ucwords($page_datas->credit['kreditur']['kepribadian']['keterangan']) }}
+				</p>
 			</div>
 		</div>
 

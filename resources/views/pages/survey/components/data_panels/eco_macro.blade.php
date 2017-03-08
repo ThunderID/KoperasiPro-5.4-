@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Ekonomi Makro
-			@if(!is_null($page_datas->credit->survey->macro->prospect))
+			@if(!is_null($page_datas->credit['kreditur']['makro']['prospek_usaha']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -24,7 +24,7 @@
 	</div>
 </div>
 
-@if(is_null($page_datas->credit->survey->macro->prospect))
+@if(is_null($page_datas->credit['kreditur']['makro']['prospek_usaha']))
 <!-- No Data -->
 <div class="row">
 	<div class="col-sm-12">
@@ -41,7 +41,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Prospek Usaha</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->prospect) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['prospek_usaha']) }}
 				</p>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Persaingan Usaha</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->competition) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['persaingan_usaha']) }}
 				</p>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Perputaran Usaha</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->turn_over) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['perputaran_usaha']) }}
 				</p>
 			</div>
 		</div>	
@@ -65,7 +65,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Jumlah Pelanggan Harian</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->daily_customer) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['jumlah_pelanggan_harian']) }}
 				</p>
 			</div>
 		</div>	
@@ -79,7 +79,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Resiko Usaha</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->risk) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['resiko_usaha']) }}
 				</p>
 			</div>
 		</div>	
@@ -87,20 +87,16 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Pengalaman Usaha</strong></p>
 				<p>
-					{{ ucwords($page_datas->credit->survey->macro->experience) }}
+					{{ ucwords($page_datas->credit['kreditur']['makro']['pengalaman_usaha']) }}
 				</p>
 			</div>
 		</div>
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
 				<p class="p-b-sm"><strong>Keterangan Lain</strong></p>
-				<ul>
-					@foreach($page_datas->credit->survey->macro->others as $other)
-						<li>
-							{{ ucfirst($other) }}
-						</li>
-					@endforeach
-				</ul>
+				<p>
+					{{ ucwords($page_datas->credit['kreditur']['makro']['keterangan']) }}
+				</p>
 			</div>
 		</div>		
 

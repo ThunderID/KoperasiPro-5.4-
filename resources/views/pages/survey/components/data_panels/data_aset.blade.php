@@ -1,231 +1,93 @@
-<?php
-	if(!isset($edit)){
-		$edit = true;
-	}
-?>
-
 <div class="row">
-	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Aset
-			@if(!is_null($page_datas->credit->survey->asset))
-				@if($edit == true)
-					<span class="pull-right">
-						<small>
-							<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
-								<i class="fa fa-pencil" aria-hidden="true"></i>
-								Edit
-							</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
-		<hr/>
-	</div>
+<div class="col-sm-12">
+	<h4 class="text-uppercase">DATA ASET</h4>
+	<hr/>
+</div>
 </div>
 
-@if(is_null($page_datas->credit->survey->asset))
-<!-- no data -->
-<div class="row">
-	<div class="col-sm-12">
-		<p>Belum ada data disimpan. <a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax> Tambahkan Sekarang </a></p>
-	</div>
-</div>
+<br>
+<h5>Rumah</h5>
+<table>
+	{{-- @foreach((array)$page_datas->credit['kreditur']['aset'] as $value) --}}
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Status Kepemilikan</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['rumah']['status']) }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Sejak</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['rumah']['sejak'] }} Tahun</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Luas</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['rumah']['luas'] }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Nilai Rumah</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['rumah']['nilai_rumah'] }}</h4>
+			</td>
+		</tr>
+	{{-- @endforeach --}}
+</table>
+<br>
+<h5>Kendaraan</h5>
+<table>
+	{{-- @foreach((array)$page_datas->credit->asset->vehicles as $value) --}}
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Roda 2</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['kendaraan']['jumlah_kendaraan_r2'] }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Roda 4</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['kendaraan']['jumlah_kendaraan_r4'] }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Nilai Kendaraan</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['kendaraan']['nilai_kendaraan'] }}</h4>
+			</td>
+		</tr>
+	{{-- @endforeach --}}
+</table>
+<br>
+<h5>Perusahaan</h5>
+<table>
+	{{-- @foreach((array)$page_datas->credit->asset->companies as $value) --}}
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Nama</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['usaha']['nama'] }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Status Usaha</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ str_replace('_', ' ', $page_datas->credit['kreditur']['aset']['usaha']['status_usaha']) }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Berdirinya Usaha</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['usaha']['sejak'] }}</h4>
+			</td>
+		</tr>
+		<tr class="row">
+			<td class="col-sm-4"><h4><small>Saham Usaha</small></h4></td>
+			<td class="col-sm-8">
+				<h4>{{ $page_datas->credit['kreditur']['aset']['usaha']['saham_usaha'] }}</h4>
+			</td>
+		</tr>
+	{{-- @endforeach --}}
+</table>
 
-<div class="row clearfix">&nbsp;</div>
-<div class="row clearfix">&nbsp;</div>
-@else
-<!-- with data -->
-<div class="row">
-	<div class="col-sm-12">
-		@if (is_null($page_datas->credit->survey->asset->houses))
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Rumah/Tanah</h4>
-					<p>Belum ada asset</p>
-				</div>
-			</div>
-		@else
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Rumah/Tanah</h4>
-				</div>
-			</div>
-		@endif
-	</div>
-
-	@foreach ((array)$page_datas->credit->survey->asset->houses as $value)
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Status Rumah</strong></p>
-				<p>
-					{{ str_replace('_', ' ', $value->ownership_status) }}
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Nilai Rumah/Tanah</strong></p>
-				<p>
-					{{ $value->worth->IDR() }}
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Luas Rumah/Tanah</strong></p>
-				<p>
-					{{ $value->size }}
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Sejak</strong></p>
-				<p>
-					{{ $value->since->format('d/m/Y') }}
-				</p>
-			</div>
-		</div>	
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Angsuran/KPR</strong></p>
-				<p>
-					{{ $value->installment_period }}
-				</p>
-			</div>
-		</div>
-	</div>
-	@endforeach
-
-	<div class="clearfix">&nbsp;</div>
-	<div class="clearfix">&nbsp;</div>
-
-	<div class="col-sm-12">
-		@if (is_null($page_datas->credit->survey->asset->vehicles))
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Kendaraan</h4>
-				</div>
-			</div>
-		@else
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Kendaraan</h4>
-					<p>Belum ada asset</p>
-				</div>
-			</div>
-		@endif
-	</div>	
-
-	@foreach ((array)$page_datas->credit->survey->asset->vehicles as $value)
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Jumlah Kendaraan</strong></p>
-				<p>
-					{{ ( $value->four_wheels + $value->two_wheels) }}
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Nilai Kendaraan</strong></p>
-				<p>
-					{{ $value->worth->IDR() }}
-				</p>
-			</div>
-		</div>
-	</div>
-	@endforeach
-
-	<div class="clearfix">&nbsp;</div>
-	<div class="clearfix">&nbsp;</div>
-
-	<div class="col-sm-12">
-		@if ($page_datas->credit->survey->asset->companies)
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Usaha/Perusahaan</h4>
-				</div>
-			</div>
-		@else
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Usaha/Perusahaan</h4>
-					<p>Belum ada asset</p>
-				</div>
-			</div>
-		@endif
-	</div>	
-
-	@foreach ((array)$page_datas->credit->survey->asset->companies as $value)
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Nama Perusahaan/Usaha</strong></p>
-				<p>
-					{{ $value->name }}
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Bidang Usaha</strong></p>
-				<p>
-					{{ $value->area }}
-				</p>
-			</div>
-		</div>
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Status Usaha</strong></p>
-				<p>
-					{{ str_replace('_', ' ', $value->ownership_status) }}
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Kerjasama Bagi Hasil</strong></p>
-				<p>
-					{{ $value->share }}
-				</p>
-			</div>
-		</div>		
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<p class="p-b-sm"><strong>Nilai Asset Perusahaan</strong></p>
-				<p>
-					{{ $value->worth->IDR() }}
-				</p>
-			</div>
-		</div>
-	</div>
-	@endforeach
-</div>
-@endif
-
-@push('show_modals')
-	@if($edit == true)
-
-		<!-- Data aset // -->
-		@component('components.modal', [
-			'id' 		=> 'data_aset',
-			'title'		=> 'Data Aset',
-			'settings'	=> [
-				'hide_buttons'	=> true
-			]	
-		])
-			@include('pages.survey.components.form.data_aset')
-		@endcomponent	
-
-	@endif
-@endpush
+<div class="clearfix">&nbsp;</div>

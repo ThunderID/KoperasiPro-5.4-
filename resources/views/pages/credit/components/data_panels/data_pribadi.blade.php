@@ -27,7 +27,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Tanggal Lahir</strong></p>
 				<p>
-					{{ $page_datas->credit['kreditur']['tanggal_lahir'] }}
+					{{ Carbon\Carbon::parse($page_datas->credit['kreditur']['tanggal_lahir'])->format('d/m/Y') }}
 				</p>
 			</div>
 		</div>	
@@ -75,7 +75,11 @@
 		<div class="row m-b-xl m-t-xs-m-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Nomor Telepon</strong></p>
-				<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#" no-data-pjax> Tambahkan Sekarang </a></p>
+				@forelse($page_datas->credit['kreditur']['kontak'] as $key => $value)
+					<p>{{$value['telepon']}}</p>
+				@empty
+					<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#" no-data-pjax> Tambahkan Sekarang </a></p>
+				@endforelse
 			</div>
 		</div>
 	</div>
@@ -101,40 +105,40 @@
 <div class="clearfix hidden-print">&nbsp;</div>
 
 <div class="row">
-	@if (isset($page_datas->credit['kreditur']['pekerjaan']))
-		@foreach($page_datas->credit['kreditur']['pekerjaan'] as $key => $value)
-			<div class="col-sm-6">
-				<div class="row m-b-xl m-t-xs-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
-						<p>
-							{{ $value['jenis'] }}
-						</p>
-					</div>
-				</div>
-				<div class="row m-b-xl m-t-sm-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print"><strong>Posisi</strong></p>
-						<p>
-							{{ $value['jabatan'] }}
-						</p>
-					</div>
+	@forelse($page_datas->credit['kreditur']['pekerjaan'] as $key => $value)
+		<div class="col-sm-6">
+			<div class="row m-b-xl m-t-xs-m-print">
+				<div class="col-sm-12">
+					<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
+					<p>
+						{{ $value['jenis'] }}
+					</p>
 				</div>
 			</div>
-			<div class="col-sm-6">
-				<div class="row m-b-xl m-t-xs-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print "><strong>Sejak</strong></p>
-						<p>
-							{{ $value['sejak'] }}
-						</p>
-					</div>
-				</div>				
+			<div class="row m-b-xl m-t-sm-m-print">
+				<div class="col-sm-12">
+					<p class="p-b-sm m-b-xs-m-print"><strong>Posisi</strong></p>
+					<p>
+						{{ $value['jabatan'] }}
+					</p>
+				</div>
 			</div>
-			<div class="clearfix hidden-print">&nbsp;</div>
-			<div class="col-sm-12">
-				{{-- <h5 class="hidden-print"><u><a href="#">Lihat Alamat</a></u></h5> --}}
-			</div>
-		@endforeach
-	@endif
+		</div>
+		<div class="col-sm-6">
+			<div class="row m-b-xl m-t-xs-m-print">
+				<div class="col-sm-12">
+					<p class="p-b-sm m-b-xs-m-print "><strong>Sejak</strong></p>
+					<p>
+						{{ Carbon\Carbon::parse($value['sejak'])->format('d/m/Y') }}
+					</p>
+				</div>
+			</div>				
+		</div>
+		<div class="clearfix hidden-print">&nbsp;</div>
+		<div class="col-sm-12">
+			{{-- <h5 class="hidden-print"><u><a href="#">Lihat Alamat</a></u></h5> --}}
+		</div>
+	@empty
+		<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#" no-data-pjax> Tambahkan Sekarang </a></p>
+	@endforelse
 </div>

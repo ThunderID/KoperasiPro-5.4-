@@ -19,4 +19,20 @@
 
 	</div>
 </div>
+@else
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row m-b-xl m-t-xs-print">
+				<div class="col-sm-12">
+					<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#data_penjamin" no-data-pjax> Tambahkan Sekarang </a></p>
+				</div>
+			</div>
+		</div>
+	</div>
 @endif
+
+@push('show_modals')
+
+		
+
+@endpush

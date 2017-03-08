@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Keuangan
-			@if(count($page_datas->credit->survey->finance->incomes) > 0)
+			@if(count($page_datas->credit['kreditur']['keuangan']['pendapatan']) > 0)
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -24,7 +24,7 @@
 	</div>
 </div>
 
-@if(count($page_datas->credit->survey->finance->incomes) == 0)
+@if(count($page_datas->credit['kreditur']['keuangan']['pendapatan']) == 0)
 <!-- No data -->
 <div class="row">
 	<div class="col-sm-12">
@@ -47,14 +47,14 @@
 		</div>
 	</div>
 </div>
-@foreach($page_datas->credit->survey->finance->incomes as $income)
+@foreach($page_datas->credit['kreditur']['keuangan']['pendapatan'] as $key => $income)
 <div class="col-sm-6">
 
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p class="p-b-sm"><strong>{{ ucwords($income->description ) }}</strong></p>
+			<p class="p-b-sm"><strong>{{ ucwords($key ) }}</strong></p>
 			<p>
-				{{$income->amount->IDR()}}
+				{{$income}}
 			</p>
 		</div>
 	</div>
@@ -73,14 +73,14 @@
 </div>
 </div>
 
-@foreach($page_datas->credit->survey->finance->expenses as $expense)
+@foreach($page_datas->credit['kreditur']['keuangan']['pengeluaran'] as $key => $expense)
 <div class="col-sm-6">
 
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p class="p-b-sm"><strong>{{ ucwords($expense->description ) }}</strong></p>
+			<p class="p-b-sm"><strong>{{ ucwords($key ) }}</strong></p>
 			<p>
-				{{$expense->amount->IDR()}}
+				{{$expense}}
 			</p>
 		</div>
 	</div>
@@ -98,15 +98,7 @@
 	@if($edit == true)
 
 		<!-- Data keuangan // -->
-		@component('components.modal', [
-			'id' 		=> 'data_keuangan',
-			'title'		=> 'Data Keuangan',
-			'settings'	=> [
-				'hide_buttons'	=> true
-			]	
-		])
-			@include('pages.survey.components.form.data_keuangan')
-		@endcomponent	
+		
 
 	@endif
 @endpush	

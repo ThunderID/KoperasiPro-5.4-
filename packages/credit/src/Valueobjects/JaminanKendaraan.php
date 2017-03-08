@@ -53,6 +53,8 @@ class JaminanKendaraan implements IValueObject {
 		$this->attributes['tahun']		= $jaminan_kendaraan['tahun'];
 		$this->attributes['legal']		= $jaminan_kendaraan['legal'];
 		$this->attributes['nilai']		= $jaminan_kendaraan['nilai'];
+		$this->attributes['nilai']['harga_taksasi']		= new IDR($jaminan_kendaraan['nilai']['harga_taksasi']);
+		$this->attributes['nilai']['harga_bank']		= new IDR($jaminan_kendaraan['nilai']['harga_bank']);
 	}
 
 	public function equals($jaminan_kendaraan)

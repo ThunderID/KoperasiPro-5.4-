@@ -1,16 +1,16 @@
 {!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
 
-	{{ Form::hidden('id', $page_datas->credit->credit->id) }}
+	{{ Form::hidden('id', $page_datas->credit['id']) }}
 
 	<fieldset class="form-group">
 		<label for="">Persaingan Usaha</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[competition]', [
+				{!! Form::select('makro[persaingan_usaha]', [
 					'padat'			=> 'Padat',
 					'sedang'		=> 'Sedang',
 					'biasa'			=> 'Biasa'
-				], $page_datas->credit->survey->macro->competition, ['class' => 'form-control quick-select competition']) !!}
+				], $page_datas->credit['kreditur']['makro']['persaingan_usaha'], ['class' => 'form-control quick-select persaingan_usaha']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -19,11 +19,11 @@
 		<label for="">Prospek Usaha</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[prospect]', [
+				{!! Form::select('makro[prospek_usaha]', [
 					'padat'			=> 'Padat',
 					'sedang'		=> 'Sedang',
 					'biasa'			=> 'Biasa'
-				], $page_datas->credit->survey->macro->prospect, ['class' => 'form-control quick-select prospect']) !!}
+				], $page_datas->credit['kreditur']['makro']['prospek_usaha'], ['class' => 'form-control quick-select prospek_usaha']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -32,11 +32,11 @@
 		<label for="">Perputaran Usaha</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[turn_over]', [
+				{!! Form::select('makro[perputaran_usaha]', [
 					'padat'			=> 'Padat',
 					'sedang'		=> 'Sedang',
 					'lambat'		=> 'Lambat'
-				], $page_datas->credit->survey->macro->turn_over, ['class' => 'form-control quick-select turn_over']) !!}
+				], $page_datas->credit['kreditur']['makro']['perputaran_usaha'], ['class' => 'form-control quick-select perputaran_usaha']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -45,12 +45,12 @@
 		<label for="">Pengalaman Usaha</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[experience]', [
+				{!! Form::select('makro[pengalaman_usaha]', [
 					'lt-2'			=> '< 2 tahun',
 					'lt-3'			=> '2 - 3 tahun',
 					'lt-5'			=> '3 - 5 tahun',
 					'gt-5'			=> '> 5 tahun'
-				], $page_datas->credit->survey->macro->experience, ['class' => 'form-control quick-select experience']) !!}
+				], $page_datas->credit['kreditur']['makro']['pengalaman_usaha'], ['class' => 'form-control quick-select pengalaman_usaha']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -59,11 +59,11 @@
 		<label for="">Resiko Usaha</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[risk]', [
+				{!! Form::select('makro[resiko_usaha]', [
 					'bagus'			=> 'Bagus',
 					'biasa'			=> 'Biasa',
 					'suram'			=> 'Suram'
-				], $page_datas->credit->survey->macro->risk, ['class' => 'form-control quick-select risk']) !!}
+				], $page_datas->credit['kreditur']['makro']['resiko_usaha'], ['class' => 'form-control quick-select resiko_usaha']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -72,12 +72,12 @@
 		<label for="">Jumlah Pelanggan Harian</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::select('makro[daily_customer]', [
+				{!! Form::select('makro[jumlah_pelanggan_harian]', [
 					'le-10'			=> '0 - 10',
 					'le-50'			=> '10 - 50',
 					'le-100'		=> '50 - 100',
 					'gt-100'		=> '> 100'
-				], 'le-10', ['class' => 'form-control quick-select daily_customer']) !!}
+				], $page_datas->credit['kreditur']['makro']['jumlah_pelanggan_harian'], ['class' => 'form-control quick-select jumlah_pelanggan_harian']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -86,7 +86,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('makro[others][0]', (!empty($page_datas->credit->survey->macro->others[0]) ? $page_datas->credit->survey->macro->others[0] : '') , ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('makro[keterangan]', $page_datas->credit['kreditur']['makro']['keterangan'] , ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>
