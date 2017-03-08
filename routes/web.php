@@ -10,14 +10,38 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/check', function () 
+Route::get('/test', function () 
 {
-	$data 	= new Thunderlabid\Application\Services\ReadUserService;
+	$model 	= new Thunderlabid\Immigration\Infrastructures\Models\User;
+	$model = $model->first();
+$model->name = 'Cool Pipo';
+$model->save();
+	dd($model);
+	$data	= [
+		'email'		=> 'admin@ksp.id',
+		'password'	=> 'admin',
+		'name'		=> 'Adminnya KSP',
+		'visas'		=> [
+			'role'		=> 'Pimpinan',
+			'office'	=> ['id' => 'ARTHAJAYABLITAR33', 'name' => 'Artha Jaya Blitar']
+		]
+	];
 
-	dd($data->execute(1));
-    // return view('welcome');
+	$data	= [
+			'user_id'	=> 'D1566AA8-44E4-485D-81B8-2524699C85C4',
+			'role'		=> 'Surveyor',
+			'office'	=> ['id' => 'MAJUPERKASAKEDIRI77', 'name' => 'Maju Perkasa Kediri']
+	];
+
+	$content 	= new Thunderlabid\Application\Services\UserService;
+	dd($content->read(1));
 });
+
+//Menu Login
+Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
+Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
+Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
+
 
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
@@ -35,12 +59,9 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::resource('person', 'PersonController');
 });
 
+
 Route::group(['middleware' => ['pjax']], function()
 {
-	//Menu Login
-	Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
-	Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
-	Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
 
 	//Menu Settings
 	//This one to change which office currently active
