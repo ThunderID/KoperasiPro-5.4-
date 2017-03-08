@@ -108,15 +108,7 @@
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
 						<p>
-							{{ $value['jenis_pekerjaan'] }}
-						</p>
-					</div>
-				</div>
-				<div class="row m-b-xl m-t-sm-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print"><strong>Instansi</strong></p>
-						<p>
-							{{ $value['instansi'] }}
+							{{ $value['jenis'] }}
 						</p>
 					</div>
 				</div>
