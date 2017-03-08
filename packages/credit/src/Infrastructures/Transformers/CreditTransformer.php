@@ -10,6 +10,9 @@ use \Thunderlabid\Credit\Factories\VisaFactory;
 
 use Thunderlabid\Credit\Entities\Interfaces\IEntity;
 
+use \Thunderlabid\Credit\Valueobjects\JaminanKendaraan;
+use \Thunderlabid\Credit\Valueobjects\JaminanTanahBangunan;
+
 use Exception;
 
 class CreditTransformer implements ITransformer { 
@@ -32,7 +35,7 @@ class CreditTransformer implements ITransformer {
 		// Build Entity //
 		//////////////////
 
-		return Factory::build($model->_id, $model->pengajuan_kredit, $model->kemampuan_angsur, $model->jangka_waktu, $model->tujuan_kredit, $model->kreditur, $model->koperasi, $model->penjamin, $model->status, $model->riwayat_status);
+		return Factory::build($model->_id, $model->pengajuan_kredit, $model->kemampuan_angsur, $model->jangka_waktu, $model->tujuan_kredit, $model->kreditur, $model->koperasi, $model->penjamin, $model->status, $model->riwayat_status, $model->jaminan['kendaraan'],  $model->jaminan['tanah_bangunan']);
 	}
 
 	/**
@@ -64,6 +67,39 @@ class CreditTransformer implements ITransformer {
 		$model->penjamin 				= $entity->penjamin;
 		$model->status 					= $entity->status;
 		$model->riwayat_status			= $entity->riwayat_status;
+
+
+		//Parse Jaminan Kendaraan
+		$jaminan 	= [];
+		$i 			= 0;
+		$j 			= 0;
+
+		foreach ((array)$entity->jaminan as $key => $value) 
+		{
+			if($value instanceOf JaminanKendaraan)
+			{
+				$jaminan['kendaraan'][$i]['merk']	= $value->merk;
+				$jaminan['kendaraan'][$i]['jenis']	= $value->jenis;
+				$jaminan['kendaraan'][$i]['warna']	= $value->warna;
+				$jaminan['kendaraan'][$i]['tahun']	= $value->tahun;
+				$jaminan['kendaraan'][$i]['legal']	= $value->legal;
+				$jaminan['kendaraan'][$i]['nilai']	= $value->nilai;
+				$i++;
+			}
+
+			if($value instanceOf JaminanTanahBangunan)
+			{
+				$jaminan['tanah_bangunan'][$j]['tipe_jaminan']			= $value->tipe_jaminan;
+				$jaminan['tanah_bangunan'][$j]['tanah']					= $value->tanah;
+				$jaminan['tanah_bangunan'][$j]['spesifikasi_bangunan']	= $value->spesifikasi_bangunan;
+				$jaminan['tanah_bangunan'][$j]['legal']					= $value->legal;
+				$jaminan['tanah_bangunan'][$j]['alamat']				= $value->alamat;
+				$jaminan['tanah_bangunan'][$j]['nilai']					= $value->nilai;
+				$j++;
+			}
+		}
+
+		$model->jaminan 				= $jaminan;
 
 		return $model;
 	}

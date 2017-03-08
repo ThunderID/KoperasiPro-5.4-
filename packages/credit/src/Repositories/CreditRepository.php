@@ -54,7 +54,6 @@ class CreditRepository implements IRepository
 		$this->model 			= new Model;
 	}
 
-
 	/**
 	* Menampilkan semua data Credit dari database
 	*

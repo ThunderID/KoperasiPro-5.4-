@@ -6,6 +6,8 @@ namespace Thunderlabid\Credit\Entities;
 // Valueobject  //
 //////////////////
 use Thunderlabid\Credit\Valueobjects\IDR;
+use Thunderlabid\Credit\Valueobjects\JaminanKendaraan;
+use Thunderlabid\Credit\Valueobjects\JaminanTanahBangunan;
 
 /////////////
 // Entity  //
@@ -50,7 +52,7 @@ class Credit implements IEntity
 	 * @param string $status 
 	 * @param array  $riwayat_status 
 	 */
-	public function __construct($nomor_kredit, $pengajuan_kredit, $kemampuan_angsur, $jangka_waktu, $tujuan_kredit, $kreditur, $koperasi, $penjamin = [], $status = null, $riwayat_status = [])
+	public function __construct($nomor_kredit, $pengajuan_kredit, $kemampuan_angsur, $jangka_waktu, $tujuan_kredit, $kreditur, $koperasi, $penjamin = [], $status = null, $riwayat_status = [], $jaminan_kendaraan = [], $jaminan_tanah_bangunan = [])
 	{
 		if(!$nomor_kredit)
 		{
@@ -68,6 +70,18 @@ class Credit implements IEntity
 			foreach ((array)$riwayat_status as $key => $value) 
 			{
 				$this->addStatus($value);
+			}
+
+			$this->attributes['jaminan'] 		= [];
+
+			foreach ((array)$jaminan_kendaraan as $key => $value) 
+			{
+				$this->addJaminanKendaraan($value);
+			}
+
+			foreach ((array)$jaminan_tanah_bangunan as $key => $value) 
+			{
+				$this->addJaminanTanahBangunan($value);
 			}
 		}
 		else
@@ -88,6 +102,17 @@ class Credit implements IEntity
 				$this->addStatus($value);
 			}
 
+			$this->attributes['jaminan'] 		= [];
+
+			foreach ((array)$jaminan_kendaraan as $key => $value) 
+			{
+				$this->addJaminanKendaraan($value);
+			}
+
+			foreach ((array)$jaminan_tanah_bangunan as $key => $value) 
+			{
+				$this->addJaminanTanahBangunan($value);
+			}
 		}
 	}
 
@@ -297,5 +322,31 @@ class Credit implements IEntity
 		/////////
 		$this->attributes['riwayat_status'][] 	= $status;
 		$this->changeStatus($status['status']);
+	}
+
+	/**
+	 * [addJaminanKendaraan description]
+	 * @param array $jaminan_kendaraan [description]
+	 * @return [boolean]	[true if success, exception if fail]
+	 */
+	public function addJaminanKendaraan(JaminanKendaraan $jaminan_kendaraan)
+	{
+		/////////
+		// Set //
+		/////////
+		$this->attributes['jaminan'][] 	= $jaminan_kendaraan;
+	}
+
+	/**
+	 * [addJaminanTanahBangunan description]
+	 * @param array $jaminan_tanah_bangunan [description]
+	 * @return [boolean]	[true if success, exception if fail]
+	 */
+	public function addJaminanTanahBangunan(JaminanTanahBangunan $jaminan_tanah_bangunan)
+	{
+		/////////
+		// Set //
+		/////////
+		$this->attributes['jaminan'][] 	= $jaminan_tanah_bangunan;
 	}
 }

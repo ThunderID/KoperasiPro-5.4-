@@ -6,7 +6,7 @@
 	<label for="">Jenis Pekerjaan</label>
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::select('pekerjaan[jenis]', [
+			{!! Form::select('pekerjaan[area]', [
 				'peg_negeri'		=> 'Pegawai Negeri',
 				'peg_swasta'		=> 'Pegawai Swasta',
 				'wiraswasta'		=> 'Wiraswasta',
@@ -24,16 +24,16 @@
 	<label for="">Jabatan</label>
 	<div class="row">
 		<div class="col-md-8">
-			{!! Form::text('pekerjaan[jabatan]', null, ['class' => 'form-control auto-tabindex required input-jabatan', 'placeholder' => 'Jabatan']) !!}
+			{!! Form::text('pekerjaan[position]', null, ['class' => 'form-control auto-tabindex required input-jabatan', 'placeholder' => 'Jabatan']) !!}
 		</div>
 	</div>
 </fieldset>
 
 <fieldset class="form-group">
-	<label for="">Masa Kerja</label>
+	<label for="">Bekerja Sejak</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required date-format', 'placeholder' => 'Masa kerja']) !!}
+			{!! Form::text('pekerjaan[since]', null, ['class' => 'form-control required auto-tabindex required date-format', 'placeholder' => 'Bekerja Sejak']) !!}
 		</div>
 	</div>
 </fieldset>

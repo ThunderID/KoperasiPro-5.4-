@@ -47,6 +47,7 @@ class Credit extends BaseModel
 											'penjamin'				,
 											'status'				,
 											'riwayat_status'		,
+											'jaminan'				,
 										];
 
 	/**
