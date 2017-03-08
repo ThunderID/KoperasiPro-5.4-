@@ -29,8 +29,18 @@ class Finance implements IValueObject {
 			throw new Exception($validator->messages(), 1);
 		}
 
-		$this->attributes['pendapatan']					= $pendapatan;
-		$this->attributes['pengeluaran']				= $pengeluaran;
+		$this->attributes['pendapatan']								= $pendapatan;
+		$this->attributes['pendapatan']['penghasilan_gaji']			= new IDR($pendapatan['penghasilan_gaji']);
+		$this->attributes['pendapatan']['penghasilan_non_gaji']		= new IDR($pendapatan['penghasilan_non_gaji']);
+		$this->attributes['pendapatan']['penghasilan_lain']			= new IDR($pendapatan['penghasilan_lain']);
+		$this->attributes['pengeluaran']							= $pengeluaran;
+		$this->attributes['pengeluaran']['biaya_rumah_tangga']		= new IDR($pengeluaran['biaya_rumah_tangga']);
+		$this->attributes['pengeluaran']['biaya_pendidikan']		= new IDR($pengeluaran['biaya_pendidikan']);
+		$this->attributes['pengeluaran']['biaya_telepon']			= new IDR($pengeluaran['biaya_telepon']);
+		$this->attributes['pengeluaran']['biaya_pdam']				= new IDR($pengeluaran['biaya_pdam']);
+		$this->attributes['pengeluaran']['biaya_listrik']			= new IDR($pengeluaran['biaya_listrik']);
+		$this->attributes['pengeluaran']['biaya_produksi']			= new IDR($pengeluaran['biaya_produksi']);
+		$this->attributes['pengeluaran']['pengeluaran_lain']		= new IDR($pengeluaran['pengeluaran_lain']);
 	}
 
 	public function equals($finance)
