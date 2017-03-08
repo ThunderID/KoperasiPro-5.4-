@@ -77,14 +77,19 @@
 @endif
 
 @push('show_modals')
-
-		
-				@include ('pages.credit.components.form.data_jaminan', [
-					'param'	=> [
-						'target'	=> 'template-jaminan-credit',
-						'prefix'	=> 'credit',
-						'class'		=> [
-							'init_add'		=> 'init-add-one'
-				]]])
-
+	@component('components.modal', [
+		'id' 		=> 'data_keuangan',
+		'title'		=> 'Data Keuangan',
+		'settings'	=> [
+			'hide_buttons'	=> true
+		]	
+	])
+		@include ('pages.credit.components.form.data_jaminan', [
+			'param'	=> [
+				'target'	=> 'template-jaminan-credit',
+				'prefix'	=> 'credit',
+				'class'		=> [
+					'init_add'		=> 'init-add-one'
+		]]])
+	@endcomponent
 @endpush
