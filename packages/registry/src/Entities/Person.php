@@ -479,7 +479,7 @@ class Person implements IEntity
 		//////////////
 		// Validate //
 		//////////////
-		$validator 	= Validator::make($pekerjaan, ['jenis' => 'required|string', 'jabatan' => 'required|string', 'sejak' => 'required|date_format:"Y-m-d"']);
+		$validator 	= Validator::make($pekerjaan, ['jenis' => 'required|string', 'jabatan' => 'string', 'sejak' => 'required|date_format:"Y-m-d"']);
 		if ($validator->fails())
 		{
 			throw new Exception($validator->messages(), 1);
@@ -531,7 +531,7 @@ class Person implements IEntity
 	 * [changeMacro description]
 	 * @param Macro $makro [description]
 	 */
-	public function changeMacro(Macro $makro)
+	public function changeMakro(Macro $makro)
 	{
 		/////////
 		// Set //

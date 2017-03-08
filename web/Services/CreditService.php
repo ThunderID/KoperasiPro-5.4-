@@ -32,6 +32,7 @@ use Thunderlabid\Application\DataTransformers\Credit\CreditDTODataTransformer as
 use Thunderlabid\Credit\Factories\VisaFactory;
 use Thunderlabid\Credit\Factories\CreditFactory as Factory;
 
+use Thunderlabid\Registry\Factories\MacroFactory;
 use Thunderlabid\Registry\Factories\AssetFactory;
 use Thunderlabid\Registry\Factories\FinanceFactory;
 use Thunderlabid\Registry\Factories\CollateralFactory;
@@ -242,7 +243,7 @@ class CreditService implements IService
 
 		$factory 			= new MacroFactory;
 
-		$person->changeAset($factory->build($data['persaingan_usaha'],
+		$person->changeMakro($factory->build($data['persaingan_usaha'],
 											$data['prospek_usaha'],
 											$data['perputaran_usaha'],
 											$data['pengalaman_usaha'],
