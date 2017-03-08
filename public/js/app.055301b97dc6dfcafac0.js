@@ -10353,6 +10353,8 @@ __webpack_require__(6);
 __webpack_require__(5);
 // add module form input key enter to tab
 __webpack_require__(8);
+// add module form enter to submit
+__webpack_require__(50);
 // add module select
 __webpack_require__(17);
 // add module list-js
@@ -10749,6 +10751,9 @@ var xxx = new List('list-koperasi', options);
 		modal.modal('hide');
 	});
 });
+$('.modal').on('shown.bs.modal', function (e) {
+	window.select();
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -10933,6 +10938,7 @@ window.notify = function (msg, title, type) {
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
+			$(this).remove();
 		} else if ($(this).data('active') === 'contact') {
 			window.formInputMask();
 		}
@@ -53916,6 +53922,37 @@ __webpack_require__(3);
 __webpack_require__(2);
 module.exports = __webpack_require__(4);
 
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.noEnterToSubmit = function () {
+	$('form.no-enter input, form.no-enter select').on("keyup keypress", function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
+};
+$(document).ready(function () {
+	window.noEnterToSubmit();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

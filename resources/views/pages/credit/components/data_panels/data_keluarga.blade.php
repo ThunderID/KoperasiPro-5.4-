@@ -18,7 +18,6 @@
 	</div>
 </div>
 
-
 @forelse ($page_datas->credit['kreditur']['relasi'] as $key => $value)
 	<div class="row">
 		<div class="col-sm-6">
@@ -36,7 +35,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm m-b-xs-m-print"><strong>Hubungan</strong></p>
 					<p>
-						{{ $value['relasi'] }}
+						{{ $value['hubungan'] }}
 					</p>
 				</div>
 			</div>
@@ -63,7 +62,7 @@
 
 
 @push('show_modals')
-	@if($edit == true)
+	@if ($edit == true)
 
 		@component('components.modal', [
 			'id' 		=> 'data_keluarga',

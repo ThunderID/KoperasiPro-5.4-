@@ -26,6 +26,8 @@ require('./modules/choice-select');
 require('./modules/auto-tabindex');
 // add module form input key enter to tab
 require('./modules/form-enter-to-tab');
+// add module form enter to submit
+require('./modules/form-no-enter-submit');
 // add module select
 require('./modules/select');
 // add module list-js
