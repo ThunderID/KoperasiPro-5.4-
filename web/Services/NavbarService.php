@@ -46,13 +46,7 @@ class NavbarService
 													'pengajuan_baru' 	=> route('credit.create'),
 													'data_kredit' 		=> route('credit.index'),
 												]				
-								],
-				'registrasi'=>	[
-									'route' => null,
-									'sub'	=> 	[
-													'data_orang' 		=> route('person.index')
-												]				
-								],
+								]
 			]; 
 	}
 }

@@ -78,8 +78,16 @@ class CreditService implements IService
 	 * 
 	 * @return CreditDTODataTransformer $data
 	 */
-	public function pengajuan($data)
+	public function pengajuan($pribadi, $data)
 	{
+		//simpan data pribadi
+		$person_service 			= new PersonService;
+		$person_service 			= $person_service->register($pribadi);
+
+		//parse data kreditur
+		$data['kreditur']['id']		= $person_service['id'];
+		$data['kreditur']['nama']	= $person_service['nama'];
+
 		//parse data koperasi
 		$data['koperasi']['id']		= TAuth::activeOffice()['office']['id'];
 		$data['koperasi']['nama']	= TAuth::activeOffice()['office']['name'];
