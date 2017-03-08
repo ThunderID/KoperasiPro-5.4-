@@ -6,7 +6,7 @@
 	<label for="">Jenis Pekerjaan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('pekerjaan[area]', [
+			{!! Form::select('pekerjaan[jenis]', [
 				'peg_negeri'		=> 'Pegawai Negeri',
 				'peg_swasta'		=> 'Pegawai Swasta',
 				'wiraswasta'		=> 'Wiraswasta',
@@ -33,7 +33,7 @@
 	<label for="">Jabatan</label>
 	<div class="row">
 		<div class="col-md-8">
-			{!! Form::text('pekerjaan[position]', null, ['class' => 'form-control auto-tabindex input-jabatan', 'placeholder' => 'Jabatan']) !!}
+			{!! Form::text('pekerjaan[jabatan]', null, ['class' => 'form-control auto-tabindex input-jabatan', 'placeholder' => 'Jabatan']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -42,7 +42,7 @@
 	<label for="">Bekerja Sejak</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('pekerjaan[since]', null, ['class' => 'form-control required auto-tabindex required mask-date-format', 'placeholder' => 'Bekerja Sejak']) !!}
+			{!! Form::text('pekerjaan[sejak]', null, ['class' => 'form-control required auto-tabindex required mask-date-format', 'placeholder' => 'Bekerja Sejak']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -54,7 +54,7 @@
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
-		'prefix'		=> 'pekerjaan',
+		'prefix'		=> 'person[pekerjaan]',
 		'province' 		=> $page_datas->province,
 		'cities'		=> $page_datas->cities
 	]
