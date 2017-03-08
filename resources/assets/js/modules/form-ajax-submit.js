@@ -1,4 +1,13 @@
+/* README
+
+*/
+
 $(document).on('submit', "form", function () {
+	//check is activate on this form
+	if($(this).data('ajax-submit') == false){
+		return false;
+	}
+
 	// disable the form 
 	$(this).find(":input").prop("disabled", true);
 	$(this).find("a").each(function() {
