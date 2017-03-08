@@ -25,7 +25,10 @@
 					<label for="">Kepemilikan</label>
 					<div class="row">
 						<div class="col-md-12">
-							{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan]' : 'jaminan') . '[][ownership_status]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Pemilik jaminan']) !!}
+							{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan]' : 'jaminan') . '[][type]', [
+								'kendaraan'			=> 'Kendaraan',
+								'tanah_bangunan'	=> 'Tanah / Bangunan'
+							], 'kendaraan', ['class' => 'form-control quick-select-clone quick-select-type focus']) !!}
 						</div>
 					</div>
 				</fieldset>
