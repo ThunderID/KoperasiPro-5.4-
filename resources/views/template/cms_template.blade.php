@@ -128,21 +128,18 @@
 			'id'			=> 'modal-logout',
 			'title'			=> 'Logout',
 			'settings'		=> [
-				'overrides'		=> [
-					'action_ok'		=> [
-						'title'			=> 'Logout Sekarang',
-						'style'			=> 'danger',
-						'link'			=> route('login.destroy')
-					],
-					'action_cancel'	=> [
-						'title'			=> 'Batal',
-						'style'			=> 'default',
-					]
-				]
+				'hide_buttons' => 'false'
 			]
 		])
 		<p>Apakah anda ingin Logout ?</p>
-		<div class="clearfix">&nbsp;</div>
+		</div>
+		<div class="modal-footer">
+			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax" >
+				Cancel
+			</a>
+			<a href="{{ route('login.destroy') }}" type="button" class="btn btn-danger" no-data-pjax>Logout
+			</a>
+		</div>		
 	@endcomponent
 @endsection
 
