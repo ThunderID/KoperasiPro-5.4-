@@ -43,53 +43,55 @@
 		<div class="row m-b-xl">
 			<div class="col-sm-12">
 				<h4 class="title-section light m-t-none">Penghasilan</h4>
-			</hr>
-		</div>
-	</div>
-</div>
-@foreach($page_datas->credit['kreditur']['keuangan']['pendapatan'] as $key => $income)
-<div class="col-sm-6">
-
-	<div class="row m-b-xl">
-		<div class="col-sm-12">
-			<p class="p-b-sm"><strong>{{ ucwords($key ) }}</strong></p>
-			<p>
-				{{$income}}
-			</p>
+				</hr>
+			</div>
 		</div>
 	</div>
 
-</div>
-@endforeach
+	@foreach($page_datas->credit['kreditur']['keuangan']['pendapatan'] as $key => $income)
+	<div class="col-sm-6">
 
-<div class="clearfix">&nbsp;</div>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p class="p-b-sm"><strong>{{ ucwords( str_replace('_', ' ', $key) ) }}</strong></p>
+				<p>
+					{{$income}}
+				</p>
+			</div>
+		</div>
 
-<div class="col-sm-12">
-	<div class="row m-b-xl">
-		<div class="col-sm-12">
-			<h4 class="title-section light m-t-none">Pengeluaran</h4>
-		</hr>
 	</div>
-</div>
-</div>
+	@endforeach
 
-@foreach($page_datas->credit['kreditur']['keuangan']['pengeluaran'] as $key => $expense)
-<div class="col-sm-6">
 
-	<div class="row m-b-xl">
-		<div class="col-sm-12">
-			<p class="p-b-sm"><strong>{{ ucwords($key ) }}</strong></p>
-			<p>
-				{{$expense}}
-			</p>
+	<div class="clearfix">&nbsp;</div>
+
+	<div class="col-sm-12">
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<h4 class="title-section light m-t-none">Pengeluaran</h4>
+				</hr>
+			</div>
 		</div>
 	</div>
 
-</div>
-@endforeach
+	@foreach($page_datas->credit['kreditur']['keuangan']['pengeluaran'] as $key => $expense)
+	<div class="col-sm-6">
 
-<div class="clearfix">&nbsp;</div>
-<div class="clearfix">&nbsp;</div>
+		<div class="row m-b-xl">
+			<div class="col-sm-12">
+				<p class="p-b-sm"><strong>{{ ucwords( str_replace('_', ' ', $key) ) }}</strong></p>
+				<p>
+					{{$expense}}
+				</p>
+			</div>
+		</div>
+
+	</div>
+	@endforeach
+
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
 
 </div>
 @endif

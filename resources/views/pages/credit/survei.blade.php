@@ -44,10 +44,6 @@
 
 		<div class="clearfix">&nbsp;</div>		
 
-		<?php
-		// dd($page_datas->credit);
-
-		/*
 		<!-- BLOCK 5 Display Data Aset // -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -57,6 +53,10 @@
 			</div>
 		</div>		
 
+		<?php
+		// dd($page_datas->credit);
+
+		/*
 		<div class="clearfix">&nbsp;</div>		
 		
 		<!-- BLOCK 6 Display Data Jaminan // -->
