@@ -48,6 +48,7 @@
 			{!! Form::hidden('status[][tanggal]', 'today') !!}
 			{!! Form::hidden('status[][petugas][nip]', '1234567890') !!}
 			{!! Form::hidden('status[][petugas][nama]', 'Benedict Cumberbatch') !!}
+			{!! Form::submit('tes') !!}
 		{!! Form::close() !!}
 	</div>
 @endpush

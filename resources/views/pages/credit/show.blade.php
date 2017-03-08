@@ -1,3 +1,4 @@
+
 @extends('pages.credit.templates.index_show_template')
 
 @section('page_content')
@@ -31,7 +32,7 @@
    <!-- 4 Data Data Penjamin // -->
 	<div class="row">
 		<div class="col-sm-12">
-			@if(isset($page_datas->warrantor_address_active))
+			@if (isset($page_datas->credit['penjamin']))
 				@include('pages.credit.components.data_panels.data_penjamin')
 			@endif
 		</div>

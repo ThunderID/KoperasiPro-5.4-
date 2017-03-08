@@ -88,10 +88,11 @@
 		<div class="row m-b-xl m-t-xs-m-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Alamat</strong></p>
-				<p class="p-b-xs m-b-xs-m-print">{{ $page_datas->creditor_address_active->address->address->street }}, {{ $page_datas->creditor_address_active->address->address->city }}</p>
-				<p>{{ $page_datas->creditor_address_active->address->address->province }} - {{ $page_datas->creditor_address_active->address->address->country }}</p>
+				<p class="p-b-xs m-b-xs-m-print">{{ $page_datas->credit['kreditur']['alamat'][0]['jalan'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['kota'] }}</p>
+				<p>{{ $page_datas->credit['kreditur']['alamat'][0]['provinsi'] }} - {{ $page_datas->credit['kreditur']['alamat'][0]['negara'] }}</p>
+				<p>{{ $page_datas->credit['kreditur']['alamat'][0]['kodepos'] }}</p>
 				<div class="clearfix hidden-print">&nbsp;</div>
-				<h5 class="hidden-print"><a href="#" data-toggle="modal" data-target="#" no-data-pjax data-href="{{route('person.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat Lain</a></h5>
+				{{-- <h5 class="hidden-print"><a href="#" data-toggle="modal" data-target="#" no-data-pjax data-href="{{route('person.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat Lain</a></h5> --}}
 			</div>
 		</div>
 	</div>
@@ -100,14 +101,22 @@
 <div class="clearfix hidden-print">&nbsp;</div>
 
 <div class="row">
-	@if(isset($page_datas->credit->creditor->works))
-		@foreach($page_datas->credit->creditor->works as $key => $value)
+	@if (isset($page_datas->credit['kreditur']['pekerjaan']))
+		@foreach($page_datas->credit['kreditur']['pekerjaan'] as $key => $value)
 			<div class="col-sm-6">
 				<div class="row m-b-xl m-t-xs-m-print">
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
 						<p>
-							{{ $value->area }}
+							{{ $value['area'] }}
+						</p>
+					</div>
+				</div>
+				<div class="row m-b-xl m-t-sm-m-print">
+					<div class="col-sm-12">
+						<p class="p-b-sm m-b-xs-m-print"><strong>Instansi</strong></p>
+						<p>
+							{{ $value['instansi'] }}
 						</p>
 					</div>
 				</div>
@@ -115,24 +124,24 @@
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print"><strong>Posisi</strong></p>
 						<p>
-							{{ $value->position }}
+							{{ $value['jabatan'] }}
 						</p>
 					</div>
-				</div>					
+				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="row m-b-xl m-t-xs-m-print">
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print "><strong>Sejak</strong></p>
 						<p>
-							{{ $value->since->format('d/m/Y') }}
+							{{ $value['sejak'] }}
 						</p>
 					</div>
 				</div>				
 			</div>
 			<div class="clearfix hidden-print">&nbsp;</div>
 			<div class="col-sm-12">
-				<h5 class="hidden-print"><u><a href="#">Lihat Alamat</a></u></h5>
+				{{-- <h5 class="hidden-print"><u><a href="#">Lihat Alamat</a></u></h5> --}}
 			</div>
 		@endforeach
 	@endif

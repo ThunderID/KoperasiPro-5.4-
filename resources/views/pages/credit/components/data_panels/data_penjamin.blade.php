@@ -11,7 +11,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Nama</strong></p>
 				<p>
-					{{$page_datas->credit->credit->warrantor->name}}
+					{{ $page_datas->credit['penjamin']['nama'] }}
 				</p>
 			</div>
 		</div>
