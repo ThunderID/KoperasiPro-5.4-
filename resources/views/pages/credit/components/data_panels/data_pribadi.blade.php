@@ -90,7 +90,7 @@
 				<p class="p-b-sm m-b-xs-m-print"><strong>Alamat</strong></p>
 				<p class="p-b-xs m-b-xs-m-print">{{ $page_datas->credit['kreditur']['alamat'][0]['jalan'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['kota'] }}</p>
 				<p>{{ $page_datas->credit['kreditur']['alamat'][0]['provinsi'] }} - {{ $page_datas->credit['kreditur']['alamat'][0]['negara'] }}</p>
-				<p>{{ $page_datas->credit['kreditur']['alamat'][0]['kodepos'] }}</p>
+				<p>{{ $page_datas->credit['kreditur']['alamat'][0]['kode_pos'] }}</p>
 				<div class="clearfix hidden-print">&nbsp;</div>
 				{{-- <h5 class="hidden-print"><a href="#" data-toggle="modal" data-target="#" no-data-pjax data-href="{{route('person.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat Lain</a></h5> --}}
 			</div>
@@ -108,7 +108,7 @@
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
 						<p>
-							{{ $value['area'] }}
+							{{ $value['jenis_pekerjaan'] }}
 						</p>
 					</div>
 				</div>
