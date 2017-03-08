@@ -96,6 +96,7 @@ class PersonDTODataTransformer implements IDataTransformer
 			];
 
 			$aset['rumah']['nilai_rumah']			= $aset['rumah']['nilai_rumah']->IDR();
+			$aset['rumah']['angsuran']				= $aset['rumah']['angsuran']->IDR();
 			$aset['kendaraan']['nilai_kendaraan']	= $aset['kendaraan']['nilai_kendaraan']->IDR();
 		}
 

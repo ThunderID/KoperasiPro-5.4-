@@ -91,7 +91,7 @@ class PersonService implements IService
 	public function read($page, $per_page = 15)
 	{
 		$data 						= $this->repository->query([new PageSpecification($page, $per_page)]);
-		
+
 		$user_entities 				= [];
 
 		$transformer 				= new DataTransformer;

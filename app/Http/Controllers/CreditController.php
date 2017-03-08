@@ -109,6 +109,7 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
+		dd($request->all());
 		//data pribadi
 		$pribadi 						= Input::get('pribadi');
 		$pribadi['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $pribadi['tanggal_lahir'])->format('Y-m-d');

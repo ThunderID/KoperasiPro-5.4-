@@ -56,9 +56,25 @@ class FinanceTransformer implements ITransformer {
 			$model 	= new Eloquent;
 		}
 		
-		$model->person 					= ['id' => $entity->id];
-		$model->pendapatan 				= $entity->keuangan->pendapatan;
-		$model->pengeluaran 			= $entity->keuangan->pengeluaran;
+		$model->person 							= ['id' => $entity->id];
+
+		$pendapatan								= $entity->keuangan->pendapatan;
+		$pendapatan['penghasilan_gaji']			= (string)($entity->keuangan->pendapatan['penghasilan_gaji']) * 1;
+		$pendapatan['penghasilan_non_gaji']		= (string)($entity->keuangan->pendapatan['penghasilan_non_gaji']) * 1;
+		$pendapatan['penghasilan_lain']			= (string)($entity->keuangan->pendapatan['penghasilan_lain']) * 1;
+		
+		$model->pendapatan 						= $pendapatan;
+
+		$pengeluaran							= $entity->keuangan->pengeluaran;
+		$pengeluaran['biaya_rumah_tangga']		= (string)($entity->keuangan->pengeluaran['biaya_rumah_tangga']) * 1;
+		$pengeluaran['biaya_pendidikan']		= (string)($entity->keuangan->pengeluaran['biaya_pendidikan']) * 1;
+		$pengeluaran['biaya_telepon']			= (string)($entity->keuangan->pengeluaran['biaya_telepon']) * 1;
+		$pengeluaran['biaya_pdam']				= (string)($entity->keuangan->pengeluaran['biaya_pdam']) * 1;
+		$pengeluaran['biaya_listrik']			= (string)($entity->keuangan->pengeluaran['biaya_listrik']) * 1;
+		$pengeluaran['biaya_produksi']			= (string)($entity->keuangan->pengeluaran['biaya_produksi']) * 1;
+		$pengeluaran['pengeluaran_lain']		= (string)($entity->keuangan->pengeluaran['pengeluaran_lain']) * 1;
+
+		$model->pengeluaran 			= $pengeluaran;
 
 		return $model;
 	}

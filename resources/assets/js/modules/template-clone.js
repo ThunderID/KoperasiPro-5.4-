@@ -10,6 +10,7 @@ $(function (){
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
+			$(this).remove();
 		} else if ($(this).data('active') === 'contact') {
 			window.formInputMask();
 		}

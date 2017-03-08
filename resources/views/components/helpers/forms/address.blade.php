@@ -11,7 +11,7 @@
 <fieldset class="form-group">
 	<label for="">Jalan</label>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[jalan]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Ex. Jln. Blimbing No. 8']) !!}
 		</div>
 		<!-- <div class="col-md-3 p-l-none">
@@ -23,7 +23,7 @@
 <fieldset class="form-group">
 	<label for="">Provinsi</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-8">
 			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[provinsi]', $param['province'], null, ['class' => 'form-control auto-tabindex select select-province', 'placeholder' => 'Pilih Provinsi', 'data-placeholder' => 'Pilih Provinsi', 'data-url' => route('cities.index')]) !!}
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 <fieldset class="form-group">
 	<label for="">Kota</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-8">
 			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[kota]', [], null, ['class' => 'form-control auto-tabindex select select-cities', 'placeholder' => 'Pilih Kota', 'data-placeholder' => 'Pilih Kota']) !!}
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 <fieldset class="form-group">
 	<label for="">Kodepos</label>
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-3">
 			{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[kode_pos]', null, ['class' => 'form-control auto-tabindex required input-kodepos mask-kodepos', 'placeholder' => 'Kodepos']) !!}
 		</div>
 	</div>

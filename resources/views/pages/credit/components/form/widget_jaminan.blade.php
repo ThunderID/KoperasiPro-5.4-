@@ -15,8 +15,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<select name="{{ (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan]' : 'jaminan') . '[][type]' }}" class="form-control quick-select-clone quick-select-type focus">
-								<option value="kendaraan" data-name="{{ (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[]' }}">Kendaraan</option>
-								<option value="tanah_bangunan" data-name="{{ (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[]' }}">Tanah / Bangunan</option>
+								<option value="kendaraan" data-name="{{ (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[0]' }}">Kendaraan</option>
+								<option value="tanah_bangunan" data-name="{{ (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[0]' }}">Tanah / Bangunan</option>
 							</select>
 						</div>
 					</div>
@@ -25,7 +25,7 @@
 					<label for="">Status Kepemilikan</label>
 					<div class="row">
 						<div class="col-md-12">
-							{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[][status_kepemilikan]', null, ['class' => 'form-control required auto-tabindex credit-jaminan-kepemilikan', 'placeholder' => 'Status Jaminan']) !!}
+							{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[0][status_kepemilikan]', null, ['class' => 'form-control required auto-tabindex credit-jaminan-kepemilikan', 'placeholder' => 'Status Jaminan']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -39,7 +39,7 @@
 									'shm'		=> 'Sertifikat Hak Milik (SHM)',
 									'hgb'		=> 'Hak Guna Bangunan (HGB)'
 								], 'shm', ['class' => 'form-control quick-select-clone quick-select-legal', 
-								'data-name' => (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[][legalitas]']) !!}
+								'data-name' => (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[0][legalitas]']) !!}
 							</div>
 							{{-- untuk legalitas kendaraan --}}
 							<div class="quick-select-legal kendaraan" style="display:none">
@@ -49,17 +49,17 @@
 									'stnk_r2'	=> 'STNK R2',
 									'stnk_r4'	=> 'STNK R4'
 								], 'bpkb_2', ['class' => 'form-control quick-select-clone quick-select-legal',
-								'data-name' => (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[][legalitas]']) !!}
+								'data-name' => (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[0][legalitas]']) !!}
 							</div>
-							{!! Form::hidden( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[][legalitas]', null, ['class' => 'credit-jaminan-legal']) !!}
+							{!! Form::hidden( (!is_null($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[0][legalitas]', null, ['class' => 'credit-jaminan-legal']) !!}
 						</div>
 					</div>
 				</fieldset>
 			</div>
-			<div class="col-md-2 p-l-none">
+			{{-- <div class="col-md-2 p-l-none">
 				<a href="#" class="btn btn-link remove"><i class="fa fa-times"></i> Hapus</a>
-			</div>
+			</div> --}}
 		</div>
 	</div>
-	<hr />
+	{{-- <hr /> --}}
 </div>
