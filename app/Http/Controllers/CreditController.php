@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Web\Services\Credit;
+use Thunderlabid\Application\Services\CreditService;
 use App\Web\Services\Person;
 use Input, PDF;
 
@@ -23,6 +23,8 @@ class CreditController extends Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->service 		= new CreditService;
 	}
 
 	/**
@@ -32,6 +34,11 @@ class CreditController extends Controller
 	 */
 	public function index()
 	{
+		$page 				= 1;
+		if(Input::has('page'))
+		{
+			$page 			= (int)Input::get('page');
+		}
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title				= "Daftar Kredit";
 		$this->page_attributes->breadcrumb			= [
@@ -39,10 +46,10 @@ class CreditController extends Controller
 													 ];
 
 		//this function to set all needed variable in lists credit (sidebar)
-		$this->getCreditLists();
+		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.index'),100,1,10);
+		$this->paginate(route('credit.index'),$this->page_datas->total_credits,$page,10);
 
 		//initialize view
 		$this->view									= view('pages.credit.index');
@@ -219,7 +226,7 @@ class CreditController extends Controller
 	 * variable filter dan search juga di parse disini
 	 * data dari view pages.credit.lists diatur disini
 	 */
-	private function getCreditLists()
+	private function getCreditLists($page, $take)
 	{
 		//1. Parsing status
 		$status 									= null; 
@@ -231,15 +238,17 @@ class CreditController extends Controller
 		//2. Parsing search box
 		if(Input::has('q'))
 		{
-			$this->page_datas->credits				= Credit::findByName($status, Input::get('q'));
+			$this->page_datas->credits				= $this->service->readByName($page, $take, $status, Input::get('q'));
+			$this->page_datas->total_credits		= $this->service->countByName($status, Input::get('q'));
 		}
 		else
 		{
-			$this->page_datas->credits				= Credit::all($status);
+			$this->page_datas->credits				= $this->service->read($page, $take, $status);
+			$this->page_datas->total_credits		= $this->service->count($status);
 		}
 
 		//3. Memanggil fungsi filter active
-		$this->page_datas->credit_filters 			= Credit::statusLists();
+		$this->page_datas->credit_filters 			= $this->service->statusLists();
 	}
 
 	/**

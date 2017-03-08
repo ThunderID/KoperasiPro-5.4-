@@ -29,7 +29,7 @@ class Credit extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $collection			= 'test_credit_1';
+	protected $collection			= 'pre_live_credit';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -104,4 +104,43 @@ class Credit extends BaseModel
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
 
+	/**
+	 * scope search based on status (pk)
+	 *
+	 * @param string or array of status
+	 */	
+	public function scopeStatus($query, $variable)
+	{
+		if(is_array($variable))
+		{
+			return 	$query->whereIn('status', $variable);
+		}
+
+		if(is_null($variable))
+		{
+			return $query;
+		}
+
+		return 	$query->where('status', $variable);
+	}
+
+	/**
+	 * scope search based on koperasi id (pk)
+	 *
+	 * @param string or array of koperasi id
+	 */	
+	public function scopeKoperasiID($query, $variable)
+	{
+		return 	$query->where('koperasi.id', $variable);
+	}
+
+	/**
+	 * scope search based on nama kreditur
+	 *
+	 * @param string or array of nama kreditur
+	 */	
+	public function scopeNamaKreditur($query, $variable)
+	{
+		return 	$query->where('kreditur.name', 'like', '%'.$variable.'%');
+	}
 }

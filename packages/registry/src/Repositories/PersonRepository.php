@@ -177,26 +177,35 @@ class PersonRepository implements IRepository
 			//////////////////////
 			// Save kepribadian //
 			//////////////////////
-			$kepribadian_model 	= new PersonalityTransformer;
-			$kepribadian_model 	= $kepribadian_model->toEloquent($entity);
+			if(!empty($entity->kepribadian))
+			{
+				$kepribadian_model 	= new PersonalityTransformer;
+				$kepribadian_model 	= $kepribadian_model->toEloquent($entity);
 
-			$kepribadian_model->save();
+				$kepribadian_model->save();
+			}
 
 			///////////////////
 			// Save Keuangan //
 			///////////////////
-			$keuangan_model 	= new FinanceTransformer;
-			$keuangan_model 	= $keuangan_model->toEloquent($entity);
+			if(!empty($entity->keuangan))
+			{
+				$keuangan_model 	= new FinanceTransformer;
+				$keuangan_model 	= $keuangan_model->toEloquent($entity);
 
-			$keuangan_model->save();
+				$keuangan_model->save();
+			}
 
 			///////////////
 			// Save Aset //
 			///////////////
-			$aset_model 		= new AssetTransformer;
-			$aset_model 		= $aset_model->toEloquent($entity);
+			if(!empty($entity->aset))
+			{
+				$aset_model 		= new AssetTransformer;
+				$aset_model 		= $aset_model->toEloquent($entity);
 
-			$aset_model->save();
+				$aset_model->save();
+			}
 
 			//////////////////
 			// Raise Events //

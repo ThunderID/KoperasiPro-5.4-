@@ -35,7 +35,25 @@ class CreditTransformer implements ITransformer {
 		// Build Entity //
 		//////////////////
 
-		return Factory::build($model->_id, $model->pengajuan_kredit, $model->kemampuan_angsur, $model->jangka_waktu, $model->tujuan_kredit, $model->kreditur, $model->koperasi, $model->penjamin, $model->status, $model->riwayat_status, $model->jaminan['kendaraan'],  $model->jaminan['tanah_bangunan']);
+		if(isset($model->jaminan['kendaraan']))
+		{
+			$kendaraan 	= $model->jaminan['kendaraan'];
+		}
+		else
+		{
+			$kendaraan 	= [];
+		}
+
+		if(isset($model->jaminan['tanah_bangunan']))
+		{
+			$tanah_bangunan 	= $model->jaminan['tanah_bangunan'];
+		}
+		else
+		{
+			$tanah_bangunan = [];
+		}
+
+		return Factory::build($model->_id, $model->pengajuan_kredit, $model->kemampuan_angsur, $model->jangka_waktu, $model->tujuan_kredit, $model->kreditur, $model->koperasi, $model->penjamin, $model->status, $model->riwayat_status, $kendaraan,  $tanah_bangunan);
 	}
 
 	/**

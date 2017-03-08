@@ -15,6 +15,9 @@ use Thunderlabid\Registry\Repositories\PersonRepository;
 ///////////////////
 use Thunderlabid\Credit\Repositories\Specifications\SpecificationByID;
 use Thunderlabid\Credit\Repositories\Specifications\PageSpecification;
+use Thunderlabid\Credit\Repositories\Specifications\SpecificationByStatus;
+use Thunderlabid\Credit\Repositories\Specifications\SpecificationByKoperasiID;
+use Thunderlabid\Credit\Repositories\Specifications\SpecificationByCreditorName;
 
 use Thunderlabid\Registry\Repositories\Specifications\SpecificationByID as PersonSpecificationByID;
 
@@ -40,6 +43,8 @@ use Thunderlabid\Credit\Factories\JaminanTanahBangunanFactory;
 //     Entity    //
 ///////////////////
 use Thunderlabid\Credit\Entities\Credit;
+
+use TAuth, Exception;
 
 /**
  * Class Services Application
@@ -71,19 +76,17 @@ class CreditService implements IService
 	 */
 	public function pengajuan($data)
 	{
-		$authenticator 			= new SessionBasedAuthenticator;
-
 		//parse data koperasi
-		$data['koperasi']['id']		= $authenticator->activeOffice()['office']['id'];
-		$data['koperasi']['nama']	= $authenticator->activeOffice()['office']['name'];
+		$data['koperasi']['id']		= TAuth::activeOffice()['office']['id'];
+		$data['koperasi']['nama']	= TAuth::activeOffice()['office']['name'];
 
 		//parse data riwayat status
 		$data['riwayat_status'][]	= [
 										'status'	=> 'pengajuan',
 										'tanggal'	=> date('Y-m-d'),
 										'petugas'	=> 	[
-															'id'	=> $authenticator->loggedUser()['id'],
-															'nama'	=> $authenticator->loggedUser()['name'],
+															'id'	=> TAuth::loggedUser()['id'],
+															'nama'	=> TAuth::loggedUser()['name'],
 														],
 									];
 
@@ -242,10 +245,23 @@ class CreditService implements IService
 	 * 
 	 * @return CreditDTODataTransformer $data
 	 */
-	public function read($page, $per_page = 15)
+	public function read($page, $per_page = 15, $status = null)
 	{
-		$data 						= $this->repository->query([new PageSpecification($page, $per_page)]);
-		
+		if(empty($status))
+		{
+			$status 				= $this->statusLists();			
+		}
+		else
+		{
+			if(!in_array($status, $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+
+		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new PageSpecification($page, $per_page)]);
+
 		$user_entities 				= [];
 
 		$transformer 				= new DataTransformer;
@@ -257,4 +273,121 @@ class CreditService implements IService
 
 		return 	$user_entities;
 	}
+
+	/**
+	 * this function mean keep executing
+	 * @param numeric $page
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function readByName($page, $per_page = 15, $status = null, $name = null)
+	{
+		if(empty($status))
+		{
+			$status 				= $this->statusLists();			
+		}
+		else
+		{
+			if(!in_array($status, $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+
+		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new SpecificationByCreditorName($name), new PageSpecification($page, $per_page)]);
+
+		$user_entities 				= [];
+
+		$transformer 				= new DataTransformer;
+
+		foreach ($data as $key => $value) 
+		{
+			$user_entities[]		= $transformer->read($value);
+		}
+
+		return 	$user_entities;
+	}
+
+	/**
+	 * this function mean keep executing
+	 * @param numeric $page
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function count($status = null)
+	{
+		if(empty($status))
+		{
+			$status 				= $this->statusLists();			
+		}
+		else
+		{
+			if(!in_array($status, $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+
+		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id'])]);
+
+		return 	$total;
+	}
+
+
+	/**
+	 * this function mean keep executing
+	 * @param numeric $page
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function countByName($status = null, $name = null)
+	{
+		if(empty($status))
+		{
+			$status 				= $this->statusLists();			
+		}
+		else
+		{
+			if(!in_array($status, $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+
+		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new SpecificationByCreditorName($name)]);
+
+		return 	$total;
+	}
+
+
+	/**
+	 * this function mean keep executing
+	 * @param numeric $page
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function statusLists()
+	{
+		$current_user 	= TAuth::activeOffice();
+
+		switch (strtolower($current_user['role'])) 
+		{
+			case 'pimpinan':
+				return ['pengajuan', 'survei', 'realisasi', 'tolak'];
+				break;
+			case 'marketing':
+				return ['pengajuan'];
+				break;
+			case 'surveyor':
+				return ['pengajuan', 'survei'];
+				break;
+			
+			default:
+				throw new Exception("Forbidden", 1);
+				break;
+		}
+	}	
 }

@@ -55,40 +55,6 @@ class CreditRepository implements IRepository
 	}
 
 	/**
-	* Menampilkan semua data Credit dari database
-	*
-	* @param array $specifications
-	* @return Model $model
-	* @throws Exception $message
-	*/
-	public function count($specifications = [])
-	{
-		///////////////////////////////////////////////////////
-		// Check if specifications is type of ISpecification //
-		///////////////////////////////////////////////////////
-		foreach ($specifications as $specification)
-		{
-			if (!$specification instanceOf ISpecification)
-			{
-				throw new Exception(json_encode(['Parameter 1 is not instance of ISpecification']), 1);
-			}
-		}
-
-		//////////////////////////////
-		// Apply each specification //
-		//////////////////////////////
-
-		$model = new Model;
-		$model = $model->newInstance();
-		foreach ($specifications as $specification)
-		{
-			$model = $specification->apply($model);			
-		}
-
-		return $model->count();
-	}
-
-	/**
 	* Menghapus data Credit dari database
 	*
 	* @param IEntity $credit_entity

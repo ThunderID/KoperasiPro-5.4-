@@ -29,7 +29,7 @@ class Person extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $collection			= 'test_person_1';
+	protected $collection			= 'pre_live_person';
 
 	/**
 	 * The attributes that are mass assignable.

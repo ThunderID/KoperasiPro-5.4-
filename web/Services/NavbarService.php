@@ -44,8 +44,7 @@ class NavbarService
 									'route' => null,
 									'sub'	=> 	[
 													'pengajuan_baru' 	=> route('credit.create'),
-													'daftar_kredit' 	=> route('credit.index'),
-													'survey_kredit' 	=> route('survey.index'),
+													'data_kredit' 		=> route('credit.index'),
 												]				
 								],
 				'registrasi'=>	[

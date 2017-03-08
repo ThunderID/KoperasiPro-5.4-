@@ -38,27 +38,40 @@ class PersonDTODataTransformer implements IDataTransformer
 	 */
 	public function read($person)
 	{
+
 		//parse kepribadian
-		$kepribadian 			= [
+		$kepribadian 			= [];
+		if(!empty($person->keuangan))
+		{
+			$kepribadian 		= [
 									'lingkungan_tinggal'	=> $person->kepribadian->lingkungan_tinggal,
 									'lingkungan_pekerjaan'	=> $person->kepribadian->lingkungan_pekerjaan,
 									'karakter'				=> $person->kepribadian->karakter,
 									'pola_hidup'			=> $person->kepribadian->pola_hidup,
 									'keterangan'			=> $person->kepribadian->keterangan,
-		];
+			];
+		}
 
-		//parse keuangan
-		$keuangan 				= [
+		$keuangan 				= [];
+		if(!empty($person->keuangan))
+		{
+			//parse keuangan
+			$keuangan 			= [
 									'pendapatan'			=> $person->keuangan->pendapatan,
 									'pengeluaran'			=> $person->keuangan->pengeluaran,
-		];
+			];
+		}
 
-		//parse aset
-		$aset 					= [
+		$aset 					= [];
+		if(!empty($person->aset))
+		{
+			//parse aset
+			$aset 				= [
 									'rumah'					=> $person->aset->rumah,
 									'kendaraan'				=> $person->aset->kendaraan,
 									'usaha'					=> $person->aset->usaha,
-		];
+			];
+		}
 
 		return ['id' 					=> $person->id, 
 				'nik' 					=> $person->nik, 

@@ -103,16 +103,19 @@ class Person implements IEntity
 				$this->addPekerjaan($value);
 			}
 
+			$this->attributes['kepribadian'] = [];
 			if ($kepribadian instanceOf Personality)
 			{
 				$this->attributes['kepribadian']	= $kepribadian;
 			}
 
+			$this->attributes['keuangan'] = [];
 			if ($keuangan instanceOf Finance)
 			{
 				$this->attributes['keuangan']		= $keuangan;
 			}
 
+			$this->attributes['aset'] = [];
 			if ($aset instanceOf Asset)
 			{
 				$this->attributes['aset']			= $aset;
@@ -159,16 +162,19 @@ class Person implements IEntity
 				$this->addPekerjaan($value);
 			}
 
+			$this->attributes['kepribadian'] = [];
 			if ($kepribadian instanceOf Personality)
 			{
 				$this->attributes['kepribadian']	= $kepribadian;
 			}
 
+			$this->attributes['keuangan'] = [];
 			if ($keuangan instanceOf Finance)
 			{
 				$this->attributes['keuangan']		= $keuangan;
 			}
 
+			$this->attributes['aset'] = [];
 			if ($aset instanceOf Asset)
 			{
 				$this->attributes['aset']			= $aset;

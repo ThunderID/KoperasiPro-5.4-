@@ -124,7 +124,10 @@ class SessionBasedAuthenticator implements IService
 
 		$office = $visas->where('id', Session::get('accesses.idx'));
 
-		return $office[0];
+		foreach ($office as $key => $value) 
+		{
+			return $value;
+		}
 	}
 
 	/**
@@ -134,6 +137,17 @@ class SessionBasedAuthenticator implements IService
 	public static function signoff()
 	{
 		Session::forget('logged.id');
+
+		return true;
+	}
+
+	/**
+	 * Mengganti setting - an kantor yang active
+	 *
+	 */
+	public static function setOffice($idx)
+	{
+		Session::put('accesses.idx', $idx);
 
 		return true;
 	}
