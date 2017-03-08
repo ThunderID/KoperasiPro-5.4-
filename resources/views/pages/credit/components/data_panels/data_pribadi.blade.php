@@ -1,3 +1,6 @@
+@php 
+	dd($page_datas);
+@endphp
 <div class="row m-t-sm-m-print">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase m-b-sm-m-print">DATA PRIBADI</h4>
@@ -11,7 +14,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Nama</strong></p>
 				<p>
-					{{ $page_datas->credit->creditor->name }}
+					{{ $page_datas->credit['kreditur']['nama'] }}
 				</p>
 			</div>
 		</div>
@@ -19,7 +22,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Kelamin</strong></p>
 				<p>
-					@gender($page_datas->credit->creditor->gender)
+					@gender($page_datas->credit['kreditur']['nama'])
 				</p>
 			</div>
 		</div>	
