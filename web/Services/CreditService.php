@@ -13,6 +13,8 @@ use Thunderlabid\Registry\Repositories\PersonRepository;
 ///////////////////
 // Specification //
 ///////////////////
+use Thunderlabid\Registry\Repositories\Specifications\SpecificationByID as SpecificationByPersonID;
+
 use Thunderlabid\Credit\Repositories\Specifications\SpecificationByID;
 use Thunderlabid\Credit\Repositories\Specifications\PageSpecification;
 use Thunderlabid\Credit\Repositories\Specifications\SpecificationByStatus;
@@ -24,6 +26,7 @@ use Thunderlabid\Registry\Repositories\Specifications\SpecificationByID as Perso
 ///////////////////
 //  Transformer  //
 ///////////////////
+use Thunderlabid\Application\DataTransformers\Registry\PersonDTODataTransformer;
 use Thunderlabid\Application\DataTransformers\Credit\CreditDTODataTransformer as DataTransformer;
 
 ///////////////////
@@ -380,8 +383,17 @@ class CreditService implements IService
 	{
 		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
 		$credit 			= $credit[0];
+		$parsed_credit 		= $this->transformer->read($credit);
 
-		return $this->transformer->read($credit);
+		$person				= new PersonRepository;
+		$person				= $person->query([new SpecificationByPersonID($credit->kreditur['id'])]);
+		$person 			= $person[0];
+		$person_transformer	=  new PersonDTODataTransformer;
+		$person				= $person_transformer->read($person);
+
+		$parsed_credit['kreditur']	= $person;
+
+		return $parsed_credit;
 	}
 
 
