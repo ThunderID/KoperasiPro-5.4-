@@ -12,7 +12,7 @@
 				<p>Pengajuan Kredit</p>
 			</div>
 			<div class="col-sm-8">
-				<p><strong>{{ $page_datas->credit['pengajuan_kredit'] }}</strong></p>
+				<p>{{ $page_datas->credit['pengajuan_kredit'] }}</p>
 			</div>
 		</div>
 		<div class="row m-b-xl m-b-sm-print">
@@ -20,7 +20,7 @@
 				<p>Kemampuan Angsur</p>
 			</div>
 			<div class="col-sm-8">
-				<p><strong>{{ $page_datas->credit['kemampuan_angsur'] }}</strong></p>
+				<p>{{ $page_datas->credit['kemampuan_angsur'] }}</p>
 			</div>
 		</div>				
 		<div class="row m-b-xl m-b-sm-print">
@@ -28,7 +28,7 @@
 				<p>Jangka Waktu</p>
 			</div>
 			<div class="col-sm-8">
-				<p><strong>{{ $page_datas->credit['jangka_waktu'] }} bulan</strong></p>
+				<p>{{ $page_datas->credit['jangka_waktu'] }} bulan</p>
 			</div>
 		</div>	
 	</div>
@@ -38,7 +38,7 @@
 				<p>Tujuan Kredit</p>
 			</div>
 			<div class="col-sm-8">
-				<p><strong>{{ $page_datas->credit['tujuan_kredit'] }}</strong></p>
+				<p>{{ $page_datas->credit['tujuan_kredit'] }}</p>
 			</div>
 		</div>	
 	</div>	

@@ -23,18 +23,18 @@ window.wizard = function(){
 		/* Event */
 		onStepChanging: function (event, currentIndex, newIndex) {
 			// check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
+			if (currentIndex > newIndex) {
 				return true;
-			// }
+			}
 
 			// check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			if (currentIndex < newIndex) {
+				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
+				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			// return contentWizard.valid();
+			contentWizard.validate().settings.ignore = ":disabled,:hidden";
+			return contentWizard.valid();
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();

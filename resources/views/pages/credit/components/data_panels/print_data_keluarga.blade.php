@@ -13,7 +13,7 @@
 					<p>Nama</p>
 				</div>
 				<div class="col-sm-8">
-					<p><strong>{{ $value['nama'] }}</strong></p>
+					<p>{{ $value['nama'] }}</p>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 					<p>Hubungan</p>
 				</div>
 				<div class="col-sm-8">
-					<p><strong>{{ $value['relasi'] }}</strong></p>
+					<p>{{ $value['relasi'] }}</p>
 				</div>
 			</div>
 
@@ -40,4 +40,4 @@
 			</div>
 		</div>
 	</div>
-@endforeach
+@endforelse

@@ -10602,18 +10602,18 @@ $(document).ready(function () {
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
 			// check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
+			if (currentIndex > newIndex) {
+				return true;
+			}
 
 			// check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			if (currentIndex < newIndex) {
+				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
+				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			// return contentWizard.valid();
+			contentWizard.validate().settings.ignore = ":disabled,:hidden";
+			return contentWizard.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10764,7 +10764,8 @@ var xxx = new List('list-koperasi', options);
  */
 window.print = function () {
 	// class btn-print
-	$('.btn-print').click(function () {
+	$('.btn-print').click(function (e) {
+		e.preventDefault();
 		// get data url
 		url = $(this).data('url');
 		// call function openWindow

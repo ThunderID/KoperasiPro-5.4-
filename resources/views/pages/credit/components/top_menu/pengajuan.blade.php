@@ -3,7 +3,7 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<a href="{{ route('credit.print', ['id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary">
+				<a href="#" data-url="{{ route('credit.print', ['id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 			</div>
