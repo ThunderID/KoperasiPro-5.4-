@@ -22,32 +22,29 @@
 				@else
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle">
 				@endif
-						<a href="#" class="btn btn-block">
+						<a href="#" class="btn btn-block disabled">
 							1. Pengajuan
 						</a>
 					</div>
 
 				@if($status_index < 1)
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle disabled">
-						<a href="#" class="btn btn-block disabled">
 				@elseif($status_index == 1)
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle active">
-						<a href="#" class="btn btn-block">
 				@else
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle">
-						<a href="#" class="btn btn-block">
 				@endif					
+						<a href="#" class="btn btn-block disabled">
 							2. Survei
 						</a>			
 					</div>
 
 				@if($status_index < 2)
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle last disabled">
-						<a href="#" class="btn btn-block disabled">
 				@elseif($status_index == 2)
 					<div class="col-sm-4 p-r-none p-l-none text-center triangle last active">
-						<a href="#" class="btn btn-block">
 				@endif						
+						<a href="#" class="btn btn-block disabled">
 							3. Realisasi
 						</a>			
 					</div>
