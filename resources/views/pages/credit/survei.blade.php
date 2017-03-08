@@ -53,10 +53,6 @@
 			</div>
 		</div>		
 
-		<?php
-		// dd($page_datas->credit);
-
-		/*
 		<div class="clearfix">&nbsp;</div>		
 		
 		<!-- BLOCK 6 Display Data Jaminan // -->
@@ -68,6 +64,10 @@
 				])
 			</div>
 		</div>	
+		<?php
+		// dd($page_datas->credit);
+
+		/*
 		*/
 		?>
 
@@ -81,7 +81,7 @@
 			</div>
 		</div> -->
 
-		<div class="clearfix">&nbsp;</div>		
+		<!-- <div class="clearfix">&nbsp;</div>		 -->
 
 @stop
 
