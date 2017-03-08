@@ -226,8 +226,7 @@ class CreditController extends Controller
 															'Kredit'   => route('credit.index'),
 													 ];
 
-		//initialize view
-		$this->view                                = view('pages.credit.show');
+
 
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getCreditLists($page, 10);
@@ -251,6 +250,26 @@ class CreditController extends Controller
 			
 		// }
 
+		//initialize view
+		switch ($this->page_datas->credit['status']) {
+			case 'pengajuan':
+				$this->view                                = view('pages.credit.pengajuan');
+				break;
+			
+			case 'survei':
+				$this->view                                = view('pages.credit.survei');
+				break;
+
+			case 'realisasi':
+				$this->view                                = view('pages.credit.realisasi');
+				break;	
+
+			default:
+				$this->view                                = view('pages.credit.pengajuan');
+				break;
+		}
+
+													 
 		//function from parent to generate view
 		return $this->generateView();
 	}
