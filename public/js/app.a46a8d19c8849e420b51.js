@@ -10871,6 +10871,12 @@ window.notify = function (msg, title, type) {
 		allowClear: true
 	});
 
+	$('.select-tempat-lahir').select2({
+		theme: "bootstrap",
+		allowClear: true,
+		tags: true
+	});
+
 	$('.select-province').on('select2:select', function (evt) {
 		url = $(this).data('url');
 		val = $(this).find('option:selected').val();

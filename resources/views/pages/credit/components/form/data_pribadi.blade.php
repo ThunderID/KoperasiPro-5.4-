@@ -26,7 +26,7 @@
 	<label for="">Tempat Lahir</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('pribadi[tempat_lahir]', $page_datas->cities_all, null, ['class' => 'form-control select required auto-tabindex', 'placeholder' => 'Ex. Surabaya', 'data-placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::select('pribadi[tempat_lahir]', $page_datas->cities_all, null, ['class' => 'form-control select select-tempat-lahir required auto-tabindex', 'placeholder' => 'Ex. Surabaya', 'data-placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
