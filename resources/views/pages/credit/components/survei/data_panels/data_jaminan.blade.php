@@ -205,21 +205,19 @@
 @elseif(isset($page_datas->credit['jaminan']['tanah_bangunan']))
 <div class="row">
 
-	<div class="col-sm-12">
-		<div class="row m-b-xl">
-			<div class="col-sm-12">
-				<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
-				</hr>
-			</div>
-		</div>
-
-	</div>
-
-
 	{{-- @foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan) --}}
 	<?php
 		$tanah_bangunan = $page_datas->credit['jaminan']['tanah_bangunan'][0];
 	?>
+
+		<div class="col-sm-12">
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
+					<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
+					</hr>
+				</div>
+			</div>
+		</div>
 
 
 		<div class="col-sm-12">
@@ -235,7 +233,7 @@
 				<div class="col-sm-6">
 					<p class="p-b-sm"><strong>Panjang</strong></p>
 					<p>
-						{{ $tanah_bangunan['tanah']['panjang'] }}
+						{{ $tanah_bangunan['tanah']['panjang'] }} M
 					</p>
 				</div>
 			</div>
@@ -244,13 +242,13 @@
 				<div class="col-sm-6">
 					<p class="p-b-sm"><strong>Lebar</strong></p>
 					<p>
-						{{ $tanah_bangunan['tanah']['lebar'] }}
+						{{ $tanah_bangunan['tanah']['lebar'] }} M
 					</p>
 				</div>
 				<div class="col-sm-6">
 					<p class="p-b-sm"><strong>Luas</strong></p>
 					<p>
-						{{ $tanah_bangunan['tanah']['luas'] }}
+						{{ $tanah_bangunan['tanah']['luas'] }} M<sup>2</sup>
 					</p>
 				</div>
 			</div>			

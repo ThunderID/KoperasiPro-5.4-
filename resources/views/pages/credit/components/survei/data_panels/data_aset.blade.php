@@ -66,7 +66,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Luas</strong></p>
 					<p>
-						{{ $page_datas->credit['kreditur']['aset']['rumah']['luas'] }}
+						{{ $page_datas->credit['kreditur']['aset']['rumah']['luas'] }} M<sup>2</sup>
 					</p>
 				</div>
 			</div>
@@ -189,7 +189,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Saham Usaha</strong></p>
 					<p>
-						{{ $page_datas->credit['kreditur']['aset']['usaha']['saham_usaha'] }}
+						{{ $page_datas->credit['kreditur']['aset']['usaha']['saham_usaha'] }} %
 					</p>
 				</div>
 			</div>
