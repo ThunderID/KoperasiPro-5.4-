@@ -117,6 +117,33 @@ class CreditService implements IService
 	 * 
 	 * @return CreditDTODataTransformer $data
 	 */
+	public function updateStatus($credit_id, $status)
+	{
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+		$credit 			= $credit[0];
+
+		//parse data riwayat status
+		$status				= [
+								'status'	=> $status,
+								'tanggal'	=> date('Y-m-d'),
+								'petugas'	=> 	[
+													'id'	=> TAuth::loggedUser()['id'],
+													'nama'	=> TAuth::loggedUser()['name'],
+												],
+							];
+		$credit->addStatus($status);
+
+		$saved 				= $this->repository->store($credit);
+
+		return $this->transformer->read($credit);
+	}
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
 	public function simpanSurveyKepribadian($credit_id, $data)
 	{
 		//fixing 
@@ -341,6 +368,21 @@ class CreditService implements IService
 
 		return 	$user_entities;
 	}
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function detailed($credit_id)
+	{
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+		$credit 			= $credit[0];
+
+		return $this->transformer->read($credit);
+	}
+
 
 	/**
 	 * this function mean keep executing

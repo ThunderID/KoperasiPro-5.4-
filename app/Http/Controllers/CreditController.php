@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Thunderlabid\Application\Services\CreditService;
+use Thunderlabid\Application\Services\ProvinceService;
 use App\Web\Services\Person;
 use Input, PDF;
 
@@ -73,14 +74,13 @@ class CreditController extends Controller
 		//initialize view
 		$this->view 								= view('pages.credit.create');
 		// get data province
-		$data										= new \App\UI\CountryLists\Model\Province;
+		$data										= new ProvinceService;
+
 		// sort data province by 'province_name'
-		$data 										= $data->sortBy('province_name');
+		$data 										= collect($data->read());
 
 		// get province first to set list cities
-		$province_id 								= $data->first()['province_id'];
-		$cities_first								= $data->where('province_id', $province_id)->withCities()->all();
-		$cities_first								= $cities_first[0]['cities'];
+		$cities_first								= collect($data[0]['cities']);
 		$cities_first 								= $cities_first->sortBy('city_name_full');
 
 		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
@@ -97,7 +97,6 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
-		dd(Input::all());
 		//creditor
 		$person					= Input::get('person');
 		$person['id']			= null;
@@ -171,6 +170,12 @@ class CreditController extends Controller
 	 */
 	public function show($id)
 	{
+		$page 				= 1;
+		if(Input::has('page'))
+		{
+			$page 			= (int)Input::get('page');
+		}
+
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title              = "Daftar Kredit";
 		$this->page_attributes->breadcrumb         = [
@@ -181,26 +186,26 @@ class CreditController extends Controller
 		$this->view                                = view('pages.credit.show');
 
 		//this function to set all needed variable in lists credit (sidebar)
-		$this->getCreditLists();
+		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.index'),100,1,10);	
+		$this->paginate(route('credit.show', ['id' => $id]),$this->page_datas->total_credits,$page,10);
 
 		//parsing master data here
-		$this->page_datas->credit 					= Credit::findByID($id);
+		$this->page_datas->credit 					= $this->service->detailed($id);
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit->credit->creditor->id;
-		$this->page_datas->creditor_address_active	= Person::findByID($person_id);
+		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		// $this->page_datas->creditor_address_active	= Person::findByID($person_id);
 
-		// check address for warrator (penjamin)
-		if (($this->page_datas->credit->credit->warrantor) && !is_null($this->page_datas->credit->credit->warrantor->id))
-		{
-			$person_id 									= $this->page_datas->credit->credit->warrantor->id;
-			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
+		// // check address for warrator (penjamin)
+		// if (($this->page_datas->credit->credit->warrantor) && !is_null($this->page_datas->credit->credit->warrantor->id))
+		// {
+		// 	$person_id 									= $this->page_datas->credit->credit->warrantor->id;
+		// 	$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
 			
-		}
+		// }
 
 		//function from parent to generate view
 		return $this->generateView();
