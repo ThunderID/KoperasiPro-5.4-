@@ -4,8 +4,7 @@
 		<div class="col-md-3">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="#jaminan-kendaraan" data-toggle="tab">Kendaraan</a></li>
-				<li><a href="#jaminan-tanah" data-toggle="tab">Tanah</a></li>
-				<li><a href="#jaminan-bangunan" data-toggle="tab">Bangunan</a></li>
+				<li><a href="#jaminan-tnb" data-toggle="tab">Tanah & Bangunan</a></li>
 			</ul>
 		</div>
 
@@ -265,7 +264,7 @@
 					</fieldset>
 			  	</div>
 
-			  	<div class="tab-pane" id="jaminan-tanah">
+			  	<div class="tab-pane" id="jaminan-tnb">
 
 					<div class="m-t-none m-b-md">
 						<h4 class="m-t-none m-b-xs">TANAH</h4>

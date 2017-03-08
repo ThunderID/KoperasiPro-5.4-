@@ -1,6 +1,26 @@
-<div class="row m-t-sm-m-print">
+<?php
+	if(!isset($edit)){
+		$edit = true;
+	}
+	$edit = false;
+?>
+
+<div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase m-b-sm-m-print">DATA JAMINAN</h4>
+		<h4 class="text-uppercase">Data Jaminan
+			@if(!empty($page_datas->credit['kreditur']['aset']))
+				@if($edit == true)
+					<span class="pull-right">
+						<small>
+						<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+							 Edit
+						</a>
+						</small>
+					</span>
+				@endif
+			@endif
+		</h4>
 		<hr/>
 	</div>
 </div>
@@ -184,50 +204,62 @@
 </div>
 @elseif(isset($page_datas->credit['jaminan']['tanah_bangunan']))
 <div class="row">
+
 	<div class="col-sm-12">
-		<div class="row m-b-xl m-t-xs-print">
+		<div class="row m-b-xl">
 			<div class="col-sm-12">
-				<p class="p-b-sm m-b-xs-m-print"><strong>Tanah/Bangunan</strong></p>
-				@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan)
-				<div class="col-sm-12">
-
-					<div class="row m-b-xl">
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
-							<p>
-								{{ $tanah_bangunan['tipe_jaminan'] }}
-							</p>
-						</div>
-
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Panjang</strong></p>
-							<p>
-								{{ $tanah_bangunan['tanah']['panjang'] }}
-							</p>
-						</div>
-					</div>
-
-					<div class="row m-b-xl">
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Lebar</strong></p>
-							<p>
-								{{ $tanah_bangunan['tanah']['lebar'] }}
-							</p>
-						</div>
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Luas</strong></p>
-							<p>
-								{{ $tanah_bangunan['tanah']['luas'] }}
-							</p>
-						</div>
-					</div>
-				</div>
-				@endforeach
-
+				<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
+				</hr>
 			</div>
 		</div>
 
 	</div>
+
+
+	{{-- @foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan) --}}
+	<?php
+		$tanah_bangunan = $page_datas->credit['jaminan']['tanah_bangunan'][0];
+	?>
+
+
+		<div class="col-sm-12">
+
+			<div class="row m-b-xl">
+				<div class="col-sm-6">
+					<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
+					<p>
+						{{ $tanah_bangunan['tipe_jaminan'] }}
+					</p>
+				</div>
+
+				<div class="col-sm-6">
+					<p class="p-b-sm"><strong>Panjang</strong></p>
+					<p>
+						{{ $tanah_bangunan['tanah']['panjang'] }}
+					</p>
+				</div>
+			</div>
+
+			<div class="row m-b-xl">
+				<div class="col-sm-6">
+					<p class="p-b-sm"><strong>Lebar</strong></p>
+					<p>
+						{{ $tanah_bangunan['tanah']['lebar'] }}
+					</p>
+				</div>
+				<div class="col-sm-6">
+					<p class="p-b-sm"><strong>Luas</strong></p>
+					<p>
+						{{ $tanah_bangunan['tanah']['luas'] }}
+					</p>
+				</div>
+			</div>			
+
+		</div>
+		
+
+	{{-- @endforeach --}}
+
 </div>
 @else
 	<div class="row">
