@@ -117,7 +117,7 @@
 {{-- form address --}}
 @include('components.helpers.forms.address', [
 	'param'		=> [
-		'prefix'	=> 'pribadi',
+		'prefix'	=> 'orang',
 		'province' 	=> $page_datas->province,
 		'cities'	=> $page_datas->cities
 	]

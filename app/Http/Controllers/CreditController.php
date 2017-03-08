@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Thunderlabid\Application\Services\CreditService;
 use Thunderlabid\Application\Services\ProvinceService;
 use App\Web\Services\Person;
-use Input, PDF;
+use Input, PDF, Carbon\Carbon;
 
 /**
  * Kelas CreditController
@@ -110,13 +110,32 @@ class CreditController extends Controller
 	public function store()
 	{
 		//data pribadi
-		$pribadi 				= Input::get('pribadi');
+		$pribadi 						= Input::get('pribadi');
+		$pribadi['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $pribadi['tanggal_lahir'])->format('Y-m-d');
 		$pribadi['id']			= null;
-		$person['relasi']		= null;
+		$pribadi['relasi']		= null;
+		$pribadi['pekerjaan'][0]			= Input::get('pekerjaan');
+		$pribadi['pekerjaan'][0]['sejak']	= Carbon::createFromFormat('d/m/Y', $pribadi['pekerjaan'][0]['sejak'])->format('Y-m-d');
+		$pribadi['alamat'][0]			= Input::get('orang')['alamat'];
+		$pribadi['alamat'][0]['negara']		= 'Indonesia';
+		$pribadi['alamat'][0]['kode_pos']	= $pribadi['alamat'][0]['kodepos'];
+		$new_kontak 			= [];
+
+		foreach ($pribadi['kontak']['telepon'] as $key => $value) 
+		{
+			if(!is_null($value))
+			{
+				$new_kontak[]['telepon']	= $value;
+			}
+		}
+
+		unset($pribadi['kontak']['telepon']);
+		$pribadi['kontak']		= $new_kontak;
 
 		//data kredit
 		$kredit 				= Input::get('kredit');
 		$kredit['id']			= null;
+		$kredit['penjamin']		= [];
 
 		$kredit['pengajuan_kredit']		= str_replace('IDR', '', str_replace('.', '', $kredit['pengajuan_kredit']));
 		$kredit['kemampuan_angsur']		= str_replace('IDR', '', str_replace('.', '', $kredit['kemampuan_angsur']));
