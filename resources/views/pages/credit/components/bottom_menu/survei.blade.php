@@ -6,13 +6,13 @@
 			<div class="col-md-12 p-r-none p-l-none" style="left: 15px;">
 				<div class="row" id="step">
 
-					<div class="col-sm-4 p-r-none p-l-none text-center triangle active">
+					<div class="col-sm-4 p-r-none p-l-none text-center triangle">
 						<a href="#" class="btn btn-block disabled">
 							1. Pengajuan
 						</a>
 					</div>
 
-					<div class="col-sm-4 p-r-none p-l-none text-center triangle disabled">
+					<div class="col-sm-4 p-r-none p-l-none text-center triangle active">
 						<a href="#" class="btn btn-block disabled">
 							2. Survei
 						</a>			
