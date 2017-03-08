@@ -37,6 +37,7 @@ class Macro extends BaseModel
 	 * @var array
 	 */
 	protected $fillable				=	[
+											'person'					,
 											'persaingan_usaha'			,
 											'prospek_usaha'				,
 											'perputaran_usaha'			,
@@ -58,7 +59,7 @@ class Macro extends BaseModel
 											'perputaran_usaha'			=> 'required|max:255',
 											'pengalaman_usaha'			=> 'required|max:255',
 											'resiko_usaha'				=> 'required|max:255',
-											'jumlah_pelanggan_harian'	=> 'required|numeric',
+											'jumlah_pelanggan_harian'	=> 'required|max:255',
 											'keterangan'				=> 'required|max:255',
 										];
 	/**

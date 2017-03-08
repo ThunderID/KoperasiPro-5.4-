@@ -1,4 +1,4 @@
-{!! Form::open(['url' => route('survey.store'), 'class' => '']) !!}
+{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
 
 	{{ Form::hidden('id', $page_datas->credit['id']) }}
 
@@ -46,10 +46,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				{!! Form::select('makro[pengalaman_usaha]', [
-					'lt-2'			=> '< 2 tahun',
-					'lt-3'			=> '2 - 3 tahun',
-					'lt-5'			=> '3 - 5 tahun',
-					'gt-5'			=> '> 5 tahun'
+					'< 2 tahun'		=> '< 2 tahun',
+					'2 - 3 tahun'	=> '2 - 3 tahun',
+					'3 - 5 tahun'	=> '3 - 5 tahun',
+					'> 5 tahun'		=> '> 5 tahun'
 				], $page_datas->credit['kreditur']['makro']['pengalaman_usaha'], ['class' => 'form-control quick-select pengalaman_usaha']) !!}
 			</div>
 		</div>
@@ -73,10 +73,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				{!! Form::select('makro[jumlah_pelanggan_harian]', [
-					'le-10'			=> '0 - 10',
-					'le-50'			=> '10 - 50',
-					'le-100'		=> '50 - 100',
-					'gt-100'		=> '> 100'
+					'0 - 10'		=> '0 - 10',
+					'10 - 50'		=> '10 - 50',
+					'50 - 100'		=> '50 - 100',
+					'> 100'			=> '> 100'
 				], $page_datas->credit['kreditur']['makro']['jumlah_pelanggan_harian'], ['class' => 'form-control quick-select jumlah_pelanggan_harian']) !!}
 			</div>
 		</div>

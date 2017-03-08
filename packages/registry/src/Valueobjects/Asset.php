@@ -19,16 +19,28 @@ class Asset implements IValueObject {
 	public function __construct($rumah, $kendaraan, $usaha)
 	{
 		$validator 	= Validator::make($rumah, ['status' => 'string', 'angsuran' => 'numeric', 'tenor_angsuran' => 'numeric', 'masa_sewa' => 'numeric', 'sejak' => 'date_format:"Y-m-d"', 'luas' => 'numeric', 'nilai_rumah' => 'numeric']);
-		if ($validator->fails())
+
+
+		if(empty($rumah['nilai_rumah']))
 		{
-			throw new Exception($validator->messages(), 1);
+			$rumah['nilai_rumah'] = 0;
 		}
+	
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
 
 		$validator 	= Validator::make($kendaraan, ['jumlah_kendaraan_r4' => 'numeric', 'jumlah_kendaraan_r2' => 'numeric', 'nilai_kendaraan' => 'numeric']);
-		if ($validator->fails())
+		if(empty($kendaraan['nilai_kendaraan']))
 		{
-			throw new Exception($validator->messages(), 1);
+			$kendaraan['nilai_kendaraan'] = 0;
 		}
+
+		// if ($validator->fails())
+		// {
+		// 	throw new Exception($validator->messages(), 1);
+		// }
 
 		$validator 	= Validator::make($usaha, ['nama' => 'string', 'bidang_usaha' => 'string', 'sejak' => 'date_format:"Y-m-d"', 'status_usaha' => 'string', 'saham_usaha' => 'numeric']);
 		if ($validator->fails())

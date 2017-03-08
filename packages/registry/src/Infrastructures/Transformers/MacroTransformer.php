@@ -55,7 +55,6 @@ class MacroTransformer implements ITransformer {
 		{
 			$model 	= new Eloquent;
 		}
-		
 		$model->person 					= ['id' => $entity->id];
 		$model->persaingan_usaha 		= $entity->makro->persaingan_usaha;
 		$model->prospek_usaha 			= $entity->makro->prospek_usaha;

@@ -53,11 +53,11 @@ class Asset extends BaseModel
 											'rumah.masa_sewa'		=> 'numeric',
 											'rumah.sejak'			=> 'date_format:"Y-m-d"',
 											'rumah.luas'			=> 'numeric',
-											'rumah.nilai_rumah'		=> 'numeric',
+											// 'rumah.nilai_rumah'		=> 'numeric',
 											
 											'kendaraan.jumlah_kendaraan_r4'	=> 'numeric',
 											'kendaraan.jumlah_kendaraan_r2'	=> 'numeric',
-											'kendaraan.nilai_kendaraan'		=> 'numeric',
+											// 'kendaraan.nilai_kendaraan'		=> 'numeric',
 
 											'usaha.nama'			=> 'string',
 											'usaha.bidang_usaha'	=> 'string',

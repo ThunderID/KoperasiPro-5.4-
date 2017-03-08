@@ -46,18 +46,18 @@ class Finance extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'pendapatan.penghasilan_gaji'			=> 'numeric',
-											'pendapatan.penghasilan_non_gaji'		=> 'numeric',
-											'pendapatan.penghasilan_lain'			=> 'numeric',
-											'pendapatan.sumber_penghasilan_lain'	=> 'string',
+											// 'pendapatan.penghasilan_gaji'			=> 'numeric',
+											// 'pendapatan.penghasilan_non_gaji'		=> 'numeric',
+											// 'pendapatan.penghasilan_lain'			=> 'numeric',
+											// 'pendapatan.sumber_penghasilan_lain'	=> 'string',
 
-											'pengeluaran.biaya_rumah_tangga'		=> 'numeric',
-											'pengeluaran.biaya_pendidikan'			=> 'numeric',
-											'pengeluaran.biaya_telepon'				=> 'numeric',
-											'pengeluaran.biaya_pdam'				=> 'numeric',
-											'pengeluaran.biaya_listrik'				=> 'numeric',
-											'pengeluaran.biaya_produksi'			=> 'numeric',
-											'pengeluaran.pengeluaran_lain'			=> 'numeric',
+											// 'pengeluaran.biaya_rumah_tangga'		=> 'numeric',
+											// 'pengeluaran.biaya_pendidikan'			=> 'numeric',
+											// 'pengeluaran.biaya_telepon'				=> 'numeric',
+											// 'pengeluaran.biaya_pdam'				=> 'numeric',
+											// 'pengeluaran.biaya_listrik'				=> 'numeric',
+											// 'pengeluaran.biaya_produksi'			=> 'numeric',
+											// 'pengeluaran.pengeluaran_lain'			=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
