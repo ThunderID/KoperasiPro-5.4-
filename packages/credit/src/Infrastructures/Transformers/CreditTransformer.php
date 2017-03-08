@@ -102,6 +102,7 @@ class CreditTransformer implements ITransformer {
 				$jaminan['kendaraan'][$i]['tahun']	= $value->tahun;
 				$jaminan['kendaraan'][$i]['legal']	= $value->legal;
 				$jaminan['kendaraan'][$i]['nilai']	= $value->nilai;
+
 				$i++;
 			}
 
@@ -113,6 +114,10 @@ class CreditTransformer implements ITransformer {
 				$jaminan['tanah_bangunan'][$j]['legal']					= $value->legal;
 				$jaminan['tanah_bangunan'][$j]['alamat']				= $value->alamat;
 				$jaminan['tanah_bangunan'][$j]['nilai']					= $value->nilai;
+				$jaminan['tanah_bangunan'][$j]['nilai']['harga_njop']	= (string)($value->nilai['harga_njop']) * 1;
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_tanah']	= (string)($value->nilai['nilai_tanah']) * 1;
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_bangunan']	= (string)($value->nilai['nilai_bangunan']) * 1;
+				$jaminan['tanah_bangunan'][$j]['nilai']['nilai_taksasi']	= (string)($value->nilai['nilai_taksasi']) * 1;
 				$j++;
 			}
 		}

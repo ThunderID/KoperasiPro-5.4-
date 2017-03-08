@@ -109,7 +109,6 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
-		dd($request->all());
 		//data pribadi
 		$pribadi 						= Input::get('pribadi');
 		$pribadi['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $pribadi['tanggal_lahir'])->format('Y-m-d');
@@ -143,10 +142,10 @@ class CreditController extends Controller
 		//parse jaminan
 		$kredit['jaminan_kendaraan']		= [];
 		$kredit['jaminan_tanah_bangunan']	= [];
-		dd(Input::all());
-		if(isset(Input::get('jaminan')['kendaraan']))
+
+		foreach (Input::get('credit')['jaminan_kendaraan'] as $key => $value) 
 		{
-			foreach (Input::get('jaminan')['kendaraan'] as $key => $value) 
+			if(!is_null($value['status_kepemilikan']))
 			{
 				if(str_is($value['legalitas'], 'bpkb_r2'))
 				{
@@ -157,7 +156,7 @@ class CreditController extends Controller
 					$legal 						= 'Kendaraan Roda 4';
 				}
 
-				$kredit['jaminan_kendaraan'][$key]	= [
+				$kredit['jaminan_kendaraan'][]	= [
 					'merk' 						=> 'null', 
 					'jenis' 					=> $legal, 
 					'warna' 					=> 'null', 
@@ -186,6 +185,62 @@ class CreditController extends Controller
 						'harga_bank' 			=> 0, 
 					],
 				]; 
+			}
+		}
+
+		if(isset(Input::get('credit')['jaminan_tanah_bangunan']))
+		{
+
+			foreach (Input::get('credit')['jaminan_tanah_bangunan'] as $key => $value) 
+			{
+				if(!is_null($value['status_kepemilikan']))
+				{
+					$kredit['jaminan_tanah_bangunan'][]	= [
+					'tipe_jaminan' 				=> $value['legalitas'], 
+					'tanah'						=> [
+						'panjang' 				=> 0, 
+						'lebar' 				=> 0, 
+						'luas' 					=> 0, 
+					],
+					'spesifikasi_bangunan'		=> [
+						'bentuk' 				=> 'null', 
+						'konstruksi' 			=> 'null', 
+						'lantai' 				=> 'null', 
+						'dinding' 				=> 'null', 
+						'listrik' 				=> 'null', 
+						'air' 					=> 'null', 
+						'fungsi' 				=> 'null', 
+						'lainnya' 				=> 'null', 
+					],
+
+					'legal' 					=> [
+						'atas_nama_sertifikat' 		=> 'null', 
+						'jenis_sertifikat'			=> 'null', 
+						'masa_berlaku_sertifikat'	=> Carbon::now()->format('Y-m-d'), 
+						'imb' 						=> true, 
+						'akta_jual_beli' 			=> true, 
+						'pbb_terakhir' 				=> true, 
+					],
+
+					'alamat' 					=> [
+						'jalan' 				=> 'null', 
+						'kota' 					=> 'null', 
+						'provinsi' 				=> 'null', 
+						'negara' 				=> 'null', 
+						'kode_pos' 				=> 'null', 
+					],
+					'nilai'						=> [
+						'jalan' 				=> 'null', 
+						'letak_lokasi' 			=> 'null', 
+						'lingkungan' 			=> 'null', 
+						'asuransi' 				=> true, 
+						'harga_njop' 			=> 0, 
+						'nilai_tanah' 			=> 0, 
+						'nilai_bangunan' 		=> 0, 
+						'nilai_taksasi' 		=> 0, 
+					]
+					];
+				}
 			}
 		}
 

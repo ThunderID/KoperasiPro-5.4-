@@ -29,7 +29,7 @@ class Credit extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $collection			= 'pre_live_credit';
+	protected $collection			= 'pre_live_credits';
 
 	/**
 	 * The attributes that are mass assignable.
