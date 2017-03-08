@@ -1,6 +1,6 @@
-
 $(function (){
-	$('.add').click( function (){
+	$('.add').click( function (e){
+		e.preventDefault();
 		dataFlag = $(this).data('active');
 		template_add(dataFlag, $(this));
 		window.resizeWizard(); // form wizard automatic height after add template
@@ -13,14 +13,19 @@ $(function (){
 		} else if ($(this).data('active') === 'contact') {
 			window.formInputMask();
 		}
+		// add event remove template click
+		$('.remove').click( function(e) {
+			e.preventDefault();
+			template_remove($(this));
+		});
 	});
+
 });
 /**
  * on document ready triger click btn 'add' for template clone
  */
 $(document).ready( function() {
-	$('.content-clone-contact').find('.add').trigger('click');
-	$('.content-clone-jaminan').find('.add').trigger('click');
+	$('.add.init-add-one').trigger('click');
 });
 /**
  * function template add
@@ -35,6 +40,21 @@ function template_add(flag, element) {
 	}
 	// append template to section clone
 	element.parent().parent().find('.section-clone-' + flag).append(temp);
+}
+/**
+ * function template remove
+ * description: ...
+ */
+function template_remove(e) {
+	rootClone = e.parent().parent().parent().parent();
+	rootClone.remove();
+	window.resizeWizard();
+
+	// call again event remove template click
+	$('.remove').click(function(e) {
+		e.preventDefault();
+		template_remove($(this));
+	});
 }
 
 /**
@@ -76,3 +96,7 @@ function selectLegal() {
 		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
+
+/**
+ * function count and each label increment template clone
+ */

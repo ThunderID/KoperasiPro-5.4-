@@ -5,7 +5,7 @@
 <fieldset class="form-group">
 	<label for="">Jenis Pekerjaan</label>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-5">
 			{!! Form::select('pekerjaan[jenis]', [
 				'peg_negeri'		=> 'Pegawai Negeri',
 				'peg_swasta'		=> 'Pegawai Swasta',
@@ -21,22 +21,35 @@
 </fieldset>
 
 <fieldset class="form-group">
-	<label for="">Jabatan</label>
+	<label for="">Instansi</label>
 	<div class="row">
-		<div class="col-md-8">
-			{!! Form::text('pekerjaan[jabatan]', null, ['class' => 'form-control auto-tabindex required input-jabatan', 'placeholder' => 'Jabatan']) !!}
+		<div class="col-md-6">
+			{!! Form::text('pekerjaan[instansi]', null, ['class' => 'form-control auto-tabindex input-instansi', 'placeholder' => 'Instansi']) !!}
 		</div>
 	</div>
 </fieldset>
 
 <fieldset class="form-group">
-	<label for="">Masa Kerja</label>
+	<label for="">Jabatan</label>
 	<div class="row">
-		<div class="col-md-4">
-			{!! Form::text('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required date-format', 'placeholder' => 'Masa kerja']) !!}
+		<div class="col-md-6">
+			{!! Form::text('pekerjaan[jabatan]', null, ['class' => 'form-control auto-tabindex input-jabatan', 'placeholder' => 'Jabatan']) !!}
 		</div>
 	</div>
 </fieldset>
+
+<fieldset class="form-group">
+	<label for="">Tgl Mulai Bekerja</label>
+	<div class="row">
+		<div class="col-md-4">
+			{!! Form::text('pekerjaan[masa_kerja]', null, ['class' => 'form-control required auto-tabindex required mask-date-format', 'placeholder' => 'Tgl Mulai Bekerja']) !!}
+		</div>
+	</div>
+</fieldset>
+
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
@@ -46,7 +59,10 @@
 		'cities'		=> $page_datas->cities
 	]
 ])
-<br />
+
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 

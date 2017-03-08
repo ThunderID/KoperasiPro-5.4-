@@ -69,6 +69,10 @@ class CreditController extends Controller
 		$data										= new \App\UI\CountryLists\Model\Province;
 		// sort data province by 'province_name'
 		$data 										= $data->sortBy('province_name');
+		// get all cties
+		$cities_all 								= new \App\UI\CountryLists\Model\City;
+		// sort cities by 'city_name_full'
+		$cities_all									= $cities_all->sortBy('city_name_full');
 
 		// get province first to set list cities
 		$province_id 								= $data->first()['province_id'];
@@ -78,6 +82,7 @@ class CreditController extends Controller
 
 		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
 		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
+		$this->page_datas->cities_all				= $cities_all->pluck('city_name_full', 'city_id');
 
 		//function from parent to generate view
 		return $this->generateView();
@@ -90,14 +95,12 @@ class CreditController extends Controller
 	 */
 	public function store()
 	{
-		dd(Input::all());
 		//creditor
 		$person					= Input::get('person');
 		$person['id']			= null;
 		$person['works']		= null;
 		$person['relatives']	= null;
 		$person['phones']		= null;
-		dd($person);
 
 		//only happen if person id = null
 		if(is_null($person['id']))
@@ -305,10 +308,10 @@ class CreditController extends Controller
 			$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
 			
 		}
-
+		// return view('pages.credit.print', ['page_datas' => $this->page_datas]);
 		//function from parent to generate view
 		$pdf = PDF::loadView('pages.credit.print', ['page_datas' => $this->page_datas]);
 		
-		return $pdf->stream();
+		return $pdf->download('pengajuan-kredit.pdf');;
 	}
 }

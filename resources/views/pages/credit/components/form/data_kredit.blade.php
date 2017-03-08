@@ -5,7 +5,7 @@
 	<label for="">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('credit[credit_amount]', null, ['class' => 'form-control required money auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman']) !!}
+			{!! Form::text('credit[credit_amount]', null, ['class' => 'form-control required mask-money auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">
-				{!! Form::text('credit[installment_capacity]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
+				{!! Form::text('credit[installment_capacity]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Kemampuan jumlah angsuran']) !!}
 				<div class="input-group-addon">/ Bulan</div>
 			</div>
 		</div>
@@ -24,9 +24,9 @@
 <fieldset class="form-group">
 	<label for="">Lama Angsuran</label>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="input-group">
-				{!! Form::number('credit[period]', null, ['class' => 'form-control number auto-tabindex', 'placeholder' => 'Lama angsuran', 'min' => '1', 'max' => '50']) !!}
+				{!! Form::text('credit[period]', null, ['class' => 'form-control number auto-tabindex mask-number-xs', 'placeholder' => 'Lama angsuran']) !!}
 				<div class="input-group-addon">Bulan</div>
 			</div>
 		</div>

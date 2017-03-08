@@ -10491,9 +10491,9 @@ $(document).ready(function () {
 
 /* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
 	// element class use plugin inputmask
-	elMoney = $('.money');
-	elMoneyRight = $('.money-right');
-	elDateFormat = $('.date-format');
+	elMoney = $('.mask-money');
+	elMoneyRight = $('.mask-money-right');
+	elDateFormat = $('.mask-date-format');
 
 	// money indonesia standard
 	elMoney.inputmask({
@@ -10527,8 +10527,10 @@ $(document).ready(function () {
 		alias: "dd/mm/yyyy"
 	});
 
-	$('.id-card').inputmask('99-99-99-99-99-99-9999');
-	$('.no-hp').inputmask('9999 9999 9999');
+	$('.mask-id-card').inputmask('99-99-99-99-99-99-9999');
+	$('.mask-no-telp').inputmask('9999 9999 9999');
+	$('.mask-kodepos').inputmask('99999');
+	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10600,29 +10602,31 @@ $(document).ready(function () {
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
 			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
-				return true;
-			}
+			// if (currentIndex > newIndex) {
+			return true;
+			// }
 
 			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// if (currentIndex < newIndex) {
+			// contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
+			// contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			return contentWizard.valid();
+			// contentWizard.validate().settings.ignore = ":disabled,:hidden";
+			// return contentWizard.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
 			window.select();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
 		},
 		onInit: function onInit(event, currentIndex) {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
 			// window.select();
 		},
 		onFinished: function onFinished(event, currentIndex) {
@@ -10661,6 +10665,14 @@ window.customButtonActions = function () {
 	$('.wizard .actions').find('a').addClass('btn');
 	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary');
 	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
+};
+
+window.disablePreviousButtonOnFirstStep = function (index) {
+	if (index == 0) {
+		$(".wizard .actions a[href='#previous']").hide();
+	} else {
+		$(".wizard .actions a[href='#previous']").show();
+	}
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10871,6 +10883,7 @@ window.notify = function (msg, title, type) {
 			cache: true,
 			success: function success(data) {
 				// set select2 city option, value province selected from ajax
+				rootSelect.find('.select-cities').html('');
 				$.each(data, function (i, v) {
 					$option = $("<option></option>");
 					$option.val(v.city_id).text(v.city_name_full);
@@ -10891,7 +10904,7 @@ window.notify = function (msg, title, type) {
 	// on event select2 'pekerjaan' on selected after focus to 'input-jabatan' on form pekerjaan
 	$('.select-pekerjaan').on('select2:select', function (evt) {
 		rootSelect = $(this).parent().parent().parent().parent();
-		rootSelect.find('.input-jabatan').focus();
+		rootSelect.find('.input-instansi').focus();
 	});
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -10900,9 +10913,9 @@ window.notify = function (msg, title, type) {
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {
-$(function () {
-	$('.add').click(function () {
+/* WEBPACK VAR INJECTION */(function($) {$(function () {
+	$('.add').click(function (e) {
+		e.preventDefault();
 		dataFlag = $(this).data('active');
 		template_add(dataFlag, $(this));
 		window.resizeWizard(); // form wizard automatic height after add template
@@ -10915,14 +10928,18 @@ $(function () {
 		} else if ($(this).data('active') === 'contact') {
 			window.formInputMask();
 		}
+		// add event remove template click
+		$('.remove').click(function (e) {
+			e.preventDefault();
+			template_remove($(this));
+		});
 	});
 });
 /**
  * on document ready triger click btn 'add' for template clone
  */
 $(document).ready(function () {
-	$('.content-clone-contact').find('.add').trigger('click');
-	$('.content-clone-jaminan').find('.add').trigger('click');
+	$('.add.init-add-one').trigger('click');
 });
 /**
  * function template add
@@ -10937,6 +10954,21 @@ function template_add(flag, element) {
 	}
 	// append template to section clone
 	element.parent().parent().find('.section-clone-' + flag).append(temp);
+}
+/**
+ * function template remove
+ * description: ...
+ */
+function template_remove(e) {
+	rootClone = e.parent().parent().parent().parent();
+	rootClone.remove();
+	window.resizeWizard();
+
+	// call again event remove template click
+	$('.remove').click(function (e) {
+		e.preventDefault();
+		template_remove($(this));
+	});
 }
 
 /**
@@ -10978,6 +11010,10 @@ function selectLegal() {
 		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
+
+/**
+ * function count and each label increment template clone
+ */
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),

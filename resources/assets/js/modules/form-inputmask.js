@@ -1,8 +1,8 @@
 window.formInputMask = function () {
 	// element class use plugin inputmask
-	elMoney = $('.money');
-	elMoneyRight = $('.money-right');
-	elDateFormat = $('.date-format');
+	elMoney = $('.mask-money');
+	elMoneyRight = $('.mask-money-right');
+	elDateFormat = $('.mask-date-format');
 
 	// money indonesia standard
 	elMoney.inputmask({ 
@@ -38,6 +38,8 @@ window.formInputMask = function () {
 		alias: "dd/mm/yyyy"
 	});
 
-	$('.id-card').inputmask('99-99-99-99-99-99-9999');
-	$('.no-hp').inputmask('9999 9999 9999');
+	$('.mask-id-card').inputmask('99-99-99-99-99-99-9999');
+	$('.mask-no-telp').inputmask('9999 9999 9999');
+	$('.mask-kodepos').inputmask('99999');
+	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 }

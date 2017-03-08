@@ -8,7 +8,7 @@
 	<label for="">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus id-card', 'placeholder' => 'Ex. 11 00 36 08 76 0001']) !!}
+			{!! Form::text('person[nik]', null, ['class' => 'form-control required auto-tabindex focus mask-id-card', 'placeholder' => 'Ex. 11 00 36 08 76 0001']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -26,7 +26,7 @@
 	<label for="">Tempat Lahir</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('person[place_of_birth]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Surabaya']) !!}
+			{!! Form::select('person[place_of_birth]', $page_datas->cities_all, null, ['class' => 'form-control select required auto-tabindex', 'placeholder' => 'Ex. Surabaya', 'data-placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('person[date_of_birth]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -66,6 +66,19 @@
 		</div>
 	</div>
 </fieldset>
+
+<fieldset class="form-group">
+	<label for="">Status Pernikahan</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::select('person[marital_status]', [
+				'married' 		=> 'Menikah',
+				'single'		=> 'Belum Menikah',
+			], 'kawin', ['class' => 'form-control quick-select']) !!}
+		</div>
+	</div>
+</fieldset>
+
 <fieldset class="form-group">
 	<label for="">Pendidikan Terakhir</label>
 	<div class="row">
@@ -82,19 +95,9 @@
 		</div>
 	</div>
 </fieldset>
-
-<fieldset class="form-group">
-	<label for="">Status Pernikahan</label>
-	<div class="row">
-		<div class="col-md-5">
-			{!! Form::select('person[marital_status]', [
-				'married' 		=> 'Menikah',
-				'single'		=> 'Belum Menikah',
-			], 'kawin', ['class' => 'form-control quick-select']) !!}
-		</div>
-	</div>
-</fieldset>
-<br />
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
@@ -104,11 +107,16 @@
 		'cities'	=> $page_datas->cities
 	]
 ])
-<br />
+<div class="clearfix">&nbsp;</div>
+<hr />
+<div class="clearfix">&nbsp;</div>
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 
 	'param'	=> [
 		'target'	=> 'template-contact-person',
-		'prefix'	=> 'person'
+		'prefix'	=> 'person',
+		'class'		=> [
+			'init_add'		=> 'init-add-one'
+		]
 ]])

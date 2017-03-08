@@ -29,7 +29,13 @@
 			</section>
 			<h3>Data Jaminan</h3>
 			<section>
-				@include ('pages.credit.components.form.data_jaminan')
+				@include ('pages.credit.components.form.data_jaminan', [
+					'param'	=> [
+						'target'	=> 'template-jaminan-credit',
+						'prefix'	=> 'credit',
+						'class'		=> [
+							'init_add'		=> 'init-add-one'
+				]]])
 			</section>
 
 			{{-- koperasi --}}

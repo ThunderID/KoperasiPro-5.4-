@@ -23,29 +23,31 @@ window.wizard = function(){
 		/* Event */
 		onStepChanging: function (event, currentIndex, newIndex) {
 			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
+			// if (currentIndex > newIndex) {
 				return true;
-			}
+			// }
 
 			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// if (currentIndex < newIndex) {
+				// contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
+				// contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			return contentWizard.valid();
+			// contentWizard.validate().settings.ignore = ":disabled,:hidden";
+			// return contentWizard.valid();
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
 			window.select();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
 		}, 
 		onInit: function (event, currentIndex) {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
 			// window.select();
 		},
 		onFinished: function (event, currentIndex) {
@@ -85,4 +87,12 @@ window.customButtonActions = function() {
 	$('.wizard .actions').find('a').addClass('btn');
 	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary');
 	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
+}
+
+window.disablePreviousButtonOnFirstStep = function(index) {
+	if (index == 0) {
+		$(".wizard .actions a[href='#previous']").hide();
+	} else {
+		$(".wizard .actions a[href='#previous']").show();
+	}
 }
