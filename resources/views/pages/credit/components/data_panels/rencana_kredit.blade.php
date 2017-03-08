@@ -10,19 +10,19 @@
 		<div class="row m-b-xl m-t-xs-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Pengajuan Kredit</strong></p>
-				<p>{{ $page_datas->credit->credit->credit_amount->IDR() }}</p>
+				<p>{{ $page_datas->credit['pengajuan_kredit'] }}</p>
 			</div>
 		</div>
 		<div class="row m-b-xl m-t-sm-m-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Kemampuan Angsur</strong></p>
-				<p>{{ $page_datas->credit->credit->installment_capacity->IDR() }}</p>
+				<p>{{ $page_datas->credit['kemampuan_angsur'] }}</p>
 			</div>
 		</div>		
 		<div class="row m-b-xl m-t-sm-m-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Jangka Waktu</strong></p>
-				<p>{{ $page_datas->credit->credit->period }} bulan</p>
+				<p>{{ $page_datas->credit['jangka_waktu'] }} bulan</p>
 			</div>
 		</div>			
 	</div>
@@ -30,7 +30,7 @@
 		<div class="row m-b-xl m-t-xs-print">
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Tujuan Kredit</strong></p>
-				<p>{{ $page_datas->credit->credit->purpose }}</p>
+				<p>{{ $page_datas->credit['tujuan_kredit'] }}</p>
 			</div>
 		</div>	
 	</div>
