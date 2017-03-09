@@ -1,4 +1,4 @@
-{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
+{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => 'no-enter']) !!}
 
 	<div class="m-t-none m-b-md">
 		<h4 class="m-t-none m-b-xs">PENGHASILAN</h4>
@@ -103,7 +103,7 @@
 		<label for="">Pengeluaran Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text("keuangan[pengeluaran][pengeluaran_lain]", (!empty($page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain']) ? $page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain'] : ''), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Pengeluaran Lain']) !!}
+				{!! Form::text("keuangan[pengeluaran][pengeluaran_lain]", (!empty($page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain']) ? $page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain'] : ''), ['class' => 'form-control required mask-year auto-tabindex', 'placeholder' => 'Pengeluaran Lain']) !!}
 			</div>
 		</div>
 	</fieldset>				
@@ -114,7 +114,7 @@
 			Cancel
 		</a>
 		<button type="submit" class="btn btn-success">
-			Save
+			Simpan
 		</button>
 	</div>	
 {!! Form::close() !!}	

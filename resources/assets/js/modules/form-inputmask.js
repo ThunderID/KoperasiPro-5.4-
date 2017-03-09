@@ -38,6 +38,11 @@ window.formInputMask = function () {
 		alias: "dd/mm/yyyy"
 	});
 
+	$('.mask-year').inputmask({
+		alias: "yyyy",
+		yearrange: { minyear: 1900, maxyear: 2099 }
+	});
+
 	$('.mask-id-card').inputmask('99-99-99-99-99-99-9999');
 	$('.mask-no-telp').inputmask('9999 9999 9999');
 	$('.mask-kodepos').inputmask('99999');
