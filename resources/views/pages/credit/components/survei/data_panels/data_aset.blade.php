@@ -24,7 +24,18 @@
 	</div>
 </div>
 
+@if(empty($page_datas->credit['kreditur']['aset']))
+<!-- No data -->
+<div class="row">
+	<div class="col-sm-12">
+		<p>Belum ada data disimpan. <a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax> Tambahkan Sekarang </a></p>
+	</div>
+</div>
 
+<div class="row clearfix">&nbsp;</div>
+<div class="row clearfix">&nbsp;</div>
+
+@else
 <div class="row">
 
 	<div class="col-sm-12">
@@ -38,6 +49,7 @@
 	</div>
 
 
+	@if(!empty($page_datas->credit['kreditur']['aset']['rumah']))
 	{{-- @foreach((array)$page_datas->credit['kreditur']['aset'] as $value) --}}
 		<div class="col-sm-6">
 			<div class="row m-b-xl">
@@ -84,7 +96,7 @@
 		</div>	
 
 	{{-- @endforeach --}}
-
+	@endif
 
 	<div class="clearfix">&nbsp;</div>
 
@@ -98,6 +110,7 @@
 	</div>
 
 
+	@if(!empty($page_datas->credit['kreditur']['aset']['kendaraan']))
 	{{-- @foreach((array)$page_datas->credit->asset->vehicles as $value) --}}
 
 		<div class="col-sm-6">
@@ -134,6 +147,7 @@
 		</div>
 
 	{{-- @endforeach --}}
+	@endif
 
 
 	<div class="clearfix">&nbsp;</div>
@@ -149,6 +163,7 @@
 	</div>
 
 
+	@if(!empty($page_datas->credit['kreditur']['aset']['usaha']))
 	{{-- @foreach((array)$page_datas->credit->asset->companies as $value) --}}
 
 		<div class="col-sm-6">
@@ -196,11 +211,13 @@
 		</div>
 
 	{{-- @endforeach --}}
+	@endif
 
 	<div class="clearfix">&nbsp;</div>
 	<div class="clearfix">&nbsp;</div>
 
 </div>
+@endif
 
 @push('show_modals')
 	@if($edit == true)

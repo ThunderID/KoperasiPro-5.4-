@@ -24,7 +24,11 @@
 	</div>
 </div>
 
-@if(is_null($page_datas->credit['kreditur']['makro']['prospek_usaha']))
+@if(empty($page_datas->credit['kreditur']['makro']))
+<?php
+	$page_datas->credit['kreditur']['makro'] = null;
+?>
+
 <!-- No Data -->
 <div class="row">
 	<div class="col-sm-12">

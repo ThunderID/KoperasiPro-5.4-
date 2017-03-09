@@ -1,5 +1,14 @@
 {!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
 
+@if(empty($page_datas->credit['kreditur']['aset']['rumah']))
+	<?php $page_datas->credit['kreditur']['aset']['rumah'] = null ;?>
+@endif
+@if(empty($page_datas->credit['kreditur']['aset']['kendaraan']))
+	<?php $page_datas->credit['kreditur']['aset']['kendaraan'] = null ;?>
+@endif
+@if(empty($page_datas->credit['kreditur']['aset']['usaha']))
+	<?php $page_datas->credit['kreditur']['aset']['usaha'] = null ;?>
+@endif
 	<div class="m-t-none m-b-md">
 		<h4 class="m-t-none m-b-xs">RUMAH</h4>
 	</div>

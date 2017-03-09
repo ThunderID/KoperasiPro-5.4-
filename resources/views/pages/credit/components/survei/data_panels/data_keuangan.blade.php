@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Keuangan
-			@if(count($page_datas->credit['kreditur']['keuangan']['pendapatan']) > 0)
+			@if(count($page_datas->credit['kreditur']['keuangan']) > 0)
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -24,7 +24,7 @@
 	</div>
 </div>
 
-@if(count($page_datas->credit['kreditur']['keuangan']['pendapatan']) == 0)
+@if(count($page_datas->credit['kreditur']['keuangan']) == 0)
 <!-- No data -->
 <div class="row">
 	<div class="col-sm-12">

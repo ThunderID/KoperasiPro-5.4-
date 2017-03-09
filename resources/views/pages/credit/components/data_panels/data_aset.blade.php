@@ -8,6 +8,7 @@
 <br>
 <h5>Rumah</h5>
 <table>
+	@if(!empty($page_datas->credit['kreditur']['aset']['rumah']))
 	{{-- @foreach((array)$page_datas->credit['kreditur']['aset'] as $value) --}}
 		<tr class="row">
 			<td class="col-sm-4"><h4><small>Status Kepemilikan</small></h4></td>
@@ -34,10 +35,12 @@
 			</td>
 		</tr>
 	{{-- @endforeach --}}
+	@endif
 </table>
 <br>
 <h5>Kendaraan</h5>
 <table>
+	@if(!empty($page_datas->credit['kreditur']['aset']['kendaraan']))
 	{{-- @foreach((array)$page_datas->credit->asset->vehicles as $value) --}}
 		<tr class="row">
 			<td class="col-sm-4"><h4><small>Roda 2</small></h4></td>
@@ -58,10 +61,12 @@
 			</td>
 		</tr>
 	{{-- @endforeach --}}
+	@endif
 </table>
 <br>
 <h5>Perusahaan</h5>
 <table>
+	@if(!empty($page_datas->credit['kreditur']['aset']['usaha']))
 	{{-- @foreach((array)$page_datas->credit->asset->companies as $value) --}}
 		<tr class="row">
 			<td class="col-sm-4"><h4><small>Nama</small></h4></td>
@@ -88,6 +93,7 @@
 			</td>
 		</tr>
 	{{-- @endforeach --}}
+	@endif
 </table>
 
 <div class="clearfix">&nbsp;</div>
