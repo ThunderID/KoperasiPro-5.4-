@@ -213,6 +213,7 @@
 					</div>
 				</fieldset>			
 
+				{{-- Nilai Taksasi --}}
 				<fieldset class="form-group">
 					<label for="">Nilai Taksasi</label>
 					<div class="row">
@@ -233,6 +234,7 @@
 					</div>
 				</fieldset>
 
+				{{-- Nilai Bank --}}
 				<fieldset class="form-group">
 					<label for="">Nilai Bank</label>
 					<div class="row">
