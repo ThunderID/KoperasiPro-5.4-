@@ -113,7 +113,7 @@
 						<label for="">Berlaku Hingga</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('asset[vehicles][0][valid_until]', null, ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+								{!! Form::text('asset[vehicles][0][valid_until]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -218,7 +218,7 @@
 						<label for="">Harga Pasar</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[vehicles][0][market_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'harga pasar']) !!}
+								{!! Form::text('collateral[vehicles][0][market_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'harga pasar']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -406,7 +406,7 @@
 						<label for="">Nilai PBB (NJOB)</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[lands][0][pbb_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'nilai pbb']) !!}
+								{!! Form::text('collateral[lands][0][pbb_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'nilai pbb']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -415,7 +415,7 @@
 						<label for="">Harga Likuidasi</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[lands][0][liquidation_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'harga likuidasi']) !!}
+								{!! Form::text('collateral[lands][0][liquidation_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'harga likuidasi']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -424,7 +424,7 @@
 						<label for="">Nilai Tanah</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[lands][0][land_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'nilai tanah']) !!}
+								{!! Form::text('collateral[lands][0][land_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'nilai tanah']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -722,7 +722,7 @@
 						<label for="">Nilai PBB (NJOB)</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[buildings][0][pbb_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'nilai pbb']) !!}
+								{!! Form::text('collateral[buildings][0][pbb_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'nilai pbb']) !!}
 							</div>
 						</div>
 					</fieldset>
@@ -731,7 +731,7 @@
 						<label for="">Harga Likuidasi</label>
 						<div class="row">
 							<div class="col-md-12">
-								{!! Form::text('collateral[buildings][0][liquidation_value]', null, ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'harga likuidasi']) !!}
+								{!! Form::text('collateral[buildings][0][liquidation_value]', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'harga likuidasi']) !!}
 							</div>
 						</div>
 					</fieldset>
