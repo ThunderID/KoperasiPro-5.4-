@@ -99,7 +99,7 @@ $(document).ready( function() {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = require('./plugins/inputmask/inputmask');
+window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
 // class for inputmask
 $(document).ready( function() {
 	// call module form input mask 

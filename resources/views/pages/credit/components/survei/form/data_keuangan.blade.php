@@ -103,7 +103,7 @@
 		<label for="">Pengeluaran Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text("keuangan[pengeluaran][pengeluaran_lain]", (!empty($page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain']) ? $page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain'] : ''), ['class' => 'form-control required mask-year auto-tabindex', 'placeholder' => 'Pengeluaran Lain']) !!}
+				{!! Form::text("keuangan[pengeluaran][pengeluaran_lain]", (!empty($page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain']) ? $page_datas->credit['kreditur']['keuangan']['pengeluaran']['pengeluaran_lain'] : ''), ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Pengeluaran Lain']) !!}
 			</div>
 		</div>
 	</fieldset>				
