@@ -27,19 +27,19 @@
 			<div class="nav navbar-nav navbar-right">
 
 				<div class="profile">
-					<div class="col-xs-3 p-r-none">
+					<div class="col-xs-3 p-l-none p-r-none">
 						@include('components.notification')
 					</div >
-					<div class="col-xs-6 p-r-none">
+					<div class="col-xs-6 p-r-none" style="padding-top: 1px;">
 
 						<p class="name">{{TAuth::loggedUser()['name']}}</p>
 						<p class="role">{{TAuth::activeOffice()['role']}}</p>
 						
 					</div >
-					<div class="col-xs-3 p-r-none p-t-md">
+					<div class="col-xs-3 p-r-none" style="padding-top: 17px;">
 						<p>
-							<a href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax>
-								<i class="fa fa-power-off" aria-hidden="true"></i>
+							<a href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
+								<i class="fa fa-power-off fa-lg" aria-hidden="true"></i>
 							</a>
 						</p>
 					</div>
