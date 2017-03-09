@@ -96,7 +96,7 @@
 			Cancel
 		</a>
 		<button type="submit" class="btn btn-success">
-			Save
+			Simpan
 		</button>
 	</div>	
 {!! Form::close() !!}

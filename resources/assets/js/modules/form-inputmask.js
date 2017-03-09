@@ -8,7 +8,7 @@ window.formInputMask = function () {
 	elMoney.inputmask({ 
 		rightAlign: false, 
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
@@ -22,7 +22,7 @@ window.formInputMask = function () {
 	elMoneyRight.inputmask({
 		rightAlign: true,
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
@@ -36,6 +36,11 @@ window.formInputMask = function () {
 	elDateFormat.inputmask({
 		placeholder: "dd/mm/yyyy",
 		alias: "dd/mm/yyyy"
+	});
+
+	$('.mask-year').inputmask({
+		alias: "yyyy",
+		yearrange: { minyear: 1900, maxyear: 2099 }
 	});
 
 	$('.mask-id-card').inputmask('99-99-99-99-99-99-9999');

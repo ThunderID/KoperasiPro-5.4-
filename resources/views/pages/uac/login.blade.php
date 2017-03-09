@@ -28,7 +28,7 @@
 					</div>
 					*/
 					?>
-					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Log in">
+					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login">
 				</form>
 				<?php
 				/*				

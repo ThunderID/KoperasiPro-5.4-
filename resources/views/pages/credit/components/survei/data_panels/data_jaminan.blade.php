@@ -222,19 +222,16 @@
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
-					</hr>
 				</div>
 			</div>
 		</div>
 
-
 		<div class="col-sm-12">
-
 			<div class="row m-b-xl">
 				<div class="col-sm-6">
 					<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
 					<p>
-						{{ ucWords(str_replace('_', ' ', $tanah_bangunan['tipe_jaminan'])) }}
+						{{ strtoupper(str_replace('_', ' ', $tanah_bangunan['tipe_jaminan'])) }}
 					</p>
 				</div>
 

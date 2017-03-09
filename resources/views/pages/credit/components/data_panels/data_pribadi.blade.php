@@ -45,7 +45,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Pendidikan Terakhir</strong></p>
 				<p>
-					{{ $page_datas->credit['kreditur']['pendidikan_terakhir'] }}
+					{{ ucwords($page_datas->credit['kreditur']['pendidikan_terakhir']) }}
 				</p>
 			</div>
 		</div>
@@ -61,7 +61,7 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Agama</strong></p>
 				<p>
-					{{ $page_datas->credit['kreditur']['agama'] }}
+					{{ ucwords($page_datas->credit['kreditur']['agama']) }}
 				</p>
 			</div>
 		</div>
@@ -111,7 +111,7 @@
 				<div class="col-sm-12">
 					<p class="p-b-sm m-b-xs-m-print"><strong>Jenis Pekerjaan</strong></p>
 					<p>
-						{{ $value['jenis'] }}
+						{{ ucwords(str_replace('_', ' ', $value['jenis'])) }}
 					</p>
 				</div>
 			</div>

@@ -12,13 +12,11 @@
 			<div class="col-sm-12">
 				<p class="p-b-sm m-b-xs-m-print"><strong>Kendaraan</strong></p>
 				@foreach($page_datas->credit['jaminan']['kendaraan'] as $kendaraan)
-				<div class="col-sm-12">
-
 					<div class="row m-b-xl">
 						<div class="col-sm-6">
 							<p class="p-b-sm"><strong>Jenis</strong></p>
 							<p>
-								{{ $kendaraan['jenis'] }}
+								{{ strtoupper($kendaraan['jenis']) }}
 							</p>
 						</div>
 				
@@ -29,10 +27,7 @@
 							</p>
 						</div>
 					</div>
-
-				</div>
 				@endforeach
-
 			</div>
 		</div>
 
@@ -41,24 +36,25 @@
 @elseif(isset($page_datas->credit['jaminan']['tanah_bangunan']))
 <div class="row">
 	<div class="col-sm-12">
-		<div class="row m-b-xl m-t-xs-print">
+		<div class="row m-t-xs-print">
 			<div class="col-sm-12">
-				<p class="p-b-sm m-b-xs-m-print"><strong>Tanah/Bangunan</strong></p>
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
 				@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan)
-				<div class="col-sm-12">
-
-					<div class="row m-b-xl">
+					<div class="row m-b-xl m-t-xs-print">
 						<div class="col-sm-6">
 							<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
 							<p>
-								{{ $tanah_bangunan['tipe_jaminan'] }}
+								{{ strtoupper($tanah_bangunan['tipe_jaminan']) }}
 							</p>
 						</div>
-
 					</div>
-				</div>
 				@endforeach
-
 			</div>
 		</div>
 
