@@ -11,10 +11,11 @@
 					<h4 class="m-t-none m-b-xs">TANAH & BANGUNAN</h4>
 				</div>
 
+				{{-- Tipe Jaminan --}}
 				<fieldset class="form-group">
-					<label for="">Tipe Jaminan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Tipe Jaminan</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][tipe_jaminan]', [
 								'tanah'					=> 'Tanah',
 								'tanah_dan_bangunan'	=> 'Tanah dan Bangunan'
@@ -23,6 +24,7 @@
 					</div>
 				</fieldset>
 
+				{{-- Panjang Tanah, Lebar Tanah, Luas Tanah --}}
 				<fieldset class="form-group">
 					<div class="col-md-4">
 						<label for="">Panjang Tanah</label>
@@ -50,6 +52,7 @@
 					</div>										
 				</fieldset>	
 
+				{{-- Panjang Bangunan, Lebar Bangunan, Luas Bangunan --}}
 				<fieldset class="form-group">
 					<div class="col-md-4">
 						<label for="">Panjang Bangunan</label>
@@ -77,10 +80,11 @@
 					</div>										
 				</fieldset>									
 
+				{{-- Bentuk Bangunan --}}
 				<fieldset class="form-group">
-					<label for="">Bentuk Bangunan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Bentuk Bangunan</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][bentuk_bangunan]', [
 								'tingkat'			=> 'Tingkat',
 								'tidak_tingkat'		=> 'Tidak tingkat',
@@ -90,10 +94,11 @@
 					</div>
 				</fieldset>
 
+				{{-- Konstruksi Bangunan --}}
 				<fieldset class="form-group">
-					<label for="">Konstruksi Bangunan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Konstruksi Bangunan</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][konstruksi_bangunan]', [
 								'permanen'				=> 'Permanen',
 								'semi_permanen'			=> 'Semi Permanen',
@@ -103,10 +108,11 @@
 					</div>
 				</fieldset>	
 
+				{{-- lantai --}}
 				<fieldset class="form-group">
-					<label for="">Lantai</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Lantai</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][lantai]', [
 								'keramik'				=> 'Keramik',
 								'tegel_biasa'			=> 'Tegel Biasa',
@@ -116,10 +122,11 @@
 					</div>
 				</fieldset>		
 
+				{{-- Dinding --}}
 				<fieldset class="form-group">
-					<label for="">Dinding</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Dinding</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][dinding]', [
 								'tembok'				=> 'Tembok',
 								'semi_tembok'			=> 'Semi tembok',
@@ -129,10 +136,11 @@
 					</div>
 				</fieldset>	
 
+				{{-- Listrik --}}
 				<fieldset class="form-group">
-					<label for="">Listrik</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Listrik</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][listrik]', [
 								'450w'					=> '450W',
 								'950w'					=> '950W',
@@ -142,10 +150,11 @@
 					</div>
 				</fieldset>		
 
+				{{-- Air --}}
 				<fieldset class="form-group">
-					<label for="">Air</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Air</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][air]', [
 								'sumur'					=> 'Sumur',
 								'pdam'					=> 'PDAM',
@@ -155,10 +164,11 @@
 					</div>
 				</fieldset>			
 
+				{{-- Fungsi --}}
 				<fieldset class="form-group">
-					<label for="">Fungsi Bangunan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Fungsi Bangunan</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][spesifikasi_bangunan][fungsi]', [
 								'rumah'					=> 'Rumah',
 								'ruko/rukan'			=> 'Ruko/Rukan',
@@ -168,19 +178,21 @@
 					</div>
 				</fieldset>		
 
+				{{-- A/n Sertifikat --}}
 				<fieldset class="form-group">
-					<label for="">Fungsi Bangunan</label>
 					<div class="row">
 						<div class="col-md-12">
-							{!! Form::text('jaminan[tanah_bangunan][0][legal][atas_nama_sertifikat]',  $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['legal']['atas_nama_sertifikat'], ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Usaha']) !!}
+							<label for="">Atas Nama Sertifikat</label>
+							{!! Form::text('jaminan[tanah_bangunan][0][legal][atas_nama_sertifikat]',  $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['legal']['atas_nama_sertifikat'], ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Atas Nama Sertifikat']) !!}
 						</div>
 					</div>
 				</fieldset>		
 
+				{{-- Jenis Sertifikat --}}
 				<fieldset class="form-group">
-					<label for="">Jenis Sertifikat</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Jenis Sertifikat</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][legal][jenis_sertifikat]', [
 								'shm'					=> 'SHM',
 								'shgb'					=> 'SHGB',
@@ -190,19 +202,21 @@
 					</div>
 				</fieldset>		
 
+				{{-- Masa Berlaku Sertifikat --}}
 				<fieldset class="form-group">
-					<label for="">Masa Berlaku Sertifikat</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Masa Berlaku Sertifikat</label>
 							{!! Form::text('jaminan[tanah_bangunan][0][legal][masa_berlaku_sertifikat]', $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['legal']['masa_berlaku_sertifikat'], ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 						</div>
 					</div>
 				</fieldset>						
 
+				{{-- IMB --}}
 				<fieldset class="form-group">
-					<label for="">IMB</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">IMB</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][legal][imb]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada',
@@ -212,10 +226,11 @@
 					</div>
 				</fieldset>	
 
+				{{-- Akta Jual Beli --}}
 				<fieldset class="form-group">
-					<label for="">Akta Jual Beli</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Akta Jual Beli</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][legal][akta_jual_beli]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada',
@@ -225,10 +240,11 @@
 					</div>
 				</fieldset>		
 
+				{{-- PBB  Terakhir --}}
 				<fieldset class="form-group">
-					<label for="">PBB Terakhir</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">PBB Terakhir</label>
 							{!! Form::select('jaminan[tanah_bangunan][0][legal][pbb_terakhir]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada',
@@ -236,7 +252,115 @@
 							], $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['legal']['pbb_terakhir'], ['class' => 'form-control quick-select']) !!}
 						</div>
 					</div>
-				</fieldset>																												
+				</fieldset>
+
+				{{-- Jalan --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Akses Jalan</label>
+							{!! Form::select('jaminan[tanah_bangunan][0][nilai][jalan]', [
+								'tanah'					=> 'Tanah',
+								'batu'					=> 'Batu',
+								'aspal'					=> 'Aspal',
+							], $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['jalan'], ['class' => 'form-control quick-select']) !!}
+						</div>
+					</div>
+				</fieldset>	
+
+				{{-- Letak Lokasi --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Letak Lokasi</label>
+							{!! Form::select('jaminan[tanah_bangunan][0][nilai][letak_lokasi]', [
+								'sama_dari_alan'			=> 'Sama dari Jalan',
+								'lebih_rendah_dari_jalan'	=> 'Lebih Rendah dari Jalan',
+								'lebih_tinggi_dari_jalan'	=> 'Lebih Tinggi dari Jalan',
+							], $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['letak_lokasi'], ['class' => 'form-control quick-select']) !!}
+						</div>
+					</div>
+				</fieldset>		
+
+				{{-- Lingkungan --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Lingkungan</label>
+							{!! Form::select('jaminan[tanah_bangunan][0][nilai][lingkungan]', [
+								'perumahan'			=> 'Perumahan',
+								'kampung'			=> 'Kampung',
+								'pertokoan/pasar'	=> 'Pertokoan/Pasar',
+								'perkantoran'		=> 'Perkantoran',
+								'industri'			=> 'Industri',
+								'lainnya'			=> 'Lainnya',
+							], $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['lingkungan'], ['class' => 'form-control quick-select']) !!}
+						</div>
+					</div>
+				</fieldset>	
+
+				{{-- Asuransi --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Asuransi</label>
+							{!! Form::select('jaminan[tanah_bangunan][0][nilai][asuransi]', [
+								'ada'					=> 'Ada',
+								'tidak_ada'				=> 'Tidak Ada',
+							], $page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['asuransi'], ['class' => 'form-control quick-select']) !!}
+						</div>
+					</div>
+				</fieldset>
+
+				{{-- Harga NJOP --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Harga NJOP</label>
+							{!! Form::text("jaminan[tanah_bangunan][0][nilai][harga_njop]", (page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['harga_njop']) , ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Harga NJOP']) !!}
+						</div>
+					</div>
+				</fieldset>					
+
+				{{-- Harga Tanah --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Harga Tanah</label>
+							{!! Form::text("jaminan[tanah_bangunan][0][nilai][harga_tanah]", (page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['harga_tanah']) , ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Harga Tanah']) !!}
+						</div>
+					</div>
+				</fieldset>	
+
+				{{-- Harga Bangunan --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Harga Bangunan</label>
+							{!! Form::text("jaminan[tanah_bangunan][0][nilai][harga_bangunan]", (page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['harga_bangunan']) , ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Harga Bangunan']) !!}
+						</div>
+					</div>
+				</fieldset>		
+
+				{{-- Harga Tanah & Bangunan --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Harga Tanah & Bangunan</label>
+							{!! Form::text("jaminan[tanah_bangunan][0][nilai][harga_tanah_bangunan]", (page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['harga_tanah_bangunan']) , ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Harga Tanah & Bangunan']) !!}
+						</div>
+					</div>
+				</fieldset>		
+
+				{{-- Harga taksasi --}}
+				<fieldset class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="">Harga Taksasi</label>
+							{!! Form::text("jaminan[tanah_bangunan][0][nilai][harga_taksasi]", (page_datas->credit['kreditur']['jaminan'][tanah_bangunan][0]['nilai']['harga_taksasi']) , ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Harga Taksasi']) !!}
+						</div>
+					</div>
+				</fieldset>												
 
 		  	</div>
 		</div>
