@@ -10501,7 +10501,7 @@ $(document).ready(function () {
 	elMoney.inputmask({
 		rightAlign: false,
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
@@ -10514,7 +10514,7 @@ $(document).ready(function () {
 	elMoneyRight.inputmask({
 		rightAlign: true,
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,

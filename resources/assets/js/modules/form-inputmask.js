@@ -8,7 +8,7 @@ window.formInputMask = function () {
 	elMoney.inputmask({ 
 		rightAlign: false, 
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
@@ -22,7 +22,7 @@ window.formInputMask = function () {
 	elMoneyRight.inputmask({
 		rightAlign: true,
 		alias: 'numeric',
-		prefix: 'IDR ',
+		prefix: 'Rp. ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
