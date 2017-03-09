@@ -10530,8 +10530,23 @@ $(document).ready(function () {
 	});
 
 	$('.mask-year').inputmask({
-		alias: "yyyy",
-		yearrange: { minyear: 1900, maxyear: 2099 }
+		mask: "y",
+		definitions: {
+			y: {
+				validator: "(19|20)\\d{2}",
+				cardinality: 4,
+				prevalidator: [{
+					validator: "[12]",
+					cardinality: 1
+				}, {
+					validator: "(19|20)",
+					cardinality: 2
+				}, {
+					validator: "(19|20)\\d",
+					cardinality: 3
+				}]
+			}
+		}
 	});
 
 	$('.mask-id-card').inputmask('99-99-99-99-99-99-9999');
