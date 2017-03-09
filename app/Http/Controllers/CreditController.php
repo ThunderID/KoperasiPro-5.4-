@@ -320,7 +320,7 @@ class CreditController extends Controller
 		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $id));
 	}
 
 	/**
