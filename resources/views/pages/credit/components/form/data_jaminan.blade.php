@@ -21,7 +21,7 @@
 <div class="hidden">
 	{{-- template clone untuk data form jaminan --}}
 	<div id="{{ $param['target'] ? $param['target'] : 'template-clone-jaminan' }}">
-		@include('pages.credit.components.form.widget_jaminan', [
+		@include('pages.credit.components.form.widget_jaminan_1', [
 			'param'	=> [
 				'prefix'	=> $param['prefix']
 		]])

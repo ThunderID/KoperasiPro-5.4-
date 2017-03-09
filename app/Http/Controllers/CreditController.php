@@ -143,55 +143,57 @@ class CreditController extends Controller
 		$kredit['jaminan_kendaraan']		= [];
 		$kredit['jaminan_tanah_bangunan']	= [];
 
-		foreach (Input::get('credit')['jaminan_kendaraan'] as $key => $value) 
+		if(Input::has('jaminan_kendaraan'))
 		{
-			if(!is_null($value['status_kepemilikan']))
+			foreach (Input::get('jaminan_kendaraan') as $key => $value) 
 			{
-				if(str_is($value['legalitas'], 'bpkb_r2'))
+				if(!is_null($value['status_kepemilikan']))
 				{
-					$legal 						= 'Kendaraan Roda 2';
+					if(str_is($value['legalitas'], 'bpkb_r2'))
+					{
+						$legal 						= 'Kendaraan Roda 2';
+					}
+					else
+					{
+						$legal 						= 'Kendaraan Roda 4';
+					}
+
+					$kredit['jaminan_kendaraan'][]	= [
+						'merk' 						=> 'null', 
+						'jenis' 					=> $legal, 
+						'warna' 					=> 'null', 
+						'tahun' 					=> 'null', 
+
+						'legal'						=> [
+							'atas_nama' 			=> 'null', 
+							'alamat' 				=> 'null', 
+							'nomor_polisi' 			=> 'null', 
+							'no_bpkb' 				=> 'null', 
+							'no_mesin' 				=> 'null', 
+							'no_rangka' 			=> 'null', 
+							'masa_berlaku_stnk' 	=> Carbon::now()->format('Y-m-d'), 
+							'faktur' 				=> true, 
+							'kuitansi_jual_beli' 	=> true, 
+							'kuitansi_kosong_bpkb'	=> true, 
+							'ktp_bpkb' 				=> true, 
+							'status_kepemilikan' 	=> $value['status_kepemilikan'], 
+						],
+
+						'nilai'						=> [
+							'fungsi' 				=> 'null', 
+							'kondisi' 				=> 'null', 
+							'asuransi' 				=> true, 
+							'harga_taksasi' 		=> 0, 
+							'harga_bank' 			=> 0, 
+						],
+					]; 
 				}
-				else
-				{
-					$legal 						= 'Kendaraan Roda 4';
-				}
-
-				$kredit['jaminan_kendaraan'][]	= [
-					'merk' 						=> 'null', 
-					'jenis' 					=> $legal, 
-					'warna' 					=> 'null', 
-					'tahun' 					=> 'null', 
-
-					'legal'						=> [
-						'atas_nama' 			=> 'null', 
-						'alamat' 				=> 'null', 
-						'nomor_polisi' 			=> 'null', 
-						'no_bpkb' 				=> 'null', 
-						'no_mesin' 				=> 'null', 
-						'no_rangka' 			=> 'null', 
-						'masa_berlaku_stnk' 	=> Carbon::now()->format('Y-m-d'), 
-						'faktur' 				=> true, 
-						'kuitansi_jual_beli' 	=> true, 
-						'kuitansi_kosong_bpkb'	=> true, 
-						'ktp_bpkb' 				=> true, 
-						'status_kepemilikan' 	=> $value['status_kepemilikan'], 
-					],
-
-					'nilai'						=> [
-						'fungsi' 				=> 'null', 
-						'kondisi' 				=> 'null', 
-						'asuransi' 				=> true, 
-						'harga_taksasi' 		=> 0, 
-						'harga_bank' 			=> 0, 
-					],
-				]; 
 			}
 		}
 
-		if(isset(Input::get('credit')['jaminan_tanah_bangunan']))
+		if(Input::has('jaminan_tanah_bangunan'))
 		{
-
-			foreach (Input::get('credit')['jaminan_tanah_bangunan'] as $key => $value) 
+			foreach (Input::get('jaminan_tanah_bangunan') as $key => $value) 
 			{
 				if(!is_null($value['status_kepemilikan']))
 				{
@@ -368,7 +370,7 @@ class CreditController extends Controller
 
 		// get active address on person
 		$person_id 									= $this->page_datas->credit['kreditur']['id'];
-		
+
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
 			case 'pengajuan':

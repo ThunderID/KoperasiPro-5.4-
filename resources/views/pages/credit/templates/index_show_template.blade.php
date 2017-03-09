@@ -50,8 +50,10 @@
 					@include('pages.credit.components.top_menu.pengajuan')
 				@elseif($page_datas->credit['status'] == 'survei')
 					@include('pages.credit.components.top_menu.survei')
-				@else
+				@elseif($page_datas->credit['status'] == 'realisasi')
 					@include('pages.credit.components.top_menu.realisasi')
+				@else
+					@include('pages.credit.components.top_menu.tolak')
 				@endif
 			@endif
 
@@ -64,8 +66,10 @@
 					@include('pages.credit.components.bottom_menu.pengajuan')
 				@elseif($page_datas->credit['status'] == 'survei')
 					@include('pages.credit.components.bottom_menu.survei')
-				@else
+				@elseif($page_datas->credit['status'] == 'realisasi')
 					@include('pages.credit.components.bottom_menu.realisasi')
+				@else
+					@include('pages.credit.components.bottom_menu.'.$page_datas->credit['status_sebelumnya'])
 				@endif
 			@endif
 				

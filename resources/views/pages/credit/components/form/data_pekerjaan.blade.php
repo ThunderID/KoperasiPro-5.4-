@@ -7,15 +7,15 @@
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('pekerjaan[jenis]', [
-				'peg_negeri'		=> 'Pegawai Negeri',
-				'peg_swasta'		=> 'Pegawai Swasta',
+				'pegawai_negeri'	=> 'Pegawai Negeri',
+				'pegawai_swasta'	=> 'Pegawai Swasta',
 				'wiraswasta'		=> 'Wiraswasta',
 				'petani'			=> 'Petani',
 				'nelayan'			=> 'Nelayan',
 				'tni'				=> 'TNI',
 				'polri'				=> 'Polri',
 				'lainnya'			=> 'Lainnya'
-			], 'peg_negeri', ['class' => 'form-control select auto-tabindex focus select-pekerjaan']) !!}
+			], 'pegawai_negeri', ['class' => 'form-control select auto-tabindex focus select-pekerjaan']) !!}
 		</div>
 	</div>
 </fieldset>

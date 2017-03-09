@@ -461,7 +461,15 @@ class CreditService implements IService
 		$person_transformer	=  new PersonDTODataTransformer;
 		$person				= $person_transformer->read($person);
 
-		$parsed_credit['kreditur']	= $person;
+		$parsed_credit['kreditur']			= $person;
+
+		$prev_index 		= count($parsed_credit['riwayat_status']) - 1;
+		if($prev_index >= 1)
+		{
+			$prev_index 	= $prev_index - 1;
+		}
+
+		$parsed_credit['status_sebelumnya']	= $parsed_credit['riwayat_status'][$prev_index]['status'];
 
 		return $parsed_credit;
 	}
