@@ -259,68 +259,84 @@ class CreditController extends Controller
 	 */
 	public function update($id)
 	{
-		// if(Input::has('keluarga'))
-		// {
-		// 	$data		= Input::get('keluarga');
-		// 	$result		= $this->service->simpanRelasi($id, $data);
-		// }
-
-		if(Input::has('penjamin'))
+		try
 		{
-			$data						= Input::get('penjamin');
-			$data['alamat']['negara']	= 'Indonesia';
-			$temp_alamat 				= $data['alamat'];
-			unset($data['alamat']);
-			unset($data['kontak']);
+			// if(Input::has('keluarga'))
+			// {
+			// 	$data		= Input::get('keluarga');
+			// 	$result		= $this->service->simpanRelasi($id, $data);
+			// }
 
-			$data['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $data['tanggal_lahir'])->format('Y-m-d');
+			if(Input::has('penjamin'))
+			{
+				$data						= Input::get('penjamin');
+				$data['alamat']['negara']	= 'Indonesia';
+				$temp_alamat 				= $data['alamat'];
+				unset($data['alamat']);
+				unset($data['kontak']);
 
-			$data['alamat'][] 	= $temp_alamat;
-			$data['kontak'][] 	= [];
-			$data['relasi'] 	= null;
-			$data['pekerjaan'] 	= null;
+				$data['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $data['tanggal_lahir'])->format('Y-m-d');
 
-			$result		= $this->service->simpanPenjamin($id, $data);
+				$data['alamat'][] 	= $temp_alamat;
+				$data['kontak'][] 	= [];
+				$data['relasi'] 	= null;
+				$data['pekerjaan'] 	= null;
+
+				$result		= $this->service->simpanPenjamin($id, $data);
+			}
+
+			if(Input::has('jaminan_kendaraan'))
+			{
+				$data		= Input::get('jaminan_kendaraan');
+				$result		= $this->service->tambahJaminanKendaraan($id, $data);
+			}
+
+			if(Input::has('jaminan_tanah_bangunan'))
+			{
+				$data		= Input::get('jaminan_tanah_bangunan');
+				$result		= $this->service->tambahJaminanTanahBangunan($id, $data);
+			}
+
+			if(Input::has('kepribadian'))
+			{
+				$data		= Input::get('kepribadian');
+				$result		= $this->service->simpanSurveyKepribadian($id, $data);
+			}
+
+			if(Input::has('keuangan'))
+			{
+				$data		= Input::get('keuangan');
+				$result		= $this->service->simpanSurveyKeuangan($id, $data);
+			}
+
+			if(Input::has('aset'))
+			{
+				$data		= Input::get('aset');
+				$result		= $this->service->simpanSurveyAset($id, $data);
+			}
+
+			if(Input::has('makro'))
+			{
+				$data		= Input::get('makro');
+				$result		= $this->service->simpanSurveyMakro($id, $data);
+			}
+
+			$this->page_attributes->msg['success']       = ['Data berhasil disimpan'];
 		}
-
-		if(Input::has('jaminan_kendaraan'))
+		catch(Exception $e)
 		{
-			$data		= Input::get('jaminan_kendaraan');
-			$result		= $this->service->tambahJaminanKendaraan($id, $data);
-		}
-
-		if(Input::has('jaminan_tanah_bangunan'))
-		{
-			$data		= Input::get('jaminan_tanah_bangunan');
-			$result		= $this->service->tambahJaminanTanahBangunan($id, $data);
-		}
-
-		if(Input::has('kepribadian'))
-		{
-			$data		= Input::get('kepribadian');
-			$result		= $this->service->simpanSurveyKepribadian($id, $data);
-		}
-
-		if(Input::has('keuangan'))
-		{
-			$data		= Input::get('keuangan');
-			$result		= $this->service->simpanSurveyKeuangan($id, $data);
-		}
-
-		if(Input::has('aset'))
-		{
-			$data		= Input::get('aset');
-			$result		= $this->service->simpanSurveyAset($id, $data);
-		}
-
-		if(Input::has('makro'))
-		{
-			$data		= Input::get('makro');
-			$result		= $this->service->simpanSurveyMakro($id, $data);
+			if(is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
 		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $id));
 	}
 
 	/**
