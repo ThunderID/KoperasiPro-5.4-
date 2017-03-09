@@ -34,7 +34,7 @@
 			<div class="col-md-6">
 				<label for="">Angsuran Rumah</label>
 				<div class="input-group">
-					{!! Form::text("aset[rumah][angsuran]", (!empty($page_datas->credit['kreditur']['aset']['rumah']['angsuran']) ? $page_datas->credit['kreditur']['aset']['rumah']['angsuran'] : ''), ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Angsuran Rumah']) !!}
+					{!! Form::text("aset[rumah][angsuran]", (!empty($page_datas->credit['kreditur']['aset']['rumah']['angsuran']) ? $page_datas->credit['kreditur']['aset']['rumah']['angsuran'] : ''), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Angsuran Rumah']) !!}
 					<div class="input-group-addon">/ Bulan</div>
 				</div>					
 			</div>
@@ -53,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<label for="">Ditinggali Sejak</label>
-				{!! Form::text('aset[rumah][sejak]', $page_datas->credit['kreditur']['aset']['rumah']['sejak'], ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+				{!! Form::text('aset[rumah][sejak]', $page_datas->credit['kreditur']['aset']['rumah']['sejak'], ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 			</div>		
 			<div class="col-md-4">
 				<label for="">Masa Sewa</label>
@@ -82,7 +82,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<label for="">Nilai Rumah</label>
-				{!! Form::text("aset[rumah][nilai_rumah]", (!empty($page_datas->credit['kreditur']['aset']['rumah']['nilai_rumah']) ? $page_datas->credit['kreditur']['aset']['rumah']['nilai_rumah'] : ''), ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Angsuran Rumah']) !!}
+				{!! Form::text("aset[rumah][nilai_rumah]", (!empty($page_datas->credit['kreditur']['aset']['rumah']['nilai_rumah']) ? $page_datas->credit['kreditur']['aset']['rumah']['nilai_rumah'] : ''), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Angsuran Rumah']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -116,7 +116,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<label for="">Nilai Kendaraan</label>
-				{!! Form::text("aset[kendaraan][nilai_kendaraan]", (!empty($page_datas->credit['kreditur']['aset']['kendaraan']['nilai_kendaraan']) ? $page_datas->credit['kreditur']['aset']['kendaraan']['nilai_kendaraan'] : ''), ['class' => 'form-control required money auto-tabindex', 'placeholder' => 'Nilai Kendaraan']) !!}
+				{!! Form::text("aset[kendaraan][nilai_kendaraan]", (!empty($page_datas->credit['kreditur']['aset']['kendaraan']['nilai_kendaraan']) ? $page_datas->credit['kreditur']['aset']['kendaraan']['nilai_kendaraan'] : ''), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Nilai Kendaraan']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -148,7 +148,7 @@
 			<div class="col-md-4">
 				<label for="">Didirkan Sejak</label>
 				<div class="input-group">
-					{!! Form::text('aset[usaha][sejak]', $page_datas->credit['kreditur']['aset']['usaha']['sejak'], ['class' => 'form-control date date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+					{!! Form::text('aset[usaha][sejak]', $page_datas->credit['kreditur']['aset']['usaha']['sejak'], ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
 				</div>
 			</div>
 		</div>
