@@ -7,24 +7,31 @@
 <div class="row">
 	<div class="col-sm-6">
 		@if (!empty($page_datas->credit['jaminan']))
-			@foreach($page_datas->credit['jaminan'] as $key => $value)
-				<div class="row m-b-sm-print">
-					<div class="col-sm-4">
-						<p>{{ ucwords($value['type']) }}</p>
+			@if(isset($page_datas->credit['jaminan']['kendaraan']))
+				@foreach($page_datas->credit['jaminan']['kendaraan'] as $key => $value)
+					<div class="row m-b-sm-print">
+						<div class="col-sm-8">
+							<p>
+								BPKB {{ ucwords($value['jenis']) }}
+								{{ ucwords(str_replace('_', ' ', $value['legal']['status_kepemilikan'])) }}
+							</p>
+						</div>
 					</div>
-					<div class="col-sm-8">
-						<p>{{ strtoupper($value['legalitas']) }}</p>
+				@endforeach
+			@endif
+
+			@if(isset($page_datas->credit['jaminan']['tanah_bangunan']))
+				@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $key => $value)
+					<div class="row m-b-sm-print">
+						<div class="col-sm-8">
+							<p>
+								{{ ucwords($value['tipe_jaminan']) }} 
+								{{ ucwords(str_replace('_', ' ', $value['legal']['atas_nama_sertifikat'])) }}
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="row m-b-xl m-b-sm-print">
-					<div class="col-sm-4">
-						<p>Status</p>
-					</div>
-					<div class="col-sm-8">
-						<p>{{ ucwords(str_replace('_', ' ', $value['status_kepemilikan'])) }}</p>
-					</div>
-				</div>
-			@endforeach
+				@endforeach
+			@endif
 		@else
 			<div class="row m-t-xs-print">
 				<div class="col-sm-12">

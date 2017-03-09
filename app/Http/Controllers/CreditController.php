@@ -216,7 +216,7 @@ class CreditController extends Controller
 					],
 
 					'legal' 					=> [
-						'atas_nama_sertifikat' 		=> 'null', 
+						'atas_nama_sertifikat' 		=> $value['status_kepemilikan'], 
 						'jenis_sertifikat'			=> 'null', 
 						'masa_berlaku_sertifikat'	=> Carbon::now()->format('Y-m-d'), 
 						'imb' 						=> true, 
@@ -485,15 +485,6 @@ class CreditController extends Controller
 
 		// get active address on person
 		$person_id 									= $this->page_datas->credit['kreditur']['id'];
-		// $this->page_datas->creditor_address_active	= Person::findByID($person_id);
-
-		// // check address for warrator (penjamin)
-		// if (($this->page_datas->credit->credit->warrantor))
-		// {
-		// 	$person_id 									= $this->page_datas->credit->credit->warrantor->id;
-		// 	$this->page_datas->warrantor_address_active	= Person::findByID($person_id);
-			
-		// }
 
 		//function from parent to generate view
 		return $this->generateView();
