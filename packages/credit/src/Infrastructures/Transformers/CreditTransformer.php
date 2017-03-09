@@ -122,6 +122,17 @@ class CreditTransformer implements ITransformer {
 			}
 		}
 
+		if($entity->jenis_pinjaman)
+		{
+			$model->jenis_pinjaman		= $entity->jenis_pinjaman;
+			$model->suku_bunga			= $entity->suku_bunga;
+			$model->max_plafon_kredit	= (string) $entity->max_plafon_kredit->IDR() * 1;
+			$model->usulan_kredit		= (string) $entity->usulan_kredit->IDR() * 1;
+			$model->angsuran_pokok		= (string) $entity->angsuran_pokok->IDR() * 1;
+			$model->angsuran_bunga		= (string) $entity->angsuran_bunga->IDR() * 1;
+			$model->jangka_waktu		= $entity->jangka_waktu;
+		}
+
 		$model->jaminan 				= $jaminan;
 
 		return $model;
