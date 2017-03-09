@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Kepribadian
-			@if(!is_null($page_datas->credit['kreditur']['kepribadian']))
+			@if(!empty($page_datas->credit['kreditur']['kepribadian']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
