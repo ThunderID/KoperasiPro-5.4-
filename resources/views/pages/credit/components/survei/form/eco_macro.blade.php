@@ -86,7 +86,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('makro[keterangan]', $page_datas->credit['kreditur']['makro']['keterangan'] , ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('makro[keterangan]', $page_datas->credit['kreditur']['makro']['keterangan'] , ['class' => 'form-control no-resize required auto-tabindex mask-year', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>
