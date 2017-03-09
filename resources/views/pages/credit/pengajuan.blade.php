@@ -65,8 +65,8 @@
 		</div>
 	</div>
 
-	<div class="clearfix">&nbsp;</div>
-	<div class="clearfix">&nbsp;</div>
+	{{-- <div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div> --}}
 
 	<!-- BLOCK 8 Action Button // -->
 	{{-- <div class="row">
@@ -81,8 +81,8 @@
 			<a class="btn btn-success" href="{{ route('credit.propose', ['id' => $page_datas->credit['id']]) }}">Ajukan</a>
 			<a class="btn btn-success">Drafting</a>
 		</div>
-	</div> --}}
-	<div class="clearfix">&nbsp;</div>
+	</div> 
+	<div class="clearfix">&nbsp;</div> --}}
 @stop
 
 @section('page_modals')
