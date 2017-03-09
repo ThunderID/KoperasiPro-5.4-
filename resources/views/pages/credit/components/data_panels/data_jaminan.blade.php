@@ -18,7 +18,7 @@
 						<div class="col-sm-6">
 							<p class="p-b-sm"><strong>Jenis</strong></p>
 							<p>
-								{{ $kendaraan['jenis'] }}
+								{{ strtoupper($kendaraan['jenis']) }}
 							</p>
 						</div>
 				
@@ -51,7 +51,7 @@
 						<div class="col-sm-6">
 							<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
 							<p>
-								{{ $tanah_bangunan['tipe_jaminan'] }}
+								{{ strtoupper($tanah_bangunan['tipe_jaminan']) }}
 							</p>
 						</div>
 
