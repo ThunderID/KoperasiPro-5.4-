@@ -13,10 +13,10 @@
 
 				{{-- Merk --}}
 				<fieldset class="form-group">
-					<label for="">Merk</label>
 					<div class="row">
 
 						<div class="col-md-12">
+							<label for="">Merk</label>
 							{!! Form::text('jaminan[kendaraan][0][merk]',  $page_datas->credit['kreditur']['jaminan'][kendaraan][0]['merk'], ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Merk Kendaraan']) !!}
 						</div>
 
@@ -55,14 +55,14 @@
 				<fieldset class="form-group">
 					<div class="row">
 						<div class="col-md-4">
+							<label for="">Nomor Polisi</label>
 							<div class="input-group">
-								<label for="">Nomor Polisi</label>
 								{!! Form::text('jaminan[kendaraan][0][legal][atas_nama]',  $page_datas->credit['kreditur']['jaminan'][kendaraan][0]['legal']['atas_nama'], ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nomor Polisi']) !!}
 							</div>
 						</div>
 						<div class="col-md-6">
+							<label for="">Atas Nama</label>
 							<div class="input-group">
-								<label for="">Atas Nama</label>
 								{!! Form::text('jaminan[kendaraan][0][legal][atas_nama]',  $page_datas->credit['kreditur']['jaminan'][kendaraan][0]['legal']['atas_nama'], ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Atas Nama']) !!}
 							</div>
 						</div>
@@ -111,9 +111,9 @@
 
 				{{-- Faktur --}}
 				<fieldset class="form-group">
-					<label for="">Faktur Kendaraan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Faktur Kendaraan</label>
 							{!! Form::select('jaminan[kendaraan][0][legal][faktur]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada'
@@ -124,9 +124,9 @@
 
 				{{-- Kuitansi Jual Beli Kendaraan --}}
 				<fieldset class="form-group">
-					<label for="">Kuitansi Jual Beli Kendaraan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Kuitansi Jual Beli Kendaraan</label>
 							{!! Form::select('jaminan[kendaraan][0][legal][kuitansi_jual_beli]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada'
@@ -137,9 +137,9 @@
 
 				{{-- Kuitansi Kosong BPKB --}}
 				<fieldset class="form-group">
-					<label for="">Kuitansi Kosong BPKB</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Kuitansi Kosong BPKB</label>
 							{!! Form::select('jaminan[kendaraan][0][legal][kuitansi_kosong_bpkb]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada'
@@ -150,9 +150,9 @@
 
 				{{-- KTP BPKB --}}
 				<fieldset class="form-group">
-					<label for="">KTP Atas Nama BPKB</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">KTP Atas Nama BPKB</label>
 							{!! Form::select('jaminan[kendaraan][0][legal][ktp_bpkb]', [
 								'ada'					=> 'Ada',
 								'tidak_ada'				=> 'Tidak Ada'
@@ -163,9 +163,9 @@
 
 				{{-- Status Kepemilikan --}}
 				<fieldset class="form-group">
-					<label for="">Status Kepemilikan</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Status Kepemilikan</label>
 							{!! Form::select('jaminan[kendaraan][0][legal][status_kepemilikan]', [
 								'a/n_sendiri'						=> 'a/n Sendiri',
 								'a/n_orang_lain_milik_sendiri'		=> 'a/n Orang Lain Milik Sendiri',
@@ -187,9 +187,9 @@
 
 				{{-- Kondisi --}}
 				<fieldset class="form-group">
-					<label for="">Kondisi</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Kondisi</label>
 							{!! Form::select('jaminan[kendaraan][0][nilai][kondisi]', [
 								'baik'					=> 'baik',
 								'cukup_baik'			=> 'Cukup Baik',
@@ -201,9 +201,9 @@
 
 				{{-- Asuransi --}}
 				<fieldset class="form-group">
-					<label for="">Asuransi</label>
 					<div class="row">
 						<div class="col-md-12">
+							<label for="">Asuransi</label>
 							{!! Form::select('jaminan[kendaraan][0][nilai][suransi]', [
 								'all_risk'				=> 'All Risk',
 								'tlo'					=> 'TLO',
