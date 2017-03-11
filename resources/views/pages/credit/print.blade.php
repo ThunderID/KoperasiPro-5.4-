@@ -53,23 +53,23 @@
 	<div class="row visible-print-block p-t-xl-print">
 		<div class="col-sm-12">
 			<ul class="list-inline text-center">
-				<li class="text-center p-l-xl-print p-r-xl-print m-l-xl-print m-r-xl-print">
+				<li class="text-center p-l-sm-print p-r-sm-print m-l-sm-print m-r-sm-print">
 					<p>_____________________</p>
 					<p>Marketing</p>
 				</li>
-				<li class="text-center p-l-xl-print p-r-xl-print m-l-xl-print m-r-xl-print">
+				<li class="text-center p-l-sm-print p-r-sm-print m-l-sm-print m-r-sm-print">
 					<p>_____________________</p>
 					<p>Adm. Kredit</p>
 				</li>
-				<li class="text-center p-l-xl-print p-r-xl-print m-l-xl-print m-r-xl-print">
+				<li class="text-center p-l-sm-print p-r-sm-print m-l-sm-print m-r-sm-print">
 					<p>_____________________</p>
 					<p>Penjamin</p>
 				</li>
-				<li class="text-center p-l-xl-print p-r-xl-print m-l-xl-print m-r-xl-print">
+				<li class="text-center p-l-sm-print p-r-sm-print m-l-sm-print m-r-sm-print">
 					<p>_____________________</p>
 					<p>Keluarga Pemohon</p>
 				</li>
-				<li class="text-center p-l-xl-print p-r-xl-print m-l-xl-print m-r-xl-print">
+				<li class="text-center p-l-sm-print p-r-sm-print m-l-sm-print m-r-sm-print">
 					<p>_____________________</p>
 					<p>Pemohon</p>
 				</li>
