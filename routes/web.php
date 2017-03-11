@@ -17,27 +17,27 @@ Route::get('/test', function ()
 			'kemampuan_angsur' 	=> 'Rp 2.000.000',
 			'jangka_waktu'		=> 12,
 			'tujuan_kredit'		=> 'Modal Usaha',
-			'pribadi' 			=> ['ktp' => '(file_gambar)'],
 			'jaminan_kendaraan'	=> [[
 				'tipe_jaminan' 	=> 'roda_2',
 				'tahun'			=> '1999',
 				'legal' 		=> [
 					'nomor_polisi'	=> 'N 4314 CU',
-					'nomor_bpkb'	=> '134578781',
+					'nomor_bpkb'	=> '7027287',
 				],
 			]],
 			'jaminan_tanah_bangunan'	=> [[
 				'tipe_jaminan' 			=> 'tanah_bangunan',
 				'legal' 				=> [
 					'jenis_sertifikat'			=> 'HGB',
-					'nomor_sertifikat'			=> '134578781',
+					'nomor_sertifikat'			=> '13.04.13.04.1.12456',
 					'masa_berlaku_sertifikat'	=> '02/02/2020',
 				],
 				'alamat'				=> ['kota' => 'Malang'],
 			]],
 			'pribadi'			=> [
+				'url_ktp'		=> 'http://test_gambar.p',
 				'is_ektp'		=> true,
-				'nik'			=> '3573035108930004',
+				'nik'			=> '35-73-03-510893-0004',
 				'nama'			=> 'Chelsy Mooy',
 				'tempat_lahir'	=> 'Dili',
 				'tanggal_lahir'	=> '11/08/1993',
@@ -56,7 +56,7 @@ Route::get('/test', function ()
 				'relasi'			=> [[
 					'hubungan'		=> 'orang_tua',
 					'is_ektp'		=> true,
-					'nik'			=> '3573036701640001',
+					'nik'			=> '35-73-03-670164-0001',
 					'nama'			=> 'Yulia Pandie',
 					'tempat_lahir'	=> 'Rote',
 					'tanggal_lahir'	=> '27/02/1964',
@@ -77,7 +77,7 @@ Route::get('/test', function ()
 			'penjamin'			=> [
 				'hubungan'		=> 'orang_tua',
 				'is_ektp'		=> true,
-				'nik'			=> '3573036701640001',
+				'nik'			=> '35-73-03-670164-0001',
 				'nama'			=> 'Yulia Pandie',
 				'tempat_lahir'	=> 'Rote',
 				'tanggal_lahir'	=> '27/02/1964',
