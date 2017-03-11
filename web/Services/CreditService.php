@@ -89,8 +89,8 @@ class CreditService implements IService
 		$data['kreditur']['nama']	= $person_service['nama'];
 
 		//parse data koperasi
-		$data['koperasi']['id']		= TAuth::activeOffice()['office']['id'];
-		$data['koperasi']['nama']	= TAuth::activeOffice()['office']['name'];
+		$data['koperasi']['id']		= TAuth::activeOffice()['koperasi']['id'];
+		$data['koperasi']['nama']	= TAuth::activeOffice()['koperasi']['name'];
 
 		//parse data riwayat status
 		$data['riwayat_status'][]	= [
@@ -401,7 +401,7 @@ class CreditService implements IService
 			}
 		}
 
-		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new PageSpecification($page, $per_page)]);
+		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['koperasi']['id']), new PageSpecification($page, $per_page)]);
 
 		$user_entities 				= [];
 
@@ -436,7 +436,7 @@ class CreditService implements IService
 			}
 		}
 
-		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new SpecificationByCreditorName($name), new PageSpecification($page, $per_page)]);
+		$data 						= $this->repository->query([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['koperasi']['id']), new SpecificationByCreditorName($name), new PageSpecification($page, $per_page)]);
 
 		$user_entities 				= [];
 
@@ -516,7 +516,7 @@ class CreditService implements IService
 			}
 		}
 
-		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id'])]);
+		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['koperasi']['id'])]);
 
 		return 	$total;
 	}
@@ -543,7 +543,7 @@ class CreditService implements IService
 			}
 		}
 
-		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['office']['id']), new SpecificationByCreditorName($name)]);
+		$total 						= $this->repository->count([new SpecificationByStatus($status), new SpecificationByKoperasiID(TAuth::activeOffice()['koperasi']['id']), new SpecificationByCreditorName($name)]);
 
 		return 	$total;
 	}

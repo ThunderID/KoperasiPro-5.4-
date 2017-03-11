@@ -108,7 +108,7 @@
 			<ul class="list-group list">
 				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
 					<li class="list-group-item">
-						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['office']['name'] }}</a>
+						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
 					</li>
 				@endforeach
 			</ul>
@@ -117,7 +117,7 @@
 		<div class="clearfix">&nbsp;</div>
 		<div class="modal-footer" style="margin-left: -15px; margin-right: -15px;">
 			<p class="text-left m-b-none">
-				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['office']['name'] }}
+				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['koperasi']['nama'] }}
 				</span>
 			</p>
 		</div>

@@ -2,33 +2,10 @@
 
 namespace Thunderlabid\Application\Services;
 
-use Thunderlabid\Application\Services\Interfaces\IService;
-
-///////////////////
-//   Repository  //
-///////////////////
-use Thunderlabid\Immigration\Repositories\UserRepository as Repository;
-
-///////////////////
-// Specification //
-///////////////////
-use Thunderlabid\Immigration\Repositories\Specifications\SpecificationByID;
-use Thunderlabid\Immigration\Repositories\Specifications\SpecificationByEmail;
-
-///////////////////
-//  Transformer  //
-///////////////////
-use Thunderlabid\Application\DataTransformers\User\UserDTODataTransformer as DataTransformer;
-
-///////////////////
-//    Factory    //
-///////////////////
-use Thunderlabid\Immigration\Factories\VisaFactory as Factory;
-
-///////////////////
-//     Entity    //
-///////////////////
-use Thunderlabid\Immigration\Entities\User;
+///////////////
+//   Models  //
+///////////////
+use Thunderlabid\Immigration\Models\Pengguna as Model;
 
 use Hash, Exception, Session;
 
@@ -41,15 +18,11 @@ use Hash, Exception, Session;
  * @subpackage Application
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class SessionBasedAuthenticator implements IService
+class SessionBasedAuthenticator
 {
-	private $repository;
-	private $transformer;
-
-	public function __construct() 
+	public function __construct()
 	{
-		$this->repository 			= new Repository;
-		$this->transformer 			= new DataTransformer;
+		$this->model 		= new Model;
 	}
 
 	/**
@@ -62,15 +35,20 @@ class SessionBasedAuthenticator implements IService
 	{
 		// $event 	= (new \App\Jobs\FireEventUserLogged(['test']));
 
-		$user 	= $this->repository->query([new SpecificationByEmail($credentials['email'])]);
+		$user 	= $this->model->email($credentials['email'])->first();
 
-		if(!Hash::check($credentials['password'], $user[0]->password))
+		if(!$user)
+		{
+			throw new Exception("Email tidak terdaftar!", 1);
+		}
+
+		if(!Hash::check($credentials['password'], $user->password))
 		{
 			throw new Exception("Password Tidak Cocok!", 1);
 		}
 
-		Session::put('logged.id', $user[0]->id);
-		Session::put('accesses.idx', $user[0]->visas[0]->id);
+		Session::put('logged.id', $user->id);
+		Session::put('accesses.idx', $user->visas[0]['id']);
 	
 		// dispatch($event);
 
@@ -84,9 +62,9 @@ class SessionBasedAuthenticator implements IService
 	 */
 	public function isLogged()
 	{
-		$user 	= $this->repository->query([new SpecificationByID(Session::get('logged.id'))]);
+		$user 	= $this->model->findorfail(Session::get('logged.id'));
 
-		if(!$user[0])
+		if(!$user)
 		{
 			throw new Exception("Invalid Login!", 1);
 		}
@@ -101,14 +79,14 @@ class SessionBasedAuthenticator implements IService
 	 */
 	public function loggedUser()
 	{
-		$user 	= $this->repository->query([new SpecificationByID(Session::get('logged.id'))]);
+		$user 	= $this->model->findorfail(Session::get('logged.id'));
 
-		if(!$user[0])
+		if(!$user)
 		{
 			throw new Exception("Invalid Login!", 1);
 		}
 
-		return $this->transformer->read($user[0]);
+		return $user->toArray();
 	}
 
 	/**

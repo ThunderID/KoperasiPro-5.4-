@@ -29,11 +29,12 @@ class VisaGrantedEvent
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct($model)
 	{
 		//
+		$this->model 		= $model;
 	}
-
+	
 	/**
 	 * Get the channels the event should broadcast on.
 	 *
