@@ -26,6 +26,7 @@
 	<div class="container print-area">
 		@stack('content')
 	</div>
+	<div class="print-mask">&nbsp;</div>
 @endsection
 
 @section('template-styles')

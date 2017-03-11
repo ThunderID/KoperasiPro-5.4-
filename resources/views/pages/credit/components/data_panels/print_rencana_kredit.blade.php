@@ -8,36 +8,36 @@
 <div class="row">
 	<div class="col-sm-6">
 		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<p>Pengajuan Kredit</p>
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-7">
 				<p>{{ $page_datas->credit['pengajuan_kredit'] }}</p>
 			</div>
 		</div>
 		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<p>Kemampuan Angsur</p>
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-7">
 				<p>{{ $page_datas->credit['kemampuan_angsur'] }}</p>
 			</div>
 		</div>				
 		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<p>Jangka Waktu</p>
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-7">
 				<p>{{ $page_datas->credit['jangka_waktu'] }} bulan</p>
 			</div>
 		</div>	
 	</div>
 	<div class="col-sm-6">
 		<div class="row m-b-xl m-b-sm-print">
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<p>Tujuan Kredit</p>
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-7">
 				<p>{{ $page_datas->credit['tujuan_kredit'] }}</p>
 			</div>
 		</div>	

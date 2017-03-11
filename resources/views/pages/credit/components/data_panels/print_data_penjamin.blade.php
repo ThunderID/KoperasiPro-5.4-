@@ -8,10 +8,10 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="row m-b-xl m-b-sm-print">
-				<div class="col-sm-4">
+				<div class="col-sm-5">
 					<p>Nama</p>
 				</div>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					<p><strong>{{ $page_datas->credit['penjamin']['nama'] }}</strong></p>
 				</div>
 			</div>
