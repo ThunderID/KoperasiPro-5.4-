@@ -2,45 +2,49 @@
 	if(!isset($edit)){
 		$edit = true;
 	}
-	$edit = false;
 ?>
 
-<div class="row">
-	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Jaminan
-			@if(!empty($page_datas->credit['kreditur']['aset']))
+
+@if(isset($page_datas->credit['jaminan']['kendaraan']))
+
+	{{-- 
+	--}}
+	@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $key => $tanah_bangunan) 
+	<?php
+		// $kendaraan = $page_datas->credit['jaminan']['kendaraan'][0];
+	?>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h4 class="text-uppercase">Data Jaminan Kendaraan {{ $key+1 }}
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
+							<a href="#data-jaminan-kendaraan" data-toggle="modal" data-target="#data_jaminan_kendaraan_{{ $key }}" no-data-pjax>
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+								Edit
+							</a>
 						</small>
 					</span>
 				@endif
-			@endif
-		</h4>
-		<hr/>
-	</div>
-</div>
-
-@if(isset($page_datas->credit['jaminan']['kendaraan']))
-<div class="row">
-
-	{{-- @foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan) --}}
-	<?php
-		$kendaraan = $page_datas->credit['jaminan']['kendaraan'][0];
-	?>
-
-		<div class="col-sm-12">
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Kendaraan</h4>
-					</hr>
-				</div>
-			</div>
+			</h4>
+			<hr/>
 		</div>
+	</div>
+
+	<div class="row">
+
+		{{-- 
+			<div class="col-sm-12">
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<h4 class="m-t-none title-section light">
+							Kendaraan {{ $key + 1 }}  
+						</h4>
+					</div>
+				</div>
+			</div>		
+		--}}
 
 
 		<div class="col-sm-12">
@@ -207,63 +211,90 @@
 			</div>
 
 		</div>
-	{{-- @endforeach --}}
+	{{-- 
+	--}}
+	@endforeach 
 
 </div>
 @elseif(isset($page_datas->credit['jaminan']['tanah_bangunan']))
-<div class="row">
 
-	{{-- @foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan) --}}
+	{{-- 
+	--}}
+	@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $key => $tanah_bangunan) 
 	<?php
-		$tanah_bangunan = $page_datas->credit['jaminan']['tanah_bangunan'][0];
+		// $tanah_bangunan = $page_datas->credit['jaminan']['tanah_bangunan'][0];
 	?>
 
-		<div class="col-sm-12">
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
-				</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h4 class="text-uppercase">Data Jaminan Tanah Bangunan {{ $key+1 }}
+					@if($edit == true)
+						<span class="pull-right">
+							<small>
+								<a href="#data-jaminan-tnb" data-toggle="modal" data-target="#data_jaminan_tnb_{{$key}}" no-data-pjax>
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+									Edit
+								</a>
+							</small>
+						</span>
+					@endif
+				</h4>
+				<hr/>
 			</div>
 		</div>
 
-		<div class="col-sm-12">
-			<div class="row m-b-xl">
-				<div class="col-sm-6">
-					<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
-					<p>
-						{{ strtoupper(str_replace('_', ' ', $tanah_bangunan['tipe_jaminan'])) }}
-					</p>
-				</div>
+		<div class="row">
 
-				<div class="col-sm-6">
-					<p class="p-b-sm"><strong>Panjang</strong></p>
-					<p>
-						{{ $tanah_bangunan['tanah']['panjang'] }} M
-					</p>
+			{{-- 
+			<div class="col-sm-12">
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<h4 class="m-t-none title-section light">
+							Tanah/Bangunan {{ $key + 1 }}  
+						</h4>
+					</div>
 				</div>
 			</div>
+			--}}
 
-			<div class="row m-b-xl">
-				<div class="col-sm-6">
-					<p class="p-b-sm"><strong>Lebar</strong></p>
-					<p>
-						{{ $tanah_bangunan['tanah']['lebar'] }} M
-					</p>
-				</div>
-				<div class="col-sm-6">
-					<p class="p-b-sm"><strong>Luas</strong></p>
-					<p>
-						{{ $tanah_bangunan['tanah']['luas'] }} M<sup>2</sup>
-					</p>
-				</div>
-			</div>			
+			<div class="col-sm-12">
+				<div class="row m-b-xl">
+					<div class="col-sm-6">
+						<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
+						<p>
+							{{ strtoupper(str_replace('_', ' ', $tanah_bangunan['tipe_jaminan'])) }}
+						</p>
+					</div>
 
+					<div class="col-sm-6">
+						<p class="p-b-sm"><strong>Panjang</strong></p>
+						<p>
+							{{ $tanah_bangunan['tanah']['panjang'] }} M
+						</p>
+					</div>
+				</div>
+
+				<div class="row m-b-xl">
+					<div class="col-sm-6">
+						<p class="p-b-sm"><strong>Lebar</strong></p>
+						<p>
+							{{ $tanah_bangunan['tanah']['lebar'] }} M
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p class="p-b-sm"><strong>Luas</strong></p>
+						<p>
+							{{ $tanah_bangunan['tanah']['luas'] }} M<sup>2</sup>
+						</p>
+					</div>
+				</div>			
+
+			</div>
 		</div>
-		
+	{{-- 
+	--}}
+	@endforeach 
 
-	{{-- @endforeach --}}
-
-</div>
 @else
 	<div class="row">
 		<div class="col-sm-6">
@@ -277,7 +308,45 @@
 @endif
 
 @push('show_modals')
+	@if($edit == true)
+		@if(isset($page_datas->credit['jaminan']['kendaraan']))
+			@foreach($page_datas->credit['jaminan']['kendaraan'] as $key => $kendaraan) 
 
-		
+				<!-- Data jaminan kendaraan // -->
+				@component('components.modal', [
+					'id' 		=> 'data_jaminan_kendaraan_' . $key,
+					'title'		=> 'Data Jaminan Kredit '. ($key + 1),
+					'settings'	=> [
+						'hide_buttons'	=> true
+					]	
+				])
+					@include('pages.credit.components.survei.form.data_jaminan_kendaraan', [
+						'id' 			=> $key,
+						'id_kredit'	 	=> $page_datas->credit['id'],
+						'kendaraan' 	=> $kendaraan
+					])
+				@endcomponent
 
+			@endforeach
+		@elseif(isset($page_datas->credit['jaminan']['tanah_bangunan']))
+			@foreach($page_datas->credit['jaminan']['tanah_bangunan'] as $key => $tanah_bangunan) 
+
+				<!-- Data jaminan Tanah Bangunan // -->
+				@component('components.modal', [
+					'id' 		=> 'data_jaminan_tnb_' . $key,
+					'title'		=> 'Data Jaminan Tanah & Bangunan '. ($key + 1) ,
+					'settings'	=> [
+						'hide_buttons'	=> true
+					]	
+				])
+					@include('pages.credit.components.survei.form.data_jaminan_tnb', [
+						'id' 			 => $key,
+						'id_kredit'		 => $page_datas->credit['id'],
+						'tanah_bangunan' => $tanah_bangunan
+					])
+				@endcomponent
+
+			@endforeach
+		@endif
+	@endif
 @endpush

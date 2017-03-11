@@ -362,6 +362,26 @@ class CreditService implements IService
 
 	/**
 	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return CreditDTODataTransformer $data
+	 */
+	public function rekomendasiKredit($credit_id, $data)
+	{
+		//fixing 
+		$credit				= $this->repository->query([new SpecificationByID($credit_id)]);
+		$credit 			= $credit[0];
+
+		$credit->rekomendasiKredit($data);
+
+		$saved 				= $this->repository->store($credit);
+
+		return $this->transformer->read($credit);
+	}
+
+
+	/**
+	 * this function mean keep executing
 	 * @param numeric $page
 	 * 
 	 * @return CreditDTODataTransformer $data

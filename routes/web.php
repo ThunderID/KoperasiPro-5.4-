@@ -12,8 +12,109 @@
 */
 Route::get('/test', function () 
 {
-$model = new Thunderlabid\Registry\Infrastructures\Models\Asset;
-$model 	= $model->first();
+	$sample = [
+			'pengajuan_kredit'	=> 'Rp 20.000.000',
+			'kemampuan_angsur' 	=> 'Rp 2.000.000',
+			'jangka_waktu'		=> 12,
+			'tujuan_kredit'		=> 'Modal Usaha',
+			'jaminan_kendaraan'	=> [[
+				'tipe_jaminan' 	=> 'roda_2',
+				'tahun'			=> '1999',
+				'legal' 		=> [
+					'nomor_polisi'	=> 'N 4314 CU',
+					'nomor_bpkb'	=> '7027287',
+				],
+			]],
+			'jaminan_tanah_bangunan'	=> [[
+				'tipe_jaminan' 			=> 'tanah_bangunan',
+				'legal' 				=> [
+					'jenis_sertifikat'			=> 'HGB',
+					'nomor_sertifikat'			=> '13.04.13.04.1.12456',
+					'masa_berlaku_sertifikat'	=> '02/02/2020',
+				],
+				'alamat'				=> ['kota' => 'Malang'],
+			]],
+			'pribadi'			=> [
+				'url_ktp'		=> 'http://test_gambar.p',
+				'is_ektp'		=> true,
+				'nik'			=> '35-73-03-510893-0004',
+				'nama'			=> 'Chelsy Mooy',
+				'tempat_lahir'	=> 'Dili',
+				'tanggal_lahir'	=> '11/08/1993',
+				'jenis_kelamin'	=> 'wanita',
+				'status_perkawinan'	=> 'belum_kawin',
+				'kewarganegaraan'	=> 'wni',
+				'alamat'		=> [[
+					'jalan'		=> 'Puri Cempaka Putih II AS 86',
+					'kota'		=> 'Malang',
+					'provinsi'	=> 'Jawa Timur',
+					'negara'	=> 'Indonesia',
+					'kode_pos'	=> '65135',
+				]],
+				'telepon'		=> ['0341 777668'],
+				'handphone'		=> ['089654562911'],
+				'relasi'			=> [[
+					'hubungan'		=> 'orang_tua',
+					'is_ektp'		=> true,
+					'nik'			=> '35-73-03-670164-0001',
+					'nama'			=> 'Yulia Pandie',
+					'tempat_lahir'	=> 'Rote',
+					'tanggal_lahir'	=> '27/02/1964',
+					'jenis_kelamin'	=> 'wanita',
+					'status_perkawinan'	=> 'kawin',
+					'kewarganegaraan'	=> 'wni',
+					'alamat'		=> [[
+						'jalan'		=> 'Puri Cempaka Putih II AS 86',
+						'kota'		=> 'Malang',
+						'provinsi'	=> 'Jawa Timur',
+						'negara'	=> 'Indonesia',
+						'kode_pos'	=> '65135',
+					]],
+					'telepon'		=> ['0341 777668'],
+					'handphone'		=> ['089654562701'],
+				]],
+			],
+			'penjamin'			=> [
+				'hubungan'		=> 'orang_tua',
+				'is_ektp'		=> true,
+				'nik'			=> '35-73-03-670164-0001',
+				'nama'			=> 'Yulia Pandie',
+				'tempat_lahir'	=> 'Rote',
+				'tanggal_lahir'	=> '27/02/1964',
+				'jenis_kelamin'	=> 'wanita',
+				'status_perkawinan'	=> 'kawin',
+				'kewarganegaraan'	=> 'wni',
+				'alamat'		=> [[
+					'jalan'		=> 'Puri Cempaka Putih II AS 86',
+					'kota'		=> 'Malang',
+					'provinsi'	=> 'Jawa Timur',
+					'negara'	=> 'Indonesia',
+					'kode_pos'	=> '65135',
+				]],
+				'telepon'		=> ['0341 777668'],
+				'handphone'		=> ['089654562701'],
+			],
+		];
+
+dd($sample);
+
+	$content 	= [
+		'jenis_pinjaman'		=> 'PA',
+		'suku_bunga'			=> 50,
+		'max_plafon_kredit'		=> 5000000,
+		'usulan_kredit'			=> 40000000,
+		'angsuran_pokok'		=> 4000000,
+		'angsuran_bunga'		=> 400000,
+		'jangka_waktu'			=> 12,
+	];	
+
+	$repository 			= new Thunderlabid\Credit\Repositories\CreditRepository;
+	$credit 				= $repository->query([new Thunderlabid\Credit\Repositories\Specifications\SpecificationByID('18C5EBDB-5E24-4906-8080-F01AB687FEA6')]);
+	$credit 				= $credit[0];
+	$credit->rekomendasiKredit($content);
+
+	$repository->store($credit);
+dd($credit);
 
 $model->rumah 	= [
 	"status" => "milik_sendiri",

@@ -51,14 +51,24 @@ class Credit implements IEntity
 	 * @param array  $koperasi 
 	 * @param string $status 
 	 * @param array  $riwayat_status 
+	 * @param array  $jaminan_kendaraan 
+	 * @param array  $jaminan_tanah_bangunan 
+	 *  
+	 * @param numeric  $jenis_pinjaman 
+	 * @param numeric  $suku_bunga 
+	 * @param numeric  $jangka_waktu 
+	 * @param numeric  $max_plafon_kredit 
+	 * @param numeric  $usulan_kredit 
+	 * @param numeric  $angsuran_pokok 
+	 * @param numeric  $angsuran_bunga 
 	 */
-	public function __construct($nomor_kredit, $pengajuan_kredit, $kemampuan_angsur, $jangka_waktu, $tujuan_kredit, $kreditur, $koperasi, $penjamin = [], $status = null, $riwayat_status = [], $jaminan_kendaraan = [], $jaminan_tanah_bangunan = [])
+	public function __construct($nomor_kredit, $pengajuan_kredit, $kemampuan_angsur, $jangka_waktu, $tujuan_kredit, $kreditur, $koperasi, $penjamin = [], $status = null, $riwayat_status = [], $jaminan_kendaraan = [], $jaminan_tanah_bangunan = [], $jenis_pinjaman = 0, $suku_bunga = 0, $max_plafon_kredit = 0, $usulan_kredit = 0, $angsuran_pokok = 0, $angsuran_bunga = 0) 
 	{
 		if(!$nomor_kredit)
 		{
 			$this->attributes['id'] 			= $this->createID();
-			$this->pengajuan_kredit 			= $pengajuan_kredit;
-			$this->kemampuan_angsur 			= $kemampuan_angsur;
+			$this->pengajuan_kredit 			= new IDR($pengajuan_kredit);
+			$this->kemampuan_angsur 			= new IDR($kemampuan_angsur);
 			$this->jangka_waktu 				= $jangka_waktu;
 			$this->tujuan_kredit 				= $tujuan_kredit;
 			$this->kreditur 					= $kreditur;
@@ -365,5 +375,37 @@ class Credit implements IEntity
 		// Set //
 		/////////
 		$this->attributes['jaminan'][] 	= $jaminan_tanah_bangunan;
+	}
+
+	/**
+	 * [rekomendasiKredit description]
+	 * @param array $rencana_kredit [description]
+	 * @return [boolean]	[true if success, exception if fail]
+	 */
+	public function rekomendasiKredit($rekomendasi)
+	{
+		/////////
+		// Set //
+		/////////
+		$validator 	= Validator::make($rekomendasi, ['jenis_pinjaman' => 'string', 'suku_bunga' => 'numeric', 'max_plafon_kredit' => 'numeric', 'usulan_kredit' => 'numeric', 'angsuran_pokok' => 'numeric', 'angsuran_bunga' => 'numeric', 'jangka_waktu' => 'numeric']);
+	
+		if ($validator->fails())
+		{
+			throw new Exception($validator->messages(), 1);
+		}
+
+		if($rekomendasi['max_plafon_kredit'] > $rekomendasi['usulan_kredit'])
+		{
+			throw new Exception('Usulan Kredit melebihi maks. plafon kredit', 1);
+		}
+
+		//validating calculation here
+		$this->attributes['jenis_pinjaman'] 	= $rekomendasi['jenis_pinjaman'];
+		$this->attributes['suku_bunga'] 		= $rekomendasi['suku_bunga'];
+		$this->attributes['max_plafon_kredit'] 	= new IDR($rekomendasi['max_plafon_kredit']);
+		$this->attributes['usulan_kredit'] 		= new IDR($rekomendasi['usulan_kredit']);
+		$this->attributes['angsuran_pokok'] 	= new IDR($rekomendasi['angsuran_pokok']);
+		$this->attributes['angsuran_bunga'] 	= new IDR($rekomendasi['angsuran_bunga']);
+		$this->attributes['jangka_waktu'] 		= $rekomendasi['jangka_waktu'];
 	}
 }
