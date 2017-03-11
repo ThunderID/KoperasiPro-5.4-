@@ -1,5 +1,5 @@
-<button style="padding-top: 15px;" class="btn btn-link dropdown-toggle text-center" type="a" data-toggle="dropdown">
-	<i class="fa fa-globe"></i>
+<button style="padding-top: 15px;padding-left:0px" class="btn btn-link dropdown-toggle text-center p-r-lg p-l-lg" type="a" data-toggle="dropdown">
+	<i class="fa fa-bell fa-lg"></i>
 </button>
 <ul class="dropdown-menu">
 	<?php 
