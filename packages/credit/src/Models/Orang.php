@@ -13,6 +13,7 @@ use Thunderlabid\Credit\Models\Observers\OrangObserver;
 
 // use Thunderlabid\Credit\Models\Traits\HistoricalDataTrait;
 use Thunderlabid\Credit\Models\Traits\GuidTrait;
+use Thunderlabid\Credit\Models\Traits\Policies\NIKTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
 
 use Thunderlabid\Credit\Exceptions\DuplicateException;
@@ -32,6 +33,7 @@ use Validator, Exception;
 class Orang extends BaseModel
 {
 	// use HistoricalDataTrait;
+	use NIKTrait;
 	use GuidTrait;
 	use TanggalTrait;
 	
@@ -87,6 +89,20 @@ class Orang extends BaseModel
 	protected function setTanggalLahirAttribute($value)
 	{
 		$this->attributes['tanggal_lahir']	= $this->formatDateFrom($value);
+	}
+
+	protected function setNikAttribute($value)
+	{
+		//1. Check duplikat nik
+		$exists_person 				= Orang::where('nik', $value)->notid($this->id)->first();
+
+		if($exists_person)
+		{
+			throw new DuplicateException("NIK", 1);
+			
+		}
+
+		$this->attributes['nik']	= $this->formatNIKFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

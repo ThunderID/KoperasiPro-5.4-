@@ -148,7 +148,7 @@ class Kredit extends BaseModel
 		{
 			$kreditur 		= new Orang;
 		}
-		
+
 		$kreditur->fill($value);
 		$kreditur->save();
 
