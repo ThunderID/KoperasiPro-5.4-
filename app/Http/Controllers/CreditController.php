@@ -77,7 +77,7 @@ class CreditController extends Controller
 		$data										= new ProvinceService;
 
 		// sort data province by 'province_name'
-		$data 										= collect($data->read());
+		$data 										= collect($data->get());
 
 		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 		// sort cities by 'city_name_full'
@@ -428,7 +428,7 @@ class CreditController extends Controller
 		$data										= new ProvinceService;
 
 		// sort data province by 'province_name'
-		$data 										= collect($data->read());
+		$data 										= collect($data->get());
 
 		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 		// sort cities by 'city_name_full'
@@ -485,12 +485,12 @@ class CreditController extends Controller
 		//2. Parsing search box
 		if(Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->read();
+			$this->page_datas->credits				= $this->service->get();
 			$this->page_datas->total_credits		= $this->service->count();
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->read();
+			$this->page_datas->credits				= $this->service->get();
 			$this->page_datas->total_credits		= $this->service->count();
 		}
 

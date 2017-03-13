@@ -31,7 +31,7 @@ class DaftarKredit
 	 * 
 	 * @return UserDTODataTransformer $data
 	 */
-	public function read($queries = [])
+	public function get($queries = [])
 	{
 		$model 					= $this->model;
 		
