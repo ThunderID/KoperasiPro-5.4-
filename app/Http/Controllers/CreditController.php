@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Application\Services\CreditService;
+use Thunderlabid\Application\Queries\Credit\DaftarKredit;
 use Thunderlabid\Application\Services\ProvinceService;
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
@@ -25,7 +25,7 @@ class CreditController extends Controller
 	{
 		parent::__construct();
 
-		$this->service 		= new CreditService;
+		$this->service 		= new DaftarKredit;
 	}
 
 	/**
@@ -485,13 +485,13 @@ class CreditController extends Controller
 		//2. Parsing search box
 		if(Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->readByName($page, $take, $status, Input::get('q'));
-			$this->page_datas->total_credits		= $this->service->countByName($status, Input::get('q'));
+			$this->page_datas->credits				= $this->service->read();
+			$this->page_datas->total_credits		= $this->service->count();
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->read($page, $take, $status);
-			$this->page_datas->total_credits		= $this->service->count($status);
+			$this->page_datas->credits				= $this->service->read();
+			$this->page_datas->total_credits		= $this->service->count();
 		}
 
 		//3. Memanggil fungsi filter active

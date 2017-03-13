@@ -80,6 +80,59 @@ class DaftarKredit
 
 	/**
 	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return UserDTODataTransformer $data
+	 */
+	public function count($queries = [])
+	{
+		$model 					= $this->model;
+		
+		//1.allow status
+		if(isset($queries['status']))
+		{
+			if(!in_array($queries['status'], $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+		else
+		{
+			$queries['status']	= $this->statusLists();
+		}
+		$model  				= $model->status($queries['status']);
+		
+		//2.allow koperasi
+		$queries['koperasi_id']	= TAuth::activeOffice()['koperasi']['id'];
+		$model  				= $model->koperasi($queries['koperasi_id']);
+
+		//3. pagination
+		if(isset($queries['per_page']))
+		{
+			$queries['take']	= $queries['per_page'];
+		}
+		else
+		{
+			$queries['take']	= 15;
+		}
+
+		if(isset($queries['page']))
+		{
+			$queries['skip']	= ($queries['page'] * $queries['take']);
+		}
+		else
+		{
+			$queries['skip']	= 0;
+		}
+		
+		$model  				= $model->skip($queries['skip'])->take($queries['take'])->with(['kreditur'])->count();
+
+		return 	$model;
+	}
+	
+	/**
+	 * this function mean keep executing
 	 * @param numeric $page
 	 * 
 	 * @return CreditDTODataTransformer $data
