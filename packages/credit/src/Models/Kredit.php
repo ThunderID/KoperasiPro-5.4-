@@ -13,8 +13,9 @@ use Thunderlabid\Credit\Models\Observers\KreditObserver;
 
 // use Thunderlabid\Credit\Models\Traits\HistoricalDataTrait;
 use Thunderlabid\Credit\Models\Traits\GuidTrait;
-use Thunderlabid\Credit\Models\Traits\Policies\NomorKreditTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\IDRTrait;
+use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
+use Thunderlabid\Credit\Models\Traits\Policies\NomorKreditTrait;
 
 use Thunderlabid\Credit\Exceptions\CurrencyException;
 use Thunderlabid\Credit\Exceptions\DuplicateException;
@@ -35,6 +36,7 @@ class Kredit extends BaseModel
 	// use HistoricalDataTrait;
 	use IDRTrait;
 	use GuidTrait;
+	use TanggalTrait;
 	use NomorKreditTrait;
 	
 	/**
@@ -83,6 +85,27 @@ class Kredit extends BaseModel
 	 * @var array
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
+	
+	/**
+	 * hidden data
+	 *
+	 * @var array
+	 */
+	protected $hidden				= 	[
+											'created_at', 
+											'updated_at', 
+											'deleted_at', 
+											'credit_kreditur_id', 
+											'credit_ro_koperasi_id', 
+											'credit_mobile_id'
+										];
+
+	/**
+	 * data mutator
+	 *
+	 * @var array
+	 */
+    protected $appends 				= ['tanggal_pengajuan'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	public function kreditur()
@@ -108,6 +131,11 @@ class Kredit extends BaseModel
 	protected function getPengajuanKreditAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
+	}
+
+	protected function getTanggalPengajuanAttribute()
+	{
+		return $this->formatDateTo($this->created_at);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/

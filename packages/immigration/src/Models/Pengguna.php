@@ -128,10 +128,7 @@ class Pengguna extends BaseModel
 			'nama' 	=> $visa['koperasi']['nama'],
 		]);
 
-		if(!$koperasi_ro->save())
-		{
-			throw new Exception($koperasi_ro->getError(), 1);
-		}
+		$koperasi_ro->save();
 
 		//3b. simpan visa
 		$visa_ag		= new Visa_A;
@@ -142,10 +139,7 @@ class Pengguna extends BaseModel
 			'immigration_pengguna_id'		=> $this->id
 		]);
 
-		if(!$visa_ag->save())
-		{
-			throw new Exception($visa_ag->getError(), 1);
-		}
+		$visa_ag->save();
 
 		//4. fire event
 		$this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
