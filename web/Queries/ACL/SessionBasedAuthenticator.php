@@ -79,7 +79,7 @@ class SessionBasedAuthenticator
 	 */
 	public function loggedUser()
 	{
-		$user 	= $this->model->findorfail(Session::get('logged.id'));
+		$user 	= $this->model->id(Session::get('logged.id'))->with(['visas', 'visas.koperasi'])->first();
 
 		if(!$user)
 		{
