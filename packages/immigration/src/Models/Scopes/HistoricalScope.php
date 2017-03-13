@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @subpackage Immigration
  * @author     C Mooy <chelsymooy1108@gmail.com>
  */
-class LinkedListScope implements Scope  
+class HistoricalScope implements Scope  
 {
 	/**
 	 * Apply the scope to a given Eloquent query builder.
@@ -26,20 +26,20 @@ class LinkedListScope implements Scope
 	 */
 	public function apply(Builder $builder, Model $model)
 	{
-		$builder->where('next_list', 0);
+		$builder;
 	}
 
-    /**
-     * Add the with-trashed extension to the builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
-     */
-    protected function addwithLog(Builder $builder)
-    {
-        $builder->macro('withLog', function (Builder $builder) {
-            return $builder->withoutGlobalScope($this);
-        });
-    }
+	/**
+	 * Add the with-trashed extension to the builder.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @return void
+	 */
+	protected function addwithLog(Builder $builder)
+	{
+		$builder->macro('withLog', function (Builder $builder) {
+			return $builder->withoutGlobalScope($this);
+		});
+	}
 
 }

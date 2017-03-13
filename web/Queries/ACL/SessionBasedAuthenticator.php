@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Services;
+namespace Thunderlabid\Application\Queries\ACL;
 
 ///////////////
 //   Models  //

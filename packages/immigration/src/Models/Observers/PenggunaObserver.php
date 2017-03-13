@@ -2,6 +2,8 @@
 
 namespace Thunderlabid\Immigration\Models\Observers;
 
+use Thunderlabid\Immigration\Models\Visa_A; 
+use Thunderlabid\Immigration\Models\Koperasi_RO; 
 use Thunderlabid\Immigration\Models\Pengguna as Model; 
 
 /**
@@ -21,34 +23,7 @@ class PenggunaObserver
 	* @param Pengguna $model
 	* @return boolean
 	*/
-	public function creating($model)
+	public function saving($model)
 	{
-		if(empty($model->next_list))
-		{
-			//initial next list
-			$model->next_list 	= 0;
-
-			return true;
-		}
-	}
-
-	/**
-	* Update dokumen sebelumnya
-	*
-	* @param Pengguna $model
-	* @return boolean
-	*/
-	public function updating($model)
-	{
-		//check perubahan status
-		if($model->isDirty() && !isset($model->isDirty()['next_list']))
-		{
-			//save new data
-			$new_dokumen 				= new Model;
-			$new_dokumen->fill($model->getOriginal());
-			$new_dokumen->next_list 	= $model->_id;
-			$new_dokumen->save();
-		}
-		return true;
 	}
 }

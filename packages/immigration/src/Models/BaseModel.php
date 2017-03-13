@@ -2,11 +2,11 @@
 
 namespace Thunderlabid\Immigration\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Thunderlabid\Immigration\Models\Traits\EventRaiserTrait;
 
 use Illuminate\Support\MessageBag;
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Validator, Exception;
 
 /**
@@ -31,6 +31,8 @@ abstract class BaseModel extends Model
 	 *
 	 */
 	use SoftDeletes;
+
+	protected $keyType 	= 'string';
 
 	/* ---------------------------------------------------------------------------- ERRORS ----------------------------------------------------------------------------*/
 
@@ -89,7 +91,7 @@ abstract class BaseModel extends Model
 	{
 		if(is_array($variable))
 		{
-			return 	$query->whereIn('_id', $variable);
+			return 	$query->whereIn('id', $variable);
 		}
 
 		if(is_null($variable))
@@ -97,7 +99,7 @@ abstract class BaseModel extends Model
 			return $query;
 		}
 
-		return 	$query->where('_id', $variable);
+		return 	$query->where('id', $variable);
 	}
 
 	/**
@@ -109,7 +111,7 @@ abstract class BaseModel extends Model
 	{
 		if(is_array($variable))
 		{
-			return 	$query->whereNotIn('_id', $variable);
+			return 	$query->whereNotIn('id', $variable);
 		}
 
 		if(is_null($variable))
@@ -117,6 +119,6 @@ abstract class BaseModel extends Model
 			return $query;
 		}
 
-		return 	$query->where('_id', '<>', $variable);
+		return 	$query->where('id', '<>', $variable);
 	}
 }
