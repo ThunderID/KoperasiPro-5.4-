@@ -52,8 +52,8 @@ class LoginController extends Controller
 		$credentials				= Input::only('email', 'key');
 		$credentials['password']	= $credentials['key'];
 
-		$credentials['email']		= 'cooldev@thunderlab.id';
-		$credentials['password']	= 'admin';
+		$credentials['email']		= 'chelsy@thunderlab.id';
+		$credentials['password']	= 'TLABGO!!!!';
 
 		try
 		{

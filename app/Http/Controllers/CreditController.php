@@ -398,7 +398,15 @@ class CreditController extends Controller
 		$this->paginate(route('credit.show', ['id' => $id]),$this->page_datas->total_credits,$page,10);
 
 		//parsing master data here
-		$this->page_datas->credit 					= $this->service->detailed($id);
+		try
+		{
+			$this->page_datas->credit				= $this->service->detailed($id);
+		}
+		catch(Exception $e)
+		{
+			$this->page_datas->credit 				= view('pages.credit.errors');
+		}
+
 		$this->page_datas->id 						= $id;
 
 		// get active address on person

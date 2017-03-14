@@ -2,8 +2,6 @@
 
 namespace Thunderlabid\Credit\Models\Traits;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 /**
  * Trait Link list
  *
@@ -15,31 +13,29 @@ use Illuminate\Contracts\Queue\ShouldQueue;
  */
 trait GuidTrait {
  	
-	/**
-	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+ 	/**
+	 * Boot the scope.
+	 * 
+	 * @return void
 	 */
-	public function setIdAttribute($value)
+	public function __construct()
 	{
-		if (function_exists('com_create_guid') === true)
-		{
-			$this->attributes['id'] = trim(com_create_guid(), '{}');
-		}
+		parent::__construct();
 
-		$this->attributes['id'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+		$this->attributes['id']		= $this->createID('test');
 	}
 
 	/**
 	 * Add Event_list to queue
 	 * @param [IEvent_list] $event_list 
 	 */
-	public function getIdAttribute()
+	public static function createID($value)
 	{
-		if(!isset($this->attributes['id']))
+		if (function_exists('com_create_guid') === true)
 		{
-			$this->id 		= 'Manual_set';
+			return trim(com_create_guid(), '{}');
 		}
 
-		return $this->attributes['id'];
+		return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 	}
 }

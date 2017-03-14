@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCreditOrangTable extends Migration
+class CreateCreditTeleponTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,14 +13,10 @@ class CreateCreditOrangTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_orang', function (Blueprint $table) {
+		Schema::create('credit_telepon', function (Blueprint $table) {
 			$table->string('id');
-			$table->boolean('is_ektp');
-			$table->string('nik');
-			$table->string('nama');
-			$table->date('tanggal_lahir');
-			$table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-			$table->string('status_perkawinan');
+			$table->string('credit_orang_id');
+			$table->string('nomor');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -33,6 +29,6 @@ class CreateCreditOrangTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_orang');
+		Schema::dropIfExists('credit_telepon');
 	}
 }

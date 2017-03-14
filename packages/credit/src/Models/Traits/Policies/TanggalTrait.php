@@ -5,19 +5,20 @@ namespace Thunderlabid\Credit\Models\Traits\Policies;
 use Carbon\Carbon;
 
 /**
- * Trait Link list
+ * Trait tanggal
  *
- * Digunakan untuk initizialize link list mode
+ * Digunakan untuk reformat tanggal sesuai kontrak
  *
  * @package    Thunderlabid
  * @subpackage Credit
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.od>
  */
 trait TanggalTrait {
 
  	/**
-	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+	 * parse input tanggal
+	 * @param d/m/Y $value 
+	 * @return Y-m-d $value 
 	 */
 	public function formatDateFrom($value)
 	{
@@ -25,8 +26,9 @@ trait TanggalTrait {
 	}
 
 	/**
-	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+	 * parse output tanggal
+	 * @param Y-m-d $value 
+	 * @return d/m/Y $value 
 	 */
 	public function formatDateTo($value)
 	{

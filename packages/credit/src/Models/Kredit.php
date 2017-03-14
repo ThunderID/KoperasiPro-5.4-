@@ -2,40 +2,38 @@
 
 namespace Thunderlabid\Credit\Models;
 
-/**
- * Used for Kredit Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Credit\Models\Observers\IDObserver;
-use Thunderlabid\Credit\Models\Observers\EventObserver;
 use Thunderlabid\Credit\Models\Observers\KreditObserver;
 
-// use Thunderlabid\Credit\Models\Traits\HistoricalDataTrait;
 use Thunderlabid\Credit\Models\Traits\GuidTrait;
+use Thunderlabid\Credit\Models\Traits\EventRaiserTrait;
+
 use Thunderlabid\Credit\Models\Traits\Policies\IDRTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\NomorKreditTrait;
 
-use Thunderlabid\Credit\Exceptions\CurrencyException;
-use Thunderlabid\Credit\Exceptions\DuplicateException;
 use Thunderlabid\Credit\Exceptions\IndirectModificationException;
+
 use Validator, Exception;
 
 /**
  * Model Kredit
  *
- * Digunakan untuk menyimpan data nasabah.
+ * Digunakan untuk menyimpan data kredit.
+ * Ketentuan : 
+ * 	- beberapa bisa direct changes, beberapa harus melalui fungsi tersedia (aggregate)
+ * 	- auto generate id (guid)
+ * 	- bisa raise event (eventraiser)
  *
  * @package    Thunderlabid
  * @subpackage Credit
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 class Kredit extends BaseModel
 {
-	// use HistoricalDataTrait;
-	use IDRTrait;
 	use GuidTrait;
+	use EventRaiserTrait;
+
+	use IDRTrait;
 	use TanggalTrait;
 	use NomorKreditTrait;
 	
@@ -70,10 +68,10 @@ class Kredit extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'jenis_kredit'			=> 'max:255',
+											'jenis_kredit'			=> 'in:pa,pt,rumah_delta',
 											'nomor_kredit'			=> 'max:255',
 											'pengajuan_kredit'		=> 'numeric',
-											'jangka_waktu'			=> 'numeric',
+											'jangka_waktu'			=> 'numeric|in:6,10,12,18,24,30,36,42,48,54,60',
 											'status'				=> 'max:255',
 											'credit_kreditur_id'	=> 'max:255',
 											'credit_ro_koperasi_id'	=> 'max:255',
@@ -108,37 +106,92 @@ class Kredit extends BaseModel
     protected $appends 				= ['tanggal_pengajuan'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	public function kreditur()
+
+	/**
+	 * relationship kreditur
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function kreditur()
 	{
 		return $this->belongsTo('Thunderlabid\Credit\Models\Orang', 'credit_kreditur_id');
+	}
+	
+	/**
+	 * relationship jaminan kendaraan
+	 *
+	 * @return Kredit $model
+	 */	
+	public function jaminanKendaraan()
+	{
+		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasKendaraan_A', 'credit_jaminan', 'credit_kredit_id', 'credit_legalitas_kendaraan_id');
+	}
+
+	/**
+	 * relationship jaminan tanah bangunan
+	 *
+	 * @return Kredit $model
+	 */	
+	public function jaminanTanahBangunan()
+	{
+		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasTanahBangunan_A', 'credit_jaminan', 'credit_kredit_id', 'credit_legalitas_tanah_bangunan_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
+	/**
+	 * disable direct set status
+	 *
+	 * @return IndirectModificationException $e
+	 */	
 	protected function setStatusAttribute($value)
 	{
 		throw new IndirectModificationException('status', 1);
 	}
 	
+	/**
+	 * formatting pengajuan kredit menjadi numeric dengan mata uang rupiah
+	 *
+	 * @param string $value ["Rp 200.000.000"]
+	 */	
 	protected function setPengajuanKreditAttribute($value)
 	{
 		$this->attributes['pengajuan_kredit']	= $this->formatMoneyFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+
+	/**
+	 * formatting pengajuan kredit menjadi mata uang rupiah dari numeric
+	 *
+	 * @param numeric $value [200000000]
+	 * @return string $value ["Rp 200.000.000"]
+	 */	
 	protected function getPengajuanKreditAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
 	}
 
+	/**
+	 * formatting pengajuan created_at menjadi tanggal pengajuan
+	 *
+	 * @return string $value ["d/m/Y"]
+	 */	
 	protected function getTanggalPengajuanAttribute()
 	{
 		return $this->formatDateTo($this->created_at);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
+	
+	/**
+	 * fungsi simpan kreditur
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
 	public function SetKreditur($value)
 	{
 		//1. Store kredit
@@ -149,75 +202,83 @@ class Kredit extends BaseModel
 			$kreditur 		= new Orang;
 		}
 
-		$kreditur->fill($value);
+		$kreditur 			= $kreditur->fill($value);
 		$kreditur->save();
-
+		
 		$this->attributes['credit_kreditur_id']	= $kreditur->id;
 
 		return $this;
 	}
-
+	
+	/**
+	 * fungsi simpan koperasi
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
 	public function SetKoperasi($value)
 	{
-		//1. Store kredit
+		//1. Store koperasi
 		$koperasi 			= Koperasi_RO::findornew($value['id']);
-		$koperasi->fill($value);
+		$koperasi 			= $koperasi->fill($value);
 		$koperasi->save();
 
 		$this->attributes['credit_ro_koperasi_id']	= $koperasi->id;
 
 		return $this;
 	}
-
+	
+	/**
+	 * fungsi simpan status terbaru
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
 	public function SetStatus($value)
 	{
-		//1. validating value
-		//1a. Validating if value contain valid variable
-		$rules 			= [
-			'status'		=> 'required|max:255',
-			'petugas.id'	=> 'required|max:255',
-			'petugas.nama'	=> 'required|max:255',
-			'petugas.role'	=> 'required|max:255',
-		];
+		//1. set status
+		$status			= new Status_A;
+		$status->setStatus($this, $value);
 
-		$validator			= Validator::make($value, $rules);
-		if(!$validator->passes())
-		{
-			throw new Exception($validator->messages()->toJson(), 1);
-		}
-
-		//3. simpan status
-		//3a. simpan petugas
-		$petugas			= new Petugas_RO;
-		$petugas_ro			= $petugas->findornew($value['petugas']['id']);
-		$petugas_ro->fill([
-			'id' 	=> $value['petugas']['id'],
-			'nama' 	=> $value['petugas']['nama'],
-			'role' 	=> $value['petugas']['role'],
-		]);
-
-		$petugas_ro->save();
-
-		//3b. simpan value
-		$status_ag		= new Status_A;
-		$status_ag->fill([
-			'status'				=> $value['status'],
-			'credit_ro_petugas_id'	=> $petugas_ro->id,
-			'credit_kredit_id'		=> $this->id
-		]);
-
-		$status_ag->save();
-
-		//4. set this status
+		//2. set this status
 		$this->attributes['status']		= $value['status'];
 
-		//5. fire event
-		$this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
-
-
-		//it's a must to return value
+		//3. it's a must to return value
 		return $this;
 	}
+	
+	/**
+	 * fungsi simpan jaminan kendaraan
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
+	public function tambahJaminanKendaraan($value)
+	{
+		//1. simpan jaminan
+		$jaminan			= new Jaminan_A;
+		$jaminan->tambahJaminanKendaraan($this, $value);
+
+		//2. it's a must to return value
+		return $this;
+	}
+	
+	/**
+	 * fungsi simpan jaminan tanah bangunan
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
+	public function tambahJaminanTanahBangunan($value)
+	{
+		//1. simpan jaminan
+		$jaminan			= new Jaminan_A;
+		$jaminan->tambahJaminanTanahBangunan($this, $value);
+
+		//2. it's a must to return value
+		return $this;
+	}
+
 
 	/**
 	 * boot
@@ -228,13 +289,17 @@ class Kredit extends BaseModel
 	{
 		parent::boot();
 
-        Kredit::observe(new IDObserver());
-        Kredit::observe(new EventObserver());
         Kredit::observe(new KreditObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
 
+	/**
+	 * pencarian berdasarkan status kredit
+	 *
+	 * @param string $variable
+	 * @return Kredit $model
+	 */
 	public function scopeStatus($model, $variable)
 	{
 		if(is_array($variable))
@@ -245,8 +310,36 @@ class Kredit extends BaseModel
 		return $model->where('status', $variable);
 	}
 
+	/**
+	 * pencarian berdasarkan id koperasi
+	 *
+	 * @param string $variable
+	 * @return Kredit $model
+	 */
 	public function scopeKoperasi($model, $variable)
 	{
 		return $model->where('credit_ro_koperasi_id', $variable);
+	}
+
+	/**
+	 * pencarian berdasarkan id koperasi
+	 *
+	 * @param string $variable
+	 * @return Kredit $model
+	 */
+	public function scopeKreditur($model, $variable)
+	{
+		return $model->whereHas('kreditur', function($q)use($variable){return $q->nama($variable);});
+	}
+
+	/**
+	 * pencarian berdasarkan nomor kredit
+	 *
+	 * @param string $variable
+	 * @return Kredit $model
+	 */
+	public function scopeNomorKredit($model, $variable)
+	{
+		return $model->where('nomor_kredit', $variable);
 	}
 }

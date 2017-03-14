@@ -3,20 +3,15 @@
 namespace Thunderlabid\Credit\Models;
 
 /**
- * Used for Visa Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Credit\Models\Observers\Koperasi_ROObserver;
-
-/**
- * Model Visa
+ * Model Koperasi
  *
- * Digunakan untuk menyimpan data nasabah.
+ * Digunakan untuk menyimpan data Koperasi konteks kredit.
+ * 	- bisa berubah kapanpun darimanapun (konteks bebas)
+ * 	- tidak memuat event trait
  *
  * @package    Thunderlabid
  * @subpackage Credit
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 class Koperasi_RO extends BaseModel
 {
@@ -53,6 +48,13 @@ class Koperasi_RO extends BaseModel
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
 
+	/**
+	 * data hidden
+	 *
+	 * @var array
+	 */
+    protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
+    
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -71,8 +73,6 @@ class Koperasi_RO extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
-
-		Koperasi_RO::observe(new Koperasi_ROObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/

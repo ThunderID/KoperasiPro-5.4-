@@ -2,8 +2,6 @@
 
 namespace Thunderlabid\Credit\Models\Observers;
 
-use Thunderlabid\Credit\Models\Pengguna as Model; 
-
 /**
  * Observer Event
  *

@@ -2,12 +2,12 @@
 
 namespace Thunderlabid\Credit\Models\Traits;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Thunderlabid\Credit\Models\Observers\EventObserver;
 
 /**
- * Trait Link list
+ * Trait event raiser
  *
- * Digunakan untuk initizialize link list mode
+ * Digunakan untuk model aggregate root dan aggregate 
  *
  * @package    Thunderlabid
  * @subpackage Credit
@@ -15,11 +15,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
  */
 trait EventRaiserTrait {
  	
-	protected $event_lists = [];
+	protected $event_lists 	= [];
+
+	public static function bootEventRaiserTrait()
+	{
+        static::observe(new EventObserver());
+	}
 
 	/**
 	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+	 * @param array $event_list 
 	 */
 	public function addEvent($event_list)
 	{
@@ -28,7 +33,7 @@ trait EventRaiserTrait {
 			throw new InvalidArgumentException('Parameter 1 must be ShouldQueue');
 		}
 
-		$this->event_lists[] = $event_list;
+		$this->event_lists[] 	= $event_list;
 	}
 
 	/**
@@ -39,7 +44,7 @@ trait EventRaiserTrait {
 	{
 		foreach ($this->event_lists as $event_list)
 		{
-			event($event_list);
+			event(new $event_list($this->toArray()));
 		}
 	}
 }

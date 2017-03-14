@@ -5,19 +5,20 @@ namespace Thunderlabid\Credit\Models\Traits\Policies;
 use Thunderlabid\Credit\Exceptions\NIKException;
 
 /**
- * Trait Link list
+ * Trait Nik
  *
- * Digunakan untuk initizialize link list mode
+ * Disesuaikan dengan policy, hanya menerima nik jawa timur
  *
  * @package    Thunderlabid
  * @subpackage Credit
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 trait NIKTrait {
 
  	/**
-	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+	 * parse & check nik
+	 * @param string $value 
+	 * @return string $value 
 	 */
 	public function formatNikFrom($value)
 	{
@@ -32,8 +33,9 @@ trait NIKTrait {
 	}
 
 	/**
-	 * Add Event_list to queue
-	 * @param [IEvent_list] $event_list 
+	 * reformat nik dari db
+	 * @param string $value 
+	 * @return string $value 
 	 */
 	public function formatNikTo($value)
 	{

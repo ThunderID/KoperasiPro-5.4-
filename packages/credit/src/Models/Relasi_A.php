@@ -2,25 +2,34 @@
 
 namespace Thunderlabid\Credit\Models;
 
+use Thunderlabid\Credit\Models\Traits\GuidTrait;
+use Thunderlabid\Credit\Models\Traits\AggregateTrait;
+
+use Validator, Exception;
+
 /**
- * Model Petugas
+ * Model Relasi_A
  *
- * Digunakan untuk menyimpan data petugas konteks kredit.
- * 	- bisa berubah kapanpun darimanapun (konteks bebas)
- * 	- tidak memuat event trait
+ * Digunakan untuk menyimpan data relasi Orang.
+ * Ketentuan : 
+ * 	- auto generate id (guid)
+ * 	- bisa raise event (eventraiser)
  *
  * @package    Thunderlabid
  * @subpackage Credit
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class Petugas_RO extends BaseModel
+class Relasi_A extends BaseModel
 {
+	use GuidTrait;
+	use AggregateTrait;
+	
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_ro_petugas';
+	protected $table				= 'credit_relasi';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -29,9 +38,10 @@ class Petugas_RO extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'					,
-											'nama'					,
-											'role'					,
+											'id'				,
+											'credit_orang_id'	,
+											'credit_relasi_id'	,
+											'hubungan'			,
 										];
 
 	/**
@@ -40,8 +50,9 @@ class Petugas_RO extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'nama'					=> 'required',
-											'role'					=> 'required',
+											'credit_orang_id'	=> 'required|max:255',
+											'credit_relasi_id'	=> 'required|max:255',
+											'hubungan'			=> 'required|max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -55,8 +66,12 @@ class Petugas_RO extends BaseModel
 	 *
 	 * @var array
 	 */
-    protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
-    
+	protected $hidden				= 	[
+											'created_at', 
+											'updated_at', 
+											'deleted_at', 
+										];
+
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -64,8 +79,39 @@ class Petugas_RO extends BaseModel
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	
+
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
+
+	/**
+	 * menambahkan relasi orang
+	 * 
+	 * @param Orang $orang
+	 * @param array $value
+	 * @return Relasi_A $model
+	 */
+	public function tambahRelasi(Orang $orang, $value)
+	{
+		//1. simpan relasi
+		//1a. simpan  orang
+		$relasi 		= Orang::nik($value['nik'])->first();
+		if(!$relasi)
+		{
+			$relasi	= new Orang;
+		}
+
+		$relasi 		= $relasi->fill($value);
+		$relasi->save();
+
+		//1b. simpan relasi
+		$this->attributes['credit_orang_id']	= $orang->id;
+		$this->attributes['credit_relasi_id']	= $relasi->id;
+		$this->attributes['hubungan']			= $value['hubungan'];
+
+		$this->save();
+
+		//3. it's a must to return value
+		return $this;
+	}
 
 	/**
 	 * boot

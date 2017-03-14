@@ -33,28 +33,9 @@ class DaftarKredit
 	 */
 	public function get($queries = [])
 	{
-		$model 					= $this->model;
-		
-		//1.allow status
-		if(isset($queries['status']))
-		{
-			if(!in_array($queries['status'], $this->statusLists()))
-			{
-				throw new Exception("Forbidden", 1);
-				
-			}
-		}
-		else
-		{
-			$queries['status']	= $this->statusLists();
-		}
-		$model  				= $model->status($queries['status']);
-		
-		//2.allow koperasi
-		$queries['koperasi_id']	= TAuth::activeOffice()['koperasi']['id'];
-		$model  				= $model->koperasi($queries['koperasi_id']);
+		$model 		= $this->queries($queries);
 
-		//3. pagination
+		//2. pagination
 		if(isset($queries['per_page']))
 		{
 			$queries['take']	= $queries['per_page'];
@@ -84,49 +65,23 @@ class DaftarKredit
 	 * 
 	 * @return UserDTODataTransformer $data
 	 */
+	public function detailed($id)
+	{
+		$model 		= $this->model->id($id)->with(['kreditur', 'jaminankendaraan', 'jaminantanahbangunan', 'jaminantanahbangunan.alamat'])->first();
+
+		return $model->toArray();
+	}
+
+	/**
+	 * this function mean keep executing
+	 * @param array $data
+	 * 
+	 * @return UserDTODataTransformer $data
+	 */
 	public function count($queries = [])
 	{
-		$model 					= $this->model;
-		
-		//1.allow status
-		if(isset($queries['status']))
-		{
-			if(!in_array($queries['status'], $this->statusLists()))
-			{
-				throw new Exception("Forbidden", 1);
-				
-			}
-		}
-		else
-		{
-			$queries['status']	= $this->statusLists();
-		}
-		$model  				= $model->status($queries['status']);
-		
-		//2.allow koperasi
-		$queries['koperasi_id']	= TAuth::activeOffice()['koperasi']['id'];
-		$model  				= $model->koperasi($queries['koperasi_id']);
-
-		//3. pagination
-		if(isset($queries['per_page']))
-		{
-			$queries['take']	= $queries['per_page'];
-		}
-		else
-		{
-			$queries['take']	= 15;
-		}
-
-		if(isset($queries['page']))
-		{
-			$queries['skip']	= ($queries['page'] * $queries['take']);
-		}
-		else
-		{
-			$queries['skip']	= 0;
-		}
-		
-		$model  				= $model->skip($queries['skip'])->take($queries['take'])->with(['kreditur'])->count();
+		$model 		= $this->queries($queries);
+		$model		= $model->count();
 
 		return 	$model;
 	}
@@ -157,4 +112,36 @@ class DaftarKredit
 				break;
 		}
 	}
+
+	private function queries($queries)
+	{
+		$model 					= $this->model;
+		
+		//1.allow status
+		if(isset($queries['status']))
+		{
+			if(!in_array($queries['status'], $this->statusLists()))
+			{
+				throw new Exception("Forbidden", 1);
+				
+			}
+		}
+		else
+		{
+			$queries['status']	= $this->statusLists();
+		}
+		$model  				= $model->status($queries['status']);
+		
+		//2.allow koperasi
+		$queries['koperasi_id']	= TAuth::activeOffice()['koperasi']['id'];
+		$model  				= $model->koperasi($queries['koperasi_id']);
+
+		//3.allow kreditur
+		if(isset($queries['kreditur']))
+		{
+			$model  			= $model->kreditur($queries['kreditur']);
+		}
+		
+		return $model;
+	} 
 }

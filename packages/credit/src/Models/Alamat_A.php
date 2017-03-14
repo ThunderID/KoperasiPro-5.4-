@@ -2,25 +2,34 @@
 
 namespace Thunderlabid\Credit\Models;
 
+use Thunderlabid\Credit\Models\Traits\GuidTrait;
+use Thunderlabid\Credit\Models\Traits\AggregateTrait;
+
+use Validator, Exception;
+
 /**
- * Model Petugas
+ * Model Alamat_A
  *
- * Digunakan untuk menyimpan data petugas konteks kredit.
- * 	- bisa berubah kapanpun darimanapun (konteks bebas)
- * 	- tidak memuat event trait
+ * Digunakan untuk menyimpan data alamat
+ * Ketentuan : 
+ * 	- tidak bisa direct changes, tapi harus melalui fungsi tersedia (aggregate)
+ * 	- auto generate id (guid)
  *
  * @package    Thunderlabid
  * @subpackage Credit
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class Petugas_RO extends BaseModel
+class Alamat_A extends BaseModel
 {
+	use GuidTrait;
+	use AggregateTrait;
+	
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_ro_petugas';
+	protected $table				= 'credit_alamat';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -29,19 +38,34 @@ class Petugas_RO extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'					,
-											'nama'					,
-											'role'					,
+											'id'				,
+											'alamat'			,
+											'rt'				,
+											'rw'				,
+											'kelurahan'			,
+											'desa'				,
+											'kecamatan'			,
+											'kabupaten'			,
+											'kota'				,
+											'provinsi'			,
+											'negara'			,
 										];
-
 	/**
 	 * Basic rule of database
 	 *
 	 * @var array
 	 */
 	protected $rules				=	[
-											'nama'					=> 'required',
-											'role'					=> 'required',
+											'alamat'			=> 'max:255',
+											'rt'				=> 'max:255',
+											'rw'				=> 'max:255',
+											'kelurahan'			=> 'max:255',
+											'desa'				=> 'max:255',
+											'kecamatan'			=> 'max:255',
+											'kabupaten'			=> 'max:255',
+											'kota'				=> 'max:255',
+											'provinsi'			=> 'max:255',
+											'negara'			=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -49,22 +73,24 @@ class Petugas_RO extends BaseModel
 	 * @var array
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
-
+	
 	/**
 	 * data hidden
 	 *
 	 * @var array
 	 */
-    protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
-    
+	protected $hidden				= 	[
+											'id', 
+											'created_at', 
+											'updated_at', 
+											'deleted_at', 
+										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
-	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**

@@ -2,35 +2,37 @@
 
 namespace Thunderlabid\Credit\Models;
 
-/**
- * Used for Status_A Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Credit\Models\Observers\IDObserver;
-use Thunderlabid\Credit\Models\Observers\EventObserver;
-use Thunderlabid\Credit\Models\Observers\Status_AObserver;
-
-// use Thunderlabid\Credit\Models\Traits\HistoricalDataTrait;
+use Thunderlabid\Credit\Models\Traits\LogTrait;
 use Thunderlabid\Credit\Models\Traits\GuidTrait;
+use Thunderlabid\Credit\Models\Traits\AggregateTrait;
+use Thunderlabid\Credit\Models\Traits\EventRaiserTrait;
 
-use Thunderlabid\Credit\Exceptions\DuplicateException;
-use Thunderlabid\Credit\Exceptions\IndirectModificationException;
+use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
+
 use Validator, Exception;
 
 /**
- * Model Status_A
+ * Model status
  *
- * Digunakan untuk menyimpan data nasabah.
+ * Digunakan untuk menyimpan data status kredit (log status).
+ * Ketentuan : 
+ * 	- tidak bisa dihapus (Logtrait)
+ * 	- tidak bisa direct changes, tapi harus melalui fungsi tersedia (aggregate)
+ * 	- auto generate id (guid)
+ * 	- bisa raise event (eventraiser)
  *
  * @package    Thunderlabid
  * @subpackage Credit
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 class Status_A extends BaseModel
 {
-	// use HistoricalDataTrait;
+	use LogTrait;
 	use GuidTrait;
+	use AggregateTrait;
+	use EventRaiserTrait;
+
+	use TanggalTrait;
 	
 	/**
 	 * The database table used by the model.
@@ -69,11 +71,36 @@ class Status_A extends BaseModel
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
 
+	/**
+	 * data hidden
+	 *
+	 * @var array
+	 */
+    protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
+	
+	/**
+	 * data accessor
+	 *
+	 * @var array
+	 */
+    protected $appends 				= ['tanggal'];
+	
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+
+	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+	/**
+	 * transform created at as tanggal
+	 *
+	 * @return d/m/Y $value
+	 */	
+	protected function getTanggalAttribute()
+	{
+		return $this->formatDateTo($this->created_at);
+	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
@@ -85,10 +112,52 @@ class Status_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
+	}
 
-        Status_A::observe(new IDObserver());
-        Status_A::observe(new EventObserver());
-        Status_A::observe(new Status_AObserver());
+	/**
+	 * set status kredit
+	 * 
+	 * @param Kredit $kredit
+	 * @param array $value
+	 * @return Status_A $model
+	 */
+	public function SetStatus(Kredit $kredit, $value)
+	{
+		//1. validating value
+		//1a. Validating if value contain valid variable
+		$rules 			= [
+			'status'		=> 'required|max:255',
+			'petugas.id'	=> 'required|max:255',
+			'petugas.nama'	=> 'required|max:255',
+			'petugas.role'	=> 'required|max:255',
+		];
+
+		$validator			= Validator::make($value, $rules);
+		if(!$validator->passes())
+		{
+			throw new Exception($validator->messages()->toJson(), 1);
+		}
+
+		//3. simpan status
+		//3a. simpan petugas
+		$petugas			= new Petugas_RO;
+		$petugas_ro			= $petugas->findornew($value['petugas']['id']);
+		$petugas_ro->fill([
+			'id' 	=> $value['petugas']['id'],
+			'nama' 	=> $value['petugas']['nama'],
+			'role' 	=> $value['petugas']['role'],
+		]);
+
+		$petugas_ro->save();
+
+		//3b. simpan value
+		$this->attributes['status'] 				= $value['status'];
+		$this->attributes['credit_ro_petugas_id'] 	= $petugas_ro->id;
+		$this->attributes['credit_kredit_id'] 		= $kredit->id;
+
+		$this->save();
+
+		return $this;
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
