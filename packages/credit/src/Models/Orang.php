@@ -6,6 +6,7 @@ use Thunderlabid\Credit\Models\Traits\GuidTrait;
 use Thunderlabid\Credit\Models\Traits\EventRaiserTrait;
 
 use Thunderlabid\Credit\Models\Traits\Policies\NIKTrait;
+use Thunderlabid\Credit\Models\Traits\Policies\IDRTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
 
 use Thunderlabid\Credit\Exceptions\DuplicateException;
@@ -30,6 +31,7 @@ class Orang extends BaseModel
 	use EventRaiserTrait;
 
 	use NIKTrait;
+	use IDRTrait;
 	use TanggalTrait;
 	
 	/**
@@ -37,7 +39,7 @@ class Orang extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_orang';
+	protected $table				= 'orang';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -52,6 +54,9 @@ class Orang extends BaseModel
 											'tanggal_lahir'			,
 											'jenis_kelamin'			,
 											'status_perkawinan'		,
+											'telepon'				,
+											'pekerjaan'				,
+											'penghasilan_bersih'	,
 										];
 
 	/**
@@ -66,6 +71,7 @@ class Orang extends BaseModel
 											'tanggal_lahir'			=> 'date_format:"Y-m-d"',
 											'jenis_kelamin'			=> 'in:laki-laki,perempuan',
 											'status_perkawinan'		=> 'in:kawin,belum_kawin,cerai,cerai_mati',
+											'penghasilan_bersih'	=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -82,6 +88,27 @@ class Orang extends BaseModel
     protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	
+	/**
+	 * relationship alamat
+	 *
+	 * @return Orang $model
+	 */	
+	public function alamat()
+	{
+		return $this->belongstomany('Thunderlabid\Credit\Models\Alamat_A', 'alamat_rumah', 'orang_id', 'alamat_id')->withPivot('tipe');
+	}
+
+	
+	/**
+	 * relationship relasi
+	 *
+	 * @return Orang $model
+	 */	
+	public function relasi()
+	{
+		return $this->hasMany('Thunderlabid\Credit\Models\Relasi_A', 'orang_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -121,6 +148,16 @@ class Orang extends BaseModel
 		return $this->formatDateTo($value);
 	}
 
+	/**
+	 * set attribute penghasilan bersih 
+	 *
+	 * @return string $value ["Rp 2.000.000"]
+	 */
+	protected function getPenghasilanBersihAttribute($value)
+	{
+		return $this->formatMoneyTo($value);
+	}
+
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**
@@ -155,11 +192,10 @@ class Orang extends BaseModel
 	 * @param array $value 
 	 * @return Orang $orang 
 	 */	
-	public function tambahTelepon($value)
+	public function setTelepon($value)
 	{
 		//1. simpan telepon
-		$telepon			= new Telepon_A;
-		$telepon->tambahTelepon($this, $value);
+		$this->attributes['telepon']	= $value;
 
 		//2. it's a must to return value
 		return $this;
@@ -171,11 +207,24 @@ class Orang extends BaseModel
 	 * @param array $value 
 	 * @return Orang $orang 
 	 */	
-	public function tambahPekerjaan($value)
+	public function setPekerjaan($value)
 	{
 		//1. simpan pekerjaan
-		$pekerjaan			= new Pekerjaan_A;
-		$pekerjaan->tambahPekerjaan($this, $value);
+		$this->attributes['pekerjaan']	= $value;
+
+		//2. it's a must to return value
+		return $this;
+	}
+
+	/**
+	 * set attribute penghasilan bersih 
+	 *
+	 * @param string $value ["Rp 2.000.000"]
+	 */
+	public function setPenghasilanBersih($value)
+	{
+		//1. simpan penghasilan_bersih
+		$this->attributes['penghasilan_bersih']	= $this->formatMoneyFrom($value);
 
 		//2. it's a must to return value
 		return $this;

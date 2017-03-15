@@ -20,7 +20,7 @@ class Koperasi_RO extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_ro_koperasi';
+	protected $table				= 'ro_koperasi';
 
 	/**
 	 * The attributes that are mass assignable.

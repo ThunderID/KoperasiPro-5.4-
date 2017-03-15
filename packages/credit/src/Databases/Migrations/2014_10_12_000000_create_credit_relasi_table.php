@@ -13,15 +13,17 @@ class CreateCreditRelasiTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_relasi', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('orang_id');
-			$table->string('relasi_id');
-			$table->string('hubungan');
+		Schema::create('relasi', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('orang_id', 255);
+			$table->string('nama', 255);
+			$table->text('alamat');
+			$table->string('telepon', 255);
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->index(['deleted_at', 'hubungan']);
+            $table->primary('id');
+			$table->index(['deleted_at', 'nama']);
 		});
 	}
 
@@ -32,6 +34,6 @@ class CreateCreditRelasiTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_relasi');
+		Schema::dropIfExists('relasi');
 	}
 }

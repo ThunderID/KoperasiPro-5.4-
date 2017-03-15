@@ -29,7 +29,7 @@ class Relasi_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_relasi';
+	protected $table				= 'relasi';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -39,9 +39,10 @@ class Relasi_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'				,
-											'credit_orang_id'	,
-											'credit_relasi_id'	,
-											'hubungan'			,
+											'orang_id'			,
+											'nama'				,
+											'alamat'			,
+											'telepon'			,
 										];
 
 	/**
@@ -50,9 +51,11 @@ class Relasi_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'credit_orang_id'	=> 'required|max:255',
-											'credit_relasi_id'	=> 'required|max:255',
-											'hubungan'			=> 'required|max:255',
+											'orang_id'			=> 'required|max:255',
+											'relasi_id'			=> 'required|max:255',
+											'nama'				=> 'required|max:255',
+											'alamat'			=> 'max:255',
+											'telepon'			=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -103,9 +106,10 @@ class Relasi_A extends BaseModel
 		$relasi->save();
 
 		//1b. simpan relasi
-		$this->attributes['credit_orang_id']	= $orang->id;
-		$this->attributes['credit_relasi_id']	= $relasi->id;
-		$this->attributes['hubungan']			= $value['hubungan'];
+		$this->attributes['relasi_id']			= $relasi->id;
+		$this->attributes['nama']				= $value['nama'];
+		$this->attributes['alamat']				= $value['alamat'];
+		$this->attributes['telepon']			= $value['telepon'];
 
 		$this->save();
 

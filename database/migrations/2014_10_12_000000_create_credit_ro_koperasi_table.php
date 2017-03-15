@@ -13,11 +13,13 @@ class CreateCreditRoKoperasiTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_ro_koperasi', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('nama');
+		Schema::create('ro_koperasi', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('nama', 255);
 			$table->timestamps();
 			$table->softDeletes();
+         
+            $table->primary('id');
 		});
 	}
 
@@ -28,6 +30,6 @@ class CreateCreditRoKoperasiTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_ro_koperasi');
+		Schema::dropIfExists('ro_koperasi');
 	}
 }

@@ -20,7 +20,7 @@ class Petugas_RO extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_ro_petugas';
+	protected $table				= 'ro_petugas';
 
 	/**
 	 * The attributes that are mass assignable.

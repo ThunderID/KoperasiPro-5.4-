@@ -13,22 +13,22 @@ class CreateCreditKreditTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_kredit', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('jenis_kredit');
-			$table->string('nomor_kredit');
+		Schema::create('kredit', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('jenis_kredit', 255);
+			$table->string('nomor_kredit', 255);
 			$table->double('pengajuan_kredit');
 			$table->integer('jangka_waktu');
-			$table->string('status');
-			$table->string('credit_kreditur_id');
-			$table->string('credit_ro_koperasi_id');
-			$table->string('credit_mobile_id')->nullable();
+			$table->string('status', 255);
+			$table->string('kreditur_id', 255);
+			$table->string('ro_koperasi_id', 255);
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'status']);
-			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'nomor_kredit']);
-			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'created_at']);
+            $table->primary('id');
+			$table->index(['deleted_at', 'ro_koperasi_id', 'status']);
+			$table->index(['deleted_at', 'ro_koperasi_id', 'nomor_kredit']);
+			$table->index(['deleted_at', 'ro_koperasi_id', 'created_at']);
 		});
 	}
 
@@ -39,6 +39,6 @@ class CreateCreditKreditTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_kredit');
+		Schema::dropIfExists('kredit');
 	}
 }

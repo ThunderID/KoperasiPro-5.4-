@@ -29,7 +29,7 @@ class Alamat_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_alamat';
+	protected $table				= 'alamat';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -42,11 +42,9 @@ class Alamat_A extends BaseModel
 											'alamat'			,
 											'rt'				,
 											'rw'				,
-											'kelurahan'			,
 											'desa'				,
-											'kecamatan'			,
-											'kabupaten'			,
-											'kota'				,
+											'distrik'			,
+											'regensi'			,
 											'provinsi'			,
 											'negara'			,
 										];
@@ -59,11 +57,9 @@ class Alamat_A extends BaseModel
 											'alamat'			=> 'max:255',
 											'rt'				=> 'max:255',
 											'rw'				=> 'max:255',
-											'kelurahan'			=> 'max:255',
 											'desa'				=> 'max:255',
-											'kecamatan'			=> 'max:255',
-											'kabupaten'			=> 'max:255',
-											'kota'				=> 'max:255',
+											'distrik'			=> 'max:255',
+											'regensi'			=> 'max:255',
 											'provinsi'			=> 'max:255',
 											'negara'			=> 'max:255',
 										];

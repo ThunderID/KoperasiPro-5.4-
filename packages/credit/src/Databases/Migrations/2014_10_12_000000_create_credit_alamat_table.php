@@ -13,23 +13,22 @@ class CreateCreditAlamatTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_alamat', function (Blueprint $table) {
-			$table->string('id');
+		Schema::create('alamat', function (Blueprint $table) {
+			$table->string('id', 255);
 			$table->text('alamat');
-			$table->string('rt')->nullable();
-			$table->string('rw')->nullable();
-			$table->string('kelurahan')->nullable();
-			$table->string('desa')->nullable();
-			$table->string('kecamatan')->nullable();
-			$table->string('kabupaten')->nullable();
-			$table->string('kota')->nullable();
-			$table->string('provinsi')->nullable();
-			$table->string('negara')->nullable();
+			$table->string('rt', 255)->nullable();
+			$table->string('rw', 255)->nullable();
+			$table->string('desa', 255)->nullable();
+			$table->string('distrik', 255)->nullable();
+			$table->string('regensi', 255)->nullable();
+			$table->string('provinsi', 255)->nullable();
+			$table->string('negara', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->index(['deleted_at', 'kota', 'alamat']);
-			$table->index(['deleted_at', 'kabupaten', 'alamat']);
+            $table->primary('id');
+			$table->index(['deleted_at', 'distrik']);
+			$table->index(['deleted_at', 'regensi']);
 		});
 	}
 
@@ -40,6 +39,6 @@ class CreateCreditAlamatTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_alamat');
+		Schema::dropIfExists('alamat');
 	}
 }

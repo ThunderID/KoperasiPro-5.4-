@@ -13,16 +13,24 @@ class CreateCreditOrangTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_orang', function (Blueprint $table) {
-			$table->string('id');
+		Schema::create('orang', function (Blueprint $table) {
+			$table->string('id', 255);
 			$table->boolean('is_ektp');
-			$table->string('nik');
-			$table->string('nama');
+			$table->string('foto_ktp', 255)->nullable();
+			$table->string('nik', 255);
+			$table->string('nama', 255);
 			$table->date('tanggal_lahir');
 			$table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-			$table->string('status_perkawinan');
+			$table->string('status_perkawinan', 255);
+			$table->string('telepon', 255)->nullable();
+			$table->string('pekerjaan', 255)->nullable();
+			$table->double('penghasilan_bersih')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+            $table->primary('id');
+			$table->index(['deleted_at', 'nama']);
+			$table->index(['deleted_at', 'nik']);
 		});
 	}
 
@@ -33,6 +41,6 @@ class CreateCreditOrangTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_orang');
+		Schema::dropIfExists('orang');
 	}
 }

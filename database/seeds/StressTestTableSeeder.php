@@ -9,19 +9,17 @@ class StressTestTableSeeder extends Seeder
 {
 	public function run()
 	{
-		// DB::table('credit_kredit')->truncate();
-		// DB::table('credit_orang')->truncate();
-		// DB::table('credit_relasi')->truncate();
-		// DB::table('credit_pekerjaan')->truncate();
-		// DB::table('credit_telepon')->truncate();
-		// DB::table('credit_alamat_rumah')->truncate();
-		// DB::table('credit_alamat')->truncate();
-		// DB::table('credit_legalitas_tanah_bangunan')->truncate();
-		// DB::table('credit_legalitas_kendaraan')->truncate();
-		// DB::table('credit_jaminan')->truncate();
-		// DB::table('credit_ro_koperasi')->truncate();
-		// DB::table('credit_ro_petugas')->truncate();
-		// DB::table('credit_status')->truncate();
+		DB::table('kredit')->truncate();
+		DB::table('orang')->truncate();
+		DB::table('relasi')->truncate();
+		DB::table('alamat_rumah')->truncate();
+		DB::table('alamat')->truncate();
+		DB::table('legalitas_tanah_bangunan')->truncate();
+		DB::table('legalitas_kendaraan')->truncate();
+		DB::table('jaminan')->truncate();
+		DB::table('ro_koperasi')->truncate();
+		DB::table('ro_petugas')->truncate();
+		DB::table('status')->truncate();
 
 		$jk   		= ['pa', 'pt', 'rumah_delta'];
 		$gndr   	= ['perempuan', 'laki-laki'];
@@ -87,7 +85,7 @@ class StressTestTableSeeder extends Seeder
 							'alamat'			=> $faker->address,
 							'rt'				=> '00'.rand(0,9),
 							'rw'				=> '00'.rand(0,9),
-							'kabupaten'			=> $kab[rand(0,28)],
+							'regensi'			=> $kab[rand(0,28)],
 							'provinsi'			=> 'Jawa Timur',
 							'negara'			=> 'Indonesia',
 						],

@@ -13,15 +13,16 @@ class CreateCreditJaminanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_jaminan', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('credit_kredit_id');
-			$table->string('credit_legalitas_kendaraan_id')->nullable();
-			$table->string('credit_legalitas_tanah_bangunan_id')->nullable();
+		Schema::create('jaminan', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('kredit_id', 255);
+			$table->string('legalitas_kendaraan_id', 255)->nullable();
+			$table->string('legalitas_tanah_bangunan_id', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->index(['deleted_at', 'credit_kredit_id']);
+            $table->primary('id');
+			$table->index(['deleted_at', 'kredit_id']);
 		});
 	}
 
@@ -32,6 +33,6 @@ class CreateCreditJaminanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_jaminan');
+		Schema::dropIfExists('jaminan');
 	}
 }

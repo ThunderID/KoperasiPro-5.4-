@@ -13,14 +13,16 @@ class CreateCreditAlamatRumahTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_alamat_rumah', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('credit_orang_id');
-			$table->string('credit_alamat_id');
+		Schema::create('alamat_rumah', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('orang_id', 255);
+			$table->string('alamat_id', 255);
+			$table->string('tipe', 255);
 			$table->timestamps();
 			$table->softDeletes();
 
-            $table->index(['deleted_at', 'credit_orang_id']);
+            $table->primary('id');
+            $table->index(['deleted_at', 'orang_id']);
 		});
 	}
 
@@ -31,6 +33,6 @@ class CreateCreditAlamatRumahTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_alamat_rumah');
+		Schema::dropIfExists('alamat_rumah');
 	}
 }

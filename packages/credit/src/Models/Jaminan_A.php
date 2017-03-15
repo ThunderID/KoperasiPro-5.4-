@@ -29,7 +29,7 @@ class Jaminan_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_jaminan';
+	protected $table				= 'jaminan';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -39,9 +39,9 @@ class Jaminan_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'									,
-											'credit_kredit_id'						,
-											'credit_legalitas_kendaraan_id'			,
-											'credit_legalitas_tanah_bangunan_id'	,
+											'kredit_id'						,
+											'legalitas_kendaraan_id'			,
+											'legalitas_tanah_bangunan_id'	,
 										];
 
 	/**
@@ -50,9 +50,9 @@ class Jaminan_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'credit_kredit_id'						=> 'max:255',
-											'credit_legalitas_kendaraan_id'			=> 'max:255',
-											'credit_legalitas_tanah_bangunan_id'	=> 'max:255',
+											'kredit_id'						=> 'max:255',
+											'legalitas_kendaraan_id'			=> 'max:255',
+											'legalitas_tanah_bangunan_id'	=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -108,8 +108,8 @@ class Jaminan_A extends BaseModel
 		$jaminan_kendaraan 		= $jaminan_kendaraan->setJaminan($this, $value);
 
 		//2b. simpan jaminan
-		$this->attributes['credit_kredit_id']				= $kredit->id;
-		$this->attributes['credit_legalitas_kendaraan_id']	= $jaminan_kendaraan->id;
+		$this->attributes['kredit_id']				= $kredit->id;
+		$this->attributes['legalitas_kendaraan_id']	= $jaminan_kendaraan->id;
 
 		$this->save();
 
@@ -140,7 +140,7 @@ class Jaminan_A extends BaseModel
 			throw new Exception("Invalid nomor bpkb", 1);
 		}
 
-		$data 					=  Jaminan_A::where('credit_kredit_id', $kredit->id)->where('credit_legalitas_kendaraan_id', $jaminan_kendaraan->id)->first();
+		$data 					=  Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_kendaraan_id', $jaminan_kendaraan->id)->first();
 
 		if(!$data)
 		{
@@ -176,7 +176,7 @@ class Jaminan_A extends BaseModel
 			throw new Exception("Invalid nomor bpkb", 1);
 		}
 
-		$data 						= Jaminan_A::where('credit_kredit_id', $kredit->id)->where('credit_legalitas_tanah_bangunan_id', $jaminan_t_bangunan->id)->first();
+		$data 						= Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_tanah_bangunan_id', $jaminan_t_bangunan->id)->first();
 
 		if(!$data)
 		{
@@ -215,8 +215,8 @@ class Jaminan_A extends BaseModel
 		$jaminan_t_bangunan 		= $jaminan_t_bangunan->setJaminan($this, $value);
 
 		//2b. simpan jaminan
-		$this->attributes['credit_kredit_id']					= $kredit->id;
-		$this->attributes['credit_legalitas_tanah_bangunan_id']	= $jaminan_t_bangunan->id;
+		$this->attributes['kredit_id']						= $kredit->id;
+		$this->attributes['legalitas_tanah_bangunan_id']	= $jaminan_t_bangunan->id;
 
 		$this->save();
 

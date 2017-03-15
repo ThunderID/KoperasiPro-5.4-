@@ -13,12 +13,14 @@ class CreateCreditRoPetugasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_ro_petugas', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('nama');
-			$table->string('role');
+		Schema::create('ro_petugas', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('nama', 255);
+			$table->string('role', 255);
 			$table->timestamps();
 			$table->softDeletes();
+			
+            $table->primary('id');
 		});
 	}
 
@@ -29,6 +31,6 @@ class CreateCreditRoPetugasTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_ro_petugas');
+		Schema::dropIfExists('ro_petugas');
 	}
 }

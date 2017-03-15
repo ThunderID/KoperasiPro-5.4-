@@ -42,7 +42,7 @@ class Kredit extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_kredit';
+	protected $table				= 'kredit';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -57,9 +57,8 @@ class Kredit extends BaseModel
 											'pengajuan_kredit'		,
 											'jangka_waktu'			,
 											'status'				,
-											'credit_kreditur_id'	,
-											'credit_ro_koperasi_id'	,
-											'credit_mobile_id'		,
+											'kreditur_id'	,
+											'ro_koperasi_id'	,
 										];
 
 	/**
@@ -73,9 +72,8 @@ class Kredit extends BaseModel
 											'pengajuan_kredit'		=> 'numeric',
 											'jangka_waktu'			=> 'numeric|in:6,10,12,18,24,30,36,42,48,54,60',
 											'status'				=> 'max:255',
-											'credit_kreditur_id'	=> 'max:255',
-											'credit_ro_koperasi_id'	=> 'max:255',
-											'credit_mobile_id'		=> 'max:255',
+											'kreditur_id'	=> 'max:255',
+											'ro_koperasi_id'	=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -93,9 +91,8 @@ class Kredit extends BaseModel
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 
-											'credit_kreditur_id', 
-											'credit_ro_koperasi_id', 
-											'credit_mobile_id'
+											'kreditur_id', 
+											'ro_koperasi_id', 
 										];
 
 	/**
@@ -114,7 +111,7 @@ class Kredit extends BaseModel
 	 */	
  	public function kreditur()
 	{
-		return $this->belongsTo('Thunderlabid\Credit\Models\Orang', 'credit_kreditur_id');
+		return $this->belongsTo('Thunderlabid\Credit\Models\Orang', 'kreditur_id');
 	}
 	
 	/**
@@ -124,7 +121,7 @@ class Kredit extends BaseModel
 	 */	
 	public function jaminanKendaraan()
 	{
-		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasKendaraan_A', 'credit_jaminan', 'credit_kredit_id', 'credit_legalitas_kendaraan_id');
+		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasKendaraan_A', 'jaminan', 'kredit_id', 'legalitas_kendaraan_id');
 	}
 
 	/**
@@ -134,7 +131,7 @@ class Kredit extends BaseModel
 	 */	
 	public function jaminanTanahBangunan()
 	{
-		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasTanahBangunan_A', 'credit_jaminan', 'credit_kredit_id', 'credit_legalitas_tanah_bangunan_id');
+		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasTanahBangunan_A', 'jaminan', 'kredit_id', 'legalitas_tanah_bangunan_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -205,7 +202,7 @@ class Kredit extends BaseModel
 		$kreditur 			= $kreditur->fill($value);
 		$kreditur->save();
 		
-		$this->attributes['credit_kreditur_id']	= $kreditur->id;
+		$this->attributes['kreditur_id']	= $kreditur->id;
 
 		return $this;
 	}
@@ -223,7 +220,7 @@ class Kredit extends BaseModel
 		$koperasi 			= $koperasi->fill($value);
 		$koperasi->save();
 
-		$this->attributes['credit_ro_koperasi_id']	= $koperasi->id;
+		$this->attributes['ro_koperasi_id']	= $koperasi->id;
 
 		return $this;
 	}
@@ -351,7 +348,7 @@ class Kredit extends BaseModel
 	 */
 	public function scopeKoperasi($model, $variable)
 	{
-		return $model->where('credit_ro_koperasi_id', $variable);
+		return $model->where('ro_koperasi_id', $variable);
 	}
 
 	/**

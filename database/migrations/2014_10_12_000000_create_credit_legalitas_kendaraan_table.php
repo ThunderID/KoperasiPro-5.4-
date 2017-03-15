@@ -13,15 +13,18 @@ class CreateCreditLegalitasKendaraanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_legalitas_kendaraan', function (Blueprint $table) {
-			$table->string('id');
-			$table->string('tipe');
-			$table->string('merk');
+		Schema::create('legalitas_kendaraan', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('tipe', 255);
+			$table->string('merk', 255);
 			$table->integer('tahun');
-			$table->string('nomor_bpkb');
-			$table->string('atas_nama');
+			$table->string('nomor_bpkb', 255);
+			$table->string('atas_nama', 255);
 			$table->timestamps();
 			$table->softDeletes();
+
+            $table->primary('id');
+			$table->index(['deleted_at', 'nomor_bpkb']);
 		});
 	}
 
@@ -32,6 +35,6 @@ class CreateCreditLegalitasKendaraanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_legalitas_kendaraan');
+		Schema::dropIfExists('legalitas_kendaraan');
 	}
 }

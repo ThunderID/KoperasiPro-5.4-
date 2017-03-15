@@ -32,7 +32,7 @@ class LegalitasKendaraan_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_legalitas_kendaraan';
+	protected $table				= 'legalitas_kendaraan';
 
 	/**
 	 * The attributes that are mass assignable.

@@ -29,7 +29,7 @@ class AlamatRumah_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_alamat_rumah';
+	protected $table				= 'alamat_rumah';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -39,8 +39,9 @@ class AlamatRumah_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'				,
-											'credit_orang_id'	,
-											'credit_alamat_id'	,
+											'orang_id'			,
+											'alamat_id'			,
+											'tipe'				,
 										];
 
 	/**
@@ -49,8 +50,8 @@ class AlamatRumah_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'credit_orang_id'	=> 'required|max:255',
-											'credit_alamat_id'	=> 'required|max:255',
+											'orang_id'	=> 'required|max:255',
+											'alamat_id'	=> 'required|max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -97,8 +98,9 @@ class AlamatRumah_A extends BaseModel
 		$alamat->save();
 
 		//1b. simpan alamat
-		$this->attributes['credit_orang_id']	= $orang->id;
-		$this->attributes['credit_alamat_id']	= $alamat->id;
+		$this->attributes['orang_id']			= $orang->id;
+		$this->attributes['alamat_id']			= $alamat->id;
+		$this->attributes['tipe']				= $value['tipe'];
 
 		$this->save();
 

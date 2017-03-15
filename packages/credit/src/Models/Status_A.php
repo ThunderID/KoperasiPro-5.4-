@@ -39,7 +39,7 @@ class Status_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'credit_status';
+	protected $table				= 'status';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -50,8 +50,8 @@ class Status_A extends BaseModel
 	protected $fillable				=	[
 											'id'					,
 											'status'				,
-											'credit_kredit_id'		,
-											'credit_ro_petugas_id'	,
+											'kredit_id'				,
+											'ro_petugas_id'			,
 										];
 
 	/**
@@ -61,8 +61,8 @@ class Status_A extends BaseModel
 	 */
 	protected $rules				=	[
 											'status'				=> 'max:255',
-											'credit_kredit_id'		=> 'max:255',
-											'credit_ro_petugas_id'	=> 'max:255',
+											'kredit_id'				=> 'max:255',
+											'ro_petugas_id'			=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -152,8 +152,8 @@ class Status_A extends BaseModel
 
 		//3b. simpan value
 		$this->attributes['status'] 				= $value['status'];
-		$this->attributes['credit_ro_petugas_id'] 	= $petugas_ro->id;
-		$this->attributes['credit_kredit_id'] 		= $kredit->id;
+		$this->attributes['ro_petugas_id'] 			= $petugas_ro->id;
+		$this->attributes['kredit_id'] 				= $kredit->id;
 
 		$this->save();
 
