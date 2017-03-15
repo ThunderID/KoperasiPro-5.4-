@@ -38,7 +38,7 @@ class StressTestTableSeeder extends Seeder
 	
 		$kab 		= ['Banyuwangi', 'Gresik', 'Kediri', 'Lamongan', 'Magetan', 'malang', 'Mojokerto', 'Pamekasan', 'Pasuruan', 'Ponorogo', 'Situbondo', 'Sumenep', 'Tuban', 'Bangkalan', 'Bondowoso', 'Jember', 'Ngawi', 'Pacitan', 'Sampang', 'tulungagung', 'Blitar', 'Bojonegoro', 'Jombang', 'Lumajang', 'Madiun', 'Nganjuk', 'Probolinggo', 'Sidoarjo', 'Trenggalek'];
 
-		foreach (range(0, 99999) as $key) 
+		foreach (range(0, 29999) as $key) 
 		{
 			$kredit	= [
 					'pengajuan_kredit'	=> 'Rp '.rand(10,100).'.000.000',

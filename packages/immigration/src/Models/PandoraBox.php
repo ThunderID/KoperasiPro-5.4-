@@ -2,32 +2,31 @@
 
 namespace Thunderlabid\Immigration\Models;
 
-/**
- * Used for Visa Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Immigration\Models\Traits\Policies\VisaIDTrait;
+use Thunderlabid\Immigration\Models\Traits\GuidTrait;
+
+use Thunderlabid\Immigration\Exceptions\DuplicateException;
+
+use Hash, Validator, Exception;
 
 /**
- * Model Visa
+ * Model PandoraBox
  *
  * Digunakan untuk menyimpan data nasabah.
  *
  * @package    Thunderlabid
  * @subpackage Immigration
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
-class Visa_A extends BaseModel
+class PandoraBox extends BaseModel
 {
-	use VisaIDTrait;
+	use GuidTrait;
 	
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table				= 'immigration_visa';
+	protected $table				= 'immigration_pandora_box';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -36,10 +35,11 @@ class Visa_A extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'							,
-											'role'							,
-											'immigration_ro_koperasi_id'	,
-											'immigration_pengguna_id'		,
+											'id'					,
+											'key'					,
+											'secret'				,
+											'jenis'					,
+											'versi'					,
 										];
 
 	/**
@@ -48,9 +48,10 @@ class Visa_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'role'							=> 'required',
-											'immigration_ro_koperasi_id'	=> 'required',
-											'immigration_pengguna_id'		=> 'required',
+											'key'					=> 'required',
+											'secret'				=> 'min:6',
+											'jenis'					=> 'in:mobile',
+											'versi'					=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -60,16 +61,32 @@ class Visa_A extends BaseModel
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	public function koperasi()
-	{
-		return $this->belongsTo('Thunderlabid\Immigration\Models\Koperasi_RO', 'immigration_ro_koperasi_id');
-	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
-	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+
+	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+	protected function setKeyAttribute($value)
+	{
+		$exists 					= PandoraBox::key($value)->notid($this->id)->first();
+		if($exists)
+		{
+			throw new DuplicateException("key", 1);
+		}
+
+		$this->attributes['key'] 	= $value;
+	}
+
+	protected function setSecretAttribute($value)
+	{
+		if(Hash::needsRehash($value))
+		{
+			$value 					= Hash::make($value);
+		}
+
+        $this->attributes['secret'] = $value;
+	}
 	
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
@@ -84,4 +101,9 @@ class Visa_A extends BaseModel
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeKey($model, $variable)
+	{
+		return $model->where('key', $variable);
+	}
 }

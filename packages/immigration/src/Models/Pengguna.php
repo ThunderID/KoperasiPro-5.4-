@@ -2,20 +2,10 @@
 
 namespace Thunderlabid\Immigration\Models;
 
-/**
- * Used for Pengguna Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Immigration\Models\Observers\IDObserver;
-use Thunderlabid\Immigration\Models\Observers\EventObserver;
-use Thunderlabid\Immigration\Models\Observers\PenggunaObserver;
-
-// use Thunderlabid\Immigration\Models\Traits\HistoricalDataTrait;
 use Thunderlabid\Immigration\Models\Traits\GuidTrait;
 
 use Thunderlabid\Immigration\Exceptions\DuplicateException;
-use Thunderlabid\Immigration\Exceptions\IndirectModificationException;
+
 use Hash, Validator, Exception;
 
 /**
@@ -25,11 +15,10 @@ use Hash, Validator, Exception;
  *
  * @package    Thunderlabid
  * @subpackage Immigration
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 class Pengguna extends BaseModel
 {
-	// use HistoricalDataTrait;
 	use GuidTrait;
 	
 	/**
@@ -50,7 +39,6 @@ class Pengguna extends BaseModel
 											'email'					,
 											'password'				,
 											'nama'					,
-											// 'visas'					,
 										];
 
 	/**
@@ -62,10 +50,6 @@ class Pengguna extends BaseModel
 											'email'					=> 'required|email',
 											'password'				=> 'min:6',
 											'nama'					=> 'max:255',
-											// 'visas.*.id'			=> 'required|max:255',
-											// 'visas.*.koperasi.id'	=> 'required|max:255',
-											// 'visas.*.koperasi.nama'	=> 'required|max:255',
-											// 'visas.*.role'			=> 'required|max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -82,6 +66,8 @@ class Pengguna extends BaseModel
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
+	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 	protected function setPasswordAttribute($value)
 	{
@@ -90,7 +76,18 @@ class Pengguna extends BaseModel
 			$value 					= Hash::make($value);
 		}
 
-        $this->attributes['password'] = $value;
+		$this->attributes['password'] = $value;
+	}
+
+	protected function setEmailAttribute($value)
+	{
+		$exists 					= Pengguna::email($value)->notid($this->id)->first();
+		if($exists)
+		{
+			throw new DuplicateException("email", 1);
+		}
+
+		$this->attributes['email'] 	= $value;
 	}
 	
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
@@ -173,10 +170,6 @@ class Pengguna extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
-
-        Pengguna::observe(new IDObserver());
-        Pengguna::observe(new EventObserver());
-        Pengguna::observe(new PenggunaObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/

@@ -3,9 +3,9 @@
 namespace Thunderlabid\Credit\Models\Traits;
 
 /**
- * Trait Link list
+ * Guid trait to generate id
  *
- * Digunakan untuk initizialize link list mode
+ * Digunakan untuk always true entity
  *
  * @package    Thunderlabid
  * @subpackage Credit
