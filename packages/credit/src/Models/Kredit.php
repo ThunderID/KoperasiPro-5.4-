@@ -262,7 +262,40 @@ class Kredit extends BaseModel
 		//2. it's a must to return value
 		return $this;
 	}
-	
+		
+	/**
+	 * fungsi hapus jaminan kendaraan
+	 *
+	 * @param array $nomor_bpkb 
+	 * @return Kredit $kredit 
+	 */	
+	public function hapusJaminanKendaraan($nomor_bpkb)
+	{
+		//1. hapus jaminan
+		$jaminan			= new Jaminan_A;
+		$jaminan->hapusJaminanKendaraan($this, $nomor_bpkb);
+
+		//2. it's a must to return nomor_bpkb
+		return $this;
+	}
+		
+	/**
+	 * fungsi hapus jaminan tanah bangunan
+	 *
+	 * @param array $nomor_sertifikat 
+	 * @return Kredit $kredit 
+	 */	
+	public function hapusJaminanTanahBangunan($nomor_sertifikat)
+	{
+		//1. hapus jaminan
+		$jaminan			= new Jaminan_A;
+		$jaminan->hapusJaminanTanahBangunan($this, $nomor_sertifikat);
+
+		//2. it's a must to return nomor_sertifikat
+		return $this;
+	}
+
+
 	/**
 	 * fungsi simpan jaminan tanah bangunan
 	 *

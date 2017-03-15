@@ -22,6 +22,8 @@ class CreateCreditLegalitasKendaraanTable extends Migration
 			$table->string('atas_nama');
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'nomor_bpkb']);
 		});
 	}
 

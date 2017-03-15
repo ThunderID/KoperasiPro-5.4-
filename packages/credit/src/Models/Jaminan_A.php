@@ -118,6 +118,78 @@ class Jaminan_A extends BaseModel
 	}
 
 	/**
+	 * menghapus jaminan kendaraan
+	 * 
+	 * @param Kredit $kredit
+	 * @param string $value
+	 * @return Jaminan_A $model
+	 */
+	public function hapusJaminanKendaraan(Kredit $kredit, $nomor_bpkb)
+	{
+		//1. jaminan hanya bisa dihapus ketika status pengajuan
+		if(!in_array($kredit->status, ['pengajuan']))
+		{
+			throw new Exception("Hanya bisa menghapus jaminan dari kredit yang belum diajukan", 1);
+		}
+
+		//2. hapus jaminan
+		//2a. hapus jaminan kendaraan
+		$jaminan_kendaraan 		= LegalitasKendaraan_A::nomorbpkb($nomor_bpkb)->first();
+		if(!$jaminan_kendaraan)
+		{
+			throw new Exception("Invalid nomor bpkb", 1);
+		}
+
+		$data 					=  Jaminan_A::where('credit_kredit_id', $kredit->id)->where('credit_legalitas_kendaraan_id', $jaminan_kendaraan->id)->first();
+
+		if(!$data)
+		{
+			throw new Exception("Invalid kredit", 1);
+		}
+
+		$data->delete();
+
+		//3. it's a must to return value
+		return $data;
+	}
+
+	/**
+	 * menghapus jaminan tanah dan bangunan
+	 * 
+	 * @param Kredit $kredit
+	 * @param string $nomor_sertifikat
+	 * @return Jaminan_A $model
+	 */
+	public function hapusJaminanTanahBangunan(Kredit $kredit, $nomor_sertifikat)
+	{
+		//1. jaminan hanya bisa dihapus ketika status pengajuan
+		if(!in_array($kredit->status, ['pengajuan']))
+		{
+			throw new Exception("Hanya bisa menghapus jaminan dari kredit yang belum diajukan", 1);
+		}
+
+		//2. hapus jaminan
+		//2a. hapus jaminan tanah dan bangunan
+		$jaminan_t_bangunan 		= LegalitasTanahBangunan_A::nomorsertifikat($nomor_sertifikat)->first();
+		if(!$jaminan_t_bangunan)
+		{
+			throw new Exception("Invalid nomor bpkb", 1);
+		}
+
+		$data 						= Jaminan_A::where('credit_kredit_id', $kredit->id)->where('credit_legalitas_tanah_bangunan_id', $jaminan_t_bangunan->id)->first();
+
+		if(!$data)
+		{
+			throw new Exception("Invalid kredit", 1);
+		}
+
+		$data->delete();
+
+		//3. it's a must to return nomor_sertifikat
+		return $data;
+	}
+
+	/**
 	 * menambahkan jaminan tanah dan bangunan
 	 * 
 	 * @param Kredit $kredit

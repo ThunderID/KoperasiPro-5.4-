@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(StressTestTableSeeder::class);
+        // $this->call(StressTestTableSeeder::class);
+        $this->call(IndonesiaTableSeeder::class);
     }
 }

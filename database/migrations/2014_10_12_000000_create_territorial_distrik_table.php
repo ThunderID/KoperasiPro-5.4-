@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCreditRelasiTable extends Migration
+class CreateTerritorialDistrikTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,15 +13,12 @@ class CreateCreditRelasiTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('credit_relasi', function (Blueprint $table) {
+		Schema::create('territorial_distrik', function (Blueprint $table) {
 			$table->string('id');
-			$table->string('orang_id');
-			$table->string('relasi_id');
-			$table->string('hubungan');
+			$table->string('territorial_regensi_id');
+			$table->string('nama');
 			$table->timestamps();
 			$table->softDeletes();
-
-			$table->index(['deleted_at', 'hubungan']);
 		});
 	}
 
@@ -32,6 +29,6 @@ class CreateCreditRelasiTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('credit_relasi');
+		Schema::dropIfExists('territorial_distrik');
 	}
 }

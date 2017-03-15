@@ -9,19 +9,19 @@ class StressTestTableSeeder extends Seeder
 {
 	public function run()
 	{
-		DB::table('credit_kredit')->truncate();
-		DB::table('credit_orang')->truncate();
-		DB::table('credit_relasi')->truncate();
-		DB::table('credit_pekerjaan')->truncate();
-		DB::table('credit_telepon')->truncate();
-		DB::table('credit_alamat_rumah')->truncate();
-		DB::table('credit_alamat')->truncate();
-		DB::table('credit_legalitas_tanah_bangunan')->truncate();
-		DB::table('credit_legalitas_kendaraan')->truncate();
-		DB::table('credit_jaminan')->truncate();
-		DB::table('credit_ro_koperasi')->truncate();
-		DB::table('credit_ro_petugas')->truncate();
-		DB::table('credit_status')->truncate();
+		// DB::table('credit_kredit')->truncate();
+		// DB::table('credit_orang')->truncate();
+		// DB::table('credit_relasi')->truncate();
+		// DB::table('credit_pekerjaan')->truncate();
+		// DB::table('credit_telepon')->truncate();
+		// DB::table('credit_alamat_rumah')->truncate();
+		// DB::table('credit_alamat')->truncate();
+		// DB::table('credit_legalitas_tanah_bangunan')->truncate();
+		// DB::table('credit_legalitas_kendaraan')->truncate();
+		// DB::table('credit_jaminan')->truncate();
+		// DB::table('credit_ro_koperasi')->truncate();
+		// DB::table('credit_ro_petugas')->truncate();
+		// DB::table('credit_status')->truncate();
 
 		$jk   		= ['pa', 'pt', 'rumah_delta'];
 		$gndr   	= ['perempuan', 'laki-laki'];
@@ -38,7 +38,7 @@ class StressTestTableSeeder extends Seeder
 	
 		$kab 		= ['Banyuwangi', 'Gresik', 'Kediri', 'Lamongan', 'Magetan', 'malang', 'Mojokerto', 'Pamekasan', 'Pasuruan', 'Ponorogo', 'Situbondo', 'Sumenep', 'Tuban', 'Bangkalan', 'Bondowoso', 'Jember', 'Ngawi', 'Pacitan', 'Sampang', 'tulungagung', 'Blitar', 'Bojonegoro', 'Jombang', 'Lumajang', 'Madiun', 'Nganjuk', 'Probolinggo', 'Sidoarjo', 'Trenggalek'];
 
-		foreach (range(0, 1999) as $key) 
+		foreach (range(0, 99999) as $key) 
 		{
 			$kredit	= [
 					'pengajuan_kredit'	=> 'Rp '.rand(10,100).'.000.000',
@@ -53,10 +53,14 @@ class StressTestTableSeeder extends Seeder
 						'jenis_kelamin'	=> $gndr[rand(0,1)],
 						'status_perkawinan'	=> $sp[rand(0,3)],
 			];
-			$koperasi = [
-						'id'			=> 'MAJUJAYA1234',
-						'nama'			=> 'Maju Jaya'
-			];
+			$koperasi = [[
+							'id'			=> 'MAJUJAYA',
+							'nama'			=> 'Maju Jaya',
+						],
+						[
+							'id'			=> 'MAJUTERUS',
+							'nama'			=> 'Maju Terus'
+						]];
 			$status 	= [
 						'status'		=> 'pengajuan',
 						'petugas'		=> [
@@ -94,7 +98,7 @@ class StressTestTableSeeder extends Seeder
 			$model->fill($kredit);
 			
 			$model->SetKreditur($kreditur);
-			$model->SetKoperasi($koperasi);
+			$model->SetKoperasi($koperasi[rand(0,1)]);
 			$model->SetStatus($status);
 			$jaminan 		= rand(0,1);
 

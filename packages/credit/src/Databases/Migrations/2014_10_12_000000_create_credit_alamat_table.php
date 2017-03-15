@@ -27,6 +27,9 @@ class CreateCreditAlamatTable extends Migration
 			$table->string('negara')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'kota', 'alamat']);
+			$table->index(['deleted_at', 'kabupaten', 'alamat']);
 		});
 	}
 

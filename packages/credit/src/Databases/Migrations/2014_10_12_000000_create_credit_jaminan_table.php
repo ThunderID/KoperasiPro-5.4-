@@ -20,6 +20,8 @@ class CreateCreditJaminanTable extends Migration
 			$table->string('credit_legalitas_tanah_bangunan_id')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'credit_kredit_id']);
 		});
 	}
 

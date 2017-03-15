@@ -19,6 +19,8 @@ class CreateCreditAlamatRumahTable extends Migration
 			$table->string('credit_alamat_id');
 			$table->timestamps();
 			$table->softDeletes();
+
+            $table->index(['deleted_at', 'credit_orang_id']);
 		});
 	}
 

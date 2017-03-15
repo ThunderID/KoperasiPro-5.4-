@@ -19,6 +19,8 @@ class CreateCreditPekerjaanTable extends Migration
 			$table->string('jenis');
 			$table->timestamps();
 			$table->softDeletes();
+			
+			$table->index(['deleted_at', 'credit_orang_id']);
 		});
 	}
 

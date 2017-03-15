@@ -23,6 +23,9 @@ class CreateCreditOrangTable extends Migration
 			$table->string('status_perkawinan');
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'nama']);
+			$table->index(['deleted_at', 'nik']);
 		});
 	}
 

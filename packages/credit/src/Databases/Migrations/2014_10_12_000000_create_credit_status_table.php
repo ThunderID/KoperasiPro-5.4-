@@ -20,6 +20,9 @@ class CreateCreditStatusTable extends Migration
 			$table->string('credit_ro_petugas_id');
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'status']);
+			$table->index(['deleted_at', 'created_at']);
 		});
 	}
 

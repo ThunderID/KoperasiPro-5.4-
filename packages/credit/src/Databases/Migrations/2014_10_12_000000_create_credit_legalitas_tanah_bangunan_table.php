@@ -24,6 +24,8 @@ class CreateCreditLegalitasTanahBangunanTable extends Migration
 			$table->integer('luas');
 			$table->timestamps();
 			$table->softDeletes();
+			
+			$table->index(['deleted_at', 'nomor_sertifikat']);
 		});
 	}
 

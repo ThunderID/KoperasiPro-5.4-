@@ -25,6 +25,10 @@ class CreateCreditKreditTable extends Migration
 			$table->string('credit_mobile_id')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'status']);
+			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'nomor_kredit']);
+			$table->index(['deleted_at', 'credit_ro_koperasi_id', 'created_at']);
 		});
 	}
 
