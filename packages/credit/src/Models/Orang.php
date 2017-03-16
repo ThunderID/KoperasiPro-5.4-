@@ -54,9 +54,10 @@ class Orang extends BaseModel
 											'tanggal_lahir'			,
 											'jenis_kelamin'			,
 											'status_perkawinan'		,
-											'telepon'				,
-											'pekerjaan'				,
-											'penghasilan_bersih'	,
+											// 'telepon'				,
+											// 'pekerjaan'				,
+											// 'penghasilan_bersih'	,
+											// 'foto_ktp'				,
 										];
 
 	/**
@@ -71,7 +72,8 @@ class Orang extends BaseModel
 											'tanggal_lahir'			=> 'date_format:"Y-m-d"',
 											'jenis_kelamin'			=> 'in:laki-laki,perempuan',
 											'status_perkawinan'		=> 'in:kawin,belum_kawin,cerai,cerai_mati',
-											'penghasilan_bersih'	=> 'numeric',
+											// 'penghasilan_bersih'	=> 'numeric',
+											// 'foto_ktp'				=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -225,6 +227,21 @@ class Orang extends BaseModel
 	{
 		//1. simpan penghasilan_bersih
 		$this->attributes['penghasilan_bersih']	= $this->formatMoneyFrom($value);
+
+		//2. it's a must to return value
+		return $this;
+	}
+
+	/**
+	 * fungsi simpan foto_ktp orang
+	 *
+	 * @param array $value 
+	 * @return Orang $orang 
+	 */	
+	public function setFotoKTP($value)
+	{
+		//1. simpan foto_ktp
+		$this->attributes['foto_ktp']	= $value;
 
 		//2. it's a must to return value
 		return $this;

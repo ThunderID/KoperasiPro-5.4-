@@ -67,9 +67,34 @@ class DaftarKredit
 	 */
 	public function detailed($id)
 	{
-		$model 		= $this->model->id($id)->with(['kreditur', 'jaminankendaraan', 'jaminantanahbangunan', 'jaminantanahbangunan.alamat'])->first();
+		$model 			= $this->model->id($id)->with(['kreditur', 'jaminankendaraan', 'jaminantanahbangunan', 'jaminantanahbangunan.alamat', 'riwayat_status'])->first();
 
-		return $model->toArray();
+		$parsed_credit 	=  $model->toArray();
+
+
+		switch (strtolower($parsed_credit['status'])) 
+		{
+			case 'pengajuan':
+				$parsed_credit['status_berikutnya']	= 'survei';
+				break;
+			case 'survei':
+				$parsed_credit['status_berikutnya']	= 'realisasi';
+				break;
+			default:
+				$parsed_credit['status_berikutnya']	= '';
+				break;
+		}
+
+		$prev_index 		= count($parsed_credit['riwayat_status']) - 1;
+
+		if($prev_index >= 1)
+		{
+			$prev_index 	= $prev_index - 1;
+		}
+
+		$parsed_credit['status_sebelumnya']	= $parsed_credit['riwayat_status'][$prev_index]['status'];
+		
+		return $parsed_credit;
 	}
 
 	/**

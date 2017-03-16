@@ -4,23 +4,59 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use Thunderlabid\Credit\Models\Kredit;
+use Thunderlabid\Immigration\Models\Pengguna;
 
-class StressTestTableSeeder extends Seeder
+class InitTestTableSeeder extends Seeder
 {
 	public function run()
 	{
-		// DB::table('kredit')->truncate();
-		// DB::table('orang')->truncate();
-		// DB::table('relasi')->truncate();
-		// DB::table('alamat_rumah')->truncate();
-		// DB::table('alamat')->truncate();
-		// DB::table('legalitas_tanah_bangunan')->truncate();
-		// DB::table('legalitas_kendaraan')->truncate();
-		// DB::table('jaminan')->truncate();
-		// DB::table('ro_koperasi')->truncate();
-		// DB::table('ro_petugas')->truncate();
-		// DB::table('status')->truncate();
+		DB::table('kredit')->truncate();
+		DB::table('orang')->truncate();
+		DB::table('relasi')->truncate();
+		DB::table('alamat_rumah')->truncate();
+		DB::table('alamat')->truncate();
+		DB::table('legalitas_tanah_bangunan')->truncate();
+		DB::table('legalitas_kendaraan')->truncate();
+		DB::table('jaminan')->truncate();
+		DB::table('ro_koperasi')->truncate();
+		DB::table('ro_petugas')->truncate();
+		DB::table('status')->truncate();
 
+		DB::table('immigration_pandora_box')->truncate();
+		DB::table('immigration_pengguna')->truncate();
+		DB::table('immigration_ro_koperasi')->truncate();
+		DB::table('immigration_visa')->truncate();
+
+		//1. simpan imigrasi
+		$credentials	=	[
+								'email'				=> 'admin@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'C Mooy'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+														],
+								'role'				=>  'pimpinan'
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+														],
+								'role'				=>  'pimpinan'
+							];
+
+		$admin 			= new Pengguna;
+		$admin->fill($credentials);
+		$admin->grantVisa($visa_1);
+		$admin->grantVisa($visa_2);
+		$admin->save();
+
+		//2. simpan kredit
 		$jk   		= ['pa', 'pt', 'rumah_delta'];
 		$gndr   	= ['perempuan', 'laki-laki'];
 		$sp   		= ['belum_kawin', 'kawin', 'cerai', 'cerai_mati'];
@@ -36,7 +72,17 @@ class StressTestTableSeeder extends Seeder
 	
 		$kab 		= ['Banyuwangi', 'Gresik', 'Kediri', 'Lamongan', 'Magetan', 'malang', 'Mojokerto', 'Pamekasan', 'Pasuruan', 'Ponorogo', 'Situbondo', 'Sumenep', 'Tuban', 'Bangkalan', 'Bondowoso', 'Jember', 'Ngawi', 'Pacitan', 'Sampang', 'tulungagung', 'Blitar', 'Bojonegoro', 'Jombang', 'Lumajang', 'Madiun', 'Nganjuk', 'Probolinggo', 'Sidoarjo', 'Trenggalek'];
 
-		foreach (range(0, 49999) as $key) 
+		$pekerjaan 	= ['karyawan_swasta', 'wiraswasta', 'pegawai_negeri', 'tni', 'polri', 'belum_bekerja'];
+
+		$foto 		= 	[
+			'http://rumahpengaduan.com/wp-content/uploads/2015/02/KTP.jpg',
+			'https://pbs.twimg.com/media/BwlhnFOCQAAvDGp.jpg',
+			'https://pbs.twimg.com/media/A_Cc4keCAAAAP-2.jpg',
+			'https://balyanurmd.files.wordpress.com/2013/12/ktp-masa-depan.jpg',
+			'https://pbs.twimg.com/media/BXjQAxjIEAAVhox.jpg',
+		];
+
+		foreach (range(0, 20) as $key) 
 		{
 			$kredit	= [
 					'pengajuan_kredit'	=> 'Rp '.rand(10,100).'.000.000',
@@ -49,7 +95,12 @@ class StressTestTableSeeder extends Seeder
 						'nama'			=> $faker->name,
 						'tanggal_lahir'	=> Carbon\Carbon::parse(rand(7300, 20075).' days ago')->format('d/m/Y'),
 						'jenis_kelamin'	=> $gndr[rand(0,1)],
-						'status_perkawinan'	=> $sp[rand(0,3)],
+
+						'status_perkawinan'		=> $sp[rand(0,3)],
+						'telepon'				=> $faker->e164PhoneNumber,
+						'pekerjaan'				=> $pekerjaan[rand(0,5)],
+						'penghasilan_bersih'	=> 'Rp '.rand(3,8).'.000.000',
+						'foto_ktp'				=> $foto[rand(0,4)],
 			];
 			$koperasi = [[
 							'id'			=> 'MAJUJAYA',
@@ -62,8 +113,8 @@ class StressTestTableSeeder extends Seeder
 			$status 	= [
 						'status'		=> 'pengajuan',
 						'petugas'		=> [
-							'id'		=> '0FCF9BCD-E716-4AB0-BF4B-81DF76D1A112',
-							'nama'		=> 'Chelsy Mooy',
+							'id'		=> $admin->id,
+							'nama'		=> $admin->nama,
 							'role'		=> 'pimpinan',
 						]
 			];

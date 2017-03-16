@@ -4,6 +4,8 @@ namespace Thunderlabid\Credit\Models\Traits;
 
 use Thunderlabid\Credit\Models\Observers\EventObserver;
 
+use InvalidArgumentException;
+
 /**
  * Trait event raiser
  *

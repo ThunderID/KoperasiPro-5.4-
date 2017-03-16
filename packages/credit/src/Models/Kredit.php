@@ -114,6 +114,17 @@ class Kredit extends BaseModel
 		return $this->belongsTo('Thunderlabid\Credit\Models\Orang', 'kreditur_id');
 	}
 	
+
+	/**
+	 * relationship riwayat_status
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function riwayat_status()
+	{
+		return $this->hasMany('Thunderlabid\Credit\Models\Status_A', 'kredit_id');
+	}
+
 	/**
 	 * relationship jaminan kendaraan
 	 *
@@ -200,6 +211,27 @@ class Kredit extends BaseModel
 		}
 
 		$kreditur 			= $kreditur->fill($value);
+
+		if(isset($value['telepon']))
+		{
+			$kreditur->setTelepon($value['telepon']);
+		}
+
+		if(isset($value['pekerjaan']))
+		{
+			$kreditur->setPekerjaan($value['pekerjaan']);
+		}
+
+		if(isset($value['penghasilan_bersih']))
+		{
+			$kreditur->setPenghasilanBersih($value['penghasilan_bersih']);
+		}
+
+		if(isset($value['foto_ktp']))
+		{
+			$kreditur->setFotoKTP($value['foto_ktp']);
+		}
+
 		$kreditur->save();
 		
 		$this->attributes['kreditur_id']	= $kreditur->id;

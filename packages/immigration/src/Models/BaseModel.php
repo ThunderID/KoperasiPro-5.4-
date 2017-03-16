@@ -33,6 +33,8 @@ abstract class BaseModel extends Model
 	use SoftDeletes;
 
 	protected $keyType 	= 'string';
+	
+	public $incrementing = false;
 
 	/* ---------------------------------------------------------------------------- ERRORS ----------------------------------------------------------------------------*/
 

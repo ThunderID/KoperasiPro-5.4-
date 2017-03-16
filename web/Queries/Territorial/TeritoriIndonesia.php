@@ -38,27 +38,8 @@ class TeritoriIndonesia
 	public function get($queries = [])
 	{
 		$model 		= $this->queries($queries);
-
-		//2. pagination
-		if(isset($queries['per_page']))
-		{
-			$queries['take']	= $queries['per_page'];
-		}
-		else
-		{
-			$queries['take']	= 15;
-		}
-
-		if(isset($queries['page']))
-		{
-			$queries['skip']	= ($queries['page'] * $queries['take']);
-		}
-		else
-		{
-			$queries['skip']	= 0;
-		}
 		
-		$model  				= $model->skip($queries['skip'])->take($queries['take'])->get();
+		$model		= $model->get();
 
 		return 	$model->toArray();
 	}
@@ -82,31 +63,30 @@ class TeritoriIndonesia
 		$model 					= $this->model;
 
 		//1.check model provinsi
-		if(isset($queries['provinsi']))
+		if(isset($queries['regensi_dari']))
 		{
 			$model 				= new Provinsi_RO;
-			$model 				= $model->id($queries['provinsi'])->with(['regensi']);
+			$model 				= $model->id($queries['regensi_dari'])->with(['regensi']);
 		}
 
 		//2.check model regensi
-		if(isset($queries['regensi']))
+		if(isset($queries['distrik_dari']))
 		{
 			$model 				= new Regensi_RO;
-			$model 				= $model->id($queries['regensi'])->with(['distrik']);
+			$model 				= $model->id($queries['distrik_dari'])->with(['distrik']);
 		}
 		
 		//3.check model distrik
-		if(isset($queries['distrik']))
+		if(isset($queries['desa_dari']))
 		{
 			$model 				= new Distrik_RO;
-			$model 				= $model->id($queries['distrik'])->with(['desa']);
+			$model 				= $model->id($queries['desa_dari'])->with(['desa']);
 		}
 
 		//4.check model desa
-		if(isset($queries['desa']))
+		if(isset($queries['semua_regensi']))
 		{
-			$model 				= new Desa_RO;
-			$model 				= $model->id($queries['desa']);
+			$model 				= new Regensi_RO;
 		}
 
 		//5.check model negara

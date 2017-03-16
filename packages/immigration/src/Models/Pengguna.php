@@ -106,15 +106,6 @@ class Pengguna extends BaseModel
 		{
 			throw new Exception($validator->messages()->toJson(), 1);
 		}
-		//1b. Validating if visa not saved yet
-		$exists_visa		= Visa_A::where('immigration_pengguna_id', $this->id)->where('immigration_ro_koperasi_id', $visa['koperasi']['id'])->first();
-		if($exists_visa)
-		{
-			throw new DuplicateException("visa", 1);
-		}
-
-		//2. grant visa
-		$visas				= array_merge($this->visas->toArray(), [$visa]);
 
 		//3. simpan visa
 		//3a. simpan koperasi
@@ -128,8 +119,12 @@ class Pengguna extends BaseModel
 		$koperasi_ro->save();
 
 		//3b. simpan visa
-		$visa_ag		= new Visa_A;
-		$visa_ag		= $visa_ag->findornew($visa['id']);
+		$visa_ag		= Visa_A::where('immigration_pengguna_id', $this->id)->where('immigration_ro_koperasi_id', $visa['koperasi']['id'])->first();
+		if(!$visa_ag)
+		{
+			$visa_ag		= new Visa_A;
+		}
+
 		$visa_ag->fill([
 			'role'							=> $visa['role'],
 			'immigration_ro_koperasi_id'	=> $koperasi_ro->id,
@@ -139,7 +134,7 @@ class Pengguna extends BaseModel
 		$visa_ag->save();
 
 		//4. fire event
-		$this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
+		// $this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
 
 		//it's a must to return value
 		return $this;
