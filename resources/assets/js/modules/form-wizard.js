@@ -1,7 +1,6 @@
 window.wizard = function(){
 	window.__validation();
-	contentWizard = $('.wizard');
-	contentWizard.steps({
+	$('.wizard').steps({
 		headerTag: 'h3',
 		bodyTag: 'section',
 		transitionEffect: "slideLeft",
@@ -22,6 +21,7 @@ window.wizard = function(){
 		saveState: true,
 		/* Event */
 		onStepChanging: function (event, currentIndex, newIndex) {
+			form = $(this);
 			// check previous tanpa memunculkan error
 			if (currentIndex > newIndex) {
 				return true;
@@ -29,12 +29,12 @@ window.wizard = function(){
 
 			// check next apabila ada error di stage sebelumnya
 			if (currentIndex < newIndex) {
-				contentWizard.find(".body:eq(" + newIndex + ") label.error").remove();
-				contentWizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
 			}
 
-			contentWizard.validate().settings.ignore = ":disabled,:hidden";
-			return contentWizard.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -49,14 +49,20 @@ window.wizard = function(){
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 			// window.select();
+			$('.input-switch').bootstrapSwitch(); // active switch button
+		},
+		onFinishing: function (event, currentIndex) {
+			form = $(this);
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onFinished: function (event, currentIndex) {
-			$('.form').submit();
-			// add disabled button simpan & replace text button
-			$('.wizard .actions').find('a[href$="#finish"]').attr('disabled', true).html('Tersimpan...');
+			form = $(this);
+			form.submit();
 		},
 	})
 	.validate({
+		errorClass: 'has-error',
 		errorPlacement: function errorPlacement(error, element) { 
 			error.addClass('help-block');
 			parent = element.parent().parent();
@@ -70,6 +76,12 @@ window.wizard = function(){
 				parent.parent().parent().append(error)
 			}
 			window.resizeWizard();
+		},
+		highlight: function(element, errorClass) {
+			$(element).closest('fieldset.form-group').addClass(errorClass);
+		},
+		unhighlight: function(element, errorClass) {
+			$(element).closest('fieldset.form-group').removeClass(errorClass);
 		}
 	});
 }

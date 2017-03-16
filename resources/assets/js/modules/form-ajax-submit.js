@@ -3,19 +3,20 @@
 */
 
 $(document).on('submit', "form", function () {
+	// loading effect
+	btnSubmit = $(this).find('button[type="submit"]');
+	btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Simpan..");
+
 	//check is activate on this form
-	if($(this).data('ajax-submit') == false){
+	if ($(this).data('ajax-submit') == false){
 		return false;
 	}
-
-	// disable the form 
-	$(this).find(":input").prop("disabled", true);
+	
+	// readonly input & select the form 
+	$(this).find(":input").prop("readonly", true);
+	$(this).find('select').prop('readonly', true);
+	// disabled a the form
 	$(this).find("a").each(function() {
 		$(this).addClass('disabled');
 	});
-
-
-	// loading effect
-	btn_submit = $(this).find('button[type="submit"]');
-	btn_submit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Saving");
 });

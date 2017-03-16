@@ -38,6 +38,9 @@ require('./modules/modal');
 require('./modules/print');
 
 
+$(document).ready (function() {
+	$('.set-focus').focus();
+});
 //draft
 // // window.$ = window.jQuery = require('jquery');
 // // window.$ = window.jQuery = require('./jquery-3.1.1');

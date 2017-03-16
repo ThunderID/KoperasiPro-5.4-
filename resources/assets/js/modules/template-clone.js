@@ -10,10 +10,12 @@ $(function (){
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
-			$(this).remove();
 		} else if ($(this).data('active') === 'contact') {
 			window.formInputMask();
 		}
+		
+		$(this).remove();
+
 		// add event remove template click
 		$('.remove').click( function(e) {
 			e.preventDefault();
@@ -41,6 +43,7 @@ function template_add(flag, element) {
 	}
 	// append template to section clone
 	element.parent().parent().find('.section-clone-' + flag).append(temp);
+	element.parent().parent().find('.section-clone-' + flag).find('input[disabled="disabled"]').removeAttr('disabled');
 }
 /**
  * function template remove

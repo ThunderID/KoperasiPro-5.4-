@@ -53,6 +53,8 @@ $(document).ready(function(){
 		optimizeHeight();
 		// call module plugin print
 		print();
+
+		window.select();
 	});
 
     // Form Submit with get method
@@ -120,7 +122,7 @@ window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselec
 //  */
 window.select2 = require('./plugins/select2/select2.min');
 $(document).ready( function() {
-	// window.select();
+	window.select();
 });
 
 /**
@@ -136,3 +138,13 @@ window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
  * Usage & Documentation: http://listjs.com/docs/
  */
 window.list = require('./plugins/list-js/list.js');
+
+/**
+ * 12. jQuery plugin bootstrap-switch
+ * Description: plugin jQuery for switch radion button
+ * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
+ */
+window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
+$(document).ready( function() {
+	$('.input-switch').bootstrapSwitch();
+});

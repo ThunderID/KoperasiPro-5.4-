@@ -46,4 +46,10 @@ window.select = function() {
 		rootSelect = $(this).parent().parent().parent().parent();
 		rootSelect.find('.input-instansi').focus();
 	});
+
+	// on event select2 'lama-angsuran' on selected after focus to 'input-tujuan-kredit' on form rencana kredit
+	$('.select-lama-angsuran').on('select2:select', function(evt) {
+		rootSelect = $(this).parent().parent().parent().parent();
+		rootSelect.find('.input-tujuan-kredit').focus();
+	});
 }

@@ -52,7 +52,7 @@
 		?>
 		@for ($i = 1; $i <= min($range, $total_page-$start); $i++)
 			<li class="page-item {{ $paging  == $start+$i ? 'active' : '' }} hidden-sm-up">
-				<a href="{{ route('credit.index', ['page' => $start + $i])}}" class='page-link no-decoration'>
+				<a href="{{ route('credit.index', ['page' => $start + $i]) }}" class='page-link no-decoration'>
 					{{ $start + $i }}
 				</a>
 			</li>
@@ -61,7 +61,7 @@
 		@for ($i = 0; $i < $range; $i++)
 			@if (max(1, $paging  - 2) + $i <= $total_page)
 				<li class="page-item {{ $paging  == max(1, $paging  - 2) + $i? 'active' : '' }} hidden-sm-up">
-					<a href="{{ route('credit.index', ['page' => max(1, $paging  - 2) + $i])}}" class='page-link no-decoration'>
+					<a href="{{ route('credit.index', ['page' => max(1, $paging  - 2) + $i]) }}" class='page-link no-decoration'>
 						{{ max(1, $paging  - 2) + $i }}
 					</a>
 				</li>

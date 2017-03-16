@@ -147,11 +147,11 @@ Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destr
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 	//Menu Kredit
-	Route::resource('credit', 'CreditController');
+	Route::resource('credit', 'KreditController');
 
 	//Menu Status Kredit
-	Route::any('credit/{id}/{status}',		['uses' => 'CreditController@status', 	'as' => 'credit.status']);
-	Route::post('updating/credit/{id}',		['uses' => 'CreditController@update', 	'as' => 'credit.updating']);
+	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
+	Route::post('updating/kredit/{id}',		['uses' => 'KreditController@update', 	'as' => 'credit.updating']);
 
 	///NO USE
 	//Menu Survey
@@ -167,22 +167,22 @@ Route::group(['middleware' => ['pjax']], function()
 
 	//Menu Settings
 	//This one to change which office currently active
-	Route::get('activate/{idx}', 	['uses' => 'LoginController@activateOffice', 'as' => 'office.activate']);
+	Route::get('activate/{idx}', 				['uses' => 'LoginController@activateOffice', 	'as' => 'office.activate']);
 
 	//Dashboard page
-	Route::get('/', 				['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
+	Route::get('/', 							['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
 	
 	//Notification page
-	Route::get('/notification',		['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
+	Route::get('/notification',					['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
 
 	//here lies test routes
-	Route::get('/index', 	['uses' => 'DashboardController@indextest1', 'as' => 'dashboard.sample.index']);
-	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
+	Route::get('/index', 						['uses' => 'DashboardController@indextest1', 	'as' => 'dashboard.sample.index']);
+	Route::get('/index2', 						['uses' => 'DashboardController@indextest2', 	'as' => 'dashboard.sample.index2']);
 });
 
-Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);
+Route::any('cities',							['uses' => 'HelperController@getCities', 		'as' => 'cities.index']);
 
-// route for print credit
-Route::get('credit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);
-// route for pdf credit
-Route::get('credit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+// route for print kredit
+Route::get('kredit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);
+// route for pdf kredit
+Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
