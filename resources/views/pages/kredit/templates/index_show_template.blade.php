@@ -1,4 +1,4 @@
-@inject('cservice', 'Thunderlabid\Application\Services\CreditService')
+@inject('cservice', 'Thunderlabid\Application\Queries\Credit\DaftarKredit')
 
 @extends('template.cms_template')
 

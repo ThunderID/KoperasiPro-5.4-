@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //TABLE MIGRATION FOR ANY USER
+        $this->call(InitTestTableSeeder::class);
+        $this->call(IndonesiaTableSeeder::class);
+        
+        //ONLY FOR INTERNAL USER, USE IT AND REGRET IT
+        // $this->call(StressTestTableSeeder::class);
     }
 }

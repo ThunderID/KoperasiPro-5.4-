@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'pjax' =>  \App\Http\Middleware\PjaxMiddleware::class,
         'authenticated' =>  \App\Http\Middleware\AuthenticatedMiddleware::class,
+        'tapi' =>  \Thunderlabid\Application\Queries\ACL\TApiMiddleware::class,
     ];
 }

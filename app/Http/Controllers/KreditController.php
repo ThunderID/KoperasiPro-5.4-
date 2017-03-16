@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Application\Services\CreditService;
+use Thunderlabid\Application\Queries\Credit\DaftarKredit;
 use Thunderlabid\Application\Services\ProvinceService;
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
@@ -25,7 +25,7 @@ class KreditController extends Controller
 	{
 		parent::__construct();
 
-		$this->service 		= new CreditService;
+		$this->service 		= new DaftarKredit;
 	}
 
 	/**
@@ -78,7 +78,7 @@ class KreditController extends Controller
 		$data										= new ProvinceService;
 
 		// sort data province by 'province_name'
-		$data 										= collect($data->read());
+		$data 										= collect($data->get());
 
 		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 		// sort cities by 'city_name_full'
@@ -465,7 +465,15 @@ class KreditController extends Controller
 		$this->paginate(route('credit.show', ['id' => $id]),$this->page_datas->total_credits,$page,10);
 
 		//parsing master data here
-		$this->page_datas->credit 					= $this->service->detailed($id);
+		try
+		{
+			$this->page_datas->credit				= $this->service->detailed($id);
+		}
+		catch(Exception $e)
+		{
+			$this->page_datas->credit 				= view('pages.credit.errors');
+		}
+
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
@@ -495,7 +503,7 @@ class KreditController extends Controller
 		$data										= new ProvinceService;
 
 		// sort data province by 'province_name'
-		$data 										= collect($data->read());
+		$data 										= collect($data->get());
 
 		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
 		// sort cities by 'city_name_full'
@@ -552,13 +560,13 @@ class KreditController extends Controller
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->readByName($page, $take, $status, Input::get('q'));
-			$this->page_datas->total_credits		= $this->service->countByName($status, Input::get('q'));
+			$this->page_datas->credits				= $this->service->get();
+			$this->page_datas->total_credits		= $this->service->count();
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->read($page, $take, $status);
-			$this->page_datas->total_credits		= $this->service->count($status);
+			$this->page_datas->credits				= $this->service->get();
+			$this->page_datas->total_credits		= $this->service->count();
 		}
 
 		//3. Memanggil fungsi filter active

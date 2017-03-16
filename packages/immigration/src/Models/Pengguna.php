@@ -2,17 +2,11 @@
 
 namespace Thunderlabid\Immigration\Models;
 
-/**
- * Used for Pengguna Models
- * 
- * @author cmooy
- */
-use Thunderlabid\Immigration\Models\Observers\EventObserver;
-use Thunderlabid\Immigration\Models\Observers\PenggunaObserver;
+use Thunderlabid\Immigration\Models\Traits\GuidTrait;
 
-use Thunderlabid\Immigration\Models\Traits\LinkedListTrait;
+use Thunderlabid\Immigration\Exceptions\DuplicateException;
 
-use Thunderlabid\Immigration\Exceptions\IndirectModificationException;
+use Hash, Validator, Exception;
 
 /**
  * Model Pengguna
@@ -21,18 +15,18 @@ use Thunderlabid\Immigration\Exceptions\IndirectModificationException;
  *
  * @package    Thunderlabid
  * @subpackage Immigration
- * @author     C Mooy <chelsymooy1108@gmail.com>
+ * @author     C Mooy <chelsy@thunderlab.id>
  */
 class Pengguna extends BaseModel
 {
-	use LinkedListTrait;
+	use GuidTrait;
 	
 	/**
-	 * The database collection used by the model.
+	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $collection			= 'pre_live_user';
+	protected $table				= 'immigration_pengguna';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -41,10 +35,10 @@ class Pengguna extends BaseModel
 	 */
 
 	protected $fillable				=	[
+											'id'					,
 											'email'					,
 											'password'				,
 											'nama'					,
-											'visas'					,
 										];
 
 	/**
@@ -56,10 +50,6 @@ class Pengguna extends BaseModel
 											'email'					=> 'required|email',
 											'password'				=> 'min:6',
 											'nama'					=> 'max:255',
-											'visas.*.id'			=> 'required|max:255',
-											'visas.*.koperasi.id'	=> 'required|max:255',
-											'visas.*.koperasi.nama'	=> 'required|max:255',
-											'visas.*.role'			=> 'required|max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -69,45 +59,102 @@ class Pengguna extends BaseModel
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	public function visas()
+	{
+		return $this->hasMany('Thunderlabid\Immigration\Models\Visa_A', 'immigration_pengguna_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
-	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-	protected function setVisasAttribute($value)
-	{
-		throw new IndirectModificationException('Tidak dapat mengubah visa tanpa melalui prosedur', 1);
-	}
-	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+	
+	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+	protected function setPasswordAttribute($value)
+	{
+		if(Hash::needsRehash($value))
+		{
+			$value 					= Hash::make($value);
+		}
+
+		$this->attributes['password'] = $value;
+	}
+
+	protected function setEmailAttribute($value)
+	{
+		$exists 					= Pengguna::email($value)->notid($this->id)->first();
+		if($exists)
+		{
+			throw new DuplicateException("email", 1);
+		}
+
+		$this->attributes['email'] 	= $value;
+	}
 	
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	public function grantVisa($visa)
 	{
 		//1. validating visa
-		//2. grant visa
-		$visas 						= array_merge($this->visas, [$visa]);
-		$this->attributes['visas'] 	= $visas;
-
-		//3. fire event
-		$this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
-	}
-
-	public function removeVisa($koperasi_id)
-	{
-		//1. check visa
-		$visas 						= collect($this->visas);
-		$removed 					= $visas->where('koperasi.id', $koperasi_id);
-
-		foreach ($removed as $key => $value) 
+		//1a. Validating if visa contain valid variable
+		$rules 						= [
+			'koperasi.id'	=> 'required|max:255',
+			'koperasi.nama'	=> 'required|max:255',
+			'role'			=> 'required|max:255',
+		];
+		$validator			= Validator::make($visa, $rules);
+		if(!$validator->passes())
 		{
-			unset($visas[$key]);
+			throw new Exception($validator->messages()->toJson(), 1);
 		}
 
-		//2. grant visa
-		$this->attributes['visas'] 	= $visas;
+		//3. simpan visa
+		//3a. simpan koperasi
+		$koperasi			= new Koperasi_RO;
+		$koperasi_ro		= $koperasi->findornew($visa['koperasi']['id']);
+		$koperasi_ro->fill([
+			'id' 	=> $visa['koperasi']['id'],
+			'nama' 	=> $visa['koperasi']['nama'],
+		]);
+
+		$koperasi_ro->save();
+
+		//3b. simpan visa
+		$visa_ag		= Visa_A::where('immigration_pengguna_id', $this->id)->where('immigration_ro_koperasi_id', $visa['koperasi']['id'])->first();
+		if(!$visa_ag)
+		{
+			$visa_ag		= new Visa_A;
+		}
+
+		$visa_ag->fill([
+			'role'							=> $visa['role'],
+			'immigration_ro_koperasi_id'	=> $koperasi_ro->id,
+			'immigration_pengguna_id'		=> $this->id
+		]);
+
+		$visa_ag->save();
+
+		//4. fire event
+		// $this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
+
+		//it's a must to return value
+		return $this;
+	}
+
+	public function removeVisa($visa_id)
+	{
+		//1. check visa
+		$visas 						= collect($this->visas->toArray());
+		$removed 					= $visas->where('id', $visa_id);
+
+		foreach ((array)$removed as $key => $value) 
+		{
+			$model 					= Visa_A::findorfail($visa_id);
+			$model->delete();
+		}
 
 		//3. fire event
+
+		return $this;
 	}
 
 	/**
@@ -118,9 +165,6 @@ class Pengguna extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
-
-        Pengguna::observe(new EventObserver());
-        // Pengguna::observe(new PenggunaObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
