@@ -11,30 +11,22 @@
 
 				@include('components.alertbox')
 				
-				<form role="form" method="post" id="login-form" autocomplete="off" action="{{route('login.store')}}">
+				<form role="form" method="post" id="login-form" autocomplete="off" action="{{ route('login.store') }}" data-pjax="true">
 					<div class="form-group">
 						<label for="email" class="sr-only">Email</label>
-						<input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
+						<input type="email" name="email" id="email" class="form-control set-focus" placeholder="somebody@example.com">
 					</div>
 					<div class="form-group">
 						<label for="key" class="sr-only">Password</label>
 						<input type="password" name="key" id="key" class="form-control" placeholder="Password">
 					</div>
-					<?php
-					/*
-					<div class="checkbox">
+					{{-- <div class="checkbox">
 						<span class="character-checkbox" onclick="showPassword()"></span>
 						<span class="label">Show password</span>
-					</div>
-					*/
-					?>
+					</div> --}}
 					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login">
-				</form>
-				<?php
-				/*				
-				<a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a>
-				*/
-				?>				
+				</form>		
+				{{-- <a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a>		 --}}
 				<hr>
 			</div>
 		</div>

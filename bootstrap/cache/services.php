@@ -26,11 +26,12 @@
     22 => 'Laravel\\Tinker\\TinkerServiceProvider',
     23 => 'App\\Providers\\AppServiceProvider',
     24 => 'App\\Providers\\AuthServiceProvider',
-    25 => 'App\\Providers\\RouteServiceProvider',
-    26 => 'Collective\\Html\\HtmlServiceProvider',
-    27 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    25 => 'App\\Providers\\EventServiceProvider',
+    26 => 'App\\Providers\\RouteServiceProvider',
+    27 => 'Collective\\Html\\HtmlServiceProvider',
     28 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    29 => 'Thunderlabid\\Application\\WebServiceProvider',
+    29 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    30 => 'Thunderlabid\\Application\\WebServiceProvider',
   ),
   'eager' => 
   array (
@@ -46,10 +47,11 @@
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'App\\Providers\\AppServiceProvider',
     11 => 'App\\Providers\\AuthServiceProvider',
-    12 => 'App\\Providers\\RouteServiceProvider',
-    13 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    12 => 'App\\Providers\\EventServiceProvider',
+    13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    15 => 'Thunderlabid\\Application\\WebServiceProvider',
+    15 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    16 => 'Thunderlabid\\Application\\WebServiceProvider',
   ),
   'deferred' => 
   array (

@@ -85,3 +85,10 @@ $cursor-disabled:                not-allowed !default;
 $form-group-margin-bottom:       24px !default;
 //** `.form-group` margin
 $form-group-margin-bottom:       15px !default;
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+$state-danger-text:              $brand-danger !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            $brand-danger !default;
