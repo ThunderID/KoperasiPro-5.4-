@@ -1,5 +1,7 @@
 <?php
+
 namespace Thunderlabid\Application\Queries\Navigation;
+
 /**
  * Kelas Navbar
  *
@@ -40,12 +42,6 @@ class NavbarService
 									'sub'	=> 	[
 													'pengajuan_baru' 	=> route('credit.create'),
 													'data_kredit' 		=> route('credit.index'),
-												]				
-								],
-				'registrasi'=>	[
-									'route' => null,
-									'sub'	=> 	[
-													'data_orang' 		=> route('person.index')
 												]				
 								],
 			]; 

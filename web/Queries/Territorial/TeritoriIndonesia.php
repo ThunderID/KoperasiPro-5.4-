@@ -5,8 +5,7 @@ namespace Thunderlabid\Application\Queries\Territorial;
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Territorial\Models\Negara_RO as Model;
-use Thunderlabid\Territorial\Models\Provinsi_RO;
+use Thunderlabid\Territorial\Models\Provinsi_RO as Model;
 use Thunderlabid\Territorial\Models\Regensi_RO;
 use Thunderlabid\Territorial\Models\Distrik_RO;
 use Thunderlabid\Territorial\Models\Desa_RO;
@@ -62,37 +61,31 @@ class TeritoriIndonesia
 	{
 		$model 					= $this->model;
 
-		//1.check model provinsi
+		//1.check model regensi
 		if(isset($queries['regensi_dari']))
 		{
-			$model 				= new Provinsi_RO;
-			$model 				= $model->id($queries['regensi_dari'])->with(['regensi']);
+			$model 				= new Regensi_RO;
+			$model 				= $model->where('territorial_provinsi_id', $queries['regensi_dari']);
 		}
 
-		//2.check model regensi
+		//2.check model distrik
 		if(isset($queries['distrik_dari']))
 		{
-			$model 				= new Regensi_RO;
-			$model 				= $model->id($queries['distrik_dari'])->with(['distrik']);
-		}
-		
-		//3.check model distrik
-		if(isset($queries['desa_dari']))
-		{
 			$model 				= new Distrik_RO;
-			$model 				= $model->id($queries['desa_dari'])->with(['desa']);
+			$model 				= $model->where('territorial_regensi_id', $queries['distrik_dari']);
 		}
 
-		//4.check model desa
-		if(isset($queries['semua_regensi']))
+		//3.check model desa
+		if(isset($queries['desa_dari']))
 		{
-			$model 				= new Regensi_RO;
+			$model 				= new Desa_RO;
+			$model 				= $model->where('territorial_distrik_id', $queries['desa_dari']);
 		}
 
 		//5.check model negara
 		if($model instanceOf Model)
 		{
-			$model 				= $model->id('ID')->with(['provinsi']);
+			$model 				= $model->where('territorial_negara_id', 'ID');
 		}
 		
 		return $model;
