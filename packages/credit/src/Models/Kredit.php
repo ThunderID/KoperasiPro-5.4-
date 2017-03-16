@@ -57,8 +57,8 @@ class Kredit extends BaseModel
 											'pengajuan_kredit'		,
 											'jangka_waktu'			,
 											'status'				,
-											'kreditur_id'	,
-											'ro_koperasi_id'	,
+											'kreditur_id'			,
+											'ro_koperasi_id'		,
 										];
 
 	/**
@@ -72,8 +72,8 @@ class Kredit extends BaseModel
 											'pengajuan_kredit'		=> 'numeric',
 											'jangka_waktu'			=> 'numeric|in:6,10,12,18,24,30,36,42,48,54,60',
 											'status'				=> 'max:255',
-											'kreditur_id'	=> 'max:255',
-											'ro_koperasi_id'	=> 'max:255',
+											'kreditur_id'			=> 'max:255',
+											'ro_koperasi_id'		=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -275,7 +275,24 @@ class Kredit extends BaseModel
 		//3. it's a must to return value
 		return $this;
 	}
-	
+		
+	/**
+	 * fungsi simpan status terbaru
+	 *
+	 * @param array $value 
+	 * @return Kredit $kredit 
+	 */	
+	public function pengajuan()
+	{
+		//1. set status
+		$this->attributes['status']			= 'pengajuan';
+		$this->attributes['kreditur_id']	= '0';
+		$this->attributes['ro_koperasi_id']	= '0';
+
+		//2. it's a must to return value
+		return $this;
+	}
+
 	/**
 	 * fungsi simpan jaminan kendaraan
 	 *

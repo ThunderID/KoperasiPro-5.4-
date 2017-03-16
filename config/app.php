@@ -185,7 +185,7 @@ return [
         // Barryvdh\DomPDF\ServiceProvider::class,
 		Jenssegers\Mongodb\MongodbServiceProvider::class,
 
-        Thunderlabid\Application\WebServiceProvider::class,
+        Thunderlabid\Web\WebServiceProvider::class,
 	],
 
 	/*
@@ -240,7 +240,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
 
-		'TAuth' => Thunderlabid\Application\Facades\TAuth::class,
+		'TAuth' => Thunderlabid\Web\Facades\TAuth::class,
 	],
 
 ];

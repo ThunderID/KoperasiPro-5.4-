@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Queries\Territorial;
+namespace Thunderlabid\Web\Queries\Territorial;
 
 ///////////////
 //   Models  //

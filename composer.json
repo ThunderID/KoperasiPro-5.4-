@@ -29,7 +29,8 @@
             "Thunderlabid\\Territorial\\": "packages/territorial/src/",
             "Thunderlabid\\Credit\\": "packages/credit/src/",
             "Thunderlabid\\Registry\\": "packages/registry/src/",
-            "Thunderlabid\\": "web/"
+            "Thunderlabid\\Web\\": "web/",
+            "Thunderlabid\\API\\": "api/"
         }
     },
     "autoload-dev": {

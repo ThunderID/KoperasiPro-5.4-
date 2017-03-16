@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Queries\Credit;
+namespace Thunderlabid\Web\Queries\Credit;
 
 ///////////////
 //   Models  //
