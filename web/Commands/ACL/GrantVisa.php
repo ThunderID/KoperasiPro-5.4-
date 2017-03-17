@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Commands\ACL;
+namespace Thunderlabid\Web\Commands\ACL;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

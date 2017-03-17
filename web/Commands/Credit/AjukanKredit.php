@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Commands\Credit;
+namespace Thunderlabid\Web\Commands\Credit;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -62,6 +62,23 @@ class AjukanKredit implements ShouldQueue
 			$kredit->SetStatus($status);
 			$kredit->SetKoperasi($koperasi);
 
+			if(isset($this->kredit['jaminan_kendaraan']))
+			{
+				foreach ($this->kredit['jaminan_kendaraan'] as $key => $value) 
+				{
+					$kredit = $kredit->tambahJaminanKendaraan($value);
+				}
+			}
+			
+			if(isset($this->kredit['jaminan_tanah_bangunan']))
+			{
+				foreach ($this->kredit['jaminan_tanah_bangunan'] as $key => $value) 
+				{
+					$value['alamat']['alamat']	= $value['alamat']['regensi'];
+					$kredit = $kredit->tambahJaminanTanahBangunan($value);
+				}
+			}
+			
 			$kredit->save();
 
 			DB::commit();

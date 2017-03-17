@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Queries\Navigation;
+namespace Thunderlabid\Web\Queries\Navigation;
 
 /**
  * Kelas Navbar

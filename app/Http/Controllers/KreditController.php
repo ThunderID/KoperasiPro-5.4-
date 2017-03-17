@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Application\Queries\Credit\DaftarKredit;
-use Thunderlabid\Application\Queries\Territorial\TeritoriIndonesia;
+use Thunderlabid\Web\Queries\Credit\DaftarKredit;
+use Thunderlabid\Web\Commands\Credit\AjukanKredit;
+
+use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
 
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
@@ -93,169 +95,31 @@ class KreditController extends Controller
 	{
 		try
 		{
-			//============ DATA KREDITUR ============//
-			$kreditur 							= Input::get('kreditur');
-			$kreditur['tanggal_lahir']			= Carbon::createFromFormat('d/m/Y', $kreditur['tanggal_lahir'])->format('Y-m-d');
-			$kreditur['id']						= null;
-			$kreditur['relasi']					= null;
-
-			$kreditur['nik']					= '35-' . Input::get('nik');
-			// $kreditur['pekerjaan'][0]			= Input::get('pekerjaan');
-			// $kreditur['pekerjaan'][0]['sejak']	= Carbon::createFromFormat('d/m/Y', $kreditur['pekerjaan'][0]['sejak'])->format('Y-m-d');
-			// $kreditur['alamat'][0]				= Input::get('orang')['alamat'];
-			// $kreditur['alamat'][0]['negara']	= 'Indonesia';
-
-			// add telepon
-			// $new_telepon 						= [];
-			// foreach ($kreditur['telepon'] as $key => $value) 
-			// {
-			// 	if (!is_null($value))
-			// 	{
-			// 		array_push($new_telepon, $value);
-			// 	}
-			// }
-			// $kreditur['telepon']				= $new_telepon;
-
-			// add handphone
-			// $new_handphone 						= [];
-			// foreach ($kreditur['handphone'] as $key => $value)
-			// {
-			// 	if (!is_null($value))
-			// 	{
-			// 		array_push($new_handphone, $value);
-			// 	}
-			// }
-			// $kreditur['handphone']				= $new_handphone;
-
-			// unset($kreditur['kontak']['telepon']);
-			// $kreditur['kontak']					= $new_kontak;
+			//============ DATA KREDIT ============//
+			$kredit		= Input::only('jenis_kredit', 'pengajuan_kredit', 'jangka_waktu');
 			
+			//============ DATA KREDITUR ============//
+			$kredit['kreditur'] 				= Input::get('kreditur');
+
 			// kreditur is e-ktp
-			if (!isset($kreditur['is_ektp'])) 
+			if (!isset($kredit['kreditur']['is_ektp'])) 
 			{
-				$kreditur['is_ektp']			= false; 
+				$kredit['kreditur']['is_ektp']	= false; 
 			}
 			else
 			{
-				$kreditur['is_ektp']			= true;
+				$kredit['kreditur']['is_ektp']	= true;
 			}
-
-			//============ DATA KREDIT ============//
-			// $kredit 							= Input::get('kredit');
-			$kredit 							= [];
-			$kredit['id']						= null;
-			$kredit['penjamin']					= [];
-
-			$kredit['jenis_kredit']				= Input::get('jenis_kredit');
-			$kredit['pengajuan_kredit']			= Input::get('pengajuan_kredit');
-			$kredit['kemampuan_angsur']			= Input::get('kemampuan_angsur');
-			$kredit['jangka_waktu']				= Input::get('jangka_waktu');
+			$kredit['kreditur']['nik']			= '35-'.$kredit['kreditur']['nik'];
 
 			//============ DATA JAMINAN ============//
-			$kredit['jaminan_kendaraan']		= Input::get('jaminan_kendaraan');
-			$kredit['jaminan_tanah_bangunan']	= Input::get('jaminan_tanah_bangunan');
-			// $kredit['jaminan_kendaraan']		= [];
-			// $kredit['jaminan_tanah_bangunan']	= [];
+			$kredit['jaminan_kendaraan'][]		= Input::get('jaminan_kendaraan');
+			$kredit['jaminan_tanah_bangunan'][]	= Input::get('jaminan_tanah_bangunan');
 
-			// if(Input::has('jaminan_kendaraan'))
-			// {
-			// 	foreach (Input::get('jaminan_kendaraan') as $key => $value) 
-			// 	{
-			// 		if(!is_null($value['status_kepemilikan']))
-			// 		{
-			// 			if(str_is($value['legalitas'], 'bpkb_r2'))
-			// 			{
-			// 				$legal 						= 'Kendaraan Roda 2';
-			// 			}
-			// 			else
-			// 			{
-			// 				$legal 						= 'Kendaraan Roda 4';
-			// 			}
-
-			// 			$kredit['jaminan_kendaraan'][]	= [
-			// 				'merk' 						=> 'null', 
-			// 				'jenis' 					=> $legal, 
-			// 				'warna' 					=> 'null', 
-			// 				'tahun' 					=> 'null', 
-
-			// 				'legal'						=> [
-			// 					'atas_nama' 			=> 'null', 
-			// 					'nomor_polisi' 			=> 'null', 
-			// 					'nomor_bpkb' 			=> 'null',
-			// 				],
-
-			// 				'nilai'						=> [
-			// 					'fungsi' 				=> 'null', 
-			// 					'kondisi' 				=> 'null', 
-			// 					'asuransi' 				=> true, 
-			// 					'harga_taksasi' 		=> 0, 
-			// 					'harga_bank' 			=> 0, 
-			// 				],
-			// 			]; 
-			// 		}
-			// 	}
-			// }
-
-			// if (Input::has('jaminan_tanah_bangunan'))
-			// {
-			// 	foreach (Input::get('jaminan_tanah_bangunan') as $key => $value) 
-			// 	{
-			// 		if(!is_null($value['status_kepemilikan']))
-			// 		{
-			// 			$kredit['jaminan_tanah_bangunan'][]	= [
-			// 			'tipe_jaminan' 				=> $value['legalitas'], 
-			// 			'tanah'						=> [
-			// 				'panjang' 				=> 0, 
-			// 				'lebar' 				=> 0, 
-			// 				'luas' 					=> 0, 
-			// 			],
-			// 			'spesifikasi_bangunan'		=> [
-			// 				'bentuk' 				=> 'null', 
-			// 				'konstruksi' 			=> 'null', 
-			// 				'lantai' 				=> 'null', 
-			// 				'dinding' 				=> 'null', 
-			// 				'listrik' 				=> 'null', 
-			// 				'air' 					=> 'null', 
-			// 				'fungsi' 				=> 'null', 
-			// 				'lainnya' 				=> 'null', 
-			// 			],
-
-			// 			'legal' 					=> [
-			// 				'atas_nama_sertifikat' 		=> $value['status_kepemilikan'], 
-			// 				'jenis_sertifikat'			=> 'null', 
-			// 				'masa_berlaku_sertifikat'	=> Carbon::now()->format('Y-m-d'), 
-			// 				'imb' 						=> true, 
-			// 				'akta_jual_beli' 			=> true, 
-			// 				'pbb_terakhir' 				=> true, 
-			// 			],
-
-			// 			'alamat' 					=> [
-			// 				'jalan' 				=> 'null', 
-			// 				'kota' 					=> 'null', 
-			// 				'provinsi' 				=> 'null', 
-			// 				'negara' 				=> 'null', 
-			// 				'kode_pos' 				=> 'null', 
-			// 			],
-			// 			'nilai'						=> [
-			// 				'jalan' 				=> 'null', 
-			// 				'letak_lokasi' 			=> 'null', 
-			// 				'lingkungan' 			=> 'null', 
-			// 				'asuransi' 				=> true, 
-			// 				'harga_njop' 			=> 0, 
-			// 				'nilai_tanah' 			=> 0, 
-			// 				'nilai_bangunan' 		=> 0, 
-			// 				'nilai_taksasi' 		=> 0, 
-			// 			]
-			// 			];
-			// 		}
-			// 	}
-			// }
-			dd($kreditur);
-
-			$result								= $this->service->pengajuan($kreditur, $kredit);
+			dispatch(new AjukanKredit($kredit));
 
 			//function from parent to redirecting
-			return $this->generateRedirect(route('credit.show', $result['kredit']));
+			return $this->generateRedirect(route('credit.index'));
 		}
 		catch(Exception $e)
 		{
