@@ -130,7 +130,7 @@ class Kredit extends BaseModel
 	 *
 	 * @return Kredit $model
 	 */	
-	public function jaminanKendaraan()
+	public function jaminan_kendaraan()
 	{
 		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasKendaraan_A', 'jaminan', 'kredit_id', 'legalitas_kendaraan_id');
 	}
@@ -140,7 +140,7 @@ class Kredit extends BaseModel
 	 *
 	 * @return Kredit $model
 	 */	
-	public function jaminanTanahBangunan()
+	public function jaminan_tanah_bangunan()
 	{
 		return $this->belongstomany('Thunderlabid\Credit\Models\LegalitasTanahBangunan_A', 'jaminan', 'kredit_id', 'legalitas_tanah_bangunan_id');
 	}

@@ -2,6 +2,8 @@
 
 namespace Thunderlabid\Credit\Models\Traits\Policies;
 
+use Thunderlabid\Credit\Exceptions\CurrencyException;
+
 /**
  * Trait Link list
  *
@@ -21,7 +23,7 @@ trait IDRTrait {
 	{
 		list($currency,$amount) 	= array_map('trim', explode(' ', $value));
 
-		if(!str_is(strtolower($currency), 'rp'))
+		if(!str_is(strtolower($currency), 'rp') && !str_is(strtolower($currency), 'rp.'))
 		{
 			throw new CurrencyException('rp', 1);
 		}
