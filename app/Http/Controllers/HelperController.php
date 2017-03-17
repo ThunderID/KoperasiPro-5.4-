@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use Thunderlabid\Application\Queries\Territorial\TeritoriIndonesia;
+use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
 
 /**
  * Class HelperController

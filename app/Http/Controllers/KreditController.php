@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Application\Queries\Credit\DaftarKredit;
-use Thunderlabid\Application\Queries\Territorial\TeritoriIndonesia;
+use Thunderlabid\Web\Queries\Credit\DaftarKredit;
+use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
 
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;

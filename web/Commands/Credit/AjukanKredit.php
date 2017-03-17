@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Commands\Credit;
+namespace Thunderlabid\Web\Commands\Credit;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Application\Services\SessionBasedAuthenticator;
+use Thunderlabid\Web\Services\SessionBasedAuthenticator;
 use Input, Exception, Redirect, URL, TAuth;
 
 /**

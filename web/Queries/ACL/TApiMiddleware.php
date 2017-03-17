@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Application\Queries\ACL;
+namespace Thunderlabid\Web\Queries\ACL;
 
 use Closure;
 use Illuminate\Http\Request;
