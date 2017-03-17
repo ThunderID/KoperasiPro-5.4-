@@ -10425,8 +10425,7 @@ $(function () {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {// window.choiceSelect = function () {
-$.fn.choiceSelect = function () {
+/* WEBPACK VAR INJECTION */(function($) {$.fn.choiceSelect = function () {
 	$(this).quickselect({
 		buttonTag: 'a',
 		activeButtonClass: 'btn-success active',
@@ -10453,13 +10452,21 @@ function quick_select_to_other(val, element) {
 		window.resizeWizard();
 	}
 }
-$(document).ready(function () {
+/**
+ * function window.quickSelet
+ * Description: untuk panggil plugin choice select agar bisa dipanggil dimana saja
+ */
+window.quickSelect = function () {
 	$('.quick-select').choiceSelect();
 	// event change on quick-select
 	$('.quick-select').on('change', function () {
 		selected = $(this).find('option:selected').val();
 		quick_select_to_other(selected, $(this));
 	});
+};
+
+$(document).ready(function () {
+	window.quickSelect();
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10530,7 +10537,7 @@ $(document).ready(function () {
 	elMoney.inputmask({
 		rightAlign: false,
 		alias: 'numeric',
-		prefix: 'Rp. ',
+		prefix: 'Rp ',
 		radixPoint: '',
 		placeholder: '',
 		autoGroup: !0,
@@ -10825,16 +10832,21 @@ var xxx = new List('list-koperasi', options);
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$('.modal').on('show.bs.modal', function (e) {
-	modal = $(this);
-	$(document).on('pjax:end', function () {
-		modal.modal('hide');
+/* WEBPACK VAR INJECTION */(function($) {window.callModal = function () {
+	$('.modal').on('show.bs.modal', function (e) {
+		// call plugin be use on modal
+		window.quickSelect();
+		window.select();
+		window.formInputMask();
+		$('.input-switch').bootstrapSwitch(); // active switch button
+
+		modal = $(this);
+		$(document).on('pjax:end', function () {
+			modal.modal('hide');
+		});
 	});
-});
-$('.modal').on('shown.bs.modal', function (e) {
-	window.select();
-	window.formInputMask();
-});
+	$('.modal').on('shown.bs.modal', function (e) {});
+};
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -11065,6 +11077,10 @@ window.notify = function (msg, title, type) {
 		rootSelect.find('.input-tujuan-kredit').focus();
 	});
 };
+
+$(document).ready(function () {
+	window.select();
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -11248,6 +11264,8 @@ $(document).ready(function () {
     print();
     window.templateClone();
     $('.add.init-add-one').trigger('click');
+
+    window.callModal();
   });
 
   // Form Submit with get method

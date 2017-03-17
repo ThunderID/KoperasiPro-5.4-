@@ -86,7 +86,12 @@
 		d.  hide_buttons
 		   	required 	: no
 			value 		: boolean (true/false)
-			description : is modal has action button or not																							
+			description : is modal has action button or not	
+
+		e. modal_size
+			description 	: this paramater using class modal on bootstrap
+			required  		: no
+			value 	  		: modal-lg
 	===================================================================
 	*/
 
@@ -109,7 +114,7 @@
 ?>
 
 <div id="{{ $id }}" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog {{ isset($settings['modal_size']) ? $settings['modal_size'] : '' }}">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">

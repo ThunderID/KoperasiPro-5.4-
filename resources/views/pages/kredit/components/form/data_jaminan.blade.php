@@ -7,10 +7,6 @@
 		$param['target']: untuk nama id template
 		$param['class']['init_add']: untuk initial on load page add single clone
  --}}
-<div class="m-t-none m-b-md">
-	<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
-</div>
-
 <div class="content-clone-jaminan">
 	<div class="section-clone-jaminan"></div>
 	<fieldset class="form-group">

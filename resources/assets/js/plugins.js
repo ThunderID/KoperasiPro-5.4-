@@ -53,6 +53,8 @@ $(document).ready(function(){
 		print();
 		window.templateClone();
 		$('.add.init-add-one').trigger('click');
+
+		window.callModal();
 	});
 
     // Form Submit with get method

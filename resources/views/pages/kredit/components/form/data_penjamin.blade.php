@@ -26,21 +26,11 @@
 		</div>
 	</div>
 </fieldset>
-
 <fieldset class="form-group">
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-12">
 			{!! Form::text('penjamin[nama]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Suena Morn']) !!}
-		</div>
-	</div>
-</fieldset>
-
-<fieldset class="form-group">
-	<label for="">Tempat Lahir</label>
-	<div class="row">
-		<div class="col-md-8">
-			{!! Form::select('penjamin[tempat_lahir]', $page_datas->cities_all, null, ['class' => 'form-control select required auto-tabindex', 'placeholder' => 'Ex. Surabaya', 'data-placeholder' => 'Ex. Surabaya']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -64,23 +54,6 @@
 		</div>
 	</div>
 </fieldset>
-
-<fieldset class="form-group">
-	<label for="">Agama</label>
-	<div class="row">
-		<div class="col-md-12">
-			{!! Form::select('penjamin[agama]', [
-				'buddha' 	=> 'Buddha', 
-				'hindu' 	=> 'Hindu',
-				'islam'		=> 'Islam',
-				'protestan'	=> 'Kristen Protestan',
-				'katolik'	=> 'Kristen Katolik',
-				'konghucu'	=> 'Konghucu'
-			], 'buddha', ['class' => 'form-control quick-select']) !!}
-		</div>
-	</div>
-</fieldset>
-
 <fieldset class="form-group">
 	<label for="">Status Pernikahan</label>
 	<div class="row">
@@ -93,37 +66,6 @@
 	</div>
 </fieldset>
 
-<fieldset class="form-group">
-	<label for="">Pendidikan Terakhir</label>
-	<div class="row">
-		<div class="col-md-12">
-			{!! Form::select('penjamin[pendidikan_terakhir]', [
-				'tk'			=> 'TK',
-				'sd'			=> 'SD',
-				'smp'			=> 'SMP',
-				'sma'			=> 'SMA/Sederajat',
-				'sarjana'		=> 'S1',
-				'magister'		=> 'S2',
-				'doctor'		=> 'S3'
-			], 'tk', ['class' => 'form-control quick-select']) !!}
-		</div>
-	</div>
-</fieldset>
-
-
-<fieldset class="form-group">
-	<label for="">Kewarganegaraan</label>
-	<div class="row">
-		<div class="col-md-10">
-			{!! Form::select('penjamin[kewarganegaraan]', [
-				'wni' 		=> 'WNI',
-				'wna'		=> 'WNA',
-			], 'wni', ['class' => 'form-control quick-select']) !!}
-		</div>
-	</div>
-</fieldset>
-
-
 <div class="clearfix">&nbsp;</div>
 <hr />
 <div class="clearfix">&nbsp;</div>
@@ -132,8 +74,7 @@
 @include('components.helpers.forms.address', [
 	'param'		=> [
 		'prefix'	=> 'penjamin',
-		'province' 	=> $page_datas->province,
-		'cities'	=> $page_datas->cities
+		'provinsi' 	=> $page_datas->provinsi,
 	]
 ])
 <div class="clearfix">&nbsp;</div>

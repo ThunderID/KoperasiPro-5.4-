@@ -23,7 +23,7 @@
 					<label for="">Tahun</label>
 					<div class="row">
 						<div class="col-md-3">
-							{!! Form::text('jaminan_kendaraan[tahun]', null, ['class' => 'form-control auto-tabindex  mask-year', 'placeholder' => 'Tahun Pembuatan', 'disabled' => 'disabled']) !!}
+							{!! Form::text('jaminan_kendaraan[tahun]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Tahun Pembuatan', 'disabled' => 'disabled']) !!}
 						</div>
 					</div>
 				</fieldset>

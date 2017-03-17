@@ -75,63 +75,10 @@ class KreditController extends Controller
 														];
 		//initialize view
 		$this->view 								= view('pages.kredit.create');
-
-		// initialize teritori indonesia
-		$teritori									= new TeritoriIndonesia;
-		// get data provinsi
-		$provinsi 									= collect($teritori->get());
-		$provinsi 									= $provinsi->sortBy('nama');
-
-		// get data regensi
-		$regensi									= collect($teritori->get(['semua_regensi' => true]));
-		$regensi 									= $regensi->sortBy('nama');
-
-		$this->page_datas->provinsi               	= $provinsi->pluck('nama', 'id');
 	
-		// parsing data manual to form kredit
-		// - jangka waktu
-		$this->page_datas->select_jangka_waktu		= [
-														'6'		=> '6 Bulan',
-														'10'	=> '10 Bulan',
-														'12'	=> '12 Bulan',
-														'18'	=> '18 Bulan',
-														'24'	=> '24 Bulan',
-														'30'	=> '30 Bulan',
-														'36'	=> '36 Bulan',
-														'42'	=> '42 Bulan',
-														'48'	=> '48 Bulan',
-														'54'	=> '54 Bulan',
-														'60'	=> '60 Bulan',
-													];
-		// - jenis kredit
-		$this->page_datas->select_jenis_kredit 		= [
-														'pa'			=> 'Angsuran',
-														'pt'			=> 'Musiman',
-														'rumah_delta'	=> 'Rumah Delta',
-														'00000'			=> 'Lainnya',
-													];
-		// - jenis kendaraan
-		$this->page_datas->select_jenis_kendaraan 	= [
-														'roda_2'		=> 'Roda 2',
-														'roda_3'		=> 'Roda 3',
-														'roda_4'		=> 'Roda 4',
-														'roda_6'		=> 'Roda 6',
-													];
-
-		// - merk kendaraan
-		$this->page_datas->select_merk_kendaraan 	= [
-														'daihatsu'		=> 'Daihatsu',
-														'honda'			=> 'Honda',
-														'isuzu'			=> 'Isuzu',
-														'kawasaki'		=> 'Kawasaki',
-														'kia'			=> 'KIA',
-														'mitsubishi'	=> 'Mitsubishi',
-														'nissan'		=> 'Nissan',
-														'suzuki'		=> 'Suzuki',
-														'toyota'		=> 'Toyota',
-														'yamaha'		=> 'Yamaha',
-														'00000'			=> 'Lainnya',
-													];
+		// get parameter from function getParamToView to parsing view
+		$this->getParamToView(['provinsi', 'jangka_waktu', 'jenis_kredit', 'jenis_kendaraan', 'merk_kendaraan']);
+		
 		//function from parent to generate view
 		return $this->generateView();
 	}
@@ -433,16 +380,16 @@ class KreditController extends Controller
 	 */
 	public function show($id)
 	{
-		$page 				= 1;
+		$page 										= 1;
 		if (Input::has('page'))
 		{
-			$page 			= (int)Input::get('page');
+			$page 									= (int)Input::get('page');
 		}
 
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title              = "Daftar Kredit";
 		$this->page_attributes->breadcrumb         = [
-															'Kredit'   => route('credit.index'),
+														'Kredit'   => route('credit.index'),
 													 ];
 
 
@@ -487,31 +434,8 @@ class KreditController extends Controller
 				break;
 		}
 
-		
-		// get data province
-		$data										= new ProvinceService;
-
-		// sort data province by 'province_name'
-		$data 										= collect($data->get());
-
-		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
-		// sort cities by 'city_name_full'
-		$cities										= $cities->sortBy('city_name_full');
-
-		// get province first to set list cities
-		$cities_first								= collect($data[0]['cities']);
-		$cities_first 								= $cities_first->sortBy('city_name_full');
-
-		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
-		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
-		$this->page_datas->cities_all				= $cities->pluck('city_name_full', 'city_name_full');
-		// get province first to set list cities
-		$cities_first								= collect($data[0]['cities']);
-		$cities_first 								= $cities_first->sortBy('city_name_full');
-
-		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
-		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
-
+		// get parameter from function getParamToView to parsing view
+		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu']);
 											 
 		//function from parent to generate view
 		return $this->generateView();
@@ -621,5 +545,85 @@ class KreditController extends Controller
 		$pdf = PDF::loadView('pages.kredit.print', ['page_datas' => $this->page_datas]);
 		
 		return $pdf->stream();
+	}
+
+	/**
+	 * function set param to view
+	 * Description: helper functio to parsing static element to view
+	 * paramater: provinsi, jangka_waktu, jenis_kredit, jenis_kendaraan, merk_kendaraan
+	 */
+	private function getParamToView($element)
+	{
+
+		// get parameter provinsi
+		if (in_array('provinsi', $element))
+		{
+			// initialize teritori indonesia
+			$teritori									= new TeritoriIndonesia;
+			// get data provinsi
+			$provinsi 									= collect($teritori->get());
+			$provinsi 									= $provinsi->sortBy('nama');
+
+			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'id');
+		}
+
+		// get parameter jangka waktu
+		if (in_array('jangka_waktu', $element))
+		{
+			// - jangka waktu
+			$this->page_datas->select_jangka_waktu		= [
+															'6'		=> '6 Bulan',
+															'10'	=> '10 Bulan',
+															'12'	=> '12 Bulan',
+															'18'	=> '18 Bulan',
+															'24'	=> '24 Bulan',
+															'30'	=> '30 Bulan',
+															'36'	=> '36 Bulan',
+															'42'	=> '42 Bulan',
+															'48'	=> '48 Bulan',
+															'54'	=> '54 Bulan',
+															'60'	=> '60 Bulan',
+														];
+		}
+
+		if (in_array('jenis_kredit', $element))
+		{
+			// - jenis kredit
+			$this->page_datas->select_jenis_kredit 		= [
+															'pa'			=> 'Angsuran',
+															'pt'			=> 'Musiman',
+															'rumah_delta'	=> 'Rumah Delta',
+															'00000'			=> 'Lainnya',
+														];
+		}
+
+		if (in_array('jenis_kendaraan', $element))
+		{
+			// - jenis kendaraan
+			$this->page_datas->select_jenis_kendaraan 	= [
+															'roda_2'		=> 'Roda 2',
+															'roda_3'		=> 'Roda 3',
+															'roda_4'		=> 'Roda 4',
+															'roda_6'		=> 'Roda 6',
+														];
+		}
+
+		if (in_array('merk_kendaraan', $element))
+		{
+			// - merk kendaraan
+			$this->page_datas->select_merk_kendaraan 	= [
+															'daihatsu'		=> 'Daihatsu',
+															'honda'			=> 'Honda',
+															'isuzu'			=> 'Isuzu',
+															'kawasaki'		=> 'Kawasaki',
+															'kia'			=> 'KIA',
+															'mitsubishi'	=> 'Mitsubishi',
+															'nissan'		=> 'Nissan',
+															'suzuki'		=> 'Suzuki',
+															'toyota'		=> 'Toyota',
+															'yamaha'		=> 'Yamaha',
+															'00000'			=> 'Lainnya',
+														];
+		}
 	}
 }

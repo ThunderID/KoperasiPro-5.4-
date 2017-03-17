@@ -1,6 +1,3 @@
-<div class="m-t-none m-b-md p-b-md">
-	<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
-</div>
 {{-- informasi umum --}}
 <h5 class="text-uppercase text-light">Info Umum</h5>
 
@@ -8,7 +5,7 @@
 	<label for="">E-KTP</label>
 	<div class="row">
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			{!! Form::checkbox('kreditur[is_ektp]', true, false, ['class' => 'form-control input-switch focus', 'data-inverse' => 'true', 'data-on-color' => 'primary']) !!}
+			{!! Form::checkbox('kreditur[is_ektp]', true, false, ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -46,7 +43,18 @@
 			{!! Form::select('kreditur[jenis_kelamin]', [
 				'laki-laki'		=> 'Laki-laki',
 				'perempuan'		=> 'Perempuan'
-			], 'laki-laki', ['class' => 'form-control quick-select']) !!}
+			], 'laki-laki', ['class' => 'form-control quick-select auto-tabindex']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label for="">Status Pernikahan</label>
+	<div class="row">
+		<div class="col-md-6">
+			{!! Form::select('kreditur[status_perkawinan]', [
+				'belum_menikah'		=> 'Belum Menikah',
+				'menikah' 			=> 'Menikah',
+			], 'belum_menikah', ['class' => 'form-control quick-select auto-tabindex']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -78,7 +86,7 @@
 @include('components.helpers.panels.contact', [ 
 	'param'	=> [
 		'target'	=> 'template-contact-person',
-		'prefix'	=> 'kreditur',
+		'prefix'	=> 'relasi',
 		'class'		=> [
 			'init_add'		=> 'init-add-one'
 		]

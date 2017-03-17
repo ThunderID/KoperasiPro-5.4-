@@ -17,18 +17,34 @@
 			{{-- untuk data kredit --}}
 			<h3>Data Kredit</h3>
 			<section>
+				<div class="m-t-none m-b-md">
+					<h4 class="m-t-none m-b-xs">Data Kredit</h4>
+				</div>
+
 				@include ('pages.kredit.components.form.data_kredit')
 			</section>
 			<h3>Data Kreditur</h3>
 			<section>
+				<div class="m-t-none m-b-md p-b-md">
+					<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
+				</div>
+
 				@include ('pages.kredit.components.form.data_kreditur')
 			</section>
 			<h3>Data Pekerjaan</h3>
 			<section>
+				<div class="m-t-none m-b-md">
+					<h4 class="m-t-none m-b-xs">Data Pekerjaan</h4>
+				</div>
+
 				@include ('pages.kredit.components.form.data_pekerjaan')
 			</section>
 			<h3>Data Jaminan</h3>
 			<section>
+				<div class="m-t-none m-b-md">
+					<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
+				</div>
+				
 				@include ('pages.kredit.components.form.data_jaminan', [
 					'param'	=> [
 						'target'	=> 'template-jaminan-credit',

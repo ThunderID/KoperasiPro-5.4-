@@ -111,3 +111,7 @@ window.select = function() {
 		rootSelect.find('.input-tujuan-kredit').focus();
 	});
 }
+
+$(document).ready( function() {
+	window.select();
+});

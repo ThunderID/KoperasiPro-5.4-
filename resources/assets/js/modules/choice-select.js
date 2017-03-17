@@ -1,4 +1,3 @@
-// window.choiceSelect = function () {
 $.fn.choiceSelect = function(){	
 	$(this).quickselect({
 		buttonTag: 'a',
@@ -27,11 +26,19 @@ function quick_select_to_other(val, element) {
 		window.resizeWizard();
 	}
 }
-$(document).ready( function() {
+/**
+ * function window.quickSelet
+ * Description: untuk panggil plugin choice select agar bisa dipanggil dimana saja
+ */
+window.quickSelect = function() {
 	$('.quick-select').choiceSelect();
 	// event change on quick-select
 	$('.quick-select').on('change', function() {
 		selected = $(this).find('option:selected').val();
 		quick_select_to_other(selected, $(this));
 	});
+}
+
+$(document).ready( function() {
+	window.quickSelect();
 });

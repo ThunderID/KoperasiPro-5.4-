@@ -1,7 +1,3 @@
-<div class="m-t-none m-b-md">
-	<h4 class="m-t-none m-b-xs">Data Pekerjaan</h4>
-</div>
-
 <fieldset class="form-group p-b-md">
 	<label for="">Jenis Pekerjaan</label>
 	<div class="row">
