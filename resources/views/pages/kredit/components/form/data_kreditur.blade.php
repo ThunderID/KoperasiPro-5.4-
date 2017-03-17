@@ -2,7 +2,7 @@
 	<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
 </div>
 {{-- informasi umum --}}
-<b><h5>Info Umum</h5></b>
+<h5 class="text-uppercase text-light">Info Umum</h5>
 
 <fieldset class="form-group">
 	<label for="">E-KTP</label>
@@ -18,7 +18,7 @@
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('kreditur[nik]', null, ['class' => 'form-control required auto-tabindex mask-id-card', 'placeholder' => '00-36-08-76-0001']) !!}
+				{!! Form::text('kreditur[nik]', null, ['class' => 'form-control required auto-tabindex mask-id-card', 'placeholder' => '00-00-360876-0001']) !!}
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('kreditur[nama]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Ex. Suena Morn']) !!}
+			{!! Form::text('kreditur[nama]', null, ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Kreditur']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -35,7 +35,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('kreditur[tanggal_lahir]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Ex. 19/03/1987']) !!}
+			{!! Form::text('kreditur[tanggal_lahir]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'dd/mm/yyyy']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -67,8 +67,7 @@
 @include('components.helpers.forms.address', [
 	'param'		=> [
 		'prefix'	=> 'kreditur',
-		'provinsi' 	=> $page_datas->province,
-		'regensi'	=> $page_datas->cities,
+		'provinsi' 	=> $page_datas->provinsi,
 	]
 ])
 

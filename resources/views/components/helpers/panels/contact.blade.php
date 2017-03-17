@@ -8,7 +8,7 @@
 		$param['class']['init_add']: untuk initial on load page add single clone
  --}}
 
-<strong><h5>Kontak</h5></strong>
+<h5 class="text-uppercase text-light">Kontak</h5></strong>
 <div class="content-clone-contact">
 	<div class="section-clone-contact"></div>
 	<fieldset class="form-group">

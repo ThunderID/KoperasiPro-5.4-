@@ -43,8 +43,6 @@ $(document).ready(function(){
 		htmlNotify();
 		// call module enter to tabs
 		formEntertoTabs();
-		// call choice select again
-		$('.quick-select').choiceSelect();
 		// call module form wizard();
 		wizard();
 		// call module plugin inputmask
@@ -53,8 +51,8 @@ $(document).ready(function(){
 		optimizeHeight();
 		// call module plugin print
 		print();
-
-		window.select();
+		window.templateClone();
+		$('.add.init-add-one').trigger('click');
 	});
 
     // Form Submit with get method
@@ -75,7 +73,6 @@ $(document).ready(function(){
  */
 window.steps = require('./plugins/jquery-steps/jquery.steps');
 $(document).ready(function() {
-	// call event form wizard();
 	wizard();
 });
 
@@ -122,7 +119,7 @@ window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselec
 //  */
 window.select2 = require('./plugins/select2/select2.min');
 $(document).ready( function() {
-	window.select();
+	// window.select();
 });
 
 /**

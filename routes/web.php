@@ -58,7 +58,10 @@ Route::group(['middleware' => ['pjax']], function()
 	Route::get('/index2', 						['uses' => 'DashboardController@indextest2', 	'as' => 'dashboard.sample.index2']);
 });
 
-Route::any('cities',							['uses' => 'HelperController@getCities', 		'as' => 'cities.index']);
+// route to get json from helper for get address to select2
+Route::any('regensi',							['uses' => 'HelperController@getRegensi', 		'as' => 'regensi.index']);
+Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => 'distrik.index']);
+Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
 
 // route for print kredit
 Route::get('kredit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);

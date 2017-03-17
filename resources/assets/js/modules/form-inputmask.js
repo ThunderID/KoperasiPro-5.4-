@@ -58,9 +58,10 @@ window.formInputMask = function () {
 		},
 	});
 
-	$('.mask-id-card').inputmask('99-99-99-99-9999');
+	$('.mask-id-card').inputmask('99-99-999999-9999');
 	$('.mask-no-telp').inputmask('9999 9999 9999');
 	$('.mask-no-handphone').inputmask('999 999 999 999');
+	$('.mask-no-sertifikat').inputmask('99.99.99.99.9.99999');
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });

@@ -10578,9 +10578,10 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.mask-id-card').inputmask('99-99-99-99-9999');
+	$('.mask-id-card').inputmask('99-99-999999-9999');
 	$('.mask-no-telp').inputmask('9999 9999 9999');
 	$('.mask-no-handphone').inputmask('999 999 999 999');
+	$('.mask-no-sertifikat').inputmask('99.99.99.99.9.99999');
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
@@ -10690,7 +10691,6 @@ $(document).ready(function () {
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
-			window.select();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 		},
 		onInit: function onInit(event, currentIndex) {
@@ -10698,8 +10698,8 @@ $(document).ready(function () {
 			window.setFocus();
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
-			// window.select();
 			$('.input-switch').bootstrapSwitch(); // active switch button
+			window.select();
 		},
 		onFinishing: function onFinishing(event, currentIndex) {
 			form = $(this);
@@ -10964,11 +10964,39 @@ window.notify = function (msg, title, type) {
 		tags: true
 	});
 
-	$('.select-province').on('select2:select', function (evt) {
+	$('.select-provinsi').on('select2:select', function (evt) {
 		url = $(this).data('url');
 		val = $(this).find('option:selected').val();
 		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-province
-		rootSelect.find('.select-cities').html('');
+		rootSelect.find('.select-regensi').html('');
+
+		$.ajax({
+			type: "GET",
+			url: url,
+			data: { id: val },
+			cache: true,
+			success: function success(data) {
+				// set select2 regensi option, value provinsi id selected from ajax
+				rootSelect.find('.select-regensi').html('');
+				$.each(data, function (i, v) {
+					$option = $("<option></option>");
+					$option.val(v.id).text(v.nama);
+					rootSelect.find('.select-regensi').append($option);
+				});
+			}
+		});
+		// remove disable select regensi
+		rootSelect.find('.select-regensi').removeAttr('disabled');
+		// after get data, set focus to select-regensi
+		rootSelect.find('.select-regensi').focus();
+	});
+
+	// on event select2 'regensi' on selected after focus to 'select-distrik' on form kontak
+	$('.select-regensi').on('select2:select', function (evt) {
+		url = $(this).data('url');
+		val = $(this).find('option:selected').val();
+		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-regensi
+		rootSelect.find('.select-distrik').html('');
 
 		$.ajax({
 			type: "GET",
@@ -10977,21 +11005,51 @@ window.notify = function (msg, title, type) {
 			cache: true,
 			success: function success(data) {
 				// set select2 city option, value province selected from ajax
-				rootSelect.find('.select-cities').html('');
+				rootSelect.find('.select-distrik').html('');
 				$.each(data, function (i, v) {
 					$option = $("<option></option>");
-					$option.val(v.city_id).text(v.city_name_full);
-					rootSelect.find('.select-cities').append($option);
+					$option.val(v.id).text(v.nama);
+					rootSelect.find('.select-distrik').append($option);
 				});
 			}
 		});
-		// after get data set focus to select-cities
-		rootSelect.find('.select-cities').focus();
+		// remove disable select distrik
+		rootSelect.find('.select-distrik').removeAttr('disabled');
+		// after get data, set focus to select distrik
+		rootSelect.find('.select-distrik').focus();
 	});
 
-	// on event select2 'cities' on selected after focus to 'input-kodepos' on form kontak
-	$('.select-cities').on('select2:select', function (evt) {
-		rootSelect = $(this).parent().parent().parent().parent();
+	// on event select2 'distrik' on selected after focus to 'select-desa' on form kontak
+	$('.select-distrik').on('select2:select', function (evt) {
+		url = $(this).data('url');
+		val = $(this).find('option:selected').val();
+		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-cities
+		rootSelect.find('.select-desa').html('');
+
+		$.ajax({
+			type: "GET",
+			url: url,
+			data: { id: val },
+			cache: true,
+			success: function success(data) {
+				// set select2 city option, value province selected from ajax
+				rootSelect.find('.select-desa').html('');
+				$.each(data, function (i, v) {
+					$option = $("<option></option>");
+					$option.val(v.id).text(v.nama);
+					rootSelect.find('.select-desa').append($option);
+				});
+			}
+		});
+		// remove disable select desa
+		rootSelect.find('.select-desa').removeAttr('disabled');
+		// after get data, set focus to select desa
+		rootSelect.find('.select-desa').focus();
+	});
+
+	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
+	$('.select-desa').on('select2:select', function (evt) {
+		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-cities
 		rootSelect.find('.input-kodepos').focus();
 	});
 
@@ -11013,7 +11071,7 @@ window.notify = function (msg, title, type) {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(function () {
+/* WEBPACK VAR INJECTION */(function($) {window.templateClone = function () {
 	$('.add').click(function (e) {
 		e.preventDefault();
 		dataFlag = $(this).data('active');
@@ -11025,10 +11083,9 @@ window.notify = function (msg, title, type) {
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
-		} else if ($(this).data('active') === 'contact') {
-			window.formInputMask();
 		}
 
+		window.formInputMask();
 		$(this).remove();
 
 		// add event remove template click
@@ -11037,11 +11094,12 @@ window.notify = function (msg, title, type) {
 			template_remove($(this));
 		});
 	});
-});
+};
 /**
  * on document ready triger click btn 'add' for template clone
  */
 $(document).ready(function () {
+	window.templateClone();
 	$('.add.init-add-one').trigger('click');
 });
 /**
@@ -11050,14 +11108,14 @@ $(document).ready(function () {
  */
 function template_add(flag, element) {
 	target = element.data('target');
-	temp = $('#' + target).children().clone();
+	temp = $('#' + target).children().clone(true);
 	// check data is clone jaminan
 	if (flag === 'jaminan') {
 		replaceQuickSelect(temp); // replace name to 'quick-select'
 	}
 	// append template to section clone
+	temp.find('input').removeAttr('disabled');
 	element.parent().parent().find('.section-clone-' + flag).append(temp);
-	element.parent().parent().find('.section-clone-' + flag).find('input[disabled="disabled"]').removeAttr('disabled');
 }
 /**
  * function template remove
@@ -11089,25 +11147,25 @@ function replaceQuickSelect(el) {
  */
 function selectTypeJaminan() {
 	$('.quick-select-type').on('change', function () {
-		rootClone = $(this).parent().parent().parent().parent(); // ambil root clone per row
-		rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
+		// rootClone = $(this).parent().parent().parent().parent(); // ambil root clone per row
+		// rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
 
-		val = $(this).find('option:selected').val();
-		setName = $(this).find('option:selected').data('name');
+		// val = $(this).find('option:selected').val();
+		// setName = $(this).find('option:selected').data('name');
 
-		rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
-		valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
+		// rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
+		// valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
 
-		// change parsing name input sesuai dengan type jaminan nya
-		// change name input status kepemilikan
-		rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
+		// // change parsing name input sesuai dengan type jaminan nya
+		// // change name input status kepemilikan
+		// rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
 
-		// change name & value input legalitas
-		$('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
-		$('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
+		// // change name & value input legalitas
+		// $('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
+		// $('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
 
-		window.resizeWizard(); // form wizard automatic height after add template
-		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
+		// window.resizeWizard(); // form wizard automatic height after add template
+		// window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
 
@@ -11116,15 +11174,15 @@ function selectTypeJaminan() {
  * Description: ketika select option jaminan legal yang sedang aktif dan dipilih salah satu maka select option value jaminan legal
  * yg sedang terselect akan dimasukkan ke value inputan jaminan legal
  */
-function selectLegal() {
-	$('.quick-select-legal').on('change', function () {
-		val = $(this).find('option:selected').val();
-		name = $(this).data('name');
-		$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
-		$(this).parent().siblings('.credit-jaminan-legal').val(val);
-		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
-	});
-}
+function selectLegal() {}
+// $('.quick-select-legal').on('change', function() {
+// 	val = $(this).find('option:selected').val();
+// 	name = $(this).data('name');
+// 	$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
+// 	$(this).parent().siblings('.credit-jaminan-legal').val(val);
+// 	window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
+// });
+
 
 /**
  * function count and each label increment template clone
@@ -11180,8 +11238,6 @@ $(document).ready(function () {
     htmlNotify();
     // call module enter to tabs
     formEntertoTabs();
-    // call choice select again
-    $('.quick-select').choiceSelect();
     // call module form wizard();
     wizard();
     // call module plugin inputmask
@@ -11190,8 +11246,8 @@ $(document).ready(function () {
     optimizeHeight();
     // call module plugin print
     print();
-
-    window.select();
+    window.templateClone();
+    $('.add.init-add-one').trigger('click');
   });
 
   // Form Submit with get method
@@ -11212,7 +11268,6 @@ $(document).ready(function () {
  */
 window.steps = __webpack_require__(25);
 $(document).ready(function () {
-  // call event form wizard();
   wizard();
 });
 
@@ -11259,7 +11314,7 @@ window.quickselect = __webpack_require__(24);
 //  */
 window.select2 = __webpack_require__(31);
 $(document).ready(function () {
-  window.select();
+  // window.select();
 });
 
 /**

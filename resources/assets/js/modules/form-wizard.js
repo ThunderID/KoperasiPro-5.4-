@@ -40,7 +40,6 @@ window.wizard = function(){
 			window.resizeWizard();
 			window.setFocus();
 			window.customButtonActions();
-			window.select();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 		}, 
 		onInit: function (event, currentIndex) {
@@ -48,8 +47,8 @@ window.wizard = function(){
 			window.setFocus();
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
-			// window.select();
 			$('.input-switch').bootstrapSwitch(); // active switch button
+			window.select();
 		},
 		onFinishing: function (event, currentIndex) {
 			form = $(this);

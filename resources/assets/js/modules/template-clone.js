@@ -1,4 +1,4 @@
-$(function (){
+window.templateClone = function() {
 	$('.add').click( function (e){
 		e.preventDefault();
 		dataFlag = $(this).data('active');
@@ -10,10 +10,9 @@ $(function (){
 			$('.quick-select').choiceSelect();
 			selectTypeJaminan();
 			selectLegal();
-		} else if ($(this).data('active') === 'contact') {
-			window.formInputMask();
 		}
 		
+		window.formInputMask();
 		$(this).remove();
 
 		// add event remove template click
@@ -22,12 +21,12 @@ $(function (){
 			template_remove($(this));
 		});
 	});
-
-});
+}
 /**
  * on document ready triger click btn 'add' for template clone
  */
-$(document).ready( function() {
+$(document).ready(function() {
+	window.templateClone();
 	$('.add.init-add-one').trigger('click');
 });
 /**
@@ -36,14 +35,14 @@ $(document).ready( function() {
  */
 function template_add(flag, element) {
 	target = element.data('target');
-	temp = $('#' + target).children().clone();
+	temp = $('#' + target).children().clone(true);
 	// check data is clone jaminan
 	if (flag === 'jaminan') {
 		replaceQuickSelect(temp); // replace name to 'quick-select'
 	}
 	// append template to section clone
+	temp.find('input').removeAttr('disabled');
 	element.parent().parent().find('.section-clone-' + flag).append(temp);
-	element.parent().parent().find('.section-clone-' + flag).find('input[disabled="disabled"]').removeAttr('disabled');
 }
 /**
  * function template remove
@@ -75,25 +74,25 @@ function replaceQuickSelect(el) {
  */
 function selectTypeJaminan() {
 	$('.quick-select-type').on('change', function() {
-		rootClone = $(this).parent().parent().parent().parent(); // ambil root clone per row
-		rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
+		// rootClone = $(this).parent().parent().parent().parent(); // ambil root clone per row
+		// rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
 
-		val = $(this).find('option:selected').val();
-		setName = $(this).find('option:selected').data('name');
+		// val = $(this).find('option:selected').val();
+		// setName = $(this).find('option:selected').data('name');
 
-		rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
-		valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
+		// rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
+		// valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
 
-		// change parsing name input sesuai dengan type jaminan nya
-		// change name input status kepemilikan
-		rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
+		// // change parsing name input sesuai dengan type jaminan nya
+		// // change name input status kepemilikan
+		// rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
 
-		// change name & value input legalitas
-		$('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
-		$('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
+		// // change name & value input legalitas
+		// $('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
+		// $('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
 
-		window.resizeWizard(); // form wizard automatic height after add template
-		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
+		// window.resizeWizard(); // form wizard automatic height after add template
+		// window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
 	});
 }
 
@@ -103,13 +102,13 @@ function selectTypeJaminan() {
  * yg sedang terselect akan dimasukkan ke value inputan jaminan legal
  */
 function selectLegal() {
-	$('.quick-select-legal').on('change', function() {
-		val = $(this).find('option:selected').val();
-		name = $(this).data('name');
-		$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
-		$(this).parent().siblings('.credit-jaminan-legal').val(val);
-		window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
-	});
+	// $('.quick-select-legal').on('change', function() {
+	// 	val = $(this).find('option:selected').val();
+	// 	name = $(this).data('name');
+	// 	$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
+	// 	$(this).parent().siblings('.credit-jaminan-legal').val(val);
+	// 	window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
+	// });
 }
 
 /**
