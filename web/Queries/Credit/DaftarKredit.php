@@ -67,7 +67,7 @@ class DaftarKredit
 	 */
 	public function detailed($id)
 	{
-		$model 			= $this->model->id($id)->with(['kreditur', 'jaminankendaraan', 'jaminantanahbangunan', 'jaminantanahbangunan.alamat', 'riwayat_status'])->first();
+		$model 			= $this->model->id($id)->with(['kreditur', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat', 'riwayat_status'])->first();
 
 		$parsed_credit 	=  $model->toArray();
 
