@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Thunderlabid\Application\Queries\Credit\DaftarKredit;
-use Thunderlabid\Application\Services\ProvinceService;
+use Thunderlabid\Application\Queries\Territorial\TeritoriIndonesia;
+
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
 
@@ -45,7 +46,7 @@ class KreditController extends Controller
 		$this->page_attributes->title				= "Daftar Kredit";
 		$this->page_attributes->breadcrumb			= 	[
 															'Kredit'   => route('credit.index'),
-													 	];
+														];
 
 		//this function to set all needed variable in lists credit (sidebar)
 		$this->getCreditLists($page, 10);
@@ -74,30 +75,19 @@ class KreditController extends Controller
 														];
 		//initialize view
 		$this->view 								= view('pages.kredit.create');
-		// get data province
-		$data										= new ProvinceService;
 
-		// sort data province by 'province_name'
-		$data 										= collect($data->get());
+		// initialize teritori indonesia
+		$teritori									= new TeritoriIndonesia;
+		// get data provinsi
+		$provinsi 									= collect($teritori->get());
+		$provinsi 									= $provinsi->sortBy('nama');
 
-		$cities 									= new \Thunderlabid\Indonesia\Infrastructures\Models\City;
-		// sort cities by 'city_name_full'
-		$cities										= $cities->sortBy('city_name_full');
+		// get data regensi
+		$regensi									= collect($teritori->get(['semua_regensi' => true]));
+		$regensi 									= $regensi->sortBy('nama');
 
-		// get province first to set list cities
-		$cities_first								= collect($data[0]['cities']);
-		$cities_first 								= $cities_first->sortBy('city_name_full');
-
-		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
-		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
-		$this->page_datas->cities_all				= $cities->pluck('city_name_full', 'city_name_full');
-		// get province first to set list cities
-		$cities_first								= collect($data[0]['cities']);
-		$cities_first 								= $cities_first->sortBy('city_name_full');
-
-		$this->page_datas->province 				= $data->pluck('province_name', 'province_id');
-		$this->page_datas->cities 					= $cities_first->pluck('city_name_full', 'city_id');
-
+		$this->page_datas->provinsi               	= $provinsi->pluck('nama', 'id');
+	
 		// parsing data manual to form kredit
 		// - jangka waktu
 		$this->page_datas->select_jangka_waktu		= [
@@ -154,10 +144,9 @@ class KreditController extends Controller
 	 */
 	public function store()
 	{
-		dd(Input::all());
 		try
 		{
-			//============ DATA KREDITUR ============
+			//============ DATA KREDITUR ============//
 			$kreditur 							= Input::get('kreditur');
 			$kreditur['tanggal_lahir']			= Carbon::createFromFormat('d/m/Y', $kreditur['tanggal_lahir'])->format('Y-m-d');
 			$kreditur['id']						= null;
@@ -204,7 +193,7 @@ class KreditController extends Controller
 				$kreditur['is_ektp']			= true;
 			}
 
-			//============ DATA KREDIT ============
+			//============ DATA KREDIT ============//
 			// $kredit 							= Input::get('kredit');
 			$kredit 							= [];
 			$kredit['id']						= null;
@@ -215,7 +204,7 @@ class KreditController extends Controller
 			$kredit['kemampuan_angsur']			= Input::get('kemampuan_angsur');
 			$kredit['jangka_waktu']				= Input::get('jangka_waktu');
 
-			//============ DATA JAMINAN ============
+			//============ DATA JAMINAN ============//
 			$kredit['jaminan_kendaraan']		= Input::get('jaminan_kendaraan');
 			$kredit['jaminan_tanah_bangunan']	= Input::get('jaminan_tanah_bangunan');
 			// $kredit['jaminan_kendaraan']		= [];
