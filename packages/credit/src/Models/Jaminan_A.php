@@ -92,7 +92,7 @@ class Jaminan_A extends BaseModel
 	public function tambahJaminanKendaraan(Kredit $kredit, $value)
 	{
 		//1. jaminan kendaraan max 2
-		if($kredit->jaminankendaraan->count() > 2 )
+		if($kredit->jaminan_kendaraan->count() > 2 )
 		{
 			throw new LimitException("Jaminan kendaraan max 2", 1);
 		}
@@ -199,7 +199,7 @@ class Jaminan_A extends BaseModel
 	public function tambahJaminanTanahBangunan(Kredit $kredit, $value)
 	{
 		//1. jaminan tanahbangunan max 3
-		if($kredit->jaminantanahbangunan->count() > 3 )
+		if($kredit->jaminan_tanah_bangunan->count() > 3 )
 		{
 			throw new LimitException("Jaminan tanah bangunan max 2", 1);
 		}
