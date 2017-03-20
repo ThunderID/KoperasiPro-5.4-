@@ -10,6 +10,7 @@ use Thunderlabid\Credit\Models\Traits\EventRaiserTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\IDRTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\TanggalTrait;
 use Thunderlabid\Credit\Models\Traits\Policies\NomorKreditTrait;
+use Thunderlabid\Credit\Models\Traits\Policies\StatusTanggalTrait;
 
 use Thunderlabid\Credit\Exceptions\IndirectModificationException;
 
@@ -36,6 +37,8 @@ class Kredit extends BaseModel
 	use IDRTrait;
 	use TanggalTrait;
 	use NomorKreditTrait;
+
+	use StatusTanggalTrait;
 	
 	/**
 	 * The database table used by the model.
@@ -114,7 +117,6 @@ class Kredit extends BaseModel
 		return $this->belongsTo('Thunderlabid\Credit\Models\Orang', 'kreditur_id');
 	}
 	
-
 	/**
 	 * relationship riwayat_status
 	 *
@@ -124,6 +126,7 @@ class Kredit extends BaseModel
 	{
 		return $this->hasMany('Thunderlabid\Credit\Models\Status_A', 'kredit_id');
 	}
+
 
 	/**
 	 * relationship jaminan kendaraan
@@ -180,16 +183,6 @@ class Kredit extends BaseModel
 	protected function getPengajuanKreditAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
-	}
-
-	/**
-	 * formatting pengajuan created_at menjadi tanggal pengajuan
-	 *
-	 * @return string $value ["d/m/Y"]
-	 */	
-	protected function getTanggalPengajuanAttribute()
-	{
-		return $this->formatDateTo($this->created_at);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
@@ -366,10 +359,10 @@ class Kredit extends BaseModel
 	{
 		if(is_array($variable))
 		{
-			return $model->whereIn('status', $variable);
+			return $model->whereIn('kredit.status', $variable);
 		}
 
-		return $model->where('status', $variable);
+		return $model->where('kredit.status', $variable);
 	}
 
 	/**
