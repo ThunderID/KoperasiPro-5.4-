@@ -5,10 +5,9 @@
 	<div class="row">
 		<div class="col-md-8">
 			{!! Form::select('keluarga[hubungan]', [
-				'adik_kakak'	=> 'Adik/Kakak',
 				'orang_tua'		=> 'Orang Tua',
 				'pasangan'		=> 'Pasangan',
-				'sepupu'		=> 'Sepupu',
+				'saudara'		=> 'Saudara',
 			], (!empty($page_datas->credit['kreditur']['relasi'][0]['hubungan']) ? $page_datas->credit['kreditur']['relasi'][0]['hubungan'] : ''), ['class' => 'form-control quick-select focus', 'data-other' => 'input-hubungan-keluarga']) !!}
 			{!! Form::hidden('keluarga[hubungan]', 'adik_kakak', ['class' => 'input-hubungan-keluarga']) !!}
 		</div>

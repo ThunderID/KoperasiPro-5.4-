@@ -10684,20 +10684,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
+				return true;
+			}
 
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10981,87 +10981,36 @@ window.notify = function (msg, title, type) {
 		tags: true
 	});
 
-	$('.select-provinsi').on('select2:select', function (evt) {
-		url = $(this).data('url');
-		val = $(this).find('option:selected').val();
-		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-province
-		rootSelect.find('.select-regensi').html('');
+	$('.select-get-ajax').on('select2:select', function (evt) {
+		$url = $(this).data('url');
+		$val = $(this).find('option:selected').val();
+		// get select2 to parsing data
+		$targetParsing = $(this).data('target-parsing');
+		// get parent select on aktif
+		rootSelect = $(this).parent().parent().parent().parent();
 
+		// get data list on ajax
 		$.ajax({
 			type: "GET",
-			url: url,
-			data: { id: val },
+			url: $url,
+			data: { id: $val },
 			cache: true,
 			success: function success(data) {
-				// set select2 regensi option, value provinsi id selected from ajax
-				rootSelect.find('.select-regensi').html('');
+				// parsing data ajax to content
+				rootSelect.find($targetParsing).html('');
 				$.each(data, function (i, v) {
 					$option = $("<option></option>");
 					$option.val(v.id).text(v.nama);
-					rootSelect.find('.select-regensi').append($option);
+					rootSelect.find($targetParsing).append($option);
 				});
+				rootSelect.find($targetParsing).val('');
+				// remove default on selected
 			}
 		});
 		// remove disable select regensi
-		rootSelect.find('.select-regensi').removeAttr('disabled');
+		rootSelect.find($targetParsing).removeAttr('disabled');
 		// after get data, set focus to select-regensi
-		rootSelect.find('.select-regensi').focus();
-	});
-
-	// on event select2 'regensi' on selected after focus to 'select-distrik' on form kontak
-	$('.select-regensi').on('select2:select', function (evt) {
-		url = $(this).data('url');
-		val = $(this).find('option:selected').val();
-		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-regensi
-		rootSelect.find('.select-distrik').html('');
-
-		$.ajax({
-			type: "GET",
-			url: url,
-			data: { id: val },
-			cache: true,
-			success: function success(data) {
-				// set select2 city option, value province selected from ajax
-				rootSelect.find('.select-distrik').html('');
-				$.each(data, function (i, v) {
-					$option = $("<option></option>");
-					$option.val(v.id).text(v.nama);
-					rootSelect.find('.select-distrik').append($option);
-				});
-			}
-		});
-		// remove disable select distrik
-		rootSelect.find('.select-distrik').removeAttr('disabled');
-		// after get data, set focus to select distrik
-		rootSelect.find('.select-distrik').focus();
-	});
-
-	// on event select2 'distrik' on selected after focus to 'select-desa' on form kontak
-	$('.select-distrik').on('select2:select', function (evt) {
-		url = $(this).data('url');
-		val = $(this).find('option:selected').val();
-		rootSelect = $(this).parent().parent().parent().parent(); //get parent select-cities
-		rootSelect.find('.select-desa').html('');
-
-		$.ajax({
-			type: "GET",
-			url: url,
-			data: { id: val },
-			cache: true,
-			success: function success(data) {
-				// set select2 city option, value province selected from ajax
-				rootSelect.find('.select-desa').html('');
-				$.each(data, function (i, v) {
-					$option = $("<option></option>");
-					$option.val(v.id).text(v.nama);
-					rootSelect.find('.select-desa').append($option);
-				});
-			}
-		});
-		// remove disable select desa
-		rootSelect.find('.select-desa').removeAttr('disabled');
-		// after get data, set focus to select desa
-		rootSelect.find('.select-desa').focus();
+		rootSelect.find($targetParsing).focus();
 	});
 
 	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
