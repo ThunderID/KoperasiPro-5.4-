@@ -4,19 +4,24 @@ window.formInputMask = function () {
 	elMoneyRight = $('.mask-money-right');
 	elDateFormat = $('.mask-date-format');
 
+	Inputmask.extendAliases({
+		IDR: {
+			rightAlign: false,
+			prefix: "Rp ",
+			groupSeparator: ".",
+			alias: "numeric",
+			placeholder: "0",
+			autoGroup: !0,
+			digit: 1,
+			radixPoint: ',',
+			digitsOptional: !1,
+			clearMaskOnLostFocus: !1
+		}
+	});
+
+
 	// money indonesia standard
-	elMoney.inputmask({ 
-		rightAlign: false, 
-		alias: 'numeric',
-		prefix: 'Rp ',
-		radixPoint: '',
-		placeholder: '',
-		autoGroup: !0,
-		digitsOptional: !1,
-		groupSeparator: '.',
-		groupSize: 3,
-		repeat: 15 }, 
-	'unmaskedvalue');
+	elMoney.inputmask({alias: "IDR"});
 	
 	// money indonesia align right
 	elMoneyRight.inputmask({

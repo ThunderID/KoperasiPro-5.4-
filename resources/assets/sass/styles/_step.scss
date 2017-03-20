@@ -1,62 +1,82 @@
-#step{   overflow: hidden;  height: 37px; width: 100%; }
-#step div{  float: left; }
-#step .triangle a{
-  float: left; text-align:center;
-  color: $color-active;
-  position: relative;
-  background: white;
-  opacity: 1 !important; 
-}
-
-#step .triangle::after,
-#step .triangle::before{
-  content: "";
-  position: absolute;
-  top: 50%;
-  margin-top: -19px;   
-  border-top: 19px solid transparent;
-  border-bottom: 19px solid transparent;
-  border-left: 1em solid;
-  right: -1em;
-}
-#step .triangle::after{   	
-	z-index: 1;
-	border-left-color: white;   
-}
-
-#step .active a{
-  float: left; text-align:center;
-  color: $color-white;
-  position: relative;
-  background: $color-active;
-  opacity: 1 !important; 
-}
-#step .active a.disabled{
-  float: left; text-align:center;
-  color: $color-white;
-  position: relative;
-  background: $color-active;
-}
-#step .active::after{   	
-	z-index: 1;
-	color: white;
-	border-left-color: $color-active;   
-}
-#step .last.active::after{     
-  z-index: 1;
-  color: white;
-  border-left-color: $color-active;   
-}
-
-#step .disabled a{
-  float: left; text-align:center;
-  color: $color-default;
-  position: relative;
-  background: white;
-  opacity: 1 !important; 
-}
-#step .triangle.disabled::after{   	
-	z-index: 1;
-	color: white;
-	border-left-color: white;   
+.step {
+	border-top: 1px solid $border-color-default;
+	.step-content {
+		height: 38px; 
+		overflow: hidden;  
+		width: 100%; 
+		div {
+			float: left;
+		}
+		.triangle {
+			width: 95%;
+			a {
+				background: white;
+				border: 0 !important;
+				color: $color-active;
+				float: left; 
+				text-align:center;
+				position: relative;
+				opacity: 1 !important; 
+			}
+			&::after, &::before {
+				border-top: 19px solid transparent;
+				border-bottom: 19px solid transparent;
+				border-left: 1em solid;
+				content: "";
+				margin-top: -19px;   
+				position: absolute;
+				top: 50%;
+				right: 2px;
+			}
+			&::after {
+				border-left-color: white;
+				z-index: 1;
+			}
+			.disabled {
+				&::after {
+					border-left-color: white;
+					color: white;
+					z-index: 1;
+				}
+			}
+		}
+		.active { 
+			a {
+				background: $color-active;
+				color: $color-white;
+				float: left; text-align:center;
+				opacity: 1 !important; 
+				position: relative;
+				&.disabled {
+					background: $color-active;
+					color: $color-white;
+					float: left; text-align:center;
+					position: relative;
+				}
+			}
+			&::after {
+				border-left-color: $color-active;
+				color: white;
+				z-index: 1;
+			}
+		}
+		.last {
+			.active {
+				&::after {
+					border-left-color: $color-active;
+					color: white;
+					z-index: 1;
+				}
+			}
+		}
+		.disabled {
+			a {
+				background: white;
+				color: $color-default;
+				float: left; text-align:center;
+				opacity: 1 !important;
+				position: relative;
+			}
+		}
+	}
 }

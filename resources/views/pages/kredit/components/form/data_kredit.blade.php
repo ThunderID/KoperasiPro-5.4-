@@ -1,8 +1,17 @@
 <fieldset class="form-group">
+	<label for="">Tanggal Pengajuan</label>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-md-4">
+			{!! Form::text('tanggal_pengajuan', Carbon\Carbon::now()->format('d/m/Y'), ['class' => 'form-control required mask-date-format auto-tabindex focus', 'placeholder' => 'Contoh: 25/12/2015 (dd/mm/yyyy)']) !!}
+			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
 	<label for="">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('pengajuan_kredit', null, ['class' => 'form-control required mask-money auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman']) !!}
+			{!! Form::text('pengajuan_kredit', null, ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Jumlah pinjaman']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -20,14 +29,6 @@
 	<div class="row">
 		<div class="col-md-4">
 			{!! Form::select('jangka_waktu', $page_datas->select_jangka_waktu, null, ['class' => 'form-control select select-lama-angsuran number auto-tabindex mask-number-xs', 'placeholder' => 'Lama angsuran', 'data-placeholder' => 'Lama angsuran', 'style' => 'width:100%']) !!}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Tujuan Kredit</label>
-	<div class="row">
-		<div class="col-md-12">
-			{!! Form::text('tujuan_kredit', null, ['class' => 'form-control no-resize required auto-tabindex input-tujuan-kredit', 'placeholder' => 'Tujuan kredit']) !!}
 		</div>
 	</div>
 </fieldset>

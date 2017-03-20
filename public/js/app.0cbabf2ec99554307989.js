@@ -10533,18 +10533,23 @@ $(document).ready(function () {
 	elMoneyRight = $('.mask-money-right');
 	elDateFormat = $('.mask-date-format');
 
+	Inputmask.extendAliases({
+		IDR: {
+			rightAlign: false,
+			prefix: "Rp ",
+			groupSeparator: ".",
+			alias: "numeric",
+			placeholder: "0",
+			autoGroup: !0,
+			digit: 1,
+			radixPoint: ',',
+			digitsOptional: !1,
+			clearMaskOnLostFocus: !1
+		}
+	});
+
 	// money indonesia standard
-	elMoney.inputmask({
-		rightAlign: false,
-		alias: 'numeric',
-		prefix: 'Rp ',
-		radixPoint: '',
-		placeholder: '',
-		autoGroup: !0,
-		digitsOptional: !1,
-		groupSeparator: '.',
-		groupSize: 3,
-		repeat: 15 }, 'unmaskedvalue');
+	elMoney.inputmask({ alias: "IDR" });
 
 	// money indonesia align right
 	elMoneyRight.inputmask({
@@ -10679,20 +10684,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			form = $(this);
-			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
-				return true;
-			}
+			// form = $(this);
+			// // check previous tanpa memunculkan error
+			// if (currentIndex > newIndex) {
+			return true;
+			// }
 
-			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				form.find(".body:eq(" + newIndex + ") label.error").remove();
-				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// // check next apabila ada error di stage sebelumnya
+			// if (currentIndex < newIndex) {
+			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
+			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			form.validate().settings.ignore = ":disabled,:hidden";
-			return form.valid();
+			// form.validate().settings.ignore = ":disabled,:hidden";
+			// return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -11266,6 +11271,8 @@ $(document).ready(function () {
     $('.add.init-add-one').trigger('click');
 
     window.callModal();
+
+    window.formEntertoTabs();
   });
 
   // Form Submit with get method

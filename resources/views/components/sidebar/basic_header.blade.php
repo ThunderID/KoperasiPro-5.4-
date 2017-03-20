@@ -10,9 +10,6 @@
 
 */
 ?>
-
-
-
 <div class="title">
 	<div class="row">
 		<div class="col-md-6">
