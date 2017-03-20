@@ -52,11 +52,13 @@
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select('kreditur[status_perkawinan]', [
-				'belum_menikah'		=> 'Belum Menikah',
-				'menikah' 			=> 'Menikah',
-			], 'belum_menikah', ['class' => 'form-control quick-select auto-tabindex']) !!}
-		</div>
-	</div>
+				'belum_kawin'		=> 'Belum Kawin',
+				'cerai_hidup'		=> 'Cerai Hidup',
+				'cerai_mati'		=> 'Cerai Mati',
+				'kawin' 			=> 'Kawin',
+			], 'belum_kawin', ['class' => 'form-control quick-select auto-tabindex']) !!}
+		</div> 
+	</div> 
 </fieldset>
 <fieldset class="form-group p-b-sm">
 	<label for="">Foto KTP</label>

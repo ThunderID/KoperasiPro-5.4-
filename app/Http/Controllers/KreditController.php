@@ -126,9 +126,9 @@ class KreditController extends Controller
 			//function from parent to redirecting
 			return $this->generateRedirect(route('credit.index'));
 		}
-		catch(Exception $e)
+		catch (Exception $e)
 		{
-			if(is_array($e->getMessage()))
+			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
 			}

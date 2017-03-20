@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="sidebar-footer">
-				<div class="col-md-12 p-l-none text-center">
+				<div class="col-md-12 text-center">
 					@include('components.custom_paginator',[
 						'range' 	=> 5
 					])

@@ -55,6 +55,8 @@ $(document).ready(function(){
 		$('.add.init-add-one').trigger('click');
 
 		window.callModal();
+
+		window.formEntertoTabs();
 	});
 
     // Form Submit with get method

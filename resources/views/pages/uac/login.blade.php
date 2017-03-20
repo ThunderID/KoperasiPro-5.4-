@@ -2,8 +2,8 @@
 
 @push('content')			
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="form-wrap">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+			<div class="form-wrap p-b-sm m-b-md">
 				<h1>Chayono Group</h1> 
 				</br>
 				<p>Silahkan masukkan email dan password Anda!</p>
@@ -18,7 +18,7 @@
 					</div>
 					<div class="form-group">
 						<label for="key" class="sr-only">Password</label>
-						<input type="password" name="key" id="key" class="form-control" placeholder="Password">
+						<input type="password" name="key" id="key" class="form-control" placeholder="password">
 					</div>
 					{{-- <div class="checkbox">
 						<span class="character-checkbox" onclick="showPassword()"></span>
@@ -26,8 +26,7 @@
 					</div> --}}
 					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login">
 				</form>		
-				{{-- <a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a>		 --}}
-				<hr>
+				{{-- <a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a> --}}
 			</div>
 		</div>
 	</div>

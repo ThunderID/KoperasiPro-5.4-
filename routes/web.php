@@ -16,6 +16,7 @@ Route::get('/test', function ()
 });
 
 //Menu Login
+Route::get('/',			['uses'	=> 'LoginController@index',			'as' => 'index']);
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
 Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
@@ -40,7 +41,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 });
 
 
-Route::group(['middleware' => ['pjax']], function()
+Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 
 	//Menu Settings
@@ -48,7 +49,7 @@ Route::group(['middleware' => ['pjax']], function()
 	Route::get('activate/{idx}', 				['uses' => 'LoginController@activateOffice', 	'as' => 'office.activate']);
 
 	//Dashboard page
-	Route::get('/', 							['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
+	Route::get('/dashboard', 					['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
 	
 	//Notification page
 	Route::get('/notification',					['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
