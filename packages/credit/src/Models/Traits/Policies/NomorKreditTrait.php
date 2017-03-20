@@ -2,8 +2,6 @@
 
 namespace Thunderlabid\Credit\Models\Traits\Policies;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 /**
  * Trait Link list
  *

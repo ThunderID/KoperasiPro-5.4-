@@ -93,7 +93,7 @@ abstract class BaseModel extends Model
 	{
 		if(is_array($variable))
 		{
-			return 	$query->whereIn('id', $variable);
+			return 	$query->whereIn($this->getTable().'.id', $variable);
 		}
 
 		if(is_null($variable))
@@ -101,7 +101,7 @@ abstract class BaseModel extends Model
 			return $query;
 		}
 
-		return 	$query->where('id', $variable);
+		return 	$query->where($this->getTable().'.id', $variable);
 	}
 
 	/**
@@ -113,7 +113,7 @@ abstract class BaseModel extends Model
 	{
 		if(is_array($variable))
 		{
-			return 	$query->whereNotIn('id', $variable);
+			return 	$query->whereNotIn($this->getTable().'.id', $variable);
 		}
 
 		if(is_null($variable))
@@ -121,6 +121,6 @@ abstract class BaseModel extends Model
 			return $query;
 		}
 
-		return 	$query->where('id', '<>', $variable);
+		return 	$query->where($this->getTable().'.id', '<>', $variable);
 	}
 }

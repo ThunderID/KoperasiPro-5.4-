@@ -39,9 +39,19 @@ class AjukanKredit implements ShouldQueue
 		{
 			DB::BeginTransaction();
 
+			if(isset($this->kredit['tanggal_pengajuan']))
+			{
+				$tanggal 		= $this->kredit['tanggal_pengajuan'];
+			}
+			else
+			{
+				$tanggal 		= Carbon::now()->format("d/m/Y");
+			}
+
 			//1. parsing parameter status
 			$status 	=	[
 					'status'	=> 'pengajuan',
+					'tanggal'	=> $tanggal,
 					'petugas'	=> [
 						'id' 	=> TAuth::loggedUser()['id'],
 						'nama' 	=> TAuth::loggedUser()['nama'],

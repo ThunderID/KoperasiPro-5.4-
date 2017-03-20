@@ -50,6 +50,7 @@ class Status_A extends BaseModel
 	protected $fillable				=	[
 											'id'					,
 											'status'				,
+											'tanggal'				,
 											'kredit_id'				,
 											'ro_petugas_id'			,
 										];
@@ -61,6 +62,7 @@ class Status_A extends BaseModel
 	 */
 	protected $rules				=	[
 											'status'				=> 'max:255',
+											'tanggal'				=> 'date_format:"Y-m-d"',
 											'kredit_id'				=> 'max:255',
 											'ro_petugas_id'			=> 'max:255',
 										];
@@ -127,6 +129,7 @@ class Status_A extends BaseModel
 		//1a. Validating if value contain valid variable
 		$rules 			= [
 			'status'		=> 'required|max:255',
+			'tanggal'		=> 'required',
 			'petugas.id'	=> 'required|max:255',
 			'petugas.nama'	=> 'required|max:255',
 			'petugas.role'	=> 'required|max:255',
@@ -152,6 +155,7 @@ class Status_A extends BaseModel
 
 		//3b. simpan value
 		$this->attributes['status'] 				= $value['status'];
+		$this->attributes['tanggal'] 				= $this->formatDateFrom($value['tanggal']);
 		$this->attributes['ro_petugas_id'] 			= $petugas_ro->id;
 		$this->attributes['kredit_id'] 				= $kredit->id;
 

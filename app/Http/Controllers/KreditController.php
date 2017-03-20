@@ -9,6 +9,11 @@ use Thunderlabid\Web\Commands\Credit\AjukanKredit;
 
 use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
 
+use Thunderlabid\Web\Queries\Credit\UIHelper\JangkaWaktuKredit;
+use Thunderlabid\Web\Queries\Credit\UIHelper\JenisKredit;
+use Thunderlabid\Web\Queries\Credit\UIHelper\JenisJaminanKendaraan;
+use Thunderlabid\Web\Queries\Credit\UIHelper\MerkJaminanKendaraan;
+
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
 
@@ -337,12 +342,12 @@ class KreditController extends Controller
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->get();
+			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q')]);
 			$this->page_datas->total_credits		= $this->service->count();
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->get();
+			$this->page_datas->credits				= $this->service->get(['status' => $status]);
 			$this->page_datas->total_credits		= $this->service->count();
 		}
 
@@ -435,59 +440,29 @@ class KreditController extends Controller
 		if (in_array('jangka_waktu', $element))
 		{
 			// - jangka waktu
-			$this->page_datas->select_jangka_waktu		= [
-															'6'		=> '6 Bulan',
-															'10'	=> '10 Bulan',
-															'12'	=> '12 Bulan',
-															'18'	=> '18 Bulan',
-															'24'	=> '24 Bulan',
-															'30'	=> '30 Bulan',
-															'36'	=> '36 Bulan',
-															'42'	=> '42 Bulan',
-															'48'	=> '48 Bulan',
-															'54'	=> '54 Bulan',
-															'60'	=> '60 Bulan',
-														];
+			$jw 										= new JangkaWaktuKredit;
+			$this->page_datas->select_jangka_waktu		= $jw->get();
 		}
 
 		if (in_array('jenis_kredit', $element))
 		{
 			// - jenis kredit
-			$this->page_datas->select_jenis_kredit 		= [
-															'pa'			=> 'Angsuran',
-															'pt'			=> 'Musiman',
-															'rumah_delta'	=> 'Rumah Delta',
-															'00000'			=> 'Lainnya',
-														];
+			$jk 										= new JenisKredit;
+			$this->page_datas->select_jenis_kredit		= $jk->get();
 		}
 
 		if (in_array('jenis_kendaraan', $element))
 		{
 			// - jenis kendaraan
-			$this->page_datas->select_jenis_kendaraan 	= [
-															'roda_2'		=> 'Roda 2',
-															'roda_3'		=> 'Roda 3',
-															'roda_4'		=> 'Roda 4',
-															'roda_6'		=> 'Roda 6',
-														];
+			$jjk 										= new JenisJaminanKendaraan;
+			$this->page_datas->select_jenis_kendaraan	= $jjk->get();
 		}
 
 		if (in_array('merk_kendaraan', $element))
 		{
 			// - merk kendaraan
-			$this->page_datas->select_merk_kendaraan 	= [
-															'daihatsu'		=> 'Daihatsu',
-															'honda'			=> 'Honda',
-															'isuzu'			=> 'Isuzu',
-															'kawasaki'		=> 'Kawasaki',
-															'kia'			=> 'KIA',
-															'mitsubishi'	=> 'Mitsubishi',
-															'nissan'		=> 'Nissan',
-															'suzuki'		=> 'Suzuki',
-															'toyota'		=> 'Toyota',
-															'yamaha'		=> 'Yamaha',
-															'00000'			=> 'Lainnya',
-														];
+			$mjk 										= new MerkJaminanKendaraan;
+			$this->page_datas->select_merk_kendaraan	= $mjk->get();
 		}
 	}
 }
