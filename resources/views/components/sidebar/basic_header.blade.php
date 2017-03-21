@@ -60,9 +60,6 @@
 		</div>
 	</form>
 </div>
-<div class="row">
-	&nbsp;
-</div>
 <div class="row filters">
 	<div class="col-sm-6 left">
 	</div>

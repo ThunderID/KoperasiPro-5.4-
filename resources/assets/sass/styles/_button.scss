@@ -2,6 +2,12 @@
 
 .btn-link{
 	text-decoration : none !important;
+	@media (max-width: $screen-sm - 1) {
+		padding-top: 6px !important;
+	}
+}
+.no-border {
+	border: 0 !important;
 }
 
 // Button variants

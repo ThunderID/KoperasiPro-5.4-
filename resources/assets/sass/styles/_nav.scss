@@ -8,6 +8,12 @@
 
 	.navbar-brand {
 		border-right: 2px solid $border-color-default;
+
+		@media (max-width: $screen-sm - 1) {
+			border: 0;
+			padding: 10px 20px;
+			float: none;
+		}
 	}
 }
 
@@ -26,16 +32,21 @@ nav.topbar {
 	.name {
 		margin-top: 9px;
 		font-weight: 600;
+		font-size: 13px;
 		color: $font-color-primary;	
 	}
 	.role {
-		margin-bottom: 10px;
+		font-size: 12px;
+		margin-bottom: 5px;
 	}	
 	.dropdown {
 		z-index: 3;
 		p {
 			margin-top: -33px;
 		}
+	}
+	.btn-link {
+		color: $font-color-primary !important;
 	}
 }
 

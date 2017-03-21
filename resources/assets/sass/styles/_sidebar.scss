@@ -159,4 +159,8 @@
 		height: 39px;
 		border-top: 1px solid $border-color-default;
 	}
+
+	@media (max-width: $screen-sm - 1) {
+		border: 0 !important;
+	}
 }
