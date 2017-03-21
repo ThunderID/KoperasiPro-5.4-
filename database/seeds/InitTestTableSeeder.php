@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Thunderlabid\Credit\Models\Kredit;
 use Thunderlabid\Immigration\Models\Pengguna;
 
+use Carbon\Carbon;
+
 class InitTestTableSeeder extends Seeder
 {
 	public function run()
@@ -82,7 +84,7 @@ class InitTestTableSeeder extends Seeder
 			'https://pbs.twimg.com/media/BXjQAxjIEAAVhox.jpg',
 		];
 
-		foreach (range(0, 20) as $key) 
+		foreach (range(0, 19) as $key) 
 		{
 			$kredit	= [
 					'pengajuan_kredit'	=> 'Rp '.rand(10,100).'.000.000',
@@ -93,7 +95,7 @@ class InitTestTableSeeder extends Seeder
 						'is_ektp'		=> rand(0,1),
 						'nik'			=> '35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'',
 						'nama'			=> $faker->name,
-						'tanggal_lahir'	=> Carbon\Carbon::parse(rand(7300, 20075).' days ago')->format('d/m/Y'),
+						'tanggal_lahir'	=> Carbon::parse(rand(7300, 20075).' days ago')->format('d/m/Y'),
 						'jenis_kelamin'	=> $gndr[rand(0,1)],
 
 						'status_perkawinan'		=> $sp[rand(0,3)],
@@ -112,6 +114,7 @@ class InitTestTableSeeder extends Seeder
 						]];
 			$status 	= [
 						'status'		=> 'pengajuan',
+						'tanggal'		=> Carbon::parse('- 2 days')->format('d/m/Y'),
 						'petugas'		=> [
 							'id'		=> $admin->id,
 							'nama'		=> $admin->nama,

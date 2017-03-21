@@ -30,6 +30,10 @@ trait StatusTanggalTrait
 	 */	
 	protected function getTanggalPengajuanAttribute()
 	{
+        if(!isset($this->attributes['tanggal_pengajuan']))
+        {
+            return $this->formatDateTo($this->created_at);
+        }
 		return $this->formatDateTo($this->attributes['tanggal_pengajuan']);
 	}
 }
