@@ -12,25 +12,16 @@ window.callModal =  function() {
 		});
 	});
 	$(".modal").on("hidden.bs.modal", function(e) {
-		get_data_jaminan_kendaraan();
 		$(this).find("input, textarea").val("").end()
 			.find("input[type=checkbox], input[type=radiobox]").prop("checked", "").end()
 			.find("select").val("").end();
 	});
-}
 
-function get_data_jaminan_kendaraan () {
-	dataJaminanKend = {};
-	$('.input-kendaraan').each( function() {
-		field = $(this).data('field');
-		value = $(this).val();
-		dataJaminanKend[field] = value;
+	$('a[data-toggle="modal"]').on('click', function(e) {
+		if ($(this).hasClass('disabled')) {
+			e.stopPropagation();
+		}
 	});
-	setToTableJaminanKendaraan(dataJaminanKend);
-}
-
-function setToTableJaminanKendaraan () {
-
 }
 
 // add event call on document ready & document pjax:end

@@ -10696,20 +10696,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
+				return true;
+			}
 
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10863,22 +10863,15 @@ var xxx = new List('list-koperasi', options);
 		});
 	});
 	$(".modal").on("hidden.bs.modal", function (e) {
-		get_data_jaminan_kendaraan();
 		$(this).find("input, textarea").val("").end().find("input[type=checkbox], input[type=radiobox]").prop("checked", "").end().find("select").val("").end();
 	});
-};
 
-function get_data_jaminan_kendaraan() {
-	dataJaminanKend = {};
-	$('.input-kendaraan').each(function () {
-		field = $(this).data('field');
-		value = $(this).val();
-		dataJaminanKend[field] = value;
+	$('a[data-toggle="modal"]').on('click', function (e) {
+		if ($(this).hasClass('disabled')) {
+			e.stopPropagation();
+		}
 	});
-	setToTableJaminanKendaraan(dataJaminanKend);
-}
-
-function setToTableJaminanKendaraan() {}
+};
 
 // add event call on document ready & document pjax:end
 $(document).ready(function () {
@@ -11106,6 +11099,25 @@ $(document).ready(function () {
 			template_remove($(this));
 		});
 	});
+
+	$('.add-jaminan').click(function (e) {
+		e.preventDefault();
+
+		classRootTemplate = $(this).data('root-template'); // class root dari template clone & section clone
+		inputCheck = $(this).data('input-parsing'); // class input yang di form jaminan
+		availableAdd = $(this).data('available-add'); // jumlah data clone yang boleh ditambahkan 
+		countAdd = getCountDataClone(classRootTemplate); // ambil total data yang sudah diclone
+		inputHidden = $(this).data('input-hidden');
+
+		tableAdd($(this), inputCheck, inputHidden);
+		checkAvailableAdd(countAdd, availableAdd, classRootTemplate); // check data template lbh dari 3
+
+		$('.modal').modal('hide');
+		$('.remove-jaminan').on('click', function (e) {
+			e.preventDefault();
+			tableRemove($(this));
+		});
+	});
 };
 /**
  * on document ready triger click btn 'add' for template clone & event pjax:end
@@ -11158,52 +11170,112 @@ function replaceQuickSelect(el) {
 	el.find('.quick-select-clone').removeClass('quick-select-clone').addClass('quick-select');
 }
 
-/**
- * function selectTypeJaminan
- * Description: show/hide jaminan legal dan mengeset value default dari jaminan legal yang sedang aktif 
- */
-function selectTypeJaminan() {
-	$('.quick-select-type').on('change', function () {
-		// rootClone = $(this).parent().parent().parent().parent(); // ambil root clone per row
-		// rootClone.find('.quick-select-legal').hide(); // setiap root clone quick select legal di hide
+function tableAdd($element, inputCheck, inputHidden) {
+	getClassTemplate = $element.data('template-clone');
+	getClassSection = $element.data('section-clone');
+	getClassRootTemplate = $element.data('root-template');
 
-		// val = $(this).find('option:selected').val();
-		// setName = $(this).find('option:selected').data('name');
+	$temp = $('.' + getClassTemplate).clone(true);
 
-		// rootClone.find('.' + val).show(); // quick select legal yg sesuai akn aktif sesuai quick select type yg ter-select 
-		// valLegal = $('.' + val).children().find('option:selected').val(); // untuk mengisi inputan jaminan legal secara default
+	$temp.removeClass('hidden').removeClass(getClassTemplate).addClass('clone-jaminan');
+	getDataJaminan($temp, getClassRootTemplate, inputCheck, inputHidden);
+	$temp.find('.action').html('<a href="#" class="text-danger remove-jaminan" data-root-template="' + getClassRootTemplate + '" data-available-add="' + availableAdd + '">Hapus</a>');
 
-		// // change parsing name input sesuai dengan type jaminan nya
-		// // change name input status kepemilikan
-		// rootClone.find('.credit-jaminan-kepemilikan').attr('name', setName + '[status_kepemilikan]');
-
-		// // change name & value input legalitas
-		// $('.' + val).siblings('.credit-jaminan-legal').val(valLegal);
-		// $('.' + val).siblings('.credit-jaminan-legal').attr('name', setName + '[legalitas]');
-
-		// window.resizeWizard(); // form wizard automatic height after add template
-		// window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
-	});
+	$('.' + getClassRootTemplate).append($temp);
+	$('.' + getClassRootTemplate).find('.' + getClassTemplate + '-default').addClass('hidden'); // hidden data tabel default
+	window.resizeWizard();
 }
 
 /**
- * function selectLegal
- * Description: ketika select option jaminan legal yang sedang aktif dan dipilih salah satu maka select option value jaminan legal
- * yg sedang terselect akan dimasukkan ke value inputan jaminan legal
+ * function tableRemove
+ * param: 	$element (element dari button remove)
+ * description: untuk menghapus list dari tabel
  */
-function selectLegal() {}
-// $('.quick-select-legal').on('change', function() {
-// 	val = $(this).find('option:selected').val();
-// 	name = $(this).data('name');
-// 	$(this).parent().siblings('.credit-jaminan-legal').attr('name', name);
-// 	$(this).parent().siblings('.credit-jaminan-legal').val(val);
-// 	window.formEntertoTabs(); // form enter to tabs & on last input to next button for wizard
-// });
+function tableRemove($element) {
+	$element.parent().parent().remove();
+	getClassRootTemplate = $element.data('root-template');
+	availableAdd = $(this).data('available-add'); // jumlah data clone yang boleh ditambahkan 
+	countAdd = getCountDataClone(getClassRootTemplate); // ambil total data yang sudah diclone
 
+	checkAvailableAdd(countAdd, availableAdd, getClassRootTemplate);
+
+	i = 1;
+	$('.' + getClassRootTemplate).find('tr.clone-jaminan .nomor').each(function () {
+		$(this).html(i);
+		i++;
+	});
+
+	if (countAdd == 1) {
+		$('.' + getClassRootTemplate).find('tr[class*="default"]').removeClass('hidden'); // hidden data tabel default
+	}
+
+	window.resizeWizard();
+}
 
 /**
- * function count and each label increment template clone
+ * function checkAvailableAdd
+ * param: 	state (jumlah yg sudah diclone)
+ * 			available (jumlah clone yang boleh ditambahkan)
+ * 			classRootTemplate (class root template clone & section clone)
+ * description: untuk mengecheck jumlah yang dibolehkan untuk diclone
  */
+function checkAvailableAdd(state, available, classRootTemplate) {
+	if (countAdd >= availableAdd) {
+		$('.' + classRootTemplate).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+		$('.' + classRootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').removeClass('hidden');
+	} else {
+		$('.' + classRootTemplate).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+		$('.' + classRootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').addClass('hidden');
+	}
+}
+
+/**
+ * function getDataJaminan
+ * param: 	template (clone dari template)
+ * 			rootTemplate (root dari template clone & section clone)
+ * 			element (inputan apa yang akan digunakan parsingan dari form jaminan)
+ * description: ambil data jaminan dari form jaminan yang diambil dari inputan 'element' lalu dijadikan data object
+ */
+function getDataJaminan($template, rootTemplate, element, inputHidden) {
+	dataJaminan = {};
+	$(element).each(function () {
+		field = $(this).data('field');
+		value = $(this).val().replace('_', ' ').toLowerCase();
+		dataJaminan[field] = value;
+	});
+	setToTableJaminan(dataJaminan, $template, rootTemplate, inputHidden); // panggil fungsi yang untuk ditampilkan ke dalam tabel
+}
+
+/**
+ * function setToTableJaminan
+ * param: 	data (data object dari function getDataJaminan)
+ * 			$template (clone dari template)
+ * 			rootTemplate (root dari template clone & section clone)
+ * description: set data object dan ditampilkan ke dalam tabel
+ */
+function setToTableJaminan(data, $template, rootTemplate, inputHidden) {
+	$.each(data, function (key, value) {
+		$template.find('.' + key).html(value);
+		inputTemp = addInputHidden(key, value, inputHidden); // panggil fungsi tambahkan input hidden
+		$template.append(inputTemp); // tambahkan input hidden ke dalam template clone yg sdh diclone
+	});
+
+	dataCount = getCountDataClone(rootTemplate);
+	$template.find('.nomor').html(dataCount);
+}
+
+// cek data jumlah data clone
+function getCountDataClone(rootTemplate) {
+	count = $('.' + rootTemplate).find('tr.clone-jaminan').length + 1;
+	return count;
+}
+
+// tambah input hidden setelah tambah clone table
+function addInputHidden(field, value, inputHidden) {
+	$input = $('<input type="hidden" />');
+	$input.attr('name', inputHidden + '[' + field + ']').val(value);
+	return $input;
+}
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),

@@ -6,11 +6,11 @@
 				<label for="">Jenis Sertifikat</label>
 				<div class="row">
 					<div class="col-md-7">
-						{!! Form::select('jaminan_tanah_bangunan[tipe]', [
+						{!! Form::select('jaminan_tanah_bangunan[][tipe]', [
 								'bangunan'	=> 'Bangunan',
 								'tanah'		=> 'Tanah',
 							], 'bangunan', ['class' => 'form-control quick-select auto-tabindex', 'data-other' => 'input-tipe-jaminan-tanah-bangunan']) !!}
-						{!! Form::hidden('jaminan_tanah_bangunan[tipe]', 'bangunan', ['class' => 'input-tipe-jaminan-tanah-bangunan', 'disabled' => 'disabled']) !!}
+						{!! Form::hidden('jaminan_tanah_bangunan[][tipe]', 'bangunan', ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'tipe']) !!}
 					</div>
 				</div>
 			</fieldset>
@@ -18,11 +18,11 @@
 				<label for="">Jenis Sertifikat</label>
 				<div class="row">
 					<div class="col-md-7">
-						{!! Form::select('jaminan_tanah_bangunan[jenis_sertifikat]', [
+						{!! Form::select('jaminan_tanah_bangunan[][jenis_sertifikat]', [
 								'hgb'	=> 'Hak Guna Bangunan (HGB)',
 								'shm'	=> 'Sertifikat Hak Milik (SHM)',
 							], 'hgb', ['class' => 'form-control quick-select auto-tabindex']) !!}
-						{!! Form::hidden('jaminan_tanah_bangunan[jenis_sertifikat]', 'hbg', ['class' => 'input-tipe-jaminan-tanah-bangunan', 'disabled' => 'disabled']) !!}
+						{!! Form::hidden('jaminan_tanah_bangunan[][jenis_sertifikat]', 'hgb', ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
 					</div>
 				</div>
 			</fieldset>
@@ -30,7 +30,7 @@
 				<label for="">No. Sertifikat</label>
 				<div class="row">
 					<div class="col-md-7">
-						{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-no-sertifikat', 'placeholder' => 'Nomor Sertifikat', 'disabled' => 'disabled']) !!}
+						{!! Form::text('jaminan_tanah_bangunan[][nomor_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'Nomor Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
 					</div>
 				</div>
 			</fieldset>
@@ -38,7 +38,7 @@
 				<label for="">Masa Berlaku</label>
 				<div class="row">
 					<div class="col-md-7">
-						{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-year', 'placeholder' => 'Masa Berlaku', 'disabled' => 'disabled']) !!}
+						{!! Form::text('jaminan_tanah_bangunan[][masa_berlaku_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-year input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
 					</div>
 				</div>
 			</fieldset>
@@ -46,21 +46,19 @@
 				<label for="">Atas Nama</label>
 				<div class="row">
 					<div class="col-md-7">
-						{!! Form::text('jaminan_tanah_bangunan[atas_nama]', null, ['class' => 'form-control auto-tabindex', 'placeholder' => 'Atas Nama', 'disabled' => 'disabled']) !!}
+						{!! Form::text('jaminan_tanah_bangunan[][atas_nama]', null, ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
 					</div>
 				</div>
 			</fieldset>
 		</div>
 	</div>
 
-	<hr/>
-	<div class="clearfix">&nbsp;</div>
-
 	{{-- form address --}}
 	@include('components.helpers.forms.address', [
 		'param'		=> [
-			'prefix'	=> 'jaminan_tanah_bangunan',
+			'prefix'	=> 'jaminan_tanah_bangunan[]',
 			'provinsi' 	=> $page_datas->provinsi,
+			'class'		=> 'input-tanah-bangunan',
 		]
 	])
 </div>

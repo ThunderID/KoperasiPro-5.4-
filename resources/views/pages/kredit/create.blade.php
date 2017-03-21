@@ -47,7 +47,6 @@
 				
 				@include ('pages.kredit.components.form.data_jaminan')
 			</section>
-
 		{!! Form::close() !!}
 	</div>
 @endpush

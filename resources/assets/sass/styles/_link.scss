@@ -38,3 +38,8 @@ a.success {
 		color : darken($color-active, 15%);
 	}
 }
+
+a.disabled {
+	color: $btn-link-disabled-color;
+	cursor: $cursor-disabled;
+}
