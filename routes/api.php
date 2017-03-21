@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('pengajuan', 	['uses' => 'KreditController@index']);
+
+Route::post('pengajuan', 	['uses' => 'KreditController@store']);
+
+
+// Route::middleware('tapi')->post('/pengajuan', function (Request $request) 
+// {
+// 	return $request->input('pengajuan_kredit');
+// });
