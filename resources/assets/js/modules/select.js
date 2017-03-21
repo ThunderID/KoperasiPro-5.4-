@@ -17,6 +17,7 @@ window.select = function() {
 		$targetParsing = $(this).data('target-parsing');
 		// get parent select on aktif
 		rootSelect = $(this).parent().parent().parent().parent();
+		$elementTarget = rootSelect.find($targetParsing);
 
 		// get data list on ajax
 		$.ajax({
@@ -26,20 +27,21 @@ window.select = function() {
 			cache: true,
 			success: function (data) {
 				// parsing data ajax to content
-				rootSelect.find($targetParsing).html('');
-				$.each(data, function(i, v) {
-					$option = $("<option></option>");
-					$option.val(v.id).text(v.nama);
-					rootSelect.find($targetParsing).append($option);
+				$elementTarget.html('');
+				$.each(data, function(value, index) {
+					$option = $("<option value='" + index + "'>" + value +"</option>");
+					// $option.val(v.id).text(v.nama);
+					// $elementTarget.append($option);
+					$elementTarget.append($option);
 				});
-				rootSelect.find($targetParsing).val('');
 				// remove default on selected
+				$elementTarget.val('');
 			}
 		});
 		// remove disable select regensi
-		rootSelect.find($targetParsing).removeAttr('disabled');
+		$elementTarget.removeAttr('disabled');
 		// after get data, set focus to select-regensi
-		rootSelect.find($targetParsing).focus();
+		$elementTarget.focus();
 	});
 
 	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
@@ -61,6 +63,10 @@ window.select = function() {
 	});
 }
 
+// document ready & document pjax:end
 $(document).ready( function() {
 	window.select();
+	$(document).on("pjax:end", function() { 
+		window.select();
+	});
 });

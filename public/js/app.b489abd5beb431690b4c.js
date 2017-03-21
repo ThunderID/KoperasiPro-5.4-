@@ -10465,8 +10465,12 @@ window.quickSelect = function () {
 	});
 };
 
+// on document ready
 $(document).ready(function () {
 	window.quickSelect();
+	$(document).on('pjax:end', function () {
+		window.quickSelect();
+	});
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -10539,10 +10543,10 @@ $(document).ready(function () {
 			prefix: "Rp ",
 			groupSeparator: ".",
 			alias: "numeric",
-			placeholder: "0",
+			placeholder: "",
 			autoGroup: !0,
 			digit: 1,
-			radixPoint: ',',
+			radixPoint: '',
 			digitsOptional: !1,
 			clearMaskOnLostFocus: !1
 		}
@@ -10598,6 +10602,14 @@ $(document).ready(function () {
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
 };
+
+// add event on document ready & document pjax:end
+$(document).ready(function () {
+	window.formInputMask();
+	$(document).on("pjax:end", function () {
+		window.formInputMask();
+	});
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -10684,20 +10696,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			form = $(this);
-			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
-				return true;
-			}
+			// form = $(this);
+			// // check previous tanpa memunculkan error
+			// if (currentIndex > newIndex) {
+			return true;
+			// }
 
-			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				form.find(".body:eq(" + newIndex + ") label.error").remove();
-				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// // check next apabila ada error di stage sebelumnya
+			// if (currentIndex < newIndex) {
+			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
+			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			form.validate().settings.ignore = ":disabled,:hidden";
-			return form.valid();
+			// form.validate().settings.ignore = ":disabled,:hidden";
+			// return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10838,20 +10850,44 @@ var xxx = new List('list-koperasi', options);
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.callModal = function () {
-	$('.modal').on('show.bs.modal', function (e) {
+	$(".modal").on("show.bs.modal", function (e) {
 		// call plugin be use on modal
 		window.quickSelect();
 		window.select();
 		window.formInputMask();
-		$('.input-switch').bootstrapSwitch(); // active switch button
+		$(".input-switch").bootstrapSwitch(); // active switch button
 
 		modal = $(this);
-		$(document).on('pjax:end', function () {
-			modal.modal('hide');
+		$(document).on("pjax:end", function () {
+			modal.modal("hide");
 		});
 	});
-	$('.modal').on('shown.bs.modal', function (e) {});
+	$(".modal").on("hidden.bs.modal", function (e) {
+		get_data_jaminan_kendaraan();
+		$(this).find("input, textarea").val("").end().find("input[type=checkbox], input[type=radiobox]").prop("checked", "").end().find("select").val("").end();
+	});
 };
+
+function get_data_jaminan_kendaraan() {
+	dataJaminanKend = {};
+	$('.input-kendaraan').each(function () {
+		field = $(this).data('field');
+		value = $(this).val();
+		dataJaminanKend[field] = value;
+	});
+	setToTableJaminanKendaraan(dataJaminanKend);
+}
+
+function setToTableJaminanKendaraan() {}
+
+// add event call on document ready & document pjax:end
+$(document).ready(function () {
+	window.callModal();
+	// add event on pjax:end
+	$(document).on("pjax:end", function () {
+		window.callModal();
+	});
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -10988,6 +11024,7 @@ window.notify = function (msg, title, type) {
 		$targetParsing = $(this).data('target-parsing');
 		// get parent select on aktif
 		rootSelect = $(this).parent().parent().parent().parent();
+		$elementTarget = rootSelect.find($targetParsing);
 
 		// get data list on ajax
 		$.ajax({
@@ -10997,20 +11034,21 @@ window.notify = function (msg, title, type) {
 			cache: true,
 			success: function success(data) {
 				// parsing data ajax to content
-				rootSelect.find($targetParsing).html('');
-				$.each(data, function (i, v) {
-					$option = $("<option></option>");
-					$option.val(v.id).text(v.nama);
-					rootSelect.find($targetParsing).append($option);
+				$elementTarget.html('');
+				$.each(data, function (value, index) {
+					$option = $("<option value='" + index + "'>" + value + "</option>");
+					// $option.val(v.id).text(v.nama);
+					// $elementTarget.append($option);
+					$elementTarget.append($option);
 				});
-				rootSelect.find($targetParsing).val('');
 				// remove default on selected
+				$elementTarget.val('');
 			}
 		});
 		// remove disable select regensi
-		rootSelect.find($targetParsing).removeAttr('disabled');
+		$elementTarget.removeAttr('disabled');
 		// after get data, set focus to select-regensi
-		rootSelect.find($targetParsing).focus();
+		$elementTarget.focus();
 	});
 
 	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
@@ -11032,8 +11070,12 @@ window.notify = function (msg, title, type) {
 	});
 };
 
+// document ready & document pjax:end
 $(document).ready(function () {
 	window.select();
+	$(document).on("pjax:end", function () {
+		window.select();
+	});
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -11066,11 +11108,16 @@ $(document).ready(function () {
 	});
 };
 /**
- * on document ready triger click btn 'add' for template clone
+ * on document ready triger click btn 'add' for template clone & event pjax:end
  */
 $(document).ready(function () {
 	window.templateClone();
 	$('.add.init-add-one').trigger('click');
+	// add event on pjax:end
+	$(document).on('pjax:end', function () {
+		window.templateClone();
+		$('.add.init-add-one').trigger('click');
+	});
 });
 /**
  * function template add
@@ -11210,16 +11257,10 @@ $(document).ready(function () {
     formEntertoTabs();
     // call module form wizard();
     wizard();
-    // call module plugin inputmask
-    formInputMask();
     //optimize height
     optimizeHeight();
     // call module plugin print
     print();
-    window.templateClone();
-    $('.add.init-add-one').trigger('click');
-
-    window.callModal();
 
     window.formEntertoTabs();
   });

@@ -45,13 +45,7 @@
 					<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
 				</div>
 				
-				@include ('pages.kredit.components.form.data_jaminan', [
-					'param'	=> [
-						'target'	=> 'template-jaminan-credit',
-						'prefix'	=> 'credit',
-						'class'		=> [
-							'init_add'		=> 'init-add-one'
-				]]])
+				@include ('pages.kredit.components.form.data_jaminan')
 			</section>
 
 		{!! Form::close() !!}

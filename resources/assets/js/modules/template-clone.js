@@ -23,11 +23,16 @@ window.templateClone = function() {
 	});
 }
 /**
- * on document ready triger click btn 'add' for template clone
+ * on document ready triger click btn 'add' for template clone & event pjax:end
  */
 $(document).ready(function() {
 	window.templateClone();
 	$('.add.init-add-one').trigger('click');
+	// add event on pjax:end
+	$(document).on('pjax:end',   function() { 
+		window.templateClone();
+		$('.add.init-add-one').trigger('click');
+	});
 });
 /**
  * function template add

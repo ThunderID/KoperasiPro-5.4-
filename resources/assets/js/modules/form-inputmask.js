@@ -10,15 +10,14 @@ window.formInputMask = function () {
 			prefix: "Rp ",
 			groupSeparator: ".",
 			alias: "numeric",
-			placeholder: "0",
+			placeholder: "",
 			autoGroup: !0,
 			digit: 1,
-			radixPoint: ',',
+			radixPoint: '',
 			digitsOptional: !1,
 			clearMaskOnLostFocus: !1
 		}
 	});
-
 
 	// money indonesia standard
 	elMoney.inputmask({alias: "IDR"});
@@ -71,3 +70,11 @@ window.formInputMask = function () {
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
 }
+
+// add event on document ready & document pjax:end
+$(document).ready( function() {
+	window.formInputMask();
+	$(document).on("pjax:end", function() { 
+		window.formInputMask();
+	});
+});

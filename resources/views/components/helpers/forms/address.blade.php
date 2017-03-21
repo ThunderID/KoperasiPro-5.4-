@@ -27,18 +27,18 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Regensi</label>
+	<label for="">Kota/Kabupaten</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[regensi]', [], null, ['class' => 'form-control auto-tabindex select select-get-ajax select-regensi', 'placeholder' => 'Pilih Kota', 'disabled' => 'disabled', 'data-placeholder' => 'Pilih Regensi', 'data-url' => route('distrik.index'), 'data-target-parsing' => '.select-distrik', 'style' => 'width:100%;']) !!}
+			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[regensi]', [], null, ['class' => 'form-control auto-tabindex select select-get-ajax select-regensi', 'placeholder' => 'Pilih Kota/Kabupaten', 'disabled' => 'disabled', 'data-placeholder' => 'Pilih Kota/Kabupaten', 'data-url' => route('distrik.index'), 'data-target-parsing' => '.select-distrik', 'style' => 'width:100%;']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Distrik</label>
+	<label for="">Kecamatan</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[distrik]', [], null, ['class' => 'form-control auto-tabindex select select-get-ajax select-distrik', 'placeholder' => 'Pilih Distrik', 'disabled' => 'disabled', 'data-placeholder' => 'Pilih Distrik', 'data-url' => route('desa.index'), 'data-target-parsing' => '.select-desa', 'style' => 'width:100%;']) !!}
+			{!! Form::select( (!is_null($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[distrik]', [], null, ['class' => 'form-control auto-tabindex select select-get-ajax select-distrik', 'placeholder' => 'Pilih Kecamatan', 'disabled' => 'disabled', 'data-placeholder' => 'Pilih Kecamatan', 'data-url' => route('desa.index'), 'data-target-parsing' => '.select-desa', 'style' => 'width:100%;']) !!}
 		</div>
 	</div>
 </fieldset>

@@ -24,6 +24,7 @@ Class HelperController extends Controller
 		$regensi		= collect($call->get(['regensi_dari' => $id]));
 		// sort data city by 'nama'
 		$regensi 		= $regensi->sortBy('nama');
+		$regensi 		= $regensi->pluck('id', 'nama');
 
         return response()->json($regensi);
 	}
@@ -41,6 +42,7 @@ Class HelperController extends Controller
 		$distrik 		= collect($call->get(['distrik_dari'	=> $id]));
 		// sort data distrik by 'nama'
 		$distrik 		= $distrik->sortBy('nama');
+		$distrik 		= $distrik->pluck('id', 'nama');
 
 		return response()->json($distrik);
 	}
@@ -58,6 +60,7 @@ Class HelperController extends Controller
 		$desa 			= collect($call->get(['desa_dari' => $id]));
 		// sort data desa by 'nama'
 		$desa 			= $desa->sortBy('nama');
+		$desa 			= $desa->pluck('id', 'nama');
 
 		return response()->json($desa);
 	}
