@@ -32,12 +32,13 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
 	Route::post('updating/kredit/{id}',		['uses' => 'KreditController@update', 	'as' => 'credit.updating']);
 
-	///NO USE
-	//Menu Survey
-	Route::resource('survey', 'CreditSurveyController');
+	// route for print kredit
+	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@print',	'as' => 'credit.print']);
+	
+	//SEEMS NO USE
+	// route for pdf kredit
+	Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
 
-	//Menu Registrasi
-	Route::resource('person', 'PersonController');
 });
 
 
@@ -63,8 +64,3 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 Route::any('regensi',							['uses' => 'HelperController@getRegensi', 		'as' => 'regensi.index']);
 Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => 'distrik.index']);
 Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
-
-// route for print kredit
-Route::get('kredit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);
-// route for pdf kredit
-Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);

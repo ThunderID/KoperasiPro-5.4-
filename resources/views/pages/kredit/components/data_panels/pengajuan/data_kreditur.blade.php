@@ -39,7 +39,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Tanggal Lahir</strong></p>
 					<p>
-						{{ Carbon\Carbon::parse($page_datas->credit['kreditur']['tanggal_lahir'])->format('d/m/Y') }}
+						{{ $page_datas->credit['kreditur']['tanggal_lahir'] }}
 					</p>
 				</div>
 			</div>

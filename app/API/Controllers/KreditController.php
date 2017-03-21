@@ -35,8 +35,41 @@ class KreditController extends Controller
 
 	public function store()
 	{
+		$kredit 				= $this->request->input();
+
+		$jaminan_kendaraan 		= [];
+		$jaminan_tanah_bangunan = [];
+
+		if(!empty($this->request->input('jaminan_kendaraan_1')))
+		{
+			$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_1');
+		}
+
+		if(!empty($this->request->input('jaminan_kendaraan_2')))
+		{
+			$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_2');
+		}
+
+		if(!empty($this->request->input('jaminan_tanah_bangunan_1')))
+		{
+			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_1');
+		}
+
+		if(!empty($this->request->input('jaminan_tanah_bangunan_2')))
+		{
+			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_2');
+		}
+
+		if(!empty($this->request->input('jaminan_tanah_bangunan_3')))
+		{
+			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_3');
+		}
+
+		$kredit['jaminan_kendaraan']		= $jaminan_kendaraan;
+		$kredit['jaminan_tanah_bangunan']	= $jaminan_tanah_bangunan;
+
 		try {
-			$data_kredit 	= new AjukanKredit($this->request->input());
+			$data_kredit 	= new AjukanKredit($kredit);
 			$data_kredit 	= $data_kredit->handle();
 		} catch (Exception $e) {
 			return JSend::error($e->getMessage())->asArray();

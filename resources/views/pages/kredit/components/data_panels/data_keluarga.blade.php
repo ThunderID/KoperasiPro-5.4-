@@ -44,11 +44,6 @@
 			</div>
 		</div>
 		<div class="clearfix hidden-print">&nbsp;</div>
-		<!-- <div class="row">
-			<div class="col-sm-12">
-				{{-- <h5><a class="hidden-print" href="{{route('address.index', ['id' => $value->id, 'status' => 'rumah'])}}">Lihat Alamat</a></h5> --}}
-			</div>
-		</div> -->
 	@endforeach
 @else
 	<div class="row">
