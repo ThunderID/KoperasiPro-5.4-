@@ -2,7 +2,8 @@
 	<div class="col-md-12 " style="background-color: white; height: 37px;    border-bottom: 1px solid #e6e8e6;">
 		<div class="row">
 			<div class="col-md-6 hidden-xs hidden-sm">
-				<a href="#" data-url="{{ route('credit.print', ['id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print">
+				<a href="#" data-url="{{ route('credit.print', ['mode' => 'permohonan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print">
+
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 			</div>

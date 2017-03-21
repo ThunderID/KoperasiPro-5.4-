@@ -1,3 +1,11 @@
+<?php
+	$color_switcher 	= [
+			'survey' 	=> '#FCA985',
+			'tolak' 	=> '#F98CB6',
+			'setuju' 	=> '#48B5A3',
+			'pengajuan' => '#0BB7D6',
+	];
+?>
 @inject('cservice', 'Thunderlabid\Web\Queries\Credit\DaftarKredit')
 
 @extends('template.cms_template')
@@ -27,10 +35,13 @@
 				        <a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
 				            <h4 class="list-group-item-heading">
 				                {{ $value['kreditur']['nama'] }} 
-				                <span class="badge pull-right">{{ $value['status'] }}</span>
+				                <span class="pull-right">{{$value['tanggal_pengajuan']}}</span>
 				            </h4>
-				            <p>{{$value['id']}}</p>
-				            <p class="list-group-item-text p-t-xs">{{ $value['pengajuan_kredit'] }}</p>
+				            <p>{{$value['nomor_kredit']}}</p>
+				            <p class="list-group-item-text p-t-xs">
+				            	{{ $value['pengajuan_kredit'] }}
+								<span class="badge pull-right" style="background-color:{{$color_switcher[$value['status']]}};">{{ $value['status'] }}</span>
+				            </p>
 				        </a>
 				    @endforeach
 				</div>

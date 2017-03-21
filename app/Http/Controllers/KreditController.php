@@ -82,6 +82,8 @@ class KreditController extends Controller
 														];
 		//initialize view
 		$this->view 								= view('pages.kredit.create');
+		
+		$this->page_datas->credit 					= null;
 	
 		// get parameter from function getParamToView to parsing view
 		$this->getParamToView(['provinsi', 'jangka_waktu', 'jenis_kredit', 'jenis_kendaraan', 'merk_kendaraan']);
@@ -358,7 +360,7 @@ class KreditController extends Controller
 	/**
 	 * Fungsi untuk menampilkan halaman rencana kredit yang akan di print
 	 */
-	public function print($id)
+	public function print($mode, $id)
 	{
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title              = "Daftar Kredit";
@@ -367,7 +369,7 @@ class KreditController extends Controller
 													 ];
 
 		//initialize view
-		$this->view                                = view('pages.kredit.print');
+		$this->view                                = view('pages.kredit.print.'.$mode.'.index');
 
 		//parsing master data here
 		$this->page_datas->credit 					= $this->service->detailed($id);
