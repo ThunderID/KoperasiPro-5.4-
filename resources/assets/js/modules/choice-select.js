@@ -39,6 +39,10 @@ window.quickSelect = function() {
 	});
 }
 
+// on document ready
 $(document).ready( function() {
 	window.quickSelect();
+	$(document).on('pjax:end', function() { 
+		window.quickSelect();		
+	});
 });

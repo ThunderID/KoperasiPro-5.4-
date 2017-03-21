@@ -45,16 +45,10 @@ $(document).ready(function(){
 		formEntertoTabs();
 		// call module form wizard();
 		wizard();
-		// call module plugin inputmask
-		formInputMask();
 		//optimize height
 		optimizeHeight();
 		// call module plugin print
 		print();
-		window.templateClone();
-		$('.add.init-add-one').trigger('click');
-
-		window.callModal();
 
 		window.formEntertoTabs();
 	});

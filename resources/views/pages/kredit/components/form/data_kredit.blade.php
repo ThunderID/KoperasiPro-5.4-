@@ -20,7 +20,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			{!! Form::select('jenis_kredit', $page_datas->select_jenis_kredit, 'pa', ['class' => 'form-control quick-select required auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman', 'data-other' => 'input-jenis-kredit']) !!} <br/>
-			{!! Form::hidden('jenis_kredit', 'pa', ['class' => 'form-control m-t-sm auto-tabindex input-jenis-kredit', 'placeholder' => 'Sebutkan']) !!}
+			{!! Form::hidden('jenis_kredit', 'pa', ['class' => 'form-control m-t-sm auto-tabindex input-jenis-kredit', 'placeholder' => 'Sebutkan', 'style' => 'width:60%']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -28,7 +28,7 @@
 	<label for="">Lama Angsuran</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('jangka_waktu', $page_datas->select_jangka_waktu, null, ['class' => 'form-control select select-lama-angsuran number auto-tabindex mask-number-xs', 'placeholder' => 'Lama angsuran', 'data-placeholder' => 'Lama angsuran', 'style' => 'width:100%']) !!}
+			{!! Form::select('jangka_waktu', $page_datas->select_jangka_waktu, null, ['class' => 'form-control select select-lama-angsuran required auto-tabindex mask-number-xs', 'placeholder' => 'Lama angsuran', 'data-placeholder' => 'Lama angsuran', 'style' => 'width:100%']) !!}
 		</div>
 	</div>
 </fieldset>
