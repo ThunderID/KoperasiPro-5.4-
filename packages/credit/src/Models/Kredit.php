@@ -14,7 +14,7 @@ use Thunderlabid\Credit\Models\Traits\Policies\StatusTanggalTrait;
 
 use Thunderlabid\Credit\Exceptions\IndirectModificationException;
 
-use Validator, Exception;
+use Validator, Exception, Carbon\Carbon;
 
 /**
  * Model Kredit
@@ -196,9 +196,12 @@ class Kredit extends BaseModel
 	public function SetKreditur($value)
 	{
 		//1. Store kredit
-		$kreditur 			= Orang::nik($value['nik'])->first();
+		if(isset($value['nik']))
+		{
+			$kreditur 			= Orang::nik($value['nik'])->first();
+		}
 		
-		if(!$kreditur)
+		if(!isset($kreditur) || !$kreditur)
 		{
 			$kreditur 		= new Orang;
 		}
@@ -266,23 +269,6 @@ class Kredit extends BaseModel
 		$this->attributes['status']		= $value['status'];
 
 		//3. it's a must to return value
-		return $this;
-	}
-		
-	/**
-	 * fungsi simpan status terbaru
-	 *
-	 * @param array $value 
-	 * @return Kredit $kredit 
-	 */	
-	public function pengajuan()
-	{
-		//1. set status
-		$this->attributes['status']			= 'pengajuan';
-		$this->attributes['kreditur_id']	= '0';
-		$this->attributes['ro_koperasi_id']	= '0';
-
-		//2. it's a must to return value
 		return $this;
 	}
 
@@ -390,6 +376,11 @@ class Kredit extends BaseModel
 	 */
 	public function scopeKoperasi($model, $variable)
 	{
+		if(is_array($variable))
+		{
+			return $model->whereIn('ro_koperasi_id', $variable);
+		}
+
 		return $model->where('ro_koperasi_id', $variable);
 	}
 

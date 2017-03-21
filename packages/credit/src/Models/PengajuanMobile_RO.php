@@ -2,6 +2,8 @@
 
 namespace Thunderlabid\Credit\Models;
 
+use Thunderlabid\Credit\Models\Traits\GuidTrait;
+
 /**
  * Model PengajuanMobile
  *
@@ -15,6 +17,8 @@ namespace Thunderlabid\Credit\Models;
  */
 class PengajuanMobile_RO extends BaseModel
 {
+	use GuidTrait;
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -29,7 +33,7 @@ class PengajuanMobile_RO extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'					,
+											// 'id'					,
 											'model'					,
 											'kredit_id'				,
 										];

@@ -15,13 +15,13 @@ class CreateCreditOrangTable extends Migration
 	{
 		Schema::create('orang', function (Blueprint $table) {
 			$table->string('id', 255);
-			$table->boolean('is_ektp');
+			$table->boolean('is_ektp')->nullable();
 			$table->string('foto_ktp', 255)->nullable();
-			$table->string('nik', 255);
-			$table->string('nama', 255);
-			$table->date('tanggal_lahir');
+			$table->string('nik', 255)->nullable();
+			$table->string('nama', 255)->nullable();
+			$table->date('tanggal_lahir')->nullable();
 			$table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-			$table->string('status_perkawinan', 255);
+			$table->string('status_perkawinan', 255)->nullable();
 			$table->string('telepon', 255)->nullable();
 			$table->string('pekerjaan', 255)->nullable();
 			$table->double('penghasilan_bersih')->nullable();

@@ -2,20 +2,13 @@
 
 namespace Thunderlabid\API\Commands\Credit;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Thunderlabid\Credit\Models\Kredit;
 use Thunderlabid\Credit\Models\PengajuanMobile_RO;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 
-class AjukanKredit implements ShouldQueue
+class AjukanKredit
 {
-	use InteractsWithQueue, Queueable, SerializesModels;
-
 	protected $kredit;
 
 	/**
@@ -40,6 +33,21 @@ class AjukanKredit implements ShouldQueue
 		{
 			DB::BeginTransaction();
 
+			//0a. add status
+			$status 	= [
+				'status'		=> 'pengajuan',
+				'tanggal'		=> Carbon::now()->format('d/m/Y'),
+				'petugas'		=> [
+					'id'			=> $this->kredit['mobile']['id'],
+					'nama'			=> $this->kredit['mobile']['model'],
+					'role'			=> 'mobile_apps',
+				]
+			];
+
+			//0b. parse kreditur ID
+			$this->kredit['kreditur_id']	= 0;
+			$this->kredit['ro_koperasi_id']	= 0;
+
 			//1. simpan kredit
 			$kredit		= new Kredit;
 			$kredit		= $kredit->fill($this->kredit);
@@ -61,7 +69,7 @@ class AjukanKredit implements ShouldQueue
 				}
 			}
 
-			$kredit = $kredit->pengajuan();
+			$kredit = $kredit->SetStatus($status);
 			$kredit->save();
 
 			$this->kredit['mobile']['kredit_id']	= $kredit->id;
@@ -72,7 +80,7 @@ class AjukanKredit implements ShouldQueue
 
 			DB::commit();
 
-			return true;
+			return $kredit->toArray();
 		}
 		catch(Exception $e)
 		{

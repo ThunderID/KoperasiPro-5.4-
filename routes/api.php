@@ -12,13 +12,12 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Here lies credit controller all things started here
+Route::group(['middleware' => ['tapi']], function()
+{
+	Route::get('pengajuan', 	['uses' => 'KreditController@index']);
 
-Route::get('pengajuan', 	['uses' => 'KreditController@index']);
+	Route::post('pengajuan', 	['uses' => 'KreditController@store']);
 
-Route::post('pengajuan', 	['uses' => 'KreditController@store']);
-
-
-// Route::middleware('tapi')->post('/pengajuan', function (Request $request) 
-// {
-// 	return $request->input('pengajuan_kredit');
-// });
+	Route::post('upload/ktp/{nomor_kredit}', 	['uses' => 'KreditController@upload']);
+});

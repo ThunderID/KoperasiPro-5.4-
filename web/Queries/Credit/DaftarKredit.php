@@ -158,7 +158,7 @@ class DaftarKredit
 		$model  				= $model->status($queries['status']);
 		
 		//2.allow koperasi
-		$queries['koperasi_id']	= TAuth::activeOffice()['koperasi']['id'];
+		$queries['koperasi_id']	= [TAuth::activeOffice()['koperasi']['id'], 0];
 		$model  				= $model->koperasi($queries['koperasi_id']);
 
 		//3.allow kreditur

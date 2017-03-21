@@ -68,7 +68,7 @@ class Orang extends BaseModel
 	protected $rules				=	[
 											'is_ektp'				=> 'boolean',
 											'nik'					=> 'max:255',
-											'nama'					=> 'required|max:255',
+											'nama'					=> 'max:255',
 											'tanggal_lahir'			=> 'date_format:"Y-m-d"',
 											'jenis_kelamin'			=> 'in:laki-laki,perempuan',
 											'status_perkawinan'		=> 'in:kawin,belum_kawin,cerai,cerai_mati',

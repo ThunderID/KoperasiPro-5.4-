@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateCreditStatusTable extends Migration
+class CreateKlienTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,8 +13,14 @@ class UpdateCreditStatusTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::table('status', function (Blueprint $table) {
-			$table->date('tanggal')->nullable();
+		Schema::create('klien', function (Blueprint $table) {
+			$table->string('id', 255);
+			$table->string('nama', 255);
+			$table->string('email', 255);
+			$table->timestamps();
+			$table->softDeletes();
+
+            $table->primary('id');
 		});
 	}
 
@@ -25,5 +31,6 @@ class UpdateCreditStatusTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::dropIfExists('klien');
 	}
 }
