@@ -111,6 +111,16 @@ class Orang extends BaseModel
 	{
 		return $this->hasMany('Thunderlabid\Credit\Models\Relasi_A', 'orang_id');
 	}
+	
+	/**
+	 * relationship kredit
+	 *
+	 * @return Orang $model
+	 */	
+	public function kredit()
+	{
+		return $this->hasMany('Thunderlabid\Credit\Models\Kredit', 'kreditur_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
