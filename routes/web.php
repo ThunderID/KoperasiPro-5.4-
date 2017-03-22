@@ -21,7 +21,6 @@ Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index'
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
 Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
 
-
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
@@ -30,7 +29,10 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 
 	//Menu Status Kredit
 	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
-	Route::post('updating/kredit/{id}',		['uses' => 'KreditController@update', 	'as' => 'credit.updating']);
+	
+	//Menu jaminan
+	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{nomor_bpkb}',	['uses' => 'Kredit\JaminanKendaraanController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
+	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{nomor_sertifikat}',	['uses' => 'Kredit\JaminanTanahBangunanController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
 
 	// route for print kredit
 	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@print',	'as' => 'credit.print']);
