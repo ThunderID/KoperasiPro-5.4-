@@ -35,7 +35,7 @@ class KreditController extends Controller
 
 	public function store()
 	{
-		$kredit 				= $this->request->input();
+		$kredit 				= Input::get('kredit');
 
 		$jaminan_kendaraan 		= [];
 		$jaminan_tanah_bangunan = [];
