@@ -125,8 +125,42 @@ class KreditController extends Controller
 			$kredit['kreditur']['nik']			= '35-'.$kredit['kreditur']['nik'];
 
 			//============ DATA JAMINAN ============//
-			$kredit['jaminan_kendaraan'][]		= Input::get('jaminan_kendaraan');
-			$kredit['jaminan_tanah_bangunan'][]	= Input::get('jaminan_tanah_bangunan');
+			// JAMINAN KENDARAAN
+			$jaminan_kendaraan 					= Input::get('jaminan_kendaraan');
+			if (!is_null($jaminan_kendaraan))
+			{
+				foreach ($jaminan_kendaraan as $k => $v)
+				{
+					foreach ($v as $k2 => $v2)
+					{
+						$temp_jaminan_kendaraan[$k2][$k] = $v2;
+					}
+				}
+			}
+			else
+			{
+				$temp_jaminan_kendaraan			= [];
+			}
+
+			// JAMINAN TANAH & BANGUNAN
+			$jaminan_tanah_bangunan 			= Input::get('jaminan_tanah_bangunan');
+			if (!is_null($jaminan_tanah_bangunan))
+			{
+				foreach ($jaminan_tanah_bangunan as $k => $v)
+				{
+					foreach ($v as $k2 => $v2)
+					{
+						$temp_jaminan_tanah_bangunan[$k2][$k] = $v2;
+					}
+				}
+			}
+			else
+			{
+				$temp_jaminan_tanah_bangunan 	= [];
+			}
+			
+			$kredit['jaminan_kendaraan']		= $temp_jaminan_kendaraan;
+			$kredit['jaminan_tanah_bangunan']	= $temp_jaminan_tanah_bangunan;
 
 			dispatch(new AjukanKredit($kredit));
 

@@ -38,7 +38,6 @@ window.formInputMask = function () {
 
 	// date format indonesia
 	elDateFormat.inputmask({
-		placeholder: "dd/mm/yyyy",
 		alias: "dd/mm/yyyy"
 	});
 

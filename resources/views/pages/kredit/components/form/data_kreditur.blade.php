@@ -33,6 +33,7 @@
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('kreditur[tanggal_lahir]', null, ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
+			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
 		</div>
 	</div>
 </fieldset>
