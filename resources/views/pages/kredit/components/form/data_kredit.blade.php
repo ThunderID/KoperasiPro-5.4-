@@ -1,8 +1,8 @@
 <fieldset class="form-group">
 	<label for="">Tanggal Pengajuan</label>
 	<div class="row">
-		<div class="col-xs-12 col-sm-4 col-md-4">
-			{!! Form::text('tanggal_pengajuan', Carbon\Carbon::now()->format('d/m/Y'), ['class' => 'form-control required mask-date-format auto-tabindex focus', 'placeholder' => 'Contoh: 25/12/2015 (dd/mm/yyyy)']) !!}
+		<div class="col-xs-12 col-sm-5 col-md-5">
+			{!! Form::text('tanggal_pengajuan', Carbon\Carbon::now()->format('d/m/Y'), ['class' => 'form-control required mask-date-format auto-tabindex focus', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
 		</div>
 	</div>

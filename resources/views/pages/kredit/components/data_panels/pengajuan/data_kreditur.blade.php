@@ -85,7 +85,10 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 		<div class="col-sm-12">
 			<div class="row m-b-xl m-t-xs-m-print">
 				<div class="col-sm-12">
-					@if (isset($page_datas->credit['kreditur']['alamat']))
+					@php
+						// dd($page_datas->credit['kreditur']);
+					@endphp
+					@if (!empty($page_datas->credit['kreditur']['alamat']) && isset($page_datas->credit['kreditur']['alamat']))
 						<p class="p-b-sm"><strong>Alamat</strong></p>
 						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat']['jalan'] }}, {{ $page_datas->credit['kreditur']['alamat']['desa'] }}, {{ $page_datas->credit['kreditur']['alamat']['distrik'] }}, {{ $page_datas->credit['kreditur']['alamat']['regensi'] }}</p>
 						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat']['provinsi'] }} - {{ $page_datas->credit['kreditur']['alamat']['negara'] }}</p>

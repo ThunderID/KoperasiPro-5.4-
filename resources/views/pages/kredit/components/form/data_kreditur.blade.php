@@ -5,7 +5,7 @@
 	<label for="">E-KTP</label>
 	<div class="row">
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			{!! Form::checkbox('kreditur[is_ektp]', true, false, ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak']) !!}
+			{!! Form::checkbox('kreditur[is_ektp]', true, true, ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak']) !!}
 		</div>
 	</div>
 </fieldset>
