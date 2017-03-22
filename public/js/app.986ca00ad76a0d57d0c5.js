@@ -10769,8 +10769,8 @@ window.setFocus = function () {
 
 window.customButtonActions = function () {
 	$('.wizard .actions').find('a').addClass('btn');
-	$('.wizard .actions').find('li[aria-disabled="true"]').children().removeClass('btn-primary');
-	$('.wizard .actions').find('li[aria-disabled="false"]').children().addClass('btn-primary');
+	$('.wizard .actions').find('a[href="#previous"]').addClass('btn-success');
+	$('.wizard .actions').find('a[href="#next"], a[href="#finish"]').addClass('btn-primary');
 };
 
 window.disablePreviousButtonOnFirstStep = function (index) {
