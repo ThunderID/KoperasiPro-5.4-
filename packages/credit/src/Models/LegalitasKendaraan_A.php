@@ -101,7 +101,7 @@ class LegalitasKendaraan_A extends BaseModel
 	{
 		//1. simpan legalitas kendaraan
 		$this->attributes['tipe'] 				= $value['tipe'];
-		$this->attributes['merk'] 				= $value['merk'];
+		$this->attributes['merk'] 				= strtolower($value['merk']);
 		$this->attributes['tahun'] 				= $value['tahun'];
 		$this->attributes['nomor_bpkb'] 		= $value['nomor_bpkb'];
 		$this->attributes['atas_nama'] 			= $value['atas_nama'];

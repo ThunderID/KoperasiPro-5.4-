@@ -54,7 +54,7 @@ class DaftarKredit
 			$queries['skip']	= 0;
 		}
 		
-		$model  				= $model->skip($queries['skip'])->take($queries['take'])->with(['kreditur'])->get();
+		$model  				= $model->skip($queries['skip'])->take($queries['take'])->orderby('created_at', 'desc')->with(['kreditur'])->get();
 
 		return 	$model->toArray();
 	}

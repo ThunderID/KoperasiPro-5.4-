@@ -172,6 +172,15 @@ class Kredit extends BaseModel
 		$this->attributes['pengajuan_kredit']	= $this->formatMoneyFrom($value);
 	}
 
+	/**
+	 * simpan jenis kredit
+	 *
+	 * @param string $value
+	 */	
+	protected function setJenisKreditAttribute($value)
+	{
+		$this->attributes['jenis_kredit']	= strtolower($value);
+	}
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
 
 	/**

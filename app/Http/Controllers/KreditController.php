@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use Thunderlabid\Web\Queries\Credit\DaftarKredit;
 use Thunderlabid\Web\Commands\Credit\AjukanKredit;
+use Thunderlabid\Web\Commands\Credit\UpdateKredit;
+use Thunderlabid\Web\Commands\Credit\UpdateKreditur;
+use Thunderlabid\Web\Commands\Credit\TambahJaminanKendaraan;
+use Thunderlabid\Web\Commands\Credit\TambahJaminanTanahBangunan;
 
 use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
 
@@ -100,6 +104,7 @@ class KreditController extends Controller
 	 */
 	public function store()
 	{
+		dd(Input::all());
 		try
 		{
 			//============ DATA KREDIT ============//
@@ -186,67 +191,32 @@ class KreditController extends Controller
 	{
 		try
 		{
-			// if(Input::has('keluarga'))
-			// {
-			// 	$data		= Input::get('keluarga');
-			// 	$result		= $this->service->simpanRelasi($id, $data);
-			// }
-
-			if (Input::has('penjamin'))
+			dd(Input::all());
+			//update data kreditur
+			if (Input::has('kreditur'))
 			{
-				$data						= Input::get('penjamin');
-				$data['alamat']['negara']	= 'Indonesia';
-				$temp_alamat 				= $data['alamat'];
-				unset($data['alamat']);
-				unset($data['kontak']);
-
-				$data['tanggal_lahir']		= Carbon::createFromFormat('d/m/Y', $data['tanggal_lahir'])->format('Y-m-d');
-
-				$data['alamat'][] 	= $temp_alamat;
-				$data['kontak'][] 	= [];
-				$data['relasi'] 	= null;
-				$data['pekerjaan'] 	= null;
+				dispatch(new UpdateKreditur($id, Input::get('kreditur')));
 
 				$result		= $this->service->simpanPenjamin($id, $data);
 			}
 
+			//update jamina
 			if (Input::has('jaminan_kendaraan'))
 			{
-				$data		= Input::get('jaminan_kendaraan');
-				$result		= $this->service->tambahJaminanKendaraan($id, $data);
+				dispatch(new TambahJaminanKendaraan($id, Input::get('jaminan_kendaraan')));
 			}
 
 			if (Input::has('jaminan_tanah_bangunan'))
 			{
-				$data		= Input::get('jaminan_tanah_bangunan');
-				$result		= $this->service->tambahJaminanTanahBangunan($id, $data);
+				dispatch(new TambahJaminanTanahBangunan($id, Input::get('jaminan_tanah_bangunan')));
 			}
 
-			if (Input::has('kepribadian'))
+			if (Input::has('kredit'))
 			{
-				$data		= Input::get('kepribadian');
-				$result		= $this->service->simpanSurveyKepribadian($id, $data);
+				dispatch(new UpdateKredit($id, Input::get('kredit')));
 			}
 
-			if (Input::has('keuangan'))
-			{
-				$data		= Input::get('keuangan');
-				$result		= $this->service->simpanSurveyKeuangan($id, $data);
-			}
-
-			if (Input::has('aset'))
-			{
-				$data		= Input::get('aset');
-				$result		= $this->service->simpanSurveyAset($id, $data);
-			}
-
-			if (Input::has('makro'))
-			{
-				$data		= Input::get('makro');
-				$result		= $this->service->simpanSurveyMakro($id, $data);
-			}
-
-			$this->page_attributes->msg['success']      = ['Data berhasil disimpan'];
+			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 		}
 		catch (Exception $e)
 		{
