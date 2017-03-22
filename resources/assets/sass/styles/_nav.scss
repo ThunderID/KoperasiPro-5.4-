@@ -7,7 +7,7 @@
 	}
 
 	.navbar-brand {
-		border-right: 2px solid $border-color-default;
+		border-right: 2px solid $line-color-default;
 
 		@media (max-width: $screen-sm - 1) {
 			border: 0;
@@ -101,6 +101,7 @@ nav.layer2 {
 				border-bottom: 2px solid $color-active; 
 				background: $navbar-bg-primary;
 				padding: 9px 16px;
+				padding-bottom: 7px;
 			}
 		}
 		a {

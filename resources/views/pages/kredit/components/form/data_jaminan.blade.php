@@ -40,7 +40,7 @@
 		</table>
 		<fieldset class="form-group">
 			<a href="#" class="p-t-md p-b-md modal-add-jaminan" data-toggle="modal" data-target="#modal-jaminan-kendaraan">Tambah Jaminan Kendaraan</a>
-			<span class="p-l-lg p-t-md p-b-md text-info hidden info-add">Tidak bisa menambahkan lebih dari 3</span>
+			<span class="p-l-lg p-t-md p-b-md text-info hidden info-add">Tidak bisa menambahkan lebih dari 2</span>
 		</fieldset>
 	</div>
 </div>
@@ -80,10 +80,13 @@
 		</div>
 		<fieldset class="form-group">
 			<a href="#" class="p-t-md p-b-md modal-add" data-toggle="modal" data-target="#modal-jaminan-tanah-bangunan">Tambah Jaminan Tanah &amp; Bangunan</a>
-			<span class="p-l-lg p-t-md p-b-md text-info hidden info-add">Tidak bisa menambahkan lebih dari 2</span>
+			<span class="p-l-lg p-t-md p-b-md text-info hidden info-add">Tidak bisa menambahkan lebih dari 3</span>
 		</fieldset>
 	</div>
 </div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
 
 @push('modals')
 	{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
