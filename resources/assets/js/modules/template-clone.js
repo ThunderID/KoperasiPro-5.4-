@@ -103,10 +103,14 @@ function tableAdd ($element, inputCheck, inputHidden) {
 
 	$temp.removeClass('hidden').removeClass(getClassTemplate).addClass('clone-jaminan');
 	getDataJaminan($temp, getClassRootTemplate, inputCheck, inputHidden);
-	$temp.find('.action').html('<a href="#" class="text-danger remove-jaminan" data-root-template="' +getClassRootTemplate+'" data-available-add="' +availableAdd+ '">Hapus</a>');
+	$temp.find('.action').html('<a href="#" class="text-danger remove-jaminan" data-root-template="' +getClassRootTemplate+'" data-available-add="' +availableAdd+ '" data-input-hidden="' +inputHidden+ '">Hapus</a>');
 	
 	$('.' + getClassRootTemplate).append($temp);
 	$('.' + getClassRootTemplate).find('.' + getClassTemplate + '-default').addClass('hidden');	// hidden data tabel default
+
+	countClone = getCountDataClone(getClassRootTemplate);
+	// renameInputHidden($temp, inputHidden, countClone);
+
 	window.resizeWizard();
 }
 
@@ -120,12 +124,14 @@ function tableRemove($element) {
 	getClassRootTemplate = $element.data('root-template');
 	availableAdd = $(this).data('available-add');		// jumlah data clone yang boleh ditambahkan 
 	countAdd = getCountDataClone(getClassRootTemplate);	// ambil total data yang sudah diclone
+	inputHidden = $(this).data('input-hidden');
 
 	checkAvailableAdd(countAdd, availableAdd, getClassRootTemplate);
 
 	i = 1;
-	$('.' +getClassRootTemplate).find('tr.clone-jaminan .nomor').each( function() {
-		$(this).html(i);
+	$('.' +getClassRootTemplate).find('tr.clone-jaminan').each( function() {
+		$(this).find('.nomor').html(i);
+		// renameInputHidden($(this), inputHidden, (i + 1));
 		i++;
 	});
 
@@ -180,7 +186,7 @@ function getDataJaminan ($template, rootTemplate, element, inputHidden) {
 function setToTableJaminan (data, $template, rootTemplate, inputHidden) {
 	$.each(data, function(key, value) {
 		$template.find('.' + key).html(value);
-		inputTemp = addInputHidden(key, value, inputHidden);		// panggil fungsi tambahkan input hidden
+		inputTemp = addInputHidden(key, value, rootTemplate, inputHidden);		// panggil fungsi tambahkan input hidden
 		$template.append(inputTemp);			// tambahkan input hidden ke dalam template clone yg sdh diclone
 	});
 
@@ -195,8 +201,15 @@ function getCountDataClone(rootTemplate) {
 }
 
 // tambah input hidden setelah tambah clone table
-function addInputHidden(field, value, inputHidden) {
+function addInputHidden(field, value, rootTemplate, inputHidden) {
 	$input = $('<input type="hidden" />');
-	$input.attr('name', inputHidden +'[' + field +']').val(value);
+	$input.attr('name', inputHidden + '[' + field +'][]').val(value);
 	return $input;
+}
+
+function renameInputHidden($temp, inputHidden, count) {
+	$temp.find('input[type="hidden"]').each(function() {
+		name = $(this).attr('name');
+		$(this).attr('name', inputHidden+ '[' +(count-1)+ ']' +name );
+	});
 }

@@ -100,7 +100,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-kendaraan" data-section-clone="content-jaminan-kendaraan" data-root-template="root-template-kendaraan" data-available-add="3" data-input-parsing=".input-kendaraan" data-input-hidden="jaminan_kendaraan[]">
+				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-kendaraan" data-section-clone="content-jaminan-kendaraan" data-root-template="root-template-kendaraan" data-available-add="2" data-input-parsing=".input-kendaraan" data-input-hidden="jaminan_kendaraan">
 					Simpan
 				</a>
 			</div>	
@@ -121,7 +121,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-tanah-bangunan" data-section-clone="content-jaminan-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="2" data-input-parsing=".input-tanah-bangunan" data-input-hidden="jaminan_tanah_bangunan[]">
+				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-tanah-bangunan" data-section-clone="content-jaminan-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-parsing=".input-tanah-bangunan" data-input-hidden="jaminan_tanah_bangunan">
 					Simpan
 				</a>
 			</div>	
