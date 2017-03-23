@@ -69,6 +69,7 @@ class AjukanKredit
 				}
 			}
 
+			$kredit = $kredit->SetKreditur($this->kredit['kreditur']);
 			$kredit = $kredit->SetStatus($status);
 			$kredit->save();
 

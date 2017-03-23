@@ -37,6 +37,7 @@ class KreditController extends Controller
 	{
 		$kredit 				= Input::get('kredit');
 		$kredit['mobile'] 		= Input::get('mobile');
+		$kredit['kreditur'] 	= Input::get('kreditur');
 
 		$jaminan_kendaraan 		= [];
 		$jaminan_tanah_bangunan = [];
