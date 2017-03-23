@@ -1,7 +1,8 @@
-window.select = function() {
+window.select = function(element, param) {
 	$('.select').select2({
 		theme: "bootstrap",
-		allowClear: true
+		allowClear: true,
+		width: null,
 	});
 
 	$('.select-tempat-lahir').select2({

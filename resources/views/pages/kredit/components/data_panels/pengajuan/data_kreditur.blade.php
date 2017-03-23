@@ -134,31 +134,30 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 @push('show_modals')
 	@if ($edit == true)
 		<!-- Data kredit // -->
-		{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
-		@component('components.modal', [
-			'id' 		=> 'modal-data-kreditur',
-			'title'		=> 'Data Kreditur',
-			'settings'	=> [
-				'modal_size'	=> 'modal-lg',
-				'hide_buttons'	=> true
-			]	
-		])
-			@include('pages.kredit.components.form.data_kreditur')
-			<div class="modal-footer">
-				<a type='button' class="btn btn-default" data-dismiss='modal'>
-					Cancel
-				</a>
-				<button type="submit" class="btn btn-success">
-					Simpan
-				</button>
-			</div>	
-		@endcomponent
+		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+			@component('components.modal', [
+				'id' 		=> 'modal-data-kreditur',
+				'title'		=> 'Data Kreditur',
+				'settings'	=> [
+					'modal_size'	=> 'modal-lg',
+					'hide_buttons'	=> true
+				]	
+			])
+				@include('pages.kredit.components.form.data_kreditur')
+				<div class="modal-footer">
+					<a type='button' class="btn btn-default" data-dismiss='modal'>
+						Cancel
+					</a>
+					<button type="submit" class="btn btn-success">
+						Simpan
+					</button>
+				</div>	
+			@endcomponent
 		{!! Form::close() !!}
 	@endif
 
 	{{-- modal alamat --}}
-	@if (!isset($page_datas->credit['kreditur']['alamat']))
-		{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
+	{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 		@component('components.modal', [
 			'id' 		=> 'modal-data-address',
 			'title'		=> 'Data Address',
@@ -167,9 +166,12 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 			]	
 		])
 			@include('components.helpers.forms.address', [
-				'param'		=> [
-					'prefix'	=> 'kreditur',
-					'provinsi' 	=> $page_datas->provinsi,
+				'param'		=> ['prefix'	=> 'kreditur'],
+				'data'		=> ['provinsi' 	=> $page_datas->provinsi],
+				'settings'	=> [
+					'class'						=> 'data-attribute-custome',
+					'data_attribute_flag'		=> 'attribute-flag',
+					'data_attribute_value'		=> '#modal-data-address',
 				]
 			])
 
@@ -182,6 +184,5 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				</button>
 			</div>	
 		@endcomponent
-		{!! Form::close() !!}
-	@endif
+	{!! Form::close() !!}
 @endpush	
