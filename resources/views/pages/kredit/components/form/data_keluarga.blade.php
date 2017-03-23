@@ -4,12 +4,12 @@
 	<label for="">Hubungan</label>
 	<div class="row">
 		<div class="col-md-8">
-			{!! Form::select('keluarga[hubungan]', [
+			{!! Form::select('relasi[hubungan]', [
 				'orang_tua'		=> 'Orang Tua',
 				'pasangan'		=> 'Pasangan',
 				'saudara'		=> 'Saudara',
 			], (!empty($page_datas->credit['kreditur']['relasi'][0]['hubungan']) ? $page_datas->credit['kreditur']['relasi'][0]['hubungan'] : ''), ['class' => 'form-control quick-select focus', 'data-other' => 'input-hubungan-keluarga']) !!}
-			{!! Form::hidden('keluarga[hubungan]', 'adik_kakak', ['class' => 'input-hubungan-keluarga']) !!}
+			{!! Form::hidden('relasi[hubungan]', 'orang_tua', ['class' => 'input-hubungan-keluarga']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -18,7 +18,7 @@
 	<label for="">E-KTP</label>
 	<div class="row">
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			{!! Form::checkbox('kreditur[is_ektp]', true, false, ['class' => 'form-control input-switch auto-tabindex', 'data-inverse' => 'true', 'data-on-color' => 'primary']) !!}
+			{!! Form::checkbox('relasi[is_ektp]', true, false, ['class' => 'form-control input-switch auto-tabindex', 'data-inverse' => 'true', 'data-on-color' => 'primary']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -29,7 +29,7 @@
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('keluarga[nik]', (!empty($page_datas->credit['kreditur']['relasi'][0]['nik']) ? $page_datas->credit['kreditur']['relasi'][0]['nik'] : ''), ['class' => 'form-control required auto-tabindex mask-id-card', 'placeholder' => '00-00-360876-0001']) !!}
+				{!! Form::text('relasi[nik]', (!empty($page_datas->credit['kreditur']['relasi'][0]['nik']) ? $page_datas->credit['kreditur']['relasi'][0]['nik'] : ''), ['class' => 'form-control required auto-tabindex mask-id-card', 'placeholder' => '00-00-360876-0001']) !!}
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('keluarga[nama]', (!empty($page_datas->credit['kreditur']['relasi'][0]['nama']) ? $page_datas->credit['kreditur']['relasi'][0]['nama'] : ''), ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Keluarga']) !!}
+			{!! Form::text('relasi[nama]', (!empty($page_datas->credit['kreditur']['relasi'][0]['nama']) ? $page_datas->credit['kreditur']['relasi'][0]['nama'] : ''), ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Keluarga']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -47,7 +47,7 @@
 	<label>Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('keluarga[tanggal_lahir]', (!empty($page_datas->credit['kreditur']['relasi'][0]['tanggal_lahir']) ? $page_datas->credit['kreditur']['relasi'][0]['tanggal_lahir'] : ''), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'dd/mm/yyyy']) !!}
+			{!! Form::text('relasi[tanggal_lahir]', (!empty($page_datas->credit['kreditur']['relasi'][0]['tanggal_lahir']) ? $page_datas->credit['kreditur']['relasi'][0]['tanggal_lahir'] : ''), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'dd/mm/yyyy']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -56,7 +56,7 @@
 	<label for="">Jenis Kelamin</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select('keluarga[jenis_kelamin]', [
+			{!! Form::select('relasi[jenis_kelamin]', [
 				'laki-laki'		=> 'Laki-laki',
 				'perempuan'		=> 'Perempuan'
 			], (!empty($page_datas->credit['kreditur']['relasi'][0]['jenis_kelamin']) ? $page_datas->credit['kreditur']['relasi'][0]['jenis_kelamin'] : ''), ['class' => 'form-control quick-select']) !!}
@@ -68,28 +68,30 @@
 	<label for="">Status Pernikahan</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select('keluarga[status_perkawinan]', [
-				'married' 		=> 'Menikah',
-				'single'		=> 'Belum Menikah',
+			{!! Form::select('relasi[status_perkawinan]', [
+				'belum_kawin'		=> 'Belum Kawin',
+				'cerai_hidup'		=> 'Cerai Hidup',
+				'cerai_mati'		=> 'Cerai Mati',
+				'kawin' 			=> 'Kawin',
 			], (!empty($page_datas->credit['kreditur']['relasi'][0]['status_perkawinan']) ? $page_datas->credit['kreditur']['relasi'][0]['status_perkawinan'] : ''), ['class' => 'form-control quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
 
-<div class="clearfix">&nbsp;</div>
 <hr />
-<div class="clearfix">&nbsp;</div>
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
-	'param'		=> [
-		'prefix'	=> 'keluarga',
-		'provinsi' 	=> $page_datas->provinsi,
+	'param'		=> ['prefix'	=> 'relasi'],
+	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
+	'settings'	=> [
+		'class'						=> 'data-attribute-custome',
+		'data_attribute_flag'		=> 'attribute-flag',
+		'data_attribute_value'		=> '#modal-data-address',
 	]
 ])
 
 <hr />
-<div class="clearfix">&nbsp;</div>
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 

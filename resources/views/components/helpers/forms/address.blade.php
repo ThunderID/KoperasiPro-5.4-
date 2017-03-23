@@ -130,7 +130,7 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="form-group p-b-md">
+<fieldset class="form-group">
 	<label for="">Desa</label>
 	<div class="row">
 		<div class="col-md-6">
