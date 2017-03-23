@@ -65,7 +65,7 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 @endif
 
 @push('show_modals')
-	{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => 'no-enter']) !!}
+	{!! Form::open(['url' => '', 'class' => 'no-enter']) !!}
 		@component('components.modal', [
 			'id' 		=> 'modal-data-keluarga',
 			'title'		=> 'Data Keluarga',

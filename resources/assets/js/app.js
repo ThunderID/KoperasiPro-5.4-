@@ -1,4 +1,4 @@
-window._ = require('lodash');
+// window._ = require('lodash');
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 

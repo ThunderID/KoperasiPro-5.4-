@@ -1,8 +1,7 @@
 window.callModal =  function() {
-	$(".modal").on("show.bs.modal", function(e) {
+	$(".modal").on("shown.bs.modal", function(e) {
 		// call plugin be use on modal
 		window.quickSelect();
-		window.select();
 		window.formInputMask();
 		$(".input-switch").bootstrapSwitch(); // active switch button
 

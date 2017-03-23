@@ -76,9 +76,10 @@
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
-	'param'		=> [
-		'prefix'	=> 'kreditur',
-		'provinsi' 	=> $page_datas->provinsi,
+	'param'		=> ['prefix'	=> 'kreditur'],
+	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
+	'settings'	=> [
+		'class'					=> 'input-tanah-bangunan'
 	]
 ])
 

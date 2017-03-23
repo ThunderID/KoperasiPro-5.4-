@@ -72,9 +72,10 @@
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
-	'param'		=> [
-		'prefix'	=> 'penjamin',
-		'provinsi' 	=> $page_datas->provinsi,
+	'param'		=> ['prefix'	=> 'penjamin'],
+	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
+	'settings'	=> [
+		'class'					=> 'input-tanah-bangunan'
 	]
 ])
 <div class="clearfix">&nbsp;</div>

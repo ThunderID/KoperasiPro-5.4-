@@ -157,31 +157,32 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 	@endif
 
 	{{-- modal alamat --}}
-	@if (!isset($page_datas->credit['kreditur']['alamat']))
-		{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
-		@component('components.modal', [
-			'id' 		=> 'modal-data-address',
-			'title'		=> 'Data Address',
+	{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
+	@component('components.modal', [
+		'id' 		=> 'modal-data-address',
+		'title'		=> 'Data Address',
+		'settings'	=> [
+			'hide_buttons'	=> true
+		]	
+	])
+		@include('components.helpers.forms.address', [
+			'param'		=> ['prefix'	=> 'kreditur'],
+			'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 			'settings'	=> [
-				'hide_buttons'	=> true
-			]	
+				'class'						=> 'data-attribute-custome',
+				'data_attribute_flag'		=> 'attribute-flag',
+				'data_attribute_value'		=> '#modal-data-address',
+			]
 		])
-			@include('components.helpers.forms.address', [
-				'param'		=> [
-					'prefix'	=> 'kreditur',
-					'provinsi' 	=> $page_datas->provinsi,
-				]
-			])
 
-			<div class="modal-footer">
-				<a type='button' class="btn btn-default" data-dismiss='modal'>
-					Cancel
-				</a>
-				<button type="submit" class="btn btn-success">
-					Simpan
-				</button>
-			</div>	
-		@endcomponent
-		{!! Form::close() !!}
-	@endif
+		<div class="modal-footer">
+			<a type='button' class="btn btn-default" data-dismiss='modal'>
+				Cancel
+			</a>
+			<button type="submit" class="btn btn-success">
+				Simpan
+			</button>
+		</div>	
+	@endcomponent
+	{!! Form::close() !!}
 @endpush	
