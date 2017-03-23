@@ -98,7 +98,12 @@
 				'hide_buttons'	=> true
 			]	
 		])
-			@include('pages.kredit.components.form.widget_jaminan_kendaraan')
+			@include('pages.kredit.components.form.widget_jaminan_kendaraan', [
+				'data'	=> [
+					'select_jenis_kendaraan'	=> $page_datas->select_jenis_kendaraan,
+					'select_merk_kendaraan'		=> $page_datas->select_merk_kendaraan, 
+				]
+			])
 			<div class="modal-footer">
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel

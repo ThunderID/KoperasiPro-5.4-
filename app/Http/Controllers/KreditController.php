@@ -90,7 +90,7 @@ class KreditController extends Controller
 		$this->page_datas->credit 					= null;
 	
 		// get parameter from function getParamToView to parsing view
-		$this->getParamToView(['provinsi', 'jangka_waktu', 'jenis_kredit', 'jenis_kendaraan', 'merk_kendaraan']);
+		$this->getParamToView(['provinsi', 'jangka_waktu', 'jenis_kredit', 'jenis_kendaraan', 'merk_kendaraan', 'jenis_pekerjaan']);
 		
 		//function from parent to generate view
 		return $this->generateView();
@@ -191,7 +191,6 @@ class KreditController extends Controller
 	{
 		try
 		{
-			dd(Input::all());
 			//update data kreditur
 			if (Input::has('kreditur'))
 			{
@@ -501,6 +500,21 @@ class KreditController extends Controller
 			// - merk kendaraan
 			$mjk 										= new MerkJaminanKendaraan;
 			$this->page_datas->select_merk_kendaraan	= $mjk->get();
+		}
+
+		if (in_array('jenis_pekerjaan', $element))
+		{
+			$jp 										= [
+				'tidak_bekerja'		=> 'Belum / Tidak Bekerja',
+				'karyawan_swasta'	=> 'Karyawan Swasta',
+				'nelayan'			=> 'Nelayan',
+				'pegawai_negeri'	=> 'Pegawai Negeri',
+				'petani'			=> 'Petani',
+				'polri'				=> 'Polri',
+				'wiraswasta'		=> 'Wiraswasta',
+				'00000'				=> 'Lainnya'
+			];
+			$this->page_datas->select_jenis_pekerjaan	= $jp;
 		}
 	}
 }

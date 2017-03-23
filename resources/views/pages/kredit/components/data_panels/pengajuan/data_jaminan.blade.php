@@ -8,20 +8,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Jaminan
-			@if (!is_null($page_datas->credit['jaminan_kendaraan']) || !is_null($page_datas->credit['jaminan_tanah_bangunan']))
-				@if ($edit == true)
-					<span class="pull-right">
-						<small>
-						<a class="text-capitalize" href="#" data-toggle="modal" data-target="#data_aset" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
+		<h4 class="text-uppercase">Data Jaminan</h4>
 		<hr/>
 	</div>
 </div>

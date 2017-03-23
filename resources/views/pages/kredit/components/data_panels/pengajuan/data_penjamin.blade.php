@@ -61,7 +61,7 @@
 				'hide_buttons'	=> true
 			]
 		])
-			@include('pages.kredit.components.form.data_penjamin')
+			@include('pages.kredit.components.form.penjamin')
 		@endcomponent
 
 	@endif

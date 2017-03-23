@@ -1,3 +1,26 @@
+@php
+/**
+ * ===================================================================
+ * Readme
+ * ===================================================================
+ * component name:		widget jaminan tanah & bangunan
+ * author:				Agil M (agil.mahendra@gmail.com)
+ * description:			form untuk jaminan tanah & bangunan
+ * 
+ * ===================================================================
+ * Usage
+ * ===================================================================
+ * include this file
+ * 
+ * ===================================================================
+ * Parameters
+ * ===================================================================
+ * list parameters:
+ *
+ * no parameters
+ *
+ */
+@endphp
 <div class="root-clone">
 	<div class="row p-b-md">
 		<div class="col-md-12">

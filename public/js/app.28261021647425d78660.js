@@ -10672,20 +10672,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
+				return true;
+			}
 
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();

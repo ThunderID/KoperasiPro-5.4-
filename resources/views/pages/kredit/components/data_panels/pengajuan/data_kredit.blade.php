@@ -91,7 +91,18 @@
 					'hide_buttons'	=> true
 				]	
 			])
-				@include('pages.kredit.components.form.data_kredit')
+				@include('pages.kredit.components.form.kredit', [
+					'data'	=> [
+						'select_jenis_kredit'	=> $page_datas->select_jenis_kredit,
+						'select_jangka_waktu'	=> $page_datas->select_jangka_waktu
+					],
+					'param'	=> [
+						'tanggal_pengajuan'		=> $page_datas->credit['tanggal_pengajuan'],
+						'pengajuan_kredit'		=> $page_datas->credit['pengajuan_kredit'],
+						'jenis_kredit'			=> $page_datas->credit['jenis_kredit'],
+						'jangka_waktu'			=> $page_datas->credit['jangka_waktu'],
+					]
+				])
 				<div class="modal-footer">
 					<a type='button' class="btn btn-default" data-dismiss='modal'>
 						Cancel

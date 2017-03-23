@@ -1,10 +1,38 @@
-{{-- 
-	Plugin Form Jaminan
-	Description: form untuk jaminan
-	Usage:
-	- Param
-		$param['prefix']: prefix variable input
- --}}
+@php
+/**
+ * ===================================================================
+ * Readme
+ * ===================================================================
+ * component name:		widget jaminan kendaraan
+ * author:				Agil M (agil.mahendra@gmail.com)
+ * description:			form untuk jaminan kendaraan
+ * 
+ * ===================================================================
+ * Usage
+ * ===================================================================
+ * include this file
+ * 
+ * ===================================================================
+ * Parameters
+ * ===================================================================
+ * list parameters:
+ *
+ * 1. data
+ * 		required: 			yes
+ * 		description:		diperlukan untuk menampilkan parameters data
+ *
+ * 		a. select_jenis_kendaraan
+ * 			required:		yes
+ * 			value:			array list
+ * 			description:	untuk menampilkan data jenis_kendaraan select option
+ *
+ * 		b. select_merk_kendaraan
+ * 			required:		yes
+ * 			value:			array list
+ * 			description:	untuk menampilkan data jenis_kendaraan select option
+ * 
+ */
+@endphp
 <div class="root-clone">
 	<div class="form-group">
 		<div class="row p-b-sm">
@@ -14,7 +42,7 @@
 					<label for="">Jenis Kendaraan</label>
 					<div class="row">
 						<div class="col-md-7">
-							{!! Form::select('jaminan_kendaraan[][tipe]', $page_datas->select_jenis_kendaraan, 'roda_2', ['class' => 'form-control quick-select  auto-tabindex', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
+							{!! Form::select('jaminan_kendaraan[][tipe]', $data['select_jenis_kendaraan'], 'roda_2', ['class' => 'form-control quick-select  auto-tabindex', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
 							{!! Form::hidden('jaminan_kendaraan[][tipe]', 'roda_2', ['class' => 'input-tipe-jaminan-kendaraan input-kendaraan', 'data-field' => 'tipe']) !!}
 						</div>
 					</div>
@@ -31,7 +59,7 @@
 					<label for="">Merk</label>
 					<div class="row">
 						<div class="col-md-12">
-							{!! Form::select('jaminan_kendaraan[][merk]', $page_datas->select_merk_kendaraan, 'daihatsu', ['class' => 'form-control quick-select auto-tabindex', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
+							{!! Form::select('jaminan_kendaraan[][merk]', $data['select_merk_kendaraan'], 'daihatsu', ['class' => 'form-control quick-select auto-tabindex', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
 							{!! Form::hidden('jaminan_kendaraan[][merk]', 'daihatsu', ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan', 'placeholder' => 'Sebutkan', 'data-field' => 'merk', 'style' => 'width:40%']) !!}
 						</div>
 					</div>
@@ -58,5 +86,4 @@
 		<hr/>
 		<div class="clearfix">&nbsp;</div>
 	</div>
-	{{-- <hr /> --}}
 </div>

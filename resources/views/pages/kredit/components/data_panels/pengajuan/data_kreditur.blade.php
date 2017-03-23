@@ -143,7 +143,17 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 					'hide_buttons'	=> true
 				]	
 			])
-				@include('pages.kredit.components.form.data_kreditur')
+				@include('pages.kredit.components.form.kreditur', [
+					'param'		=> [
+						'is_ektp'			=> $page_datas->credit['kreditur']['is_ektp'],
+						'nik'				=> substr($page_datas->credit['kreditur']['nik'], 3),
+						'nama'				=> $page_datas->credit['kreditur']['nama'],
+						'tanggal_lahir'		=> $page_datas->credit['kreditur']['tanggal_lahir'],
+						'jenis_kelamin'		=> $page_datas->credit['kreditur']['jenis_kelamin'],
+						'status_perkawinan'	=> $page_datas->credit['kreditur']['status_perkawinan'],
+						'telepon'			=> $page_datas->credit['kreditur']['telepon'],
+					]
+				])
 				<div class="modal-footer">
 					<a type='button' class="btn btn-default" data-dismiss='modal'>
 						Cancel
