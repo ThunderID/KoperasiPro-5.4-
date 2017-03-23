@@ -11,9 +11,9 @@ window.callModal =  function() {
 		});
 	});
 	$(".modal").on("hidden.bs.modal", function(e) {
-		$(this).find("input, textarea").val("").end()
-			.find("input[type=checkbox], input[type=radiobox]").prop("checked", "").end()
-			.find("select").val("").end();
+		// $(this).find("input, textarea").val("");
+		// $(this).find("input[type=checkbox], input[type=radiobox]").prop("checked", "");
+		// $(this).find("select").val("");
 	});
 
 	$('a[data-toggle="modal"]').on('click', function(e) {

@@ -90,7 +90,7 @@
 @include('components.helpers.panels.contact', [ 
 	'param'	=> [
 		'target'	=> 'template-contact-person',
-		'prefix'	=> 'relasi',
+		'prefix'	=> 'kreditur',
 		'class'		=> [
 			'init_add'		=> 'init-add-one'
 		]

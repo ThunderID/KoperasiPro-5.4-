@@ -72,14 +72,6 @@
 		<!-- Content -->
 		<div class="panel-workspace">
 			<div class="panel-workspace-container">
-				<?php
-				// <div class="panel-workspace-header">
-				// 	<h1 class="title">
-				// 		{{ $page_attributes->title }}
-				// 	</h1>
-				// 	@include('components.breadcrumb')
-				// </div>
-				?>
 				<div class="panel-workspace-content">
 					@stack('content')
 				</div>

@@ -10456,7 +10456,13 @@ $(document).ready(function () {
 $(document).on('submit', "form", function () {
 	// loading effect
 	btnSubmit = $(this).find('button[type="submit"]');
-	btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Simpan..");
+	searchBtnSubmit = btnSubmit.data('search'); // check if button submit use searching
+
+	if (typeof searchBtnSubmit != 'undefined') {
+		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>");
+	} else {
+		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Simpan..");
+	}
 
 	//check is activate on this form
 	if ($(this).data('ajax-submit') == false) {
@@ -10666,20 +10672,20 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			form = $(this);
-			// check previous tanpa memunculkan error
-			if (currentIndex > newIndex) {
-				return true;
-			}
+			// form = $(this);
+			// // check previous tanpa memunculkan error
+			// if (currentIndex > newIndex) {
+			return true;
+			// }
 
-			// check next apabila ada error di stage sebelumnya
-			if (currentIndex < newIndex) {
-				form.find(".body:eq(" + newIndex + ") label.error").remove();
-				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			}
+			// // check next apabila ada error di stage sebelumnya
+			// if (currentIndex < newIndex) {
+			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
+			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			// }
 
-			form.validate().settings.ignore = ":disabled,:hidden";
-			return form.valid();
+			// form.validate().settings.ignore = ":disabled,:hidden";
+			// return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
@@ -10832,7 +10838,9 @@ var xxx = new List('list-koperasi', options);
 		});
 	});
 	$(".modal").on("hidden.bs.modal", function (e) {
-		$(this).find("input, textarea").val("").end().find("input[type=checkbox], input[type=radiobox]").prop("checked", "").end().find("select").val("").end();
+		// $(this).find("input, textarea").val("");
+		// $(this).find("input[type=checkbox], input[type=radiobox]").prop("checked", "");
+		// $(this).find("select").val("");
 	});
 
 	$('a[data-toggle="modal"]').on('click', function (e) {
@@ -10972,12 +10980,6 @@ window.notify = function (msg, title, type) {
 		theme: "bootstrap",
 		allowClear: true,
 		width: null
-	});
-
-	$('.select-tempat-lahir').select2({
-		theme: "bootstrap",
-		allowClear: true,
-		tags: true
 	});
 
 	$('.select-get-ajax').on('select2:select', function (evt) {

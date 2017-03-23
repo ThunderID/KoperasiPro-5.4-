@@ -5,12 +5,6 @@ window.select = function(element, param) {
 		width: null,
 	});
 
-	$('.select-tempat-lahir').select2({
-		theme: "bootstrap",
-		allowClear: true,
-		tags: true
-	});
-
 	$('.select-get-ajax').on('select2:select', function(evt) {
 		$url = $(this).data('url');
 		$val = $(this).find('option:selected').val();

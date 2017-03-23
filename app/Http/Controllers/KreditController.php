@@ -104,7 +104,7 @@ class KreditController extends Controller
 	 */
 	public function store()
 	{
-		dd(Input::all());
+		// dd(Input::all());
 		try
 		{
 			//============ DATA KREDIT ============//
@@ -359,6 +359,38 @@ class KreditController extends Controller
 
 		//3. Memanggil fungsi filter active
 		$this->page_datas->credit_filters 			= $this->service->statusLists();
+	}
+
+	/**
+	 * function checkAllData
+	 */
+	private function checkAllData($data)
+	{
+		foreach ($data as $k => $v)
+		{
+			if (!isset($v['kreditur']['relasi']) || empty($v['kreditur']['relasi']))
+			{
+				$complete 							= false;  
+			}
+			else if (!isset($v['jaminan_kendaraan']) || empty($v['jaminan_kendaraan']))
+			{
+				$complete 							= false;
+			}
+			else if (!isset($v['jaminan_tanah_bangunan']) || empty($v['jaminan_tanah_bangunan']))
+			{
+				$complete 						 	= false;
+			}
+			else
+			{
+				$complete 							= true;
+			}
+
+			if ($complete == false)
+			{
+				$data[$k]['data_complete']			= false;
+			}
+		}
+		$this->page_datas->credits 					= $data;
 	}
 
 	/**

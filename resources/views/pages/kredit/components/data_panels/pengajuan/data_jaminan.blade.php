@@ -46,12 +46,15 @@
 					@forelse ($page_datas->credit['jaminan_kendaraan'] as $v)
 						<tr>
 							<td>{{ $i }}</td>
-							<td>{{ $v['tipe'] }}</td>
+							<td>{{ ucwords(str_replace('_', ' ', $v['tipe'])) }}</td>
 							<td>{{ $v['tahun'] }}</td>
-							<td>{{ $v['merk'] }}</td>
+							<td>{{ ucwords($v['merk']) }}</td>
 							<td>{{ $v['nomor_bpkb'] }}</td>
-							<td>{{ $v['atas_nama'] }}</td>
-							<td></td>
+							<td>{{ ucwords($v['atas_nama']) }}</td>
+							<td>
+								<a href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_bpkb' => $v['nomor_bpkb']]) }}" class="text-danger">Hapus</a>
+							</td>
+							
 						</tr>
 						@php $i++; @endphp
 					@empty
@@ -86,11 +89,11 @@
 						@forelse ($page_datas->credit['jaminan_tanah_bangunan'] as $v)
 							<tr>
 								<td>{{ $i }}</td>
-								<td>{{ $v['tipe'] }}</td>
-								<td>{{ $v['jenis_sertifikat'] }}</td>
+								<td>{{ ucwords(str_replace('_', ' ', $v['tipe'])) }}</td>
+								<td>{{ ucwords(str_replace('_', ' ', $v['jenis_sertifikat'])) }}</td>
 								<td>{{ $v['nomor_sertifikat'] }}</td>
 								<td>{{ isset($v['masa_berlaku']) ? $v['masa_berlaku'] : '---------' }}</td>
-								<td>{{ $v['atas_nama'] }}</td>
+								<td>{{ ucwords($v['atas_nama']) }}</td>
 								<td><a href="#" class="text-danger">Hapus</a></td>
 							</tr>
 						@empty

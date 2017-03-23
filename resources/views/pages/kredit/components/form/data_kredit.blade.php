@@ -28,7 +28,7 @@
 	<label for="">Lama Angsuran</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('jangka_waktu', $page_datas->select_jangka_waktu, null, ['class' => 'form-control select select-lama-angsuran required auto-tabindex mask-number-xs', 'placeholder' => 'Lama angsuran', 'data-placeholder' => 'Lama angsuran', 'style' => 'width:100%']) !!}
+			{!! Form::select('jangka_waktu', $page_datas->select_jangka_waktu, '6', ['class' => 'form-control select required auto-tabindex', 'placeholder' => 'Lama angsuran', 'data-placeholder' => 'Lama angsuran']) !!}
 		</div>
 	</div>
 </fieldset>
