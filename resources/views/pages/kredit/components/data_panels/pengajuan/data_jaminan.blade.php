@@ -94,7 +94,9 @@
 								<td>{{ $v['nomor_sertifikat'] }}</td>
 								<td>{{ isset($v['masa_berlaku']) ? $v['masa_berlaku'] : '---------' }}</td>
 								<td>{{ ucwords($v['atas_nama']) }}</td>
-								<td><a href="#" class="text-danger">Hapus</a></td>
+								<td>
+									<a href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_sertifikat' => $v['nomor_sertifikat']]) }}" class="text-danger">Hapus</a>
+								</td>
 							</tr>
 						@empty
 						@endforelse
