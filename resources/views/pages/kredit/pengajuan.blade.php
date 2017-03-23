@@ -43,7 +43,7 @@
    <!-- BLOCK 5 Data jaminan // -->
 	<div class="row">
 		<div class="col-sm-12">
-			{{-- @include('pages.kredit.components.data_panels.pengajuan.data_jaminan') --}}
+			@include('pages.kredit.components.data_panels.pengajuan.data_jaminan')
 		</div>
 	</div>
 

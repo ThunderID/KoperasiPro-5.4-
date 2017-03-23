@@ -3,12 +3,13 @@
 	{
 		$edit = true;
 	}
+	// dd($page_datas);
 @endphp
 
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Jaminan
-			@if (!is_null($page_datas->credit))
+			@if (!is_null($page_datas->credit['jaminan_kendaraan']) || !is_null($page_datas->credit['jaminan_tanah_bangunan']))
 				@if ($edit == true)
 					<span class="pull-right">
 						<small>
@@ -24,63 +25,84 @@
 		<hr/>
 	</div>
 </div>
+@if ((isset($page_datas->credit['jaminan_kendaraan'])) && (!empty($page_datas->credit['jaminan_kendaraan'])))
+	<div class="row">
+		<div class="col-sm-12">
+			<h5 class="text-uppercase text-light">Jaminan Kendaraan</h5>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Jenis Kendaraan</th>
+						<th>Tahun</th>
+						<th>Merk</th>
+						<th>No. BPKB</th>
+						<th>Atas Nama</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody class="root-template-kendaraan">
+					@php $i=1; @endphp
+					@forelse ($page_datas->credit['jaminan_kendaraan'] as $v)
+						<tr>
+							<td>{{ $i }}</td>
+							<td>{{ $v['tipe'] }}</td>
+							<td>{{ $v['tahun'] }}</td>
+							<td>{{ $v['merk'] }}</td>
+							<td>{{ $v['nomor_bpkb'] }}</td>
+							<td>{{ $v['atas_nama'] }}</td>
+							<td></td>
+						</tr>
+						@php $i++; @endphp
+					@empty
+					@endforelse
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+@endif
 
-@if (isset($page_datas->credit['jaminan']['kendaraan']))
-<div class="row">
-	<div class="col-sm-12">
-		<div class="row m-b-xl m-t-xs-print">
-			<div class="col-sm-12">
-				<p class="p-b-sm m-b-xs-m-print"><strong>Kendaraan</strong></p>
-				@foreach ($page_datas->credit['jaminan']['kendaraan'] as $kendaraan)
-					<div class="row m-b-xl">
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Jenis</strong></p>
-							<p>
-								{{ strtoupper($kendaraan['jenis']) }}
-							</p>
-						</div>
-				
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Status Kepemilikan</strong></p>
-							<p>
-								{{ ucwords(str_replace('_', ' ', $kendaraan['legal']['status_kepemilikan'])) }}
-							</p>
-						</div>
-					</div>
-				@endforeach
+@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
+	<div class="row">
+		<div class="col-sm-12">
+			<h5 class="text-uppercase text-light">Jaminan Tanah &amp; Bangunan</h5>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Jenis Jaminan</th>
+							<th>Jenis Sertifikat</th>
+							<th>No. Sertifikat</th>
+							<th>Masa Berlaku</th>
+							<th>Atas Nama</th>
+							{{-- <th>Alamat</th> --}}
+							<th></th>
+						</tr>
+					</thead>
+					<tbody class="root-template-tanah-bangunan">
+						@php $i=1; @endphp
+						@forelse ($page_datas->credit['jaminan_tanah_bangunan'] as $v)
+							<tr>
+								<td>{{ $i }}</td>
+								<td>{{ $v['tipe'] }}</td>
+								<td>{{ $v['jenis_sertifikat'] }}</td>
+								<td>{{ $v['nomor_sertifikat'] }}</td>
+								<td>{{ isset($v['masa_berlaku']) ? $v['masa_berlaku'] : '---------' }}</td>
+								<td>{{ $v['atas_nama'] }}</td>
+								<td><a href="#" class="text-danger">Hapus</a></td>
+							</tr>
+						@empty
+						@endforelse
+					</tbody>
+				</table>
 			</div>
 		</div>
-
 	</div>
-</div>
-@elseif (isset($page_datas->credit['jaminan']['tanah_bangunan']))
-<div class="row">
-	<div class="col-sm-12">
-		<div class="row m-t-xs-print">
-			<div class="col-sm-12">
-				<div class="row m-b-xl">
-					<div class="col-sm-12">
-						<h4 class="title-section light m-t-none">Tanah/Bangunan</h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12">
-				@foreach ($page_datas->credit['jaminan']['tanah_bangunan'] as $tanah_bangunan)
-					<div class="row m-b-xl m-t-xs-print">
-						<div class="col-sm-6">
-							<p class="p-b-sm"><strong>Tipe Jaminan</strong></p>
-							<p>
-								{{ strtoupper($tanah_bangunan['tipe_jaminan']) }}
-							</p>
-						</div>
-					</div>
-				@endforeach
-			</div>
-		</div>
+@endif
 
-	</div>
-</div>
-@else
+@if (((!isset($page_datas->credit['jaminan_kendaraan'])) && (empty($page_datas->credit['jaminan_kendaraan']))) && (!isset($page_datas->credit['jaminan_tanah_bangunan']) && empty($page_datas->credit['jaminan_tanah_bangunan'])))
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="row m-b-xl m-t-xs-print">
@@ -100,12 +122,6 @@
 			'hide_buttons'	=> true
 		]	
 	])
-		@include ('pages.kredit.components.form.data_jaminan', [
-			'param'	=> [
-				'target'	=> 'template-jaminan-credit',
-				'prefix'	=> 'credit',
-				'class'		=> [
-					'init_add'		=> 'init-add-one'
-		]]])
+	
 	@endcomponent
 @endpush

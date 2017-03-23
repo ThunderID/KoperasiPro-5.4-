@@ -170,7 +170,7 @@ function getDataJaminan ($template, rootTemplate, element, inputHidden) {
 	dataJaminan = {};
 	$(element).each( function() {
 		field = $(this).data('field');
-		value = $(this).val().replace('_', ' ').toLowerCase();
+		value = $(this).val();
 		dataJaminan[field] = value;
 	});
 	setToTableJaminan(dataJaminan, $template, rootTemplate, inputHidden); // panggil fungsi yang untuk ditampilkan ke dalam tabel
@@ -185,7 +185,7 @@ function getDataJaminan ($template, rootTemplate, element, inputHidden) {
  */
 function setToTableJaminan (data, $template, rootTemplate, inputHidden) {
 	$.each(data, function(key, value) {
-		$template.find('.' + key).html(value);
+		$template.find('.' + key).html(value.replace('_', ' ').toLowerCase());
 		inputTemp = addInputHidden(key, value, rootTemplate, inputHidden);		// panggil fungsi tambahkan input hidden
 		$template.append(inputTemp);			// tambahkan input hidden ke dalam template clone yg sdh diclone
 	});

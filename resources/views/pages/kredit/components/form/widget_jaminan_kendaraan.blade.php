@@ -39,7 +39,7 @@
 				<fieldset class="form-group">
 					<label for="">No. BPKB</label>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-5">
 							{!! Form::text('jaminan_kendaraan[][nomor_bpkb]', null, ['class' => 'form-control auto-tabindex input-kendaraan', 'placeholder' => 'Nomor BPKB', 'data-field' => 'nomor_bpkb']) !!}
 						</div>
 					</div>

@@ -83,24 +83,24 @@
 @push('show_modals')
 	@if ($edit == true)
 		<!-- Data kredit // -->
-		{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
-		@component('components.modal', [
-			'id' 		=> 'modal-data-kredit',
-			'title'		=> 'Data Kredit',
-			'settings'	=> [
-				'hide_buttons'	=> true
-			]	
-		])
-			@include('pages.kredit.components.form.data_kredit')
-			<div class="modal-footer">
-				<a type='button' class="btn btn-default" data-dismiss='modal'>
-					Cancel
-				</a>
-				<button type="submit" class="btn btn-success">
-					Simpan
-				</button>
-			</div>	
-		@endcomponent
+		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+			@component('components.modal', [
+				'id' 		=> 'modal-data-kredit',
+				'title'		=> 'Data Kredit',
+				'settings'	=> [
+					'hide_buttons'	=> true
+				]	
+			])
+				@include('pages.kredit.components.form.data_kredit')
+				<div class="modal-footer">
+					<a type='button' class="btn btn-default" data-dismiss='modal'>
+						Cancel
+					</a>
+					<button type="submit" class="btn btn-success">
+						Simpan
+					</button>
+				</div>	
+			@endcomponent
 		{!! Form::close() !!}
 	@endif
 @endpush	
