@@ -133,6 +133,15 @@
 			</a>
 		</div>		
 	@endcomponent
+
+	@component('components.modal', [
+		'id'		=> 'menu',
+		'title'		=> 'Menu',
+		'settings'	=> [
+			'hide_buttons'	=> 'true',
+		]
+	])
+	@endcomponent
 @endsection
 
 @section('template-scripts')

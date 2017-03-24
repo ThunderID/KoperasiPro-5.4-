@@ -95,9 +95,11 @@
 
 {{-- panel contact --}}
 @include('components.helpers.panels.contact', [ 
-	'param'	=> [
+	'param'		=> [
 		'target'	=> 'template-contact-person',
 		'prefix'	=> 'keluarga',
+	],
+	'settings'	=> [
 		'class'		=> [
 			'init_add'		=> 'init-add-one'
 		]
@@ -110,7 +112,7 @@
 	<a type='button' class="btn btn-default" data-dismiss='modal'>
 		Cancel
 	</a>
-	<button type="submit" class="btn btn-success">
+	<button type="submit" class="btn btn-primary">
 		Simpan
 	</button>
 </div>	
