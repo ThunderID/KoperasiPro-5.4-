@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Thunderlabid\API\Queries\Credit\JSend;
 use Thunderlabid\API\Queries\Credit\DaftarKredit;
 use Thunderlabid\API\Commands\Credit\AjukanKredit;
-use Thunderlabid\API\Commands\Credit\UploadGambarKTP;
+use Thunderlabid\API\Commands\Credit\UploadBase64GambarKTP;
 
 use Input;
 
