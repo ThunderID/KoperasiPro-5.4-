@@ -124,6 +124,18 @@ class KreditController extends Controller
 			}
 			$kredit['kreditur']['nik']			= '35-'.$kredit['kreditur']['nik'];
 
+			// check input file foto_ktp
+			if (Input::file('kreditur')['foto_ktp'])
+			{
+				$file 							= Input::file('kreditur')['foto_ktp'];
+				$name 							= $kredit['kreditur']['nik'];
+				$location						= '/ktp/' . Date('Y') . '/' . Date('m') . '/' . Date('d') . '/';
+
+				$foto_ktp 						= $this->uploadFile($file, $name, $location);
+
+				$kredit['kreditur']['foto_ktp'] = $foto_ktp;
+			}
+
 			//============ DATA JAMINAN ============//
 			// JAMINAN KENDARAAN
 			$jaminan_kendaraan 					= Input::get('jaminan_kendaraan');
@@ -516,5 +528,18 @@ class KreditController extends Controller
 			];
 			$this->page_datas->select_jenis_pekerjaan	= $jp;
 		}
+	}
+
+	/**
+	 * function uploadFile
+	 * description: helper function to upload file
+	 * parameters: input file upload
+	 * return $path location file
+	 */
+	function uploadFile($file, $name, $location)
+	{
+		$path 			= $file->storeAs('photos', $location . $name . '.jpg');
+
+		return $path;
 	}
 }

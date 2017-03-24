@@ -13,7 +13,7 @@
 		<div class="page-header m-t-none m-b-xl p-b-xs">
 			<h2 class="m-t-none m-b-xs">Pengajuan Baru</h2>
 		</div>
-		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard', 'data-ajax-submit' => true]) !!}
+		{!! Form::open(['url' => route('credit.store'), 'class' => 'form wizard', 'data-ajax-submit' => true, 'files' => true]) !!}
 			{{-- untuk data kredit --}}
 			<h3>Data Kredit</h3>
 			<section>

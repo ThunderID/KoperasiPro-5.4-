@@ -189,7 +189,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<button type="submit" class="btn btn-success">
+				<button type="submit" class="btn btn-primary">
 					Simpan
 				</button>
 			</div>	

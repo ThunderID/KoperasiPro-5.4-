@@ -93,9 +93,16 @@
 <fieldset class="form-group">
 	<label for="">Foto KTP</label>
 	<div class="row">
-		<div class="col-md-8">
-			{!! Form::text('kreditur[foto_ktp]', null, ['class' => 'form-control auto-tabindex']) !!}
-			<span class="help-block">Note: berupa gambar url ex. https://www.example.com/image.jpg</span>
+		<div class="col-md-6">
+			<div class="input-group">
+				{!! Form::text(null, null, ['class' => 'form-control input-upload', 'readonly' => true] ) !!}
+				<span class="input-group-btn">
+					<label class="btn btn-primary" style="padding-top: 9.5px; padding-bottom: 9.5px; margin-left: -2px;">
+						{!! Form::file('kreditur[foto_ktp]', ['class' => 'hidden btn-upload']) !!} Pilih Foto
+					</label>
+				</span>
+			</div>
+			{{-- {!! Form::text('kreditur[foto_ktp]', null, ['class' => 'form-control auto-tabindex']) !!} --}}
 		</div>
 	</div>
 </fieldset>

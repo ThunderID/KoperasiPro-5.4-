@@ -10,14 +10,14 @@ require('./plugins');
 // require('');
 require('./modules/push-notification');
 // add module form validation
-require('./modules/form-validate');
-require('./modules/form-wizard');
-require('./modules/form-ajax-submit');
+require('./modules/form/form-validate');
+require('./modules/form/form-wizard');
+require('./modules/form/form-ajax-submit');
 // require('./modules/uac');
 // add module template clone
 require('./modules/template-clone');
 // add module choice select
-require('./modules/form-inputmask');
+require('./modules/form/form-inputmask');
 // add module set workspace height
 require('./modules/height-optimizer');
 // add module choice select
@@ -25,9 +25,9 @@ require('./modules/choice-select');
 // add module auto-tabindex form
 require('./modules/auto-tabindex');
 // add module form input key enter to tab
-require('./modules/form-enter-to-tab');
+require('./modules/form/form-enter-to-tab');
 // add module form enter to submit
-require('./modules/form-no-enter-submit');
+require('./modules/form/form-no-enter-submit');
 // add module select
 require('./modules/select');
 // add module list-js
@@ -36,7 +36,8 @@ require('./modules/list');
 require('./modules/modal');
 // add module button print show window
 require('./modules/print');
-
+// add button upload
+require('./modules/form/button-upload');
 
 $(document).ready (function() {
 	$('.set-focus').focus();

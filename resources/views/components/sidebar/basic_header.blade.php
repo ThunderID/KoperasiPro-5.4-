@@ -12,10 +12,10 @@
 @endphp
 <div class="title">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-xs-6 col-md-6">
 			<h2>{{ $param['title'] }}</h2>
 		</div>
-		<div class="col-md-6 p-r-none text-right filters" style="margin-top: -6px;">
+		<div class="col-xs-6 col-md-6 p-r-none text-right filters" style="margin-top: -6px;">
 			<div class="dropdown">
 				<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
 					@if (Input::has('status'))

@@ -46,7 +46,7 @@
 
 	<div class="container-fluid hidden-sm hidden-md hidden-lg">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed pull-left no-border" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<button type="button" class="navbar-toggle collapsed pull-left no-border" data-toggle="modal" data-target="#menu" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
