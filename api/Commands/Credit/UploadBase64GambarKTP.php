@@ -10,7 +10,7 @@ use Thunderlabid\Credit\Models\Kredit;
 use Exception, Validator, TAuth, Storage;
 use Carbon\Carbon;
 
-class UploadGambarKTP
+class UploadBase64GambarKTP
 {
 	protected $nomor_kredit;
 	protected $file;
@@ -21,7 +21,7 @@ class UploadGambarKTP
 	 * @param  $file
 	 * @return void
 	 */
-	public function __construct(string $nomor_kredit, UploadedFile $file)
+	public function __construct($nomor_kredit, $file)
 	{
 		$this->nomor_kredit     = $nomor_kredit;
 		$this->file     		= $file;
@@ -36,7 +36,7 @@ class UploadGambarKTP
 	{
 		try
 		{
-  			$rules 		= ['image' => 'image|mimes:jpeg,bmp,png|max:5000']; 
+  			$rules 		= ['image' => 'required']; 
   			//mimes:jpeg,bmp,png and for max size max:10000
 
   			//1. validate file
@@ -48,11 +48,17 @@ class UploadGambarKTP
   			}
 			
 			$date 		= Carbon::now();
-			$fn 		= 'ktp-'.Str::slug(microtime()).'.'.$this->file->getClientOriginalExtension(); 
+			$fn 		= 'ktp-'.Str::slug(microtime()).'.jpg'; 
 
       		$dp 		= $date->format('Y/m/d');
 
-      		$this->file->move(public_path().'/'.$dp, $fn); // uploading file to given path
+      		if (!file_exists(public_path().'/'.$dp)) 
+      		{
+				mkdir(public_path().'/'.$dp, 0777, true);
+			}
+
+      		file_put_contents(public_path().'/'.$dp.'/'.$fn, $this->file);
+      		// $this->file->move(public_path().'/'.$dp, $fn); // uploading file to given path
 			
 			// Storage::disk('local')->put($fn, $this->file);
 
