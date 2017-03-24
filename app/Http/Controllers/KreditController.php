@@ -222,9 +222,9 @@ class KreditController extends Controller
 				dispatch(new TambahJaminanTanahBangunan($id, Input::get('jaminan_tanah_bangunan')));
 			}
 
-			if (Input::has('kredit'))
+			if (Input::has('jangka_waktu'))
 			{
-				dispatch(new UpdateKredit($id, Input::get('kredit')));
+				dispatch(new UpdateKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu')));
 			}
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
@@ -407,7 +407,7 @@ class KreditController extends Controller
 	/**
 	 * Fungsi untuk menampilkan halaman rencana kredit yang akan di print
 	 */
-	public function print($mode, $id)
+	public function prints($mode, $id)
 	{
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title              = "Daftar Kredit";

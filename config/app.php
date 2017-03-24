@@ -180,10 +180,10 @@ return [
 
 		// 3rd party
 		Collective\Html\HtmlServiceProvider::class,
-		Jenssegers\Mongodb\MongodbServiceProvider::class,
+		// Jenssegers\Mongodb\MongodbServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
-		Jenssegers\Mongodb\MongodbServiceProvider::class,
+		// Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         Thunderlabid\Web\WebServiceProvider::class,
 	],

@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Thunderlabid\API\Queries\Credit\JSend;
 use Thunderlabid\API\Queries\Credit\DaftarKredit;
 use Thunderlabid\API\Commands\Credit\AjukanKredit;
-use Thunderlabid\API\Commands\Credit\UploadGambarKTP;
+use Thunderlabid\API\Commands\Credit\UploadBase64GambarKTP;
 
 use Input;
 
@@ -82,8 +82,10 @@ class KreditController extends Controller
 
 	public function upload($nomor_kredit = null)
 	{
-		$ktp 			= Input::file('gambar');
-		$data_kredit 	= new UploadGambarKTP($nomor_kredit, $ktp);
+		$ktp 			= Input::get('gambar');
+		$ktp 			= base64_decode($ktp);
+
+		$data_kredit 	= new UploadBase64GambarKTP($nomor_kredit, $ktp);
 		$data_kredit 	= $data_kredit->handle();
 
 		return JSend::success(['nomor_kredit' => $data_kredit['nomor_kredit']])->asArray();

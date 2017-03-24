@@ -21,12 +21,6 @@ use Validator, Exception;
 abstract class BaseModel extends Model 
 {
 	/**
-	 * use soft event raiser trait
-	 *
-	 */
-	use EventRaiserTrait;
-
-	/**
 	 * use soft delete trait
 	 *
 	 */
