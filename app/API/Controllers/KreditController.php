@@ -39,6 +39,14 @@ class KreditController extends Controller
 		$kredit['mobile'] 		= Input::get('mobile');
 		$kredit['kreditur'] 	= Input::get('kreditur');
 
+		//upload foto ktp
+		$ktp 							= base64_decode($kredit['kreditur']['foto_ktp']);
+		$data_kredit 					= new UploadBase64GambarKTP($ktp);
+		$data_kredit 					= $data_kredit->handle();
+
+		//parse url foto kreditur
+		$kredit['kreditur']['foto_ktp']	= $data_kredit['url'];
+
 		$jaminan_kendaraan 		= [];
 		$jaminan_tanah_bangunan = [];
 
@@ -85,9 +93,9 @@ class KreditController extends Controller
 		$ktp 			= Input::get('gambar');
 		$ktp 			= base64_decode($ktp);
 
-		$data_kredit 	= new UploadBase64GambarKTP($nomor_kredit, $ktp);
+		$data_kredit 	= new UploadBase64GambarKTP($ktp);
 		$data_kredit 	= $data_kredit->handle();
 
-		return JSend::success(['nomor_kredit' => $data_kredit['nomor_kredit']])->asArray();
+		return JSend::success(['url' => $data_kredit['url']])->asArray();
 	}
 }

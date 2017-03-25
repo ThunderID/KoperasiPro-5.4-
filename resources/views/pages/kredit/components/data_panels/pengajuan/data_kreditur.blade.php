@@ -31,6 +31,13 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 		<div class="col-sm-6">
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
+					<p class="p-b-sm"><strong>Foto</strong></p>
+					<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive" />
+				</div>
+			</div>
+
+			<div class="row m-b-xl">
+				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Nama</strong></p>
 					<p>{{ $page_datas->credit['kreditur']['nama'] }}</p>
 				</div>
