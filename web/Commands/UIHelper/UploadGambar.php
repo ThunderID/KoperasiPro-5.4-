@@ -43,16 +43,16 @@ class UploadGambar
 				throw new Exception($validator->messages()->toJson(), 1);
   			}
 			
-			$date 		= Carbon::now();
 			$fn 		= 'ktp-'.Str::slug(microtime()).'.'.$this->file->getClientOriginalExtension(); 
 
-      		$dp 		= Str::slug(TAuth::activeOffice()['koperasi']['nama']).'/'.$date->format('Y/m/d');
+			$date 		= Carbon::now();
+			$dp 		= $date->format('Y/m/d');
 
       		$this->file->move(public_path().'/'.$dp, $fn); // uploading file to given path
 			
 			// Storage::disk('local')->put($fn, $this->file);
 
-			return url('/'.$dp.'/'.$fn);
+			return ['url' => url('/'.$dp.'/'.$fn)];
 		}
 		catch(Exception $e)
 		{

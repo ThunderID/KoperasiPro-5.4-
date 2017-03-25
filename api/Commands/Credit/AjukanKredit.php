@@ -64,7 +64,6 @@ class AjukanKredit
 			{
 				foreach ($this->kredit['jaminan_tanah_bangunan'] as $key => $value) 
 				{
-					$value['alamat']['alamat']	= $value['alamat']['regensi'];
 					$kredit = $kredit->tambahJaminanTanahBangunan($value);
 				}
 			}

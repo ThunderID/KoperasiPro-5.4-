@@ -9,7 +9,7 @@ use Thunderlabid\API\Queries\Credit\JSend;
 use App\Http\Controllers\Controller;
 use Thunderlabid\Web\Commands\Credit\HapusJaminanTanahBangunan;
 
-use Input, PDF, Carbon\Carbon;
+use Input, PDF, Carbon\Carbon, Redirect;
 
 /**
  * Kelas JaminanKendaraanController
@@ -38,6 +38,6 @@ class JaminanTanahBangunanController extends Controller
 	{
 		dispatch(new HapusJaminanTanahBangunan($kredit_id, $nomor_sertifikat));
 
-		return JSend::success($nomor_sertifikat)->asArray();
+		return Redirect::route('credit.show', ['id' => $kredit_id]);
 	}
 }

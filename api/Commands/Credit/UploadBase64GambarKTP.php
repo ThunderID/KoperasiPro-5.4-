@@ -12,7 +12,6 @@ use Carbon\Carbon;
 
 class UploadBase64GambarKTP
 {
-	protected $nomor_kredit;
 	protected $file;
 
 	/**
@@ -21,9 +20,8 @@ class UploadBase64GambarKTP
 	 * @param  $file
 	 * @return void
 	 */
-	public function __construct($nomor_kredit, $file)
+	public function __construct($file)
 	{
-		$this->nomor_kredit     = $nomor_kredit;
 		$this->file     		= $file;
 	}
 
@@ -62,11 +60,12 @@ class UploadBase64GambarKTP
 			
 			// Storage::disk('local')->put($fn, $this->file);
 
-			$kredit = Kredit::nomorkredit($this->nomor_kredit)->firstorfail();
-			$kredit->setKreditur(['foto_ktp' => url('/'.$dp.'/'.$fn), 'is_ektp' => true]);
-			$kredit->save();
+			// $kredit = Kredit::nomorkredit($this->nomor_kredit)->firstorfail();
+			// $kredit->setKreditur(['foto_ktp' => url('/'.$dp.'/'.$fn), 'is_ektp' => true]);
+			// $kredit->save();
 
-			return $kredit->toArray();
+			// return $kredit->toArray();
+			return ['url' => url('/'.$dp.'/'.$fn)];
 		}
 		catch(Exception $e)
 		{
