@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Thunderlabid\Web\Commands\UIHelper\UploadGambar;
+
 use Thunderlabid\Web\Queries\Credit\DaftarKredit;
 use Thunderlabid\Web\Commands\Credit\AjukanKredit;
 use Thunderlabid\Web\Commands\Credit\UpdateKredit;
@@ -127,13 +129,10 @@ class KreditController extends Controller
 			// check input file foto_ktp
 			if (Input::file('kreditur')['foto_ktp'])
 			{
-				$file 							= Input::file('kreditur')['foto_ktp'];
-				$name 							= $kredit['kreditur']['nik'];
-				$location						= '/ktp/' . Date('Y') . '/' . Date('m') . '/' . Date('d') . '/';
+				$upload 						= new UploadGambar(Input::file('kreditur')['foto_ktp']);
+				$upload 						= $upload->handle();
 
-				$foto_ktp 						= $this->uploadFile($file, $name, $location);
-
-				$kredit['kreditur']['foto_ktp'] = $foto_ktp;
+				$kredit['kreditur']['foto_ktp'] = $upload['url'];
 			}
 
 			//============ DATA JAMINAN ============//
@@ -206,9 +205,17 @@ class KreditController extends Controller
 			//update data kreditur
 			if (Input::has('kreditur'))
 			{
-				dispatch(new UpdateKreditur($id, Input::get('kreditur')));
+				$kreditur 							= Input::get('kreditur');
 
-				$result		= $this->service->simpanPenjamin($id, $data);
+				if (Input::file('kreditur')['foto_ktp'])
+				{
+					$upload 						= new UploadGambar(Input::file('kreditur')['foto_ktp']);
+					$upload 						= $upload->handle();
+
+					$kreditur['foto_ktp'] 			= $upload['url'];
+				}
+
+				dispatch(new UpdateKreditur($id, $kreditur));
 			}
 
 			//update jamina

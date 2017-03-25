@@ -27,7 +27,7 @@ class UpdateKreditur implements ShouldQueue
 	public function __construct($id_kredit, $kreditur)
 	{
 		$this->id_kredit	= $id_kredit;
-		$this->kredit		= $kreditur;
+		$this->kreditur		= $kreditur;
 	}
 
 	/**
@@ -43,33 +43,35 @@ class UpdateKreditur implements ShouldQueue
 
 			DB::BeginTransaction();
 
-			if(isset($this->kreditur['relasi'])))
+			if(isset($this->kreditur['relasi']))
 			{
 				$kredit->kreditur->tambahRelasi($this->kreditur['relasi']);
 			}
 
-			if(isset($this->kreditur['telepon'])))
+			if(isset($this->kreditur['telepon']))
 			{
 				$kredit->kreditur->setTelepon($this->kreditur['telepon']);
 			}
 
-			if(isset($this->kreditur['pekerjaan'])))
+			if(isset($this->kreditur['pekerjaan']))
 			{
 				$kredit->kreditur->setPekerjaan($this->kreditur['pekerjaan']);
 			}
 
-			if(isset($this->kreditur['penghasilan_bersih'])))
+			if(isset($this->kreditur['penghasilan_bersih']))
 			{
 				$kredit->kreditur->setPenghasilanBersih($this->kreditur['penghasilan_bersih']);
 			}
 
-			if(isset($this->kreditur['foto_ktp'])))
+			if(isset($this->kreditur['foto_ktp']))
 			{
 				$kredit->kreditur->setFotoKTP($this->kreditur['foto_ktp']);
 			}
 
-			if(isset($this->kreditur['alamat'])))
+			if(isset($this->kreditur['alamat']))
 			{
+				$this->kreditur['alamat']['tipe']	= 'rumah';
+				
 				$kredit->kreditur->tambahAlamatRumah($this->kreditur['alamat']);
 			}
 

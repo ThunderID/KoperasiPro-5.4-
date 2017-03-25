@@ -97,8 +97,8 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 					@endphp
 					@if (!empty($page_datas->credit['kreditur']['alamat']) && isset($page_datas->credit['kreditur']['alamat']))
 						<p class="p-b-sm"><strong>Alamat</strong></p>
-						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat']['jalan'] }}, {{ $page_datas->credit['kreditur']['alamat']['desa'] }}, {{ $page_datas->credit['kreditur']['alamat']['distrik'] }}, {{ $page_datas->credit['kreditur']['alamat']['regensi'] }}</p>
-						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat']['provinsi'] }} - {{ $page_datas->credit['kreditur']['alamat']['negara'] }}</p>
+						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat'][0]['alamat'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['desa'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['distrik'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['regensi'] }}</p>
+						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat'][0]['provinsi'] }} - {{ $page_datas->credit['kreditur']['alamat'][0]['negara'] }}</p>
 						<div class="clearfix hidden-print">&nbsp;</div>
 						{{-- <h5 class="hidden-print"><a href="#" data-toggle="modal" data-target="#" no-data-pjax data-href="{{route('person.index', ['id' => $page_datas->credit->creditor->id, 'status' => 'rumah'])}}">Lihat Alamat Lain</a></h5> --}}
 					@else
@@ -141,7 +141,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 @push('show_modals')
 	@if ($edit == true)
 		<!-- Data kredit // -->
-		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT', 'files' => true]) !!}
 			@component('components.modal', [
 				'id' 		=> 'modal-data-kreditur',
 				'title'		=> 'Data Kreditur',
