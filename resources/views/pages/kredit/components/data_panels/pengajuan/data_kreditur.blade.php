@@ -139,7 +139,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				'id' 		=> 'modal-data-kreditur',
 				'title'		=> 'Data Kreditur',
 				'settings'	=> [
-					'modal_size'	=> 'modal-lg',
+					'modal_class'	=> 'modal-lg',
 					'hide_buttons'	=> true
 				]	
 			])

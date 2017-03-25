@@ -138,9 +138,12 @@
 		'id'		=> 'menu',
 		'title'		=> 'Menu',
 		'settings'	=> [
+			'modal_class'	=> 'fullscreen',
 			'hide_buttons'	=> 'true',
+			'hide_title'	=> 'true',
 		]
 	])
+		@include('components.modal.admin_topbar')
 	@endcomponent
 @endsection
 

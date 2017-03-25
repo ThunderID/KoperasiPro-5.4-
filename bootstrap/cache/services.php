@@ -29,9 +29,7 @@
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Collective\\Html\\HtmlServiceProvider',
-    28 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    29 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    30 => 'Thunderlabid\\Web\\WebServiceProvider',
+    28 => 'Thunderlabid\\Web\\WebServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,9 +47,7 @@
     11 => 'App\\Providers\\AuthServiceProvider',
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
-    14 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    15 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
-    16 => 'Thunderlabid\\Web\\WebServiceProvider',
+    14 => 'Thunderlabid\\Web\\WebServiceProvider',
   ),
   'deferred' => 
   array (
