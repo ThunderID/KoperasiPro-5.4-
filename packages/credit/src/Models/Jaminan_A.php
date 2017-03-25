@@ -140,7 +140,7 @@ class Jaminan_A extends BaseModel
 			throw new Exception("Invalid nomor bpkb", 1);
 		}
 
-		$data 					=  Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_kendaraan_id', $jaminan_kendaraan->id)->first();
+		$data 					=  Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_kendaraan_id', $jaminan_kendaraan->id)->withTrashed()->first();
 
 		if(!$data)
 		{
@@ -176,7 +176,7 @@ class Jaminan_A extends BaseModel
 			throw new Exception("Invalid nomor bpkb", 1);
 		}
 
-		$data 						= Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_tanah_bangunan_id', $jaminan_t_bangunan->id)->first();
+		$data 						= Jaminan_A::where('kredit_id', $kredit->id)->where('legalitas_tanah_bangunan_id', $jaminan_t_bangunan->id)->withTrashed()->first();
 
 		if(!$data)
 		{

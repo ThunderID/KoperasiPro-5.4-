@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Thunderlabid\Web\Commands\Credit\HapusJaminanKendaraan;
 
 use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon;
+use Input, PDF, Carbon\Carbon, Redirect;
 
 /**
  * Kelas JaminanKendaraanController
@@ -39,6 +39,6 @@ class JaminanKendaraanController extends Controller
 	{
 		dispatch(new HapusJaminanKendaraan($kredit_id, $nomor_bpkb));
 
-		return JSend::success($nomor_bpkb)->asArray();
+		return Redirect::route('credit.show', ['id' => $kredit_id]);
 	}
 }
