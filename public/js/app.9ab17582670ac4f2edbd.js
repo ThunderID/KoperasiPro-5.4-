@@ -10883,6 +10883,10 @@ window.menuModal = function () {
 				$(toRoute).removeClass('hidden').css('opacity', 1);
 				$('div.loading').addClass('hidden');
 			}, 300);
+		} else {
+			$(this).closest('.modal').modal('hide');
+			// $(fromRoute).addClass('hidden').css('opacity', 0);
+			// $('#main-menu').removeClass('hidden').css('opacity', 1);
 		}
 	});
 };

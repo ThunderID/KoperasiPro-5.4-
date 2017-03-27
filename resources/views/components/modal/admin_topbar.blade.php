@@ -37,7 +37,7 @@
 						</ul> --}}
 				@else
 					<div class="col-xs-6 text-center">
-						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" href="{{ $item['route'] }}">
+						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" href="{{ $item['route'] }}" data-menu-from="#main-menu">
 							{{ ucwords(str_replace('_', ' ', $key)) }}
 						</a>
 					</div>
@@ -52,7 +52,7 @@
 					</div>
 					@foreach ($item['sub'] as $caption => $route)
 						<div class="col-xs-6 text-center">
-							<a href="{{ $route }}" class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content">{{ ucwords(str_replace('_', ' ', $caption)) }}</a>
+							<a href="{{ $route }}" class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" data-menu-from="#{{ $key }}">{{ ucwords(str_replace('_', ' ', $caption)) }}</a>
 						</div>
 					@endforeach
 				</div>
