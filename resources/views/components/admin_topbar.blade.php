@@ -12,10 +12,12 @@
 			<a class="navbar-brand" href="#">{{ Config::get('app.name') }}</a>
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
-			<span class="pull-right m-l-xs">
+			<span class="list-organisation pull-left m-l-xs">
 				<div class="dropdown p-t-xs">
 					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
-						<i class="fa fa-building"></i>&nbsp;&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;<span class="caret"></span>
+						<i class="fa fa-building text-muted" style="font-size: 15px;"></i>
+						<span class="text-muted text-capitalize">&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;</span>
+						<span class="caret"></span>
 					</a>
 				</div>
 			</span>
@@ -25,20 +27,27 @@
 		<!-- right section -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<div class="nav navbar-nav navbar-right">
-
 				<div class="profile">
-					<div class="col-xs-2 p-l-none p-r-none p-t-xs">
-						@include('components.notification')
+					<ul class="list-inline m-b-none">
+						<li>
+							@include('components.notification')
+						</li>
+						<li>
+							<p class="name m-b-none">{{TAuth::loggedUser()['nama']}}</p>
+							<p class="role text-muted">{{TAuth::activeOffice()['role']}}</p>
+						</li>
+						<li>
+							<a class="text-muted" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
+								<i class="fa fa-power-off" aria-hidden="true" style="font-size: 15px;"></i>&nbsp;Logout
+							</a>
+						</li>
+					</ul>
+					{{-- <div class="col-xs-2 p-l-none p-r-none p-t-xs">
 					</div >
 					<div class="col-xs-6 p-r-none" style="padding-top: 1px;">
-						<p class="name">{{TAuth::loggedUser()['nama']}}</p>
-						<p class="role">{{TAuth::activeOffice()['role']}}</p>
 					</div >
-					<div class="col-xs-4 text-left p-t-xs">
-						<a class="btn btn-link text-" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
-							<i class="fa fa-power-off fa-lg" aria-hidden="true" ></i>
-						</a>
-					</div>
+					<div class="col-sm-4 col-md-4 col-lg-4 text-left p-t-xs">
+					</div> --}}
 				</div>
 			</div>
 		</div>

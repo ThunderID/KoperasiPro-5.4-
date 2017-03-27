@@ -23,11 +23,29 @@ window.callModal =  function() {
 	});
 }
 
+window.menuModal = function() {
+	$('a.mobile-menu-content').on('click', function() {
+		var toRoute = ($(this).data('menu-to') || false);
+		var fromRoute = ($(this).data('menu-from') || false);
+
+		if ((toRoute !== false) && (fromRoute !== false)) {
+			$(fromRoute).addClass('hidden').css('opacity', 0);
+			$('div.loading').removeClass('hidden');
+			setTimeout (function () {
+				$(toRoute).removeClass('hidden').css('opacity', 1);
+				$('div.loading').addClass('hidden');
+			}, 300);
+		}
+	});
+}
+
 // add event call on document ready & document pjax:end
 $(document).ready( function() {
 	window.callModal();
+	window.menuModal();
 	// add event on pjax:end
 	$(document).on("pjax:end", function() { 
 		window.callModal();
+		window.menuModal();
 	});
 });

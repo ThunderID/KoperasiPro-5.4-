@@ -32,7 +32,7 @@ class InitTestTableSeeder extends Seeder
 		//1. simpan imigrasi
 		$credentials	=	[
 								'email'				=> 'admin@ksp.id',
-								'password'			=> 'qweasd',
+								'password'			=> 'admin',
 								'nama'				=> 'C Mooy'
 							];
 		$visa_1 		= 	[
