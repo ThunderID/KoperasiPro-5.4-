@@ -10,8 +10,7 @@
 		.triangle {
 			width: 95%;
 			a {
-				background: white;
-				border: 0 !important;
+				background: $color-white;
 				color: $color-active;
 				float: left; 
 				text-align:center;
@@ -34,48 +33,68 @@
 			}
 			.disabled {
 				&::after {
-					border-left-color: white;
-					color: white;
+					border-left-color: $color-white;
+					color: $color-white;
 					z-index: 1;
 				}
 			}
-		}
-		.active { 
-			a {
-				background: $color-active;
-				color: $color-white;
-				float: left; text-align:center;
-				opacity: 1 !important; 
-				position: relative;
-				&.disabled {
+			&.active {
+				a {
 					background: $color-active;
 					color: $color-white;
-					float: left; text-align:center;
+					float: left; 
+					text-align:center;
+					opacity: 1 !important; 
 					position: relative;
+					&.disabled {
+						background: $color-active;
+						color: $color-white;
+						float: left; 
+						text-align:center;
+						position: relative;
+					}
 				}
-			}
-			&::after {
-				border-left-color: $color-active;
-				color: white;
-				z-index: 1;
-			}
-		}
-		.last {
-			.active {
+				&::after, &::before {
+					border-top: 19px solid transparent;
+					border-bottom: 19px solid transparent;
+					border-left: 1em solid;
+					content: "";
+					margin-top: -19px;   
+					position: absolute;
+					top: 50%;
+					right: 2px;
+					@media (max-width: $screen-sm - 1) {
+						right: -8px;
+					}
+				}
 				&::after {
 					border-left-color: $color-active;
-					color: white;
 					z-index: 1;
 				}
 			}
-		}
-		.disabled {
-			a {
-				background: white;
-				color: $color-default;
-				float: left; text-align:center;
-				opacity: 1 !important;
-				position: relative;
+			&.disabled {
+				a {
+					background: white;
+					color: $color-default;
+					float: left; text-align:center;
+					opacity: 1 !important;
+					position: relative;
+				}
+				&::before {
+					z-index: 1;
+				}
+				&::after {
+					z-index: 10;
+				}
+			}
+			&.last {
+				&.active {
+					&::after {
+						border-left-color: $color-active;
+						color: white;
+						z-index: 1;
+					}
+				}
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'method' => 'POST', 'class' => '']) !!}
+{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'method' => 'POST', 'class' => 'form no-enter']) !!}
 
 <div class="m-t-none m-b-md">
 	<h4 class="m-t-none m-b-xs">Data Penjamin</h4>

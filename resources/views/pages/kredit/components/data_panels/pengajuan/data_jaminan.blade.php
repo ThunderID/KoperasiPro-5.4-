@@ -16,39 +16,41 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<h5 class="text-uppercase text-light">Jaminan Kendaraan</h5>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Jenis Kendaraan</th>
-						<th>Tahun</th>
-						<th>Merk</th>
-						<th>No. BPKB</th>
-						<th>Atas Nama</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody class="root-template-kendaraan">
-					@php $i=1; @endphp
-					@forelse ($page_datas->credit['jaminan_kendaraan'] as $v)
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
 						<tr>
-							<td>{{ $i }}</td>
-							<td>{{ ucwords(str_replace('_', ' ', $v['tipe'])) }}</td>
-							<td>{{ $v['tahun'] }}</td>
-							<td>{{ ucwords($v['merk']) }}</td>
-							<td>{{ $v['nomor_bpkb'] }}</td>
-							<td>{{ ucwords($v['atas_nama']) }}</td>
-							<td>
-								<a href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_bpkb' => $v['nomor_bpkb']]) }}" class="text-danger">Hapus</a>
-							</td>
-							
+							<th>No.</th>
+							<th>Jenis Kendaraan</th>
+							<th>Tahun</th>
+							<th>Merk</th>
+							<th>No. BPKB</th>
+							<th>Atas Nama</th>
+							<th></th>
 						</tr>
-						@php $i++; @endphp
-					@empty
-					@endforelse
-					
-				</tbody>
-			</table>
+					</thead>
+					<tbody class="root-template-kendaraan">
+						@php $i=1; @endphp
+						@forelse ($page_datas->credit['jaminan_kendaraan'] as $v)
+							<tr>
+								<td>{{ $i }}</td>
+								<td>{{ ucwords(str_replace('_', ' ', $v['tipe'])) }}</td>
+								<td>{{ $v['tahun'] }}</td>
+								<td>{{ ucwords($v['merk']) }}</td>
+								<td>{{ $v['nomor_bpkb'] }}</td>
+								<td>{{ ucwords($v['atas_nama']) }}</td>
+								<td>
+									<a href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_bpkb' => $v['nomor_bpkb']]) }}" class="text-danger">Hapus</a>
+								</td>
+								
+							</tr>
+							@php $i++; @endphp
+						@empty
+						@endforelse
+						
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 @endif

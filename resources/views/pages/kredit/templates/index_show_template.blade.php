@@ -20,7 +20,7 @@
 
 @push('content')
 	<div class="row field">
-		<div class="col-sm-3 content-sidebar">
+		<div class="{{ (isset($page_datas->credit['kreditur']['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
@@ -56,7 +56,7 @@
 				</div>
 			</div>			
 		</div>
-		<div class="col-sm-9">
+		<div class="col-xs-12 col-sm-9">
 
 			@if (isset($page_datas->credit['kreditur']['id']))
 				@if ($page_datas->credit['status'] == 'pengajuan')

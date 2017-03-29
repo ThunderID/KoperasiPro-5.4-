@@ -53,7 +53,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 			</div>	
 		</div>
 		@if (isset($page_datas->credit['kreditur']['foto_ktp']) && !is_null($page_datas->credit['kreditur']['foto_ktp']))
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="row m-b-xl">
 					<div class="col-sm-12">
 						<p class="p-b-sm"><strong>Foto KTP</strong></p>
