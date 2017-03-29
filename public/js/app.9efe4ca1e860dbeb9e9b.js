@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10297,65 +10297,46 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {// window._ = require('lodash');
+// window._ = require('lodash');
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(20);
+__webpack_require__(22);
 
 //your js modules goes here
-// require('');
-__webpack_require__(17);
-// add module form validation
-__webpack_require__(11);
-__webpack_require__(12);
-__webpack_require__(7);
 // require('./modules/uac');
-// add module template clone
+
+// module push notification
 __webpack_require__(19);
-// add module choice select
-__webpack_require__(9);
+
+// add module template clone
+__webpack_require__(21);
+
 // add module set workspace height
-__webpack_require__(13);
+__webpack_require__(15);
+
 // add module choice select
 __webpack_require__(5);
+
 // add module auto-tabindex form
 __webpack_require__(4);
-// add module form input key enter to tab
-__webpack_require__(8);
-// add module form enter to submit
-__webpack_require__(10);
+
 // add module select
-__webpack_require__(18);
+__webpack_require__(20);
+
 // add module list-js
-__webpack_require__(14);
-// add module modal
-__webpack_require__(15);
-// add module button print show window
 __webpack_require__(16);
+
+// add module modal
+__webpack_require__(17);
+
+// add module button print show window
+__webpack_require__(18);
+
 // add button upload
 __webpack_require__(6);
-
-$(document).ready(function () {
-	$('.set-focus').focus();
-});
-//draft
-// // window.$ = window.jQuery = require('jquery');
-// // window.$ = window.jQuery = require('./jquery-3.1.1');
-
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
-
-
-// window.$ = window.jQuery = require('jquery');
-
-// require('./bootstrap.min');
-// require('bootstrap-sass');
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
@@ -10368,7 +10349,7 @@ $(document).ready(function () {
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(33);
+__webpack_require__(35);
 
 // require('./vendors/jquery-2.2.4.js');
 
@@ -10384,8 +10365,7 @@ __webpack_require__(33);
 
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Module auto tab-index
- * Description: modul untuk otomatis tab-index sesuai dgn urutannya,
- * dengan menambahkan class auto-tabindex
+ * Description: modul untuk otomatis tab-index sesuai dgn urutannya, dengan menambahkan class auto-tabindex
  */
 $(function () {
   $('.auto-tabindex').attr('tabindex', function (index, attr) {
@@ -10451,6 +10431,34 @@ $(document).ready(function () {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// add set focus on form
+__webpack_require__(14);
+
+// add button upload
+__webpack_require__(7);
+
+// add module form inputmask
+__webpack_require__(10);
+
+// add module form validation
+__webpack_require__(12);
+
+// add module form wizard
+__webpack_require__(13);
+
+// add module form ajax submit
+__webpack_require__(8);
+
+// add module form input key enter to tab
+__webpack_require__(9);
+
+// add module form can't enter to submit
+__webpack_require__(11);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {window.buttonUpload = function () {
 	$('input[type="file"]').on('change', function () {
 		$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
@@ -10467,7 +10475,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/* README
@@ -10501,7 +10509,7 @@ $(document).on('submit', "form", function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.formEntertoTabs = function () {
@@ -10526,7 +10534,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
@@ -10610,7 +10618,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.noEnterToSubmit = function () {
@@ -10628,7 +10636,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.__validation = function () {
@@ -10667,19 +10675,21 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
 	window.__validation();
 	$('.wizard').steps({
+		/* appreance */
 		headerTag: 'h3',
 		bodyTag: 'section',
 		transitionEffect: "slideLeft",
 		stepsOrientation: "vertical",
-		titleTemplate: '<span class="number">Step #index# :</span> #title#',
 		actionContainerTag: 'div',
-		/* Labels */
+		/* templates */
+		titleTemplate: '<span class="number">Step #index# :</span> #title#',
+		/* labels */
 		labels: {
 			cancel: "Cancel",
 			current: "current step:",
@@ -10693,30 +10703,30 @@ $(document).ready(function () {
 		saveState: true,
 		/* Event */
 		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
+				return true;
+			}
 
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
 			window.resizeWizard();
-			window.setFocus();
+			window.setFocus('.set-focus');
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 		},
 		onInit: function onInit(event, currentIndex) {
 			window.resizeWizard();
-			window.setFocus();
+			window.setFocus('.set-focus');
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 			$('.input-switch').bootstrapSwitch(); // active switch button
@@ -10761,10 +10771,6 @@ window.resizeWizard = function () {
 	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
 };
 
-window.setFocus = function () {
-	$('.focus').focus();
-};
-
 window.customButtonActions = function () {
 	$('.wizard .actions').find('a').addClass('btn');
 	$('.wizard .actions').find('a[href="#previous"]').addClass('btn-success');
@@ -10781,7 +10787,20 @@ window.disablePreviousButtonOnFirstStep = function (index) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.setFocus = function (el) {
+	$(el).focus();
+};
+
+$(document).ready(function () {
+	window.setFocus('.set-focus');
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10833,7 +10852,7 @@ $('._window').each(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 
@@ -10843,7 +10862,7 @@ options = {
 var xxx = new List('list-koperasi', options);
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.callModal = function () {
@@ -10904,7 +10923,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -10941,7 +10960,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -11015,7 +11034,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function (element, param) {
@@ -11088,7 +11107,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.templateClone = function () {
@@ -11307,7 +11326,7 @@ function renameInputHidden($temp, inputHidden, count) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -11315,7 +11334,7 @@ function renameInputHidden($temp, inputHidden, count) {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(32);
+window.toastr = __webpack_require__(34);
 
 /*
 2. nprogress
@@ -11323,7 +11342,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(29);
+window.NProgress = __webpack_require__(31);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -11337,7 +11356,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(30);
+window.pjax = __webpack_require__(32);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -11381,7 +11400,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(25);
+window.steps = __webpack_require__(27);
 $(document).ready(function () {
   wizard();
 });
@@ -11391,14 +11410,14 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(26);
+window.validate = __webpack_require__(28);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(23);
+window.cookies = __webpack_require__(25);
 $(document).ready(function () {
   window.cookies();
 });
@@ -11408,7 +11427,7 @@ $(document).ready(function () {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(22);
+window.inputmask = __webpack_require__(24);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -11420,14 +11439,14 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(24);
+window.quickselect = __webpack_require__(26);
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.select2 = __webpack_require__(31);
+window.select2 = __webpack_require__(33);
 $(document).ready(function () {
   // window.select();
 });
@@ -11437,28 +11456,28 @@ $(document).ready(function () {
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(28);
+window.nicescroll = __webpack_require__(30);
 
 /**
  * 11. jQuery plugin List-js
  * Description: plugin jQuery for list & search
  * Usage & Documentation: http://listjs.com/docs/
  */
-window.list = __webpack_require__(27);
+window.list = __webpack_require__(29);
 
 /**
  * 12. jQuery plugin bootstrap-switch
  * Description: plugin jQuery for switch radion button
  * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
  */
-window.bootstrapSwitch = __webpack_require__(21);
+window.bootstrapSwitch = __webpack_require__(23);
 $(document).ready(function () {
   $('.input-switch').bootstrapSwitch();
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -12250,7 +12269,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14910,7 +14929,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15069,7 +15088,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15122,7 +15141,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -17000,7 +17019,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -18556,7 +18575,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
@@ -19880,7 +19899,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
   }, {}] }, {}, [4]);
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -19943,7 +19962,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
     cursoropacitymin: 0,
     cursoropacitymax: 1,
     cursorcolor: "#424242",
-    cursorwidth: "5px",
+    cursorwidth: "12px",
     cursorborder: "1px solid #fff",
     cursorborderradius: "5px",
     scrollspeed: 60,
@@ -23073,7 +23092,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23565,7 +23584,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -24498,7 +24517,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -25624,7 +25643,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -26054,10 +26073,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(34));
+})(__webpack_require__(36));
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -28441,7 +28460,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -28450,7 +28469,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);

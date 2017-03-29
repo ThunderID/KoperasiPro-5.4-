@@ -7,53 +7,34 @@
 require('./plugins');
 
 //your js modules goes here
-// require('');
-require('./modules/push-notification');
-// add module form validation
-require('./modules/form/form-validate');
-require('./modules/form/form-wizard');
-require('./modules/form/form-ajax-submit');
 // require('./modules/uac');
+
+// module push notification
+require('./modules/push-notification');
+
 // add module template clone
 require('./modules/template-clone');
-// add module choice select
-require('./modules/form/form-inputmask');
+
 // add module set workspace height
 require('./modules/height-optimizer');
+
 // add module choice select
 require('./modules/choice-select');
+
 // add module auto-tabindex form
 require('./modules/auto-tabindex');
-// add module form input key enter to tab
-require('./modules/form/form-enter-to-tab');
-// add module form enter to submit
-require('./modules/form/form-no-enter-submit');
+
 // add module select
 require('./modules/select');
+
 // add module list-js
 require('./modules/list');
+
 // add module modal
 require('./modules/modal');
+
 // add module button print show window
 require('./modules/print');
+
 // add button upload
-require('./modules/form/button-upload');
-
-$(document).ready (function() {
-	$('.set-focus').focus();
-});
-//draft
-// // window.$ = window.jQuery = require('jquery');
-// // window.$ = window.jQuery = require('./jquery-3.1.1');
-
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
-
-
-
-// window.$ = window.jQuery = require('jquery');
-
-// require('./bootstrap.min');
-// require('bootstrap-sass');
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
+require('./modules/form');

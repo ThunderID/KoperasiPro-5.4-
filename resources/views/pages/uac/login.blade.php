@@ -4,28 +4,24 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 			<div class="form-wrap p-b-sm m-b-md">
-				<h1>Chayono Group</h1> 
-				</br>
-				<p>Silahkan masukkan email dan password Anda!</p>
-				</br>
+				<h1 class="m-b-xl">Chayono Group</h1>
+				<p class="m-b-lg">Silahkan masukkan Email dan Password Anda.</p>
 
 				@include('components.alertbox')
 				
-				<form role="form" method="post" id="login-form" autocomplete="off" action="{{ route('login.store') }}" data-pjax="true">
+				{!! Form::open(['url' => route('login.store'), 'id' => 'login-form', 'class' => 'form no-enter', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true']) !!}
 					<div class="form-group">
 						<label for="email" class="sr-only">Email</label>
-						<input type="email" name="email" id="email" class="form-control set-focus" placeholder="somebody@example.com">
+						{!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'somebody@example.com']) !!}
 					</div>
 					<div class="form-group">
 						<label for="key" class="sr-only">Password</label>
-						<input type="password" name="key" id="key" class="form-control" placeholder="password">
+						{!! Form::password('key', ['id' => 'key', 'class' => 'form-control auto-tabindex', 'placeholder' => 'type your password']) !!}
 					</div>
-					{{-- <div class="checkbox">
-						<span class="character-checkbox" onclick="showPassword()"></span>
-						<span class="label">Show password</span>
-					</div> --}}
-					<input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login">
-				</form>		
+					{!! Form::submit('login', ['id' => 'btn-login', 'class' => 'btn btn-custom btn-block auto-tabindex']) !!}
+					{{-- <input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login"> --}}
+				{!! Form::close() !!}
+				{{-- </form> --}}
 				{{-- <a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a> --}}
 			</div>
 		</div>
