@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10297,65 +10297,46 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {// window._ = require('lodash');
+// window._ = require('lodash');
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(19);
+__webpack_require__(22);
 
 //your js modules goes here
-// require('');
-__webpack_require__(16);
-// add module form validation
-__webpack_require__(52);
-__webpack_require__(53);
-__webpack_require__(48);
 // require('./modules/uac');
+
+// module push notification
+__webpack_require__(19);
+
 // add module template clone
-__webpack_require__(18);
-// add module choice select
-__webpack_require__(50);
+__webpack_require__(21);
+
 // add module set workspace height
-__webpack_require__(12);
+__webpack_require__(15);
+
 // add module choice select
 __webpack_require__(5);
+
 // add module auto-tabindex form
 __webpack_require__(4);
-// add module form input key enter to tab
-__webpack_require__(49);
-// add module form enter to submit
-__webpack_require__(51);
+
 // add module select
-__webpack_require__(17);
+__webpack_require__(20);
+
 // add module list-js
-__webpack_require__(13);
+__webpack_require__(16);
+
 // add module modal
-__webpack_require__(14);
+__webpack_require__(17);
+
 // add module button print show window
-__webpack_require__(15);
+__webpack_require__(18);
+
 // add button upload
-__webpack_require__(54);
-
-$(document).ready(function () {
-	$('.set-focus').focus();
-});
-//draft
-// // window.$ = window.jQuery = require('jquery');
-// // window.$ = window.jQuery = require('./jquery-3.1.1');
-
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
-
-
-// window.$ = window.jQuery = require('jquery');
-
-// require('./bootstrap.min');
-// require('bootstrap-sass');
-
-// window.$ = window.toastr = require('./plugins/toastr/toastr');
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+__webpack_require__(6);
 
 /***/ }),
 /* 2 */
@@ -10368,7 +10349,7 @@ $(document).ready(function () {
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(32);
+__webpack_require__(35);
 
 // require('./vendors/jquery-2.2.4.js');
 
@@ -10384,8 +10365,7 @@ __webpack_require__(32);
 
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Module auto tab-index
- * Description: modul untuk otomatis tab-index sesuai dgn urutannya,
- * dengan menambahkan class auto-tabindex
+ * Description: modul untuk otomatis tab-index sesuai dgn urutannya, dengan menambahkan class auto-tabindex
  */
 $(function () {
   $('.auto-tabindex').attr('tabindex', function (index, attr) {
@@ -10448,13 +10428,379 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// add set focus on form
+__webpack_require__(14);
+
+// add button upload
+__webpack_require__(7);
+
+// add module form inputmask
+__webpack_require__(10);
+
+// add module form validation
+__webpack_require__(12);
+
+// add module form wizard
+__webpack_require__(13);
+
+// add module form ajax submit
+__webpack_require__(8);
+
+// add module form input key enter to tab
+__webpack_require__(9);
+
+// add module form can't enter to submit
+__webpack_require__(11);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.buttonUpload = function () {
+	$('input[type="file"]').on('change', function () {
+		$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
+	});
+};
+
+$(document).ready(function () {
+	window.buttonUpload();
+	// add event on pjax:end
+	$(document).on("pjax:end", function () {
+		window.buttonUpload();
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {/* README
+
+*/
+
+$(document).on('submit', "form", function () {
+	// loading effect
+	btnSubmit = $(this).find('button[type="submit"]');
+	searchBtnSubmit = btnSubmit.data('search'); // check if button submit use searching
+
+	if (typeof searchBtnSubmit != 'undefined') {
+		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>");
+	} else {
+		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Simpan..");
+	}
+
+	//check is activate on this form
+	if ($(this).data('ajax-submit') == false) {
+		return false;
+	}
+
+	// readonly input & select the form 
+	$(this).find(":input").prop("readonly", true);
+	$(this).find('select').prop('readonly', true);
+	// disabled a the form
+	$(this).find("a").each(function () {
+		$(this).addClass('disabled');
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.formEntertoTabs = function () {
+	$('input, a').on('keypress', function (e) {
+		if (e.keyCode == 13) {
+			elements = $(this).parents('section').eq(0).find('.auto-tabindex');
+			idx = elements.index(this);
+
+			if (idx == elements.length - 1) {
+				// set to button next wizard
+				$('.wizard').find('a[href$="#next"]').focus();
+			} else {
+				elements[idx + 1].focus();
+				// elements[idx + 1].select();
+			}
+		}
+	});
+};
+$(document).ready(function () {
+	window.formEntertoTabs();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
+	// element class use plugin inputmask
+	elMoney = $('.mask-money');
+	elMoneyRight = $('.mask-money-right');
+	elDateFormat = $('.mask-date-format');
+
+	Inputmask.extendAliases({
+		IDR: {
+			rightAlign: false,
+			prefix: "Rp ",
+			groupSeparator: ".",
+			alias: "numeric",
+			placeholder: "",
+			autoGroup: !0,
+			digit: 1,
+			radixPoint: '',
+			digitsOptional: !1,
+			clearMaskOnLostFocus: !1
+		}
+	});
+
+	// money indonesia standard
+	elMoney.inputmask({ alias: "IDR" });
+
+	// money indonesia align right
+	elMoneyRight.inputmask({
+		rightAlign: true,
+		alias: 'numeric',
+		prefix: 'Rp. ',
+		radixPoint: '',
+		placeholder: '',
+		autoGroup: !0,
+		digitsOptional: !1,
+		groupSeparator: '.',
+		groupSize: 3,
+		repeat: 15 }, 'unmaskedvalue');
+
+	// date format indonesia
+	elDateFormat.inputmask({
+		alias: "dd/mm/yyyy"
+	});
+
+	$('.mask-year').inputmask({
+		mask: "y",
+		definitions: {
+			y: {
+				validator: "(19|20)\\d{2}",
+				cardinality: 4,
+				prevalidator: [{
+					validator: "[12]",
+					cardinality: 1
+				}, {
+					validator: "(19|20)",
+					cardinality: 2
+				}, {
+					validator: "(19|20)\\d",
+					cardinality: 3
+				}]
+			}
+		}
+	});
+
+	$('.mask-id-card').inputmask('99-99-999999-9999');
+	$('.mask-no-telp').inputmask('9999 9999 9999');
+	$('.mask-no-handphone').inputmask('999 999 999 999');
+	$('.mask-no-sertifikat').inputmask('99.99.99.99.9.99999');
+	$('.mask-kodepos').inputmask('99999');
+	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
+	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
+};
+
+// add event on document ready & document pjax:end
+$(document).ready(function () {
+	window.formInputMask();
+	$(document).on("pjax:end", function () {
+		window.formInputMask();
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.noEnterToSubmit = function () {
+	$('form.no-enter input, form.no-enter select').on("keyup keypress", function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
+};
+$(document).ready(function () {
+	window.noEnterToSubmit();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.__validation = function () {
+	// add rules validation class
+	$.validator.addClassRules({
+		required: {
+			required: true
+		},
+		email: {
+			required: true,
+			email: true
+		},
+		password: {
+			required: true
+		},
+		number: {
+			required: true,
+			number: true
+		},
+		date: {
+			required: true,
+			dateIND: true
+		}
+	});
+
+	// custom error message jQuery validation
+	$.extend($.validator.messages, {
+		required: "Inputan harus diisi",
+		'email': "Silahkan inputkan dengan format email",
+		'number': "Silahkan inputkan dengan format angka"
+	});
+	$.validator.addMethod("dateIND", function (val, el) {
+		return val.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+	}, "Silahkan inputkan dengan format tanggal (dd/mm/yyyy)");
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
+	window.__validation();
+	$('.wizard').steps({
+		/* appreance */
+		headerTag: 'h3',
+		bodyTag: 'section',
+		transitionEffect: "slideLeft",
+		stepsOrientation: "vertical",
+		actionContainerTag: 'div',
+		/* templates */
+		titleTemplate: '<span class="number">Step #index# :</span> #title#',
+		/* labels */
+		labels: {
+			cancel: "Cancel",
+			current: "current step:",
+			pagination: "Pagination",
+			finish: "Simpan",
+			next: "Selanjutnya",
+			previous: "Sebelumnya",
+			loading: "Loading ..."
+		},
+		/* behavior */
+		saveState: true,
+		/* Event */
+		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
+				return true;
+			}
+
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
+
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
+			window.resizeWizard();
+			window.setFocus('.set-focus');
+			window.customButtonActions();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
+		},
+		onInit: function onInit(event, currentIndex) {
+			window.resizeWizard();
+			window.setFocus('.set-focus');
+			window.customButtonActions();
+			window.disablePreviousButtonOnFirstStep(currentIndex);
+			$('.input-switch').bootstrapSwitch(); // active switch button
+			window.select();
+		},
+		onFinishing: function onFinishing(event, currentIndex) {
+			form = $(this);
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
+		},
+		onFinished: function onFinished(event, currentIndex) {
+			form = $(this);
+			form.submit();
+		}
+	}).validate({
+		errorClass: 'has-error',
+		errorPlacement: function errorPlacement(error, element) {
+			error.addClass('help-block');
+			parent = element.parent().parent();
+
+			// penempatan display message error validasi
+			// check input original tanpa add on 
+			if (parent.hasClass('row')) {
+				parent.parent().append(error);
+				// input yang ditambahkan add on
+			} else {
+				parent.parent().parent().append(error);
+			}
+			window.resizeWizard();
+		},
+		highlight: function highlight(element, errorClass) {
+			$(element).closest('fieldset.form-group').addClass(errorClass);
+		},
+		unhighlight: function unhighlight(element, errorClass) {
+			$(element).closest('fieldset.form-group').removeClass(errorClass);
+		}
+	});
+};
+
+// fungsi otomatis resize content wizard
+window.resizeWizard = function () {
+	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
+};
+
+window.customButtonActions = function () {
+	$('.wizard .actions').find('a').addClass('btn');
+	$('.wizard .actions').find('a[href="#previous"]').addClass('btn-success');
+	$('.wizard .actions').find('a[href="#next"], a[href="#finish"]').addClass('btn-primary');
+};
+
+window.disablePreviousButtonOnFirstStep = function (index) {
+	if (index == 0) {
+		$(".wizard .actions a[href='#previous']").hide();
+	} else {
+		$(".wizard .actions a[href='#previous']").show();
+	}
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.setFocus = function (el) {
+	$(el).focus();
+};
+
+$(document).ready(function () {
+	window.setFocus('.set-focus');
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10506,7 +10852,7 @@ $('._window').each(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports) {
 
 
@@ -10516,7 +10862,7 @@ options = {
 var xxx = new List('list-koperasi', options);
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.callModal = function () {
@@ -10544,18 +10890,40 @@ var xxx = new List('list-koperasi', options);
 	});
 };
 
+window.menuModal = function () {
+	$('a.mobile-menu-content').on('click', function () {
+		var toRoute = $(this).data('menu-to') || false;
+		var fromRoute = $(this).data('menu-from') || false;
+
+		if (toRoute !== false && fromRoute !== false) {
+			$(fromRoute).addClass('hidden').css('opacity', 0);
+			$('div.loading').removeClass('hidden');
+			setTimeout(function () {
+				$(toRoute).removeClass('hidden').css('opacity', 1);
+				$('div.loading').addClass('hidden');
+			}, 300);
+		} else {
+			$(this).closest('.modal').modal('hide');
+			// $(fromRoute).addClass('hidden').css('opacity', 0);
+			// $('#main-menu').removeClass('hidden').css('opacity', 1);
+		}
+	});
+};
+
 // add event call on document ready & document pjax:end
 $(document).ready(function () {
 	window.callModal();
+	window.menuModal();
 	// add event on pjax:end
 	$(document).on("pjax:end", function () {
 		window.callModal();
+		window.menuModal();
 	});
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -10592,7 +10960,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10666,7 +11034,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function (element, param) {
@@ -10739,7 +11107,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.templateClone = function () {
@@ -10958,7 +11326,7 @@ function renameInputHidden($temp, inputHidden, count) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -10966,7 +11334,7 @@ function renameInputHidden($temp, inputHidden, count) {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(31);
+window.toastr = __webpack_require__(34);
 
 /*
 2. nprogress
@@ -10974,7 +11342,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(28);
+window.NProgress = __webpack_require__(31);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -10988,7 +11356,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(29);
+window.pjax = __webpack_require__(32);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -11032,7 +11400,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(24);
+window.steps = __webpack_require__(27);
 $(document).ready(function () {
   wizard();
 });
@@ -11042,14 +11410,14 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(25);
+window.validate = __webpack_require__(28);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(22);
+window.cookies = __webpack_require__(25);
 $(document).ready(function () {
   window.cookies();
 });
@@ -11059,7 +11427,7 @@ $(document).ready(function () {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(21);
+window.inputmask = __webpack_require__(24);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -11071,14 +11439,14 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(23);
+window.quickselect = __webpack_require__(26);
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.select2 = __webpack_require__(30);
+window.select2 = __webpack_require__(33);
 $(document).ready(function () {
   // window.select();
 });
@@ -11088,28 +11456,28 @@ $(document).ready(function () {
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(27);
+window.nicescroll = __webpack_require__(30);
 
 /**
  * 11. jQuery plugin List-js
  * Description: plugin jQuery for list & search
  * Usage & Documentation: http://listjs.com/docs/
  */
-window.list = __webpack_require__(26);
+window.list = __webpack_require__(29);
 
 /**
  * 12. jQuery plugin bootstrap-switch
  * Description: plugin jQuery for switch radion button
  * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
  */
-window.bootstrapSwitch = __webpack_require__(20);
+window.bootstrapSwitch = __webpack_require__(23);
 $(document).ready(function () {
   $('.input-switch').bootstrapSwitch();
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -11901,7 +12269,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14561,7 +14929,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14720,7 +15088,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14773,7 +15141,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -16651,7 +17019,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -18207,7 +18575,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
@@ -19531,7 +19899,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
   }, {}] }, {}, [4]);
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -19594,7 +19962,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
     cursoropacitymin: 0,
     cursoropacitymax: 1,
     cursorcolor: "#424242",
-    cursorwidth: "5px",
+    cursorwidth: "12px",
     cursorborder: "1px solid #fff",
     cursorborderradius: "5px",
     scrollspeed: 60,
@@ -22724,7 +23092,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23216,7 +23584,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -24149,7 +24517,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -25275,7 +25643,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -25705,10 +26073,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(33));
+})(__webpack_require__(36));
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -28092,7 +28460,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -28101,359 +28469,13 @@ module.exports = function() {
 
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
 __webpack_require__(1);
 module.exports = __webpack_require__(3);
 
-
-/***/ }),
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {/* README
-
-*/
-
-$(document).on('submit', "form", function () {
-	// loading effect
-	btnSubmit = $(this).find('button[type="submit"]');
-	searchBtnSubmit = btnSubmit.data('search'); // check if button submit use searching
-
-	if (typeof searchBtnSubmit != 'undefined') {
-		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>");
-	} else {
-		btnSubmit.html("<i class='fa fa-circle-o-notch fa-spin fa-fw'></i> &nbsp; Simpan..");
-	}
-
-	//check is activate on this form
-	if ($(this).data('ajax-submit') == false) {
-		return false;
-	}
-
-	// readonly input & select the form 
-	$(this).find(":input").prop("readonly", true);
-	$(this).find('select').prop('readonly', true);
-	// disabled a the form
-	$(this).find("a").each(function () {
-		$(this).addClass('disabled');
-	});
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.formEntertoTabs = function () {
-	$('input, a').on('keypress', function (e) {
-		if (e.keyCode == 13) {
-			elements = $(this).parents('section').eq(0).find('.auto-tabindex');
-			idx = elements.index(this);
-
-			if (idx == elements.length - 1) {
-				// set to button next wizard
-				$('.wizard').find('a[href$="#next"]').focus();
-			} else {
-				elements[idx + 1].focus();
-				// elements[idx + 1].select();
-			}
-		}
-	});
-};
-$(document).ready(function () {
-	window.formEntertoTabs();
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.formInputMask = function () {
-	// element class use plugin inputmask
-	elMoney = $('.mask-money');
-	elMoneyRight = $('.mask-money-right');
-	elDateFormat = $('.mask-date-format');
-
-	Inputmask.extendAliases({
-		IDR: {
-			rightAlign: false,
-			prefix: "Rp ",
-			groupSeparator: ".",
-			alias: "numeric",
-			placeholder: "",
-			autoGroup: !0,
-			digit: 1,
-			radixPoint: '',
-			digitsOptional: !1,
-			clearMaskOnLostFocus: !1
-		}
-	});
-
-	// money indonesia standard
-	elMoney.inputmask({ alias: "IDR" });
-
-	// money indonesia align right
-	elMoneyRight.inputmask({
-		rightAlign: true,
-		alias: 'numeric',
-		prefix: 'Rp. ',
-		radixPoint: '',
-		placeholder: '',
-		autoGroup: !0,
-		digitsOptional: !1,
-		groupSeparator: '.',
-		groupSize: 3,
-		repeat: 15 }, 'unmaskedvalue');
-
-	// date format indonesia
-	elDateFormat.inputmask({
-		alias: "dd/mm/yyyy"
-	});
-
-	$('.mask-year').inputmask({
-		mask: "y",
-		definitions: {
-			y: {
-				validator: "(19|20)\\d{2}",
-				cardinality: 4,
-				prevalidator: [{
-					validator: "[12]",
-					cardinality: 1
-				}, {
-					validator: "(19|20)",
-					cardinality: 2
-				}, {
-					validator: "(19|20)\\d",
-					cardinality: 3
-				}]
-			}
-		}
-	});
-
-	$('.mask-id-card').inputmask('99-99-999999-9999');
-	$('.mask-no-telp').inputmask('9999 9999 9999');
-	$('.mask-no-handphone').inputmask('999 999 999 999');
-	$('.mask-no-sertifikat').inputmask('99.99.99.99.9.99999');
-	$('.mask-kodepos').inputmask('99999');
-	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
-	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
-};
-
-// add event on document ready & document pjax:end
-$(document).ready(function () {
-	window.formInputMask();
-	$(document).on("pjax:end", function () {
-		window.formInputMask();
-	});
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.noEnterToSubmit = function () {
-	$('form.no-enter input, form.no-enter select').on("keyup keypress", function (e) {
-		var code = e.keyCode || e.which;
-		if (code == 13) {
-			e.preventDefault();
-			return false;
-		}
-	});
-};
-$(document).ready(function () {
-	window.noEnterToSubmit();
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.__validation = function () {
-	// add rules validation class
-	$.validator.addClassRules({
-		required: {
-			required: true
-		},
-		email: {
-			required: true,
-			email: true
-		},
-		password: {
-			required: true
-		},
-		number: {
-			required: true,
-			number: true
-		},
-		date: {
-			required: true,
-			dateIND: true
-		}
-	});
-
-	// custom error message jQuery validation
-	$.extend($.validator.messages, {
-		required: "Inputan harus diisi",
-		'email': "Silahkan inputkan dengan format email",
-		'number': "Silahkan inputkan dengan format angka"
-	});
-	$.validator.addMethod("dateIND", function (val, el) {
-		return val.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-	}, "Silahkan inputkan dengan format tanggal (dd/mm/yyyy)");
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.wizard = function () {
-	window.__validation();
-	$('.wizard').steps({
-		headerTag: 'h3',
-		bodyTag: 'section',
-		transitionEffect: "slideLeft",
-		stepsOrientation: "vertical",
-		titleTemplate: '<span class="number">Step #index# :</span> #title#',
-		actionContainerTag: 'div',
-		/* Labels */
-		labels: {
-			cancel: "Cancel",
-			current: "current step:",
-			pagination: "Pagination",
-			finish: "Simpan",
-			next: "Selanjutnya",
-			previous: "Sebelumnya",
-			loading: "Loading ..."
-		},
-		/* behavior */
-		saveState: true,
-		/* Event */
-		onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
-			return true;
-			// }
-
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
-
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
-		},
-		onStepChanged: function onStepChanged(event, currentIndex, priorIndex) {
-			window.resizeWizard();
-			window.setFocus();
-			window.customButtonActions();
-			window.disablePreviousButtonOnFirstStep(currentIndex);
-		},
-		onInit: function onInit(event, currentIndex) {
-			window.resizeWizard();
-			window.setFocus();
-			window.customButtonActions();
-			window.disablePreviousButtonOnFirstStep(currentIndex);
-			$('.input-switch').bootstrapSwitch(); // active switch button
-			window.select();
-		},
-		onFinishing: function onFinishing(event, currentIndex) {
-			form = $(this);
-			form.validate().settings.ignore = ":disabled,:hidden";
-			return form.valid();
-		},
-		onFinished: function onFinished(event, currentIndex) {
-			form = $(this);
-			form.submit();
-		}
-	}).validate({
-		errorClass: 'has-error',
-		errorPlacement: function errorPlacement(error, element) {
-			error.addClass('help-block');
-			parent = element.parent().parent();
-
-			// penempatan display message error validasi
-			// check input original tanpa add on 
-			if (parent.hasClass('row')) {
-				parent.parent().append(error);
-				// input yang ditambahkan add on
-			} else {
-				parent.parent().parent().append(error);
-			}
-			window.resizeWizard();
-		},
-		highlight: function highlight(element, errorClass) {
-			$(element).closest('fieldset.form-group').addClass(errorClass);
-		},
-		unhighlight: function unhighlight(element, errorClass) {
-			$(element).closest('fieldset.form-group').removeClass(errorClass);
-		}
-	});
-};
-
-// fungsi otomatis resize content wizard
-window.resizeWizard = function () {
-	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
-};
-
-window.setFocus = function () {
-	$('.focus').focus();
-};
-
-window.customButtonActions = function () {
-	$('.wizard .actions').find('a').addClass('btn');
-	$('.wizard .actions').find('a[href="#previous"]').addClass('btn-success');
-	$('.wizard .actions').find('a[href="#next"], a[href="#finish"]').addClass('btn-primary');
-};
-
-window.disablePreviousButtonOnFirstStep = function (index) {
-	if (index == 0) {
-		$(".wizard .actions a[href='#previous']").hide();
-	} else {
-		$(".wizard .actions a[href='#previous']").show();
-	}
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.buttonUpload = function () {
-	$('input[type="file"]').on('change', function () {
-		$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
-	});
-};
-
-$(document).ready(function () {
-	window.buttonUpload();
-	// add event on pjax:end
-	$(document).on("pjax:end", function () {
-		window.buttonUpload();
-	});
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

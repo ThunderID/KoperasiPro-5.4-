@@ -120,7 +120,7 @@
 			'id' 		=> 'modal-jaminan-tanah-bangunan',
 			'title'		=> 'Tambah Jaminan Tanah &amp; Bangunan',
 			'settings'	=> [
-				'modal_size'	=> 'modal-lg',
+				'modal_class'	=> 'modal-lg',
 				'hide_buttons'	=> true
 			]	
 		])

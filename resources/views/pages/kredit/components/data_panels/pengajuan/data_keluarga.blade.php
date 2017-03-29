@@ -70,7 +70,7 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 			'id' 		=> 'modal-data-keluarga',
 			'title'		=> 'Data Keluarga',
 			'settings'	=> [
-				'modal_size'	=> 'modal-lg',
+				'modal_class'	=> 'modal-lg',
 				'hide_buttons'	=> true
 			]
 		])

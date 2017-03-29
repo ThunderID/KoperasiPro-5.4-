@@ -1,13 +1,15 @@
 window.wizard = function(){
 	window.__validation();
 	$('.wizard').steps({
+		/* appreance */
 		headerTag: 'h3',
 		bodyTag: 'section',
 		transitionEffect: "slideLeft",
 		stepsOrientation: "vertical",
-		titleTemplate: '<span class="number">Step #index# :</span> #title#',
 		actionContainerTag: 'div',
-		/* Labels */
+		/* templates */
+		titleTemplate: '<span class="number">Step #index# :</span> #title#',
+		/* labels */
 		labels: {
 			cancel: "Cancel",
 			current: "current step:",
@@ -21,30 +23,30 @@ window.wizard = function(){
 		saveState: true,
 		/* Event */
 		onStepChanging: function (event, currentIndex, newIndex) {
-			// form = $(this);
-			// // check previous tanpa memunculkan error
-			// if (currentIndex > newIndex) {
+			form = $(this);
+			// check previous tanpa memunculkan error
+			if (currentIndex > newIndex) {
 				return true;
-			// }
+			}
 
-			// // check next apabila ada error di stage sebelumnya
-			// if (currentIndex < newIndex) {
-			// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
-			// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-			// }
+			// check next apabila ada error di stage sebelumnya
+			if (currentIndex < newIndex) {
+				form.find(".body:eq(" + newIndex + ") label.error").remove();
+				form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+			}
 
-			// form.validate().settings.ignore = ":disabled,:hidden";
-			// return form.valid();
+			form.validate().settings.ignore = ":disabled,:hidden";
+			return form.valid();
 		},
 		onStepChanged: function (event, currentIndex, priorIndex) {
 			window.resizeWizard();
-			window.setFocus();
+			window.setFocus('.set-focus');
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 		}, 
 		onInit: function (event, currentIndex) {
 			window.resizeWizard();
-			window.setFocus();
+			window.setFocus('.set-focus');
 			window.customButtonActions();
 			window.disablePreviousButtonOnFirstStep(currentIndex);
 			$('.input-switch').bootstrapSwitch(); // active switch button
@@ -88,10 +90,6 @@ window.wizard = function(){
 // fungsi otomatis resize content wizard
 window.resizeWizard = function () {
 	$('.wizard .content').css({ height: $('.body.current').outerHeight() });
-}
-
-window.setFocus = function () {
-	$('.focus').focus();
 }
 
 window.customButtonActions = function() {

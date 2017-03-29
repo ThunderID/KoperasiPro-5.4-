@@ -28,14 +28,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 
 @if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kreditur']))
 	<div class="row">
-		<div class="col-sm-6">
-			<div class="row m-b-xl">
-				<div class="col-sm-12">
-					<p class="p-b-sm"><strong>Foto</strong></p>
-					<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive" />
-				</div>
-			</div>
-
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Nama</strong></p>
@@ -50,8 +43,6 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 					</p>
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-6">
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Jenis Kelamin</strong></p>
@@ -61,9 +52,19 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				</div>
 			</div>	
 		</div>
+		@if (isset($page_datas->credit['kreditur']['foto_ktp']) && !is_null($page_datas->credit['kreditur']['foto_ktp']))
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="row m-b-xl">
+					<div class="col-sm-12">
+						<p class="p-b-sm"><strong>Foto KTP</strong></p>
+						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels" />
+					</div>
+				</div>
+			</div>
+		@endif
 	</div>
 
-	<div class="clearfix hidden-print">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
 
 	<div class="row">
 		<div class="col-sm-12">
@@ -76,7 +77,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 						<p class="p-b-sm"><strong>Nomor Telepon</strong></p>
 						<p>{{ $page_datas->credit['kreditur']['telepon'] }}</p>
 					@else
-						<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#" no-data-pjax> Tambahkan Sekarang </a></p>
+						<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#modal-data-contact" no-data-pjax> Tambahkan Sekarang </a></p>
 					@endif
 				</div>
 			</div>
@@ -92,9 +93,6 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 		<div class="col-sm-12">
 			<div class="row m-b-xl m-t-xs-m-print">
 				<div class="col-sm-12">
-					@php
-						// dd($page_datas->credit['kreditur']);
-					@endphp
 					@if (!empty($page_datas->credit['kreditur']['alamat']) && isset($page_datas->credit['kreditur']['alamat']))
 						<p class="p-b-sm"><strong>Alamat</strong></p>
 						<p class="p-b-xs">{{ $page_datas->credit['kreditur']['alamat'][0]['alamat'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['desa'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['distrik'] }}, {{ $page_datas->credit['kreditur']['alamat'][0]['regensi'] }}</p>
@@ -146,7 +144,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				'id' 		=> 'modal-data-kreditur',
 				'title'		=> 'Data Kreditur',
 				'settings'	=> [
-					'modal_size'	=> 'modal-lg',
+					'modal_class'	=> 'modal-lg',
 					'hide_buttons'	=> true
 				]	
 			])
@@ -200,6 +198,40 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 					Simpan
 				</button>
 			</div>	
+		@endcomponent
+	{!! Form::close() !!}
+
+	{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+		@component('components.modal', [
+			'id'			=> 'modal-data-contact',
+			'title'			=> 'Data Kontak',
+			'settings'		=> [
+				'hide_buttons'		=> true,
+			]
+		])
+			{{-- panel contact --}}
+			@include('components.helpers.panels.contact', [ 
+				'param'		=> [
+					'prefix'	=> 'kreditur',
+					'telepon'	=> isset($param['telepon']) ? $param['telepon'] : null,
+				],
+				'settings'	=> [
+					'target'	=> 'template-contact-person',
+					'class'		=> [
+						'init_add'		=> 'init-add-one',
+					]
+				]
+			])
+
+			{{-- modal footer button cancel & save --}}
+			<div class="modal-footer">
+				<a type='button' class="btn btn-default" data-dismiss='modal'>
+					Cancel
+				</a>
+				<button type="submit" class="btn btn-primary">
+					Simpan
+				</button>
+			</div>
 		@endcomponent
 	{!! Form::close() !!}
 @endpush	
