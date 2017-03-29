@@ -28,9 +28,16 @@ class KreditController extends Controller
 
 	public function index()
 	{
-		$data 	= new DaftarKredit;
+		$data 		= new DaftarKredit;
+		$data 		= $data->get(['model' => $this->request->input('model')]);
+
+		$new_data 	= [];
+		foreach ($data as $key => $value) 
+		{
+			$new_data["index_$key"]	= $value;
+		}
 		
-		return JSend::success($data->get(['model' => $this->request->input('model')]))->asArray();
+		return JSend::success($new_data)->asArray();
 	}
 
 	public function store()
