@@ -1,20 +1,16 @@
 <?php
 namespace App\Http\Middleware;
 
-use Closure, TAuth;
+use Closure, TAuth, Exception;
 use Illuminate\Http\Request;
 
 class AuthenticatedMiddleware
 {
 	public function handle($request, Closure $next)
 	{
-		try
-		{
-			TAuth::isLogged();
+		$e 		= TAuth::isLogged();
 
-			return $next($request);
-		}
-		catch(Exception $e)
+		if($e instanceOf Exception)
 		{
 			if(is_array($e->getMessage()))
 			{
@@ -26,5 +22,6 @@ class AuthenticatedMiddleware
 			}
 		}
 
+		return $next($request);
 	}
 }
