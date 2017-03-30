@@ -66,3 +66,12 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 Route::any('regensi',							['uses' => 'HelperController@getRegensi', 		'as' => 'regensi.index']);
 Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => 'distrik.index']);
 Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
+
+// route to get daftar nik from daftar kreditur
+Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 'as' => 'get.kreditur.index']);
+
+// Route::get('daftar/kreditur', function() {
+// 	$data = new Thunderlabid\Web\Queries\Credit\DaftarKreditur;
+
+// 	dd($data->get(['nik' => '35-73-03-478656-0003']));
+// });

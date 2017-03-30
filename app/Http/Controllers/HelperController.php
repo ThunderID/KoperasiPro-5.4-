@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
+use Thunderlabid\Web\Queries\Credit\DaftarKreditur;
 
 /**
  * Class HelperController
@@ -63,5 +64,20 @@ Class HelperController extends Controller
 		$desa 			= $desa->pluck('id', 'nama');
 
 		return response()->json($desa);
+	}
+
+	/**
+	 * fungsi get data kreditur
+	 * description: untuk mendapatkan data kreditur yang sudah ada
+	 */
+	function getDaftarKreditur()
+	{
+		$id 			= request()->input('nik');
+		$call 			= new DaftarKreditur;
+
+		// get data kreditur
+		$kreditur 		= collect($call->get(['nik' => $id]));
+
+		return response()->json($kreditur);
 	}
 }

@@ -44,7 +44,7 @@
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('kreditur[nik]', (isset($param['nik']) ? $param['nik'] : null), ['class' => 'form-control required auto-tabindex mask-id-card', 'placeholder' => '00-00-360876-0001']) !!}
+				{!! Form::text('kreditur[nik]', (isset($param['nik']) ? $param['nik'] : null), ['class' => 'form-control required mask-id-card input-search-ajax', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index')]) !!}
 			</div>
 		</div>
 	</div>

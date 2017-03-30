@@ -21,3 +21,6 @@ require ('./form/form-enter-to-tab');
 
 // add module form can't enter to submit
 require ('./form/form-no-enter-submit');
+
+// add module input search data
+require ('./form/input-search-ajax');
