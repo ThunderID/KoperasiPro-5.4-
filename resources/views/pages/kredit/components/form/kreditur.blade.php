@@ -33,7 +33,7 @@
 <fieldset class="form-group">
 	<label for="">E-KTP</label>
 	<div class="row">
-		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
 			{!! Form::checkbox('kreditur[is_ektp]', true, (isset($param['is_ektp']) ? $param['is_ektp'] : true), ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak']) !!}
 		</div>
 	</div>

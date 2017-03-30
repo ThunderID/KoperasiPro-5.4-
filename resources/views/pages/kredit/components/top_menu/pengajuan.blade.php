@@ -7,7 +7,12 @@
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-6 text-right">
+			<div class="col-xs-6 col-sm-6 hidden-md hidden-lg">
+				<a href="{{ route('credit.index') }}" class="btn p-r-sm p-l-none">
+					<i class="fa fa-chevron-left"></i> Kembali
+				</a>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 text-right">
 				<a href="{{route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'tolak'])}}" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>

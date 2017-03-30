@@ -22,7 +22,7 @@
 			@foreach(Thunderlabid\Web\Queries\Navigation\NavbarService::all() as $key => $item)
 				@if (is_null($item['route']))
 					<div class="col-xs-6 text-center">
-						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" href="#{{ $key }}-menu" data-menu-to="#{{ $key }}-menu" data-menu-from="#main-menu">
+						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" href="#{{ $key }}-menu" data-menu-to="#{{ $key }}-menu" data-menu-from="#main-menu">
 							{{ ucwords(str_replace('_', ' ', $key)) }}
 						</a>
 					</div>
@@ -37,7 +37,7 @@
 						</ul> --}}
 				@else
 					<div class="col-xs-6 text-center">
-						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" href="{{ $item['route'] }}" data-menu-from="#main-menu">
+						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" href="{{ $item['route'] }}" data-menu-from="#main-menu">
 							{{ ucwords(str_replace('_', ' ', $key)) }}
 						</a>
 					</div>
@@ -47,12 +47,13 @@
 		@foreach (Thunderlabid\Web\Queries\Navigation\NavbarService::all() as $key => $item)
 			@if (count($item['sub']) > 0)
 				<div class="row m-l-none m-r-none hidden fade" id="{{ $key }}-menu">
-					<div class="col-xs-12 p-b-md">
+					<h4 class="m-l-md m-b-xs text-capitalize"><strong>Menu {{ $key }}</strong></h4>
+					<div class="col-xs-12 p-b-xl m-b-xs">
 						<a href="#main-menu" class="btn mobile-menu-content p-l-none" data-menu-to="#main-menu" data-menu-from="#{{ $key }}-menu"><i class="fa fa-chevron-left"></i> Kembali</a>
 					</div>
 					@foreach ($item['sub'] as $caption => $route)
 						<div class="col-xs-6 text-center">
-							<a href="{{ $route }}" class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content" data-menu-from="#{{ $key }}">{{ ucwords(str_replace('_', ' ', $caption)) }}</a>
+							<a href="{{ $route }}" class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" data-menu-from="#{{ $key }}">{{ ucwords(str_replace('_', ' ', $caption)) }}</a>
 						</div>
 					@endforeach
 				</div>
