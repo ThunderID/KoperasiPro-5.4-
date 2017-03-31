@@ -23,24 +23,24 @@ window.getDataAttribute = function() {
 
 	function parsingToInput(data) {
 		$.each(data, function(index, value) {
-			try {
-				switch(index) {
-					case 'nik':
-						value = value.substring(3);
-						break;
-					case 'foto_ktp':
-						$('.input-upload').val(value);
-						break;
-					case 'is_ktp':
-						$('.input-switch').bootstrapSwitch('state', value);
-					default:
-						break;
-				}
+			switch(index) {
+				case 'nik':
+					value = value.substring(3);
+					break;
+				case 'foto_ktp':
+					$('.input-upload').val(value);
+					break;
+				case 'is_ktp':
+					$('.input-switch').bootstrapSwitch('state', value);
+					break;
+			}
 
-				$('input[name*="' +index+ '"]').val(value);
+			try {
+				$('[name*="' +index+ '"]').val(value);
+				$('select[name*="' +index+ '"]').val(value).change();
 			}
 			catch (err) {
-				console.log('data tidak ada');
+				console.log('data tidak ada ' +index+ ' dengan data '+value);
 			}
 		});
 	}
@@ -60,7 +60,6 @@ window.getDataAttribute = function() {
 				}
 			}).responseJSON;
 			attribute = ajax;
-			console.log(attribute);
 		}
 		catch (err)
 		{
