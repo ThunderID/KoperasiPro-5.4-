@@ -5,15 +5,16 @@ window.getDataAttribute = function() {
 
 	$(el).on('keyup', function(e) {
 		if (e.keyCode == 13) {
-			this.attribute 	= e.target.dataset.parse;
-			dataParse		= e.target.dataset.url;
-			value 			= '35-' +e.target.value;
+			attribute 	= e.target.dataset.parse;
+			dataURL			= e.target.dataset.url;
+			dataParse 		= '35-' +e.target.value;
 
 			try {
-				parsingToInput(dataAjax);
+				callAjax(dataParse, dataURL);
+				parsingToInput(attribute);
 			}
 			catch (err) {
-				console.log('parsing data ajax error');
+				console.log('parsing data ajax error ' + err);
 			}
 
 			parsingToInput(attribute);
@@ -23,17 +24,20 @@ window.getDataAttribute = function() {
 	function parsingToInput(data) {
 		$.each(data, function(index, value) {
 			try {
-				if (index === 'nik') {
-					value = value.substring(3);
+				switch(index) {
+					case 'nik':
+						value = value.substring(3);
+						break;
+					case 'foto_ktp':
+						$('.input-upload').val(value);
+						break;
+					case 'is_ktp':
+						$('.input-switch').bootstrapSwitch('state', value);
+					default:
+						break;
 				}
-				// else if (value == 'is_ektp') {
-				// 	if (value == 1) {
-				// 		value = true;
-				// 	}
-				// }
 
 				$('input[name*="' +index+ '"]').val(value);
-				$('.input-switch').bootstrapSwitch('setState', (value == 1) ? true: false);
 			}
 			catch (err) {
 				console.log('data tidak ada');
@@ -56,6 +60,7 @@ window.getDataAttribute = function() {
 				}
 			}).responseJSON;
 			attribute = ajax;
+			console.log(attribute);
 		}
 		catch (err)
 		{
