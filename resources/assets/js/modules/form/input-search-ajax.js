@@ -7,40 +7,60 @@ window.getDataAttribute = function() {
 		if (e.keyCode == 13) {
 			this.attribute 	= e.target.dataset.parse;
 			dataParse		= e.target.dataset.url;
-			value 			= e.target.value;
+			value 			= '35-' +e.target.value;
 
-			dataAjax 		= callAjax(value, dataParse);
-			// attribute 		= splitAttribute(this.attribute);
+			try {
+				parsingToInput(dataAjax);
+			}
+			catch (err) {
+				console.log('parsing data ajax error');
+			}
 
-			console.log(dataAjax);
 			parsingToInput(attribute);
 		}
 	});
 
-	function splitAttribute(param) {
-		return param.split(',');
-	}
+	function parsingToInput(data) {
+		$.each(data, function(index, value) {
+			try {
+				if (index === 'nik') {
+					value = value.substring(3);
+				}
+				// else if (value == 'is_ektp') {
+				// 	if (value == 1) {
+				// 		value = true;
+				// 	}
+				// }
 
-	function parsingToInput(param) {
-		$.each(param, function(index, value) {
-			$('input.' +value).val();
-			// console.log(index);
+				$('input[name*="' +index+ '"]').val(value);
+				$('.input-switch').bootstrapSwitch('setState', (value == 1) ? true: false);
+			}
+			catch (err) {
+				console.log('data tidak ada');
+			}
 		});
 	}
 
 	function callAjax(param, url) {
-
-			$.ajax({
+		try {
+			ajax = $.ajax({
 				type: "GET",
 				url: url,
 				data: {nik: param},
 				cache: true,
+				async: false,
+				dataType: 'json',
 				success: function (data) {
+					// console.log(data);
 					return data;
 				}
-			});
-			
-
+			}).responseJSON;
+			attribute = ajax;
+		}
+		catch (err)
+		{
+			console.log('error call ajax');
+		}
 	}
 }
 

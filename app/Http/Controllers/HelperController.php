@@ -78,6 +78,6 @@ Class HelperController extends Controller
 		// get data kreditur
 		$kreditur 		= collect($call->get(['nik' => $id]));
 
-		return response()->json($kreditur);
+		return response()->json($kreditur[0]);
 	}
 }
