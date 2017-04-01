@@ -5,6 +5,13 @@
 
 	.sidebar-header{
 		border-bottom: 1px solid $border-color-default;
+		@media (max-width: $screen-sm - 1) {
+			background-color: $color-white;
+			position: fixed;
+			top: 45px;
+			z-index: 800;
+			width: 100%;
+		}
 
 		.title{
 			padding-top: 16px; 
@@ -124,6 +131,10 @@
 	}
 
 	.sidebar-content{
+		@media (max-width: $screen-sm - 1) {
+			margin-top: 90px;
+			z-index: 1;
+		}
 		.list-group{
 			.list-group-item.first{
 				border-top: none !important;
@@ -156,7 +167,17 @@
 		}
 	}
 	.sidebar-footer{
-		height: 35px;
+		height: 39px;
 		border-top: 1px solid $border-color-default;
+		@media (max-width: $screen-sm - 1) {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background: #fff;
+		}
+	}
+
+	@media (max-width: $screen-sm - 1) {
+		border: 0 !important;
 	}
 }

@@ -8,7 +8,8 @@
  */
 window.print = function () {
 	// class btn-print
-	$('.btn-print').click( function() {
+	$('.btn-print').click( function(e) {
+		e.preventDefault();
 		// get data url
 		url = $(this).data('url');
 		// call function openWindow

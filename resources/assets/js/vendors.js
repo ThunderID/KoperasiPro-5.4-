@@ -1,4 +1,4 @@
-window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
+// window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 

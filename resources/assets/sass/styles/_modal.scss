@@ -1,0 +1,31 @@
+.modal-dialog {
+	&.fullscreen {
+		width: 100%;
+		height: 100%;
+		margin: 0 !important;
+		padding: 0 !important;
+		.modal-content {
+			height: auto;
+			min-height: 100%;
+			border: 0;
+			.modal-body {
+				padding: 10px !important;
+			}
+		}
+	}
+}
+
+// menu-mobile
+.modal-body {
+	.mobile-menu-header {
+		border-bottom: 2px solid $line-color-default;
+	}
+	.menu-content {
+		background-color: $color-active;
+		color: $color-white;
+		display: table-cell;
+		height: 150px;
+		width: 150px;
+		vertical-align: middle;
+	}
+}

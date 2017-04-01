@@ -1,7 +1,9 @@
 @media print {
 	body {
 		background-color: $color-white;
-		font-size: 10px;
+	}
+	.print-area {
+		font-size: 10px !important;
 	}
 	h4 {
 		font-size: 14px;

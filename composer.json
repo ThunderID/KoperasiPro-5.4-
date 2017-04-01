@@ -26,10 +26,11 @@
         "psr-4": {
             "App\\": "app/",
             "Thunderlabid\\Immigration\\": "packages/immigration/src/",
-            "Thunderlabid\\Indonesia\\": "packages/indonesia/src/",
+            "Thunderlabid\\Territorial\\": "packages/territorial/src/",
             "Thunderlabid\\Credit\\": "packages/credit/src/",
             "Thunderlabid\\Registry\\": "packages/registry/src/",
-            "Thunderlabid\\": "web/"
+            "Thunderlabid\\Web\\": "web/",
+            "Thunderlabid\\API\\": "api/"
         }
     },
     "autoload-dev": {

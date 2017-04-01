@@ -43,16 +43,14 @@ $(document).ready(function(){
 		htmlNotify();
 		// call module enter to tabs
 		formEntertoTabs();
-		// call choice select again
-		$('.quick-select').choiceSelect();
 		// call module form wizard();
 		wizard();
-		// call module plugin inputmask
-		formInputMask();
 		//optimize height
 		optimizeHeight();
 		// call module plugin print
 		print();
+
+		window.formEntertoTabs();
 	});
 
     // Form Submit with get method
@@ -73,7 +71,6 @@ $(document).ready(function(){
  */
 window.steps = require('./plugins/jquery-steps/jquery.steps');
 $(document).ready(function() {
-	// call event form wizard();
 	wizard();
 });
 
@@ -99,7 +96,7 @@ $(document).ready( function() {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = require('./plugins/inputmask/inputmask');
+window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
 // class for inputmask
 $(document).ready( function() {
 	// call module form input mask 
@@ -136,3 +133,13 @@ window.nicescroll = require('./plugins/nicescroll/jquery.nicescroll.js');
  * Usage & Documentation: http://listjs.com/docs/
  */
 window.list = require('./plugins/list-js/list.js');
+
+/**
+ * 12. jQuery plugin bootstrap-switch
+ * Description: plugin jQuery for switch radion button
+ * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
+ */
+window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
+$(document).ready( function() {
+	$('.input-switch').bootstrapSwitch();
+});

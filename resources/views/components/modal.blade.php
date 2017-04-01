@@ -1,4 +1,4 @@
-<?php
+@php
 	/*
 	===================================================================
 	Readme
@@ -84,9 +84,19 @@
 								link  : url										
 
 		d.  hide_buttons
-		   	required 	: no
-			value 		: boolean (true/false)
-			description : is modal has action button or not																							
+		   	required 		: no
+			value 			: boolean (true/false)
+			description 	: is modal has action button or not	
+
+		e. 	hide_title
+			required 		: no
+			value 			: boolean (true/false)	
+			description 	: is modal has title or not
+
+		f. modal_size
+			description 	: this paramater using class modal on bootstrap
+			required  		: no
+			value 	  		: modal-lg
 	===================================================================
 	*/
 
@@ -106,20 +116,31 @@
 			$ok_only = true;
 		}
 	}		
-?>
+
+	// hide title
+	$hide_title = false;
+	if (isset($settings['hide_title'])) {
+		if ($settings['hide_title'] == true) {
+			$hide_title = true;
+		}
+	}
+@endphp
 
 <div id="{{ $id }}" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog {{ isset($settings['modal_class']) ? $settings['modal_class'] : '' }}">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					<span class="sr-only">Close</span>
-				</button>
-				<h4 class="modal-title">
-					{{$title}}
-				</h4>
-			</div>
+			@if ($hide_title == false)
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">
+						{{$title}}
+					</h4>
+				</div>
+			@endif
+			
 			<div class="modal-body">
 				{{ $slot }}
 			</div>

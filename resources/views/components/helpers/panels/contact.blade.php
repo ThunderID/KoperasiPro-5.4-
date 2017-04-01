@@ -1,26 +1,71 @@
-{{-- 
-	Plugin Panel Contact
-	Description: panel conctact add more contact with include
-	Usage:
-	- Param
-		$param['prefix']: prefix variable input
-		$param['target']: untuk nama id template
- --}}
-
-<strong><h5>Kontak</h5></strong>
+ @php
+ /**
+  * ===================================================================
+  * Readme
+  * ===================================================================
+  * component name:		Contact
+  * author:				Agil M (agil.mahendra@gmail.com)
+  * description:		form untuk kontak
+  * 
+  * ===================================================================
+  * Usage
+  * ===================================================================
+  * include this file
+  * 
+  * ===================================================================
+  * Parameters
+  * ===================================================================
+  * list parameters:
+  *
+  * 1. param
+  * 		required:			no
+  * 		description:		diperlukan untuk menampilkan hasil dari value input, untuk edit data
+  *
+  * 		a. [name dari input value]
+  * 			required:		no
+  * 			value:			string
+  * 			description:	untuk menampilkan value dari input, select maupun textarea
+  *
+  * 			contoh: 		tanggal_pengajuan
+  *
+  *			b. prefix
+  *   			required: 		yes
+  *   			value:			string
+  *   			description:	untuk menambahkan nama inputan di form contact
+  * 
+  * 2. settings
+  * 	required: 				no
+  * 	descriptions: 			diperlukan untuk menampilkan parameters
+  *
+  * 	a. class
+  * 		required: 			no
+  * 		description:		diperlukan untuk menampilkan parameters childnya
+  *
+  *			a.1. init_add
+  *					required:		no
+  *					value: 			string
+  *					description: 	digunakan untuk menambahkan 1 form contact secara langsung		 
+  *		b. target
+  *			required:			no
+  *			value:				string
+  *			description:		untuk menampilkan target dari yang ingin dituju
+  */
+ @endphp
+<h5 class="text-uppercase text-light">Kontak</h5></strong>
 <div class="content-clone-contact">
 	<div class="section-clone-contact"></div>
 	<fieldset class="form-group">
-		<a href="javascript:void(0);" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add" data-active="contact" data-target="{{ $param['target'] ? $param['target'] : 'template-contact' }}"><i class="fa fa-plus"></i> No. Handphone</a>
+		<a href="#" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add {{ isset($settings['class']['init_add']) ? $settings['class']['init_add'] : '' }}" data-active="contact" data-target="{{ (isset($settings['target']) ? $settings['target'] : 'template-contact') }}"><i class="fa fa-plus"></i> No. Telp</a>
 	</fieldset>
 </div>
 
 <div class="hidden">
 	{{-- template clone untuk data form contact --}}
-	<div id="{{ $param['target'] ? $param['target'] : 'template-contact' }}">
+	<div id="{{ isset($settings['target']) ? $settings['target'] : 'template-contact' }}">
 		@include('components.helpers.forms.contact', [ 
 			'param'	=> [
-				'prefix'	=> $param['prefix']
+				'prefix'	=> $param['prefix'],
+				'telepon'	=> (isset($param['telepon']) ? $param['telepon'] : null),
 		]])
 	</div>
 </div>

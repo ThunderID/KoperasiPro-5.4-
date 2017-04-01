@@ -12,75 +12,66 @@
 */
 Route::get('/test', function () 
 {
-	$model 	= new Thunderlabid\Immigration\Infrastructures\Models\User;
-	$model = $model->first();
-$model->name = 'Cool Pipo';
-$model->save();
-	dd($model);
-	$data	= [
-		'email'		=> 'admin@ksp.id',
-		'password'	=> 'admin',
-		'name'		=> 'Adminnya KSP',
-		'visas'		=> [
-			'role'		=> 'Pimpinan',
-			'office'	=> ['id' => 'ARTHAJAYABLITAR33', 'name' => 'Artha Jaya Blitar']
-		]
-	];
 
-	$data	= [
-			'user_id'	=> 'D1566AA8-44E4-485D-81B8-2524699C85C4',
-			'role'		=> 'Surveyor',
-			'office'	=> ['id' => 'MAJUPERKASAKEDIRI77', 'name' => 'Maju Perkasa Kediri']
-	];
-
-	$content 	= new Thunderlabid\Application\Services\UserService;
-	dd($content->read(1));
 });
 
 //Menu Login
+Route::get('/',			['uses'	=> 'LoginController@index',			'as' => 'index']);
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
 Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);
-
 
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 	//Menu Kredit
-	Route::resource('credit', 'CreditController');
-
-	//Menu Survey
-	Route::resource('survey', 'CreditSurveyController');
+	Route::resource('credit', 'KreditController');
 
 	//Menu Status Kredit
-	Route::any('propose/credit/{id}',		['uses' => 'CreditStatusController@propose', 	'as' => 'credit.propose']);
+	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
 	
-	//Menu Registrasi
-	Route::resource('person', 'PersonController');
+	//Menu jaminan
+	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{nomor_bpkb}',	['uses' => 'Kredit\JaminanKendaraanController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
+	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{nomor_sertifikat}',	['uses' => 'Kredit\JaminanTanahBangunanController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
+
+	// route for print kredit
+	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@print',	'as' => 'credit.print']);
+	
+	//SEEMS NO USE
+	// route for pdf kredit
+	Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+
 });
 
 
-Route::group(['middleware' => ['pjax']], function()
+Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
 
 	//Menu Settings
 	//This one to change which office currently active
-	Route::get('activate/{idx}', 	['uses' => 'LoginController@activateOffice', 'as' => 'office.activate']);
+	Route::get('activate/{idx}', 				['uses' => 'LoginController@activateOffice', 	'as' => 'office.activate']);
 
 	//Dashboard page
-	Route::get('/', 				['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
+	Route::get('/dashboard', 					['uses' => 'DashboardController@index', 		'as' => 'dashboard.index']);
 	
 	//Notification page
-	Route::get('/notification',		['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
+	Route::get('/notification',					['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
 
 	//here lies test routes
-	Route::get('/index', 	['uses' => 'DashboardController@indextest1', 'as' => 'dashboard.sample.index']);
-	Route::get('/index2', 	['uses' => 'DashboardController@indextest2', 'as' => 'dashboard.sample.index2']);
+	Route::get('/index', 						['uses' => 'DashboardController@indextest1', 	'as' => 'dashboard.sample.index']);
+	Route::get('/index2', 						['uses' => 'DashboardController@indextest2', 	'as' => 'dashboard.sample.index2']);
 });
 
-Route::any('cities',			['uses' => 'HelperController@getCities', 'as' => 'cities.index']);
+// route to get json from helper for get address to select2
+Route::any('regensi',							['uses' => 'HelperController@getRegensi', 		'as' => 'regensi.index']);
+Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => 'distrik.index']);
+Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
 
-// route for print credit
-Route::get('credit/print/rencana-kredit/{id}', 	['uses' => 'CreditController@print',			'as' => 'credit.print']);
-// route for pdf credit
-Route::get('credit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+// route to get daftar nik from daftar kreditur
+Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 'as' => 'get.kreditur.index']);
+
+// Route::get('daftar/kreditur', function() {
+// 	$data = new Thunderlabid\Web\Queries\Credit\DaftarKreditur;
+
+// 	dd($data->get(['nik' => '35-73-03-478656-0003']));
+// });

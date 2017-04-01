@@ -1,9 +1,9 @@
 .panel-workspace{
-	padding-top: 114px;
+	padding-top: 109px;
 
 	.panel-workspace-container{
 		background: $navbar-bg-primary;
-		border: 1px solid $line-color-default;
+		// border: 1px solid $line-color-default;
 
 		h1, p{
 			margin: 0px;
@@ -21,7 +21,7 @@
 		}
 
 		.panel-workspace-content {
-			border-bottom: 1px solid $line-color-default;
+			// border-bottom: 1px solid $line-color-default;
 			// overflow: auto;		
 
 			.field{
@@ -29,4 +29,9 @@
 			}
 		}
 	}
+	@media (max-width: $screen-sm - 1) {
+		padding-top: 54px;
+	}
 }
+
+@import "panels/images";

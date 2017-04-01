@@ -1,6 +1,6 @@
 <?php 
 
-namespace Thunderlabid\Application\Facades;
+namespace Thunderlabid\Web\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

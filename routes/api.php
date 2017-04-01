@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['tapi']], function()
+{
+	// Here lies credit controller all things started here
+	Route::get('pengajuan', 	['uses' => 'KreditController@index']);
+
+	Route::post('pengajuan', 	['uses' => 'KreditController@store']);
+
+	Route::post('upload/ktp/{nomor_kredit}', 	['uses' => 'KreditController@upload']);
 });

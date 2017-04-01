@@ -72,14 +72,6 @@
 		<!-- Content -->
 		<div class="panel-workspace">
 			<div class="panel-workspace-container">
-				<?php
-				// <div class="panel-workspace-header">
-				// 	<h1 class="title">
-				// 		{{ $page_attributes->title }}
-				// 	</h1>
-				// 	@include('components.breadcrumb')
-				// </div>
-				?>
 				<div class="panel-workspace-content">
 					@stack('content')
 				</div>
@@ -108,7 +100,7 @@
 			<ul class="list-group list">
 				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
 					<li class="list-group-item">
-						<a class="name" href="{{ route('office.activate', ['idx' => $value['office']['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['office']['name'] }}</a>
+						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
 					</li>
 				@endforeach
 			</ul>
@@ -117,7 +109,7 @@
 		<div class="clearfix">&nbsp;</div>
 		<div class="modal-footer" style="margin-left: -15px; margin-right: -15px;">
 			<p class="text-left m-b-none">
-				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['office']['name'] }}
+				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['koperasi']['nama'] }}
 				</span>
 			</p>
 		</div>
@@ -128,21 +120,30 @@
 			'id'			=> 'modal-logout',
 			'title'			=> 'Logout',
 			'settings'		=> [
-				'overrides'		=> [
-					'action_ok'		=> [
-						'title'			=> 'Logout Sekarang',
-						'style'			=> 'danger',
-						'link'			=> route('login.destroy')
-					],
-					'action_cancel'	=> [
-						'title'			=> 'Batal',
-						'style'			=> 'default',
-					]
-				]
+				'hide_buttons' => 'false'
 			]
 		])
 		<p>Apakah anda ingin Logout ?</p>
-		<div class="clearfix">&nbsp;</div>
+		</div>
+		<div class="modal-footer">
+			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax" >
+				Cancel
+			</a>
+			<a href="{{ route('login.destroy') }}" type="button" class="btn btn-danger" no-data-pjax>Logout
+			</a>
+		</div>		
+	@endcomponent
+
+	@component('components.modal', [
+		'id'		=> 'menu',
+		'title'		=> 'Menu',
+		'settings'	=> [
+			'modal_class'	=> 'fullscreen',
+			'hide_buttons'	=> 'true',
+			'hide_title'	=> 'true',
+		]
+	])
+		@include('components.modal.admin_topbar')
 	@endcomponent
 @endsection
 

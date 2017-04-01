@@ -175,17 +175,17 @@ return [
 		App\Providers\AppServiceProvider::class,
 		App\Providers\AuthServiceProvider::class,
 		// App\Providers\BroadcastServiceProvider::class,
-		// App\Providers\EventServiceProvider::class,
+		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 
 		// 3rd party
 		Collective\Html\HtmlServiceProvider::class,
-		Jenssegers\Mongodb\MongodbServiceProvider::class,
+		// Jenssegers\Mongodb\MongodbServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
-		Jenssegers\Mongodb\MongodbServiceProvider::class,
+		// Jenssegers\Mongodb\MongodbServiceProvider::class,
 
-        Thunderlabid\Application\WebServiceProvider::class,
+        Thunderlabid\Web\WebServiceProvider::class,
 	],
 
 	/*
@@ -240,7 +240,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
 
-		'TAuth' => Thunderlabid\Application\Facades\TAuth::class,
+		'TAuth' => Thunderlabid\Web\Facades\TAuth::class,
 	],
 
 ];
