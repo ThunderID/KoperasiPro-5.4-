@@ -106,7 +106,6 @@ class KreditController extends Controller
 	 */
 	public function store()
 	{
-		// dd(Input::all());
 		try
 		{
 			//============ DATA KREDIT ============//
@@ -366,13 +365,13 @@ class KreditController extends Controller
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q')]);
-			$this->page_datas->total_credits		= $this->service->count();
+			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
+			$this->page_datas->total_credits		= $this->service->count(['status' => $status, 'kreditur' => Input::get('q')]);
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->get(['status' => $status]);
-			$this->page_datas->total_credits		= $this->service->count();
+			$this->page_datas->credits				= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);
+			$this->page_datas->total_credits		= $this->service->count(['status' => $status]);
 		}
 
 		//3. Memanggil fungsi filter active

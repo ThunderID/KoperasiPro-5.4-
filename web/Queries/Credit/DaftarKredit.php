@@ -47,7 +47,7 @@ class DaftarKredit
 
 		if(isset($queries['page']))
 		{
-			$queries['skip']	= ($queries['page'] * $queries['take']);
+			$queries['skip']	= (($queries['page'] - 1) * $queries['take']);
 		}
 		else
 		{
