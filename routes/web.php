@@ -44,7 +44,17 @@ Route::get('/test', function ()
 									    ],
 					"relasi"		=> [[
 						"hubungan"	=> 'orang_tua',
-						"Nama"
+						"nama"		=> 'Yulia P',
+						"alamat" 	=>	[
+				    						"alamat" 	=> "Puri Cempaka",
+									        "rt" 		=> null,
+									        "rw" 		=> null,
+									        "desa" 		=> "6205020009",
+									        "distrik" 	=> "6205020",
+									        "regensi" 	=> "6205",
+									        "provinsi" 	=> "62",
+									        "negara" 	=> "indonesia"
+									],
 					]]
  				],
  				'jaminan_kendaraan'	=> [
