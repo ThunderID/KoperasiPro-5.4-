@@ -35,7 +35,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{nomor_sertifikat}',	['uses' => 'Kredit\JaminanTanahBangunanController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
 
 	// route for print kredit
-	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@print',	'as' => 'credit.print']);
+	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@prints',	'as' => 'credit.print']);
 	
 	//SEEMS NO USE
 	// route for pdf kredit

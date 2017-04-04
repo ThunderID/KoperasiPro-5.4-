@@ -82,8 +82,6 @@
 				</fieldset>
 			</div>
 		</div>
-
-		<hr/>
 		<div class="clearfix">&nbsp;</div>
 	</div>
 </div>

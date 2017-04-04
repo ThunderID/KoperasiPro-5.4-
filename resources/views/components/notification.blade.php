@@ -1,6 +1,6 @@
 <div class="dropdown">
 	<div class="hidden-xs">
-		<a id="notification" href="#" class="dropdown-toggle text-center text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a id="notification" href="#" class="dropdown-toggle text-center primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="fa fa-bell fa-md" style="font-size: 14px;"></i>
 			<span class="hidden-xs">&nbsp;Notifikasi</span>
 			<ul class="dropdown-menu" aria-labelledby="notification">

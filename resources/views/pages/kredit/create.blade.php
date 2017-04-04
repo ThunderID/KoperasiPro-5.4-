@@ -21,7 +21,7 @@
 					<h4 class="m-t-none m-b-xs">Data Kredit</h4>
 				</div>
 
-				@include ('pages.kredit.components.form.kredit', [
+				@include ('pages.kredit.components.form.pengajuan.kredit', [
 					'data'	=> [
 						'select_jenis_kredit'	=> $page_datas->select_jenis_kredit,
 						'select_jangka_waktu'	=> $page_datas->select_jangka_waktu,
@@ -34,7 +34,7 @@
 					<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
 				</div>
 
-				@include ('pages.kredit.components.form.kreditur')
+				@include ('pages.kredit.components.form.pengajuan.kreditur')
 			</section>
 			<h3>Data Pekerjaan</h3>
 			<section>
@@ -42,7 +42,7 @@
 					<h4 class="m-t-none m-b-xs">Data Pekerjaan</h4>
 				</div>
 
-				@include ('pages.kredit.components.form.pekerjaan', [
+				@include ('pages.kredit.components.form.pengajuan.pekerjaan', [
 					'data'	=> [
 						'select_jenis_pekerjaan'	=> $page_datas->select_jenis_pekerjaan,
 					]
@@ -54,7 +54,7 @@
 					<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
 				</div>
 				
-				@include ('pages.kredit.components.form.jaminan')
+				@include ('pages.kredit.components.form.pengajuan.jaminan')
 			</section>
 		{!! Form::close() !!}
 	</div>

@@ -8,15 +8,19 @@
 	</div>
 	<div class="clearfix">&nbsp;</div>
 
-	@include('pages.kredit.print.permohonan.panels.data_kreditur')
-	@include('pages.kredit.print.permohonan.panels.data_kredit')
-	@include('pages.kredit.print.permohonan.panels.data_jaminan_kendaraan')
-	@include('pages.kredit.print.permohonan.panels.data_jaminan_tanah_bangunan')
-	@include('pages.kredit.print.permohonan.panels.surat_pernyataan')
+	@include('pages.kredit.print.permohonan.data_kreditur')
+	@include('pages.kredit.print.permohonan.data_kredit')
+	@include('pages.kredit.print.permohonan.data_jaminan_kendaraan')
+	@include('pages.kredit.print.permohonan.data_jaminan_tanah_bangunan')
+
+	<div class="clearfix">&nbsp;</div>
+	<div class="clearfix">&nbsp;</div>
+
+	@include('pages.kredit.print.permohonan.surat_pernyataan')
 
 	<div class="row">
 		<div class="col-sm-12 text-center">
-			<p><strong>{{TAuth::activeOffice()['koperasi']['nama']}}, {{date('d/m/Y')}}</strong></p>
+			<p>{{ TAuth::activeOffice()['koperasi']['nama'] }}, {{ date('d F Y') }}</p>
 		</div>
 	</div>
 	<div class="clearfix">&nbsp;</div>
@@ -38,5 +42,4 @@
 			<p>Pemohon</p>
 		</div>
 	</div>
-
 @endpush

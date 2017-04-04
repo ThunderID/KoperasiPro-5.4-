@@ -423,7 +423,7 @@ class KreditController extends Controller
 													 ];
 
 		//initialize view
-		$this->view                                = view('pages.kredit.print.'.$mode.'.index');
+		$this->view                                = view('pages.kredit.print.'.$mode);
 
 		//parsing master data here
 		$this->page_datas->credit 					= $this->service->detailed($id);

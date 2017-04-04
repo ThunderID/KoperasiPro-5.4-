@@ -74,7 +74,7 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 				'hide_buttons'	=> true
 			]
 		])
-			@include('pages.kredit.components.form.keluarga')
+			@include('pages.kredit.components.form.pengajuan.keluarga')
 		@endcomponent
 	{!! Form::close() !!}
 @endpush

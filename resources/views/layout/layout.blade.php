@@ -63,7 +63,7 @@
 		<title>{{ Config::get('app.name') }}</title>
 
 		<!-- Custom Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">

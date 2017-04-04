@@ -91,7 +91,7 @@
 					'hide_buttons'	=> true
 				]	
 			])
-				@include('pages.kredit.components.form.kredit', [
+				@include('pages.kredit.components.form.pengajuan.kredit', [
 					'data'	=> [
 						'select_jenis_kredit'	=> $page_datas->select_jenis_kredit,
 						'select_jangka_waktu'	=> $page_datas->select_jangka_waktu

@@ -125,7 +125,7 @@
 		'telepon'	=> isset($param['telepon']) ? $param['telepon'] : null,
 	],
 	'settings'	=> [
-		'target'	=> 'template-contact-person',
+		'target'	=> 'template-clone-contact',
 		'class'		=> [
 			'init_add'		=> 'init-add-one',
 		]

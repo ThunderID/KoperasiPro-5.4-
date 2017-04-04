@@ -57,7 +57,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				<div class="row m-b-xl">
 					<div class="col-sm-12">
 						<p class="p-b-sm"><strong>Foto KTP</strong></p>
-						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels" />
+						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded" />
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 					'hide_buttons'	=> true
 				]	
 			])
-				@include('pages.kredit.components.form.kreditur', [
+				@include('pages.kredit.components.form.pengajuan.kreditur', [
 					'param'		=> [
 						'is_ektp'			=> $page_datas->credit['kreditur']['is_ektp'],
 						'nik'				=> substr($page_datas->credit['kreditur']['nik'], 3),
