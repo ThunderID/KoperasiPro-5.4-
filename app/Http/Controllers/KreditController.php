@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Thunderlabid\Web\Commands\UIHelper\UploadGambar;
 
-use Thunderlabid\Web\Queries\Credit\DaftarKredit;
+use TQueries\Kredit\DaftarKredit;
 use Thunderlabid\Web\Commands\Credit\AjukanKredit;
 use Thunderlabid\Web\Commands\Credit\UpdateKredit;
 use Thunderlabid\Web\Commands\Credit\UpdateKreditur;

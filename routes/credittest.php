@@ -6,7 +6,7 @@
 	$data['kreditur'] 			= ['id' => '5F603985-B405-400B-B6FC-CB3594123C85', 'nama' => 'Chelsy Mooy']; 
 	$data['penjamin'] 			= []; 
 
-	$content 	= new Thunderlabid\Application\Services\CreditService;
+	$content 	= new Thunderlabid\Web\Services\CreditService;
 	dd($content->pengajuan($data));
 
 
@@ -32,5 +32,5 @@
 	$data['relasi']			= null;
 	// $data['relasi'][] 	= ['id' => '58b667a1eb7aaf00060e1bec', 'nama' => 'Aaliyah', 'hubungan' => 'Sahabat'];
 	$data['pekerjaan'][] 	= ['jenis' => 'Pegawai Swasta', 'jabatan' => 'Web Developer', 'sejak' => '2014-02-17'];
-	$content 	= new Thunderlabid\Application\Services\PersonService;
+	$content 	= new Thunderlabid\Web\Services\PersonService;
 	dd($content->read(1));

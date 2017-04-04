@@ -68,7 +68,7 @@ class SessionBasedAuthenticator
 		} 
 		catch (Exception $e) 
 		{
-			return $e;
+			return false;
 		}
 
 		return true;

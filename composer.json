@@ -27,9 +27,11 @@
             "App\\": "app/",
             "Thunderlabid\\Immigration\\": "packages/immigration/src/",
             "Thunderlabid\\Territorial\\": "packages/territorial/src/",
-            "Thunderlabid\\Credit\\": "packages/credit/src/",
+            "TKredit\\": "packages/kredit/src/",
             "Thunderlabid\\Registry\\": "packages/registry/src/",
             "Thunderlabid\\Web\\": "web/",
+            "TCommands\\": "web/",
+            "TQueries\\": "web/",
             "Thunderlabid\\API\\": "api/"
         }
     },

@@ -34,29 +34,29 @@ class UploadBase64GambarKTP
 	{
 		try
 		{
-  			$rules 		= ['image' => 'required']; 
-  			//mimes:jpeg,bmp,png and for max size max:10000
+			$rules 		= ['image' => 'required']; 
+			//mimes:jpeg,bmp,png and for max size max:10000
 
-  			//1. validate file
-  			$validator	= Validator::make(['image' => $this->file], $rules);
+			//1. validate file
+			$validator	= Validator::make(['image' => $this->file], $rules);
 
-  			if(!$validator->passes())
-  			{
+			if(!$validator->passes())
+			{
 				throw new Exception($validator->messages()->toJson(), 1);
-  			}
+			}
 			
 			$date 		= Carbon::now();
 			$fn 		= 'ktp-'.Str::slug(microtime()).'.jpg'; 
 
-      		$dp 		= $date->format('Y/m/d');
+			$dp 		= $date->format('Y/m/d');
 
-      		if (!file_exists(public_path().'/'.$dp)) 
-      		{
+			if (!file_exists(public_path().'/'.$dp)) 
+			{
 				mkdir(public_path().'/'.$dp, 0777, true);
 			}
 
-      		file_put_contents(public_path().'/'.$dp.'/'.$fn, $this->file);
-      		// $this->file->move(public_path().'/'.$dp, $fn); // uploading file to given path
+			file_put_contents(public_path().'/'.$dp.'/'.$fn, $this->file);
+			// $this->file->move(public_path().'/'.$dp, $fn); // uploading file to given path
 			
 			// Storage::disk('local')->put($fn, $this->file);
 

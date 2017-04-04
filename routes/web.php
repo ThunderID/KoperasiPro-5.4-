@@ -12,6 +12,17 @@
 */
 Route::get('/test', function () 
 {
+	$data 	= new TKredit\Pengajuan\Models\Pengajuan;
+	dd($data->with(['kreditur'])->id('6E722E00-7487-4ED7-9BF9-A875F7B2CCE0')->get());
+			$credentials	=	[
+								'email'				=> 'admin@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'C Mooy'
+							];
+							TAuth::login($credentials);
+				// '8B9839C9-ADD4-4FAD-86D5-69A501BCD712'			
+	$data 	= new TQueries\Kredit\DaftarKredit;
+	dd($data->get());
 	$data  	= [
 			  	"id" 				=> "95F5BC06-9BF8-416A-93E1-B52B93E15743",
   				"jenis_kredit" 		=> "pt",

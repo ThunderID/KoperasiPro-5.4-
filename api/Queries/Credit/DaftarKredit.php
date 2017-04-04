@@ -53,7 +53,7 @@ class DaftarKredit
 		{
 			$queries['skip']	= 0;
 		}
-		
+
 		$model  				= $model->skip($queries['skip'])->take($queries['take'])->with(['kredit'])->get();
 
 		return 	$model->toArray();

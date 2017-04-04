@@ -13,9 +13,6 @@ class EventServiceProvider extends ServiceProvider
 	 * @var array
 	 */
 	protected $listen = [
-		'Thunderlabid\Immigration\Events\VisaGrantedEvent' => [
-				'App\Listeners\WriteVisaNotification',
-			],
 	];
 
 	/**

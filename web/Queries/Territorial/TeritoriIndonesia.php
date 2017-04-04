@@ -37,7 +37,6 @@ class TeritoriIndonesia
 	public function get($queries = [])
 	{
 		$model 		= $this->queries($queries);
-		
 		$model		= $model->get();
 
 		return 	$model->toArray();
