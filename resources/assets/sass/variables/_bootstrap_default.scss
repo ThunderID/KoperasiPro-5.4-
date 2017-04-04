@@ -92,3 +92,9 @@ $form-group-margin-bottom:       15px !default;
 $state-danger-text:              $brand-danger !default;
 $state-danger-bg:                #f2dede !default;
 $state-danger-border:            $brand-danger !default;
+
+//== Type
+//
+//##
+////** Text muted color
+$text-muted:                  	 lighten($color-default, 15%) !default;

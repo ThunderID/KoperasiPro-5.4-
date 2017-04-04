@@ -108,7 +108,7 @@
 				'hide_buttons'	=> true
 			]	
 		])
-			@include('pages.kredit.components.survei.form.data_keuangan')
+			@include('pages.kredit.components.form.survei.data_keuangan')
 		@endcomponent
 
 	@endif

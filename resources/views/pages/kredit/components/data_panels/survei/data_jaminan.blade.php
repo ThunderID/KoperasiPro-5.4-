@@ -320,7 +320,7 @@
 						'hide_buttons'	=> true
 					]	
 				])
-					@include('pages.kredit.components.survei.form.data_jaminan_kendaraan', [
+					@include('pages.kredit.components.form.survei.data_jaminan_kendaraan', [
 						'id' 			=> $key,
 						'id_kredit'	 	=> $page_datas->credit['id'],
 						'kendaraan' 	=> $kendaraan
@@ -339,7 +339,7 @@
 						'hide_buttons'	=> true
 					]	
 				])
-					@include('pages.kredit.components.survei.form.data_jaminan_tnb', [
+					@include('pages.kredit.components.form.survei.data_jaminan_tnb', [
 						'id' 			 => $key,
 						'id_kredit'		 => $page_datas->credit['id'],
 						'tanah_bangunan' => $tanah_bangunan

@@ -5,7 +5,7 @@
 	- Param
 		$param['prefix']: prefix variable input
  --}}
-<div class="root-clone">
+<div class="template-clone-contact">
 	<fieldset class="form-group">
 	  	<label for="">No. Telp</label>
 		<div class="row">

@@ -15,8 +15,8 @@
 			<span class="list-organisation pull-left m-l-xs">
 				<div class="dropdown p-t-xs">
 					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
-						<i class="fa fa-building text-muted" style="font-size: 15px;"></i>
-						<span class="text-muted text-capitalize">&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;</span>
+						<i class="fa fa-building" style="font-size: 15px;"></i>
+						<span class="text-capitalize">&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;</span>
 						<span class="caret"></span>
 					</a>
 				</div>
@@ -37,7 +37,7 @@
 							<p class="role text-muted">{{TAuth::activeOffice()['role']}}</p>
 						</li>
 						<li>
-							<a class="text-muted" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
+							<a class="primary" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
 								<i class="fa fa-power-off" aria-hidden="true" style="font-size: 15px;"></i>&nbsp;Logout
 							</a>
 						</li>

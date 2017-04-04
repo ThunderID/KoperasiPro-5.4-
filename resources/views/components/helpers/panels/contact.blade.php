@@ -53,9 +53,9 @@
  @endphp
 <h5 class="text-uppercase text-light">Kontak</h5></strong>
 <div class="content-clone-contact">
-	<div class="section-clone-contact"></div>
+	<div class="root-template-contact"></div>
 	<fieldset class="form-group">
-		<a href="#" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add {{ isset($settings['class']['init_add']) ? $settings['class']['init_add'] : '' }}" data-active="contact" data-target="{{ (isset($settings['target']) ? $settings['target'] : 'template-contact') }}"><i class="fa fa-plus"></i> No. Telp</a>
+		<a href="#" class="btn btn-link p-l-none p-r-none p-t-none p-b-none add {{ isset($settings['class']['init_add']) ? $settings['class']['init_add'] : '' }}" data-active="contact" data-type-clone="form" data-template-clone="{{ (isset($settings['target']) ? $settings['target'] : 'template-clone-contact') }}" data-root-template="root-template-contact"><i class="fa fa-plus"></i> No. Telp</a>
 	</fieldset>
 </div>
 

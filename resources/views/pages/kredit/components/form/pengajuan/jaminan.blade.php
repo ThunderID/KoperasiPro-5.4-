@@ -24,10 +24,10 @@
 				</tr>
 			</thead>
 			<tbody class="root-template-kendaraan">
-				<tr class="template-table-kendaraan-default">
+				<tr class="template-clone-default">
 					<td class="text-center" colspan="7">Belum ada jaminan kendaraan</td>
 				</tr>
-				<tr class="template-table-kendaraan hidden">
+				<tr class="template-clone-kendaraan hidden">
 					<td class="nomor text-capitalize"></td>
 					<td class="tipe text-capitalize"></td>
 					<td class="tahun text-capitalize"></td>
@@ -62,10 +62,10 @@
 					</tr>
 				</thead>
 				<tbody class="root-template-tanah-bangunan">
-					<tr class="template-table-tanah-bangunan-default">
+					<tr class="template-clone-default">
 						<td class="text-center" colspan="8">Belum ada jaminan tanah &amp; Bangunan</td>
 					</tr>
-					<tr class="template-table-tanah-bangunan hidden">
+					<tr class="template-clone-tanah-bangunan hidden">
 						<td class="nomor text-capitalize"></td>
 						<td class="tipe text-capitalize"></td>
 						<td class="jenis_sertifikat text-capitalize"></td>
@@ -79,7 +79,7 @@
 			</table>
 		</div>
 		<fieldset class="form-group">
-			<a href="#" class="p-t-md p-b-md modal-add" data-toggle="modal" data-target="#modal-jaminan-tanah-bangunan">Tambah Jaminan Tanah &amp; Bangunan</a>
+			<a href="#" class="p-t-md p-b-md modal-add-jaminan" data-toggle="modal" data-target="#modal-jaminan-tanah-bangunan">Tambah Jaminan Tanah &amp; Bangunan</a>
 			<span class="p-l-lg p-t-md p-b-md text-info hidden info-add">Tidak bisa menambahkan lebih dari 3</span>
 		</fieldset>
 	</div>
@@ -94,11 +94,11 @@
 			'id' 		=> 'modal-jaminan-kendaraan',
 			'title'		=> 'Tambah Jaminan Kendaraan',
 			'settings'	=> [
-				'modal_size'	=> 'modal-lg',
+				'modal_class'	=> 'modal-lg',
 				'hide_buttons'	=> true
 			]	
 		])
-			@include('pages.kredit.components.form.widget_jaminan_kendaraan', [
+			@include('pages.kredit.components.form.pengajuan.widget_jaminan_kendaraan', [
 				'data'	=> [
 					'select_jenis_kendaraan'	=> $page_datas->select_jenis_kendaraan,
 					'select_merk_kendaraan'		=> $page_datas->select_merk_kendaraan, 
@@ -108,7 +108,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-kendaraan" data-section-clone="content-jaminan-kendaraan" data-root-template="root-template-kendaraan" data-available-add="2" data-input-parsing=".input-kendaraan" data-input-hidden="jaminan_kendaraan">
+				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-kendaraan" data-root-template="root-template-kendaraan" data-available-add="2" data-input-get=".input-kendaraan" data-input-prefix="jaminan_kendaraan">
 					Simpan
 				</a>
 			</div>	
@@ -124,12 +124,12 @@
 				'hide_buttons'	=> true
 			]	
 		])
-			@include('pages.kredit.components.form.widget_jaminan_tanah_bangunan')
+			@include('pages.kredit.components.form.pengajuan.widget_jaminan_tanah_bangunan')
 			<div class="modal-footer">
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add-jaminan" data-template-clone="template-table-tanah-bangunan" data-section-clone="content-jaminan-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-parsing=".input-tanah-bangunan" data-input-hidden="jaminan_tanah_bangunan">
+				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-get=".input-tanah-bangunan" data-input-[refix]="jaminan_tanah_bangunan">
 					Simpan
 				</a>
 			</div>	
