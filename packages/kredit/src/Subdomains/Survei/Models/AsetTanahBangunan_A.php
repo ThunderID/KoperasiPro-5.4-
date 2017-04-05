@@ -68,7 +68,7 @@ class AsetTanahBangunan_A extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
-											'id', 
+											// 'id', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 

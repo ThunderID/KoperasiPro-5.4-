@@ -32,7 +32,8 @@
             "TQueries\\": "web/Queries",
             "TFacades\\": "web/Facades",
             "TWeb\\": "web",
-            "Thunderlabid\\API\\": "api/"
+            "TAPICommands\\": "api/Commands",
+            "TAPIQueries\\": "api/Queries"
         }
     },
     "autoload-dev": {
