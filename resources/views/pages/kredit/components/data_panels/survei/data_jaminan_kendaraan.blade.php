@@ -6,12 +6,12 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Keuangan
-			@if(!empty($page_datas->credit['keuangan']))
+		<h4 class="text-uppercase">Data Jaminan Kendaraan
+			@if(!empty($page_datas->credit['jaminan_kendaraan']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+						<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-jaminan" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -24,18 +24,17 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
-	
+@if (isset($page_datas->credit['jaminan_kendaraan']) && !empty($page_datas->credit['jaminan_kendaraan']))
+	@forelse($page_datas->credit['jaminan_kendaraan'] as $key => $value)
 		<div class="row">
 			@php $i=0; @endphp
 			
-				@foreach ($page_datas->credit['keuangan'] as $k => $v)
-
+				@foreach ($value as $k => $v)
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
 					@endif
-					
+
 					<div class="col-sm-6">
 						<div class="row m-b-xl">
 							<div class="col-sm-12">
@@ -43,6 +42,10 @@
 								<p class="text-capitalize">
 									@if ($k == 'survei')
 										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
+									@elseif ($k == 'alamat')
+										{{ $v['alamat'] }} <br/>
+										RT {{ $v['rt'] }}/ RW {{ $v['rw'] }}, {{ $v['desa'] }}, {{ $v['distrik'] }} <br/>
+										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
 									@else
 										{{ str_replace('_', ' ', $v) }}
 									@endif
@@ -50,21 +53,23 @@
 							</div>
 						</div>
 					</div>
+					
 
 					@php $i++; @endphp
 				@endforeach
 		</div>
-
+	@empty
+	@endforelse
 @else
 	<!-- No data -->
-	<div class="row">
+	<div class="row m-b-xl">
 		<div class="col-sm-12">
 			<p>Belum ada data disimpan. <a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
 
-<div class="row clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
 
 @push('show_modals')
 	@component('components.modal', [
@@ -76,4 +81,4 @@
 	])
 		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
 	@endcomponent
-@endpush
+@endpush	

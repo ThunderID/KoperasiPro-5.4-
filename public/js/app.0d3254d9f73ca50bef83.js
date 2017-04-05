@@ -10338,6 +10338,9 @@ __webpack_require__(19);
 // add button upload
 __webpack_require__(6);
 
+// add panel
+__webpack_require__(52);
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10906,7 +10909,8 @@ $.fn.optHeight = function () {
 	$(this).css('height', h);
 
 	// optional : apply nicescroll. you have include niceScroll plugin first.
-	$(this).niceScroll();
+	// $(this).niceScroll();
+	$(this).css('overflow-y', 'scroll');
 };
 
 // registering function to webpack. So, you can use call this function on another js function
@@ -28676,6 +28680,31 @@ function checkAvailableAdd(state, available) {
 // 		$(this).attr('name', inputHidden+ '[' +(count-1)+ ']' +name );
 // 	});
 // }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$("body").on("click", "*[data-toggle=hidden]", function (e) {
+	e.preventDefault();
+
+	target = $(this).data("target");
+	panel = $(this).data('panel');
+
+	$("div[data-panel=" + panel + "]").addClass("hidden");
+	$("div[data-form=" + target + "]").removeClass("hidden");
+});
+
+$("body").on("click", "*[data-dismiss=panel]", function (e) {
+	e.preventDefault();
+
+	target = $(this).data("target");
+	panel = $(this).data('panel');
+
+	$("div[data-panel=" + panel + "]").removeClass("hidden");
+	$("div[data-form=" + target + "]").addClass("hidden");
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })

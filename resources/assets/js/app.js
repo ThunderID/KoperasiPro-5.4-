@@ -38,3 +38,6 @@ require('./modules/print');
 
 // add button upload
 require('./modules/form');
+
+// add panel
+require ('./modules/panel')

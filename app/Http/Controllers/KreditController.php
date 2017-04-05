@@ -234,6 +234,12 @@ class KreditController extends Controller
 				dispatch(new UpdateKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu')));
 			}
 
+			if (Input::has('aset_usaha'))
+			{
+				$data = new SimpanSurveiKredit($id, Input::only('aset_usaha'));
+				$data->handle();
+			}
+
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 		}
 		catch (Exception $e)
@@ -307,7 +313,7 @@ class KreditController extends Controller
 
 		// get active address on person
 		$person_id 									= $this->page_datas->credit['kreditur']['id'];
-
+// dd($this->page_datas);
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
 			case 'pengajuan':
@@ -328,7 +334,7 @@ class KreditController extends Controller
 		}
 
 		// get parameter from function getParamToView to parsing view
-		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu']);
+		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu', 'merk_kendaraan']);
 											 
 		//function from parent to generate view
 		return $this->generateView();

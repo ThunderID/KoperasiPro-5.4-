@@ -1,4 +1,4 @@
-{!! Form::open(['url' => route('credit.updating', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
+{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => '']) !!}
 
 	<fieldset class="form-group">
 		<label for="">Dilingkungan Tinggal</label>

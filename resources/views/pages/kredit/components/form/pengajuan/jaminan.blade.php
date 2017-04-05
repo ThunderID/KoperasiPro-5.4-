@@ -129,7 +129,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-get=".input-tanah-bangunan" data-input-[refix]="jaminan_tanah_bangunan">
+				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-get=".input-tanah-bangunan" data-input-prefix="jaminan_tanah_bangunan">
 					Simpan
 				</a>
 			</div>	
