@@ -52,36 +52,36 @@ class KreditController extends Controller
 		//parse url foto kreditur
 		$kredit['kreditur']['foto_ktp']	= $data_kredit['url'];
 
-		$jaminan_kendaraan 		= [];
-		$jaminan_tanah_bangunan = [];
+		// $jaminan_kendaraan 		= [];
+		// $jaminan_tanah_bangunan = [];
 
-		if(!empty($this->request->input('jaminan_kendaraan_1')))
-		{
-			$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_1');
-		}
+		// if(!empty($this->request->input('jaminan_kendaraan_1')))
+		// {
+		// 	$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_1');
+		// }
 
-		if(!empty($this->request->input('jaminan_kendaraan_2')))
-		{
-			$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_2');
-		}
+		// if(!empty($this->request->input('jaminan_kendaraan_2')))
+		// {
+		// 	$jaminan_kendaraan[] 	= $this->request->input('jaminan_kendaraan_2');
+		// }
 
-		if(!empty($this->request->input('jaminan_tanah_bangunan_1')))
-		{
-			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_1');
-		}
+		// if(!empty($this->request->input('jaminan_tanah_bangunan_1')))
+		// {
+		// 	$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_1');
+		// }
 
-		if(!empty($this->request->input('jaminan_tanah_bangunan_2')))
-		{
-			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_2');
-		}
+		// if(!empty($this->request->input('jaminan_tanah_bangunan_2')))
+		// {
+		// 	$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_2');
+		// }
 
-		if(!empty($this->request->input('jaminan_tanah_bangunan_3')))
-		{
-			$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_3');
-		}
+		// if(!empty($this->request->input('jaminan_tanah_bangunan_3')))
+		// {
+		// 	$jaminan_tanah_bangunan[] 	= $this->request->input('jaminan_tanah_bangunan_3');
+		// }
 
-		$kredit['jaminan_kendaraan']		= $jaminan_kendaraan;
-		$kredit['jaminan_tanah_bangunan']	= $jaminan_tanah_bangunan;
+		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
+		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
 
 		try {
 			$data_kredit 	= new AjukanKredit($kredit);

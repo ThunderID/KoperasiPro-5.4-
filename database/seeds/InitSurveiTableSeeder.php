@@ -214,7 +214,7 @@ class InitSurveiTableSeeder extends Seeder
 			$survei_data['nasabah']					= $nasabah;
 			$survei_data['rekening']				= $rekening[0];
 
-			$check_kredit 		= \TKredit\Pengajuan\Models\Pengajuan::id($list['nomor_dokumen_kredit'])->firstorfail();
+			$check_kredit 		= \TKredit\Pengajuan\Models\Pengajuan::id($list['id'])->firstorfail();
 
 			if($check_kredit->jaminan_kendaraan()->count())
 			{
@@ -284,14 +284,14 @@ class InitSurveiTableSeeder extends Seeder
 				unset($survei_data['jaminan_tanah_bangunan']);
 			}
 
-			$survei		= new \TCommands\Kredit\SimpanSurveiKredit($list['nomor_dokumen_kredit'], $survei_data);
+			$survei		= new \TCommands\Kredit\SimpanSurveiKredit($list['id'], $survei_data);
 
 			$survei->handle();
 
 			$super_surv['kepribadian']			= $kepribadian[1];
 			$super_surv['rekening']				= $rekening[1];
 
-			$survei_2	= new \TCommands\Kredit\SimpanSurveiKredit($list['nomor_dokumen_kredit'], $super_surv);
+			$survei_2	= new \TCommands\Kredit\SimpanSurveiKredit($list['id'], $super_surv);
 
 			$survei_2->handle();
 		}

@@ -13,6 +13,8 @@ use TCommands\Kredit\UpdateKreditur;
 use TCommands\Kredit\TambahJaminanKendaraan;
 use TCommands\Kredit\TambahJaminanTanahBangunan;
 
+use TCommands\Kredit\SimpanSurveiKredit;
+
 use TQueries\Territorial\TeritoriIndonesia;
 
 use TQueries\Kredit\UIHelper\JangkaWaktuKredit;

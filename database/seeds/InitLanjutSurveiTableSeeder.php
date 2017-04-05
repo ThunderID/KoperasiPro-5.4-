@@ -27,7 +27,7 @@ class InitLanjutSurveiTableSeeder extends Seeder
 
 		foreach ($lists as $list) 
 		{
-			$survei		= new \TCommands\Kredit\LanjutkanUntukSurvei($list['nomor_dokumen_kredit']);
+			$survei		= new \TCommands\Kredit\LanjutkanUntukSurvei($list['id']);
 			$survei->handle();
 		}
 	}

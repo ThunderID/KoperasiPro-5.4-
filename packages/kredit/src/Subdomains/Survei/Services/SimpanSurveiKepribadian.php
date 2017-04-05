@@ -42,7 +42,16 @@ class SimpanSurveiKepribadian
 			$survei 			= $survei->setPetugas($this->survei);
 			$survei->save();
 
-			$value 				= new Value;
+
+			if(isset($this->value['id']) && empty($this->value['id']) && is_null($this->value['id']))
+			{
+				$value 			= Value::findorfail($this->value['id']);
+			}
+			else
+			{
+				$value 			= new Value;
+			}
+			
 			$value 				= $value->fill($this->value);
 			$value->survei_id 	= $survei->id;
 

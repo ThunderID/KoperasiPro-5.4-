@@ -188,7 +188,15 @@ class Orang extends BaseModel
 	public function tambahRelasi($value)
 	{
 		//1. simpan orang
-		$relasi			= new Relasi_A;
+		if(isset($this->value['id']) || empty($this->value['id']) || is_null($this->value['id']))
+		{
+			$relasi		= Relasi_A::findorfail($this->value['id']);
+		}
+		else
+		{
+			$relasi		= new Relasi_A;
+		}
+
 		$relasi->tambahRelasi($this, $value);
 
 		//2. it's a must to return value
@@ -263,7 +271,15 @@ class Orang extends BaseModel
 	public function tambahAlamatRumah($value)
 	{
 		//1. simpan alamat
-		$alamat				= new AlamatRumah_A;
+		if(isset($this->value['id']) || empty($this->value['id']) || is_null($this->value['id']))
+		{
+			$alamat		= AlamatRumah_A::findorfail($this->value['id']);
+		}
+		else
+		{
+			$alamat		= new AlamatRumah_A;
+		}
+
 		$alamat->tambahAlamatRumah($this, $value);
 
 		//2. it's a must to return value
