@@ -34,7 +34,7 @@
 								</div>
 								{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 									@include ('pages.kredit.components.form.survei.aset_usaha', [
-										'data' => $page_datas->credit['aset_usaha'][0],
+										'data' => isset($page_datas->credit['aset_usaha'][0]) ? $page_datas->credit['aset_usaha'][0] : null,
 									])
 
 									<div class="clearfix">&nbsp;</div>
@@ -53,13 +53,15 @@
 										<hr/>
 									</div>
 								</div>
-								{!! Form::open(['url' => '', 'class' => 'form no-enter', 'method' => 'PUT', 'data-ajax-submit' => 'true']) !!}
-									@include ('pages.kredit.components.form.survei.aset_kendaraan')
+								{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+									@include ('pages.kredit.components.form.survei.aset_kendaraan', [
+										'data'	=> isset($page_datas->credit['aset_kendaraan'][0]) ? $page_datas->credit['aset_kendaraan'][0] : null,
+									])
 
 									<div class="clearfix">&nbsp;</div>
 									<div class="text-right">
 										<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-aset" data-target="aset-kendaraan">Cancel</a>
-										<a type="submit" href="#" class="btn btn-primary">Simpan</a>
+										<button type="submit" class="btn btn-primary">Simpan</a>
 									</div>
 								{!! Form::close() !!}
 							</div>
@@ -72,8 +74,10 @@
 										<hr/>
 									</div>
 								</div>
-								{!! Form::open(['url' => '', 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-									@include ('pages.kredit.components.form.survei.aset_tanah_bangunan')
+								{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+									@include ('pages.kredit.components.form.survei.aset_tanah_bangunan', [
+										'data'		=> isset($page_datas->credit['aset_tanah_bangunan'][0]) ? $page_datas->credit['aset_tanah_bangunan'][0] : null,
+									])
 
 									<div class="clearfix">&nbsp;</div>
 									<div class="text-right">

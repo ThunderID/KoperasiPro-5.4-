@@ -11,7 +11,7 @@
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#" data-toggle="hidden" data-target="aset-kendaraan" data-panel="data-aset" no-data-pjax>
+						<a href="#aset-kendaraan" data-toggle="hidden" data-target="aset-kendaraan" data-panel="data-aset" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>

@@ -250,15 +250,23 @@ class KreditController extends Controller
 				$simpan->handle();
 			}
 
+			// aset usaha
 			if (Input::has('aset_usaha'))
 			{
 				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_usaha'));
 				$simpan->handle();
 			}
 
+			// aset kendaraan
+			if (Input::has('aset_kendaraan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_kendaraan'));
+				$simpan->handle();
+			}
+
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 		
-			return $this->generateRedirect(route('credit.index'));
+			return $this->generateRedirect(route('credit.show', ['id' => $id]));
 		}
 		catch (Exception $e)
 		{
