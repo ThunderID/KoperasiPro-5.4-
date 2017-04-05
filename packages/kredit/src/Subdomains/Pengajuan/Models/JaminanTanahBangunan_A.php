@@ -83,6 +83,15 @@ class JaminanTanahBangunan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship alamat
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function alamat()
+	{
+		return $this->belongsTo('TKredit\Pengajuan\Models\Alamat_A', 'alamat_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -103,4 +112,9 @@ class JaminanTanahBangunan_A extends BaseModel
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeNomorSertifikat($query, $value)
+	{
+		return $query->where('nomor_sertifikat', $value);
+	}
 }

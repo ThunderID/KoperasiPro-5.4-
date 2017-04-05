@@ -40,7 +40,7 @@ class AsetKendaraan_A extends BaseModel
 	protected $fillable				=	[
 											'id'					,
 											'tipe'					,
-											'nomor_bpkp'			,
+											'nomor_bpkb'			,
 										];
 	/**
 	 * Basic rule of database
@@ -49,7 +49,7 @@ class AsetKendaraan_A extends BaseModel
 	 */
 	protected $rules				=	[
 											'tipe'				=> 'required|in:roda_2,roda_3,roda_4,roda_6,lain_lain',
-											'nomor_bpkp'		=> 'required|max:255',
+											'nomor_bpkb'		=> 'required|max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -70,6 +70,16 @@ class AsetKendaraan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	

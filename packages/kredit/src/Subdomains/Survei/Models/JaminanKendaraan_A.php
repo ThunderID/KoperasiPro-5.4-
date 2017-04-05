@@ -4,9 +4,12 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Survei\Models\Observers\JaminanKendaraan_AObserver;
+
 use TKredit\Infrastructures\Guid\GuidTrait;
 
 use TKredit\UbiquitousLibraries\Currencies\IDRTrait;
+use TKredit\UbiquitousLibraries\Datetimes\TanggalTrait;
 
 use Validator, Exception;
 
@@ -27,6 +30,7 @@ class JaminanKendaraan_A extends BaseModel
 	use GuidTrait;
 
 	use IDRTrait;
+	use TanggalTrait;
 
 	/**
 	 * The database table used by the model.
@@ -44,6 +48,7 @@ class JaminanKendaraan_A extends BaseModel
 	protected $fillable				=	[
 											'id'						,
 											'survei_id'					,
+											'alamat_id'					,
 											'tipe'						,
 											'merk'						,
 											'warna'						,
@@ -55,6 +60,7 @@ class JaminanKendaraan_A extends BaseModel
 											'status_kepemilikan'		,
 											'harga_taksasi'				,
 											'fungsi_sehari_hari'		,
+											'atas_nama'					,
 										];
 	/**
 	 * Basic rule of database
@@ -63,7 +69,7 @@ class JaminanKendaraan_A extends BaseModel
 	 */
 	protected $rules				=	[
 											'tipe'						=> 'required|in:roda_2,roda_3,roda_4,roda_6,lain_lain',
-											'merk'				=> 'required|in:honda,yamaha,suzuki,kawasaki,mitsubishi,toyota,nissan,kia,daihatsu,isuzu',
+											'merk'						=> 'required|in:honda,yamaha,suzuki,kawasaki,mitsubishi,toyota,nissan,kia,daihatsu,isuzu',
 											'warna'						=> 'max:255',
 											'tahun'						=> 'max:4|min:4',
 											'nomor_bpkb'				=> 'max:255',
@@ -73,6 +79,7 @@ class JaminanKendaraan_A extends BaseModel
 											'status_kepemilikan'		=> 'max:255',
 											'harga_taksasi'				=> 'numeric',
 											'fungsi_sehari_hari'		=> 'max:255',
+											'atas_nama'					=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -93,6 +100,26 @@ class JaminanKendaraan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+
+	/**
+	 * relationship alamat
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function alamat()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -115,7 +142,7 @@ class JaminanKendaraan_A extends BaseModel
 
 	public function setHargaTaksasiAttribute($value)
 	{
-		$this->attributes['nilai_aset']			= $this->formatMoneyFrom($value);
+		$this->attributes['harga_taksasi']		= $this->formatMoneyFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
@@ -128,7 +155,14 @@ class JaminanKendaraan_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
+
+        JaminanKendaraan_A::observe(new JaminanKendaraan_AObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeNomorBPKB($query, $value)
+	{
+		return $query->where('nomor_bpkb', $value);
+	}
 }

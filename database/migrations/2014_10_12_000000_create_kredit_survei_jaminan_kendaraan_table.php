@@ -16,6 +16,7 @@ class CreateKreditSurveiJaminanKendaraanTable extends Migration
 		Schema::create('survei_jaminan_kendaraan', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('survei_id', 255);
+			$table->string('alamat_id', 255);
 			$table->string('tipe', 255);
 			$table->string('merk', 255);
 			$table->string('warna', 255);
@@ -23,6 +24,7 @@ class CreateKreditSurveiJaminanKendaraanTable extends Migration
 			$table->string('nomor_bpkb', 255);
 			$table->string('nomor_mesin', 255);
 			$table->string('nomor_rangka', 255);
+			$table->string('atas_nama', 255);
 			$table->date('masa_berlaku_stnk');
 			$table->string('status_kepemilikan', 255);
 			$table->double('harga_taksasi');

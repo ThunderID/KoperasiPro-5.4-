@@ -4,6 +4,8 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Survei\Models\Observers\AsetUsaha_AObserver;
+
 use TKredit\Infrastructures\Guid\GuidTrait;
 
 use TKredit\UbiquitousLibraries\Currencies\IDRTrait;
@@ -97,7 +99,17 @@ class AsetUsaha_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
@@ -132,6 +144,8 @@ class AsetUsaha_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
+
+        AsetUsaha_A::observe(new AsetUsaha_AObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/

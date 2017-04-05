@@ -4,6 +4,8 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Survei\Models\Observers\JaminanTanahBangunan_AObserver;
+
 use TKredit\Infrastructures\Guid\GuidTrait;
 
 use TKredit\UbiquitousLibraries\Currencies\IDRTrait;
@@ -80,7 +82,7 @@ class JaminanTanahBangunan_A extends BaseModel
 											'tipe'						=> 'in:tanah,tanah_bangunan,tambak',
 											'jenis_sertifikat'			=> 'max:255',
 											'nomor_sertifikat'			=> 'max:255',
-											'masa_berlaku_sertifikat'	=> 'date_format:"Y-m-d"',
+											'masa_berlaku_sertifikat'	=> 'min:4|max:4',
 											'atas_nama'					=> 'max:255',
 											'luas_tanah'				=> 'numeric',
 											'luas_bangunan'				=> 'numeric',
@@ -119,14 +121,30 @@ class JaminanTanahBangunan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+		
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+	
+	/**
+	 * relationship alamat
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function alamat()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	public function getMasaBerlakuSertifikatAttribute($value)
-	{
-		return $this->formatDateTo($value);
-	}
 
 	public function getNilaiJaminanAttribute($value)
 	{
@@ -149,10 +167,6 @@ class JaminanTanahBangunan_A extends BaseModel
 	}
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-	public function setMasaBerlakuSertifikatAttribute($value)
-	{
-		$this->attributes['masa_berlaku_sertifikat']	= $this->formatDateFrom($value);
-	}
 
 	public function setNilaiJaminanAttribute($value)
 	{
@@ -184,7 +198,14 @@ class JaminanTanahBangunan_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
+		
+        JaminanTanahBangunan_A::observe(new JaminanTanahBangunan_AObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeNomorSertifikat($query, $value)
+	{
+		return $query->where('nomor_sertifikat', $value);
+	}
 }

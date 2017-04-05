@@ -7,6 +7,19 @@ namespace TQueries\Kredit;
 ///////////////
 use TKredit\KreditAktif\Models\KreditAktif_RO as Model;
 
+use TKredit\Pengajuan\Models\Pengajuan;
+
+use TKredit\Survei\Models\Survei;
+use TKredit\Survei\Models\AsetKendaraan_A;
+use TKredit\Survei\Models\AsetUsaha_A;
+use TKredit\Survei\Models\AsetTanahBangunan_A;
+use TKredit\Survei\Models\JaminanKendaraan_A;
+use TKredit\Survei\Models\JaminanTanahBangunan_A;
+use TKredit\Survei\Models\Kepribadian_A;
+use TKredit\Survei\Models\Keuangan_A;
+use TKredit\Survei\Models\Nasabah_A;
+use TKredit\Survei\Models\Rekening_A;
+
 use Hash, Exception, Session, TAuth;
 
 /**
@@ -67,33 +80,50 @@ class DaftarKredit
 	 */
 	public function detailed($id)
 	{
-		$model 			= $this->model->id($id)->with(['kreditur', 'kreditur.alamat', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat', 'riwayat_status'])->first();
+		$model 			= $this->model->nomordokumenkredit($id)->first();
 
-		$parsed_credit 	=  $model->toArray();
-
-
-		switch (strtolower($parsed_credit['status'])) 
+		switch ($model->status) 
 		{
 			case 'pengajuan':
+				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat', 'riwayat_status'])->first();
+
+				$parsed_credit 	=  $complete->toArray();
 				$parsed_credit['status_berikutnya']	= 'survei';
+				$parsed_credit['status_sebelumnya']	= '';
 				break;
+
 			case 'survei':
-				$parsed_credit['status_berikutnya']	= 'realisasi';
+				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat'])->first();
+				$survei 	= Survei::nomordokumenkredit($id)->get(['id']);
+
+				$parsed_credit 	=  $complete->toArray();
+
+				$parsed_credit['aset_kendaraan']		= AsetKendaraan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['aset_usaha']			= AsetUsaha_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['aset_tanah_bangunan']	= AsetTanahBangunan_A::whereIn('survei_id', $survei)->with(['alamat', 'survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['jaminan_kendaraan']		= JaminanKendaraan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['jaminan_tanah_bangunan']= JaminanTanahBangunan_A::whereIn('survei_id', $survei)->with(['alamat', 'survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['kepribadian']			= Kepribadian_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['keuangan']				= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['nasabah']				= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				
+				$parsed_credit['rekening']				= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+
+				$parsed_credit['status_berikutnya']	= 'setujui';
+				$parsed_credit['status_sebelumnya']	= 'pengajuan';
 				break;
 			default:
-				$parsed_credit['status_berikutnya']	= '';
+				throw new Exception("NOT FOUND", 404);
 				break;
 		}
-
-		$prev_index 		= count($parsed_credit['riwayat_status']) - 1;
-
-		if($prev_index >= 1)
-		{
-			$prev_index 	= $prev_index - 1;
-		}
-
-		$parsed_credit['status_sebelumnya']	= $parsed_credit['riwayat_status'][$prev_index]['status'];
-		
+dd($parsed_credit);
 		return $parsed_credit;
 	}
 

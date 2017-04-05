@@ -95,7 +95,7 @@ class Orang extends BaseModel
 	 */	
 	public function alamat()
 	{
-		return $this->belongstomany('Thunderlabid\Credit\Models\Alamat_A', 'alamat_rumah', 'orang_id', 'alamat_id')->withPivot('tipe');
+		return $this->belongstomany('TKredit\Pengajuan\Models\Alamat_A', 'pengajuan_alamat_rumah', 'orang_id', 'alamat_id')->withPivot('tipe');
 	}
 
 	
@@ -106,7 +106,7 @@ class Orang extends BaseModel
 	 */	
 	public function relasi()
 	{
-		return $this->hasMany('Thunderlabid\Credit\Models\Relasi_A', 'orang_id');
+		return $this->hasMany('TKredit\Pengajuan\Models\Relasi_A', 'orang_id');
 	}
 	
 	/**
@@ -116,7 +116,7 @@ class Orang extends BaseModel
 	 */	
 	public function kredit()
 	{
-		return $this->hasMany('Thunderlabid\Credit\Models\Kredit', 'kreditur_id');
+		return $this->hasMany('TKredit\Pengajuan\Models\Pengajuan', 'kreditur_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

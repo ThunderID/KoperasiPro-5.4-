@@ -39,6 +39,7 @@ class SimpanSurveiRekening
 			//1. simpan survey
 			$survei 			= new Survei;
 			$survei 			= $survei->fill($this->survei);
+			$survei 			= $survei->setPetugas($this->survei);
 			$survei->save();
 
 			$value 				= new Value;

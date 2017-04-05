@@ -4,6 +4,8 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Survei\Models\Observers\AsetTanahBangunan_AObserver;
+
 use TKredit\Infrastructures\Guid\GuidTrait;
 
 use Validator, Exception;
@@ -72,6 +74,25 @@ class AsetTanahBangunan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+
+	/**
+	 * relationship alamat
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function alamat()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -87,6 +108,8 @@ class AsetTanahBangunan_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
+
+        AsetTanahBangunan_A::observe(new AsetTanahBangunan_AObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/

@@ -28,7 +28,7 @@ class CreateKreditSurveiAsetUsahaTable extends Migration
 			$table->double('perputaran_stok');
 			$table->double('jumlah_konsumen_perbulan');
 			$table->integer('jumlah_saingan_perkota');
-			$table->text('uraian');
+			$table->text('uraian')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 

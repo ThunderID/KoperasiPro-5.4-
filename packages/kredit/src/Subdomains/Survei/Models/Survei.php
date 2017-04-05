@@ -4,9 +4,11 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
-// use TKredit\Survei\Models\Observers\SurveiObserver;
+use TKredit\Survei\Models\Observers\SurveiObserver;
 
 use TKredit\Infrastructures\Guid\GuidTrait;
+
+use TKredit\UbiquitousLibraries\Datetimes\TanggalTrait;
 
 use Validator, Exception, Carbon\Carbon;
 
@@ -26,6 +28,8 @@ use Validator, Exception, Carbon\Carbon;
 class Survei extends BaseModel
 {
 	use GuidTrait;
+
+	use TanggalTrait;
 
 	/**
 	 * The database table used by the model.
@@ -85,6 +89,15 @@ class Survei extends BaseModel
     protected $appends 				= [];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship petugas
+	 *
+	 * @return Survei $model
+	 */	
+ 	public function petugas()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Petugas_RO', 'ro_petugas_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -139,7 +152,7 @@ class Survei extends BaseModel
 	{
 		parent::boot();
 
-        // Survei::observe(new SurveiObserver());
+        Survei::observe(new SurveiObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/

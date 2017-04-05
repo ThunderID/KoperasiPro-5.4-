@@ -6,6 +6,8 @@ use TKredit\Infrastructures\Models\BaseModel;
 
 use TKredit\Infrastructures\Guid\GuidTrait;
 
+use TKredit\UbiquitousLibraries\Currencies\IDRTrait;
+
 use Validator, Exception;
 
 /**
@@ -23,6 +25,8 @@ use Validator, Exception;
 class Keuangan_A extends BaseModel
 {
 	use GuidTrait;
+	
+	use IDRTrait;
 
 	/**
 	 * The database table used by the model.
@@ -89,7 +93,17 @@ class Keuangan_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

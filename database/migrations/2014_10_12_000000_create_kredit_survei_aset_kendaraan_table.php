@@ -17,7 +17,7 @@ class CreateKreditSurveiAsetKendaraanTable extends Migration
 			$table->string('id', 255);
 			$table->string('survei_id', 255);
 			$table->string('tipe', 255);
-			$table->string('nomor_bpkp', 255);
+			$table->string('nomor_bpkb', 255);
 			$table->timestamps();
 			$table->softDeletes();
 

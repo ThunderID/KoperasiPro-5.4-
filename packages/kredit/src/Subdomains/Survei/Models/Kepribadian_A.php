@@ -4,6 +4,8 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Infrastructures\Guid\GuidTrait;
+
 use Validator, Exception;
 
 /**
@@ -20,6 +22,8 @@ use Validator, Exception;
  */
 class Kepribadian_A extends BaseModel
 {
+	use GuidTrait;
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -70,7 +74,17 @@ class Kepribadian_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/

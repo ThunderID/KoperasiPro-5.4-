@@ -98,4 +98,9 @@ class JaminanKendaraan_A extends BaseModel
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeNomorBPKB($query, $value)
+	{
+		return $query->where('nomor_bpkb', $value);
+	}
 }

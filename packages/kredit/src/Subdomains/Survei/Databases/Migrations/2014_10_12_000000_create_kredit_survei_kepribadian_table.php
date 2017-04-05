@@ -19,7 +19,7 @@ class CreateKreditSurveiKepribadianTable extends Migration
 			$table->string('nama_referens', 255);
 			$table->string('telepon_referens', 255);
 			$table->string('hubungan', 255);
-			$table->text('uraian');
+			$table->text('uraian')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 

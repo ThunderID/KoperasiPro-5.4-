@@ -18,7 +18,7 @@ class CreateKreditSurveiNasabahTable extends Migration
 			$table->string('survei_id', 255);
 			$table->string('nama', 255);
 			$table->string('status', 255);
-			$table->string('rekord_terdahulu', 255);
+			$table->string('kredit_terdahulu', 255);
 			$table->string('jaminan_terdahulu', 255);
 			$table->timestamps();
 			$table->softDeletes();

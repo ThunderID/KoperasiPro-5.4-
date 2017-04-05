@@ -63,7 +63,7 @@ class InitPengajuanTableSeeder extends Seeder
 		$jw   		= [6,10,12,18,24,30,36,42,48,54,60];
 		$faker		= \Faker\Factory::create();
 
-		$type_k	= ['roda_2', 'roda_4', 'roda_6'];
+		$type_k	= ['roda_2', 'roda_3', 'roda_4', 'roda_6'];
 		$merk_k	= ['honda', 'yamaha', 'suzuki', 'kawasaki', 'mitsubishi', 'toyota', 'nissan', 'kia', 'daihatsu', 'isuzu'];
 		$char 	= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 

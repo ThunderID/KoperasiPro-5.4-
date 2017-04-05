@@ -4,6 +4,8 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
+use TKredit\Infrastructures\Guid\GuidTrait;
+
 use Validator, Exception;
 
 /**
@@ -20,6 +22,8 @@ use Validator, Exception;
  */
 class Nasabah_A extends BaseModel
 {
+	use GuidTrait;
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -35,9 +39,10 @@ class Nasabah_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'					,
+											'survei_id'				,
 											'nama'					,
 											'status'				,
-											'rekord_terdahulu'		,
+											'kredit_terdahulu'		,
 											'jaminan_terdahulu'		,
 										];
 	/**
@@ -49,7 +54,7 @@ class Nasabah_A extends BaseModel
 											'nama'				=> 'max:255',
 											'status'			=> 'required|in:lama,baru',
 											'kredit_terdahulu'	=> 'required|in:kurang_lancar,lancar,macet',
-											'jaminan_terdahulu'	=> 'sama,tidak_sama',
+											'jaminan_terdahulu'	=> 'in:sama,tidak_sama',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -70,6 +75,16 @@ class Nasabah_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	

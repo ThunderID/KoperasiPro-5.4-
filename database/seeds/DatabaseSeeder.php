@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
 	{
 		//TABLE MIGRATION FOR VERSI II CONST
 		$this->call(InitPengajuanTableSeeder::class);
+		$this->call(InitLanjutSurveiTableSeeder::class);
 		$this->call(InitSurveiTableSeeder::class);
 
 		//TABLE MIGRATION FOR API

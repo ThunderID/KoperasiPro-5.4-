@@ -35,7 +35,7 @@ class Rekening_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_rekening';
+	protected $table				= 'survei_rekening_bank';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -81,7 +81,17 @@ class Rekening_A extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function survei()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

@@ -3,6 +3,7 @@
 namespace TKredit\Survei\Services;
 
 use TKredit\Survei\Models\Survei;
+use TKredit\Survei\Models\Alamat_A;
 use TKredit\Survei\Models\AsetTanahBangunan_A as Value;
 
 use DB, Exception;

@@ -3,6 +3,7 @@
 namespace TKredit\Survei\Services;
 
 use TKredit\Survei\Models\Survei;
+use TKredit\Survei\Models\Alamat_A;
 use TKredit\Survei\Models\AsetUsaha_A as Value;
 
 use DB, Exception;
@@ -42,9 +43,14 @@ class SimpanSurveiAsetUsaha
 			$survei 			= $survei->setPetugas($this->survei);
 			$survei->save();
 
+			$alamat 			= new Alamat_A;
+			$alamat->fill($this->value['alamat']);
+			$alamat->save();
+
 			$value 				= new Value;
 			$value 				= $value->fill($this->value);
 			$value->survei_id 	= $survei->id;
+			$value->alamat_id 	= $alamat->id;
 
 			$value->save();
 
