@@ -47,11 +47,14 @@ class SimpanPengajuanJaminanTanahBangunan
 				$pengajuan 			= Pengajuan::findorfail($this->pengajuan['id']);
 			}
 
-			$alamat 				= new Alamat_A;
-			$alamat 				= $alamat->fill($this->value['alamat']);
-			$alamat->save();
+			if(isset($this->value['alamat']))
+			{
+				$alamat 				= new Alamat_A;
+				$alamat 				= $alamat->fill($this->value['alamat']);
+				$alamat->save();
 
-			unset($this->value['alamat']);
+				unset($this->value['alamat']);
+			}
 			
 			if(isset($this->value['id']) && empty($this->value['id']) && is_null($this->value['id']))
 			{
@@ -63,7 +66,15 @@ class SimpanPengajuanJaminanTanahBangunan
 			}
 			$value 					= $value->fill($this->value);
 			$value->pengajuan_id 	= $pengajuan->id;
-			$value->alamat_id		= $alamat->id;
+
+			if(isset($alamat))
+			{
+				$value->alamat_id	= $alamat->id;
+			}
+			else
+			{
+				$value->alamat_id	= 0;
+			}
 
 			$value->save();
 

@@ -174,6 +174,11 @@ class KreditAktif_RO extends BaseModel
 
 	public function scopeKoperasi($query, $value)
 	{
+		if(is_array($value))
+		{
+			return $query->whereIn('ro_koperasi_id', $value);
+		}
+
 		return $query->where('ro_koperasi_id', $value);
 	}
 

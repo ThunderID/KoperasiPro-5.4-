@@ -15,7 +15,7 @@ class CreateKreditPengajuanAlamatTable extends Migration
 	{
 		Schema::create('pengajuan_alamat', function (Blueprint $table) {
 			$table->string('id', 255);
-			$table->text('alamat');
+			$table->text('alamat')->nullable();
 			$table->string('rt', 255)->nullable();
 			$table->string('rw', 255)->nullable();
 			$table->string('desa', 255)->nullable();

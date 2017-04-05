@@ -5,7 +5,7 @@ namespace TAPIQueries\Kredit;
 ///////////////
 //   Models  //
 ///////////////
-use TKredit\Models\PengajuanMobile_RO as Model;
+use TKredit\Pengajuan\Models\PengajuanMobile_RO as Model;
 
 use Hash, Exception, Session, TAuth;
 
@@ -73,7 +73,7 @@ class DaftarKredit
 	private function queries($queries)
 	{
 		$model 					= $this->model;
-		
+
 		//1.allow status
 		if(isset($queries['status']))
 		{
@@ -89,7 +89,7 @@ class DaftarKredit
 		}
 
 		//2.allow koperasi
-		$model  				= $model->where('mobile_id', $queries['id'])->whereHas('kredit', function($q)use($queries){return $q->status($queries['status']);});
+		$model  				= $model->where('mobile_id', $queries['id'])->whereHas('kredit', function($q)use($queries){return $q;});
 
 		return $model;
 	} 

@@ -80,7 +80,7 @@ class PengajuanMobile_RO extends BaseModel
 	 */	
  	public function kredit()
 	{
-		return $this->belongsto('TKredit\Models\Pengajuan');
+		return $this->belongsto('TKredit\Pengajuan\Models\Pengajuan');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

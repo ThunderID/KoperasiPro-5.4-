@@ -140,7 +140,7 @@ class PengajuanKreditBaru
 
 			DB::commit();
 
-			return true;
+			return $kredit_aktif;
 		}
 		catch(Exception $e)
 		{

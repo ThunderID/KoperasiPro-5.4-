@@ -12,7 +12,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use TAPIQueries\UIHelper\JSend;
 use TAPIQueries\Kredit\DaftarKredit;
-use TAPICommands\Kredit\AjukanKredit;
+
+use TCommands\Kredit\PengajuanKreditBaru;
 use TAPICommands\UIHelper\UploadBase64GambarKTP;
 
 use Input;
@@ -27,6 +28,7 @@ class KreditController extends Controller
 	public function index()
 	{
 		$data 		= new DaftarKredit;
+
 		$data 		= $data->get(['id' => $this->request->input('id')]);
 
 		$new_data 	= [];
@@ -83,14 +85,20 @@ class KreditController extends Controller
 		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
 		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
 
+		foreach ($kredit['jaminan_tanah_bangunan'] as $key => $value) 
+		{
+			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']		= $value['luas'];
+			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']	= 0;
+		}
+
 		try {
-			$data_kredit 	= new AjukanKredit($kredit);
+			$data_kredit 	= new PengajuanKreditBaru($kredit);
 			$data_kredit 	= $data_kredit->handle();
 		} catch (Exception $e) {
 			return JSend::error($e->getMessage())->asArray();
 		}
 
-		return JSend::success(['nomor_kredit' => $data_kredit['nomor_kredit']])->asArray();
+		return JSend::success(['nomor_kredit' => $data_kredit['id']])->asArray();
 	}
 
 	public function upload($nomor_kredit = null)
