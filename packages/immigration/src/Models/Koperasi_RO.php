@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models;
+namespace TImmigration\Models;
 
 /**
  * Model Visa

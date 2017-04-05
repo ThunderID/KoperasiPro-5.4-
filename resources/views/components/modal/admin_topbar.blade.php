@@ -19,7 +19,7 @@
 <div class="row p-t-xl">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="row m-l-none m-r-none fade" id="main-menu" style="opacity: 1;">
-			@foreach(Thunderlabid\Web\Queries\Navigation\NavbarService::all() as $key => $item)
+			@foreach(TQueries\Navigation\NavbarService::all() as $key => $item)
 				@if (is_null($item['route']))
 					<div class="col-xs-6 text-center">
 						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" href="#{{ $key }}-menu" data-menu-to="#{{ $key }}-menu" data-menu-from="#main-menu">
@@ -44,7 +44,7 @@
 				@endif
 			@endforeach
 		</div>
-		@foreach (Thunderlabid\Web\Queries\Navigation\NavbarService::all() as $key => $item)
+		@foreach (TQueries\Navigation\NavbarService::all() as $key => $item)
 			@if (count($item['sub']) > 0)
 				<div class="row m-l-none m-r-none hidden fade" id="{{ $key }}-menu">
 					<h4 class="m-l-md m-b-xs text-capitalize"><strong>Menu {{ $key }}</strong></h4>

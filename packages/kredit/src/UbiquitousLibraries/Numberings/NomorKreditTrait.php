@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Credit\Models\Traits\Policies;
+namespace TKredit\Models\Traits\Policies;
 
 /**
  * Trait Link list

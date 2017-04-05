@@ -1,8 +1,8 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models\Traits;
+namespace TImmigration\Models\Traits;
 
-use Thunderlabid\Immigration\Models\Observers\EventObserver;
+use TImmigration\Models\Observers\EventObserver;
 
 /**
  * Trait event raiser

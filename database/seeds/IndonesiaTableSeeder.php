@@ -3,11 +3,11 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Thunderlabid\Territorial\Models\Negara_RO;
-use Thunderlabid\Territorial\Models\Provinsi_RO;
-use Thunderlabid\Territorial\Models\Regensi_RO;
-use Thunderlabid\Territorial\Models\Distrik_RO;
-use Thunderlabid\Territorial\Models\Desa_RO;
+use TTerritorial\Models\Negara_RO;
+use TTerritorial\Models\Provinsi_RO;
+use TTerritorial\Models\Regensi_RO;
+use TTerritorial\Models\Distrik_RO;
+use TTerritorial\Models\Desa_RO;
 
 class IndonesiaTableSeeder extends Seeder
 {

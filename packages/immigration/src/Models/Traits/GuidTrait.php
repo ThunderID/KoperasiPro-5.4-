@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models\Traits;
+namespace TImmigration\Models\Traits;
 
 /**
  * Guid trait to generate id

@@ -1,11 +1,11 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\Credit;
+namespace TQueries\Kredit;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Credit\Models\Orang as Model;
+use TKredit\Models\Orang as Model;
 
 use Hash, Exception, Session, TAuth;
 

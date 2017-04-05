@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\Credit\UIHelper;
+namespace TQueries\Kredit\UIHelper;
 
 /**
  * Kelas Jenis Kredit

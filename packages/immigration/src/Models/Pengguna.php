@@ -1,10 +1,10 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models;
+namespace TImmigration\Models;
 
-use Thunderlabid\Immigration\Models\Traits\GuidTrait;
+use TImmigration\Models\Traits\GuidTrait;
 
-use Thunderlabid\Immigration\Exceptions\DuplicateException;
+use TImmigration\Exceptions\DuplicateException;
 
 use Hash, Validator, Exception;
 
@@ -61,7 +61,7 @@ class Pengguna extends BaseModel
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	public function visas()
 	{
-		return $this->hasMany('Thunderlabid\Immigration\Models\Visa_A', 'immigration_pengguna_id');
+		return $this->hasMany('TImmigration\Models\Visa_A', 'immigration_pengguna_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -134,7 +134,7 @@ class Pengguna extends BaseModel
 		$visa_ag->save();
 
 		//4. fire event
-		// $this->addEvent(new \Thunderlabid\Immigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
+		// $this->addEvent(new \TImmigration\Events\Jobs\FireEventVisaGranted($this->toArray()));
 
 		//it's a must to return value
 		return $this;

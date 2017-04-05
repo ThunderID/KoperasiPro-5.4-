@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models;
+namespace TTerritorial\Models;
 
 /**
  * Model Koperasi

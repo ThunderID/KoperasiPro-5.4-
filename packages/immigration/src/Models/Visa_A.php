@@ -1,13 +1,13 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models;
+namespace TImmigration\Models;
 
 /**
  * Used for Visa Models
  * 
  * @author cmooy
  */
-use Thunderlabid\Immigration\Models\Traits\Policies\VisaIDTrait;
+use TImmigration\Models\Traits\Policies\VisaIDTrait;
 
 /**
  * Model Visa
@@ -62,7 +62,7 @@ class Visa_A extends BaseModel
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	public function koperasi()
 	{
-		return $this->belongsTo('Thunderlabid\Immigration\Models\Koperasi_RO', 'immigration_ro_koperasi_id');
+		return $this->belongsTo('TImmigration\Models\Koperasi_RO', 'immigration_ro_koperasi_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Web\Services\Credit;
 use App\Web\Services\TAuth;
 
-use Thunderlabid\Credit\Valueobject\Author;
-use Thunderlabid\Credit\Valueobject\Status;
+use TKredit\Valueobject\Author;
+use TKredit\Valueobject\Status;
 
-use Thunderlabid\Credit\Repository\CreditRepository;
+use TKredit\Repository\CreditRepository;
 
 use Redirect;
 

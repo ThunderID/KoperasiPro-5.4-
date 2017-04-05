@@ -80,7 +80,7 @@ class PengajuanMobile_RO extends BaseModel
 	 */	
  	public function kredit()
 	{
-		return $this->belongsto('Thunderlabid\Credit\Models\Kredit');
+		return $this->belongsto('TKredit\Models\Pengajuan');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

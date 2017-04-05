@@ -1,11 +1,8 @@
 <?php
 
-namespace Thunderlabid\API\Commands\Credit;
+namespace TAPICommands\UIHelper;
 
 use Illuminate\Support\Str;
-use Illuminate\Http\UploadedFile;
-
-use Thunderlabid\Credit\Models\Kredit;
 
 use Exception, Validator, TAuth, Storage;
 use Carbon\Carbon;

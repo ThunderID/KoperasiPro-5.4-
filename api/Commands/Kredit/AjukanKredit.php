@@ -1,9 +1,9 @@
 <?php
 
-namespace Thunderlabid\API\Commands\Credit;
+namespace TAPICommands\Kredit;
 
-use Thunderlabid\Credit\Models\Kredit;
-use Thunderlabid\Credit\Models\PengajuanMobile_RO;
+use TKredit\Models\Kredit;
+use TKredit\Models\PengajuanMobile_RO;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 

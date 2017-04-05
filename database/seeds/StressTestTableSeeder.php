@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Thunderlabid\Credit\Models\Kredit;
+use TKredit\Models\Kredit;
 
 class StressTestTableSeeder extends Seeder
 {

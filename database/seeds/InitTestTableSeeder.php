@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Thunderlabid\Credit\Models\Kredit;
-use Thunderlabid\Immigration\Models\Pengguna;
+use TKredit\Models\Kredit;
+use TImmigration\Models\Pengguna;
 
 use Carbon\Carbon;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\API\Queries\Credit;
+namespace TAPIQueries\UIHelper;
 
 class JSend
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Web\Commands\UIHelper\UploadGambar;
+use TCommands\UIHelper\UploadGambar;
 
 use Input, Carbon\Carbon, TAuth;
 

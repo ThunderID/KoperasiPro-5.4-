@@ -1,10 +1,10 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models;
+namespace TImmigration\Models;
 
-use Thunderlabid\Immigration\Models\Traits\GuidTrait;
+use TImmigration\Models\Traits\GuidTrait;
 
-use Thunderlabid\Immigration\Exceptions\DuplicateException;
+use TImmigration\Exceptions\DuplicateException;
 
 use Hash, Validator, Exception;
 

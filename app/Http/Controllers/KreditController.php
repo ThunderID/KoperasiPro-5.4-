@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Web\Commands\UIHelper\UploadGambar;
+use TCommands\UIHelper\UploadGambar;
 
 use TQueries\Kredit\DaftarKredit;
-use Thunderlabid\Web\Commands\Credit\AjukanKredit;
-use Thunderlabid\Web\Commands\Credit\UpdateKredit;
-use Thunderlabid\Web\Commands\Credit\UpdateKreditur;
-use Thunderlabid\Web\Commands\Credit\TambahJaminanKendaraan;
-use Thunderlabid\Web\Commands\Credit\TambahJaminanTanahBangunan;
+use TCommands\Kredit\PengajuanKreditBaru;
+use TCommands\Kredit\UpdateKredit;
+use TCommands\Kredit\UpdateKreditur;
+use TCommands\Kredit\TambahJaminanKendaraan;
+use TCommands\Kredit\TambahJaminanTanahBangunan;
 
-use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
+use TQueries\Territorial\TeritoriIndonesia;
 
-use Thunderlabid\Web\Queries\Credit\UIHelper\JangkaWaktuKredit;
-use Thunderlabid\Web\Queries\Credit\UIHelper\JenisKredit;
-use Thunderlabid\Web\Queries\Credit\UIHelper\JenisJaminanKendaraan;
-use Thunderlabid\Web\Queries\Credit\UIHelper\MerkJaminanKendaraan;
+use TQueries\Kredit\UIHelper\JangkaWaktuKredit;
+use TQueries\Kredit\UIHelper\JenisKredit;
+use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
+use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
 
 use App\Web\Services\Person;
 use Input, PDF, Carbon\Carbon;
@@ -172,7 +172,8 @@ class KreditController extends Controller
 			$kredit['jaminan_kendaraan']		= $temp_jaminan_kendaraan;
 			$kredit['jaminan_tanah_bangunan']	= $temp_jaminan_tanah_bangunan;
 
-			dispatch(new AjukanKredit($kredit));
+			$simpan 	= new PengajuanKreditBaru($kredit);
+			$simpan->handle();
 
 			//function from parent to redirecting
 			return $this->generateRedirect(route('credit.index'));

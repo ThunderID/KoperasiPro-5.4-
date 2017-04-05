@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models;
+namespace TTerritorial\Models;
 
 /**
  * Model Koperasi
@@ -64,7 +64,7 @@ class Distrik_RO extends BaseModel
 	 */	
  	public function desa()
 	{
-		return $this->hasMany('Thunderlabid\Territorial\Models\Desa_RO', 'territorial_distrik_id', 'id');
+		return $this->hasMany('TTerritorial\Models\Desa_RO', 'territorial_distrik_id', 'id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
-use Thunderlabid\Web\Queries\Credit\DaftarKreditur;
+use TQueries\Territorial\TeritoriIndonesia;
+use TQueries\Kredit\DaftarKreditur;
 
 /**
  * Class HelperController

@@ -1,6 +1,6 @@
 <?php 
 
-namespace Thunderlabid\Territorial\Models\Observers;
+namespace TTerritorial\Models\Observers;
 
 /**
  * Observer Event

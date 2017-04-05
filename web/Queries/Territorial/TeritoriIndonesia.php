@@ -1,14 +1,14 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\Territorial;
+namespace TQueries\Territorial;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Territorial\Models\Provinsi_RO as Model;
-use Thunderlabid\Territorial\Models\Regensi_RO;
-use Thunderlabid\Territorial\Models\Distrik_RO;
-use Thunderlabid\Territorial\Models\Desa_RO;
+use TTerritorial\Models\Provinsi_RO as Model;
+use TTerritorial\Models\Regensi_RO;
+use TTerritorial\Models\Distrik_RO;
+use TTerritorial\Models\Desa_RO;
 
 use Hash, Exception, Session, TAuth;
 

@@ -3,10 +3,10 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Thunderlabid\Immigration\Models\Pengguna;
+use TImmigration\Models\Pengguna;
 
 use Carbon\Carbon;
-use Thunderlabid\Web\Queries\ACL\SessionBasedAuthenticator;
+use TQueries\ACL\SessionBasedAuthenticator;
 
 class InitLanjutSurveiTableSeeder extends Seeder
 {

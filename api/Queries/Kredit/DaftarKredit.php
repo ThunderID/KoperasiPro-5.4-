@@ -1,11 +1,11 @@
 <?php
 
-namespace Thunderlabid\API\Queries\Credit;
+namespace TAPIQueries\Kredit;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Credit\Models\PengajuanMobile_RO as Model;
+use TKredit\Models\PengajuanMobile_RO as Model;
 
 use Hash, Exception, Session, TAuth;
 
@@ -89,7 +89,7 @@ class DaftarKredit
 		}
 
 		//2.allow koperasi
-		$model  				= $model->where('model', $queries['model'])->whereHas('kredit', function($q)use($queries){return $q->status($queries['status']);});
+		$model  				= $model->where('mobile_id', $queries['id'])->whereHas('kredit', function($q)use($queries){return $q->status($queries['status']);});
 
 		return $model;
 	} 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Web;
+namespace TWeb;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +24,6 @@ class WebServiceProvider extends ServiceProvider
 	public function register()
 	{
 		//
-		$this->app->bind('TAuth', 'Thunderlabid\Web\Queries\ACL\SessionBasedAuthenticator');
+		$this->app->bind('TAuth', 'TQueries\ACL\SessionBasedAuthenticator');
 	}
 }

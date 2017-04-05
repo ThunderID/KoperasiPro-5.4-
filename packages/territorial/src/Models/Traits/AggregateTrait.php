@@ -1,8 +1,8 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models\Traits;
+namespace TTerritorial\Models\Traits;
 
-use Thunderlabid\Territorial\Exceptions\IndirectModificationException;
+use TTerritorial\Exceptions\IndirectModificationException;
 
 /**
  * Trait Link list

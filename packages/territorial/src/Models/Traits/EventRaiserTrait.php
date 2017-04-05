@@ -1,8 +1,8 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models\Traits;
+namespace TTerritorial\Models\Traits;
 
-use Thunderlabid\Territorial\Models\Observers\EventObserver;
+use TTerritorial\Models\Observers\EventObserver;
 
 /**
  * Trait event raiser

@@ -10,17 +10,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use Thunderlabid\API\Queries\Credit\JSend;
-use Thunderlabid\API\Queries\Credit\DaftarKredit;
-use Thunderlabid\API\Commands\Credit\AjukanKredit;
-use Thunderlabid\API\Commands\Credit\UploadBase64GambarKTP;
+use TAPIQueries\UIHelper\JSend;
+use TAPIQueries\Kredit\DaftarKredit;
+use TAPICommands\Kredit\AjukanKredit;
+use TAPICommands\UIHelper\UploadBase64GambarKTP;
 
 use Input;
 
 class KreditController extends Controller
 {
-	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
 	public function __construct(Request $request)
 	{
 		$this->request 	= $request;
@@ -29,7 +27,7 @@ class KreditController extends Controller
 	public function index()
 	{
 		$data 		= new DaftarKredit;
-		$data 		= $data->get(['model' => $this->request->input('model')]);
+		$data 		= $data->get(['id' => $this->request->input('id')]);
 
 		$new_data 	= [];
 		foreach ($data as $key => $value) 

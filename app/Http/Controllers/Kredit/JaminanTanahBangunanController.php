@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Kredit;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\API\Queries\Credit\JSend;
+use TAPIQueries\Credit\JSend;
 
 use App\Http\Controllers\Controller;
-use Thunderlabid\Web\Commands\Credit\HapusJaminanTanahBangunan;
+use TCommands\Kredit\HapusJaminanTanahBangunan;
 
 use Input, PDF, Carbon\Carbon, Redirect;
 
