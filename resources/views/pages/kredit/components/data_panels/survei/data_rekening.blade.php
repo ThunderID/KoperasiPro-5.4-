@@ -6,8 +6,8 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Keuangan
-			@if(!empty($page_datas->credit['keuangan']))
+		<h4 class="text-uppercase">Data Rekening
+			@if(!empty($page_datas->credit['rekening']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -24,13 +24,12 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
-	
+@if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
+	@foreach ($page_datas->credit['rekening'] as $key => $value)
 		<div class="row">
 			@php $i=0; @endphp
-			
-				@foreach ($page_datas->credit['keuangan'] as $k => $v)
 
+				@foreach ($value as $k => $v)
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
@@ -54,7 +53,7 @@
 					@php $i++; @endphp
 				@endforeach
 		</div>
-
+	@endforeach
 @else
 	<!-- No data -->
 	<div class="row">
@@ -76,4 +75,4 @@
 	])
 		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
 	@endcomponent
-@endpush
+@endpush	

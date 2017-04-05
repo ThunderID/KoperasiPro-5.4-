@@ -26,7 +26,7 @@
 		<div class="col-md-12">
 			<h5 class="text-uppercase text-light">Jaminan Tanah &amp; Bangunan</h5>
 			<fieldset class="form-group">
-				<label for="">Jenis Sertifikat</label>
+				<label for="">Tipe</label>
 				<div class="row">
 					<div class="col-md-7">
 						{!! Form::select('jaminan_tanah_bangunan[][tipe]', [

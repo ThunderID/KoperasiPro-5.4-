@@ -32,7 +32,7 @@
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
 				    @foreach($page_datas->credits as $key => $value)
-				        <a href="{{ route('credit.show', array_merge(['id' => $value['nomor_dokumen_kredit']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+				        <a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
 				            <h4 class="list-group-item-heading">
 				                {{ $value['kreditur']['nama'] }} 
 								<span class="badge pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">

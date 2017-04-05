@@ -28,8 +28,14 @@
 				right: 2px;
 			}
 			&::after {
-				border-left-color: white;
+				background-color: $color-active;
+				border-left-color: $color-white;
+				margin-top: -20px;
+				right: -1px;
 				z-index: 1;
+			}
+			&::before {
+				border-left-color: $color-white;
 			}
 			.disabled {
 				&::after {
@@ -68,6 +74,7 @@
 					}
 				}
 				&::after {
+					background-color: $color-white;
 					border-left-color: $color-active;
 					z-index: 1;
 				}
@@ -81,19 +88,31 @@
 					position: relative;
 				}
 				&::before {
+					border-left-color: $color-white;
 					z-index: 1;
+					right: -2px;
 				}
 				&::after {
+					background-color: $color-white;
+					border-left-color: $color-white;
 					z-index: 10;
 				}
-			}
-			&.last {
-				&.active {
-					&::after {
-						border-left-color: $color-active;
-						color: white;
-						z-index: 1;
+				&.last {
+					&.active {
+						&::after {
+							border-left-color: $color-active;
+							color: white;
+							z-index: 1;
+						}
 					}
+				}
+			}
+			
+			&.first {
+				&::after {
+					background-color: $color-white;
+					border-left-color: $color-white;
+					z-index: 10;
 				}
 			}
 		}

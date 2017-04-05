@@ -6,12 +6,12 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Keuangan
-			@if(!empty($page_datas->credit['keuangan']))
-				@if($edit == true)
+		<h4 class="text-uppercase">Data Jaminan Tanah &amp; Bangunan
+			@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
+				@if ($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+						<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -24,13 +24,12 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
-	
+@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
+	@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			@php $i=0; @endphp
 			
-				@foreach ($page_datas->credit['keuangan'] as $k => $v)
-
+				@foreach ($value as $k => $v)
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
@@ -43,6 +42,10 @@
 								<p class="text-capitalize">
 									@if ($k == 'survei')
 										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
+									@elseif ($k == 'alamat')
+										{{ $v['alamat'] }} <br/>
+										RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} {{ $v['desa'] }} {{ $v['distrik'] }} <br/>
+										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
 									@else
 										{{ str_replace('_', ' ', $v) }}
 									@endif
@@ -54,7 +57,7 @@
 					@php $i++; @endphp
 				@endforeach
 		</div>
-
+	@endforeach
 @else
 	<!-- No data -->
 	<div class="row">
