@@ -10,6 +10,7 @@ use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
 use TCommands\Kredit\HapusPengajuanKredit;
+use TCommands\Kredit\LanjutkanUntukSurvei;
 
 use TCommands\Kredit\SimpanSurveiKredit;
 
@@ -21,7 +22,7 @@ use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
 use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
 
 use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon;
+use Input, PDF, Carbon\Carbon, Exception;
 
 /**
  * Kelas CreditController
@@ -282,10 +283,32 @@ class KreditController extends Controller
 	 */
 	public function status($id, $status)
 	{
-		$result		= $this->service->updateStatus($id, $status);
+		try
+		{
+			if(str_is(strtolower($status), 'survei'))
+			{
+				$simpan 	= new LanjutkanUntukSurvei($id);
+				$simpan->handle();
+			}
+			else
+			{
+				throw new Exception("Invalid Status", 1);
+			}
+		}
+		catch(Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
 	}
 
 	/**
