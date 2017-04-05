@@ -82,7 +82,7 @@ class KreditAktif_RO extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
-											'id', 
+											'nomor_dokumen_kredit', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 
@@ -113,6 +113,11 @@ class KreditAktif_RO extends BaseModel
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
 	
+	protected function getIdAttribute($value)
+	{
+		return $this->attributes['nomor_dokumen_kredit'];
+	}
+
 	protected function getPengajuanKreditAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
