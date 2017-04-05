@@ -90,6 +90,7 @@ class DaftarKredit
 				$parsed_credit 	=  $complete->toArray();
 				$parsed_credit['status_berikutnya']	= 'survei';
 				$parsed_credit['status_sebelumnya']	= '';
+				$parsed_credit['status']			= 'pengajuan';
 				break;
 
 			case 'survei':
@@ -110,14 +111,15 @@ class DaftarKredit
 				
 				$parsed_credit['kepribadian']			= Kepribadian_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
 				
-				$parsed_credit['keuangan']				= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				$parsed_credit['keuangan']				= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first()->toArray();
 				
-				$parsed_credit['nasabah']				= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+				$parsed_credit['nasabah']				= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first()->toArray();
 				
 				$parsed_credit['rekening']				= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
 
 				$parsed_credit['status_berikutnya']	= 'setujui';
 				$parsed_credit['status_sebelumnya']	= 'pengajuan';
+				$parsed_credit['status']			= 'survei';
 				break;
 			default:
 				throw new Exception("NOT FOUND", 404);

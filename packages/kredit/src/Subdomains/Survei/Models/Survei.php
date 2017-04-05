@@ -75,6 +75,8 @@ class Survei extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
+											// 'id', 
+											'nomor_dokumen_kredit', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 
