@@ -85,7 +85,7 @@ class DaftarKredit
 		switch ($model->status) 
 		{
 			case 'pengajuan':
-				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat', 'riwayat_status'])->first();
+				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat'])->first();
 
 				$parsed_credit 	=  $complete->toArray();
 				$parsed_credit['status_berikutnya']	= 'survei';
@@ -123,7 +123,7 @@ class DaftarKredit
 				throw new Exception("NOT FOUND", 404);
 				break;
 		}
-dd($parsed_credit);
+
 		return $parsed_credit;
 	}
 
