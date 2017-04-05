@@ -43,6 +43,7 @@ class Relasi_A extends BaseModel
 											'nama'				,
 											'alamat'			,
 											'telepon'			,
+											'hubungan'			,
 										];
 	/**
 	 * Basic rule of database
@@ -52,6 +53,7 @@ class Relasi_A extends BaseModel
 	protected $rules				=	[
 											'nama'				=> 'max:255',
 											'telepon'			=> 'max:255',
+											'hubungan'			=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -88,22 +90,12 @@ class Relasi_A extends BaseModel
 	 */
 	public function tambahRelasi(Orang $orang, $value)
 	{
-		//1. simpan relasi
-		//1a. simpan  orang
-		$relasi 		= Orang::nik($value['nik'])->first();
-		if(!$relasi)
-		{
-			$relasi	= new Orang;
-		}
-
-		$relasi 		= $relasi->fill($value);
-		$relasi->save();
-
 		//1b. simpan relasi
-		$this->attributes['relasi_id']			= $relasi->id;
+		$this->attributes['orang_id']			= $orang->id;
 		$this->attributes['nama']				= $value['nama'];
 		$this->attributes['alamat']				= $value['alamat'];
 		$this->attributes['telepon']			= $value['telepon'];
+		$this->attributes['hubungan']			= $value['hubungan'];
 
 		$this->save();
 

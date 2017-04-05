@@ -5,7 +5,7 @@ namespace TQueries\Kredit;
 ///////////////
 //   Models  //
 ///////////////
-use TKredit\Models\Orang as Model;
+use TKredit\Pengajuan\Models\Orang as Model;
 
 use Hash, Exception, Session, TAuth;
 
@@ -85,7 +85,8 @@ class DaftarKreditur
 		
 		//2.allow koperasi
 		$queries['koperasi_id']	= [TAuth::activeOffice()['koperasi']['id'], 0];
-		$model  				= $model->whereHas('kredit', function($q)use($queries) {$q->koperasi($queries['koperasi_id']);});
+		$model  				= $model->whereHas('kredit', function($q)use($queries) {$q;});
+			// ->koperasi($queries['koperasi_id'])
 
 		return $model;
 	} 

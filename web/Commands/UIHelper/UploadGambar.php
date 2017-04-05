@@ -1,6 +1,6 @@
 <?php
 
-namespace TCommands\Kredit;
+namespace TCommands\UIHelper;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;

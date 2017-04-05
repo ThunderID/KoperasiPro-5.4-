@@ -40,7 +40,10 @@ class SimpanPengajuanKredit
 	
 			DB::BeginTransaction();
 
-			$kredit->fill($this->pengajuan);
+			if(isset($this->pengajuan['pengajuan_kredit']))
+			{
+				$kredit->fill($this->pengajuan);
+			}
 
 			if(isset($this->pengajuan['jaminan_kendaraan']))
 			{

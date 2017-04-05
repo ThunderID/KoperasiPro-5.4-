@@ -19,6 +19,7 @@ class CreateKreditPengajuanRelasiTable extends Migration
 			$table->string('nama', 255);
 			$table->text('alamat');
 			$table->string('telepon', 255);
+			$table->string('hubungan', 255);
 			$table->timestamps();
 			$table->softDeletes();
 

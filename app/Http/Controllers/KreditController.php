@@ -8,10 +8,8 @@ use TCommands\UIHelper\UploadGambar;
 
 use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
-use TCommands\Kredit\UpdateKredit;
-use TCommands\Kredit\UpdateKreditur;
-use TCommands\Kredit\TambahJaminanKendaraan;
-use TCommands\Kredit\TambahJaminanTanahBangunan;
+use TCommands\Kredit\SimpanPengajuanKredit;
+use TCommands\Kredit\HapusPengajuanKredit;
 
 use TCommands\Kredit\SimpanSurveiKredit;
 
@@ -37,11 +35,12 @@ class KreditController extends Controller
 	/**
 	 * Creates construct from controller to get instate some stuffs
 	 */
-	public function __construct()
+	public function __construct(Request $request)
 	{
 		parent::__construct();
 
 		$this->service 		= new DaftarKredit;
+		$this->request 		= $request;
 	}
 
 	/**
@@ -217,32 +216,49 @@ class KreditController extends Controller
 					$kreditur['foto_ktp'] 			= $upload['url'];
 				}
 
-				dispatch(new UpdateKreditur($id, $kreditur));
+				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$simpan->handle();
 			}
 
-			//update jamina
+			if (Input::has('relasi'))
+			{
+				$kreditur 							= Input::only('relasi');
+				$kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
+				$kreditur['relasi']['telepon']		= '';
+				$kreditur['relasi']['alamat']		= str_replace('=', ' ', http_build_query($kreditur['relasi']['alamat'], null, ' '));
+
+				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$simpan->handle();
+			}
+
+			//update jaminan
 			if (Input::has('jaminan_kendaraan'))
 			{
-				dispatch(new TambahJaminanKendaraan($id, Input::get('jaminan_kendaraan')));
+				$simpan 	= new SimpanPengajuanKredit($id, Input::only('jaminan_kendaraan'));
+				$simpan->handle();
 			}
 
 			if (Input::has('jaminan_tanah_bangunan'))
 			{
-				dispatch(new TambahJaminanTanahBangunan($id, Input::get('jaminan_tanah_bangunan')));
+				$simpan 	= new SimpanPengajuanKredit($id, Input::only('jaminan_tanah_bangunan'));
+				$simpan->handle();
 			}
 
 			if (Input::has('jangka_waktu'))
 			{
-				dispatch(new UpdateKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu')));
+				$simpan 	= new SimpanPengajuanKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu'));
+				$simpan->handle();
 			}
 
 			if (Input::has('aset_usaha'))
 			{
-				$data = new SimpanSurveiKredit($id, Input::only('aset_usaha'));
-				$data->handle();
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_usaha'));
+				$simpan->handle();
 			}
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
+		
+			return $this->generateRedirect(route('credit.index'));
 		}
 		catch (Exception $e)
 		{
@@ -254,10 +270,9 @@ class KreditController extends Controller
 			{
 				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
 			}
-		}
 
-		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.show', $id));
+			return $this->generateRedirect(route('credit.index'));
+		}
 	}
 
 	/**
@@ -315,7 +330,7 @@ class KreditController extends Controller
 
 		// get active address on person
 		$person_id 									= $this->page_datas->credit['kreditur']['id'];
-// dd($this->page_datas);
+
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
 			case 'pengajuan':
@@ -350,11 +365,31 @@ class KreditController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//using credit service to delete credit data
-		$credit    = Credit::delete($id);
+		try {
+			if($this->request->is('hapus/jaminan/kendaraan/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['id' => $this->request->jaminan_kendaraan_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/jaminan/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->jaminan_tanah_bangunan_id]]);
+				$simpan->handle();
+			}
+		} catch (Exception $e) {
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
 	}
 
 	/**

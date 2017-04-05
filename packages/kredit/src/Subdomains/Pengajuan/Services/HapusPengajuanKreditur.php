@@ -54,7 +54,6 @@ class HapusPengajuanKreditur
 			$value 					= Value::findorfail($this->value['id']);
 			$value->delete();
 
-
 			DB::commit();
 		}
 		catch(Exception $e)

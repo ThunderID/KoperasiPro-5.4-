@@ -48,7 +48,7 @@ class HapusPengajuanJaminanTanahBangunan
 			}
 
 			$value 					= Value::findorfail($this->value['id']);
-			$alamat 				= Alamat_A::findorfail($value);
+			$alamat 				= Alamat_A::findorfail($value->alamat_id);
 			$alamat->delete();
 			$value->delete();
 

@@ -40,7 +40,7 @@
 								<td>{{ $v['nomor_bpkb'] }}</td>
 								<td>{{ ucwords($v['atas_nama']) }}</td>
 								<td>
-									<a href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_bpkb' => $v['nomor_bpkb']]) }}" class="text-danger">Hapus</a>
+									<a href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_kendaraan_id' => $v['id']]) }}" class="text-danger">Hapus</a>
 								</td>
 								
 							</tr>
@@ -84,7 +84,7 @@
 								<td>{{ isset($v['masa_berlaku']) ? $v['masa_berlaku'] : '---------' }}</td>
 								<td>{{ ucwords($v['atas_nama']) }}</td>
 								<td>
-									<a href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'nomor_sertifikat' => $v['nomor_sertifikat']]) }}" class="text-danger">Hapus</a>
+									<a href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $v['id']]) }}" class="text-danger">Hapus</a>
 								</td>
 							</tr>
 						@empty

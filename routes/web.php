@@ -12,17 +12,6 @@
 */
 Route::get('/test', function () 
 {
-	$data 	= new TKredit\Pengajuan\Models\Pengajuan;
-	dd($data->with(['kreditur'])->id('6E722E00-7487-4ED7-9BF9-A875F7B2CCE0')->get());
-			$credentials	=	[
-								'email'				=> 'admin@ksp.id',
-								'password'			=> 'admin',
-								'nama'				=> 'C Mooy'
-							];
-							TAuth::login($credentials);
-				// '8B9839C9-ADD4-4FAD-86D5-69A501BCD712'			
-	$data 	= new TQueries\Kredit\DaftarKredit;
-	dd($data->get());
 	$data  	= [
 			  	"id" 				=> "95F5BC06-9BF8-416A-93E1-B52B93E15743",
   				"jenis_kredit" 		=> "pt",
@@ -255,7 +244,7 @@ Route::get('/test', function ()
 			];
 
 
-	// $data 	= new Thunderlabid\Web\Queries\Credit\DaftarKredit;
+	// $data 	= new TQueries\Kredit\DaftarKredit;
 	// $data 	= $data->detailed('95F5BC06-9BF8-416A-93E1-B52B93E15743');
 
 	dd($data);
@@ -277,8 +266,8 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
 	
 	//Menu jaminan
-	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{nomor_bpkb}',	['uses' => 'Kredit\JaminanKendaraanController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
-	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{nomor_sertifikat}',	['uses' => 'Kredit\JaminanTanahBangunanController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
+	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
+	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
 
 	// route for print kredit
 	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@prints',	'as' => 'credit.print']);
@@ -292,7 +281,6 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
-
 	//Menu Settings
 	//This one to change which office currently active
 	Route::get('activate/{idx}', 				['uses' => 'LoginController@activateOffice', 	'as' => 'office.activate']);
@@ -317,7 +305,7 @@ Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa
 Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 'as' => 'get.kreditur.index']);
 
 // Route::get('daftar/kreditur', function() {
-// 	$data = new Thunderlabid\Web\Queries\Credit\DaftarKreditur;
+// 	$data = new TQueries\Kredit\DaftarKreditur;
 
 // 	dd($data->get(['nik' => '35-73-03-478656-0003']));
 // });

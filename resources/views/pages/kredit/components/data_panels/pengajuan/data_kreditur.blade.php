@@ -113,26 +113,30 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 		<div class="col-sm-12">
 			<h5 class="text-uppercase text-light">Pekerjaan</h5>
 		</div>
-		@if (isset($page_datas->credit['kreditur']['pekerjaan']))
-			<div class="col-sm-6">
-				<div class="row m-b-xl m-t-xs-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm"><strong>Jenis Pekerjaan</strong></p>
-						<p>{{ ucwords(str_replace('_', ' ', $page_datas->credit['kreditur']['pekerjaan'])) }}</p>
+		<div class="col-sm-12">
+			@if (isset($page_datas->credit['kreditur']['pekerjaan']))
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="row m-b-xl m-t-xs-m-print">
+							<div class="col-sm-12">
+								<p class="p-b-sm"><strong>Jenis Pekerjaan</strong></p>
+								<p>{{ ucwords(str_replace('_', ' ', $page_datas->credit['kreditur']['pekerjaan'])) }}</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="row m-b-xl m-t-xs-m-print">
+							<div class="col-sm-12">
+								<p class="p-b-sm "><strong>Penghasilan Bersih</strong></p>
+								<p>{{ $page_datas->credit['kreditur']['penghasilan_bersih'] }}</p>
+							</div>
+						</div>				
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="row m-b-xl m-t-xs-m-print">
-					<div class="col-sm-12">
-						<p class="p-b-sm "><strong>Penghasilan Bersih</strong></p>
-						<p>{{ $page_datas->credit['kreditur']['penghasilan_bersih'] }}</p>
-					</div>
-				</div>				
-			</div>
-		@else
-			<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#modal-data-pekerjaan" no-data-pjax> Tambahkan Sekarang </a></p>
-		@endif
+			@else
+				<p>Belum ada data disimpan. <a class="hidden-print" href="#" data-toggle="modal" data-target="#modal-data-pekerjaan" no-data-pjax> Tambahkan Sekarang </a></p>
+			@endif
+		</div>
 	</div>
 @endif
 
