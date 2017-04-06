@@ -6,20 +6,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Rekening
-			@if(!empty($page_datas->credit['rekening']))
-				@if($edit == true)
-					<span class="pull-right">
-						<small>
-						<a href="#rekening" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
+		<h4 class="text-uppercase">Data Rekening</h4>
 		<hr/>
 	</div>
 </div>
@@ -28,8 +15,22 @@
 	@foreach ($page_datas->credit['rekening'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				rekening {{ $key+1 }}
-				<hr/>
+				<p class="m-b-sm text-uppercase">
+					rekening {{ $key+1 }}
+
+					@if (!empty($page_datas->credit['rekening']))
+						@if ($edit == true)
+							<span class="pull-right">
+								<a href="#" data-toggle="hidden" data-target="rekening-{{ $key }}" data-panel="data-rekening" no-data-pjax>
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+									 Edit
+								</a>
+							</span>
+						@endif
+					@endif
+
+				</p>
+				<hr class="m-t-sm m-b-sm"/>
 			</div>
 			@php $i=0; @endphp
 
@@ -63,6 +64,12 @@
 			@endforeach
 		</div>
 	@endforeach
+
+	<div class="row m-t-md m-b-md">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<a href="#" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Rekening</a>
+		</div>
+	</div>
 @else
 	<!-- No data -->
 	<div class="row">
@@ -73,15 +80,3 @@
 @endif
 
 <div class="clearfix m-b-md">&nbsp;</div>
-
-@push('show_modals')
-	@component('components.modal', [
-		'id' 		=> 'data_aset',
-		'title'		=> 'Data Aset',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
-	@endcomponent
-@endpush	
