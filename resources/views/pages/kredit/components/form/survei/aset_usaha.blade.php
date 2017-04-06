@@ -1,3 +1,4 @@
+{!! Form::hidden('aset_usaha[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
 	<label for="">Bidang Usaha</label>
 	<div class="row">

@@ -3,7 +3,11 @@
 	<label for="">Nama</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('nasabah[nama]', (isset($data['nama']) ? $data['nama'] : null), ['class' => 'form-control']) !!}
+			@if (isset($data['id']))
+				{!! Form::text('nasabah[nama]', (isset($data['nama']) ? $data['nama'] : null), ['class' => 'form-control', 'readonly' => true]) !!}
+			@else
+				{!! Form::text('nasabah[nama]', (isset($data['nama']) ? $data['nama'] : null), ['class' => 'form-control']) !!}
+			@endif
 		</div>
 	</div>
 </fieldset>

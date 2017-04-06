@@ -1,3 +1,4 @@
+{!! Form::hidden('jaminan_kendaraan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
 	<label for="">Jenis Kendaraan</label>
 	<div class="row">
@@ -89,3 +90,11 @@
 		</div>
 	</div>
 </fieldset>
+
+@include('components.helpers.forms.address', [
+	'param'		=> ['prefix'	=> 'jaminan_kendaraan'],
+	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
+	'settings'	=> [
+		'class'		=> 'input-kendaraan'
+	]
+])

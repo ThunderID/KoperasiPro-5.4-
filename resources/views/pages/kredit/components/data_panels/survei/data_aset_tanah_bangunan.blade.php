@@ -6,30 +6,31 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Aset Tanah &amp; Bangunan
-			@if(!empty($page_datas->credit['aset_tanah_bangunan']))
-				@if($edit == true)
-					<span class="pull-right">
-						<small>
-						<a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
+		<h4 class="text-uppercase">Data Aset Tanah &amp; Bangunan</h4>
 		<hr/>
 	</div>
 </div>
 
 @if (isset($page_datas->credit['aset_tanah_bangunan']) && !empty($page_datas->credit['aset_tanah_bangunan']))
 	@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
-		<div class="row">
+		<div class="row m-t-sm">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				aset tanah &amp; bangunan {{ $key+1 }}
-				<hr/>
+				<p class="m-b-sm text-uppercase">
+					aset tanah &amp; bangunan {{ $key+1 }}
+
+					@if(!empty($page_datas->credit['aset_usaha']))
+						@if($edit == true)
+							<span class="pull-right">
+								<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan-{{ $key }}" data-panel="data-aset" no-data-pjax>
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+									 Edit
+								</a>
+							</span>
+						@endif
+					@endif
+
+				</p>
+				<hr class="m-t-sm m-b-sm"/>
 			</div>
 			@php $i=0; @endphp
 				{{-- foreach data --}}
@@ -65,9 +66,15 @@
 				@endforeach
 		</div>
 	@endforeach
+
+	<div class="row m-t-md m-b-md">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Tanah &amp; Bangunan</a>
+		</div>
+	</div>
 @else
 	<!-- No data -->
-	<div class="row m-b-xl">
+	<div class="row m-b-md">
 		<div class="col-sm-12">
 			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
@@ -75,15 +82,3 @@
 @endif
 
 <div class="clearfix m-b-md">&nbsp;</div>
-
-@push('show_modals')
-	@component('components.modal', [
-		'id' 		=> 'data_aset',
-		'title'		=> 'Data Aset',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
-	@endcomponent
-@endpush	

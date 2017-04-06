@@ -251,17 +251,59 @@ class KreditController extends Controller
 				$simpan->handle();
 			}
 
-			// aset usaha
+			// aset usaha for survei
 			if (Input::has('aset_usaha'))
 			{
 				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_usaha'));
 				$simpan->handle();
 			}
 
-			// aset kendaraan
+			// aset kendaraan for survei
 			if (Input::has('aset_kendaraan'))
 			{
 				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_kendaraan'));
+				$simpan->handle();
+			}
+
+			// aset tanah & bangunan for survei
+			if (Input::has('aset_tanah_bangunan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_tanah_bangunan'));
+				$simpan->handle();
+			}
+
+			// jaminan kendaraan for survei
+			if (Input::has('jaminan_kendaraan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_kendaraan'));
+				$simpan->handle();
+			}
+
+			// jaminan tanah & bangunan for survei
+			if (Input::has('jaminan_tanah_bangunan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_tanah_bangunan'));
+				$simpan->handle();
+			}
+
+			// rekening for survei
+			if (Input::has('rekening'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('rekening'));
+				$simpan->handle();
+			}
+
+			// keuangan for survei
+			if (Input::has('keuangan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('keuangan'));
+				$simpan->handle();
+			}
+
+			// nasabah for survei
+			if (Input::has('nasabah'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('nasabah'));
 				$simpan->handle();
 			}
 
