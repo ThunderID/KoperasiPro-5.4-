@@ -1,37 +1,17 @@
-@php
-	if(!isset($edit)){
-		$edit = true;
-	}
-@endphp
-
 <div class="row">
-	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Aset Tanah &amp; Bangunan
-			@if(!empty($page_datas->credit['aset_tanah_bangunan']))
-				@if($edit == true)
-					<span class="pull-right">
-						<small>
-						<a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
-		<hr/>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<p class="text-capitalize m-b-xs"><strong>aset usaha</strong></p>
 	</div>
 </div>
-
-@if (isset($page_datas->credit['aset_tanah_bangunan']) && !empty($page_datas->credit['aset_tanah_bangunan']))
-	@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
+@if (isset($page_datas->credit['aset_usaha']) && !empty($page_datas->credit['aset_usaha']))
+	@forelse ($page_datas->credit['aset_usaha'] as $key => $value)
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				aset tanah &amp; bangunan {{ $key+1 }}
-				<hr/>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left text-capitalize text-muted">
+				<p class="m-b-xs">aset usaha {{ $key+1 }}</p>
+				<hr class="m-t-xs m-b-xs"/>
 			</div>
 			@php $i=0; @endphp
+			
 				{{-- foreach data --}}
 				@foreach ($value as $k => $v)
 					{{-- remove field id, survei_id, alamat_id agar tidak ditampilkan --}}
@@ -41,13 +21,14 @@
 							</div>
 							<div class="row">
 						@endif
-		
 						<div class="col-sm-6">
-							<div class="row m-b-lg">
-								<div class="col-sm-12">
-									<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-									<p class="text-capitalize">
-										@if ($k == 'survei')
+							<div class="row">
+								<div class="col-sm-3">
+									<p class="m-b-xs">{{ ucwords(str_replace('_', ' ', $k)) }}</p>
+								</div>
+								<div class="col-sm-9">
+									<p class="text-capitalize m-b-xs">
+										: @if ($k == 'survei')
 											{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
 										@elseif ($k == 'alamat')
 											{{ $v['alamat'] }} <br/>
@@ -60,21 +41,23 @@
 								</div>
 							</div>
 						</div>
+
 						@php $i++; @endphp
 					@endif
 				@endforeach
 		</div>
-	@endforeach
+	@empty
+	@endforelse
 @else
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-usaha" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
 
-<div class="clearfix m-b-md">&nbsp;</div>
+<div class="clearfix m-b-">&nbsp;</div>
 
 @push('show_modals')
 	@component('components.modal', [

@@ -8,8 +8,8 @@
 				<p class="m-b-lg">Silahkan masukkan Email dan Password Anda.</p>
 
 				@include('components.alertbox')
-				
-				{!! Form::open(['url' => route('login.store'), 'id' => 'login-form', 'class' => 'form no-enter', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true']) !!}
+
+				{!! Form::open(['url' => route('login.store'), 'id' => 'login-form', 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
 					<div class="form-group">
 						<label for="email" class="sr-only">Email</label>
 						{!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'somebody@example.com']) !!}
@@ -18,7 +18,7 @@
 						<label for="key" class="sr-only">Password</label>
 						{!! Form::password('key', ['id' => 'key', 'class' => 'form-control auto-tabindex', 'placeholder' => 'type your password']) !!}
 					</div>
-					{!! Form::submit('login', ['id' => 'btn-login', 'class' => 'btn btn-custom btn-block auto-tabindex']) !!}
+					{!! Form::submit('Login', ['id' => 'btn-login', 'class' => 'btn btn-custom btn-block auto-tabindex']) !!}
 					{{-- <input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login"> --}}
 				{!! Form::close() !!}
 				{{-- </form> --}}

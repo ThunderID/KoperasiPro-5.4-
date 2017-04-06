@@ -27,17 +27,13 @@
 @if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
 	@foreach ($page_datas->credit['rekening'] as $key => $value)
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right text-capitalize text-muted">
 				rekening {{ $key+1 }}
 				<hr/>
 			</div>
 			@php $i=0; @endphp
 
-			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-					{{-- check ketika data 2 kasih row baru --}}
+				@foreach ($value as $k => $v)
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
@@ -59,8 +55,7 @@
 					</div>
 
 					@php $i++; @endphp
-				@endif
-			@endforeach
+				@endforeach
 		</div>
 	@endforeach
 @else

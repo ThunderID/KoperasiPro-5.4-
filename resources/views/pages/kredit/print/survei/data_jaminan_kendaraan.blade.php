@@ -27,44 +27,39 @@
 @if (isset($page_datas->credit['jaminan_kendaraan']) && !empty($page_datas->credit['jaminan_kendaraan']))
 	@forelse($page_datas->credit['jaminan_kendaraan'] as $key => $value)
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right text-capitalize text-muted">
 				jaminan kendaraan {{ $key+1 }}
 				<hr/>
 			</div>
 			@php $i=0; @endphp
 			
-				{{-- foreach data --}}
 				@foreach ($value as $k => $v)
-					{{-- remove field agar tidak ditampilkan --}}
-					@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-						{{-- check ketika data 2 kasih row baru --}}
-						@if ($i % 2 == 0)
-							</div>
-							<div class="row">
-						@endif
+					@if ($i % 2 == 0)
+						</div>
+						<div class="row">
+					@endif
 
-						<div class="col-sm-6">
-							<div class="row m-b-xl">
-								<div class="col-sm-12">
-									<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-									<p class="text-capitalize">
-										@if ($k == 'survei')
-											{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-										@elseif ($k == 'alamat')
-											{{ $v['alamat'] }} <br/>
-											RT {{ $v['rt'] }}/ RW {{ $v['rw'] }}, {{ $v['desa'] }}, {{ $v['distrik'] }} <br/>
-											{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
-										@else
-											{{ str_replace('_', ' ', $v) }}
-										@endif
-									</p>
-								</div>
+					<div class="col-sm-6">
+						<div class="row m-b-xl">
+							<div class="col-sm-12">
+								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
+								<p class="text-capitalize">
+									@if ($k == 'survei')
+										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
+									@elseif ($k == 'alamat')
+										{{ $v['alamat'] }} <br/>
+										RT {{ $v['rt'] }}/ RW {{ $v['rw'] }}, {{ $v['desa'] }}, {{ $v['distrik'] }} <br/>
+										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
+									@else
+										{{ str_replace('_', ' ', $v) }}
+									@endif
+								</p>
 							</div>
 						</div>
-						
+					</div>
+					
 
-						@php $i++; @endphp
-					@endif
+					@php $i++; @endphp
 				@endforeach
 		</div>
 	@empty

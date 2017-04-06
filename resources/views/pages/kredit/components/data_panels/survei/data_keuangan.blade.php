@@ -25,36 +25,37 @@
 </div>
 
 @if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
-	
-		<div class="row">
-			@php $i=0; @endphp
-			
-				@foreach ($page_datas->credit['keuangan'] as $k => $v)
-
-					@if ($i % 2 == 0)
-						</div>
-						<div class="row">
-					@endif
-					
-					<div class="col-sm-6">
-						<div class="row m-b-xl">
-							<div class="col-sm-12">
-								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-								<p class="text-capitalize">
-									@if ($k == 'survei')
-										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-									@else
-										{{ str_replace('_', ' ', $v) }}
-									@endif
-								</p>
-							</div>
+	<div class="row">
+		@php $i=0; @endphp
+		
+		{{-- foreach data --}}
+		@foreach ($page_datas->credit['keuangan'] as $k => $v)
+			{{-- remove field agar tidak ditampilkan --}}
+			@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
+				{{-- check ketika data 2 kasih row baru --}}
+				@if ($i % 2 == 0)
+					</div>
+					<div class="row">
+				@endif
+				
+				<div class="col-sm-6">
+					<div class="row m-b-xl">
+						<div class="col-sm-12">
+							<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
+							<p class="text-capitalize">
+								@if ($k == 'survei')
+									{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
+								@else
+									{{ str_replace('_', ' ', $v) }}
+								@endif
+							</p>
 						</div>
 					</div>
-
-					@php $i++; @endphp
-				@endforeach
-		</div>
-
+				</div>
+				@php $i++; @endphp
+			@endif
+		@endforeach
+	</div>
 @else
 	<!-- No data -->
 	<div class="row">

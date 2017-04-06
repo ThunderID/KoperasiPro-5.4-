@@ -614,7 +614,7 @@ class KreditController extends Controller
 				'petani'			=> 'Petani',
 				'polri'				=> 'Polri',
 				'wiraswasta'		=> 'Wiraswasta',
-				'00000'				=> 'Lainnya'
+				'lain_lain'			=> 'Lainnya'
 			];
 			$this->page_datas->select_jenis_pekerjaan	= $jp;
 		}

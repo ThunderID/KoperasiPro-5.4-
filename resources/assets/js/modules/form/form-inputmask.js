@@ -68,6 +68,17 @@ window.formInputMask = function () {
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
+	$('.mask-number').inputmask({
+		rightAlign: false,
+		groupSeparator: ".",
+		alias: "numeric",
+		placeholder: "",
+		autoGroup: 3,
+		digit: 1,
+		radixPoint: '',
+		digitsOptional: !1,
+		clearMaskOnLostFocus: !1
+	});
 }
 
 // add event on document ready & document pjax:end

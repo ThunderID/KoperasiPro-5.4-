@@ -18,7 +18,7 @@ function quick_select_to_other(val, element) {
 	// check if 'data-other' undefined
 	if (typeof other != 'undefined') {
 		// if val '00000' show input hidden
-		if (val === '00000') {
+		if (val === 'lain_lain') {
 			element.siblings('.' + other).attr('type', 'text').addClass('required').val('');	
 		} else {
 			element.siblings('.' + other).attr('type', 'hidden').removeClass('required').val(val);

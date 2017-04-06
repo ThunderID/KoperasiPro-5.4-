@@ -1,7 +1,7 @@
 {{-- Check apakah sudah ada data apa belum, agar bisa di edit --}}
 @php 
 $edit = false;
-
+// dd($page_datas);
 if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kreditur']))
 {
 	$edit = true;
@@ -32,7 +32,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Nama</strong></p>
-					<p>{{ $page_datas->credit['kreditur']['nama'] }}</p>
+					<p>{{ !is_null($page_datas->credit['kreditur']['nama']) ? $page_datas->credit['kreditur']['nama'] : '-'  }}</p>
 				</div>
 			</div>
 			<div class="row m-b-xl">
@@ -57,7 +57,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				<div class="row m-b-xl">
 					<div class="col-sm-12">
 						<p class="p-b-sm"><strong>Foto KTP</strong></p>
-						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded" />
+						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded"/>
 					</div>
 				</div>
 			</div>

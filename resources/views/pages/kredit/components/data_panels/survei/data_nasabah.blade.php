@@ -1,17 +1,17 @@
 @php
-	if(!isset($edit)){
+	if (!isset($edit)){
 		$edit = true;
 	}
 @endphp
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Aset Tanah &amp; Bangunan
-			@if(!empty($page_datas->credit['aset_tanah_bangunan']))
-				@if($edit == true)
+		<h4 class="text-uppercase">Data Nasabah
+			@if (!empty($page_datas->credit['nasabah']))
+				@if ($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax>
+						<a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -24,16 +24,12 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['aset_tanah_bangunan']) && !empty($page_datas->credit['aset_tanah_bangunan']))
-	@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
+@if (isset($page_datas->credit['nasabah']) && !empty($page_datas->credit['nasabah']))
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				aset tanah &amp; bangunan {{ $key+1 }}
-				<hr/>
-			</div>
 			@php $i=0; @endphp
+			
 				{{-- foreach data --}}
-				@foreach ($value as $k => $v)
+				@foreach ($page_datas->credit['nasabah'] as $k => $v)
 					{{-- remove field id, survei_id, alamat_id agar tidak ditampilkan --}}
 					@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
 						{{-- check ketika data 2 kasih row baru --}}
@@ -41,9 +37,8 @@
 							</div>
 							<div class="row">
 						@endif
-		
 						<div class="col-sm-6">
-							<div class="row m-b-lg">
+							<div class="row m-b-xl">
 								<div class="col-sm-12">
 									<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
 									<p class="text-capitalize">
@@ -60,16 +55,16 @@
 								</div>
 							</div>
 						</div>
+
 						@php $i++; @endphp
 					@endif
 				@endforeach
 		</div>
-	@endforeach
 @else
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif

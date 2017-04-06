@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10303,16 +10303,16 @@ return jQuery;
 
 
 //js 3rd party plugins goes here
-__webpack_require__(22);
+__webpack_require__(24);
 
 //your js modules goes here
 // require('./modules/uac');
 
 // module push notification
-__webpack_require__(20);
+__webpack_require__(21);
 
 // add module template clone
-__webpack_require__(51);
+__webpack_require__(23);
 
 // add module set workspace height
 __webpack_require__(16);
@@ -10324,7 +10324,7 @@ __webpack_require__(5);
 __webpack_require__(4);
 
 // add module select
-__webpack_require__(21);
+__webpack_require__(22);
 
 // add module list-js
 __webpack_require__(17);
@@ -10333,13 +10333,13 @@ __webpack_require__(17);
 __webpack_require__(18);
 
 // add module button print show window
-__webpack_require__(19);
+__webpack_require__(20);
 
 // add button upload
 __webpack_require__(6);
 
 // add panel
-__webpack_require__(52);
+__webpack_require__(19);
 
 /***/ }),
 /* 2 */
@@ -10352,7 +10352,7 @@ __webpack_require__(52);
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(35);
+__webpack_require__(37);
 
 // require('./vendors/jquery-2.2.4.js');
 
@@ -10400,7 +10400,7 @@ function quick_select_to_other(val, element) {
 	// check if 'data-other' undefined
 	if (typeof other != 'undefined') {
 		// if val '00000' show input hidden
-		if (val === '00000') {
+		if (val === 'lain_lain') {
 			element.siblings('.' + other).attr('type', 'text').addClass('required').val('');
 		} else {
 			element.siblings('.' + other).attr('type', 'hidden').removeClass('required').val(val);
@@ -10612,6 +10612,17 @@ $(document).ready(function () {
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
+	$('.mask-number').inputmask({
+		rightAlign: false,
+		groupSeparator: ".",
+		alias: "numeric",
+		placeholder: "",
+		autoGroup: 3,
+		digit: 1,
+		radixPoint: '',
+		digitsOptional: !1,
+		clearMaskOnLostFocus: !1
+	});
 };
 
 // add event on document ready & document pjax:end
@@ -11008,6 +11019,31 @@ $(document).ready(function () {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {$("body").on("click", "*[data-toggle=hidden]", function (e) {
+	e.preventDefault();
+
+	target = $(this).data("target");
+	panel = $(this).data('panel');
+
+	$("div[data-panel=" + panel + "]").addClass("hidden");
+	$("div[data-form=" + target + "]").removeClass("hidden");
+});
+
+$("body").on("click", "*[data-dismiss=panel]", function (e) {
+	e.preventDefault();
+
+	target = $(this).data("target");
+	panel = $(this).data('panel');
+
+	$("div[data-panel=" + panel + "]").removeClass("hidden");
+	$("div[data-form=" + target + "]").addClass("hidden");
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {/**
  * Module Button Print
  * author: @agilma
@@ -11042,7 +11078,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -11116,7 +11152,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function (element, param) {
@@ -11189,7 +11225,232 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {/**
+ * module template-clone
+ * usage: 	use data-attribute
+ * 			data-template-clone: 	untuk template dari clonenya
+ * 			data-root-template: 	untuk root dari template dan yang akan ditaruh templatenya
+ */
+
+var dataObj = {};
+var templateClone, rootTemplate, $template, availableAdd, typeClone;
+window.templateClone = function () {
+
+	$('.add').click(function (e) {
+		e.preventDefault();
+
+		$template = $(this);
+		rootTemplate = $template.data('root-template'); // class root dari template clone
+		availableAdd = $template.data('available-add'); // jumlah yang boleh diclone
+		typeClone = $template.data('type-clone'); // type clone
+		templateClone = $template.data('template-clone');
+
+		switch (typeClone) {
+			case 'table':
+				var inputParsing = $template.data('input-get'); // class input yang diparsing di form yang diclone
+				var inputPrefix = $template.data('input-prefix');
+				var countAdd = countDataClone(rootTemplate); // ambil total data yang sudah diclone
+
+				checkAvailableAdd(countAdd, availableAdd); // check data template lbh dari 3
+				rowAdd($template, inputParsing, inputPrefix);
+
+				$('body .modal').modal('hide');
+				break;
+			case 'form':
+				formAdd($template);
+				break;
+		}
+
+		$('.remove').on('click', function (e) {
+			e.preventDefault();
+
+			rootTemplate = $(this).data('root-template');
+			availableAdd = $(this).data('available-add');
+			typeClone = $(this).data('type-clone');
+
+			switch (typeClone) {
+				case 'table':
+					rowRemove($(this));
+			}
+		});
+	});
+};
+/**
+ * on document ready triger click btn 'add' for template clone & event pjax:end
+ */
+$(document).ready(function () {
+	window.templateClone();
+	$('.add.init-add-one').trigger('click');
+	// add event on pjax:end
+	$(document).on('pjax:end', function () {
+		window.templateClone();
+		$('.add.init-add-one').trigger('click');
+	});
+});
+/**
+ * function template add
+ * description: ...
+ */
+function formAdd(element) {
+	temp = $('.' + templateClone).clone(true);
+
+	// append template to section clone
+	temp.find('input').removeAttr('disabled');
+	$('.' + rootTemplate).append(temp);
+
+	element.addClass('hidden');
+}
+/**
+ * function template remove
+ * description: ...
+ */
+// function template_remove(e) {
+// 	rootClone = e.parent().parent().parent().parent();
+// 	rootClone.remove();
+// 	window.resizeWizard();
+
+// 	// call again event remove template click
+// 	$('.remove').click(function(e) {
+// 		e.preventDefault();
+// 		template_remove($(this));
+// 	});
+// }
+
+// TABLE
+/**
+ * function replaceQuickSelect
+ * description: untuk mereplace nama class quick-select-clone
+ */
+function replaceQuickSelect(el) {
+	el.find('.quick-select-clone').removeClass('quick-select-clone').addClass('quick-select');
+}
+
+function rowAdd($element, parameter, prefixName) {
+	temp = $('.' + templateClone).clone(true);
+	temp.removeClass('hidden').removeClass(templateClone).addClass('clone-row');
+	getData(parameter);
+
+	if (dataObj != null) {
+		setData(dataObj, temp, prefixName);
+
+		$('.' + rootTemplate).find('.template-clone-default').addClass('hidden');
+		addButtonRemoveRow(temp, prefixName);
+		$('.' + rootTemplate).append(temp);
+	}
+	window.resizeWizard();
+}
+
+/**
+ * function tableRemove
+ * param: 	$element (element dari button remove)
+ * description: untuk menghapus list dari tabel
+ */
+function rowRemove($element) {
+	$element.parent().parent().remove();
+
+	i = 1;
+	$('.' + rootTemplate).find('tr.clone-row').each(function () {
+		$(this).find('.nomor').html(i);
+		// renameInputHidden($(this), inputHidden, (i + 1));
+		i++;
+	});
+
+	countData = countDataClone(rootTemplate); // ambil total data yang sudah diclone
+	checkAvailableAdd(countData - 1, availableAdd);
+
+	if (countData == 1) {
+		$('.' + rootTemplate).find('tr[class*="template-clone-default"]').removeClass('hidden'); // hidden data tabel default
+	}
+
+	window.resizeWizard();
+}
+
+function addButtonRemoveRow(template, prefixName) {
+	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' + typeClone + '" data-root-template="' + rootTemplate + '" data-available-add="' + availableAdd + '" data-input-prefix="' + prefixName + '">Hapus</a>');
+}
+
+function addInputHidden(field, value) {
+	$input = $('<input type="hidden" />');
+	$input.attr('name', field).val(value);
+	return $input;
+}
+
+function getData(parameter) {
+	$(parameter).each(function (i, v) {
+		var field = $(this).data('field');
+		var value = $(this).val();
+
+		dataObj[field] = value;
+	});
+}
+
+function setData(data, temp, prefixName) {
+	$.each(data, function (k, v) {
+		temp.find('.' + k).html(v.replace('_', ' ').toLowerCase());
+		inputHidden = addInputHidden(prefixName + '[' + k + '][]', v);
+		temp.append(inputHidden);
+	});
+
+	dataCount = countDataClone(rootTemplate);
+	temp.find('.nomor').html(dataCount);
+}
+
+// cek data jumlah data clone
+function countDataClone(rootTemplate) {
+	count = $('.' + rootTemplate).find('tr.clone-row').length + 1;
+	return count;
+}
+
+// function tableAdd ($element, inputCheck, inputHidden) {
+// 	getClassTemplate = $element.data('template-clone');
+// 	getClassSection = $element.data('section-clone');
+// 	getClassRootTemplate = $element.data('root-template');
+
+// 	$temp = $('.' + getClassTemplate).clone(true);
+
+// 	$temp.removeClass('hidden').removeClass(getClassTemplate).addClass('clone-jaminan');
+// 	getDataJaminan($temp, getClassRootTemplate, inputCheck, inputHidden);
+// 	$temp.find('.action').html('<a href="#" class="text-danger remove-jaminan" data-root-template="' +getClassRootTemplate+'" data-available-add="' +availableAdd+ '" data-input-hidden="' +inputHidden+ '">Hapus</a>');
+
+// 	$('.' + getClassRootTemplate).append($temp);
+// 	$('.' + getClassRootTemplate).find('.' + getClassTemplate + '-default').addClass('hidden');	// hidden data tabel default
+
+// 	countClone = getCountDataClone(getClassRootTemplate);
+// 	// renameInputHidden($temp, inputHidden, countClone);
+
+// 	window.resizeWizard();
+// }
+
+/**
+ * function checkAvailableAdd
+ * param: 	state (jumlah yg sudah diclone)
+ * 			available (jumlah clone yang boleh ditambahkan)
+ * 			classRootTemplate (class root template clone & section clone)
+ * description: untuk mengecheck jumlah yang dibolehkan untuk diclone
+ */
+function checkAvailableAdd(state, available) {
+	if (state >= available) {
+		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').removeClass('hidden');
+	} else {
+		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').addClass('hidden');
+	}
+}
+
+// function renameInputHidden($temp, inputHidden, count) {
+// 	$temp.find('input[type="hidden"]').each(function() {
+// 		name = $(this).attr('name');
+// 		$(this).attr('name', inputHidden+ '[' +(count-1)+ ']' +name );
+// 	});
+// }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -11197,7 +11458,7 @@ $(document).ready(function () {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(34);
+window.toastr = __webpack_require__(36);
 
 /*
 2. nprogress
@@ -11205,7 +11466,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(31);
+window.NProgress = __webpack_require__(33);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -11219,7 +11480,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(32);
+window.pjax = __webpack_require__(34);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -11263,7 +11524,7 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(27);
+window.steps = __webpack_require__(29);
 $(document).ready(function () {
   wizard();
 });
@@ -11273,14 +11534,14 @@ $(document).ready(function () {
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(28);
+window.validate = __webpack_require__(30);
 
 /**
  * 6. Jquery Cookies
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = __webpack_require__(25);
+window.cookies = __webpack_require__(27);
 $(document).ready(function () {
   window.cookies();
 });
@@ -11290,7 +11551,7 @@ $(document).ready(function () {
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = __webpack_require__(24);
+window.inputmask = __webpack_require__(26);
 // class for inputmask
 $(document).ready(function () {
   // call module form input mask 
@@ -11302,14 +11563,14 @@ $(document).ready(function () {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(26);
+window.quickselect = __webpack_require__(28);
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-window.select2 = __webpack_require__(33);
+window.select2 = __webpack_require__(35);
 $(document).ready(function () {
   // window.select();
 });
@@ -11319,28 +11580,28 @@ $(document).ready(function () {
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(30);
+window.nicescroll = __webpack_require__(32);
 
 /**
  * 11. jQuery plugin List-js
  * Description: plugin jQuery for list & search
  * Usage & Documentation: http://listjs.com/docs/
  */
-window.list = __webpack_require__(29);
+window.list = __webpack_require__(31);
 
 /**
  * 12. jQuery plugin bootstrap-switch
  * Description: plugin jQuery for switch radion button
  * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
  */
-window.bootstrapSwitch = __webpack_require__(23);
+window.bootstrapSwitch = __webpack_require__(25);
 $(document).ready(function () {
   $('.input-switch').bootstrapSwitch();
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -12132,7 +12393,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14792,7 +15053,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14951,7 +15212,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15108,7 +15369,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -16986,7 +17247,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -18542,7 +18803,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
@@ -19866,7 +20127,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
   }, {}] }, {}, [4]);
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23059,7 +23320,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23551,7 +23812,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -24484,7 +24745,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -25610,7 +25871,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -26040,10 +26301,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(36));
+})(__webpack_require__(38));
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -28427,7 +28688,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -28436,276 +28697,13 @@ module.exports = function() {
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
 __webpack_require__(1);
 module.exports = __webpack_require__(3);
 
-
-/***/ }),
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {/**
- * module template-clone
- * usage: 	use data-attribute
- * 			data-template-clone: 	untuk template dari clonenya
- * 			data-root-template: 	untuk root dari template dan yang akan ditaruh templatenya
- */
-
-var dataObj = {};
-var templateClone, rootTemplate, $template, availableAdd, typeClone;
-window.templateClone = function () {
-
-	$('.add').click(function (e) {
-		e.preventDefault();
-
-		$template = $(this);
-		rootTemplate = $template.data('root-template'); // class root dari template clone
-		availableAdd = $template.data('available-add'); // jumlah yang boleh diclone
-		typeClone = $template.data('type-clone'); // type clone
-		templateClone = $template.data('template-clone');
-
-		switch (typeClone) {
-			case 'table':
-				var inputParsing = $template.data('input-get'); // class input yang diparsing di form yang diclone
-				var inputPrefix = $template.data('input-prefix');
-				var countAdd = countDataClone(rootTemplate); // ambil total data yang sudah diclone
-
-				checkAvailableAdd(countAdd, availableAdd); // check data template lbh dari 3
-				rowAdd($template, inputParsing, inputPrefix);
-
-				$('body .modal').modal('hide');
-				break;
-			case 'form':
-				formAdd($template);
-				break;
-		}
-
-		$('.remove').on('click', function (e) {
-			e.preventDefault();
-
-			rootTemplate = $(this).data('root-template');
-			availableAdd = $(this).data('available-add');
-			typeClone = $(this).data('type-clone');
-
-			switch (typeClone) {
-				case 'table':
-					rowRemove($(this));
-			}
-		});
-	});
-};
-/**
- * on document ready triger click btn 'add' for template clone & event pjax:end
- */
-$(document).ready(function () {
-	window.templateClone();
-	$('.add.init-add-one').trigger('click');
-	// add event on pjax:end
-	$(document).on('pjax:end', function () {
-		window.templateClone();
-		$('.add.init-add-one').trigger('click');
-	});
-});
-/**
- * function template add
- * description: ...
- */
-function formAdd(element) {
-	temp = $('.' + templateClone).clone(true);
-
-	// append template to section clone
-	temp.find('input').removeAttr('disabled');
-	$('.' + rootTemplate).append(temp);
-
-	element.addClass('hidden');
-}
-/**
- * function template remove
- * description: ...
- */
-// function template_remove(e) {
-// 	rootClone = e.parent().parent().parent().parent();
-// 	rootClone.remove();
-// 	window.resizeWizard();
-
-// 	// call again event remove template click
-// 	$('.remove').click(function(e) {
-// 		e.preventDefault();
-// 		template_remove($(this));
-// 	});
-// }
-
-// TABLE
-/**
- * function replaceQuickSelect
- * description: untuk mereplace nama class quick-select-clone
- */
-function replaceQuickSelect(el) {
-	el.find('.quick-select-clone').removeClass('quick-select-clone').addClass('quick-select');
-}
-
-function rowAdd($element, parameter, prefixName) {
-	temp = $('.' + templateClone).clone(true);
-	temp.removeClass('hidden').removeClass(templateClone).addClass('clone-row');
-	getData(parameter);
-
-	if (dataObj != null) {
-		setData(dataObj, temp, prefixName);
-
-		$('.' + rootTemplate).find('.template-clone-default').addClass('hidden');
-		addButtonRemoveRow(temp, prefixName);
-		$('.' + rootTemplate).append(temp);
-	}
-	window.resizeWizard();
-}
-
-/**
- * function tableRemove
- * param: 	$element (element dari button remove)
- * description: untuk menghapus list dari tabel
- */
-function rowRemove($element) {
-	$element.parent().parent().remove();
-
-	i = 1;
-	$('.' + rootTemplate).find('tr.clone-row').each(function () {
-		$(this).find('.nomor').html(i);
-		// renameInputHidden($(this), inputHidden, (i + 1));
-		i++;
-	});
-
-	countData = countDataClone(rootTemplate); // ambil total data yang sudah diclone
-	checkAvailableAdd(countData - 1, availableAdd);
-
-	if (countData == 1) {
-		$('.' + rootTemplate).find('tr[class*="template-clone-default"]').removeClass('hidden'); // hidden data tabel default
-	}
-
-	window.resizeWizard();
-}
-
-function addButtonRemoveRow(template, prefixName) {
-	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' + typeClone + '" data-root-template="' + rootTemplate + '" data-available-add="' + availableAdd + '" data-input-prefix="' + prefixName + '">Hapus</a>');
-}
-
-function addInputHidden(field, value) {
-	$input = $('<input type="hidden" />');
-	$input.attr('name', field).val(value);
-	return $input;
-}
-
-function getData(parameter) {
-	$(parameter).each(function (i, v) {
-		var field = $(this).data('field');
-		var value = $(this).val();
-
-		dataObj[field] = value;
-	});
-}
-
-function setData(data, temp, prefixName) {
-	$.each(data, function (k, v) {
-		temp.find('.' + k).html(v.replace('_', ' ').toLowerCase());
-		inputHidden = addInputHidden(prefixName + '[' + k + '][]', v);
-		temp.append(inputHidden);
-	});
-
-	dataCount = countDataClone(rootTemplate);
-	temp.find('.nomor').html(dataCount);
-}
-
-// cek data jumlah data clone
-function countDataClone(rootTemplate) {
-	count = $('.' + rootTemplate).find('tr.clone-row').length + 1;
-	return count;
-}
-
-// function tableAdd ($element, inputCheck, inputHidden) {
-// 	getClassTemplate = $element.data('template-clone');
-// 	getClassSection = $element.data('section-clone');
-// 	getClassRootTemplate = $element.data('root-template');
-
-// 	$temp = $('.' + getClassTemplate).clone(true);
-
-// 	$temp.removeClass('hidden').removeClass(getClassTemplate).addClass('clone-jaminan');
-// 	getDataJaminan($temp, getClassRootTemplate, inputCheck, inputHidden);
-// 	$temp.find('.action').html('<a href="#" class="text-danger remove-jaminan" data-root-template="' +getClassRootTemplate+'" data-available-add="' +availableAdd+ '" data-input-hidden="' +inputHidden+ '">Hapus</a>');
-
-// 	$('.' + getClassRootTemplate).append($temp);
-// 	$('.' + getClassRootTemplate).find('.' + getClassTemplate + '-default').addClass('hidden');	// hidden data tabel default
-
-// 	countClone = getCountDataClone(getClassRootTemplate);
-// 	// renameInputHidden($temp, inputHidden, countClone);
-
-// 	window.resizeWizard();
-// }
-
-/**
- * function checkAvailableAdd
- * param: 	state (jumlah yg sudah diclone)
- * 			available (jumlah clone yang boleh ditambahkan)
- * 			classRootTemplate (class root template clone & section clone)
- * description: untuk mengecheck jumlah yang dibolehkan untuk diclone
- */
-function checkAvailableAdd(state, available) {
-	if (state >= available) {
-		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').addClass('disabled');
-		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').removeClass('hidden');
-	} else {
-		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
-		$('.' + rootTemplate).parent().parent().find('.modal-add-jaminan').siblings('.info-add').addClass('hidden');
-	}
-}
-
-// function renameInputHidden($temp, inputHidden, count) {
-// 	$temp.find('input[type="hidden"]').each(function() {
-// 		name = $(this).attr('name');
-// 		$(this).attr('name', inputHidden+ '[' +(count-1)+ ']' +name );
-// 	});
-// }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {$("body").on("click", "*[data-toggle=hidden]", function (e) {
-	e.preventDefault();
-
-	target = $(this).data("target");
-	panel = $(this).data('panel');
-
-	$("div[data-panel=" + panel + "]").addClass("hidden");
-	$("div[data-form=" + target + "]").removeClass("hidden");
-});
-
-$("body").on("click", "*[data-dismiss=panel]", function (e) {
-	e.preventDefault();
-
-	target = $(this).data("target");
-	panel = $(this).data('panel');
-
-	$("div[data-panel=" + panel + "]").removeClass("hidden");
-	$("div[data-form=" + target + "]").addClass("hidden");
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
