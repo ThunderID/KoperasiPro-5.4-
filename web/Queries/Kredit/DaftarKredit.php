@@ -127,7 +127,33 @@ class DaftarKredit
 						$parsed_credit['nasabah']			= $parsed_credit['nasabah']->toArray();
 					}
 
-					$parsed_credit['rekening']				= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+					$rekening				= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->orderby('nama_bank', 'desc')->orderby('tanggal', 'desc')->get();
+
+					if($rekening->count())
+					{
+						$bank 				= 'none';
+						$rek 				= -1;
+						foreach ($rekening as $key => $value) 
+						{
+							if(!str_is(strtolower($bank), strtolower($value['nama_bank'])))
+							{
+								$rek  		= $rek + 1;
+								$parsed_credit['rekening'][$rek]['nama_bank'] 	= $value['nama_bank'];
+								$parsed_credit['rekening'][$rek]['saldo_awal'] 	= $value['saldo'];
+								$parsed_credit['rekening'][$rek]['saldo_akhir'] = $value['saldo'];
+								$parsed_credit['rekening'][$rek]['survei'] 		= $value['survei']->toArray();
+								$bank = $value['nama_bank'];
+							}
+							else
+							{
+								$parsed_credit['rekening'][$rek]['saldo_akhir'] = $value['saldo'];
+							}
+						}
+					}
+					else
+					{
+						$parsed_credit['rekening']		= null;
+					}
 
 					$parsed_credit['status_berikutnya']	= 'setujui';
 					$parsed_credit['status_sebelumnya']	= 'pengajuan';
