@@ -40,7 +40,7 @@ class SimpanSurveiJaminanKendaraan
 			//1. simpan survey
 			if(isset($this->survei['id']) && empty($this->survei['id']) && is_null($this->survei['id']))
 			{
-				$survei 		= Survei::findorfail($this->survei['id']);
+				$survei 		= Survei::findornew($this->survei['id']);
 			}
 			else
 			{
