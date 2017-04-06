@@ -11,7 +11,7 @@
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax>
+						<a href="#" data-toggle="hidden" data-target="keuangan" data-panel="data-keuangan" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -59,12 +59,12 @@
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="keuangan" data-panel="data-keuangan" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
 
-<div class="row clearfix">&nbsp;</div>
+<div class="clearfix m-b-md">&nbsp;</div>
 
 @push('show_modals')
 	@component('components.modal', [

@@ -1,7 +1,7 @@
 <fieldset class="form-group p-b-md">
 	<label for="">Penghasilan Rutin</label>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-5">
 			{!! Form::text('kondisi_keuangan[][penghasilan_rutin]', null, ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>

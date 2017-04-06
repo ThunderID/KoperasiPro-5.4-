@@ -25,8 +25,13 @@
 </div>
 
 @if (isset($page_datas->credit['aset_usaha']) && !empty($page_datas->credit['aset_usaha']))
+	@php $x=1; @endphp
 	@forelse ($page_datas->credit['aset_usaha'] as $key => $value)
 		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right text-capitalize">
+				aset usaha {{ $x }}
+				<hr/>
+			</div>
 			@php $i=0; @endphp
 			
 				@foreach ($value as $k => $v)
@@ -55,6 +60,7 @@
 
 					@php $i++; @endphp
 				@endforeach
+			@php $x++; @endphp
 		</div>
 	@empty
 	@endforelse
@@ -62,12 +68,12 @@
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#data-aset" data-toggle="modal" data-target="#data_aset" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-usaha" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
 
-<div class="clearfix">&nbsp;</div>
+<div class="clearfix m-b-md">&nbsp;</div>
 
 @push('show_modals')
 	@component('components.modal', [

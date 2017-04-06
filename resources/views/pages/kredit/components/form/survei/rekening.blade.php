@@ -1,7 +1,7 @@
 <fieldset class="form-group p-b-md">
 	<label for="">Nama Bank</label>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-5">
 			{!! Form::select('kas_rekening[][nama_bank]', [
 				'bca'		=> 'BCA',
 				'bni'		=> 'BNI',

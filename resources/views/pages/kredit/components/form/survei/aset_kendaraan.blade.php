@@ -1,4 +1,4 @@
-{!! Form::hidden('aset_kendaraan[id]', (isset($data['survei_id']) ? $data['survei_id'] : null)) !!}
+{!! Form::hidden('aset_kendaraan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
 	<label for="">Tipe</label>
 	<div class="row">
