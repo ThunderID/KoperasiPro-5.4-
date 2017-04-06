@@ -16,6 +16,8 @@ use TKredit\Survei\Services\SimpanSurveiKeuangan;
 use TKredit\Survei\Services\SimpanSurveiNasabah;
 use TKredit\Survei\Services\SimpanSurveiRekening;
 
+use TKredit\Survei\Services\HapusSurveiRekening;
+
 use Exception, DB, TAuth, Carbon\Carbon;
 
 class SimpanSurveiKredit
@@ -139,6 +141,11 @@ class SimpanSurveiKredit
 
 			if(isset($this->survei['rekening']))
 			{
+				if(!is_null($this->survei['rekening']['id']))
+				{
+					$hapus 		= HapusSurveiRekening::bankyangsama($kredit['id'], $this->survei['rekening']['id']);
+				}
+
 				$rekening_1['nama_bank']	= $this->survei['rekening']['nama_bank'];
 				$rekening_1['atas_nama']	= $this->survei['rekening']['atas_nama'];
 				$rekening_1['saldo']		= $this->survei['rekening']['saldo_awal'];

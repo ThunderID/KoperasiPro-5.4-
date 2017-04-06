@@ -138,6 +138,7 @@ class DaftarKredit
 							if(!str_is(strtolower($bank), strtolower($value['nama_bank'])))
 							{
 								$rek  		= $rek + 1;
+								$parsed_credit['rekening'][$rek]['id'] 			= $value['id'];
 								$parsed_credit['rekening'][$rek]['nama_bank'] 	= $value['nama_bank'];
 								$parsed_credit['rekening'][$rek]['atas_nama'] 	= $value['atas_nama'];
 								$parsed_credit['rekening'][$rek]['saldo_awal'] 	= $value['saldo'];
@@ -147,7 +148,7 @@ class DaftarKredit
 							}
 							else
 							{
-								$parsed_credit['rekening'][$rek]['saldo_akhir'] = $value['saldo'];
+								$parsed_credit['rekening'][$rek]['saldo_awal'] 	= $value['saldo'];
 							}
 						}
 					}
