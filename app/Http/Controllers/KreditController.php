@@ -33,6 +33,8 @@ use Input, PDF, Carbon\Carbon, Exception;
  */
 class KreditController extends Controller
 {
+	private $credit_active_filters = [];
+
 	/**
 	 * Creates construct from controller to get instate some stuffs
 	 */
@@ -67,7 +69,7 @@ class KreditController extends Controller
 		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.index'), $this->page_datas->total_credits, $page, 10);
+		$this->paginate(route('credit.index', $this->credit_active_filters), $this->page_datas->total_credits, $page, 10);
 
 		//initialize view
 		$this->view									= view('pages.kredit.index');
@@ -345,7 +347,7 @@ class KreditController extends Controller
 		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.show', ['id' => $id]),$this->page_datas->total_credits,$page,10);
+		$this->paginate(route('credit.show', array_merge(['id' => $id], $this->credit_active_filters)),$this->page_datas->total_credits,$page,10);
 
 		//parsing master data here
 		try
@@ -444,6 +446,7 @@ class KreditController extends Controller
 		if (Input::has('status'))
 		{
 			$status 								= Input::get('status');
+			$this->credit_active_filters['status'] 	= $status;
 		}
 
 		//2. Parsing search box
@@ -451,6 +454,7 @@ class KreditController extends Controller
 		{
 			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
 			$this->page_datas->total_credits		= $this->service->count(['status' => $status, 'kreditur' => Input::get('q')]);
+			$this->credit_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{

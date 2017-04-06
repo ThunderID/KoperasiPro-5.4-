@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<p class="navbar-brand m-b-none">{{ Config::get('app.name') }}</p>
+			<a class="navbar-brand m-b-none" href="{{route('dashboard.index')}}">{{ Config::get('app.name') }}</a>
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="list-organisation pull-left m-l-xs">
@@ -34,7 +34,7 @@
 						</li>
 						<li>
 							<p class="name m-b-none">{{TAuth::loggedUser()['nama']}}</p>
-							<p class="role text-muted">{{TAuth::activeOffice()['role']}}</p>
+							<p class="role text-muted">{{ucwords(TAuth::activeOffice()['role'])}}</p>
 						</li>
 						<li>
 							<a class="primary" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
