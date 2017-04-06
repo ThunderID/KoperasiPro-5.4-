@@ -184,6 +184,6 @@ class KreditAktif_RO extends BaseModel
 
 	public function scopeKreditur($query, $value)
 	{
-		return $query->where('nama_kreditur', $value);
+		return $query->where('nama_kreditur', 'like', '%'.$value.'%');
 	}
 }
