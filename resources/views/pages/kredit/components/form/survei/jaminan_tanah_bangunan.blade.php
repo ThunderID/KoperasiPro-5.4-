@@ -1,3 +1,4 @@
+{!! Form::hidden('jaminan_tanah_bangunan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
 	<label for="">Tipe</label>
 	<div class="row">
