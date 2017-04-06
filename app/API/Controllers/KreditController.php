@@ -53,6 +53,7 @@ class KreditController extends Controller
 
 		//parse url foto kreditur
 		$kredit['kreditur']['foto_ktp']	= $data_kredit['url'];
+		$kredit['kreditur']['nama']		= 'Pengajuan Melalui HP';
 
 		// $jaminan_kendaraan 		= [];
 		// $jaminan_tanah_bangunan = [];
