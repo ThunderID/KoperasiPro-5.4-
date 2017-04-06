@@ -92,8 +92,14 @@ class Keuangan_A extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
+
+	protected $appends				= 	[
+											'total_pendapatan',
+											'total_biaya',
+											'penghasilan_bersih',
+										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	
+
 	/**
 	 * relationship survei
 	 *
@@ -150,6 +156,27 @@ class Keuangan_A extends BaseModel
 	public function getBiayaLainAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
+	}
+
+	public function getTotalPendapatanAttribute($value)
+	{
+		$total 		= $this->attributes['penghasilan_rutin'] + $this->attributes['penghasilan_pasangan'] + $this->attributes['penghasilan_usaha'] + $this->attributes['penghasilan_lain'];
+
+		return $this->formatMoneyTo($total);
+	}
+
+	public function getTotalBiayaAttribute($value)
+	{
+		$total 		= $this->attributes['biaya_rumah_tangga'] + $this->attributes['biaya_rutin'] + $this->attributes['biaya_pendidikan'] + $this->attributes['biaya_angsuran'] + $this->attributes['biaya_lain'];
+		
+		return $this->formatMoneyTo($total);
+	}
+
+	public function getPenghasilanBersihAttribute($value)
+	{
+		$total 		= ($this->attributes['penghasilan_rutin'] + $this->attributes['penghasilan_pasangan'] + $this->attributes['penghasilan_usaha'] + $this->attributes['penghasilan_lain']) - ($this->attributes['biaya_rumah_tangga'] + $this->attributes['biaya_rutin'] + $this->attributes['biaya_pendidikan'] + $this->attributes['biaya_angsuran'] + $this->attributes['biaya_lain']);
+		
+		return $this->formatMoneyTo($total);
 	}
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
