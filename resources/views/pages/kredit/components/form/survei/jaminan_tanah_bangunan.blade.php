@@ -2,11 +2,11 @@
 	<label for="">Tipe</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::select('jaminan_tanah_bangunan[][tipe]', [
+			{!! Form::select('jaminan_tanah_bangunan[tipe]', [
 					'bangunan'	=> 'Bangunan',
 					'tanah'		=> 'Tanah',
-				], 'bangunan', ['class' => 'form-control quick-select auto-tabindex', 'data-other' => 'input-tipe-jaminan-tanah-bangunan']) !!}
-			{!! Form::hidden('jaminan_tanah_bangunan[][tipe]', 'bangunan', ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'tipe']) !!}
+				], (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'form-control quick-select auto-tabindex', 'data-other' => 'input-tipe-jaminan-tanah-bangunan']) !!}
+			{!! Form::hidden('jaminan_tanah_bangunan[tipe]', (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'tipe']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -14,11 +14,11 @@
 	<label for="">Jenis Sertifikat</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::select('jaminan_tanah_bangunan[][jenis_sertifikat]', [
+			{!! Form::select('jaminan_tanah_bangunan[jenis_sertifikat]', [
 					'hgb'	=> 'Hak Guna Bangunan (HGB)',
 					'shm'	=> 'Sertifikat Hak Milik (SHM)',
-				], 'hgb', ['class' => 'form-control quick-select auto-tabindex']) !!}
-			{!! Form::hidden('jaminan_tanah_bangunan[][jenis_sertifikat]', 'hgb', ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
+				], (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'form-control quick-select auto-tabindex']) !!}
+			{!! Form::hidden('jaminan_tanah_bangunan[jenis_sertifikat]', (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -26,7 +26,7 @@
 	<label for="">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('jaminan_tanah_bangunan[][nomor_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'Nomor Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($data['nomor_sertifikat']) ? $data['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'Nomor Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label for="">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('jaminan_tanah_bangunan[][masa_berlaku_sertifikat]', null, ['class' => 'form-control auto-tabindex mask-year input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($data['masa_berlaku_sertifikat']) ? $data['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -42,13 +42,13 @@
 	<label for="">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('jaminan_tanah_bangunan[][atas_nama]', null, ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
 		</div>
 	</div>
 </fieldset>
 
 @include('components.helpers.forms.address', [
-	'param'		=> ['prefix'	=> 'jaminan_tanah_bangunan[]'],
+	'param'		=> ['prefix'	=> 'jaminan_tanah_bangunan'],
 	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 	'settings'	=> [
 		'class'						=> 'input-tanah-bangunan'
@@ -59,7 +59,10 @@
 	<label for="">Luas Tanah</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][luas_tanah]', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<div class="input-group">
+				{!! Form::text('jaminan_tanah_bangunan[luas_tanah]', (isset($data['luas_tanah']) ? $data['luas_tanah'] : null), ['class' => 'form-control mask-number', 'placeholder' => '']) !!}
+				<div class="input-group-addon">M<sup>2</sup></div>
+			</div>
 		</div>
 	</div>
 </fieldset>
@@ -67,7 +70,10 @@
 	<label for="">Luas Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][luas_bangunan]', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<div class="input-group">
+				{!! Form::text('jaminan_tanah_bangunan[luas_bangunan]', (isset($data['luas_bangunan']) ? $data['luas_bangunan'] : null), ['class' => 'form-control', 'placeholder' => '']) !!}
+				<div class="input-group-addon">M<sup>2</sup></div>
+			</div>
 		</div>
 	</div>
 </fieldset>
@@ -75,10 +81,10 @@
 	<label for="">Fungsi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][fungsi_bangunan]', [
+			{!! Form::select('jaminan_tanah_bangunan[fungsi_bangunan]', [
 				'ruko'		=> 'Ruko',
 				'rumah'		=> 'Rumah',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			], (isset($data['fungsi_bangunan']) ? $data['fungsi_bangunan'] : 'ruko'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -86,11 +92,11 @@
 	<label for="">Bentuk Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][bentuk_bangunan]', [
+			{!! Form::select('jaminan_tanah_bangunan[bentuk_bangunan]', [
 				'tingkat'			=> 'Tingkat',
 				'tidak_tingkat'		=> 'Tidak tingkat',
-				'00000'				=> 'Lainnya',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				'lain_lain'			=> 'Lainnya',
+			], (isset($data['bentuk_bangunan']) ? $data['bentuk_bangunan'] : 'tingkat'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -98,10 +104,10 @@
 	<label for="">Konstruksi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][konstruksi_bangunan]', [
+			{!! Form::select('jaminan_tanah_bangunan[konstruksi_bangunan]', [
 				'permanen' 			=> 'Permanen',
 				'semi_permanen'		=> 'Semi Permanen',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			], (isset($data['konstruksi_bangunan']) ? $data['konstruksi_bangunan'] : 'permanen'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -109,13 +115,13 @@
 	<label for="">Lantai Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][lantai_bangunan]', [
+			{!! Form::select('jaminan_tanah_bangunan[lantai_bangunan]', [
 				'keramik'		=> 'Keramik',
 				'tanah'			=> 'Tanah',
 				'tegel'			=> 'Tegel',
 				'Ubin'			=> 'Ubin',
-				'00000'			=> 'Lainnya',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				'lain_lain'		=> 'Lainnya',
+			], (isset($data['lantai_bangunan']) ? $data['lantai_bangunan'] : 'keramik'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -123,12 +129,12 @@
 	<label for="">Dinding Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][dinding]', [
+			{!! Form::select('jaminan_tanah_bangunan[dinding]', [
 				'bambu'		=> 'Bambu',
 				'kayu'		=> 'Kayu',
 				'tembok'	=> 'Tembok',
-				'00000'		=> 'Lainnya',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				'lain_lain'	=> 'Lainnya',
+			], (isset($data['dinding']) ? $data['dinding'] : 'bambu'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -136,11 +142,11 @@
 	<label for="">Listrik</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][listrik]', [
+			{!! Form::select('jaminan_tanah_bangunan[listrik]', [
 				'450_watt'		=> '450 Watt',
 				'900_watt'		=> '900 Watt',
 				'1300_watt'		=> '1300 Watt',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			], (isset($data['listrik']) ? $data['listrik'] : '450_watt'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -148,10 +154,10 @@
 	<label for="">Air</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][air]', [
+			{!! Form::select('jaminan_tanah_bangunan[air]', [
 				'pdam'		=> 'PDAM',
 				'sumur'		=> 'Sumur',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			], (isset($data['air']) ? $data['air'] : 'pdam'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -159,11 +165,11 @@
 	<label for="">Jalan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][jalan]', [
+			{!! Form::select('jaminan_tanah_bangunan[jalan]', [
 				'aspal'		=> 'Aspal',
 				'batu'		=> 'Batu',
 				'tanah'		=> 'Tanah',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			], (isset($data['luas_tanah']) ? $data['luas_tanah'] : 'aspal'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -171,7 +177,10 @@
 	<label for="">Lebar Jalan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][luas_bangunan]', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			<div class="input-group">
+				{!! Form::text('jaminan_tanah_bangunan[lebar_jalan]', (isset($data['lebar_jalan']) ? $data['lebar_jalan'] : null), ['class' => 'form-control', 'placeholder' => '']) !!}
+				<div class="input-group-addon">M</div>
+			</div>
 		</div>
 	</div>
 </fieldset>
@@ -179,12 +188,12 @@
 	<label for="">Letak Lokasi Terhadap Jalan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][letak_lokasi_terhadap_jalan]', [
+			{!! Form::select('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', [
 				'lebih_rendah_dari_jalan'		=> 'Lebih Rendah Dari Jalan',
 				'lebih_tinggi_dari_jalan'		=> 'Lebih Tinggi Dari Jalan',
 				'sama_dengan_jalan'				=> 'Sama Dengan Jalan',
-				'00000'							=> 'Lainnya',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				'lain_lain'						=> 'Lainnya',
+			], (isset($data['letak_lokasi_terhadap_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -192,15 +201,15 @@
 	<label for="">Lingkungan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('jaminan_tanah_bangunan[][lingkungan]', [
+			{!! Form::select('jaminan_tanah_bangunan[lingkungan]', [
 				'industri'		=> 'Industri',
 				'kampung'		=> 'Kampung',
 				'pasar'			=> 'Pasar',
 				'perkantoran'	=> 'Perkantoran',
 				'pertokoan'		=> 'Pertokoan',
 				'perumahan'		=> 'Perumahan',
-				'00000'			=> 'Lainnya',
-			], null, ['class' => 'form-control', 'placeholder' => '']) !!}
+				'lain_lain'		=> 'Lainnya',
+			], (isset($data['lingkungan']) ? $data['lingkungan'] : 'industri'), ['class' => 'form-control']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -208,7 +217,7 @@
 	<label for="">Nilai Jaminan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][nilai_jaminan]', null, ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[nilai_jaminan]', (isset($data['nilai_jaminan']) ? $data['nilai_jaminan'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -216,7 +225,7 @@
 	<label for="">Taksasi Tanah</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][taksasi_tanah]', null, ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[taksasi_tanah]', (isset($data['taksasi_tanah']) ? $data['taksasi_tanah'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -224,7 +233,7 @@
 	<label for="">Taksasi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][taksasi_bangunan]', null, ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[taksasi_bangunan]', (isset($data['taksasi_bangunan']) ? $data['taksasi_bangunan'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -232,7 +241,7 @@
 	<label for="">Njop</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][njop]', null, ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[njop]', (isset($data['njop']) ? $data['njop'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -240,7 +249,7 @@
 	<label for="">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[][uraian]', null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[uraian]', (isset($data['uraian']) ? $data['uraian'] : null), ['class' => 'form-control', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>

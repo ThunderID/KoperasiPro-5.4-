@@ -23,7 +23,7 @@
 				</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-				<a href="#" data-url="{{ route('credit.print', ['mode' => 'permohonan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print">
+				<a href="#" data-url="{{ route('credit.print', ['mode' => 'survei', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 				<a href="{{ route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'tolak']) }}" class="btn p-r-sm p-l-sm danger">
@@ -39,7 +39,8 @@
 		<div class="row">
 			<div class="col-sm-12 p-t-xs p-b-xs p-l-none p-r-none">
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
+					<li role="presentation" class="active"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
+					<li role="presentation"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
 					<li role="presentation"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
 					<li role="presentation"><a href="#data-rekening" data-toggle="tab" role="tab">Data Rekening</a></li>
 					<li role="presentation"><a href="#data-keuangan" data-toggle="tab" role="tab">Data Keuangan</a></li>

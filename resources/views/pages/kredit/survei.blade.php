@@ -4,21 +4,51 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
 			<div class="tab-content">
-				<div class="tab-pane fade in active" id="data-aset" role="tabpanel">
+				<div class="tab-pane fade in active" id="data-nasabah" role="tabpanel">
 					<div class="row m-l-none m-r-none m-b-md">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							{{-- DATA NASABAH --}}
+							<div data-panel="data-nasabah">
+								@include ('pages.kredit.components.data_panels.survei.data_nasabah', [
+									'edit' => true
+								])
+							</div>
+
+							<div class="hidden" data-form="nasabah">
+								<div class="row">
+									<div class="col-sm-12">
+										<h4 class="text-uppercase">form nasabah</h4>
+										<hr/>
+									</div>
+								</div>
+								{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+									@include ('pages.kredit.components.form.survei.nasabah', [
+										'data'	=> isset($page_datas->credit['nasabah']) ? $page_datas->credit['nasabah'] : null,
+									])
+
+									<div class="clearfix">&nbsp;</div>
+									<div class="text-right">
+										<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="nasabah">Cancel</a>
+										<button type="submit" class="btn btn-primary">Simpan</button>
+									</div>
+								{!! Form::close() !!}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="data-aset" role="tabpanel">
+					<div class="row m-l-none m-r-none m-b-md">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							{{-- DATA ASET --}}
 							<div data-panel="data-aset">
-								{{-- DATA ASET USAHA --}}
 								@include ('pages.kredit.components.data_panels.survei.data_aset_usaha',[
 									'edit' => true
 								])
 
-								{{-- DATA SET KENDARAAN --}}
 								@include ('pages.kredit.components.data_panels.survei.data_aset_kendaraan',[
 									'edit' => true
 								])
 
-								{{-- DATA ASET TANAH & BANGUNAN --}}
 								@include ('pages.kredit.components.data_panels.survei.data_aset_tanah_bangunan',[
 									'edit' => true
 								])
@@ -187,7 +217,7 @@
 							<div class="hidden" data-form="keuangan">
 								<div class="row">
 									<div class="col-sm-12">
-										<h4 class="text-uppercase">form rekening</h4>
+										<h4 class="text-uppercase">form keuangan</h4>
 										<hr/>
 									</div>
 								</div>

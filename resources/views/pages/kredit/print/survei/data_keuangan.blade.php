@@ -6,12 +6,12 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Rekening
-			@if(!empty($page_datas->credit['rekening']))
+		<h4 class="text-uppercase">Data Keuangan
+			@if(!empty($page_datas->credit['keuangan']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
-						<a href="#rekening" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax>
+						<a href="#" data-toggle="hidden" data-target="keuangan" data-panel="data-keuangan" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -24,27 +24,20 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
-	@foreach ($page_datas->credit['rekening'] as $key => $value)
+@if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
+	
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				rekening {{ $key+1 }}
-				<hr/>
-			</div>
 			@php $i=0; @endphp
+			
+				@foreach ($page_datas->credit['keuangan'] as $k => $v)
 
-			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-					{{-- check ketika data 2 kasih row baru --}}
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
 					@endif
 					
 					<div class="col-sm-6">
-						<div class="row m-b-lg">
+						<div class="row m-b-xl">
 							<div class="col-sm-12">
 								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
 								<p class="text-capitalize">
@@ -59,15 +52,14 @@
 					</div>
 
 					@php $i++; @endphp
-				@endif
-			@endforeach
+				@endforeach
 		</div>
-	@endforeach
+
 @else
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#rekening" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="keuangan" data-panel="data-keuangan" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
@@ -84,4 +76,4 @@
 	])
 		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
 	@endcomponent
-@endpush	
+@endpush

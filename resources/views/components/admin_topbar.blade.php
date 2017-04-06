@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">{{ Config::get('app.name') }}</a>
+			<p class="navbar-brand m-b-none">{{ Config::get('app.name') }}</p>
 			
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="list-organisation pull-left m-l-xs">

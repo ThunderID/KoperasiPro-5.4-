@@ -32,7 +32,7 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 					<div class="col-sm-12">
 						<p class="p-b-sm m-b-xs-m-print"><strong>Nama</strong></p>
 						<p>
-							{{ $value['nama'] }}
+							{{ !is_null($value['nama']) ? $value['nama'] : '-' }}
 						</p>
 					</div>
 				</div>
@@ -40,13 +40,24 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 			<div class="col-sm-6">
 				<div class="row m-b-xl m-t-xs-print">
 					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print"><strong>Hubungan</strong></p>
+						<p class="p-b-sm m-b-xs-m-print"><strong>Alamat</strong></p>
 						<p>
-							{{ $value['hubungan'] }}
+							{{ !is_null($value['alamat']) ? $value['alamat'] : '-' }}
 						</p>
 					</div>
 				</div>
-
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="row m-b-xl m-t-xs-print">
+					<div class="col-sm-12">
+						<p class="p-b-sm m-b-xs-m-print"><strong>Telepon</strong></p>
+						<p>
+							{{ !is_null($value['telepon']) ? $value['telepon'] : '-' }}
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="clearfix hidden-print">&nbsp;</div>
