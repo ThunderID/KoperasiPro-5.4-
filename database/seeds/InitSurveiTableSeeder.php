@@ -184,18 +184,10 @@ class InitSurveiTableSeeder extends Seeder
 			$n_bank 				= $bank_nama[rand(0,4)];
 			$a_nama 				= $faker->name;
 			$rekening 				= [
-				[
-					'nama_bank'		=> $n_bank,
-					'atas_nama'		=> $a_nama,
-					'tanggal'		=> Carbon::parse('-'.rand(90,100).' days')->format('d/m/Y'),
-					'saldo'			=> 'Rp '.rand(1,20).'.'.rand(1,9).'00.000',
-				],
-				[
-					'nama_bank'		=> $n_bank,
-					'atas_nama'		=> $a_nama,
-					'tanggal'		=> Carbon::now()->format('d/m/Y'),
-					'saldo'			=> 'Rp '.rand(1,20).'.'.rand(1,9).'00.000',
-				]
+				'nama_bank'			=> $n_bank,
+				'atas_nama'			=> $a_nama,
+				'saldo_awal'		=> 'Rp '.rand(1,20).'.'.rand(1,9).'00.000',
+				'saldo_akhir'		=> 'Rp '.rand(1,20).'.'.rand(1,9).'00.000',
 			];
 
 			$survei_data['aset_kendaraan']			= $aset_kendaraan;
@@ -212,7 +204,7 @@ class InitSurveiTableSeeder extends Seeder
 			$survei_data['kepribadian']				= $kepribadian[0];
 			$survei_data['keuangan']				= $keuangan;
 			$survei_data['nasabah']					= $nasabah;
-			$survei_data['rekening']				= $rekening[0];
+			$survei_data['rekening']				= $rekening;
 
 			$check_kredit 		= \TKredit\Pengajuan\Models\Pengajuan::id($list['id'])->firstorfail();
 
@@ -224,6 +216,7 @@ class InitSurveiTableSeeder extends Seeder
 
 				$survei_data['jaminan_kendaraan']						= $check_kredit['jaminan_kendaraan'][0]->toArray();
 				unset($survei_data['jaminan_kendaraan']['pengajuan_id']);
+				unset($survei_data['jaminan_kendaraan']['id']);
 
 				$survei_data['jaminan_kendaraan']['alamat']				= [
 						'alamat'			=> $faker->address,
@@ -255,6 +248,7 @@ class InitSurveiTableSeeder extends Seeder
 
 				$survei_data['jaminan_tanah_bangunan']			= $check_kredit['jaminan_tanah_bangunan'][0]->toArray();
 				$survei_data['jaminan_tanah_bangunan']['alamat']= $check_kredit['jaminan_tanah_bangunan'][0]['alamat']->toArray();
+				unset($survei_data['jaminan_tanah_bangunan']['id']);
 				unset($survei_data['jaminan_tanah_bangunan']['pengajuan_id']);
 
 				$m_persegi 	= rand(500000, 4000000);
@@ -289,7 +283,6 @@ class InitSurveiTableSeeder extends Seeder
 			$survei->handle();
 
 			$super_surv['kepribadian']			= $kepribadian[1];
-			$super_surv['rekening']				= $rekening[1];
 
 			$survei_2	= new \TCommands\Kredit\SimpanSurveiKredit($list['id'], $super_surv);
 
