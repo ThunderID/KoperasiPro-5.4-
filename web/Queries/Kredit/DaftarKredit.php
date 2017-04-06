@@ -114,10 +114,19 @@ class DaftarKredit
 					
 					$parsed_credit['kepribadian']			= Kepribadian_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
 					
-					$parsed_credit['keuangan']				= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first()->toArray();
+					$parsed_credit['keuangan']				= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first();
+
+					if($parsed_credit['keuangan'])
+					{
+						$parsed_credit['keuangan']			= $parsed_credit['keuangan']->toArray();
+					}
 					
-					$parsed_credit['nasabah']				= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first()->toArray();
-					
+					$parsed_credit['nasabah']				= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first();
+					if($parsed_credit['nasabah'])
+					{
+						$parsed_credit['nasabah']			= $parsed_credit['nasabah']->toArray();
+					}
+
 					$parsed_credit['rekening']				= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
 
 					$parsed_credit['status_berikutnya']	= 'setujui';
