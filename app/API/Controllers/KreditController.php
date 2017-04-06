@@ -86,7 +86,7 @@ class KreditController extends Controller
 		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
 		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
 
-		foreach ($kredit['jaminan_tanah_bangunan'] as $key => $value) 
+		foreach ((array)$kredit['jaminan_tanah_bangunan'] as $key => $value) 
 		{
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']		= $value['luas'];
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']	= 0;
