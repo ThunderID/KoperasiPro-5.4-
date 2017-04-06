@@ -139,6 +139,7 @@ class DaftarKredit
 							{
 								$rek  		= $rek + 1;
 								$parsed_credit['rekening'][$rek]['nama_bank'] 	= $value['nama_bank'];
+								$parsed_credit['rekening'][$rek]['atas_nama'] 	= $value['atas_nama'];
 								$parsed_credit['rekening'][$rek]['saldo_awal'] 	= $value['saldo'];
 								$parsed_credit['rekening'][$rek]['saldo_akhir'] = $value['saldo'];
 								$parsed_credit['rekening'][$rek]['survei'] 		= $value['survei']->toArray();
