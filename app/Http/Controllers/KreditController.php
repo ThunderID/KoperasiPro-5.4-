@@ -354,7 +354,16 @@ class KreditController extends Controller
 		}
 		catch(Exception $e)
 		{
-			$this->page_datas->credit 				= view('pages.credit.errors');
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		
+			return $this->generateRedirect(route('credit.index'));
 		}
 
 		$this->page_datas->id 						= $id;

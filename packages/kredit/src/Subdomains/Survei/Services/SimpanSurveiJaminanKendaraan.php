@@ -40,7 +40,7 @@ class SimpanSurveiJaminanKendaraan
 			//1. simpan survey
 			if(isset($this->survei['id']) && empty($this->survei['id']) && is_null($this->survei['id']))
 			{
-				$survei 		= Survei::findorfail($this->survei['id']);
+				$survei 		= Survei::findornew($this->survei['id']);
 			}
 			else
 			{
@@ -54,13 +54,14 @@ class SimpanSurveiJaminanKendaraan
  			$alamat->fill($this->value['alamat']);
 			$alamat->save();
 			
-			if(isset($this->value['id']) && empty($this->value['id']) && is_null($this->value['id']))
+			if(isset($this->value['id']) && !empty($this->value['id']) && !is_null($this->value['id']))
 			{
 				$value 			= Value::findorfail($this->value['id']);
 			}
 			else
 			{
 				$value 			= new Value;
+				unset($this->value['id']);
 			}
 			
 			$value 				= $value->fill($this->value);

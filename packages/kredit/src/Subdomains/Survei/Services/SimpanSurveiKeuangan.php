@@ -49,13 +49,14 @@ class SimpanSurveiKeuangan
 			$survei 			= $survei->setPetugas($this->survei);
 			$survei->save();
 
-			if(isset($this->value['id']) && empty($this->value['id']) && is_null($this->value['id']))
+			if(isset($this->value['id']) && !empty($this->value['id']) && !is_null($this->value['id']))
 			{
 				$value 			= Value::findorfail($this->value['id']);
 			}
 			else
 			{
 				$value 			= new Value;
+				unset($this->value['id']);
 			}
 
 			$value 				= $value->fill($this->value);
