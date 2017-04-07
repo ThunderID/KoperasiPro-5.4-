@@ -64,7 +64,17 @@ class Distrik_RO extends BaseModel
 	 */	
  	public function desa()
 	{
-		return $this->hasMany('TTerritorial\Models\Desa_RO', 'territorial_distrik_id', 'id');
+		return $this->hasMany('TTerritorial\Models\Desa_RO', 'territorial_regensi_id', 'id');
+	}
+
+	/**
+	 * relationship regensi
+	 *
+	 * @return Distrik_RO $model
+	 */	
+ 	public function regensi()
+	{
+		return $this->belongsto('TTerritorial\Models\Regensi_RO', 'territorial_regensi_id', 'id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

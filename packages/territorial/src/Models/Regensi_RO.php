@@ -64,7 +64,17 @@ class Regensi_RO extends BaseModel
 	 */	
  	public function distrik()
 	{
-		return $this->hasMany('TTerritorial\Models\Distrik_RO', 'territorial_regensi_id', 'id');
+		return $this->hasMany('TTerritorial\Models\Distrik_RO', 'territorial_provinsi_id', 'id');
+	}
+
+	/**
+	 * relationship provinsi
+	 *
+	 * @return Regensi_RO $model
+	 */	
+ 	public function provinsi()
+	{
+		return $this->belongsto('TTerritorial\Models\Provinsi_RO', 'territorial_provinsi_id', 'id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
