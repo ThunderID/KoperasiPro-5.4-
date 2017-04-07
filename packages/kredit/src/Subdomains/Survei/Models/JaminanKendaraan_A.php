@@ -53,6 +53,7 @@ class JaminanKendaraan_A extends BaseModel
 											'merk'						,
 											'warna'						,
 											'tahun'						,
+											'nomor_polisi'				,
 											'nomor_bpkb'				,
 											'nomor_mesin'				,
 											'nomor_rangka'				,
@@ -69,9 +70,11 @@ class JaminanKendaraan_A extends BaseModel
 	 */
 	protected $rules				=	[
 											'tipe'						=> 'required|in:roda_2,roda_3,roda_4,roda_6,lain_lain',
-											'merk'						=> 'required|in:honda,yamaha,suzuki,kawasaki,mitsubishi,toyota,nissan,kia,daihatsu,isuzu',
+											'merk'						=> 'required',
+											// 'merk'						=> 'required|in:honda,yamaha,suzuki,kawasaki,mitsubishi,toyota,nissan,kia,daihatsu,isuzu,lain_lain',
 											'warna'						=> 'max:255',
 											'tahun'						=> 'max:4|min:4',
+											'nomor_polisi'				=> 'max:255',
 											'nomor_bpkb'				=> 'max:255',
 											'nomor_mesin'				=> 'max:255',
 											'nomor_rangka'				=> 'max:255',

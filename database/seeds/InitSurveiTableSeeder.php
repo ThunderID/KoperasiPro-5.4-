@@ -229,6 +229,7 @@ class InitSurveiTableSeeder extends Seeder
 					];
 
 				$survei_data['jaminan_kendaraan']['warna']				= $color[rand(0,4)]; 
+				$survei_data['jaminan_kendaraan']['nomor_polisi']		= $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)];
 				$survei_data['jaminan_kendaraan']['nomor_mesin']		= $faker->ean13;
 				$survei_data['jaminan_kendaraan']['nomor_rangka']		= $faker->ean13;
 				$survei_data['jaminan_kendaraan']['masa_berlaku_stnk']	= Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y');

@@ -21,6 +21,7 @@ class CreateKreditSurveiJaminanKendaraanTable extends Migration
 			$table->string('merk', 255);
 			$table->string('warna', 255);
 			$table->integer('tahun');
+			$table->string('nomor_polisi', 255);
 			$table->string('nomor_bpkb', 255);
 			$table->string('nomor_mesin', 255);
 			$table->string('nomor_rangka', 255);
