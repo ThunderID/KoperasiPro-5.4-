@@ -89,7 +89,7 @@ class DaftarKredit
 		}
 
 		//2.allow koperasi
-		$model  				= $model->where('mobile_id', $queries['id'])->whereHas('kredit', function($q)use($queries){return $q;});
+		$model  				= $model->where('mobile_id', $queries['id'])->whereHas('kredit', function($q)use($queries){return $q;})->orderby('created_at', 'desc');
 
 		return $model;
 	} 
