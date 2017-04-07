@@ -37,7 +37,7 @@
 			{{-- foreach data --}}
 			@foreach ($value as $k => $v)
 				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
+				@if (!in_array($k, ['id', 'survei_id', 'alamat_id', 'details']))
 					{{-- check ketika data 2 kasih row baru --}}
 					@if ($i % 2 == 0)
 						</div>

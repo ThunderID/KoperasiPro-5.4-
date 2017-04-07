@@ -141,24 +141,10 @@ class SimpanSurveiKredit
 
 			if(isset($this->survei['rekening']))
 			{
-				if(!is_null($this->survei['rekening']['id']))
-				{
-					$hapus 		= HapusSurveiRekening::bankyangsama($kredit['id'], $this->survei['rekening']['id']);
-				}
+				$this->survei['rekening']['tanggal_awal']	= Carbon::createFromFormat('d/m/Y', $kredit['tanggal_pengajuan'])->subMonths(3)->format('d/m/Y');
+				$this->survei['rekening']['tanggal_akhir']	= $kredit['tanggal_pengajuan'];
 
-				$rekening_1['nama_bank']	= $this->survei['rekening']['nama_bank'];
-				$rekening_1['atas_nama']	= $this->survei['rekening']['atas_nama'];
-				$rekening_1['saldo']		= $this->survei['rekening']['saldo_awal'];
-				$rekening_1['tanggal']		= Carbon::createFromFormat('d/m/Y', $kredit['tanggal_pengajuan'])->subMonths(3)->format('d/m/Y');
-
-				$survei 	= new SimpanSurveiRekening($survei_base, $rekening_1);
-				$survei->handle();
-
-				$rekening_2					= $rekening_1;
-				$rekening_2['tanggal']		= $kredit['tanggal_pengajuan'];
-				$rekening_2['saldo']		= $this->survei['rekening']['saldo_akhir'];
-
-				$survei 	= new SimpanSurveiRekening($survei_base, $rekening_2);
+				$survei 	= new SimpanSurveiRekening($survei_base, $this->survei['rekening']);
 				$survei->handle();
 			}
 

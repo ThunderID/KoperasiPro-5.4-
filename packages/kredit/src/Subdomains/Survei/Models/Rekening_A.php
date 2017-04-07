@@ -35,7 +35,7 @@ class Rekening_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_rekening_bank';
+	protected $table				= 'survei_rekening';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -48,8 +48,6 @@ class Rekening_A extends BaseModel
 											'survei_id'		,
 											'nama_bank'		,
 											'atas_nama'		,
-											'tanggal'		,
-											'saldo'			,
 										];
 	/**
 	 * Basic rule of database
@@ -59,8 +57,6 @@ class Rekening_A extends BaseModel
 	protected $rules				=	[
 											'nama_bank'		=> 'max:255',
 											'atas_nama'		=> 'max:255',
-											'tanggal'		=> 'date_format:"Y-m-d"',
-											'saldo'			=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -80,6 +76,10 @@ class Rekening_A extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
+	protected $appends 				= 	[
+											'saldo_awal',
+											'saldo_akhir',
+										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
 	/**
@@ -91,30 +91,45 @@ class Rekening_A extends BaseModel
 	{
 		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
 	}
-	
+		
+	/**
+	 * relationship details
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function details()
+	{
+		return $this->hasMany('TKredit\Survei\Models\RekeningDetail_A', 'rekening_id')->orderby('tanggal', 'asc');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	public function getTanggalAttribute($value)
+	
+	public function getSaldoAwalAttribute($value)
 	{
-		return $this->formatDateTo($value);
+		$saldo_akhir 	= "Rp 0";
+		if($this->details()->count())
+		{
+			$saldo_akhir 	= $this->details[0]['saldo'];
+		}
+
+		return $saldo_akhir;
 	}
 
-	public function getSaldoAttribute($value)
+	public function getSaldoAkhirAttribute($value)
 	{
-		return $this->formatMoneyTo($value);
+		$saldo_akhir 	= "Rp 0";
+		if($this->details()->count())
+		{
+			$saldo_akhir 	= $this->details[($this->details()->count() - 1)]['saldo'];
+		}
+
+		return $saldo_akhir;
 	}
+
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-	public function setTanggalAttribute($value)
-	{
-		$this->attributes['tanggal']		= $this->formatDateFrom($value);
-	}
-
-	public function setSaldoAttribute($value)
-	{
-		$this->attributes['saldo']			= $this->formatMoneyFrom($value);
-	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 

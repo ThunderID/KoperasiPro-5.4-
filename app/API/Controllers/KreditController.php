@@ -31,13 +31,13 @@ class KreditController extends Controller
 
 		$data 		= $data->get(['id' => $this->request->input('id')]);
 
-		$new_data 	= [];
-		foreach ($data as $key => $value) 
-		{
-			$new_data["index_$key"]	= $value;
-		}
+		// $new_data 	= [];
+		// foreach ($data as $key => $value) 
+		// {
+		// 	$new_data["index_$key"]	= $value;
+		// }
 		
-		return JSend::success($new_data)->asArray();
+		return JSend::success($data)->asArray();
 	}
 
 	public function store()

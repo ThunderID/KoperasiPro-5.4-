@@ -4,6 +4,7 @@ namespace TKredit\Survei\Services;
 
 use TKredit\Survei\Models\Survei;
 use TKredit\Survei\Models\Rekening_A as Value;
+use TKredit\Survei\Models\RekeningDetail_A;
 
 use DB, Exception;
 
@@ -40,45 +41,12 @@ class HapusSurveiRekening
 			$value 				= Value::findorfail($this->value['id']);
 			$survei 			= Survei::findorfail($value->survei_id);
 			
-			$survei->delete();
+			$detail 			= RekeningDetail_A::where('rekening_id', $this->value['id'])->delete();
+
 			$value->delete();
+			$survei->delete();
 			
 			DB::commit();
-		}
-		catch(Exception $e)
-		{
-			DB::rollback();
-
-			throw $e;
-		}
-
-		return true;
-	}
-
-	public static function bankyangsama($nomor_dokumen_kredit, $rekening_id)
-	{
-
-		try
-		{
-			//1. Hapus survey
-			$survei 		= Survei::where('nomor_dokumen_kredit', $nomor_dokumen_kredit)->get(['id']);
-
-			if(count($survei) > 0)
-			{
-				DB::beginTransaction();
-
-				$value 			= Value::id($rekening_id)->first();
-
-				$all_reks 		= Value::where('nama_bank', $value['nama_bank'])->where('atas_nama', $value['atas_nama'])->whereIn('survei_id', $survei)->get();
-
-				foreach ($all_reks as $delete_o) 
-				{
-					$delete_o->survei->delete();
-					$delete_o->delete();
-				}
-	
-				DB::commit();
-			}
 		}
 		catch(Exception $e)
 		{

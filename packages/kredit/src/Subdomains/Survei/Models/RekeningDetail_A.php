@@ -4,8 +4,6 @@ namespace TKredit\Survei\Models;
 
 use TKredit\Infrastructures\Models\BaseModel;
 
-use TKredit\Survei\Models\Observers\JaminanKendaraan_AObserver;
-
 use TKredit\Infrastructures\Guid\GuidTrait;
 
 use TKredit\UbiquitousLibraries\Currencies\IDRTrait;
@@ -14,9 +12,9 @@ use TKredit\UbiquitousLibraries\Datetimes\TanggalTrait;
 use Validator, Exception;
 
 /**
- * Model JaminanKendaraan_A
+ * Model RekeningDetail_A
  *
- * Digunakan untuk menyimpan data jaminan kendaraan
+ * Digunakan untuk menyimpan data alamat
  * Ketentuan : 
  * 	- tidak bisa direct changes, tapi harus melalui fungsi tersedia (aggregate)
  * 	- auto generate id (guid)
@@ -25,7 +23,7 @@ use Validator, Exception;
  * @subpackage Survei
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class JaminanKendaraan_A extends BaseModel
+class RekeningDetail_A extends BaseModel
 {
 	use GuidTrait;
 
@@ -37,7 +35,7 @@ class JaminanKendaraan_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_jaminan_kendaraan';
+	protected $table				= 'survei_rekening_detail';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -46,22 +44,10 @@ class JaminanKendaraan_A extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'						,
-											'survei_id'					,
-											'alamat_id'					,
-											'tipe'						,
-											'merk'						,
-											'warna'						,
-											'tahun'						,
-											'nomor_polisi'				,
-											'nomor_bpkb'				,
-											'nomor_mesin'				,
-											'nomor_rangka'				,
-											'masa_berlaku_stnk'			,
-											'status_kepemilikan'		,
-											'harga_taksasi'				,
-											'fungsi_sehari_hari'		,
-											'atas_nama'					,
+											'id'			,
+											'rekening_id'	,
+											'tanggal'		,
+											'saldo'			,
 										];
 	/**
 	 * Basic rule of database
@@ -69,20 +55,8 @@ class JaminanKendaraan_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'tipe'						=> 'required|in:roda_2,roda_3,roda_4,roda_6,lain_lain',
-											'merk'						=> 'required',
-											// 'merk'						=> 'required|in:honda,yamaha,suzuki,kawasaki,mitsubishi,toyota,nissan,kia,daihatsu,isuzu,lain_lain',
-											'warna'						=> 'max:255',
-											'tahun'						=> 'max:4|min:4',
-											'nomor_polisi'				=> 'max:255',
-											'nomor_bpkb'				=> 'max:255',
-											'nomor_mesin'				=> 'max:255',
-											'nomor_rangka'				=> 'max:255',
-											'masa_berlaku_stnk'			=> 'date_format:"Y-m-d"',
-											'status_kepemilikan'		=> 'max:255',
-											'harga_taksasi'				=> 'numeric',
-											'fungsi_sehari_hari'		=> 'max:255',
-											'atas_nama'					=> 'max:255',
+											'tanggal'		=> 'date_format:"Y-m-d"',
+											'saldo'			=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -105,47 +79,37 @@ class JaminanKendaraan_A extends BaseModel
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
 	/**
-	 * relationship survei
+	 * relationship rekening
 	 *
 	 * @return Kredit $model
 	 */	
- 	public function survei()
+ 	public function rekening()
 	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+		return $this->belongsTo('TKredit\Survei\Models\Rekening_A', 'rekening_id');
 	}
-
-	/**
-	 * relationship alamat
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function alamat()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
-	}
-
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	public function getMasaBerlakuStnkAttribute($value)
+	public function getTanggalAttribute($value)
 	{
 		return $this->formatDateTo($value);
 	}
 
-	public function getHargaTaksasiAttribute($value)
+	public function getSaldoAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
 	}
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-	public function setMasaBerlakuStnkAttribute($value)
+	public function setTanggalAttribute($value)
 	{
-		$this->attributes['masa_berlaku_stnk']	= $this->formatDateFrom($value);
+		$this->attributes['tanggal']		= $this->formatDateFrom($value);
 	}
 
-	public function setHargaTaksasiAttribute($value)
+	public function setSaldoAttribute($value)
 	{
-		$this->attributes['harga_taksasi']		= $this->formatMoneyFrom($value);
+		$this->attributes['saldo']			= $this->formatMoneyFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
@@ -158,14 +122,7 @@ class JaminanKendaraan_A extends BaseModel
 	public static function boot() 
 	{
 		parent::boot();
-
-        JaminanKendaraan_A::observe(new JaminanKendaraan_AObserver());
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
-
-	public function scopeNomorBPKB($query, $value)
-	{
-		return $query->where('nomor_bpkb', $value);
-	}
 }

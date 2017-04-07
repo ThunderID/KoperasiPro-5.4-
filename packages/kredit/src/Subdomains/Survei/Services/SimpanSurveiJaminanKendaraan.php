@@ -50,9 +50,12 @@ class SimpanSurveiJaminanKendaraan
 			$survei 			= $survei->setPetugas($this->survei);
 			$survei->save();
 
-			$alamat 			= new Alamat_A;
- 			$alamat->fill($this->value['alamat']);
-			$alamat->save();
+			if(isset($this->value['alamat']) && !empty($this->value['alamat']))
+			{
+				$alamat 		= new Alamat_A;
+	 			$alamat->fill($this->value['alamat']);
+				$alamat->save();
+			}
 			
 			if(isset($this->value['id']) && !empty($this->value['id']) && !is_null($this->value['id']))
 			{
