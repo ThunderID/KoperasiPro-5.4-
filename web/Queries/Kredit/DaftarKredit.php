@@ -86,8 +86,13 @@ class DaftarKredit
 		{
 			case 'pengajuan':
 				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.alamat', 'kreditur.relasi'])->first();
-
 				$parsed_credit 	=  $complete;
+
+				if(!$parsed_credit['kreditur']['alamat']->count())
+				{
+					$parsed_credit['kreditur']['alamat'][0]	= null;
+				}
+
 				$parsed_credit['status_berikutnya']	= 'survei';
 				$parsed_credit['status_sebelumnya']	= '';
 				$parsed_credit['status']			= 'pengajuan';
