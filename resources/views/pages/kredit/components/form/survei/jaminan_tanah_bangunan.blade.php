@@ -35,7 +35,7 @@
 	<label for="">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($data['masa_berlaku_sertifikat']) ? $data['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($data['masa_berlaku_sertifikat']) ? $data['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date-format input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>

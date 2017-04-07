@@ -19,7 +19,7 @@
 	<label for="">Tanggal Berdiri</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($data['tanggal_berdiri']) ? $data['tanggal_berdiri'] : null), ['class' => 'form-control auto-tabindex mask-date']) !!}
+			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($data['tanggal_berdiri']) ? $data['tanggal_berdiri'] : null), ['class' => 'form-control auto-tabindex mask-date-format']) !!}
 		</div>
 	</div>
 </fieldset>

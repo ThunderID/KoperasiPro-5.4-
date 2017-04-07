@@ -62,7 +62,7 @@
 	<label for="">Masa Berlaku STNK</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_kendaraan[masa_berlaku_stnk]', (isset($data['masa_berlaku_stnk']) ? $data['masa_berlaku_stnk'] : null), ['class' => 'form-control auto-tabindex mask-date', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_kendaraan[masa_berlaku_stnk]', (isset($data['masa_berlaku_stnk']) ? $data['masa_berlaku_stnk'] : null), ['class' => 'form-control auto-tabindex mask-date-format', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
