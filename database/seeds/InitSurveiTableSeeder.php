@@ -23,7 +23,8 @@ class InitSurveiTableSeeder extends Seeder
 		DB::table('survei_kepribadian')->truncate();
 		DB::table('survei_keuangan')->truncate();
 		DB::table('survei_nasabah')->truncate();
-		DB::table('survei_rekening_bank')->truncate();
+		DB::table('survei_rekening')->truncate();
+		DB::table('survei_rekening_detail')->truncate();
 		DB::table('survei_ro_petugas')->truncate();
 		DB::table('survei')->truncate();
 

@@ -12,7 +12,7 @@ use TKredit\UbiquitousLibraries\Datetimes\TanggalTrait;
 use Validator, Exception;
 
 /**
- * Model Rekening_A
+ * Model RekeningDetail_A
  *
  * Digunakan untuk menyimpan data alamat
  * Ketentuan : 
@@ -23,7 +23,7 @@ use Validator, Exception;
  * @subpackage Survei
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class Rekening_A extends BaseModel
+class RekeningDetail_A extends BaseModel
 {
 	use GuidTrait;
 
@@ -35,7 +35,7 @@ class Rekening_A extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_rekening';
+	protected $table				= 'survei_rekening_detail';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -45,9 +45,9 @@ class Rekening_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'			,
-											'survei_id'		,
-											'nama_bank'		,
-											'atas_nama'		,
+											'rekening_id'	,
+											'tanggal'		,
+											'saldo'			,
 										];
 	/**
 	 * Basic rule of database
@@ -55,8 +55,8 @@ class Rekening_A extends BaseModel
 	 * @var array
 	 */
 	protected $rules				=	[
-											'nama_bank'		=> 'max:255',
-											'atas_nama'		=> 'max:255',
+											'tanggal'		=> 'date_format:"Y-m-d"',
+											'saldo'			=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -76,60 +76,41 @@ class Rekening_A extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
-	protected $appends 				= 	[
-											'saldo_awal',
-											'saldo_akhir',
-										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
 	/**
-	 * relationship survei
+	 * relationship rekening
 	 *
 	 * @return Kredit $model
 	 */	
- 	public function survei()
+ 	public function rekening()
 	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
+		return $this->belongsTo('TKredit\Survei\Models\Rekening_A', 'rekening_id');
 	}
-		
-	/**
-	 * relationship details
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function details()
-	{
-		return $this->hasMany('TKredit\Survei\Models\RekeningDetail_A', 'rekening_id')->orderby('tanggal', 'asc');
-	}
-
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	
-	public function getSaldoAwalAttribute($value)
+	public function getTanggalAttribute($value)
 	{
-		$saldo_akhir 	= "Rp 0";
-		if($this->details()->count())
-		{
-			$saldo_akhir 	= $this->details[0]['saldo'];
-		}
-
-		return $saldo_akhir;
+		return $this->formatDateTo($value);
 	}
 
-	public function getSaldoAkhirAttribute($value)
+	public function getSaldoAttribute($value)
 	{
-		$saldo_akhir 	= "Rp 0";
-		if($this->details()->count())
-		{
-			$saldo_akhir 	= $this->details[($this->details()->count() - 1)]['saldo'];
-		}
-
-		return $saldo_akhir;
+		return $this->formatMoneyTo($value);
 	}
-
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+	public function setTanggalAttribute($value)
+	{
+		$this->attributes['tanggal']		= $this->formatDateFrom($value);
+	}
+
+	public function setSaldoAttribute($value)
+	{
+		$this->attributes['saldo']			= $this->formatMoneyFrom($value);
+	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 

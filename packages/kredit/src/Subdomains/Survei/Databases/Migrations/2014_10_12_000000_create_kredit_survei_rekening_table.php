@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKreditSurveiRekeningBankTable extends Migration
+class CreateKreditSurveiRekeningTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,13 +13,11 @@ class CreateKreditSurveiRekeningBankTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('survei_rekening_bank', function (Blueprint $table) {
+		Schema::create('survei_rekening', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('survei_id', 255);
 			$table->string('nama_bank', 255);
 			$table->string('atas_nama', 255);
-			$table->date('tanggal');
-			$table->double('saldo');
 			$table->timestamps();
 			$table->softDeletes();
 
@@ -35,6 +33,6 @@ class CreateKreditSurveiRekeningBankTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('survei_rekening_bank');
+		Schema::dropIfExists('survei_rekening');
 	}
 }
