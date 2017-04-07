@@ -77,7 +77,19 @@ class Relasi_A extends BaseModel
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
+	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+
+	public function getAlamatAttribute($value)
+	{
+		return json_decode($this->attributes['alamat'], true);
+	}
+
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+
+	public function setAlamatAttribute($value)
+	{
+		$this->attributes['alamat']	= json_encode($value);
+	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 	
@@ -93,7 +105,7 @@ class Relasi_A extends BaseModel
 		//1b. simpan relasi
 		$this->attributes['orang_id']			= $orang->id;
 		$this->attributes['nama']				= $value['nama'];
-		$this->attributes['alamat']				= $value['alamat'];
+		$this->attributes['alamat']				= json_encode($value['alamat']);
 		$this->attributes['telepon']			= $value['telepon'];
 		$this->attributes['hubungan']			= $value['hubungan'];
 

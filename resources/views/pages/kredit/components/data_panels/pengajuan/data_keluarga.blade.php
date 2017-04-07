@@ -40,9 +40,9 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 			<div class="col-sm-6">
 				<div class="row m-b-xl m-t-xs-print">
 					<div class="col-sm-12">
-						<p class="p-b-sm m-b-xs-m-print"><strong>Alamat</strong></p>
-						<p>
-							{{ !is_null($value['alamat']) ? $value['alamat'] : '-' }}
+						<p class="p-b-sm"><strong>Alamat</strong></p>
+						<p class="p-b-xs">{{ $value['alamat']['alamat'] }}, {{ $value['alamat']['desa'] }}, {{ $value['alamat']['distrik'] }}, {{ $value['alamat']['regensi'] }}</p>
+						<p class="p-b-xs">{{ $value['alamat']['provinsi'] }} - {{ $value['alamat']['negara'] }}</p>
 						</p>
 					</div>
 				</div>

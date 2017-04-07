@@ -228,7 +228,6 @@ class KreditController extends Controller
 				$kreditur 							= Input::only('relasi');
 				$kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
 				$kreditur['relasi']['telepon']		= '';
-				$kreditur['relasi']['alamat']		= str_replace('=', ' ', http_build_query($kreditur['relasi']['alamat'], null, ' '));
 
 				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
 				$simpan->handle();
