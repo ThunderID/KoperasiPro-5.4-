@@ -29,7 +29,7 @@ class MerkJaminanKendaraan
 					'suzuki'		=> 'Suzuki',
 					'toyota'		=> 'Toyota',
 					'yamaha'		=> 'Yamaha',
-					'00000'			=> 'Lainnya',
+					'lain_lain'		=> 'Lainnya',
 				]; 
 	}
 }

@@ -20,8 +20,10 @@
 	<label for="">Merk</label>
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, (isset($data['merk']) ? $data['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::hidden('jaminan_kendaraan[merk]', (isset($data['merk']) ? $data['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan', 'placeholder' => 'Sebutkan', 'data-field' => 'merk', 'style' => 'width:40%']) !!}
+			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, 
+				(isset($data['merk']) ? (in_array($data['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $data['merk'] : 'lain_lain') : 'daihatsu'), 
+				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
+			{!! Form::text('jaminan_kendaraan[merk]', (isset($data['merk']) ? $data['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($data['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($data['merk']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
