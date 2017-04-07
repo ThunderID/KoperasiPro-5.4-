@@ -18,7 +18,7 @@
 				<p class="m-b-sm text-uppercase">
 					aset tanah &amp; bangunan {{ $key+1 }}
 
-					@if(!empty($page_datas->credit['aset_usaha']))
+					@if(!empty($page_datas->credit['aset_tanah_bangunan']))
 						@if($edit == true)
 							<span class="pull-right">
 								<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan-{{ $key }}" data-panel="data-aset" no-data-pjax>

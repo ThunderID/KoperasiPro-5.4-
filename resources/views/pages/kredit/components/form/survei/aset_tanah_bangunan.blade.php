@@ -6,7 +6,7 @@
 			{!! Form::select('aset_tanah_bangunan[tipe]', [
 				'bangunan'	=> 'Bangunan',
 				'tanah'		=> 'Tanah',
-				], (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'form-control']) !!}
+				], (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'form-control quick-select auto-tabindex focus']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-5">
 			<div class="input-group">
-				{!! Form::text('aset_tanah_bangunan[luas]', (isset($data['luas']) ? $data['luas'] : null), ['class' => 'form-control mask-number']) !!}
+				{!! Form::text('aset_tanah_bangunan[luas]', (isset($data['luas']) ? $data['luas'] : null), ['class' => 'form-control mask-number auto-tabindex']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -24,7 +24,10 @@
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
-	'param'		=> ['prefix'	=> 'aset_tanah_bangunan'],
+	'param'		=> [
+		'prefix'	=> 'aset_tanah_bangunan',
+		'data'		=> isset($data['alamat']) ? $data['alamat'] : null,
+	],
 	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 	'settings'	=> [
 		'class'		=> ''

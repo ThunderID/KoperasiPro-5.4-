@@ -69,7 +69,7 @@
 	<label for="">Jalan</label>
 	<div class="row">
 		<div class="col-md-9">
-			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[alamat]', null, ['class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Ex. Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[alamat]', isset($data['alamat']) ? $data['alamat'] : null, ['class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Ex. Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
 		</div>
 		<!-- <div class="col-md-3 p-l-none">
 			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
@@ -81,7 +81,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[provinsi]', 
-				(isset($data['provinsi']) ? $data['provinsi'] : []), null, [
+				(isset($data['provinsi']) ? $data['provinsi'] : []), isset($data['provinsi']) ? $data['provinsi'] : null, [
 				'class' => 'form-control auto-tabindex select select-get-ajax ' . (isset($settings["class"]) ? $settings["class"] : "") 
 					. (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : ""), 
 				'placeholder' => 'Pilih Provinsi', 
@@ -98,7 +98,7 @@
 	<label for="">Kota/Kabupaten</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[regensi]', [], null, [
+			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[regensi]', [], isset($data['regensi']) ? $data['regensi'] : null, [
 				'class' => 'form-control auto-tabindex select select-get-ajax select-regensi ' . (isset($settings["class"]) ? $settings["class"] : "")
 					. (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : ""), 
 				'placeholder' => 'Pilih Kota/Kabupaten', 
@@ -116,7 +116,7 @@
 	<label for="">Kecamatan</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[distrik]', [], null, [
+			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[distrik]', [], isset($data['distrik']) ? $data['distrik'] : null, [
 				'class' => 'form-control auto-tabindex select select-get-ajax select-distrik ' . (isset($settings["class"]) ? $settings["class"] : "") 
 					. (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : ""), 
 				'placeholder' => 'Pilih Kecamatan', 
@@ -134,7 +134,7 @@
 	<label for="">Desa</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[desa]', [], null, [
+			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[desa]', [], isset($data['desa']) ? $data['desa'] : null, [
 				'class' => 'form-control auto-tabindex select select-get-ajax select-desa ' . (isset($settings["class"]) ? $settings["class"] : "") 
 					. (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : ""), 
 				'placeholder' => 'Pilih Desa', 

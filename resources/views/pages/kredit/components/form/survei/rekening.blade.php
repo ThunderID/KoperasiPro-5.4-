@@ -10,7 +10,7 @@
 				'danamon'	=> 'Danamon',
 				'mandiri'	=> 'Mandiri',
 				'lain_lain'	=> 'Lainnya',
-			], (isset($data['nama_bank']) ? $data['nama_bank'] : 'bca'), ['class' => 'form-control']) !!} <br/>
+			], (isset($data['nama_bank']) ? $data['nama_bank'] : 'bca'), ['class' => 'form-control auto-tabindex quick-select']) !!} <br/>
 		</div>
 	</div>
 </fieldset>
@@ -18,7 +18,7 @@
 	<label for="">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('rekening[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control', 'placeholder' => 'atas nama']) !!}
+			{!! Form::text('rekening[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'atas nama']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -26,7 +26,7 @@
 	<label for="">Saldo Awal</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('rekening[saldo_awal]', (isset($data['saldo_awal']) ? $data['saldo_awal'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('rekening[saldo_awal]', (isset($data['saldo_awal']) ? $data['saldo_awal'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -34,7 +34,7 @@
 	<label for="">Saldo Akhir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('rekening[saldo_akhir]', (isset($data['saldo_akhir']) ? $data['saldo_akhir'] : null), ['class' => 'form-control mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('rekening[saldo_akhir]', (isset($data['saldo_akhir']) ? $data['saldo_akhir'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
