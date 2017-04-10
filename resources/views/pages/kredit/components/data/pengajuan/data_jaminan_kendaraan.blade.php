@@ -21,7 +21,7 @@
 					@if(!empty($page_datas->credit['jaminan_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger" href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
+								<a class="text-danger" href="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_kendaraan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
