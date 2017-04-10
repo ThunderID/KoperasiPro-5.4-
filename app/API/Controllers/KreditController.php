@@ -93,8 +93,9 @@ class KreditController extends Controller
 
 		foreach ((array)$kredit['jaminan_tanah_bangunan'] as $key => $value) 
 		{
-			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']		= $value['luas'];
-			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']	= 0;
+			$kredit['jaminan_tanah_bangunan'][$key]['alamat']		= ['regensi' => $value['kota'], 'desa' => $value['kelurahan'], 'alamat' => $value['alamat']];
+			// $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']		= $value['luas'];
+			// $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']	= 0;
 		}
 
 		try {
