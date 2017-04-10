@@ -7,6 +7,7 @@ use TKredit\Pengajuan\Models\PengajuanMobile_RO;
 use TKredit\Pengajuan\Models\Petugas_RO;
 
 use TKredit\KreditAktif\Models\KreditAktif_RO;
+use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 
 use TKredit\Pengajuan\Services\SimpanPengajuanKreditur;
 use TKredit\Pengajuan\Services\SimpanPengajuanJaminanKendaraan;
@@ -151,6 +152,12 @@ class PengajuanKreditBaru
 			$kredit_aktif 		= new KreditAktif_RO;
 			$kredit_aktif 		= $kredit_aktif->fill($kaktif);
 			$kredit_aktif->save();
+
+			//6. parse perubahan status
+			$riwayat 		= ['status' => 'pengajuan', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id']];
+			$status 		= new RiwayatKredit_RO;
+			$status->fill($riwayat);
+			$status->save();
 
 			DB::commit();
 
