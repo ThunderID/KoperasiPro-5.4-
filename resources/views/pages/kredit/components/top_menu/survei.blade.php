@@ -40,6 +40,7 @@
 			<div class="col-sm-12 p-l-none p-r-none">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
+					<li role="presentation"><a href="#data-kepribadian" data-toggle="tab" role="tab">Data Kepribadian</a></li>
 					<li role="presentation"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
 					<li role="presentation"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
 					<li role="presentation"><a href="#data-rekening" data-toggle="tab" role="tab">Data Rekening</a></li>

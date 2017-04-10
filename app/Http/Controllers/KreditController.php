@@ -11,7 +11,7 @@ use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
 use TCommands\Kredit\HapusPengajuanKredit;
 use TCommands\Kredit\LanjutkanUntukSurvei;
-
+use TCommands\Kredit\HapusSurveiKredit;
 use TCommands\Kredit\SimpanSurveiKredit;
 
 use TQueries\Territorial\TeritoriIndonesia;
