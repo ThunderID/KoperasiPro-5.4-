@@ -47,11 +47,11 @@ class SimpanPengajuanKreditur
 				$pengajuan 			= Pengajuan::findorfail($this->pengajuan['id']);
 			}
 
-			if(isset($pengajuan['kreditur_id']) && $pengajuan['kreditur_id']!=0)
+			if(isset($pengajuan['kreditur_id']) && $pengajuan['kreditur_id']!="0")
 			{
 				$kreditur 				= $pengajuan->kreditur;
 			}
-			elseif($pengajuan['kreditur_id']==0)
+			elseif($pengajuan['kreditur_id']=="0")
 			{
 				$kreditur 				= new Value;
 			}
@@ -113,6 +113,7 @@ class SimpanPengajuanKreditur
 		}
 		catch(Exception $e)
 		{
+dd($e);
 			DB::rollback();
 
 			throw $e;
