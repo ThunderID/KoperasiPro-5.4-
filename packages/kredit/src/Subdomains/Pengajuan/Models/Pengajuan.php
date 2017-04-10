@@ -52,6 +52,7 @@ class Pengajuan extends BaseModel
 											'tanggal_pengajuan'		,
 											'kreditur_id'			,
 											'ro_petugas_id'			,
+											'referensi_id'			,
 										];
 	/**
 	 * Basic rule of database
@@ -65,6 +66,7 @@ class Pengajuan extends BaseModel
 											'jangka_waktu'			=> 'numeric|in:6,10,12,18,24,30,36,42,48,54,60',
 											'kreditur_id'			=> 'max:255',
 											'ro_petugas_id'			=> 'max:255',
+											'referensi_id'			=> 'max:255',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -84,6 +86,7 @@ class Pengajuan extends BaseModel
 											'deleted_at', 
 											'kreditur_id', 
 											'ro_petugas_id', 
+											'referensi_id', 
 										];
 
 	/**
@@ -104,6 +107,18 @@ class Pengajuan extends BaseModel
 	{
 		return $this->belongsTo('TKredit\Pengajuan\Models\Orang', 'kreditur_id');
 	}
+
+
+	/**
+	 * relationship referensi
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function referensi()
+	{
+		return $this->belongsTo('TKredit\Pengajuan\Models\Petugas_RO', 'referensi_id');
+	}
+
 
 	/**
 	 * relationship jaminan kendaraan

@@ -4,8 +4,10 @@ namespace TCommands\Kredit;
 
 use TKredit\Pengajuan\Models\Pengajuan;
 use TKredit\Pengajuan\Models\PengajuanMobile_RO;
+use TKredit\Pengajuan\Models\Petugas_RO;
 
 use TKredit\KreditAktif\Models\KreditAktif_RO;
+use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 
 use TKredit\Pengajuan\Services\SimpanPengajuanKreditur;
 use TKredit\Pengajuan\Services\SimpanPengajuanJaminanKendaraan;
@@ -108,8 +110,21 @@ class PengajuanKreditBaru
 				$mobile 		= new PengajuanMobile_RO;
 				$mobile 		= $mobile->fill($param);
 				$mobile->save();
-			
-				$kaktif['ro_mobile_model_id']	= $mobile->mobile_id;
+
+				if(isset($this->kredit['referensi']))
+				{
+					$referensi			= new Petugas_RO;
+					$referensi_ro		= $referensi->findornew($this->kredit['referensi']['id']);
+					$referensi_ro->fill([
+						'id' 	=> $this->kredit['referensi']['id'],
+						'nama' 	=> $this->kredit['referensi']['nama'],
+						'role' 	=> 'AO/Marketing',
+					]);
+
+					$referensi_ro->save();
+
+					$kredit->referensi_id		= $referensi_ro->id;
+				}
 			}
 
 			//4. store jaminan kendaraan
@@ -137,6 +152,12 @@ class PengajuanKreditBaru
 			$kredit_aktif 		= new KreditAktif_RO;
 			$kredit_aktif 		= $kredit_aktif->fill($kaktif);
 			$kredit_aktif->save();
+
+			//6. parse perubahan status
+			$riwayat 		= ['status' => 'pengajuan', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id']];
+			$status 		= new RiwayatKredit_RO;
+			$status->fill($riwayat);
+			$status->save();
 
 			DB::commit();
 

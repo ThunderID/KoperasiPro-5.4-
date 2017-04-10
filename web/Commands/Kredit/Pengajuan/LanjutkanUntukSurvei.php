@@ -5,6 +5,7 @@ namespace TCommands\Kredit;
 use TKredit\Pengajuan\Models\Pengajuan;
 use TKredit\Survei\Models\Survei;
 use TKredit\KreditAktif\Models\KreditAktif_RO;
+use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 
@@ -61,6 +62,12 @@ class LanjutkanUntukSurvei
 			$kredit_aktif 	= new KreditAktif_RO;
 			$kredit_aktif->fill($kaktif);
 			$kredit_aktif->save();
+
+			//3. parse perubahan status
+			$riwayat 		= ['status' => 'survei', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id']];
+			$status 		= new RiwayatKredit_RO;
+			$status->fill($riwayat);
+			$status->save();
 
 			DB::commit();
 
