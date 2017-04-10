@@ -13,7 +13,7 @@
 <fieldset class="form-group">
 	<label for="">Luas</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<div class="input-group">
 				{!! Form::text('aset_tanah_bangunan[luas]', (isset($data['luas']) ? $data['luas'] : null), ['class' => 'form-control mask-number auto-tabindex']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>

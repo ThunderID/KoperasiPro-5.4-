@@ -18,7 +18,7 @@
 			{!! Form::select('jaminan_tanah_bangunan[jenis_sertifikat]', [
 					'hgb'	=> 'Hak Guna Bangunan (HGB)',
 					'shm'	=> 'Sertifikat Hak Milik (SHM)',
-				], (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'form-control quick-select auto-tabindex']) !!}
+				], (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'form-control quick-select auto-tabindex']) !!} <br/>
 			{!! Form::hidden('jaminan_tanah_bangunan[jenis_sertifikat]', (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
 		</div>
 	</div>
@@ -100,7 +100,8 @@
 				'tingkat'			=> 'Tingkat',
 				'tidak_tingkat'		=> 'Tidak tingkat',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($data['bentuk_bangunan']) ? $data['bentuk_bangunan'] : 'tingkat'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($data['bentuk_bangunan']) ? (in_array($data['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? $data['bentuk_bangunan'] : 'lain_lain') : 'tingkat'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-bentuk-bangunan']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[bentuk_bangunan]', isset($data['bentuk_bangunan']) ? $data['bentuk_bangunan'] : 'tingkat', ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-bentuk-bangunan ' . (in_array($data['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? 'hidden' : (!isset($data['bentuk_bangunan']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -125,7 +126,8 @@
 				'tegel'			=> 'Tegel',
 				'Ubin'			=> 'Ubin',
 				'lain_lain'		=> 'Lainnya',
-			], (isset($data['lantai_bangunan']) ? $data['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($data['lantai_bangunan']) ? (in_array($data['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? $data['lantai_bangunan'] : 'lain_lain') : 'keramik'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-lantai-bangunan']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[lantai_bangunan]', (isset($data['lantai_bangunan']) ? $data['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-lantai-bangunan ' . (in_array($data['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? 'hidden' : !isset($data['lantai_bangunan']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -138,7 +140,8 @@
 				'kayu'		=> 'Kayu',
 				'tembok'	=> 'Tembok',
 				'lain_lain'	=> 'Lainnya',
-			], (isset($data['dinding']) ? $data['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($data['dinding']) ? (in_array($data['dinding'], ['bambu', 'kayu', 'tembok']) ? $data['dinding'] : 'lain_lain') : 'bambu'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-dinding']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[dinding]', (isset($data['dinding']) ? $data['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-dinding ' . (in_array($data['dinding'], ['bambu', 'kayu', 'tembok']) ? 'hidden' : !isset($data['dinding']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -197,7 +200,8 @@
 				'lebih_tinggi_dari_jalan'		=> 'Lebih Tinggi Dari Jalan',
 				'sama_dengan_jalan'				=> 'Sama Dengan Jalan',
 				'lain_lain'						=> 'Lainnya',
-			], (isset($data['letak_lokasi_terhadap_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($data['letak_lokasi_terhadap_jalan']) ? (in_array($data['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lain_lain') : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-letak-lokasi']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', (isset($data['letak_lokasi_terhadap_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-letak-lokasi ' . (in_array($data['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? 'hidden' : !isset($data['letak_lokasi_terhadap_jalan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -213,7 +217,10 @@
 				'pertokoan'		=> 'Pertokoan',
 				'perumahan'		=> 'Perumahan',
 				'lain_lain'		=> 'Lainnya',
-			], (isset($data['lingkungan']) ? $data['lingkungan'] : 'industri'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($data['lingkungan']) ? (in_array($data['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? $data['lingkungan'] : 'lain_lain') : 'industri'), 
+			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-linkungan']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[lingkungan]', (isset($data['lingkungan']) ? $data['lingkungan'] : 'industri'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-linkungan ' . 
+			(in_array($data['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? 'hidden' : !isset($data['lingkungan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>

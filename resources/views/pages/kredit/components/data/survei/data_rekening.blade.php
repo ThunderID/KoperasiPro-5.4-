@@ -51,6 +51,8 @@
 								<p class="text-capitalize">
 									@if ($k == 'survei')
 										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
+									@elseif ($k == 'nama_bank')
+										{{ strtoupper($v) }}
 									@else
 										{{ str_replace('_', ' ', $v) }}
 									@endif

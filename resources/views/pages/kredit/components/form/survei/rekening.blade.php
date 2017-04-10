@@ -10,7 +10,10 @@
 				'danamon'	=> 'Danamon',
 				'mandiri'	=> 'Mandiri',
 				'lain_lain'	=> 'Lainnya',
-			], (isset($data['nama_bank']) ? $data['nama_bank'] : 'bca'), ['class' => 'form-control auto-tabindex quick-select']) !!} <br/>
+			], (isset($data['nama_bank']) ? (in_array($data['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? $data['nama_bank'] : 'lain_lain') : 'bca'), 
+			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-rekening-nama-bank']) !!} <br/>
+			{!! Form::text('rekening[nama_bank]', (isset($data['nama_bank']) ? $data['nama_bank'] : 'bca'), ['class' => 'form-control auto-tabindex m-t-sm input-rekening-nama-bank ' . 
+			(in_array($data['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? 'hidden' : !isset($data['nama_bank']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>

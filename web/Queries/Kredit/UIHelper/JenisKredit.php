@@ -22,7 +22,7 @@ class JenisKredit
 					'pa'			=> 'Angsuran',
 					'pt'			=> 'Musiman',
 					'rumah_delta'	=> 'Rumah Delta',
-					'00000'			=> 'Lainnya',
+					'lain_lain'		=> 'Lainnya',
 				];
 	}
 }

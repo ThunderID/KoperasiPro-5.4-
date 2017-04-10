@@ -32,8 +32,8 @@
 				'milik_keluarga'	=> 'Milik Keluarga',
 				'milik_sendiri'		=> 'Milik Sendiri',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($data['status']) ? $data['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status']) !!}
-			{!! Form::hidden('aset_usaha[status]', 'bagi_hasil', ['class' => 'input-aset-usaha-status']) !!}
+			], (isset($data['status']) ? (in_array($data['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? $data['status'] : 'lain_lain') : 'bagi_hasil'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status']) !!}	<br/>
+			{!! Form::text('aset_usaha[status]', (isset($data['status']) ? $data['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status ' . (in_array($data['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -58,8 +58,8 @@
 				'milik_sendiri' 	=> 'Milik Sendiri',
 				'sewa'				=> 'Sewa',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($data['status_tempat_usaha']) ? $data['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status-tempat-usaha']) !!}
-			{!! Form::hidden('aset_usaha[status_tempat_usaha]', 'milik_sendiri', ['class' => 'input-aset-usaha-status-tempat-usaha']) !!}
+			], (isset($data['status_tempat_usaha']) ? (in_array($data['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? $data['status_tempat_usaha'] : 'lain_lain') : 'milik_sendiri'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status-tempat-usaha']) !!}
+			{!! Form::text('aset_usaha[status_tempat_usaha]', (isset($data['status_tempat_usaha']) ? $data['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status-tempat-usaha ' . (in_array($data['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
