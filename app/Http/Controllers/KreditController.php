@@ -468,12 +468,12 @@ class KreditController extends Controller
 				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->jaminan_tanah_bangunan_id]]);
 				$simpan->handle();
 			}
+
 			if($this->request->is('hapus/kreditur/relasi/*'))
 			{
 				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
 				$simpan->handle();
 			}
-
 
 			if($this->request->is('hapus/survei/aset/usaha/*'))
 			{
@@ -513,6 +513,8 @@ class KreditController extends Controller
 				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['kepribadian' => ['kepribadian' => ['id' => $this->request->survei_kepribadian_id]]]);
 				$simpan->handle();
 			}
+			
+			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
 
 		} catch (Exception $e) {
 			if (is_array($e->getMessage()))
