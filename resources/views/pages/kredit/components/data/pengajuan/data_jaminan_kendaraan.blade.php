@@ -43,7 +43,7 @@
 			{{-- foreach data --}}
 			@foreach ($value as $k => $v)
 				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
+				@if (!in_array($k, ['id', 'pengajuan_id']))
 					{{-- check ketika data 2 kasih row baru --}}
 					@if ($i % 2 == 0)
 						</div>
@@ -75,10 +75,14 @@
 		</div>
 	@empty
 	@endforelse
-
+	
 	<div class="row m-t-md m-b-md">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Kendaraan</a>
+			@if (count($page_datas->credit['jaminan_kendaraan']) < 2)
+				<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Kendaraan</a>
+			@else
+				<p class="text-muted text-capitalize text-sm"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 2</em></p>
+			@endif
 		</div>
 	</div>
 @else

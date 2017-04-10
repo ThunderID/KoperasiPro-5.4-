@@ -72,7 +72,11 @@
 
 	<div class="row m-t-md m-b-md">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
+			@if (count($page_datas->credit['jaminan_tanah_bangunan']) < 3)
+				<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
+			@else
+				<p class="text-muted text-capitalize text-sm"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 3</em></p>
+			@endif
 		</div>
 	</div>
 @else

@@ -234,16 +234,23 @@ class KreditController extends Controller
 			}
 
 			//update jaminan
-			if (Input::has('jaminan_kendaraan'))
+			if (Input::has('pengajuan'))
 			{
-				$simpan 	= new SimpanPengajuanKredit($id, Input::only('jaminan_kendaraan'));
-				$simpan->handle();
-			}
+				$jaminan = Input::only('pengajuan');
 
-			if (Input::has('jaminan_tanah_bangunan'))
-			{
-				$simpan 	= new SimpanPengajuanKredit($id, Input::only('jaminan_tanah_bangunan'));
-				$simpan->handle();
+				if (isset($jaminan['pengajuan']['jaminan_kendaraan']))
+				{
+					$jaminan_kendaraan 			= $jaminan['pengajuan']['jaminan_kendaraan'];
+					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_kendaraan);
+					$simpan->handle();
+				}
+
+				if (isset($jaminan['pengajuan']['jaminan_tanah_bangunan']))
+				{
+					$jaminan_tanah_bangunan 	= $jaminan['pengajuan']['jaminan_tanah_bangunan'];
+					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_tanah_bangunan);
+					$simpan->handle();
+				}
 			}
 
 			if (Input::has('jangka_waktu'))

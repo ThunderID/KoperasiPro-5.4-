@@ -24,6 +24,7 @@
 						@include ('pages.kredit.components.form.pengajuan.jaminan_kendaraan', [
 							'param'		=> [
 								'data'		=> isset($v) ? $v : null,
+								'prefix'	=> 'pengajuan',
 							],
 							'data'		=> [
 								'select_jenis_kendaraan'	=> $page_datas->select_jenis_kendaraan,
@@ -40,7 +41,7 @@
 				</div>
 			@endforeach
 		@endif
-
+		
 		<div class="hidden" data-form="jaminan-kendaraan">
 			<div class="row">
 				<div class="col-sm-12">
@@ -52,6 +53,7 @@
 			
 				@include ('pages.kredit.components.form.pengajuan.jaminan_kendaraan', [
 					'param'		=> [
+						'prefix'	=> 'pengajuan',
 						'data'		=> null,
 					],
 					'data'		=> [
@@ -83,6 +85,7 @@
 						@include ('pages.kredit.components.form.pengajuan.jaminan_tanah_bangunan', [
 							'param' 	=> [
 								'data'		=> isset($v) ? $v : null,
+								'prefix'	=> 'pengajuan',
 							]
 						])
 
@@ -105,7 +108,10 @@
 			</div>
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				@include ('pages.kredit.components.form.pengajuan.jaminan_tanah_bangunan', [
-					'data'		=> null,
+					'param'		=> [
+						'prefix'	=> 'pengajuan',
+						'data'		=> null,
+					]
 				])
 
 				<div class="clearfix">&nbsp;</div>
