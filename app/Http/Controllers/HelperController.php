@@ -18,14 +18,14 @@ Class HelperController extends Controller
 	 */
 	function getRegensi()
 	{
-		$id 			= request()->input('id');
+		$name 			= request()->input('name');
 		$call 			= new TeritoriIndonesia;
 
 		// get data regensi
-		$regensi		= collect($call->get(['regensi_dari' => $id]));
+		$regensi		= collect($call->get(['temukan_regensi' => true, 'nama_provinsi' => $name]));
 		// sort data city by 'nama'
 		$regensi 		= $regensi->sortBy('nama');
-		$regensi 		= $regensi->pluck('id', 'nama');
+		$regensi 		= $regensi->pluck('nama', 'nama');
 
         return response()->json($regensi);
 	}
@@ -36,14 +36,14 @@ Class HelperController extends Controller
 	 */
 	function getDistrik()
 	{
-		$id 			= request()->input('id');
+		$name 			= request()->input('name');
 		$call 			= new TeritoriIndonesia;
 
 		// get data distrik for regensi 'id'
-		$distrik 		= collect($call->get(['distrik_dari'	=> $id]));
+		$distrik 		= collect($call->get(['temukan_distrik'	=> true, 'nama_regensi' => $name]));
 		// sort data distrik by 'nama'
 		$distrik 		= $distrik->sortBy('nama');
-		$distrik 		= $distrik->pluck('id', 'nama');
+		$distrik 		= $distrik->pluck('nama', 'nama');
 
 		return response()->json($distrik);
 	}
@@ -54,14 +54,14 @@ Class HelperController extends Controller
 	 */
 	function getDesa()
 	{
-		$id 			= request()->input('id');
+		$name 			= request()->input('name');
 		$call			= new TeritoriIndonesia;
 
-		// get data desa dari distrik 'id';
-		$desa 			= collect($call->get(['desa_dari' => $id]));
+		// get data desa dari distrik 'nama';
+		$desa 			= collect($call->get(['temukan_desa' => true, 'nama_distrik' => $name]));
 		// sort data desa by 'nama'
 		$desa 			= $desa->sortBy('nama');
-		$desa 			= $desa->pluck('id', 'nama');
+		$desa 			= $desa->pluck('nama', 'nama');
 
 		return response()->json($desa);
 	}

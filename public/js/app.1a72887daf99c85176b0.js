@@ -10399,8 +10399,6 @@ function quick_select_to_other(val, element) {
 
 	// check if 'data-other' undefined
 	if (typeof other != 'undefined') {
-		// if val '00000' show input hidden
-		console.log(val);
 		if (val == 'lain_lain') {
 			element.siblings('.' + other).removeClass('hidden').addClass('required').val('');
 		} else {
@@ -10610,7 +10608,7 @@ $(document).ready(function () {
 	$('.mask-id-card').inputmask('99-99-999999-9999');
 	$('.mask-no-telp').inputmask('9999 9999 9999');
 	$('.mask-no-handphone').inputmask('999 999 999 999');
-	$('.mask-no-sertifikat').inputmask('99.99.99.99.9.99999');
+	$('.mask-no-sertifikat').inputmask('99999');
 	$('.mask-kodepos').inputmask('99999');
 	$('.mask-number-xs').inputmask({ "mask": "9", "repeat": 3, "greedy": false });
 	$('.mask-number-sm').inputmask({ "mask": "9", "repeat": 6, "greedy": false });
@@ -11177,7 +11175,7 @@ window.notify = function (msg, title, type) {
 		$.ajax({
 			type: "GET",
 			url: $url,
-			data: { id: $val },
+			data: { name: $val },
 			cache: true,
 			success: function success(data) {
 				// parsing data ajax to content

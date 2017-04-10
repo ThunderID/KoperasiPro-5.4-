@@ -225,9 +225,9 @@ class KreditController extends Controller
 
 			if (Input::has('relasi'))
 			{
-				$kreditur 							= Input::only('relasi');
-				$kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
-				$kreditur['relasi']['telepon']		= '';
+				$kreditur								= Input::only('relasi');
+				// $kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
+				// $kreditur['relasi']['telepon']		= '';
 
 				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
 				$simpan->handle();
@@ -434,7 +434,7 @@ class KreditController extends Controller
 		}
 
 		// get parameter from function getParamToView to parsing view
-		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu', 'merk_kendaraan']);
+		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu', 'merk_kendaraan', 'jenis_pekerjaan']);
 											 
 		//function from parent to generate view
 		return $this->generateView();
@@ -617,7 +617,7 @@ class KreditController extends Controller
 			$provinsi 									= collect($teritori->get());
 			$provinsi 									= $provinsi->sortBy('nama');
 
-			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'id');
+			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'nama');
 		}
 
 		// get parameter jangka waktu

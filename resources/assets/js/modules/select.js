@@ -18,12 +18,12 @@ window.select = function(element, param) {
 		$.ajax({
 			type: "GET",
 			url: $url,
-			data: {id: $val},
+			data: {name: $val},
 			cache: true,
 			success: function (data) {
 				// parsing data ajax to content
 				$elementTarget.html('');
-				$.each(data, function(value, index) {
+				$.each(data, function(index, value) {
 					$option = $("<option value='" + index + "'>" + value +"</option>");
 					// $option.val(v.id).text(v.nama);
 					// $elementTarget.append($option);

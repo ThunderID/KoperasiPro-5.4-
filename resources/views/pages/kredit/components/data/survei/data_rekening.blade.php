@@ -31,14 +31,32 @@
 
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
+				<p class="text-capitalize text-right text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
-			@php $i=0; @endphp
+		</div>
+		<div class="row p-t-md">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<p class="text-uppercase">{{ (isset($value['nama_bank']) && !is_null($value['nama_bank'])) ? str_replace('_', ' ', $value['nama_bank']) : '-' }}</p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<p class="text-capitalize">{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? $value['atas_nama'] : '-' }} </p>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<p class="m-b-xs text-capitalize">{{ (isset($value['saldo_awal']) && !is_null($value['saldo_awal'])) ? $value['saldo_awal'] : '-' }} </p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( saldo awal )</em></p>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<p class="m-b-xs text-capitalize">{{ (isset($value['saldo_akhir']) && !is_null($value['saldo_akhir'])) ? $value['saldo_akhir'] : '-' }} </p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( saldo akhir )</em></p>
+			</div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
 
 			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
+			{{-- @foreach ($value as $k => $v)
+				remove field agar tidak ditampilkan
 				@if (!in_array($k, ['id', 'survei_id', 'alamat_id', 'details']))
-					{{-- check ketika data 2 kasih row baru --}}
+					check ketika data 2 kasih row baru
 					@if ($i % 2 == 0)
 						</div>
 						<div class="row">
@@ -63,8 +81,8 @@
 
 					@php $i++; @endphp
 				@endif
-			@endforeach
-		</div>
+			@endforeach --}}
+
 	@endforeach
 
 	<div class="row m-t-md m-b-md">

@@ -27,7 +27,7 @@
 	<label for="">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-2">
-			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($data['nomor_sertifikat']) ? $data['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-kodepos input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($data['nomor_sertifikat']) ? $data['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>

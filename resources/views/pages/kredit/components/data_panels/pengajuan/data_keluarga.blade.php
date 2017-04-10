@@ -13,6 +13,10 @@ if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->cred
 				<span class="pull-right">
 					<small>
 					<a class="text-capitalize" data-toggle="modal" data-target="#modal-data-keluarga" no-data-pjax>
+						<i class="fa fa-trash" aria-hidden="true"></i>
+						 Hapus
+					</a>
+					<a class="text-capitalize" data-toggle="modal" data-target="#modal-data-keluarga" no-data-pjax>
 						<i class="fa fa-pencil" aria-hidden="true"></i>
 						 Edit
 					</a>

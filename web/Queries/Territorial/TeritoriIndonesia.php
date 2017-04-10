@@ -96,19 +96,19 @@ class TeritoriIndonesia
 		if(isset($queries['temukan_regensi']))
 		{
 			$model 				= new Regensi_RO;
-			$model 				= $model->wherehas('provinsi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_provinsi']);})->where('nama', 'like', $queries['nama_regensi']);
+			$model 				= $model->wherehas('provinsi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_provinsi']);});
 		}
 		
 		if(isset($queries['temukan_distrik']))
 		{
 			$model 				= new Distrik_RO;
-			$model 				= $model->wherehas('regensi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_regensi']);})->where('nama', 'like', $queries['nama_distrik']);
+			$model 				= $model->wherehas('regensi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_regensi']);});
 		}
 
 		if(isset($queries['temukan_desa']))
 		{
 			$model 				= new Desa_RO;
-			$model 				= $model->wherehas('distrik', function($q)use($queries){$q->where('nama', 'like', $queries['nama_distrik']);})->where('nama', 'like', $queries['nama_desa']);
+			$model 				= $model->wherehas('distrik', function($q)use($queries){$q->where('nama', 'like', $queries['nama_distrik']);});
 		}
 
 		return $model;

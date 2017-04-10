@@ -63,7 +63,7 @@
 **/
  @endphp
 
-  <h5 class="text-uppercase text-light">Alamat</h5>
+<h5 class="text-uppercase text-light">Alamat</h5>
 <fieldset class="form-group">
 	<label for="">Jalan</label>
 	<div class="row">
@@ -73,6 +73,22 @@
 		<!-- <div class="col-md-3 p-l-none">
 			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
 		</div> -->
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<div class="row">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<label for="rt">RT</label>
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[rt]', (isset($param['data']['rt']) ? $param['data']['rt'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RT', 'data-field' => 'rt']) !!}
+		</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+			<label for="rw">RW</label>
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[rw]', (isset($param['data']['rw']) ? $param['data']['rw'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RW', 'data-field' => 'rw']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<div class="row">
 	</div>
 </fieldset>
 <fieldset class="form-group">
