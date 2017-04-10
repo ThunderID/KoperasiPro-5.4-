@@ -468,6 +468,11 @@ class KreditController extends Controller
 				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->jaminan_tanah_bangunan_id]]);
 				$simpan->handle();
 			}
+			if($this->request->is('hapus/kreditur/relasi/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
+				$simpan->handle();
+			}
 		} catch (Exception $e) {
 			if (is_array($e->getMessage()))
 			{
