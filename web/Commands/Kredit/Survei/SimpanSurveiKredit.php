@@ -89,14 +89,14 @@ class SimpanSurveiKredit
 
 			if(isset($this->survei['jaminan_kendaraan']))
 			{
-				//1. find prev jaminan kendaraan
-				$j_kend		= JaminanKendaraan_A::where('pengajuan_id', $this->kredit_id)->nomorbpkb($this->survei['jaminan_kendaraan']['nomor_bpkb'])->firstorfail();
+				// //1. find prev jaminan kendaraan
+				// $j_kend		= JaminanKendaraan_A::where('pengajuan_id', $this->kredit_id)->nomorbpkb($this->survei['jaminan_kendaraan']['nomor_bpkb'])->firstorfail();
 
-				//2. parse prev jaminan kendaraan and it prev's stuffs
-				$this->survei['jaminan_kendaraan']['tipe']		 = $j_kend['tipe'];
-				$this->survei['jaminan_kendaraan']['merk']		 = $j_kend['merk'];
-				$this->survei['jaminan_kendaraan']['tahun']		 = $j_kend['tahun'];
-				$this->survei['jaminan_kendaraan']['atas_nama']	 = $j_kend['atas_nama'];
+				// //2. parse prev jaminan kendaraan and it prev's stuffs
+				// $this->survei['jaminan_kendaraan']['tipe']		 = $j_kend['tipe'];
+				// $this->survei['jaminan_kendaraan']['merk']		 = $j_kend['merk'];
+				// $this->survei['jaminan_kendaraan']['tahun']		 = $j_kend['tahun'];
+				// $this->survei['jaminan_kendaraan']['atas_nama']	 = $j_kend['atas_nama'];
 				
 				$survei 	= new SimpanSurveiJaminanKendaraan($survei_base, $this->survei['jaminan_kendaraan']);
 				$survei->handle();
@@ -104,17 +104,17 @@ class SimpanSurveiKredit
 
 			if(isset($this->survei['jaminan_tanah_bangunan']))
 			{
-				//1. find prev jaminan kendaraan
-				$j_t_ban 	= JaminanTanahBangunan_A::where('pengajuan_id', $this->kredit_id)->nomorsertifikat($this->survei['jaminan_tanah_bangunan']['nomor_sertifikat'])->with(['alamat'])->firstorfail()->toArray();
+				// //1. find prev jaminan kendaraan
+				// $j_t_ban 	= JaminanTanahBangunan_A::where('pengajuan_id', $this->kredit_id)->nomorsertifikat($this->survei['jaminan_tanah_bangunan']['nomor_sertifikat'])->with(['alamat'])->firstorfail()->toArray();
 
-				//2. parse prev jaminan kendaraan and it prev's stuffs
-				$this->survei['jaminan_tanah_bangunan']['tipe']		 		= $j_t_ban['tipe'];
-				$this->survei['jaminan_tanah_bangunan']['jenis_sertifikat']	= $j_t_ban['jenis_sertifikat'];
-				$this->survei['jaminan_tanah_bangunan']['masa_berlaku_sertifikat']	 = $j_t_ban['masa_berlaku_sertifikat'];
-				$this->survei['jaminan_tanah_bangunan']['atas_nama'] 	= $j_t_ban['atas_nama'];
-				$this->survei['jaminan_tanah_bangunan']['luas_tanah']	= $j_t_ban['luas_tanah'];
-				$this->survei['jaminan_tanah_bangunan']['luas_bangunan']= $j_t_ban['luas_bangunan'];
-				$this->survei['jaminan_tanah_bangunan']['alamat']		= $j_t_ban['alamat'];
+				// //2. parse prev jaminan kendaraan and it prev's stuffs
+				// $this->survei['jaminan_tanah_bangunan']['tipe']		 		= $j_t_ban['tipe'];
+				// $this->survei['jaminan_tanah_bangunan']['jenis_sertifikat']	= $j_t_ban['jenis_sertifikat'];
+				// $this->survei['jaminan_tanah_bangunan']['masa_berlaku_sertifikat']	 = $j_t_ban['masa_berlaku_sertifikat'];
+				// $this->survei['jaminan_tanah_bangunan']['atas_nama'] 	= $j_t_ban['atas_nama'];
+				// $this->survei['jaminan_tanah_bangunan']['luas_tanah']	= $j_t_ban['luas_tanah'];
+				// $this->survei['jaminan_tanah_bangunan']['luas_bangunan']= $j_t_ban['luas_bangunan'];
+				// $this->survei['jaminan_tanah_bangunan']['alamat']		= $j_t_ban['alamat'];
 
 				$survei 	= new SimpanSurveiJaminanTanahBangunan($survei_base, $this->survei['jaminan_tanah_bangunan']);
 				$survei->handle();
