@@ -310,6 +310,13 @@ class KreditController extends Controller
 				$simpan->handle();
 			}
 
+			// kepribadian for survei
+			if (Input::has('kepribadian'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('kepribadian'));
+				$simpan->handle();
+			}
+
 			// nasabah for survei
 			if (Input::has('nasabah'))
 			{
