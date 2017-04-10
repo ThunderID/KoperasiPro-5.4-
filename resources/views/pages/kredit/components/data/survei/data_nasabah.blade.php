@@ -29,21 +29,21 @@
 	<div class="row p-t-md m-b-xl">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-sm"><strong>Nama</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ $page_datas->credit['nasabah']['nama'] }}</p>
+			<p class="text-capitalize text-light">{{ $page_datas->credit['nasabah']['nama'] }}</p>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-sm"><strong>Status</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ $page_datas->credit['nasabah']['status'] }}</p>
+			<p class="text-capitalize text-light">Nasabah {{ $page_datas->credit['nasabah']['status'] }}</p>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-sm"><strong>Kredit Sebelumnya</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ $page_datas->credit['nasabah']['kredit_terdahulu'] }}</p>
+			<p class="text-capitalize text-light">{{ $page_datas->credit['nasabah']['kredit_terdahulu'] }}</p>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-sm"><strong>Jaminan Sebelumnya</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ $page_datas->credit['nasabah']['jaminan_terdahulu'] }}</p>
+			<p class="text-capitalize text-light">{{ $page_datas->credit['nasabah']['jaminan_terdahulu'] }}</p>
 		</div>
 	</div>
 	{{-- <div class="row p-t-md">

@@ -52,12 +52,12 @@
 			{{-- pendapatan --}}
 			<div class="row p-t-md">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<p class="m-t-sm m-b-xs text-capitalize"><strong>pendapatan</strong></p>
+					<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>pendapatan</strong></p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">penghasilan rutin</p>
+					<p class="m-b-xs text-capitalize">penghasilan rutin</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['penghasilan_rutin']) && !is_null($page_datas->credit['keuangan']['penghasilan_rutin'])) ? $page_datas->credit['keuangan']['penghasilan_rutin'] : '-' }}</p>
@@ -65,7 +65,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">penghasilan pasangan</p>
+					<p class="m-b-xs text-capitalize">penghasilan pasangan</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['penghasilan_pasangan']) && !is_null($page_datas->credit['keuangan']['penghasilan_pasangan'])) ? $page_datas->credit['keuangan']['penghasilan_pasangan'] : '-' }}</p>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">penghasilan usaha</p>
+					<p class="m-b-xs text-capitalize">penghasilan usaha</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['penghasilan_usaha']) && !is_null($page_datas->credit['keuangan']['penghasilan_usaha'])) ? $page_datas->credit['keuangan']['penghasilan_usaha'] : '-' }}</p>
@@ -82,7 +82,7 @@
 			<hr/>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">total Pendapatan</p>
+					<p class="m-b-xs text-capitalize">total Pendapatan</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['total_pendapatan']) && !is_null($page_datas->credit['keuangan']['total_pendapatan'])) ? $page_datas->credit['keuangan']['total_pendapatan'] : '-' }}</p>
@@ -94,12 +94,12 @@
 			{{-- biaya --}}
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<p class="m-t-sm m-b-xs text-capitalize"><strong>biaya</strong></p>
+					<p class="m-b-xs text-capitalize text-sm"><strong>biaya</strong></p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">biaya rumah tangga</p>
+					<p class="m-b-xs text-capitalize">biaya rumah tangga</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['biaya_rumah_tangga']) && !is_null($page_datas->credit['keuangan']['biaya_rumah_tangga'])) ? $page_datas->credit['keuangan']['biaya_rumah_tangga'] : '-' }}</p>
@@ -107,7 +107,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">biaya pendidikan</p>
+					<p class="m-b-xs text-capitalize">biaya pendidikan</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['biaya_pendidikan']) && !is_null($page_datas->credit['keuangan']['biaya_pendidikan'])) ? $page_datas->credit['keuangan']['biaya_pendidikan'] : '-' }}</p>
@@ -115,7 +115,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">biaya rutin</p>
+					<p class="m-b-xs text-capitalize">biaya rutin</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['biaya_rutin']) && !is_null($page_datas->credit['keuangan']['biaya_rutin'])) ? $page_datas->credit['keuangan']['biaya_rutin'] : '-' }}</p>
@@ -123,7 +123,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">biaya angsuran</p>
+					<p class="m-b-xs text-capitalize">biaya angsuran</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['biaya_angsuran']) && !is_null($page_datas->credit['keuangan']['biaya_angsuran'])) ? $page_datas->credit['keuangan']['biaya_angsuran'] : '-' }}</p>
@@ -131,7 +131,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">biaya lain-lain</p>
+					<p class="m-b-xs text-capitalize">biaya lain-lain</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['biaya_lain']) && !is_null($page_datas->credit['keuangan']['biaya_lain'])) ? $page_datas->credit['keuangan']['biaya_lain'] : '-' }}</p>
@@ -140,7 +140,7 @@
 			<hr/>
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<p class="m-t-sm m-b-xs text-capitalize">total biaya</p>
+					<p class="m-b-xs text-capitalize">total biaya</p>
 				</div>
 				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-right">
 					<p class="m-b-xs">{{ (isset($page_datas->credit['keuangan']['total_biaya']) && !is_null($page_datas->credit['keuangan']['total_biaya'])) ? $page_datas->credit['keuangan']['total_biaya'] : '-' }}</p>
@@ -156,11 +156,11 @@
 	<div class="row m-b-xl">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-capitalize text-sm"><strong>sumber penghasilan utama</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ (isset($page_datas->credit['keuangan']['sumber_penghasilan_utama']) && !is_null($page_datas->credit['keuangan']['sumber_penghasilan_utama'])) ? $page_datas->credit['keuangan']['sumber_penghasilan_utama'] : '-' }}</p>
+			<p class="text-capitalize text-light">{{ (isset($page_datas->credit['keuangan']['sumber_penghasilan_utama']) && !is_null($page_datas->credit['keuangan']['sumber_penghasilan_utama'])) ? $page_datas->credit['keuangan']['sumber_penghasilan_utama'] : '-' }}</p>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<p class="m-b-xs text-capitalize text-sm"><strong>jumlah tanggungan keluarga</strong></p>
-			<p class="text-capitalize text-lg text-light">{{ (isset($page_datas->credit['keuangan']['jumlah_tanggungan_keluarga']) && !is_null($page_datas->credit['keuangan']['jumlah_tanggungan_keluarga'])) ? $page_datas->credit['keuangan']['jumlah_tanggungan_keluarga'] : '-' }} Orang</p>
+			<p class="text-capitalize text-light">{{ (isset($page_datas->credit['keuangan']['jumlah_tanggungan_keluarga']) && !is_null($page_datas->credit['keuangan']['jumlah_tanggungan_keluarga'])) ? $page_datas->credit['keuangan']['jumlah_tanggungan_keluarga'] : '-' }} Orang</p>
 		</div>
 	</div>
 	{{-- <div class="row">

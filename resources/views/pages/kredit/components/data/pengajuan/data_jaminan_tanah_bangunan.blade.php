@@ -20,8 +20,8 @@
 
 					@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
 						@if ($edit == true)
-							<span class="pull-right">
-								<a class="text-danger" href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" no-data-pjax>
+							<span class="pull-right text-capitalize">
+								<a class="text-danger m-r-sm" href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;

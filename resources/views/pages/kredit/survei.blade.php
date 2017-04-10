@@ -7,6 +7,9 @@
 				<div class="tab-pane fade in active" id="data-nasabah" role="tabpanel">
 					@include ('pages.kredit.components.panel.survei.panel_nasabah')
 				</div>
+				<div class="tab-pane fade" id="data-kepribadian" role="tabpanel">
+					@include ('pages.kredit.components.panel.survei.panel_kepribadian')
+				</div>
 				<div class="tab-pane fade" id="data-aset" role="tabpanel">
 					@include ('pages.kredit.components.panel.survei.panel_aset')
 				</div>
