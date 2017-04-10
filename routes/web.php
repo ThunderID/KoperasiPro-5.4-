@@ -290,8 +290,8 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('hapus/survei/jaminan/kendaraan/{kredit_id}/{survei_jaminan_kendaraan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.kendaraan.destroy']);
 	Route::any('hapus/survei/jaminan/tanah/bangunan/{kredit_id}/{survei_jaminan_tanah_bangunan_id}',		['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.tanah.bangunan.destroy']);
 
-	Route::any('hapus/survei/rekening/{kredit_id}/{rekening_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
-	Route::any('hapus/survei/kepribadian/{kredit_id}/{kepribadian_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
+	Route::any('hapus/survei/rekening/{kredit_id}/{survei_rekening_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
+	Route::any('hapus/survei/kepribadian/{kredit_id}/{survei_kepribadian_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
 
 	// route for print kredit
 	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@prints',	'as' => 'credit.print']);

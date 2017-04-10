@@ -24,6 +24,11 @@
 					@if(!empty($page_datas->credit['aset_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
+								<a class="text-danger" href="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" no-data-pjax>
+									<i class="fa fa-trash" aria-hidden="true"></i>
+									 Hapus
+								</a> &nbsp;
+
 								<a href="#aset-kendaraan" data-toggle="hidden" data-target="aset-kendaraan-{{ $key }}" data-panel="data-aset" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
