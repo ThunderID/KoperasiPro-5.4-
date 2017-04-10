@@ -21,4 +21,20 @@ Route::group(['middleware' => ['tapi']], function()
 	Route::post('pengajuan', 	['uses' => 'KreditController@store']);
 
 	Route::post('upload/ktp/{nomor_kredit}', 	['uses' => 'KreditController@upload']);
+
+
+	Route::post('/login', function () 
+	{
+		try {
+			$credentials 	= Input::only('email', 'password');
+			$login 			= TAuth::login($credentials);
+		} catch (Exception $e) {
+			return \TAPIQueries\UIHelper\JSend::error($e->getMessage())->asArray();
+		}
+
+		$returned 		= TAuth::loggedUser();
+	
+		return \TAPIQueries\UIHelper\JSend::success(['id' => $returned['id'], 'nama' => $returned['nama']])->asArray();
+	});
+
 });

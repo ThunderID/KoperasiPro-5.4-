@@ -46,6 +46,11 @@ class KreditController extends Controller
 		$kredit['mobile'] 		= Input::get('mobile');
 		$kredit['kreditur'] 	= Input::get('kreditur');
 
+		if(Input::has('referensi'))
+		{
+			$kredit['referensi']= Input::get('referensi');
+		}
+
 		//upload foto ktp
 		$ktp 							= base64_decode($kredit['kreditur']['foto_ktp']);
 		$data_kredit 					= new UploadBase64GambarKTP($ktp);
