@@ -4,6 +4,7 @@ namespace TKredit\Pengajuan\Services;
 
 use TKredit\Pengajuan\Models\Pengajuan;
 use TKredit\Pengajuan\Models\Orang as Value;
+use TKredit\KreditAktif\Models\KreditAktif_RO;
 
 use DB, Exception;
 
@@ -50,13 +51,13 @@ class SimpanPengajuanKreditur
 			{
 				$kreditur 				= $pengajuan->kreditur;
 			}
-			elseif($this->pengajuan['kreditur_id']==0)
+			elseif($pengajuan['kreditur_id']==0)
 			{
 				$kreditur 				= new Value;
 			}
 			else
 			{
-				$kreditur 				= Value::findornew($this->pengajuan['kreditur_id']);
+				$kreditur 				= Value::findornew($pengajuan['id']);
 			}
 
 			$kreditur->fill($this->value);
@@ -97,6 +98,16 @@ class SimpanPengajuanKreditur
 
 			$pengajuan->kreditur_id 	= $kreditur->id;
 			$pengajuan->save();
+
+			//update kredit aktif
+			$kredit_aktif 				= KreditAktif_RO::NomorDokumenKredit($pengajuan['id'])->get();
+
+			foreach ($kredit_aktif as $key => $value) 
+			{
+				$value->nama_kreditur 	= $kreditur->nama;
+
+				$value->save();
+			}
 
 			DB::commit();
 		}

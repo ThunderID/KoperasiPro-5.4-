@@ -219,6 +219,7 @@ class KreditController extends Controller
 					$kreditur['foto_ktp'] 			= $upload['url'];
 				}
 
+				$kreditur['nik'] 					= '35-'.$kreditur['nik'];
 				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
 				$simpan->handle();
 			}
