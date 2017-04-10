@@ -473,6 +473,47 @@ class KreditController extends Controller
 				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
 				$simpan->handle();
 			}
+
+
+			if($this->request->is('hapus/survei/aset/usaha/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_usaha' => ['aset_usaha' => ['id' => $this->request->survei_aset_usaha_id]]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/aset/kendaraan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_kendaraan' => ['aset_kendaraan' => ['id' => $this->request->survei_aset_kendaraan_id]]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/aset/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_tanah_bangunan' => ['aset_tanah_bangunan' => ['id' => $this->request->survei_aset_tanah_bangunan_id]]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/jaminan/kendaraan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['jaminan_kendaraan' => ['id' => $this->request->survei_jaminan_kendaraan_id]]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/jaminan/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['jaminan_tanah_bangunan' => ['id' => $this->request->survei_jaminan_tanah_bangunan_id]]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/rekening/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['rekening' => ['rekening' => ['id' => $this->request->survei_rekening_id]]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/kepribadian/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['kepribadian' => ['kepribadian' => ['id' => $this->request->survei_kepribadian_id]]]);
+				$simpan->handle();
+			}
+
 		} catch (Exception $e) {
 			if (is_array($e->getMessage()))
 			{
