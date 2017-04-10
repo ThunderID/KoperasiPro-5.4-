@@ -11,8 +11,8 @@
 <fieldset class="form-group">
 	<label for="">Tahun</label>
 	<div class="row">
-		<div class="col-md-3">
-			{!! Form::text('jaminan_kendaraan[tahun]', (isset($data['tahun']) ? $data['tahun'] : null), ['class' => 'form-control auto-tabindex  mask-year', 'placeholder' => 'Tahun Pembuatan', 'data-field' => 'tahun']) !!}
+		<div class="col-md-2">
+			{!! Form::text('jaminan_kendaraan[tahun]', (isset($data['tahun']) ? $data['tahun'] : null), ['class' => 'form-control auto-tabindex  mask-year', 'placeholder' => 'Tahun', 'data-field' => 'tahun']) !!}
 		</div>
 	</div>
 </fieldset>
