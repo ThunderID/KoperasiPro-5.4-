@@ -469,6 +469,12 @@ class KreditController extends Controller
 				$simpan->handle();
 			}
 
+			if($this->request->is('hapus/kreditur/relasi/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
+				$simpan->handle();
+			}
+			
 			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
 
 		} catch (Exception $e) {
