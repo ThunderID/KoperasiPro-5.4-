@@ -50,9 +50,12 @@ class HapusPengajuanKreditur
 				$alamat 			= Alamat_A::findorfail($this->value['alamat']['id']);
 				$alamat->delete();
 			}
-			
-			$value 					= Value::findorfail($this->value['id']);
-			$value->delete();
+
+			if(isset($this->value['id']))
+			{
+				$value 					= Value::findorfail($this->value['id']);
+				$value->delete();
+			}
 
 			DB::commit();
 		}
