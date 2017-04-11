@@ -165,7 +165,14 @@ class KreditController extends Controller
 				{
 					foreach ($v as $k2 => $v2)
 					{
-						$temp_jaminan_tanah_bangunan[$k2][$k] = $v2;
+						if(in_array($k, ['alamat', 'rt', 'rw', 'provinsi', 'regensi', 'distrik', 'desa', 'negara']))
+						{
+							$temp_jaminan_tanah_bangunan[$k2]['alamat'][$k] = $v2;
+						}
+						else
+						{
+							$temp_jaminan_tanah_bangunan[$k2][$k] = $v2;
+						}
 					}
 				}
 			}
@@ -173,7 +180,7 @@ class KreditController extends Controller
 			{
 				$temp_jaminan_tanah_bangunan 	= [];
 			}
-			
+
 			$kredit['jaminan_kendaraan']		= $temp_jaminan_kendaraan;
 			$kredit['jaminan_tanah_bangunan']	= $temp_jaminan_tanah_bangunan;
 

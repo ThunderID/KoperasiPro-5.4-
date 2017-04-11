@@ -79,7 +79,7 @@ class JaminanTanahBangunan_A extends BaseModel
 	protected $rules				=	[
 											'survei_id'					=> 'max:255',
 											'alamat_id'					=> 'max:255',
-											'tipe'						=> 'in:tanah,tanah_bangunan,tambak',
+											'tipe'						=> 'in:tanah,tanah_bangunan,bangunan,tambak',
 											'jenis_sertifikat'			=> 'max:255',
 											'nomor_sertifikat'			=> 'max:255',
 											'masa_berlaku_sertifikat'	=> 'min:4|max:4',

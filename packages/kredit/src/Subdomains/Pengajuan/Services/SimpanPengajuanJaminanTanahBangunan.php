@@ -65,7 +65,7 @@ class SimpanPengajuanJaminanTanahBangunan
 				$value 				= new Value;
 				unset($this->value['id']);
 			}
-			
+
 			$value 					= $value->fill($this->value);
 			$value->pengajuan_id 	= $pengajuan->id;
 
