@@ -1,6 +1,6 @@
 {!! Form::hidden('rekening[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group p-b-md">
-	<label for="">Nama Bank</label>
+	<label text-sm="">Nama Bank</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('rekening[nama_bank]', [
@@ -18,7 +18,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Atas Nama</label>
+	<label text-sm="">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('rekening[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'atas nama']) !!}
@@ -26,7 +26,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Saldo Awal</label>
+	<label text-sm="">Saldo Awal</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('rekening[saldo_awal]', (isset($data['saldo_awal']) ? $data['saldo_awal'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
@@ -34,7 +34,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Saldo Akhir</label>
+	<label text-sm="">Saldo Akhir</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('rekening[saldo_akhir]', (isset($data['saldo_akhir']) ? $data['saldo_akhir'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}

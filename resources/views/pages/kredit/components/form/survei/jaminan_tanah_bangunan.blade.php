@@ -1,6 +1,6 @@
 {!! Form::hidden('jaminan_tanah_bangunan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Tipe</label>
+	<label class="text-sm">Tipe</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::select('jaminan_tanah_bangunan[tipe]', [
@@ -12,7 +12,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jenis Sertifikat</label>
+	<label class="text-sm">Jenis Sertifikat</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::select('jaminan_tanah_bangunan[jenis_sertifikat]', [
@@ -24,7 +24,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">No. Sertifikat</label>
+	<label class="text-sm">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-2">
 			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($data['nomor_sertifikat']) ? $data['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
@@ -32,7 +32,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Masa Berlaku</label>
+	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-2">
 			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($data['masa_berlaku_sertifikat']) ? $data['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date-format input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
@@ -40,7 +40,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Atas Nama</label>
+	<label class="text-sm">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::text('jaminan_tanah_bangunan[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
@@ -60,7 +60,7 @@
 ])
 
 <fieldset class="form-group">
-	<label for="">Luas Tanah</label>
+	<label class="text-sm">Luas Tanah</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
@@ -71,7 +71,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Luas Bangunan</label>
+	<label class="text-sm">Luas Bangunan</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
@@ -82,7 +82,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Fungsi Bangunan</label>
+	<label class="text-sm">Fungsi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[fungsi_bangunan]', [
@@ -93,7 +93,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Bentuk Bangunan</label>
+	<label class="text-sm">Bentuk Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[bentuk_bangunan]', [
@@ -106,7 +106,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Konstruksi Bangunan</label>
+	<label class="text-sm">Konstruksi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[konstruksi_bangunan]', [
@@ -117,7 +117,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Lantai Bangunan</label>
+	<label class="text-sm">Lantai Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[lantai_bangunan]', [
@@ -132,7 +132,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Dinding Bangunan</label>
+	<label class="text-sm">Dinding Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[dinding]', [
@@ -146,7 +146,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Listrik</label>
+	<label class="text-sm">Listrik</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[listrik]', [
@@ -158,7 +158,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Air</label>
+	<label class="text-sm">Air</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[air]', [
@@ -169,7 +169,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jalan</label>
+	<label class="text-sm">Jalan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('jaminan_tanah_bangunan[jalan]', [
@@ -181,7 +181,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Lebar Jalan</label>
+	<label class="text-sm">Lebar Jalan</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
@@ -192,7 +192,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Letak Lokasi Terhadap Jalan</label>
+	<label class="text-sm">Letak Lokasi Terhadap Jalan</label>
 	<div class="row">
 		<div class="col-md-10">
 			{!! Form::select('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', [
@@ -206,7 +206,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Lingkungan</label>
+	<label class="text-sm">Lingkungan</label>
 	<div class="row">
 		<div class="col-md-10">
 			{!! Form::select('jaminan_tanah_bangunan[lingkungan]', [
@@ -225,7 +225,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Nilai Jaminan</label>
+	<label class="text-sm">Nilai Jaminan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[nilai_jaminan]', (isset($data['nilai_jaminan']) ? $data['nilai_jaminan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
@@ -233,7 +233,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Taksasi Tanah</label>
+	<label class="text-sm">Taksasi Tanah</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[taksasi_tanah]', (isset($data['taksasi_tanah']) ? $data['taksasi_tanah'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
@@ -241,7 +241,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Taksasi Bangunan</label>
+	<label class="text-sm">Taksasi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[taksasi_bangunan]', (isset($data['taksasi_bangunan']) ? $data['taksasi_bangunan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
@@ -249,7 +249,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Njop</label>
+	<label class="text-sm">Njop</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[njop]', (isset($data['njop']) ? $data['njop'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
@@ -257,7 +257,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Uraian</label>
+	<label class="text-sm">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[uraian]', (isset($data['uraian']) ? $data['uraian'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => '']) !!}

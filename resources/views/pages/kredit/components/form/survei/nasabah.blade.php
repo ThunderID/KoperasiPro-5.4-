@@ -1,6 +1,6 @@
 {!! Form::hidden('nasabah[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Nama</label>
+	<label class="text-sm">Nama</label>
 	<div class="row">
 		<div class="col-md-5">
 			@if (isset($data['id']))
@@ -12,7 +12,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Status</label>
+	<label class="text-sm">Status</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('nasabah[status]', [
@@ -23,7 +23,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Kredit Terdahulu</label>
+	<label class="text-sm">Kredit Terdahulu</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('nasabah[kredit_terdahulu]', [
@@ -35,7 +35,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jaminan Terdahulu</label>
+	<label class="text-sm">Jaminan Terdahulu</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('nasabah[jaminan_terdahulu]', [

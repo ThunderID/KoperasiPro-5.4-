@@ -1,6 +1,6 @@
 {!! Form::hidden('aset_tanah_bangunan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Tipe</label>
+	<label class="text-sm">Tipe</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::select('aset_tanah_bangunan[tipe]', [
@@ -11,7 +11,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Luas</label>
+	<label class="text-sm">Luas</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">

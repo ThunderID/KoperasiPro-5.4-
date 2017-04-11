@@ -15,11 +15,9 @@
 @if (isset($page_datas->credit['aset_kendaraan']) && !empty($page_datas->credit['aset_kendaraan']))
 	{{-- foreach data aset kendaraan --}}
 	@foreach ($page_datas->credit['aset_kendaraan'] as $key => $value)
-		<div class="row m-t-sm">
-			@php $i=0; @endphp
-			
+		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-sm text-uppercase">
+				<p class="m-b-md text-capitalize">
 					aset kendaraan {{ $key+1 }}
 					@if(!empty($page_datas->credit['aset_kendaraan']))
 						@if($edit == true)
@@ -38,38 +36,21 @@
 					@endif
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
+				<p class="text-capitalize text-right text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
-
-			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-					{{-- check ketika data 2 kasih row baru --}}
-					@if ($i % 2 == 0)
-						</div>
-						<div class="row">
-					@endif
-
-					<div class="col-sm-6">
-						<div class="row m-b-lg">
-							<div class="col-sm-12">
-								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-								<p class="text-capitalize">
-									@if ($k == 'survei')
-										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-									@else
-										{{ str_replace('_', ' ', $v) }}
-									@endif
-								</p>
-							</div>
-						</div>
-					</div>
-
-					@php $i++; @endphp
-				@endif
-			@endforeach
+		</div>
+		<div class="row p-t-md">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<p class="text-capitalize text-light">{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}</p>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<p class="m-b-xs text-capitalize text-light">{{ (isset($value['nomor_bpkb']) && !is_null($value['nomor_bpkb'])) ? str_replace('_', ' ', $value['nomor_bpkb']) : '-' }}</p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( No. BPKB )</em></p>
+			</div>
 		</div>
 	@endforeach
+
+	<div class="clearfix">&nbsp;</div>
 
 	<div class="row m-t-md m-b-md">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

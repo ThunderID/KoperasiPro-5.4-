@@ -20,13 +20,11 @@
 
 					@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
 						@if ($edit == true)
-							<span class="pull-right">
+							<span class="pull-right text-capitalize">
 								<a class="text-danger" href="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
-
-
 								<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
@@ -34,10 +32,39 @@
 							</span>
 						@endif
 					@endif
-
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
+				<p class="text-capitalize text-right text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? $value['tipe'] : '-' }} - 
+					( {{ (isset($value['jenis_sertifikat']) && !is_null($value['jenis_sertifikat'])) ? str_replace('_', ' ', $value['jenis_sertifikat']) : '-'  }} )
+				</p>
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_sertifikat']) && !is_null($value['nomor_sertifikat'])) ? str_replace('_', ' ', $value['nomor_sertifikat']) : '-'  }}
+				</p>
+				<p class="text-capitalize text-light">
+					Berlaku sampai {{ (isset($value['masa_berlaku_sertifikat']) && !is_null($value['masa_berlaku_sertifikat'])) ? str_replace('_', ' ', $value['masa_berlaku_sertifikat']) : '-'  }}
+				</p>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? str_replace('_', ' ', $value['atas_nama']) : '-'  }}
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['luas_bangunan']) && !is_null($value['luas_bangunan'])) ? str_replace('_', ' ', $value['luas_bangunan']) : '-'  }} M<sup>2</sup> / {{ (isset($value['luas_tanah']) && !is_null($value['luas_tanah'])) ? str_replace('_', ' ', $value['luas_tanah']) : '-'  }} M<sup>2</sup>
+				</p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( luas bangunan / luas tanah )</em></p>
+			</div>
+		</div>
+		<div class="row">
 			@php $i=0; @endphp
 			
 			{{-- foreach data --}}

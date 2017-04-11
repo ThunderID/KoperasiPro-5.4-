@@ -65,7 +65,7 @@
 
 <h5 class="text-uppercase text-light">Alamat</h5>
 <fieldset class="form-group">
-	<label for="">Jalan</label>
+	<label class="text-sm">Jalan</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[alamat]', (isset($param['data']['alamat']) ? $param['data']['alamat'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Ex. Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
@@ -88,11 +88,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<div class="row">
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label for="">Provinsi</label>
+	<label class="text-sm">Provinsi</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[provinsi]', 
@@ -110,7 +106,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Kota/Kabupaten</label>
+	<label class="text-sm">Kota/Kabupaten</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[regensi]', [], (isset($param['data']['regensi']) ? $param['data']['regensi'] : null), [
@@ -128,7 +124,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Kecamatan</label>
+	<label class="text-sm">Kecamatan</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[distrik]', [], (isset($param['data']['distrik']) ? $param['data']['distrik'] : null), [
@@ -146,7 +142,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Desa</label>
+	<label class="text-sm">Desa</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat]' : 'alamat') . '[desa]', [], (isset($param['data']['desa']) ? $param['data']['desa'] : null), [

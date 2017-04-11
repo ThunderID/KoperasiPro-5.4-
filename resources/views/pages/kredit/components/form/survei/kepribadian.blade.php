@@ -1,6 +1,6 @@
 {!! Form::hidden('kepribadian[id]', (isset($data['id']) ? $data['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Nama Referens</label>
+	<label class="text-sm">Nama Referens</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('kepribadian[nama_referens]', (isset($data['nama_referens']) ? $data['nama_referens'] : null), ['class' => 'form-control auto-tabindex']) !!}
@@ -8,7 +8,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Hubungan</label>
+	<label class="text-sm">Hubungan</label>
 	<div class="row">
 		<div class="col-md-8">
 			{!! Form::select('kepribadian[hubungan]', [
@@ -22,7 +22,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Telepon</label>
+	<label class="text-sm">Telepon</label>
 	<div class="row">
 		<div class="col-md-3">
 			{!! Form::text('kepribadian[telepon_referens]', (isset($data['telepon_referens']) ? $data['telepon_referens'] : null), ['class' => 'form-control auto-tabindex']) !!}
@@ -30,7 +30,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Uraian</label>
+	<label class="text-sm">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('kepribadian[uraian]', (isset($data['uraian']) ? $data['uraian'] : null), ['class' => 'form-control auto-tabindex']) !!}
