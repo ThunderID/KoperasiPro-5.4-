@@ -20,10 +20,10 @@ class CreateKreditPengajuanJaminanTanahBangunanTable extends Migration
 			$table->string('tipe', 255);
 			$table->string('jenis_sertifikat', 255);
 			$table->string('nomor_sertifikat', 255);
-			$table->string('masa_berlaku_sertifikat', 255);
-			$table->string('atas_nama', 255);
-			$table->integer('luas_tanah');
-			$table->integer('luas_bangunan');
+			$table->string('masa_berlaku_sertifikat', 255)->nullable();
+			$table->string('atas_nama', 255)->nullable();
+			$table->integer('luas_tanah')->nullable();
+			$table->integer('luas_bangunan')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 			

@@ -16,11 +16,11 @@ class CreateKreditPengajuanJaminanKendaraanTable extends Migration
 		Schema::create('pengajuan_jaminan_kendaraan', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('pengajuan_id', 255);
-			$table->string('tipe', 255);
-			$table->string('merk', 255);
-			$table->integer('tahun');
+			$table->string('tipe', 255)->nullable();
+			$table->string('merk', 255)->nullable();
+			$table->integer('tahun')->nullable();
 			$table->string('nomor_bpkb', 255);
-			$table->string('atas_nama', 255);
+			$table->string('atas_nama', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 
