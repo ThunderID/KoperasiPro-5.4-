@@ -15,13 +15,13 @@
 	@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-sm text-uppercase">
+				<p class="m-b-sm">
 					jaminan tanah &amp; bangunan {{ $key+1 }}
 
 					@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
 						@if ($edit == true)
-							<span class="pull-right text-capitalize">
-								<a class="text-danger m-r-sm" href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" no-data-pjax>
+							<span class="pull-right">
+								<a class="text-danger m-r-md" href="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
@@ -32,46 +32,105 @@
 							</span>
 						@endif
 					@endif
-
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
 			</div>
 			@php $i=0; @endphp
 		</div>
 		<div class="row">
-			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-					{{-- check ketika data 2 kasih row baru --}}
-					@if ($i % 2 == 0)
-						</div>
-						<div class="row">
-					@endif
-					
-					<div class="col-sm-6">
-						<div class="row m-b-lg">
-							<div class="col-sm-12">
-								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-								<p class="text-capitalize">
-									@if ($k == 'survei')
-										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-									@elseif ($k == 'alamat')
-										{{ $v['alamat'] }} <br/>
-										RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} {{ $v['desa'] }} {{ $v['distrik'] }} <br/>
-										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
-									@else
-										{{ str_replace('_', ' ', $v) }}
-									@endif
-								</p>
-							</div>
-						</div>
-					</div>
-
-					@php $i++; @endphp
-				@endif
-			@endforeach
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info jaminan</strong></p>
+			</div>
 		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					Tipe
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}
+					<span> ( {{ (isset($value['jenis_sertifikat']) && !is_null($value['jenis_sertifikat'])) ? str_replace('_', ' ', $value['jenis_sertifikat']) : '-' }} )</span>
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					no. sertifikat
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_sertifikat']) && !is_null($value['nomor_sertifikat'])) ? $value['nomor_sertifikat'] : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					masa berlaku sampai
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['masa_berlaku_sertifikat']) && !is_null($value['masa_berlaku_sertifikat'])) ? $value['masa_berlaku_sertifikat'] : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					atas nama
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? $value['atas_nama'] : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row p-t-sm">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info {{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}</strong></p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					luas
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['luas_bangunan']) && !is_null($value['luas_bangunan'])) ? str_replace('_', ' ', $value['luas_bangunan']) : '-'  }} M<sup>2</sup> / 
+					{{ (isset($value['luas_tanah']) && !is_null($value['luas_tanah'])) ? str_replace('_', ' ', $value['luas_tanah']) : '-'  }} M<sup>2</sup> 
+					<span class="text-capitalize text-muted" style="font-size: 11px;"><em>( bangunan / tanah )</em></span>
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					alamat
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+				<p class="text-capitalize text-light">
+					<p class="text-capitalize text-light">
+						{{ (isset($value['alamat']['alamat']) && !is_null($value['alamat']['alamat'])) ? $value['alamat']['alamat'] : '' }}
+						RT {{ (isset($value['alamat']['rt']) ? $value['alamat']['rt'] : '-') }} / RW {{ isset($value['alamat']['rw']) ? $value['alamat']['rw'] : '-' }}
+						{{ (isset($value['alamat']['desa']) && !is_null($value['alamat']['desa'])) ? $value['alamat']['desa'] : '' }} 
+						{!! (isset($value['alamat']['distrik']) && !is_null($value['alamat']['distrik'])) ? $value['alamat']['distrik'] .' <br/>' : '' !!}
+						{{ (isset($value['alamat']['regensi']) && !is_null($value['alamat']['regensi'])) ? $value['alamat']['regensi'] : '' }} - 
+						{{ (isset($value['alamat']['provinsi']) && !is_null($value['alamat']['provinsi'])) ? $value['alamat']['provinsi'] : '' }} - 
+						{{ (isset($value['alamat']['negara']) && !is_null($value['alamat']['negara'])) ? $value['alamat']['negara'] : '' }}
+					</p>
+				</p>
+			</div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
 	@endforeach
 
 	<div class="row m-t-md m-b-md">

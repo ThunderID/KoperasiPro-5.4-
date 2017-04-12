@@ -22,7 +22,7 @@
 					@if(!empty($page_datas->credit['aset_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger" href="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md" href="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
@@ -36,21 +36,21 @@
 					@endif
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-right text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
 		</div>
-		<div class="row p-t-md">
-			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		<div class="row p-t-lg">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 				<p class="text-capitalize text-light">{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}</p>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<p class="m-b-xs text-capitalize text-light">{{ (isset($value['nomor_bpkb']) && !is_null($value['nomor_bpkb'])) ? str_replace('_', ' ', $value['nomor_bpkb']) : '-' }}</p>
-				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( No. BPKB )</em></p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 11px;"><em>( No. BPKB )</em></p>
 			</div>
 		</div>
+		<div class="clearfix">&nbsp;</div>
 	@endforeach
 
-	<div class="clearfix">&nbsp;</div>
 
 	<div class="row m-t-md m-b-md">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -19,7 +19,9 @@
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				{{-- content form nasabah --}}
 				@include ('pages.kredit.components.form.survei.nasabah', [
-					'data'	=> isset($page_datas->credit['nasabah']) ? $page_datas->credit['nasabah'] : null,
+					'param'	=> [
+						'data'	=> isset($page_datas->credit['nasabah']) ? $page_datas->credit['nasabah'] : null,
+					]
 				])
 				
 				{{-- button action form nasabah --}}

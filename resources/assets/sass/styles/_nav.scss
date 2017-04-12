@@ -118,3 +118,22 @@ nav {
 		}
 	}
 }
+@media (max-width: $screen-sm - 1) {
+	.nav-tabs {
+		overflow-x: auto;
+		overflow-y: hidden;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -o-box;
+		width: 100%;
+		li {
+			float: none;
+		}
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		&::-moz-scrollbar {
+			display: none;
+		}
+	}
+}

@@ -1,12 +1,12 @@
-{!! Form::hidden('nasabah[id]', (isset($data['id']) ? $data['id'] : null)) !!}
+{!! Form::hidden('nasabah[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <fieldset class="form-group">
 	<label class="text-sm">Nama</label>
 	<div class="row">
 		<div class="col-md-5">
-			@if (isset($data['id']))
-				{!! Form::text('nasabah[nama]', (isset($data['nama']) ? $data['nama'] : null), ['class' => 'form-control auto-tabindex', 'readonly' => true]) !!}
+			@if (isset($param['data']['id']))
+				{!! Form::text('nasabah[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control auto-tabindex', 'readonly' => true]) !!}
 			@else
-				{!! Form::text('nasabah[nama]', (isset($data['nama']) ? $data['nama'] : null), ['class' => 'form-control auto-tabindex']) !!}
+				{!! Form::text('nasabah[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control auto-tabindex']) !!}
 			@endif
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 			{!! Form::select('nasabah[status]', [
 				'baru'	=> 'Baru',
 				'lama'	=> 'Lama',
-			], (isset($data['status']) ? $data['status'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['status']) ? $param['data']['status'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -30,7 +30,7 @@
 				'kurang_lancar'	=> 'Kurang Lancar',
 				'lancar'		=> 'Lancar',
 				'macet'			=> 'Macet',
-			], (isset($data['kredit_terdahulu']) ? $data['kredit_terdahulu'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['kredit_terdahulu']) ? $param['data']['kredit_terdahulu'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -41,7 +41,7 @@
 			{!! Form::select('nasabah[jaminan_terdahulu]', [
 				'sama'			=> 'Sama',
 				'tidak_sama'	=> 'Tidak Sama',
-			], (isset($data['jaminan_terdahulu']) ? $data['jaminan_terdahulu'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['jaminan_terdahulu']) ? $param['data']['jaminan_terdahulu'] : null), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>

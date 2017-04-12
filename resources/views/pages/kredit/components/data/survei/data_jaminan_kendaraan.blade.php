@@ -15,17 +15,16 @@
 	@forelse($page_datas->credit['jaminan_kendaraan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-sm text-uppercase">
+				<p class="m-b-sm text-capitalize">
 					jaminan kendaraan {{ $key+1 }}
 
 					@if(!empty($page_datas->credit['jaminan_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger" href="{{ route('survei.jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_kendaraan_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md" href="{{ route('survei.jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_kendaraan_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
-
 								<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
@@ -36,42 +35,158 @@
 
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
+				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
-			@php $i=0; @endphp
-			
-			{{-- foreach data --}}
-			@foreach ($value as $k => $v)
-				{{-- remove field agar tidak ditampilkan --}}
-				@if (!in_array($k, ['id', 'survei_id', 'alamat_id']))
-					{{-- check ketika data 2 kasih row baru --}}
-					@if ($i % 2 == 0)
-						</div>
-						<div class="row">
-					@endif
-
-					<div class="col-sm-6">
-						<div class="row m-b-lg">
-							<div class="col-sm-12">
-								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-								<p class="text-capitalize">
-									@if ($k == 'survei')
-										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-									@elseif ($k == 'alamat')
-										{{ $v['alamat'] }} <br/>
-										RT {{ $v['rt'] }}/ RW {{ $v['rw'] }}, {{ $v['desa'] }}, {{ $v['distrik'] }} <br/>
-										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
-									@else
-										{{ str_replace('_', ' ', $v) }}
-									@endif
-								</p>
-							</div>
-						</div>
-					</div>
-
-					@php $i++; @endphp
-				@endif
-			@endforeach
 		</div>
+		<div class="row p-t-lg">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info jaminan</strong></p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					tipe
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					Merk
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['merk']) && !is_null($value['merk'])) ? str_replace('_', ' ', $value['merk']) : '-' }}  
+					( {{ (isset($value['warna']) && !is_null($value['warna'])) ? str_replace('_', ' ', $value['warna']) : '-'  }} )
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					tahun
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['tahun']) && !is_null($value['tahun'])) ? str_replace('_', ' ', $value['tahun']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					atas nama
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? str_replace('_', ' ', $value['atas_nama']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row p-t-lg">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info kendaraan</strong></p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					Fungsi sehari-hari
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['fungsi_sehari_hari']) && !is_null($value['fungsi_sehari_hari'])) ? str_replace('_', ' ', $value['fungsi_sehari_hari']) : '-' }} 
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					nomor rangka
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_rangka']) && !is_null($value['nomor_rangka'])) ? str_replace('_', ' ', $value['nomor_rangka']) : '-' }} 
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					nomor mesin
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_mesin']) && !is_null($value['nomor_mesin'])) ? str_replace('_', ' ', $value['nomor_mesin']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					nomor BPKB
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_bpkb']) && !is_null($value['nomor_bpkb'])) ? str_replace('_', ' ', $value['nomor_bpkb']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					nomor polisi
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['nomor_polisi']) && !is_null($value['nomor_polisi'])) ? str_replace('_', ' ', $value['nomor_polisi']) : '-' }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					status kepemilikan
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['status_kepemilikan']) && !is_null($value['status_kepemilikan'])) ? str_replace('_', ' ', $value['status_kepemilikan']) : '-' }} 
+				</p>
+			</div>
+		</div>
+		<div class="row p-t-lg">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>lain-lain</strong></p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					harga taksasi
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+				<p class="text-capitalize text-light">
+					{{ (isset($value['harga_taksasi']) && !is_null($value['harga_taksasi'])) ? str_replace('_', ' ', $value['harga_taksasi']) : '-' }} 
+				</p>
+			</div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
 	@empty
 	@endforelse
 

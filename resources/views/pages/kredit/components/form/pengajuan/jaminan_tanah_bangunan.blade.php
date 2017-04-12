@@ -76,7 +76,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]', (isset($param['data']['luas_tanah']) && !is_null($param['data']['luas_tanah'])) ? $param['data']['luas_tanah'] : null, ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => '', 'data-field' => 'luas_tanah']) !!}
+				{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]', (isset($param['data']['luas_tanah']) && !is_null($param['data']['luas_tanah'])) ? $param['data']['luas_tanah'] : null, ['class' => 'form-control mask-number auto-tabindex input-tanah-bangunan', 'placeholder' => '', 'data-field' => 'luas_tanah']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -87,7 +87,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]', (isset($param['data']['luas_bangunan']) && !is_null($param['data']['luas_bangunan'])) ? $param['data']['luas_bangunan'] : null, ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => '', 'data-field' => 'luas_bangunan']) !!}
+				{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]', (isset($param['data']['luas_bangunan']) && !is_null($param['data']['luas_bangunan'])) ? $param['data']['luas_bangunan'] : null, ['class' => 'form-control auto-tabindex mask-number input-tanah-bangunan', 'placeholder' => '', 'data-field' => 'luas_bangunan']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>

@@ -16,6 +16,16 @@
 // margin xl
 @include make-margin(xl, $space-xl);
 
+// margin minus xs
+@include make-margin(min-xs, -($space-xs));
+// margin minus sm
+@include make-margin(min-sm, -($space-sm));
+// margin minus md
+@include make-margin(min-md, -($space-md));
+// margin minus lg
+@include make-margin(min-lg, -($space-lg));
+
+
 // padding
 // padding none
 @include make-padding(none, $space-none);

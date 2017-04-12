@@ -30,7 +30,9 @@
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 
 						@include ('pages.kredit.components.form.survei.aset_usaha', [
-							'data' => isset($v) ? $v : null,
+							'param'	=> [
+								'data' => isset($v) ? $v : null,
+							]
 						])
 						
 						{{-- button action form aset usaha --}}
@@ -56,7 +58,9 @@
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 
 				@include ('pages.kredit.components.form.survei.aset_usaha', [
-					'data' => null,
+					'param'	=> [
+						'data' => null,
+					]
 				])
 				
 				{{-- button action form aset usaha --}}
@@ -84,7 +88,9 @@
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 
 						@include ('pages.kredit.components.form.survei.aset_kendaraan', [
-							'data'	=> isset($v) ? $v : null,
+							'param'	=> [
+								'data'	=> isset($v) ? $v : null,
+							]
 						])
 
 						{{-- button action form aset kendaraan --}}
@@ -109,7 +115,9 @@
 
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				@include ('pages.kredit.components.form.survei.aset_kendaraan', [
-					'data'	=> null,
+					'param'	=> [
+						'data'	=> null,
+					]
 				])
 
 				{{-- button action form aset kendaraan --}}
@@ -136,7 +144,9 @@
 
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 						@include ('pages.kredit.components.form.survei.aset_tanah_bangunan', [
-							'data'		=> isset($v) ? $v : null,
+							'param'	=> [
+								'data'	=> isset($v) ? $v : null,
+							]
 						])
 
 						<div class="clearfix">&nbsp;</div>
@@ -160,7 +170,9 @@
 			
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				@include ('pages.kredit.components.form.survei.aset_tanah_bangunan', [
-					'data'		=> null,
+					'param'	=> [
+						'data'	=> null,
+					]
 				])
 
 				<div class="clearfix">&nbsp;</div>

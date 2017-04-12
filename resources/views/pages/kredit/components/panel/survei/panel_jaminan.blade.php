@@ -22,7 +22,9 @@
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 					
 						@include ('pages.kredit.components.form.survei.jaminan_kendaraan', [
-							'data'		=> isset($v) ? $v : null,
+							'param'	=> [
+								'data'	=> isset($v) ? $v : null,
+							]
 						])
 
 						<div class="clearfix">&nbsp;</div>
@@ -45,7 +47,9 @@
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 			
 				@include ('pages.kredit.components.form.survei.jaminan_kendaraan', [
-					'data'		=> null,
+					'param'	=> [
+						'data'	=> null,
+					]
 				])
 
 				<div class="clearfix">&nbsp;</div>
@@ -69,7 +73,9 @@
 					</div>
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 						@include ('pages.kredit.components.form.survei.jaminan_tanah_bangunan', [
-							'data'		=> isset($v) ? $v : null,
+							'param'	=> [
+								'data'	=> isset($v) ? $v : null,
+							]
 						])
 
 						<div class="clearfix">&nbsp;</div>
@@ -91,7 +97,9 @@
 			</div>
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				@include ('pages.kredit.components.form.survei.jaminan_tanah_bangunan', [
-					'data'		=> null,
+					'param'	=> [
+						'data'	=> null,
+					]
 				])
 
 				<div class="clearfix">&nbsp;</div>

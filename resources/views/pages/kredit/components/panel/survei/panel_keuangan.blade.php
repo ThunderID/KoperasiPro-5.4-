@@ -14,7 +14,9 @@
 			</div>
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 				@include ('pages.kredit.components.form.survei.keuangan', [
-					'data'		=> isset($page_datas->credit['keuangan']) ? $page_datas->credit['keuangan'] : null,
+					'param'	=> [
+						'data'	=> isset($page_datas->credit['keuangan']) ? $page_datas->credit['keuangan'] : null,
+					]
 				])
 
 				<div class="clearfix">&nbsp;</div>

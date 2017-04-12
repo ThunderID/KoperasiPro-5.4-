@@ -21,29 +21,57 @@
 			@endif
 		</h4>
 		<hr/>
-		<p class="text-capitalize text-right text-muted text-sm">disurvei {!! (isset($page_datas->credit['nasabah']['survei']) && !empty($page_datas->credit['nasabah']['survei'])) ? $page_datas->credit['nasabah']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['nasabah']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['nasabah']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['nasabah']['survei']) && !empty($page_datas->credit['nasabah']['survei'])) ? $page_datas->credit['nasabah']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['nasabah']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['nasabah']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 	</div>
 </div>
 
 @if (isset($page_datas->credit['nasabah']) && !empty($page_datas->credit['nasabah']))
-	<div class="row p-t-md m-b-xl">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<p class="m-b-xs text-sm"><strong>Nama</strong></p>
-			<p class="text-capitalize text-light">{{ (isset($page_datas->credit['nasabah']['nama']) && !is_null($page_datas->credit['nasabah']['nama'])) ? $page_datas->credit['nasabah']['nama'] : '-' }}</p>
+	<div class="row p-t-lg m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				Nama
+			</p>
 		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<p class="m-b-xs text-sm"><strong>Status</strong></p>
-			<p class="text-capitalize text-light">Nasabah {{ (isset($page_datas->credit['nasabah']['status']) && !is_null($page_datas->credit['nasabah']['status'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['status']) : '-' }}</p>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['nasabah']['nama']) && !is_null($page_datas->credit['nasabah']['nama'])) ? $page_datas->credit['nasabah']['nama'] : '-' }}
+			</p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<p class="m-b-xs text-sm"><strong>Kredit Sebelumnya</strong></p>
-			<p class="text-capitalize text-light">{{ (isset($page_datas->credit['nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['nasabah']['kredit_terdahulu'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['kredit_terdahulu']) : '-' }}</p>
+	<div class="row m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				status
+			</p>
 		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<p class="m-b-xs text-sm"><strong>Jaminan Sebelumnya</strong></p>
-			<p class="text-capitalize text-light">{{ (isset($page_datas->credit['nasabah']['jaminan_terdahulu']) && !is_null($page_datas->credit['nasabah']['jaminan_terdahulu'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['jaminan_terdahulu']) : '-' }}</p>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['nasabah']['status']) && !is_null($page_datas->credit['nasabah']['status'])) ? $page_datas->credit['nasabah']['status'] : '-' }}
+			</p>
+		</div>
+	</div>
+	<div class="row m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				kredit sebelumnya
+			</p>
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['nasabah']['kredit_terdahulu'])) ? $page_datas->credit['nasabah']['kredit_terdahulu'] : '-' }}
+			</p>
+		</div>
+	</div>
+	<div class="row m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				jaminan sebelumnya
+			</p>
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['nasabah']['jaminan_terdahulu']) && !is_null($page_datas->credit['nasabah']['jaminan_terdahulu'])) ? $page_datas->credit['nasabah']['jaminan_terdahulu'] : '-' }}
+			</p>
 		</div>
 	</div>
 @else

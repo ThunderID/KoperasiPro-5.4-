@@ -21,7 +21,7 @@
 					@if (!empty($page_datas->credit['kepribadian']))
 						@if ($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-sm" href="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md" href="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" no-data-pjax>
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
@@ -34,10 +34,10 @@
 					@endif
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-right text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
 		</div>
-		<div class="row p-t-md m-b-xl">
+		<div class="row p-t-lg m-b-xl">
 			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
 				<p class="m-b-xs text-sm"><strong>Referens</strong></p>
 				<p class="text-capitalize text-light">{{ (isset($value['nama_referens']) && !is_null($value['nama_referens'])) ? $value['nama_referens'] : '-' }} - {{ (isset($value['hubungan']) && !is_null($value['hubungan'])) ? str_replace('_', ' ', $value['hubungan']) : '-'  }}</p>
@@ -46,7 +46,7 @@
 			<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 				<p class="m-b-xs text-sm">&nbsp;</p>
 				<p class="text-capitalize text-light">{{ (isset($value['uraian']) && !is_null($value['uraian'])) ? $value['uraian'] : '-' }}</p>
-				<p class="text-capitalize text-muted text-sm" style="font-size: 10px;"><em>( uraian )</em></p>
+				<p class="text-capitalize text-muted text-sm" style="font-size: 11px;"><em>( uraian )</em></p>
 			</div>
 		</div>
 		<div class="row hidden-sm hidden-md hidden-lg">
