@@ -140,13 +140,13 @@ class Orang extends BaseModel
 	 */
 	protected function setNikAttribute($value)
 	{
-		//1. Check duplikat nik
-		$exists_person 						= Orang::where('nik', $value)->notid($this->id)->first();
+		// //1. Check duplikat nik
+		// $exists_person 						= Orang::where('nik', $value)->notid($this->id)->first();
 
-		if($exists_person)
-		{
-			throw new DuplicateException("NIK", 1);
-		}
+		// if($exists_person)
+		// {
+		// 	throw new DuplicateException("NIK", 1);
+		// }
 
 		$this->attributes['nik']			= $this->formatNIKFrom($value);
 	}
