@@ -11180,7 +11180,7 @@ window.notify = function (msg, title, type) {
 			success: function success(data) {
 				// parsing data ajax to content
 				$elementTarget.html('');
-				$.each(data, function (value, index) {
+				$.each(data, function (index, value) {
 					$option = $("<option value='" + index + "'>" + value + "</option>");
 					// $option.val(v.id).text(v.nama);
 					// $elementTarget.append($option);
@@ -11369,7 +11369,7 @@ function rowRemove($element) {
 }
 
 function addButtonRemoveRow(template, prefixName) {
-	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' + typeClone + '" data-root-template="' + rootTemplate + '" data-available-add="' + availableAdd + '" data-input-prefix="' + prefixName + '">Hapus</a>');
+	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' + typeClone + '" data-root-template="' + rootTemplate + '" data-available-add="' + availableAdd + '" data-input-prefix="' + prefixName + '"><i class="fa fa-trash"></i> Hapus</a>');
 }
 
 function addInputHidden(field, value) {
@@ -11506,6 +11506,7 @@ $(document).ready(function () {
     print();
 
     window.formEntertoTabs();
+    window.noEnterToSubmit();
   });
 
   // Form Submit with get method

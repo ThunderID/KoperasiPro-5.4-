@@ -96,7 +96,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">
-				{!! Form::text(null, null, ['class' => 'form-control input-upload', 'readonly' => true] ) !!}
+				{!! Form::text(null, (isset($param['data']['foto_ktp'])) ? $param['data']['foto_ktp'] : null, ['class' => 'form-control input-upload', 'readonly' => true] ) !!}
 				<span class="input-group-btn">
 					<label class="btn btn-primary" style="padding-top: 9.5px; padding-bottom: 9.5px; margin-left: -2px;">
 						{!! Form::file('kreditur[foto_ktp]', ['class' => 'hidden btn-upload auto-tabindex']) !!} Pilih Foto
@@ -126,6 +126,6 @@
 @include('components.helpers.forms.contact', [ 
 	'param'		=> [
 		'prefix'	=> 'kreditur',
-		'data'		=> isset($param['telepon']) ? $param['telepon'] : null,
+		'data'		=> isset($param['data']['telepon']) ? $param['data']['telepon'] : null,
 	],
 ])

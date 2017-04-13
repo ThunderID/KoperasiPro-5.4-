@@ -3,15 +3,14 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<p class="text-muted p-t-sm">
-					<span class="p-r-sm"><i class="fa fa-id-card-o"></i> {{ $page_datas->credit['kreditur']['nama'] }}</span>-
-					<span class="p-l-sm">{{ $page_datas->credit['kreditur']['nik'] }}</span>
+					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['kreditur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['kreditur']['nik'] }}</span>
 				</p>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-12 " style="background-color: white; height: 42px; border-bottom: 1px solid #e6e8e6;">
 		<div class="row">
-			<div class="col-xs-6 col-sm-6  hidden-md hidden-lg">
+			<div class="col-xs-5 col-sm-6  hidden-md hidden-lg">
 				<a href="{{ route('credit.index') }}" class="btn primary p-r-sm p-l-none">
 					<i class="fa fa-chevron-left"></i> Kembali
 				</a>
@@ -21,8 +20,8 @@
 					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['kreditur']['nama'] }} | {{ $page_datas->credit['kreditur']['nik'] }}
 				</p>
 			</div>
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-				<a href="#" data-url="{{ route('credit.print', ['mode' => 'permohonan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
+			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
+				<a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 				<a href="{{route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'tolak'])}}" class="btn p-r-sm p-l-sm danger">
@@ -36,7 +35,7 @@
 	</div>
 	<div class="col-md-12 " style="background-color: white;">
 		<div class="row">
-			<div class="col-sm-12 p-l-none p-r-none">
+			<div class="col-sm-12 p-l-none p-r-none" style>
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
 					<li role="presentation"><a href="#data-kreditur" data-toggle="tab" role="tab">Data Kreditur</a></li>

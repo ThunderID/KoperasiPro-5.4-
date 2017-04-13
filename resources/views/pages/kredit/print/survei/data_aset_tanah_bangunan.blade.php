@@ -1,86 +1,35 @@
-@php
-	if(!isset($edit)){
-		$edit = true;
-	}
-@endphp
-
-<div class="row">
-	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Aset Tanah &amp; Bangunan
-			@if(!empty($page_datas->credit['aset_tanah_bangunan']))
-				@if($edit == true)
-					<span class="pull-right">
-						<small>
-						<a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax>
-							<i class="fa fa-pencil" aria-hidden="true"></i>
-							 Edit
-						</a>
-						</small>
-					</span>
-				@endif
-			@endif
-		</h4>
-		<hr/>
-	</div>
-</div>
-
 @if (isset($page_datas->credit['aset_tanah_bangunan']) && !empty($page_datas->credit['aset_tanah_bangunan']))
-	@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right text-capitalize text-muted">
-				aset tanah &amp; bangunan {{ $key+1 }}
-				<hr/>
-			</div>
-			@php $i=0; @endphp
-			
-				@foreach ($value as $k => $v)
-					@if ($i % 2 == 0)
-						</div>
-						<div class="row">
-					@endif
-	
-					<div class="col-sm-6">
-						<div class="row m-b-lg">
-							<div class="col-sm-12">
-								<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-								<p class="text-capitalize">
-									@if ($k == 'survei')
-										{{ $v['tanggal_survei'] }} oleh {{ $v['petugas']['nama'] }} (<span class="text-muted"> {{ $v['petugas']['role'] }} </span>)
-									@elseif ($k == 'alamat')
-										{{ $v['alamat'] }} <br/>
-										RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} {{ $v['desa'] }} {{ $v['distrik'] }} <br/>
-										{{ $v['regensi'] }} - {{ $v['provinsi'] }} - {{ $v['negara'] }}
-									@else
-										{{ str_replace('_', ' ', $v) }}
-									@endif
-								</p>
-							</div>
-						</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
+				<div class="row">
+					<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
+						<p class="m-b-xs text-capitalize">
+							<u>aset tanah &amp; bangunan {{ $key+1 }}</u>
+						</p>
 					</div>
-
-					@php $i++; @endphp
-				@endforeach
-		</div>
-	@endforeach
-@else
-	<!-- No data -->
-	<div class="row m-b-xl">
-		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
+				</div>
+				<div class="row m-b-xs">
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						<p class="text-capitalize text-light m-b-xs">
+							{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }} - 
+							{{ (isset($value['luas']) && !is_null($value['luas'])) ? str_replace('_', ' ', $value['luas']) : '0' }} M<sup>2</sup>
+						</p>
+					</div>
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+						<p class="text-capitalize text-light m-b-xs">
+							{{ (isset($value['alamat']['alamat']) && !is_null($value['alamat']['alamat'])) ? $value['alamat']['alamat'] : '' }}
+							RT {{ (isset($value['alamat']['rt']) ? $value['alamat']['rt'] : '-') }} / RW {{ isset($value['alamat']['rw']) ? $value['alamat']['rw'] : '-' }} <br/>
+							{{ (isset($value['alamat']['desa']) && !is_null($value['alamat']['desa'])) ? $value['alamat']['desa'] : '' }} 
+							{{ (isset($value['alamat']['distrik']) && !is_null($value['alamat']['distrik'])) ? $value['alamat']['distrik'] .'<br/>' : '' }}
+							{{ (isset($value['alamat']['regensi']) && !is_null($value['alamat']['regensi'])) ? $value['alamat']['regensi'] : '' }} - 
+							{{ (isset($value['alamat']['provinsi']) && !is_null($value['alamat']['provinsi'])) ? $value['alamat']['provinsi'] : '' }} - 
+							{{ (isset($value['alamat']['negara']) && !is_null($value['alamat']['negara'])) ? $value['alamat']['negara'] : '' }}
+						</p>
+					</div>
+				</div>
+			@endforeach
 		</div>
 	</div>
+@else
 @endif
-
-<div class="clearfix m-b-md">&nbsp;</div>
-
-@push('show_modals')
-	@component('components.modal', [
-		'id' 		=> 'data_aset',
-		'title'		=> 'Data Aset',
-		'settings'	=> [
-			'hide_buttons'	=> true
-		]	
-	])
-		{{-- @include('pages.kredit.components.form.survei.data_aset') --}}
-	@endcomponent
-@endpush	

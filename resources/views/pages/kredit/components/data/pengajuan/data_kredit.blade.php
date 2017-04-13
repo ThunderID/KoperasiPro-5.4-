@@ -9,7 +9,7 @@
 		<h4 class="text-uppercase">Data Kredit
 			@if (!empty($page_datas->credit['id']))
 				@if ($edit == true)
-					<span class="pull-right">
+					<span class="pull-right text-capitalize">
 						<small>
 						<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
@@ -25,48 +25,54 @@
 </div>
 
 @if (isset($page_datas->credit['id']) && !empty($page_datas->credit['id']))
-		<div class="row">
-			@php $i=0; @endphp
-			
-				{{-- foreach data --}}
-				@foreach ($page_datas->credit as $k => $v)
-					@php
-						// dd($page_datas->credit);
-					@endphp
-					{{-- remove field id, survei_id, alamat_id agar tidak ditampilkan --}}
-					@if (in_array($k, ['jenis_kredit', 'pengajuan_kredit', 'jangka_waktu', 'tanggal_pengajuan']))
-						{{-- check ketika data 2 kasih row baru --}}
-						@if ($i % 2 == 0)
-							</div>
-							<div class="row">
-						@endif
-						<div class="col-sm-6">
-							<div class="row m-b-xl">
-								<div class="col-sm-12">
-									<p class="m-b-xs"><strong>{{ ucwords(str_replace('_', ' ', $k)) }}</strong></p>
-									<p class="text-capitalize">
-										@if ($k == 'jenis_kredit')
-											@if ($v == 'pa') 
-												Angsuran
-											@elseif ($v == 'pt')
-												Musiman
-											@elseif ($v == 'rumah_delta')
-												rumah delta
-											@else
-												{{ str_replace('_', ' ', $v) }}
-											@endif
-										@else
-											{{ str_replace('_', ' ', $v) }}
-										@endif
-									</p>
-								</div>
-							</div>
-						</div>
-
-						@php $i++; @endphp
-					@endif
-				@endforeach
+	<div class="row p-t-sm m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				Tanggal pengajuan
+			</p>
 		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['tanggal_pengajuan']) && !is_null($page_datas->credit['tanggal_pengajuan'])) ? $page_datas->credit['tanggal_pengajuan'] : '-' }}
+			</p>
+		</div>
+	</div>
+	<div class="row p-t-sm m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				jenis kredit
+			</p>
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['jenis_kredit']) && !is_null($page_datas->credit['jenis_kredit'])) ? str_replace('_', ' ', $page_datas->credit['jenis_kredit']) : '-' }}
+			</p>
+		</div>
+	</div>
+	<div class="row p-t-sm m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				jangka waktu
+			</p>
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['jangka_waktu']) && !is_null($page_datas->credit['jangka_waktu'])) ? $page_datas->credit['jangka_waktu'] : '-' }} Bulan
+			</p>
+		</div>
+	</div>
+	<div class="row p-t-sm m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<p class="text-capitalize text-light">
+				pengajuan kredit
+			</p>
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<p class="text-capitalize text-light">
+				{{ (isset($page_datas->credit['pengajuan_kredit']) && !is_null($page_datas->credit['pengajuan_kredit'])) ? $page_datas->credit['pengajuan_kredit'] : '-' }}
+			</p>
+		</div>
+	</div>
 @else
 	<!-- No data -->
 	<div class="row m-b-xl">

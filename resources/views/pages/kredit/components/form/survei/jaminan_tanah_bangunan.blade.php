@@ -1,4 +1,4 @@
-{!! Form::hidden('jaminan_tanah_bangunan[id]', (isset($data['id']) ? $data['id'] : null)) !!}
+{!! Form::hidden('jaminan_tanah_bangunan[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <fieldset class="form-group">
 	<label class="text-sm">Tipe</label>
 	<div class="row">
@@ -6,8 +6,8 @@
 			{!! Form::select('jaminan_tanah_bangunan[tipe]', [
 					'bangunan'	=> 'Bangunan',
 					'tanah'		=> 'Tanah',
-				], (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'form-control quick-select auto-tabindex', 'data-other' => 'input-tipe-jaminan-tanah-bangunan']) !!}
-			{!! Form::hidden('jaminan_tanah_bangunan[tipe]', (isset($data['tipe']) ? $data['tipe'] : 'bangunan'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'tipe']) !!}
+				], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'bangunan'), ['class' => 'form-control quick-select auto-tabindex', 'data-other' => 'input-tipe-jaminan-tanah-bangunan']) !!}
+			{!! Form::hidden('jaminan_tanah_bangunan[tipe]', (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'bangunan'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'tipe']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -18,8 +18,8 @@
 			{!! Form::select('jaminan_tanah_bangunan[jenis_sertifikat]', [
 					'hgb'	=> 'Hak Guna Bangunan (HGB)',
 					'shm'	=> 'Sertifikat Hak Milik (SHM)',
-				], (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'form-control quick-select auto-tabindex']) !!} <br/>
-			{!! Form::hidden('jaminan_tanah_bangunan[jenis_sertifikat]', (isset($data['jenis_sertifikat']) ? $data['jenis_sertifikat'] : 'hgb'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
+				], (isset($param['data']['jenis_sertifikat']) ? $param['data']['jenis_sertifikat'] : 'hgb'), ['class' => 'form-control quick-select auto-tabindex']) !!} <br/>
+			{!! Form::hidden('jaminan_tanah_bangunan[jenis_sertifikat]', (isset($param['data']['jenis_sertifikat']) ? $param['data']['jenis_sertifikat'] : 'hgb'), ['class' => 'input-tipe-jaminan-tanah-bangunan input-tanah-bangunan', 'data-field' => 'jenis_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -27,7 +27,7 @@
 	<label class="text-sm">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-2">
-			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($data['nomor_sertifikat']) ? $data['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) ? $param['data']['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -35,7 +35,7 @@
 	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-2">
-			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($data['masa_berlaku_sertifikat']) ? $data['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date-format input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[masa_berlaku_sertifikat]', (isset($param['data']['masa_berlaku_sertifikat']) ? $param['data']['masa_berlaku_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-date-format input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -43,7 +43,7 @@
 	<label class="text-sm">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text('jaminan_tanah_bangunan[atas_nama]', (isset($data['atas_nama']) ? $data['atas_nama'] : null), ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[atas_nama]', (isset($param['data']['atas_nama']) ? $param['data']['atas_nama'] : null), ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -51,7 +51,7 @@
 @include('components.helpers.forms.address', [
 	'param'		=> [
 		'prefix'	=> 'jaminan_tanah_bangunan',
-		'data'		=> isset($data['alamat']) ? $data['alamat'] : null,
+		'data'		=> isset($param['data']['alamat']) ? $param['data']['alamat'] : null,
 	],
 	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 	'settings'	=> [
@@ -64,7 +64,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text('jaminan_tanah_bangunan[luas_tanah]', (isset($data['luas_tanah']) ? $data['luas_tanah'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
+				{!! Form::text('jaminan_tanah_bangunan[luas_tanah]', (isset($param['data']['luas_tanah']) ? $param['data']['luas_tanah'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text('jaminan_tanah_bangunan[luas_bangunan]', (isset($data['luas_bangunan']) ? $data['luas_bangunan'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
+				{!! Form::text('jaminan_tanah_bangunan[luas_bangunan]', (isset($param['data']['luas_bangunan']) ? $param['data']['luas_bangunan'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 			{!! Form::select('jaminan_tanah_bangunan[fungsi_bangunan]', [
 				'ruko'		=> 'Ruko',
 				'rumah'		=> 'Rumah',
-			], (isset($data['fungsi_bangunan']) ? $data['fungsi_bangunan'] : 'ruko'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['fungsi_bangunan']) ? $param['data']['fungsi_bangunan'] : 'ruko'), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -100,8 +100,8 @@
 				'tingkat'			=> 'Tingkat',
 				'tidak_tingkat'		=> 'Tidak tingkat',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($data['bentuk_bangunan']) ? (in_array($data['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? $data['bentuk_bangunan'] : 'lain_lain') : 'tingkat'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-bentuk-bangunan']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[bentuk_bangunan]', isset($data['bentuk_bangunan']) ? $data['bentuk_bangunan'] : 'tingkat', ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-bentuk-bangunan ' . (in_array($data['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? 'hidden' : (!isset($data['bentuk_bangunan']) ? 'hidden' : ''))]) !!}
+			], (isset($param['data']['bentuk_bangunan']) ? (in_array($param['data']['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? $param['data']['bentuk_bangunan'] : 'lain_lain') : 'tingkat'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-bentuk-bangunan']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[bentuk_bangunan]', isset($param['data']['bentuk_bangunan']) ? $param['data']['bentuk_bangunan'] : 'tingkat', ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-bentuk-bangunan ' . (in_array($param['data']['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? 'hidden' : (!isset($param['data']['bentuk_bangunan']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -112,7 +112,7 @@
 			{!! Form::select('jaminan_tanah_bangunan[konstruksi_bangunan]', [
 				'permanen' 			=> 'Permanen',
 				'semi_permanen'		=> 'Semi Permanen',
-			], (isset($data['konstruksi_bangunan']) ? $data['konstruksi_bangunan'] : 'permanen'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['konstruksi_bangunan']) ? $param['data']['konstruksi_bangunan'] : 'permanen'), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -126,8 +126,8 @@
 				'tegel'			=> 'Tegel',
 				'Ubin'			=> 'Ubin',
 				'lain_lain'		=> 'Lainnya',
-			], (isset($data['lantai_bangunan']) ? (in_array($data['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? $data['lantai_bangunan'] : 'lain_lain') : 'keramik'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-lantai-bangunan']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[lantai_bangunan]', (isset($data['lantai_bangunan']) ? $data['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-lantai-bangunan ' . (in_array($data['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? 'hidden' : !isset($data['lantai_bangunan']) ? 'hidden' : '')]) !!}
+			], (isset($param['data']['lantai_bangunan']) ? (in_array($param['data']['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? $param['data']['lantai_bangunan'] : 'lain_lain') : 'keramik'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-lantai-bangunan']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[lantai_bangunan]', (isset($param['data']['lantai_bangunan']) ? $param['data']['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-lantai-bangunan ' . (in_array($param['data']['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? 'hidden' : !isset($param['data']['lantai_bangunan']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -140,8 +140,8 @@
 				'kayu'		=> 'Kayu',
 				'tembok'	=> 'Tembok',
 				'lain_lain'	=> 'Lainnya',
-			], (isset($data['dinding']) ? (in_array($data['dinding'], ['bambu', 'kayu', 'tembok']) ? $data['dinding'] : 'lain_lain') : 'bambu'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-dinding']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[dinding]', (isset($data['dinding']) ? $data['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-dinding ' . (in_array($data['dinding'], ['bambu', 'kayu', 'tembok']) ? 'hidden' : !isset($data['dinding']) ? 'hidden' : '')]) !!}
+			], (isset($param['data']['dinding']) ? (in_array($param['data']['dinding'], ['bambu', 'kayu', 'tembok']) ? $param['data']['dinding'] : 'lain_lain') : 'bambu'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-dinding']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[dinding]', (isset($param['data']['dinding']) ? $param['data']['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-dinding ' . (in_array($param['data']['dinding'], ['bambu', 'kayu', 'tembok']) ? 'hidden' : !isset($param['data']['dinding']) ? 'hidden' : '')]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -153,7 +153,7 @@
 				'450_watt'		=> '450 Watt',
 				'900_watt'		=> '900 Watt',
 				'1300_watt'		=> '1300 Watt',
-			], (isset($data['listrik']) ? $data['listrik'] : '450_watt'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['listrik']) ? $param['data']['listrik'] : '450_watt'), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -164,7 +164,7 @@
 			{!! Form::select('jaminan_tanah_bangunan[air]', [
 				'pdam'		=> 'PDAM',
 				'sumur'		=> 'Sumur',
-			], (isset($data['air']) ? $data['air'] : 'pdam'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['air']) ? $param['data']['air'] : 'pdam'), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -176,7 +176,7 @@
 				'aspal'		=> 'Aspal',
 				'batu'		=> 'Batu',
 				'tanah'		=> 'Tanah',
-			], (isset($data['luas_tanah']) ? $data['luas_tanah'] : 'aspal'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['luas_tanah']) ? $param['data']['luas_tanah'] : 'aspal'), ['class' => 'form-control auto-tabindex quick-select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -185,7 +185,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text('jaminan_tanah_bangunan[lebar_jalan]', (isset($data['lebar_jalan']) ? $data['lebar_jalan'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
+				{!! Form::text('jaminan_tanah_bangunan[lebar_jalan]', (isset($param['data']['lebar_jalan']) ? $param['data']['lebar_jalan'] : null), ['class' => 'form-control auto-tabindex mask-number', 'placeholder' => '']) !!}
 				<div class="input-group-addon">M</div>
 			</div>
 		</div>
@@ -200,8 +200,8 @@
 				'lebih_tinggi_dari_jalan'		=> 'Lebih Tinggi Dari Jalan',
 				'sama_dengan_jalan'				=> 'Sama Dengan Jalan',
 				'lain_lain'						=> 'Lainnya',
-			], (isset($data['letak_lokasi_terhadap_jalan']) ? (in_array($data['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lain_lain') : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-letak-lokasi']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', (isset($data['letak_lokasi_terhadap_jalan']) ? $data['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-letak-lokasi ' . (in_array($data['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? 'hidden' : !isset($data['letak_lokasi_terhadap_jalan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
+			], (isset($param['data']['letak_lokasi_terhadap_jalan']) ? (in_array($param['data']['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? $param['data']['letak_lokasi_terhadap_jalan'] : 'lain_lain') : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-letak-lokasi']) !!} <br/>
+			{!! Form::text('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', (isset($param['data']['letak_lokasi_terhadap_jalan']) ? $param['data']['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-letak-lokasi ' . (in_array($param['data']['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? 'hidden' : !isset($param['data']['letak_lokasi_terhadap_jalan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -217,10 +217,10 @@
 				'pertokoan'		=> 'Pertokoan',
 				'perumahan'		=> 'Perumahan',
 				'lain_lain'		=> 'Lainnya',
-			], (isset($data['lingkungan']) ? (in_array($data['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? $data['lingkungan'] : 'lain_lain') : 'industri'), 
+			], (isset($param['data']['lingkungan']) ? (in_array($param['data']['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? $param['data']['lingkungan'] : 'lain_lain') : 'industri'), 
 			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-linkungan']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[lingkungan]', (isset($data['lingkungan']) ? $data['lingkungan'] : 'industri'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-linkungan ' . 
-			(in_array($data['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? 'hidden' : !isset($data['lingkungan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[lingkungan]', (isset($param['data']['lingkungan']) ? $param['data']['lingkungan'] : 'industri'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-linkungan ' . 
+			(in_array($param['data']['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? 'hidden' : !isset($param['data']['lingkungan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -228,7 +228,7 @@
 	<label class="text-sm">Nilai Jaminan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[nilai_jaminan]', (isset($data['nilai_jaminan']) ? $data['nilai_jaminan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[nilai_jaminan]', (isset($param['data']['nilai_jaminan']) ? $param['data']['nilai_jaminan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -236,7 +236,7 @@
 	<label class="text-sm">Taksasi Tanah</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[taksasi_tanah]', (isset($data['taksasi_tanah']) ? $data['taksasi_tanah'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[taksasi_tanah]', (isset($param['data']['taksasi_tanah']) ? $param['data']['taksasi_tanah'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -244,7 +244,7 @@
 	<label class="text-sm">Taksasi Bangunan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[taksasi_bangunan]', (isset($data['taksasi_bangunan']) ? $data['taksasi_bangunan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[taksasi_bangunan]', (isset($param['data']['taksasi_bangunan']) ? $param['data']['taksasi_bangunan'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -252,7 +252,7 @@
 	<label class="text-sm">Njop</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[njop]', (isset($data['njop']) ? $data['njop'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[njop]', (isset($param['data']['njop']) ? $param['data']['njop'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -260,7 +260,7 @@
 	<label class="text-sm">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_tanah_bangunan[uraian]', (isset($data['uraian']) ? $data['uraian'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => '']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[uraian]', (isset($param['data']['uraian']) ? $param['data']['uraian'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>
