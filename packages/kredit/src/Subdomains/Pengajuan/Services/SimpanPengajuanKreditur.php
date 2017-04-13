@@ -113,7 +113,6 @@ class SimpanPengajuanKreditur
 		}
 		catch(Exception $e)
 		{
-dd($e);
 			DB::rollback();
 
 			throw $e;
