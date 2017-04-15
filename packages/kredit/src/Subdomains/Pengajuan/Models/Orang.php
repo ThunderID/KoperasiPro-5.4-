@@ -188,9 +188,9 @@ class Orang extends BaseModel
 	public function tambahRelasi($value)
 	{
 		//1. simpan orang
-		if(isset($this->value['id']) && !empty($this->value['id']) && !is_null($this->value['id']))
+		if(isset($value['id']) && !empty($value['id']) && !is_null($value['id']))
 		{
-			$relasi		= Relasi_A::findorfail($this->value['id']);
+			$relasi		= Relasi_A::findorfail($value['id']);
 		}
 		else
 		{
