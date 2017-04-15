@@ -31,13 +31,13 @@
 					]
 				])
 			</section>
-			<h3>Data Kreditur</h3>
+			<h3>Data Nasabah</h3>
 			<section>
 				<div class="m-t-none m-b-md p-b-md">
-					<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
+					<h4 class="m-t-none m-b-xs">Data Nasabah</h4>
 				</div>
 
-				@include ('pages.kredit.components.form.pengajuan.kreditur', [
+				@include ('pages.kredit.components.form.pengajuan.nasabah', [
 					'param'	=> [
 						'data'	=> null,
 					]
