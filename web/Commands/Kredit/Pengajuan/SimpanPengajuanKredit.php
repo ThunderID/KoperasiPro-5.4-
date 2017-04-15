@@ -3,6 +3,7 @@
 namespace TCommands\Kredit;
 
 use TKredit\Pengajuan\Models\Pengajuan;
+use TKredit\KreditAktif\Models\KreditAktif_RO;
 
 use TKredit\Pengajuan\Services\SimpanPengajuanKreditur;
 use TKredit\Pengajuan\Services\SimpanPengajuanJaminanKendaraan;
@@ -43,6 +44,16 @@ class SimpanPengajuanKredit
 			if(isset($this->pengajuan['pengajuan_kredit']))
 			{
 				$kredit->fill($this->pengajuan);
+
+				//update kredit aktif
+				$kredit_aktif 				= KreditAktif_RO::NomorDokumenKredit($this->kredit_id)->get();
+
+				foreach ($kredit_aktif as $key => $value) 
+				{
+					$value->pengajuan_kredit 	= $kredit->pengajuan_kredit;
+
+					$value->save();
+				}
 			}
 
 			if(isset($this->pengajuan['jaminan_kendaraan']))
@@ -64,6 +75,8 @@ class SimpanPengajuanKredit
 			}
 
 			$kredit->save();
+
+			//update kredit aktif
 
 			DB::commit();
 
