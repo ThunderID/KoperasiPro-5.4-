@@ -3,9 +3,9 @@
  * ===================================================================
  * Readme
  * ===================================================================
- * component name:		kreditur
+ * component name:		nasabah
  * author:				Agil M (agil.mahendra@gmail.com)
- * description:			form untuk kreditur
+ * description:			form untuk nasabah
  * 
  * ===================================================================
  * Usage
@@ -32,7 +32,7 @@
 {!! Form::hidden('kreditur[kreditur_id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <h5 class="text-uppercase text-light">Info Umum</h5>
 <fieldset class="form-group">
-	<label for="">E-KTP</label>
+	<label class="text-sm">E-KTP</label>
 	<div class="row">
 		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
 			{!! Form::checkbox('kreditur[is_ektp]', true, (isset($param['data']['is_ektp']) ? $param['data']['is_ektp'] : true), ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak']) !!}
@@ -40,7 +40,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">NIK</label>
+	<label class="text-sm">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="input-group">
@@ -51,7 +51,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Nama</label>
+	<label class="text-sm">Nama</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::text('kreditur[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Kreditur']) !!}
@@ -59,7 +59,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label>Tanggal Lahir</label>
+	<label class="text-sm">Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('kreditur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
@@ -68,7 +68,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jenis Kelamin</label>
+	<label class="text-sm">Jenis Kelamin</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select('kreditur[jenis_kelamin]', [
@@ -79,7 +79,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Status Pernikahan</label>
+	<label class="text-sm">Status Pernikahan</label>
 	<div class="row">
 		<div class="col-md-6">
 			{!! Form::select('kreditur[status_perkawinan]', [
@@ -92,7 +92,7 @@
 	</div> 
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Foto KTP</label>
+	<label class="text-sm">Foto KTP</label>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">

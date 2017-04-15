@@ -38,7 +38,7 @@
 			<div class="col-sm-12 p-l-none p-r-none" style>
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
-					<li role="presentation"><a href="#data-kreditur" data-toggle="tab" role="tab">Data Kreditur</a></li>
+					<li role="presentation"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
 					<li role="presentation"><a href="#data-keluarga" data-toggle="tab" role="tab">Data Keluarga</a></li>
 					<li role="presentation"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
 				</ul>

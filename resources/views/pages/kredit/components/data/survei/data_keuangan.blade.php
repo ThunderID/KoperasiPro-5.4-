@@ -27,24 +27,24 @@
 
 @if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
 	<div class="row p-t-lg p-b-md">
-		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-			<p class="m-b-xs text-lg text-light">{{ (isset($page_datas->credit['keuangan']['penghasilan_bersih']) && !is_null($page_datas->credit['keuangan']['penghasilan_bersih'])) ? $page_datas->credit['keuangan']['penghasilan_bersih'] : '-' }}</p>
-			<small class="text-capitalize text-muted text-sm"><em>( penghasilan bersih )</em></small>
+		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<p class="m-b-xs text-lg text-light text-capitalize">penghasilan bersih</p>
+			{{-- <small class="text-capitalize text-muted text-sm"><em>( penghasilan bersih )</em></small> --}}
 		</div>
-		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+		{{-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 			<p class="text-light">&#61;</p>	
+		</div> --}}
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right">
+			<p class="m-b-xs text-lg text-light">{{ (isset($page_datas->credit['keuangan']['penghasilan_bersih']) && !is_null($page_datas->credit['keuangan']['penghasilan_bersih'])) ? $page_datas->credit['keuangan']['penghasilan_bersih'] : '-' }}</p>
+			<small class="text-capitalize text-muted text-sm"><em>( total pendapatan - total biaya )</em></small>
 		</div>
-		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			<p class="m-b-xs text-lg text-light">{{ (isset($page_datas->credit['keuangan']['total_pendapatan']) && !is_null($page_datas->credit['keuangan']['total_pendapatan'])) ? $page_datas->credit['keuangan']['total_pendapatan'] : '-' }}</p>
-			<small class="text-capitalize text-muted text-sm"><em>( total pendapatan )</em></small>
-		</div>
-		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+		{{-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 			<p class="text-light">&#8722;</p>
 		</div>
 		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 			<p class="m-b-xs text-lg text-light">{{ (isset($page_datas->credit['keuangan']['total_biaya']) && !is_null($page_datas->credit['keuangan']['total_biaya'])) ? $page_datas->credit['keuangan']['total_biaya'] : '-' }}</p>
 			<small class="text-capitalize text-muted text-sm"><em>( total biaya )</em></small>
-		</div>
+		</div> --}}
 	</div>
 	<div class="row">
 		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
