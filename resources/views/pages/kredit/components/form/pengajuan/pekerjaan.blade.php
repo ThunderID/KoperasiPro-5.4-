@@ -51,7 +51,7 @@
 	<label for="">Penghasilan Bersih</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('penghasilan_bersih', (isset($param['data']['penghasilan_bersih']) ? $param['data']['penghasilan_bersih'] : null), ['class' => 'form-control mask-money required auto-tabindex', 'placeholder' => 'Penghasilan bersih']) !!}
+			{!! Form::text('kreditur[penghasilan_bersih]', (isset($param['data']['penghasilan_bersih']) ? $param['data']['penghasilan_bersih'] : null), ['class' => 'form-control mask-money required auto-tabindex', 'placeholder' => 'Penghasilan bersih']) !!}
 		</div>
 	</div>
 </fieldset>

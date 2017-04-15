@@ -6,12 +6,12 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Kreditur
+		<h4 class="text-uppercase">Data Nasabah
 			@if (!empty($page_datas->credit['kreditur']))
 				@if ($edit == true)
 					<span class="pull-right text-capitalize">
 						<small>
-							<a href="#" data-toggle="hidden" data-target="kreditur" data-panel="data-kreditur" no-data-pjax>
+							<a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 								 Edit
 							</a>
@@ -29,7 +29,7 @@
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info kreditur</strong></p>
+					<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info nasabah</strong></p>
 				</div>
 			</div>
 			<div class="row m-b-sm">
@@ -80,7 +80,7 @@
 							{{ $page_datas->credit['kreditur']['telepon'] }}
 						</p>
 					@else
-						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kontak" data-panel="data-kreditur" no-data-pjax> Tambahkan Sekarang </a></p>
+						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kontak" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 					@endif
 				</div>
 			</div>
@@ -92,19 +92,21 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					@if (isset($page_datas->credit['kreditur']['alamat']) && !empty($page_datas->credit['kreditur']['alamat']))
-						@foreach ($page_datas->credit['kreditur']['alamat'] as $k => $v)
-							<p class="text-capitalize text-light">
-								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
-								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-								{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-								{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
-								{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-								{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-								{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
-							</p>
+						@foreach ($page_datas->credit ['kreditur']['alamat'] as $k => $v)
+							{{-- @if ($k == 0) --}}
+								<p class="text-capitalize text-light">
+									{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+									RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }}
+									{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
+									{!! (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' !!}
+									{!! (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] . ' <br/> ': '' !!}
+									{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
+									{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+								</p>
+							{{-- @endif --}}
 						@endforeach
 					@else
-						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="alamat" data-panel="data-kreditur" no-data-pjax> Tambahkan Sekarang </a></p>
+						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="alamat" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 					@endif
 				</div>
 			</div>
@@ -153,7 +155,7 @@
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kreditur" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif

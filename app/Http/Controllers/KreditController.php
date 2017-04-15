@@ -688,7 +688,7 @@ class KreditController extends Controller
 			$provinsi 									= collect($teritori->get());
 			$provinsi 									= $provinsi->sortBy('nama');
 
-			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'nama');
+			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'id');
 		}
 
 		// get parameter jangka waktu

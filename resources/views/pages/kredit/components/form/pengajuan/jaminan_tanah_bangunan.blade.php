@@ -24,7 +24,7 @@
 
 {!! Form::hidden( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Tipe</label>
+	<label class="text-sm">Tipe</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]', [
@@ -36,7 +36,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Jenis Sertifikat</label>
+	<label class="text-sm">Jenis Sertifikat</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]', [
@@ -48,7 +48,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">No. Sertifikat</label>
+	<label class="text-sm">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-3">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null, ['class' => 'form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan', 'placeholder' => 'No. Sertifikat', 'data-field' => 'nomor_sertifikat']) !!}
@@ -56,7 +56,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Masa Berlaku</label>
+	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-3">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]', (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null, ['class' => 'form-control auto-tabindex mask-year input-tanah-bangunan', 'placeholder' => 'Masa Berlaku', 'data-field' => 'masa_berlaku_sertifikat']) !!}
@@ -64,7 +64,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Atas Nama</label>
+	<label class="text-sm">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[atas_nama]', (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null, ['class' => 'form-control auto-tabindex input-tanah-bangunan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}
@@ -72,7 +72,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Luas Tanah</label>
+	<label class="text-sm">Luas Tanah</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
@@ -83,7 +83,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Luas Bangunan</label>
+	<label class="text-sm">Luas Bangunan</label>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">

@@ -35,7 +35,7 @@
 @endphp
 {!! Form::hidden( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <fieldset class="form-group">
-	<label for="">Jenis Kendaraan</label>
+	<label class="text-sm">Jenis Kendaraan</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]', $data['select_jenis_kendaraan'], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'form-control quick-select  auto-tabindex', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
@@ -44,7 +44,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Tahun</label>
+	<label class="text-sm">Tahun</label>
 	<div class="row">
 		<div class="col-md-3">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tahun]', (isset($param['data']['tahun']) && !is_null($param['data']['tahun'])) ? $param['data']['tahun'] : null, ['class' => 'form-control auto-tabindex mask-year input-kendaraan', 'placeholder' => 'Tahun Pembuatan', 'data-field' => 'tahun']) !!}
@@ -52,7 +52,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Merk</label>
+	<label class="text-sm">Merk</label>
 	<div class="row">
 		<div class="col-md-12">
 			{!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]', $data['select_merk_kendaraan'], 
@@ -63,7 +63,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">No. BPKB</label>
+	<label class="text-sm">No. BPKB</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]', (isset($param['data']['nomor_bpkb']) && !is_null($param['data']['nomor_bpkb'])) ? $param['data']['nomor_bpkb'] : null, ['class' => 'form-control auto-tabindex input-kendaraan', 'placeholder' => 'Nomor BPKB', 'data-field' => 'nomor_bpkb']) !!}
@@ -71,7 +71,7 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Atas Nama</label>
+	<label class="text-sm">Atas Nama</label>
 	<div class="row">
 		<div class="col-md-7">
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[atas_nama]', (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null, ['class' => 'form-control auto-tabindex input-kendaraan', 'placeholder' => 'Atas Nama', 'data-field' => 'atas_nama']) !!}

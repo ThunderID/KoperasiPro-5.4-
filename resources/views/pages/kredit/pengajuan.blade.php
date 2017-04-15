@@ -8,8 +8,8 @@
 				<div class="tab-pane fade in active" id="data-kredit" role="tabpanel">
 					@include ('pages.kredit.components.panel.pengajuan.panel_kredit')
 				</div>
-				<div class="tab-pane fade" id="data-kreditur" role="tabpanel">
-					@include ('pages.kredit.components.panel.pengajuan.panel_kreditur')
+				<div class="tab-pane fade" id="data-nasabah" role="tabpanel">
+					@include ('pages.kredit.components.panel.pengajuan.panel_nasabah')
 				</div>
 				<div class="tab-pane fade" id="data-keluarga" role="tabpanel">
 					@include ('pages.kredit.components.panel.pengajuan.panel_keluarga')

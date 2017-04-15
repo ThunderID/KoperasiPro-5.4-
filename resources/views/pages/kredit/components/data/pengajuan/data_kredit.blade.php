@@ -45,7 +45,17 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['jenis_kredit']) && !is_null($page_datas->credit['jenis_kredit'])) ? str_replace('_', ' ', $page_datas->credit['jenis_kredit']) : '-' }}
+				@if (isset($page_datas->credit['jenis_kredit']) && !is_null($page_datas->credit['jenis_kredit']))
+					@if ($page_datas->credit['jenis_kredit'] == 'pa')
+						Angsuran
+					@elseif ($page_datas->credit['jenis_kredit'] == 'pt')
+						Musiman
+					@elseif ($page_datas->credit['jenis_kredit'] == 'rumah_delta')
+						Rumah Delta
+					@else
+						{{ str_replace('_', ' ', $page_datas->credit['jenis_kredit']) }}
+					@endif
+				@endif
 			</p>
 		</div>
 	</div>
