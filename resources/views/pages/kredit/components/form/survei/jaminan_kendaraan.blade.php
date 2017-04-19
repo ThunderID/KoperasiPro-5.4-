@@ -23,7 +23,7 @@
 			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, 
 				(isset($param['data']['merk']) ? (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $param['data']['merk'] : 'lain_lain') : 'daihatsu'), 
 				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::text('jaminan_kendaraan[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+			{!! Form::text('jaminan_kendaraan[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['merk']) && (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : ''))), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -42,7 +42,7 @@
 				], 
 				(isset($param['data']['warna']) ? (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange']) ? $param['data']['warna'] : 'lain_lain') : 'biru'), 
 				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange']) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+			{!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['warna']) && (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange'])) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
