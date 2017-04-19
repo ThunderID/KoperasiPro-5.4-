@@ -49,7 +49,7 @@ class LanjutkanUntukSurvei
 
 			if(!$validator->passes())
 			{
-				throw new Exception($validator->messages()->toJson(), 1);
+				throw new Exception("Data nasabah tidak lengkap", 1);
 			}
 
 			//check data survei
