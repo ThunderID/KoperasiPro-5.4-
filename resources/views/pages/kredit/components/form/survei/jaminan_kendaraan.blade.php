@@ -42,7 +42,7 @@
 				], 
 				(isset($param['data']['warna']) ? (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange']) ? $param['data']['warna'] : 'lain_lain') : 'biru'), 
 				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange']) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+			{!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['warna']) && (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange'])) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
