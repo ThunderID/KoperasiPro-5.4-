@@ -7,7 +7,7 @@ use TKredit\Survei\Models\Survei;
 use TKredit\KreditAktif\Models\KreditAktif_RO;
 use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 
-use Exception, DB, TAuth, Carbon\Carbon;
+use Exception, DB, TAuth, Carbon\Carbon, Validator;
 
 class LanjutkanUntukSurvei
 {
@@ -35,6 +35,22 @@ class LanjutkanUntukSurvei
 		{
 			//check data pengajuan
 			$kredit 		= Pengajuan::id($this->kredit_id)->with(['kreditur'])->firstorfail();
+
+			//validasi data pengajuan
+			$rules 			= 	[
+									'required|nik'					=> 'required|max:255',
+									'required|nama'					=> 'required|max:255',
+									'required|tanggal_lahir'		=> 'required|date_format:"Y-m-d"',
+									'required|jenis_kelamin'		=> 'required|in:laki-laki,perempuan',
+									'required|status_perkawinan'	=> 'required|in:kawin,belum_kawin,cerai,cerai_mati',
+								];
+
+			$validator		= Validator::make($kredit->toArray(), $rules);
+
+			if(!$validator->passes())
+			{
+				throw new Exception($validator->messages()->toJson(), 1);
+			}
 
 			//check data survei
 			$survei 		= Survei::NomorDokumenKredit($this->kredit_id)->first();
