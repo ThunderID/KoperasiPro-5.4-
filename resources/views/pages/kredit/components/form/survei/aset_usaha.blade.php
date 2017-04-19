@@ -34,7 +34,7 @@
 				'milik_sendiri'		=> 'Milik Sendiri',
 				'lain_lain'			=> 'Lainnya',
 			], (isset($param['data']['status']) ? (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? $param['data']['status'] : 'lain_lain') : 'bagi_hasil'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status']) !!}	<br/>
-			{!! Form::text('aset_usaha[status]', (isset($param['data']['status']) ? $param['data']['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status ' . (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? 'hidden' : (!isset($param['data']['status']) ? 'hidden' : '')) ]) !!}
+			{!! Form::text('aset_usaha[status]', (isset($param['data']['status']) ? $param['data']['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status ' . (isset($param['data']['status']) && (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? 'hidden' : (!isset($param['data']['status']) ? 'hidden' : ''))) ]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -60,7 +60,7 @@
 				'sewa'				=> 'Sewa',
 				'lain_lain'			=> 'Lainnya',
 			], (isset($param['data']['status_tempat_usaha']) ? (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? $param['data']['status_tempat_usaha'] : 'lain_lain') : 'milik_sendiri'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status-tempat-usaha']) !!}
-			{!! Form::text('aset_usaha[status_tempat_usaha]', (isset($param['data']['status_tempat_usaha']) ? $param['data']['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status-tempat-usaha ' . (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? 'hidden' : (!isset($param['data']['status_tempat_usahastatus']) ? 'hidden' : '')), 'style' => 'width: 80%;']) !!}
+			{!! Form::text('aset_usaha[status_tempat_usaha]', (isset($param['data']['status_tempat_usaha']) ? $param['data']['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status-tempat-usaha ' . (isset($param['data']['status_tempat_usaha']) && (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? 'hidden' : (!isset($param['data']['status_tempat_usahastatus']) ? 'hidden' : ''))), 'style' => 'width: 80%;']) !!}
 		</div>
 	</div>
 </fieldset>

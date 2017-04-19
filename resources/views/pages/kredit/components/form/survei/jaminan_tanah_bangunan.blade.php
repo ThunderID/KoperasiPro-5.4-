@@ -101,7 +101,7 @@
 				'tidak_tingkat'		=> 'Tidak tingkat',
 				'lain_lain'			=> 'Lainnya',
 			], (isset($param['data']['bentuk_bangunan']) ? (in_array($param['data']['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? $param['data']['bentuk_bangunan'] : 'lain_lain') : 'tingkat'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-bentuk-bangunan']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[bentuk_bangunan]', isset($param['data']['bentuk_bangunan']) ? $param['data']['bentuk_bangunan'] : 'tingkat', ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-bentuk-bangunan ' . (in_array($param['data']['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? 'hidden' : (!isset($param['data']['bentuk_bangunan']) ? 'hidden' : ''))]) !!}
+			{!! Form::text('jaminan_tanah_bangunan[bentuk_bangunan]', isset($param['data']['bentuk_bangunan']) ? $param['data']['bentuk_bangunan'] : 'tingkat', ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-bentuk-bangunan ' . (isset($param['data']['bentuk_bangunan']) && (in_array($param['data']['bentuk_bangunan'], ['tingkat', 'tidak_tingkat']) ? 'hidden' : (!isset($param['data']['bentuk_bangunan']) ? 'hidden' : '')))]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -127,7 +127,7 @@
 				'Ubin'			=> 'Ubin',
 				'lain_lain'		=> 'Lainnya',
 			], (isset($param['data']['lantai_bangunan']) ? (in_array($param['data']['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? $param['data']['lantai_bangunan'] : 'lain_lain') : 'keramik'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-lantai-bangunan']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[lantai_bangunan]', (isset($param['data']['lantai_bangunan']) ? $param['data']['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-lantai-bangunan ' . (in_array($param['data']['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? 'hidden' : !isset($param['data']['lantai_bangunan']) ? 'hidden' : '')]) !!}
+			{!! Form::text('jaminan_tanah_bangunan[lantai_bangunan]', (isset($param['data']['lantai_bangunan']) ? $param['data']['lantai_bangunan'] : 'keramik'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-lantai-bangunan ' . (isset($param['data']['lantai_bangunan']) && (in_array($param['data']['lantai_bangunan'], ['keramik', 'tanah', 'tegel', 'ubin']) ? 'hidden' : !isset($param['data']['lantai_bangunan']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -141,7 +141,7 @@
 				'tembok'	=> 'Tembok',
 				'lain_lain'	=> 'Lainnya',
 			], (isset($param['data']['dinding']) ? (in_array($param['data']['dinding'], ['bambu', 'kayu', 'tembok']) ? $param['data']['dinding'] : 'lain_lain') : 'bambu'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-dinding']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[dinding]', (isset($param['data']['dinding']) ? $param['data']['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-dinding ' . (in_array($param['data']['dinding'], ['bambu', 'kayu', 'tembok']) ? 'hidden' : !isset($param['data']['dinding']) ? 'hidden' : '')]) !!}
+			{!! Form::text('jaminan_tanah_bangunan[dinding]', (isset($param['data']['dinding']) ? $param['data']['dinding'] : 'bambu'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-dinding ' . (isset($param['data']['dinding']) && (in_array($param['data']['dinding'], ['bambu', 'kayu', 'tembok']) ? 'hidden' : !isset($param['data']['dinding']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
@@ -201,7 +201,7 @@
 				'sama_dengan_jalan'				=> 'Sama Dengan Jalan',
 				'lain_lain'						=> 'Lainnya',
 			], (isset($param['data']['letak_lokasi_terhadap_jalan']) ? (in_array($param['data']['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? $param['data']['letak_lokasi_terhadap_jalan'] : 'lain_lain') : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-letak-lokasi']) !!} <br/>
-			{!! Form::text('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', (isset($param['data']['letak_lokasi_terhadap_jalan']) ? $param['data']['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-letak-lokasi ' . (in_array($param['data']['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? 'hidden' : !isset($param['data']['letak_lokasi_terhadap_jalan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
+			{!! Form::text('jaminan_tanah_bangunan[letak_lokasi_terhadap_jalan]', (isset($param['data']['letak_lokasi_terhadap_jalan']) ? $param['data']['letak_lokasi_terhadap_jalan'] : 'lebih_rendah_dari_jalan'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-letak-lokasi ' . (isset($param['data']['letak_lokasi_terhadap_jalan']) && (in_array($param['data']['letak_lokasi_terhadap_jalan'], ['lebih_rendah_dari_jalan', 'lebih_tinggi_dari_jalan', 'sama_dengan_jalan']) ? 'hidden' : !isset($param['data']['letak_lokasi_terhadap_jalan']) ? 'hidden' : '')), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -220,7 +220,7 @@
 			], (isset($param['data']['lingkungan']) ? (in_array($param['data']['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? $param['data']['lingkungan'] : 'lain_lain') : 'industri'), 
 			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-jaminan-tanah-bangunan-linkungan']) !!} <br/>
 			{!! Form::text('jaminan_tanah_bangunan[lingkungan]', (isset($param['data']['lingkungan']) ? $param['data']['lingkungan'] : 'industri'), ['class' => 'form-control auto-tabindex m-t-sm input-jaminan-tanah-bangunan-linkungan ' . 
-			(in_array($param['data']['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? 'hidden' : !isset($param['data']['lingkungan']) ? 'hidden' : ''), 'style' => 'width:40%;']) !!}
+			(isset($param['data']['lingkungan']) && (in_array($param['data']['lingkungan'], ['industri', 'kampung', 'pasar', 'perkantoran', 'pertokoan', 'perumahan']) ? 'hidden' : !isset($param['data']['lingkungan']) ? 'hidden' : '')), 'style' => 'width:40%;']) !!}
 		</div>
 	</div>
 </fieldset>

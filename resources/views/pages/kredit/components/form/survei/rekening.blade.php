@@ -13,7 +13,7 @@
 			], (isset($param['data']['nama_bank']) ? (in_array($param['data']['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? $param['data']['nama_bank'] : 'lain_lain') : 'bca'), 
 			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-rekening-nama-bank']) !!} <br/>
 			{!! Form::text('rekening[nama_bank]', (isset($param['data']['nama_bank']) ? $param['data']['nama_bank'] : 'bca'), ['class' => 'form-control auto-tabindex m-t-sm input-rekening-nama-bank ' . 
-			(in_array($param['data']['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? 'hidden' : !isset($param['data']['nama_bank']) ? 'hidden' : '')]) !!}
+			(isset($param['data']['nama_bank']) && (in_array($param['data']['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? 'hidden' : !isset($param['data']['nama_bank']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
