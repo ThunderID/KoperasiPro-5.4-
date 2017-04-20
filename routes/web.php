@@ -12,6 +12,11 @@
 */
 Route::get('/test', function () 
 {
+	$user_ip = getenv('REMOTE_ADDR');
+$geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+$country = $geo["geoplugin_countryName"];
+$city = $geo["geoplugin_city"];
+dd($geo);
 	$teritori 	= new TQueries\Territorial\TeritoriIndonesia;
 	$teritori 	= $teritori->get(['temukan_desa' => true, 'nama_distrik' => 'Blimbing', 'nama_desa' => 'Arjosari']);
 	dd($teritori);
