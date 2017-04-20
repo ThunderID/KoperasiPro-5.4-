@@ -61,7 +61,7 @@ class Pengajuan extends BaseModel
 	 */
 	protected $rules				=	[
 											'jenis_kredit'			=> 'in:pa,pt,rumah_delta,lain_lain',
-											'pengajuan_kredit'		=> 'numeric',
+											'pengajuan_kredit'		=> 'required|numeric|min:2500000',
 											'tanggal_pengajuan'		=> 'date_format:"Y-m-d"',
 											'jangka_waktu'			=> 'numeric|in:6,10,12,18,24,30,36,42,48,54,60',
 											'kreditur_id'			=> 'max:255',
