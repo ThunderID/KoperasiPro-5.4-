@@ -14,7 +14,7 @@ use TAPIQueries\UIHelper\JSend;
 use TAPIQueries\Kredit\DaftarKredit;
 
 use TCommands\Kredit\PengajuanKreditBaru;
-use TAPICommands\UIHelper\UploadBase64GambarKTP;
+use TAPICommands\UIHelper\UploadBase64Gambar;
 
 use Input;
 
@@ -53,11 +53,19 @@ class KreditController extends Controller
 
 		//upload foto ktp
 		$ktp 							= base64_decode($kredit['kreditur']['foto_ktp']);
-		$data_kredit 					= new UploadBase64GambarKTP($ktp);
-		$data_kredit 					= $data_kredit->handle();
+		$data_ktp 						= new UploadBase64Gambar('ktp', $ktp);
+		$data_ktp 						= $data_ktp->handle();
+
+		if(isset($kredit['kreditur']['spesimen_ttd']))
+		{
+			$ttd 						= base64_decode($kredit['kreditur']['spesimen_ttd']);
+			$data_ttd 					= new UploadBase64Gambar('ttd', $ttd);
+			$data_ttd 					= $data_ttd->handle();
+			$kredit['spesimen_ttd']		= $data_ttd['url'];
+		}
 
 		//parse url foto kreditur
-		$kredit['kreditur']['foto_ktp']	= $data_kredit['url'];
+		$kredit['kreditur']['foto_ktp']	= $data_ktp['url'];
 		$kredit['kreditur']['nama']		= 'Pengajuan Melalui HP';
 
 		// $jaminan_kendaraan 		= [];
@@ -116,7 +124,7 @@ class KreditController extends Controller
 		$ktp 			= Input::get('gambar');
 		$ktp 			= base64_decode($ktp);
 
-		$data_kredit 	= new UploadBase64GambarKTP($ktp);
+		$data_kredit 	= new UploadBase64Gambar($ktp);
 		$data_kredit 	= $data_kredit->handle();
 
 		return JSend::success(['url' => $data_kredit['url']])->asArray();

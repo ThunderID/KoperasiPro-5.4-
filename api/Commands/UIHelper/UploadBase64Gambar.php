@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Exception, Validator, TAuth, Storage;
 use Carbon\Carbon;
 
-class UploadBase64GambarKTP
+class UploadBase64Gambar
 {
 	protected $file;
 
@@ -17,7 +17,7 @@ class UploadBase64GambarKTP
 	 * @param  $file
 	 * @return void
 	 */
-	public function __construct($file)
+	public function __construct($pre, $file)
 	{
 		$this->file     		= $file;
 	}
@@ -43,7 +43,7 @@ class UploadBase64GambarKTP
 			}
 			
 			$date 		= Carbon::now();
-			$fn 		= 'ktp-'.Str::slug(microtime()).'.jpg'; 
+			$fn 		= $pre.'-'.Str::slug(microtime()).'.jpg'; 
 
 			$dp 		= $date->format('Y/m/d');
 

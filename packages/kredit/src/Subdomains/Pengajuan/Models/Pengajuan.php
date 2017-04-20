@@ -53,6 +53,7 @@ class Pengajuan extends BaseModel
 											'kreditur_id'			,
 											'ro_petugas_id'			,
 											'referensi_id'			,
+											'spesimen_ttd'			,
 										];
 	/**
 	 * Basic rule of database
@@ -214,6 +215,22 @@ class Pengajuan extends BaseModel
 
 		$this->save();
 
+		return $this;
+	}
+
+
+	/**
+	 * fungsi simpan spesimen_ttd kredit
+	 *
+	 * @param string $value 
+	 * @return Kredit $kredit 
+	 */	
+	public function setSpesimenTTD($value)
+	{
+		//1. simpan spesimen_ttd
+		$this->attributes['spesimen_ttd']	= $value;
+
+		//2. it's a must to return value
 		return $this;
 	}
 

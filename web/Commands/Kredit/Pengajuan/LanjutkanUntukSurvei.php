@@ -38,14 +38,14 @@ class LanjutkanUntukSurvei
 
 			//validasi data pengajuan
 			$rules 			= 	[
-									'required|nik'					=> 'required|max:255',
-									'required|nama'					=> 'required|max:255',
-									'required|tanggal_lahir'		=> 'required|date_format:"Y-m-d"',
-									'required|jenis_kelamin'		=> 'required|in:laki-laki,perempuan',
-									'required|status_perkawinan'	=> 'required|in:kawin,belum_kawin,cerai,cerai_mati',
+									'nik'				=> 'required|max:255',
+									'nama'				=> 'required|max:255',
+									'tanggal_lahir'		=> 'required|date_format:"d/m/Y"',
+									'jenis_kelamin'		=> 'required|in:laki-laki,perempuan',
+									'status_perkawinan'	=> 'required|in:kawin,belum_kawin,cerai,cerai_mati',
 								];
 
-			$validator		= Validator::make($kredit->toArray(), $rules);
+			$validator		= Validator::make($kredit['kreditur']->toArray(), $rules);
 
 			if(!$validator->passes())
 			{

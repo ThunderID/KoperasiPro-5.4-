@@ -62,6 +62,11 @@ class PengajuanKreditBaru
 				'ro_petugas_id'			=> 0,
 			]);
 
+			if(isset($this->kredit['spesimen_ttd']))
+			{
+				$kredit 		= $kredit->setSpesimenTTD($this->kredit['spesimen_ttd']);
+			}
+
 			//1b. parse kaktif
 			$kaktif				=	[
 				'nomor_dokumen_kredit'	=> $kredit->id,

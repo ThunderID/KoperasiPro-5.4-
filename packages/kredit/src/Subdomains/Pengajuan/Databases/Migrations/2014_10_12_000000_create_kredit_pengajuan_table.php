@@ -22,6 +22,7 @@ class CreateKreditPengajuanTable extends Migration
 			$table->string('kreditur_id', 255);
 			$table->string('ro_petugas_id', 255);
 			$table->string('referensi_id', 255)->nullable();
+			$table->string('spesimen_ttd', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 
