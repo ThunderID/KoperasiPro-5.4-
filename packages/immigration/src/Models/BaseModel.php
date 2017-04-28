@@ -1,9 +1,9 @@
 <?php 
 
-namespace Thunderlabid\Immigration\Models;
+namespace TImmigration\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Thunderlabid\Immigration\Models\Traits\EventRaiserTrait;
+use TImmigration\Models\Traits\EventRaiserTrait;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -79,8 +79,6 @@ abstract class BaseModel extends Model
 			}
 		});
     }
-
-	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
 

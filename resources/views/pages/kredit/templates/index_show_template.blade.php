@@ -1,12 +1,12 @@
 @php
 	$color_switcher 	= [
-			'survey' 	=> '#FCA985',
+			'survei' 	=> '#FCA985',
 			'tolak' 	=> '#F98CB6',
 			'setuju' 	=> '#48B5A3',
 			'pengajuan' => '#0BB7D6',
 	];
 @endphp
-@inject('cservice', 'Thunderlabid\Web\Queries\Credit\DaftarKredit')
+@inject('cservice', 'TQueries\Kredit\DaftarKredit')
 
 @extends('template.cms_template')
 
@@ -42,7 +42,7 @@
 				            <p>{{$value['nomor_kredit']}}</p>
 				            <p class="list-group-item-text p-t-xs">
 				            	{{ $value['pengajuan_kredit'] }}
-				                <span class="pull-right">{{$value['tanggal_pengajuan']}}</span>
+				                <span class="pull-right">{{$value['tanggal']}}</span>
 				            </p>
 				        </a>
 				    @endforeach

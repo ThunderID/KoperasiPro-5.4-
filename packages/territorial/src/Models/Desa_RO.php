@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models;
+namespace TTerritorial\Models;
 
 /**
  * Model Koperasi
@@ -57,6 +57,16 @@ class Desa_RO extends BaseModel
     protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
     
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+
+	/**
+	 * relationship distrik
+	 *
+	 * @return Desa_RO $model
+	 */	
+ 	public function distrik()
+	{
+		return $this->belongsto('TTerritorial\Models\Desa_RO', 'territorial_distrik_id', 'id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	

@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models;
+namespace TTerritorial\Models;
 
 /**
  * Model Koperasi
@@ -63,7 +63,7 @@ class Negara_RO extends BaseModel
 	 */	
  	public function provinsi()
 	{
-		return $this->hasMany('Thunderlabid\Territorial\Models\Provinsi_RO', 'territorial_negara_id', 'id');
+		return $this->hasMany('TTerritorial\Models\Provinsi_RO', 'territorial_negara_id', 'id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

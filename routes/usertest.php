@@ -19,5 +19,5 @@ $model->save();
 			'office'	=> ['id' => 'MAJUPERKASAKEDIRI77', 'name' => 'Maju Perkasa Kediri']
 	];
 
-	$content 	= new Thunderlabid\Application\Services\UserService;
+	$content 	= new Thunderlabid\Web\Services\UserService;
 	dd($content->read(1));

@@ -29,7 +29,7 @@
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Collective\\Html\\HtmlServiceProvider',
-    28 => 'Thunderlabid\\Web\\WebServiceProvider',
+    28 => 'TWeb\\WebServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,7 +47,7 @@
     11 => 'App\\Providers\\AuthServiceProvider',
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
-    14 => 'Thunderlabid\\Web\\WebServiceProvider',
+    14 => 'TWeb\\WebServiceProvider',
   ),
   'deferred' => 
   array (

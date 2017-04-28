@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
-use Thunderlabid\Web\Queries\Credit\DaftarKreditur;
+use TQueries\Territorial\TeritoriIndonesia;
+use TQueries\Kredit\DaftarKreditur;
 
 /**
  * Class HelperController
@@ -25,7 +25,7 @@ Class HelperController extends Controller
 		$regensi		= collect($call->get(['regensi_dari' => $id]));
 		// sort data city by 'nama'
 		$regensi 		= $regensi->sortBy('nama');
-		$regensi 		= $regensi->pluck('id', 'nama');
+		$regensi 		= $regensi->pluck('nama', 'id');
 
         return response()->json($regensi);
 	}
@@ -43,7 +43,7 @@ Class HelperController extends Controller
 		$distrik 		= collect($call->get(['distrik_dari'	=> $id]));
 		// sort data distrik by 'nama'
 		$distrik 		= $distrik->sortBy('nama');
-		$distrik 		= $distrik->pluck('id', 'nama');
+		$distrik 		= $distrik->pluck('nama', 'id');
 
 		return response()->json($distrik);
 	}
@@ -57,11 +57,11 @@ Class HelperController extends Controller
 		$id 			= request()->input('id');
 		$call			= new TeritoriIndonesia;
 
-		// get data desa dari distrik 'id';
+		// get data desa dari distrik 'nama';
 		$desa 			= collect($call->get(['desa_dari' => $id]));
 		// sort data desa by 'nama'
 		$desa 			= $desa->sortBy('nama');
-		$desa 			= $desa->pluck('id', 'nama');
+		$desa 			= $desa->pluck('nama', 'id');
 
 		return response()->json($desa);
 	}

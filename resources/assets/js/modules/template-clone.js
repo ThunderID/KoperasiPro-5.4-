@@ -139,7 +139,7 @@ function rowRemove($element) {
 }
 
 function addButtonRemoveRow (template, prefixName) {
-	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' +typeClone+ '" data-root-template="' +rootTemplate+'" data-available-add="' +availableAdd+ '" data-input-prefix="' +prefixName+ '">Hapus</a>');
+	template.find('.action').html('<a href="#" class="text-danger remove" data-type-clone="' +typeClone+ '" data-root-template="' +rootTemplate+'" data-available-add="' +availableAdd+ '" data-input-prefix="' +prefixName+ '"><i class="fa fa-trash"></i> Hapus</a>');
 }
 
 function addInputHidden (field, value) {

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Thunderlabid\Immigration\Models\PandoraBox;
+use TImmigration\Models\PandoraBox;
 
 class InitAPITestTableSeeder extends Seeder
 {

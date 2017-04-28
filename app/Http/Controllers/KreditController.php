@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Thunderlabid\Web\Commands\UIHelper\UploadGambar;
+use TCommands\UIHelper\UploadGambar;
 
-use Thunderlabid\Web\Queries\Credit\DaftarKredit;
-use Thunderlabid\Web\Commands\Credit\AjukanKredit;
-use Thunderlabid\Web\Commands\Credit\UpdateKredit;
-use Thunderlabid\Web\Commands\Credit\UpdateKreditur;
-use Thunderlabid\Web\Commands\Credit\TambahJaminanKendaraan;
-use Thunderlabid\Web\Commands\Credit\TambahJaminanTanahBangunan;
+use TQueries\Kredit\DaftarKredit;
+use TCommands\Kredit\PengajuanKreditBaru;
+use TCommands\Kredit\SimpanPengajuanKredit;
+use TCommands\Kredit\LanjutkanUntukSurvei;
+use TCommands\Kredit\HapusPengajuanKredit;
+use TCommands\Kredit\HapusSurveiKredit;
 
-use Thunderlabid\Web\Queries\Territorial\TeritoriIndonesia;
+use TCommands\Kredit\SimpanSurveiKredit;
 
-use Thunderlabid\Web\Queries\Credit\UIHelper\JangkaWaktuKredit;
-use Thunderlabid\Web\Queries\Credit\UIHelper\JenisKredit;
-use Thunderlabid\Web\Queries\Credit\UIHelper\JenisJaminanKendaraan;
-use Thunderlabid\Web\Queries\Credit\UIHelper\MerkJaminanKendaraan;
+use TQueries\Territorial\TeritoriIndonesia;
+
+use TQueries\Kredit\UIHelper\JangkaWaktuKredit;
+use TQueries\Kredit\UIHelper\JenisKredit;
+use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
+use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
 
 use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon;
+use Input, PDF, Carbon\Carbon, Exception;
 
 /**
  * Kelas CreditController
@@ -32,14 +34,17 @@ use Input, PDF, Carbon\Carbon;
  */
 class KreditController extends Controller
 {
+	private $credit_active_filters = [];
+
 	/**
 	 * Creates construct from controller to get instate some stuffs
 	 */
-	public function __construct()
+	public function __construct(Request $request)
 	{
 		parent::__construct();
 
 		$this->service 		= new DaftarKredit;
+		$this->request 		= $request;
 	}
 
 	/**
@@ -65,7 +70,7 @@ class KreditController extends Controller
 		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.index'), $this->page_datas->total_credits, $page, 10);
+		$this->paginate(route('credit.index', $this->credit_active_filters), $this->page_datas->total_credits, $page, 10);
 
 		//initialize view
 		$this->view									= view('pages.kredit.index');
@@ -160,7 +165,14 @@ class KreditController extends Controller
 				{
 					foreach ($v as $k2 => $v2)
 					{
-						$temp_jaminan_tanah_bangunan[$k2][$k] = $v2;
+						if(in_array($k, ['alamat', 'rt', 'rw', 'provinsi', 'regensi', 'distrik', 'desa', 'negara']))
+						{
+							$temp_jaminan_tanah_bangunan[$k2]['alamat'][$k] = $v2;
+						}
+						else
+						{
+							$temp_jaminan_tanah_bangunan[$k2][$k] = $v2;
+						}
 					}
 				}
 			}
@@ -168,11 +180,12 @@ class KreditController extends Controller
 			{
 				$temp_jaminan_tanah_bangunan 	= [];
 			}
-			
+
 			$kredit['jaminan_kendaraan']		= $temp_jaminan_kendaraan;
 			$kredit['jaminan_tanah_bangunan']	= $temp_jaminan_tanah_bangunan;
 
-			dispatch(new AjukanKredit($kredit));
+			$simpan 	= new PengajuanKreditBaru($kredit);
+			$simpan->handle();
 
 			//function from parent to redirecting
 			return $this->generateRedirect(route('credit.index'));
@@ -214,28 +227,149 @@ class KreditController extends Controller
 					$kreditur['foto_ktp'] 			= $upload['url'];
 				}
 
-				dispatch(new UpdateKreditur($id, $kreditur));
+				$kreditur['nik'] 					= '35-'.$kreditur['nik'];
+				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$simpan->handle();
 			}
 
-			//update jamina
-			if (Input::has('jaminan_kendaraan'))
+			if (Input::has('relasi'))
 			{
-				dispatch(new TambahJaminanKendaraan($id, Input::get('jaminan_kendaraan')));
+				$kreditur								= Input::only('relasi');
+				// $kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
+				// $kreditur['relasi']['telepon']		= '';
+
+				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$simpan->handle();
 			}
 
-			if (Input::has('jaminan_tanah_bangunan'))
+			//update jaminan
+			if (Input::has('pengajuan'))
 			{
-				dispatch(new TambahJaminanTanahBangunan($id, Input::get('jaminan_tanah_bangunan')));
+				$jaminan = Input::only('pengajuan');
+
+				if (isset($jaminan['pengajuan']['jaminan_kendaraan']))
+				{
+					$jaminan_kendaraan['jaminan_kendaraan']				= $jaminan['pengajuan']['jaminan_kendaraan'];
+					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_kendaraan);
+					$simpan->handle();
+				}
+
+				if (isset($jaminan['pengajuan']['jaminan_tanah_bangunan']))
+				{
+					$jaminan_tanah_bangunan['jaminan_tanah_bangunan'] 	= $jaminan['pengajuan']['jaminan_tanah_bangunan'];
+					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_tanah_bangunan);
+					$simpan->handle();
+				}
 			}
 
 			if (Input::has('jangka_waktu'))
 			{
-				dispatch(new UpdateKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu')));
+				$simpan 	= new SimpanPengajuanKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu'));
+				$simpan->handle();
+			}
+
+			// aset usaha for survei
+			if (Input::has('aset_usaha'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_usaha'));
+				$simpan->handle();
+			}
+
+			// aset kendaraan for survei
+			if (Input::has('aset_kendaraan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_kendaraan'));
+				$simpan->handle();
+			}
+
+			// aset tanah & bangunan for survei
+			if (Input::has('aset_tanah_bangunan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_tanah_bangunan'));
+				$simpan->handle();
+			}
+
+			// jaminan kendaraan for survei
+			if (Input::has('jaminan_kendaraan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_kendaraan'));
+				$simpan->handle();
+			}
+
+			// jaminan tanah & bangunan for survei
+			if (Input::has('jaminan_tanah_bangunan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_tanah_bangunan'));
+				$simpan->handle();
+			}
+
+			// rekening for survei
+			if (Input::has('rekening'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('rekening'));
+				$simpan->handle();
+			}
+
+			// keuangan for survei
+			if (Input::has('keuangan'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('keuangan'));
+				$simpan->handle();
+			}
+
+			// kepribadian for survei
+			if (Input::has('kepribadian'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('kepribadian'));
+				$simpan->handle();
+			}
+
+			// nasabah for survei
+			if (Input::has('nasabah'))
+			{
+				$simpan 	= new SimpanSurveiKredit($id, Input::only('nasabah'));
+				$simpan->handle();
 			}
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
+		
+			return $this->generateRedirect(route('credit.show', ['id' => $id]));
 		}
 		catch (Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+
+			return $this->generateRedirect(route('credit.index'));
+		}
+	}
+
+	/**
+	 * status kredit
+	 *
+	 * @return Response
+	 */
+	public function status($id, $status)
+	{
+		try
+		{
+			if(str_is(strtolower($status), 'survei'))
+			{
+				$simpan 	= new LanjutkanUntukSurvei($id);
+				$simpan->handle();
+			}
+			else
+			{
+				throw new Exception("Invalid Status", 1);
+			}
+		}
+		catch(Exception $e)
 		{
 			if (is_array($e->getMessage()))
 			{
@@ -248,20 +382,7 @@ class KreditController extends Controller
 		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.show', $id));
-	}
-
-	/**
-	 * status kredit
-	 *
-	 * @return Response
-	 */
-	public function status($id, $status)
-	{
-		$result		= $this->service->updateStatus($id, $status);
-
-		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
 	}
 
 	/**
@@ -290,7 +411,7 @@ class KreditController extends Controller
 		$this->getCreditLists($page, 10);
 
 		// Paginate
-		$this->paginate(route('credit.show', ['id' => $id]),$this->page_datas->total_credits,$page,10);
+		$this->paginate(route('credit.show', array_merge(['id' => $id], $this->credit_active_filters)),$this->page_datas->total_credits,$page,10);
 
 		//parsing master data here
 		try
@@ -299,7 +420,16 @@ class KreditController extends Controller
 		}
 		catch(Exception $e)
 		{
-			$this->page_datas->credit 				= view('pages.credit.errors');
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		
+			return $this->generateRedirect(route('credit.index'));
 		}
 
 		$this->page_datas->id 						= $id;
@@ -327,7 +457,7 @@ class KreditController extends Controller
 		}
 
 		// get parameter from function getParamToView to parsing view
-		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu']);
+		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu', 'merk_kendaraan', 'jenis_pekerjaan']);
 											 
 		//function from parent to generate view
 		return $this->generateView();
@@ -341,11 +471,79 @@ class KreditController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//using credit service to delete credit data
-		$credit    = Credit::delete($id);
+		try {
+			if($this->request->is('hapus/jaminan/kendaraan/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['id' => $this->request->jaminan_kendaraan_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/jaminan/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->jaminan_tanah_bangunan_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/kreditur/relasi/*'))
+			{
+				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/aset/usaha/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_usaha' => ['id' => $this->request->survei_aset_usaha_id]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/aset/kendaraan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_kendaraan' => ['id' => $this->request->survei_aset_kendaraan_id]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/aset/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_tanah_bangunan' => ['id' => $this->request->survei_aset_tanah_bangunan_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/jaminan/kendaraan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['id' => $this->request->survei_jaminan_kendaraan_id]]);
+				$simpan->handle();
+			}
+			if($this->request->is('hapus/survei/jaminan/tanah/bangunan/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->survei_jaminan_tanah_bangunan_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/rekening/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['rekening' => ['id' => $this->request->survei_rekening_id]]);
+				$simpan->handle();
+			}
+
+			if($this->request->is('hapus/survei/kepribadian/*'))
+			{
+				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['kepribadian' => ['id' => $this->request->survei_kepribadian_id]]);
+				$simpan->handle();
+			}
+			
+			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
+
+		} catch (Exception $e) {
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.index'));
+		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
 	}
 
 	/**
@@ -360,6 +558,7 @@ class KreditController extends Controller
 		if (Input::has('status'))
 		{
 			$status 								= Input::get('status');
+			$this->credit_active_filters['status'] 	= $status;
 		}
 
 		//2. Parsing search box
@@ -367,6 +566,7 @@ class KreditController extends Controller
 		{
 			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
 			$this->page_datas->total_credits		= $this->service->count(['status' => $status, 'kreditur' => Input::get('q')]);
+			$this->credit_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{
@@ -530,7 +730,7 @@ class KreditController extends Controller
 				'petani'			=> 'Petani',
 				'polri'				=> 'Polri',
 				'wiraswasta'		=> 'Wiraswasta',
-				'00000'				=> 'Lainnya'
+				'lain_lain'			=> 'Lainnya'
 			];
 			$this->page_datas->select_jenis_pekerjaan	= $jp;
 		}

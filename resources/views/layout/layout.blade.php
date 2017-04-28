@@ -63,13 +63,21 @@
 		<title>{{ Config::get('app.name') }}</title>
 
 		<!-- Custom Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+		{{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet"> --}}
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 		<style>
 			@yield('template-styles')
+			input[type=number]::-webkit-inner-spin-button, 
+			input[type=number]::-webkit-outer-spin-button { 
+			  -webkit-appearance: none; 
+			  margin: 0; 
+			}
+			input[type=number] {
+				-moz-appearance: textfield;
+			}
 		</style>	
 	</head>
 		<div class="wrapper">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration\Events\Jobs;
+namespace TImmigration\Events\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-use Thunderlabid\Immigration\Events\VisaGrantedEvent;
+use TImmigration\Events\VisaGrantedEvent;
 
 class FireEventVisaGranted implements ShouldQueue
 {

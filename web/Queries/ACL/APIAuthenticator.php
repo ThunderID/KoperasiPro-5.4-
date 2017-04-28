@@ -1,11 +1,11 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\ACL;
+namespace TQueries\ACL;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Immigration\Models\PandoraBox as Model;
+use TImmigration\Models\PandoraBox as Model;
 
 use Hash, Exception, Session;
 

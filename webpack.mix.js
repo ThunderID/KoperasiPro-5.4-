@@ -45,6 +45,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css')
 		], 'public/js/app.js')
 	.version(['public/css/app.css', 'public/js/app.js'])
 	.copy('resources/assets/fonts', 'public/fonts/')
+	.copy('resources/assets/icons', 'public/icons')
 	// .autoload({ 
 	// 	'jquery': ['window.$', 'window.jQuery'],
 	// })

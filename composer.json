@@ -25,12 +25,15 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Thunderlabid\\Immigration\\": "packages/immigration/src/",
-            "Thunderlabid\\Territorial\\": "packages/territorial/src/",
-            "Thunderlabid\\Credit\\": "packages/credit/src/",
-            "Thunderlabid\\Registry\\": "packages/registry/src/",
-            "Thunderlabid\\Web\\": "web/",
-            "Thunderlabid\\API\\": "api/"
+            "TKredit\\": "packages/kredit/src/",
+            "TImmigration\\": "packages/immigration/src/",
+            "TTerritorial\\": "packages/territorial/src/",
+            "TCommands\\": "web/Commands",
+            "TQueries\\": "web/Queries",
+            "TFacades\\": "web/Facades",
+            "TWeb\\": "web",
+            "TAPICommands\\": "api/Commands",
+            "TAPIQueries\\": "api/Queries"
         }
     },
     "autoload-dev": {

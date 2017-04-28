@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration;
+namespace TImmigration;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;

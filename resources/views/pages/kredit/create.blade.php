@@ -22,19 +22,26 @@
 				</div>
 
 				@include ('pages.kredit.components.form.pengajuan.kredit', [
+					'param'	=> [
+						'data'	=> null,
+					],
 					'data'	=> [
 						'select_jenis_kredit'	=> $page_datas->select_jenis_kredit,
 						'select_jangka_waktu'	=> $page_datas->select_jangka_waktu,
 					]
 				])
 			</section>
-			<h3>Data Kreditur</h3>
+			<h3>Data Nasabah</h3>
 			<section>
 				<div class="m-t-none m-b-md p-b-md">
-					<h4 class="m-t-none m-b-xs">Data Kreditur</h4>
+					<h4 class="m-t-none m-b-xs">Data Nasabah</h4>
 				</div>
 
-				@include ('pages.kredit.components.form.pengajuan.kreditur')
+				@include ('pages.kredit.components.form.pengajuan.nasabah', [
+					'param'	=> [
+						'data'	=> null,
+					]
+				])
 			</section>
 			<h3>Data Pekerjaan</h3>
 			<section>
@@ -43,6 +50,9 @@
 				</div>
 
 				@include ('pages.kredit.components.form.pengajuan.pekerjaan', [
+					'param'	=> [
+						'data'	=> null,
+					],
 					'data'	=> [
 						'select_jenis_pekerjaan'	=> $page_datas->select_jenis_pekerjaan,
 					]
@@ -54,7 +64,11 @@
 					<h4 class="m-t-none m-b-xs">Data Jaminan</h4>
 				</div>
 				
-				@include ('pages.kredit.components.form.pengajuan.jaminan')
+				@include ('pages.kredit.components.form.pengajuan.jaminan', [
+					'param'	=> [
+						'data'	=> null,
+					]
+				])
 			</section>
 		{!! Form::close() !!}
 	</div>

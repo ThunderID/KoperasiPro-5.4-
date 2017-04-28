@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Territorial\Models\Traits;
+namespace TTerritorial\Models\Traits;
 
 /**
  * Trait Link list

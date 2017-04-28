@@ -1,9 +1,9 @@
 <?php 
 
-namespace Thunderlabid\Territorial\Models;
+namespace TTerritorial\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Thunderlabid\Territorial\Models\Traits\EventRaiserTrait;
+use TTerritorial\Models\Traits\EventRaiserTrait;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -23,7 +23,8 @@ $.fn.optHeight = function(){
 	$(this).css('height',h);
 
 	// optional : apply nicescroll. you have include niceScroll plugin first.
-    $(this).niceScroll();
+    // $(this).niceScroll();
+    $(this).css('overflow-y', 'scroll');
 };
 
 // registering function to webpack. So, you can use call this function on another js function

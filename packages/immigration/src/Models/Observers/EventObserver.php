@@ -1,8 +1,8 @@
 <?php 
 
-namespace Thunderlabid\Immigration\Models\Observers;
+namespace TImmigration\Models\Observers;
 
-use Thunderlabid\Immigration\Models\Pengguna as Model; 
+use TImmigration\Models\Pengguna as Model; 
 
 /**
  * Observer Event

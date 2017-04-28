@@ -1,13 +1,13 @@
 <?php
 
-namespace Thunderlabid\Web\Commands\ACL;
+namespace TCommands\ACL;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use Thunderlabid\Immigration\Models\Pengguna;
+use TImmigration\Models\Pengguna;
 
 use Exception;
 

@@ -8,12 +8,19 @@ window.select = function(element, param) {
 	$('.select-get-ajax').on('select2:select', function(evt) {
 		$url = $(this).data('url');
 		$val = $(this).find('option:selected').val();
+		$caption = $(this).find('option:selected').html();
+		dataFlag = $(this).data('value-from-caption');
+		
+		if ((typeof dataFlag != 'undefined')) {
+			$(this).val($caption);
+		}
+
 		// get select2 to parsing data
 		$targetParsing = $(this).data('target-parsing');
 		// get parent select on aktif
 		rootSelect = $(this).parent().parent().parent().parent();
 		$elementTarget = rootSelect.find($targetParsing);
-
+		console.log($caption);
 		// get data list on ajax
 		$.ajax({
 			type: "GET",
@@ -21,10 +28,11 @@ window.select = function(element, param) {
 			data: {id: $val},
 			cache: true,
 			success: function (data) {
+				console.log(data);
 				// parsing data ajax to content
 				$elementTarget.html('');
-				$.each(data, function(value, index) {
-					$option = $("<option value='" + index + "'>" + value +"</option>");
+				$.each(data, function(index, value) {
+					$option = $("<option value='" + index + "' data-id='" +index+ "'>" + value +"</option>");
 					// $option.val(v.id).text(v.nama);
 					// $elementTarget.append($option);
 					$elementTarget.append($option);

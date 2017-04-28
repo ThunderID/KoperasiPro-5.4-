@@ -51,6 +51,7 @@ $(document).ready(function(){
 		print();
 
 		window.formEntertoTabs();
+		window.noEnterToSubmit();
 	});
 
     // Form Submit with get method

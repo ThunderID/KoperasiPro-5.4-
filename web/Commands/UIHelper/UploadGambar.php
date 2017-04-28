@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Web\Commands\UIHelper;
+namespace TCommands\UIHelper;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;

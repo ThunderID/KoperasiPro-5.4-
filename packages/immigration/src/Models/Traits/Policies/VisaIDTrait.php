@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration\Models\Traits\Policies;
+namespace TImmigration\Models\Traits\Policies;
 
 /**
  * Guid trait to generate visa id

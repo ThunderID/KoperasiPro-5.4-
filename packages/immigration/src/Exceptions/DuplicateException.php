@@ -1,6 +1,6 @@
 <?php
 
-namespace Thunderlabid\Immigration\Exceptions;
+namespace TImmigration\Exceptions;
 
 use Exception;
 

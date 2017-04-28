@@ -1,11 +1,11 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\ACL;
+namespace TQueries\ACL;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Immigration\Models\Pengguna as Model;
+use TImmigration\Models\Pengguna as Model;
 
 use Hash, Exception, Session;
 
@@ -68,7 +68,7 @@ class SessionBasedAuthenticator
 		} 
 		catch (Exception $e) 
 		{
-			return $e;
+			return false;
 		}
 
 		return true;

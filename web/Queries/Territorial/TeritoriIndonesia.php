@@ -1,14 +1,14 @@
 <?php
 
-namespace Thunderlabid\Web\Queries\Territorial;
+namespace TQueries\Territorial;
 
 ///////////////
 //   Models  //
 ///////////////
-use Thunderlabid\Territorial\Models\Provinsi_RO as Model;
-use Thunderlabid\Territorial\Models\Regensi_RO;
-use Thunderlabid\Territorial\Models\Distrik_RO;
-use Thunderlabid\Territorial\Models\Desa_RO;
+use TTerritorial\Models\Provinsi_RO as Model;
+use TTerritorial\Models\Regensi_RO;
+use TTerritorial\Models\Distrik_RO;
+use TTerritorial\Models\Desa_RO;
 
 use Hash, Exception, Session, TAuth;
 
@@ -37,7 +37,6 @@ class TeritoriIndonesia
 	public function get($queries = [])
 	{
 		$model 		= $this->queries($queries);
-		
 		$model		= $model->get();
 
 		return 	$model->toArray();
@@ -87,7 +86,31 @@ class TeritoriIndonesia
 		{
 			$model 				= $model->where('territorial_negara_id', 'ID');
 		}
+
+		//6. if there is name query
+		if(isset($queries['temukan_provinsi']))
+		{
+			$model 				= $model->where('territorial_negara_id', 'ID')->where('nama', 'like', $queries['nama_provinsi']);
+		}
 		
+		if(isset($queries['temukan_regensi']))
+		{
+			$model 				= new Regensi_RO;
+			$model 				= $model->wherehas('provinsi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_provinsi']);});
+		}
+		
+		if(isset($queries['temukan_distrik']))
+		{
+			$model 				= new Distrik_RO;
+			$model 				= $model->wherehas('regensi', function($q)use($queries){$q->where('nama', 'like', $queries['nama_regensi']);});
+		}
+
+		if(isset($queries['temukan_desa']))
+		{
+			$model 				= new Desa_RO;
+			$model 				= $model->wherehas('distrik', function($q)use($queries){$q->where('nama', 'like', $queries['nama_distrik']);});
+		}
+
 		return $model;
 	} 
 }

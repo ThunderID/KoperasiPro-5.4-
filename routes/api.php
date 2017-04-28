@@ -15,10 +15,32 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['tapi']], function()
 {
+	Route::get('/pengaturan', function () 
+	{
+		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 'Rp 2.500.000'])->asArray();
+	});
+
+
 	// Here lies credit controller all things started here
 	Route::get('pengajuan', 	['uses' => 'KreditController@index']);
 
 	Route::post('pengajuan', 	['uses' => 'KreditController@store']);
 
 	Route::post('upload/ktp/{nomor_kredit}', 	['uses' => 'KreditController@upload']);
+
+
+	Route::post('/login', function () 
+	{
+		try {
+			$credentials 	= Input::only('email', 'password');
+			$login 			= TAuth::login($credentials);
+		} catch (Exception $e) {
+			return \TAPIQueries\UIHelper\JSend::error($e->getMessage())->asArray();
+		}
+
+		$returned 		= TAuth::loggedUser();
+	
+		return \TAPIQueries\UIHelper\JSend::success(['id' => $returned['id'], 'nama' => $returned['nama']])->asArray();
+	});
+
 });
