@@ -83,6 +83,16 @@
 			</p>
 		</div>
 	</div>
+
+	<div class="row p-t-sm m-b-sm">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			
+		</div>
+		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels img-thumbnail img-rounded"/>
+		</div>
+	</div>
+
 @else
 	<!-- No data -->
 	<div class="row m-b-xl">
