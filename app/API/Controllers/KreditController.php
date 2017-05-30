@@ -16,6 +16,8 @@ use TAPIQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TAPICommands\UIHelper\UploadBase64Gambar;
 
+use TImmigration\Models\Koperasi_RO;
+
 use Input;
 
 class KreditController extends Controller
