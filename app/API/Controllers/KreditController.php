@@ -68,6 +68,30 @@ class KreditController extends Controller
 		$kredit['kreditur']['foto_ktp']	= $data_ktp['url'];
 		$kredit['kreditur']['nama']		= 'Pengajuan Melalui HP';
 
+		if(Input::has('lokasi'))
+		{
+			$lokasi 					= Input::get('lokasi');
+			$koperasi 					= Koperasi_RO::get();
+
+			$lat_ln 					= 0;
+			foreach ($koperasi as $key => $value) 
+			{
+				$selisih_lat 			= $lokasi['latitude'] - $value['latitude'];
+				$selisih_lon 			= $lokasi['longitude'] - $value['longitude'];
+
+				if($key == 0)
+				{
+					$lat_ln 			= $selisih_lon + $selisih_lat;
+					$kredit['lokasi']	= $value['id'];
+				}
+				elseif($lat_ln > $selisih_lat+$selisih_lon)
+				{
+					$lat_ln 			= $selisih_lat + $selisih_lon;
+					$kredit['lokasi']	= $value['id'];
+				}
+			}
+		}
+\Log::info($kredit['lokasi']);
 		// $jaminan_kendaraan 		= [];
 		// $jaminan_tanah_bangunan = [];
 

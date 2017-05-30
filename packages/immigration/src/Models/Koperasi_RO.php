@@ -29,6 +29,8 @@ class Koperasi_RO extends BaseModel
 	protected $fillable				=	[
 											'id'					,
 											'nama'					,
+											'latitude'				,
+											'longitude'				,
 										];
 
 	/**

@@ -102,6 +102,10 @@ class PengajuanKreditBaru
 
 				$kaktif['ro_koperasi_id']		= TAuth::activeOffice()['koperasi']['id'];
 			}
+			elseif(isset($this->kredit['lokasi']))
+			{
+				$kaktif['ro_koperasi_id']		= $this->kredit['lokasi'];
+			}
 
 			//3. store mobile
 			if(isset($this->kredit['mobile']))
