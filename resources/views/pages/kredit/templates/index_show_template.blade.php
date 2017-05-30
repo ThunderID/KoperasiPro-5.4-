@@ -1,9 +1,11 @@
 @php
 	$color_switcher 	= [
-			'survei' 	=> '#FCA985',
-			'tolak' 	=> '#F98CB6',
-			'setuju' 	=> '#48B5A3',
-			'pengajuan' => '#0BB7D6',
+			'survei' 				=> '#FCA985',
+			'tolak' 				=> '#F98CB6',
+			'menunggu_persetujuan' 	=> '#48B5A3',
+			'menunggu_realisasi' 	=> '#48B5A3',
+			'terealisasi' 			=> '#48B5A3',
+			'pengajuan'				=> '#0BB7D6',
 	];
 @endphp
 @inject('cservice', 'TQueries\Kredit\DaftarKredit')

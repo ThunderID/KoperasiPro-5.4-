@@ -20,6 +20,8 @@ use TKredit\Survei\Models\Keuangan_A;
 use TKredit\Survei\Models\Nasabah_A;
 use TKredit\Survei\Models\Rekening_A;
 
+use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
+
 use Hash, Exception, Session, TAuth;
 
 /**
@@ -100,6 +102,10 @@ class DaftarKredit
 				break;
 
 			case 'survei':
+			case 'menunggu_persetujuan':
+			case 'menunggu_realisasi':
+			case 'terealisasi':
+			case 'tolak':
 				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'kreditur.relasi', 'jaminan_tanah_bangunan', 'jaminan_kendaraan'])->first()->toArray();
 				$survei 	= Survei::nomordokumenkredit($id)->get(['id']);
 
@@ -133,11 +139,6 @@ class DaftarKredit
 					}
 
 					$parsed_credit['rekening']			= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas', 'details'])->orderby('nama_bank', 'desc')->get()->toArray();
-
-					$parsed_credit['status_berikutnya']	= 'setujui';
-					$parsed_credit['status_sebelumnya']	= 'pengajuan';
-					$parsed_credit['status']			= 'survei';
-					$parsed_credit['nomor_kredit']		= '';
 				}
 				else
 				{
@@ -150,13 +151,47 @@ class DaftarKredit
 					$parsed_credit['keuangan']				= null;
 					$parsed_credit['nasabah']				= null;
 					$parsed_credit['rekening']				= null;
+				}
 
-					$parsed_credit['status_berikutnya']	= 'setujui';
+
+				if(str_is('survei',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'menunggu_persetujuan';
 					$parsed_credit['status_sebelumnya']	= 'pengajuan';
 					$parsed_credit['status']			= 'survei';
-					$parsed_credit['nomor_kredit']		= '';	
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('menunggu_persetujuan',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'menunggu_realisasi';
+					$parsed_credit['status_sebelumnya']	= 'survei';
+					$parsed_credit['status']			= 'menunggu_persetujuan';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('menunggu_realisasi',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'terealisasi';
+					$parsed_credit['status_sebelumnya']	= 'menunggu_persetujuan';
+					$parsed_credit['status']			= 'menunggu_realisasi';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('terealisasi',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= '';
+					$parsed_credit['status_sebelumnya']	= 'menunggu_realisasi';
+					$parsed_credit['status']			= 'terealisasi';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('tolak',$model->status))
+				{
+					$riwayat	= RiwayatKredit_RO::NomorDokumenKredit($id)->where('status', '<>', 'tolak')->orderby('created_at', 'desc')->first();
+					$parsed_credit['status_berikutnya']	= '';
+					$parsed_credit['status_sebelumnya']	= $riwayat->status;
+					$parsed_credit['status']			= 'tolak';
+					$parsed_credit['nomor_kredit']		= '';
 				}
 				break;
+
 			default:
 				throw new Exception("NOT FOUND", 404);
 				break;
@@ -191,7 +226,7 @@ class DaftarKredit
 		switch (strtolower($current_user['role'])) 
 		{
 			case 'pimpinan':
-				return ['pengajuan', 'survei', 'realisasi', 'tolak'];
+				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'menunggu_realisasi', 'terealisasi', 'tolak'];
 				break;
 			case 'marketing':
 				return ['pengajuan'];

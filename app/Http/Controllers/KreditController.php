@@ -9,7 +9,12 @@ use TCommands\UIHelper\UploadGambar;
 use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
-use TCommands\Kredit\LanjutkanUntukSurvei;
+
+use TCommands\Kredit\MenungguPersetujuan;
+use TCommands\Kredit\SetujuiKredit;
+use TCommands\Kredit\RealisasiKredit;
+use TCommands\Kredit\TolakKredit;
+
 use TCommands\Kredit\HapusPengajuanKredit;
 use TCommands\Kredit\HapusSurveiKredit;
 
@@ -362,6 +367,26 @@ class KreditController extends Controller
 			if(str_is(strtolower($status), 'survei'))
 			{
 				$simpan 	= new LanjutkanUntukSurvei($id);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'menunggu_persetujuan'))
+			{
+				$simpan 	= new MenungguPersetujuan($id);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'menunggu_realisasi'))
+			{
+				$simpan 	= new SetujuiKredit($id);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'terealisasi'))
+			{
+				$simpan 	= new RealisasiKredit($id);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'tolak'))
+			{
+				$simpan 	= new TolakKredit($id);
 				$simpan->handle();
 			}
 			else
