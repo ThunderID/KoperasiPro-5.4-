@@ -6,6 +6,9 @@ use TKredit\Pengajuan\Models\Pengajuan;
 use TKredit\KreditAktif\Models\KreditAktif_RO;
 use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 
+use App\Domain\Kasir\Models\HeaderTransaksi;
+use App\Domain\Kasir\Models\DetailTransaksi;
+
 use Exception, DB, TAuth, Carbon\Carbon, Validator;
 
 class SetujuiKredit
@@ -60,6 +63,32 @@ class SetujuiKredit
 			$status 		= new RiwayatKredit_RO;
 			$status->fill($riwayat);
 			$status->save();
+
+			//4. simpan angsuran
+			//4a. check header transaksi
+			$ex_header 						= HeaderTransaksi::where('referensi_id', $kredit_aktif->nomor_kredit)->where('tipe', 'bukti_kas_keluar')->first();
+
+			if($ex_header)
+			{
+				$header 						= new HeaderTransaksi;
+				$header->orang_id 				= $kredit->kreditur_id;
+				$header->koperasi_id			= $kredit_aktif->ro_koperasi_id;
+				$header->referensi_id			= $kredit_aktif->nomor_kredit;
+				$header->nomor_transaksi		= 0;
+				$header->tipe					= 'bukti_kas_keluar';
+				$header->status					= 'pending';
+				$header->tanggal_dikeluarkan	= Carbon::now()->format('Y-m-d H:i:s');
+				$header->tanggal_jatuh_tempo	= Carbon::parse('+ 1 month')->format('Y-m-d H:i:s');
+				$header->save();
+
+				$detail 						= new DetailTransaksi;
+				$detail->header_transaksi_id 	= $header->id;
+				$detail->deskripsi				= 'Pencairan Kredit';
+				$detail->kuantitas				= 1;
+				$detail->harga_satuan			= $kredit->pengajuan_kredit;
+				$detail->diskon_satuan			= 'Rp 0';
+				$detail->save();
+			}
 
 			DB::commit();
 
