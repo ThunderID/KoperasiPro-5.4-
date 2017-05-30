@@ -68,9 +68,9 @@ class KreditController extends Controller
 		$kredit['kreditur']['foto_ktp']	= $data_ktp['url'];
 		$kredit['kreditur']['nama']		= 'Pengajuan Melalui HP';
 
-		if(Input::has('lokasi'))
+		if(Input::has('location'))
 		{
-			$lokasi 					= Input::get('lokasi');
+			$lokasi 					= Input::get('location');
 			$koperasi 					= Koperasi_RO::get();
 
 			$lat_ln 					= 0;
