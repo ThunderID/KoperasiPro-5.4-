@@ -73,6 +73,7 @@ class KreditController extends Controller
 			$lokasi 					= Input::get('location');
 			$koperasi 					= Koperasi_RO::get();
 
+			\Log::info('here');
 			$lat_ln 					= 0;
 			foreach ($koperasi as $key => $value) 
 			{
@@ -89,9 +90,9 @@ class KreditController extends Controller
 					$lat_ln 			= $selisih_lat + $selisih_lon;
 					$kredit['lokasi']	= $value['id'];
 				}
+				\Log::info($kredit['lokasi']);
 			}
 		}
-\Log::info($kredit['lokasi']);
 		// $jaminan_kendaraan 		= [];
 		// $jaminan_tanah_bangunan = [];
 
