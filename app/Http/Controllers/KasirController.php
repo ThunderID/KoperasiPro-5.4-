@@ -41,4 +41,10 @@ class KasirController extends Controller
         
         $this->page_datas->kreditur             = $kreditur;
     }
+
+    public function billingStore ()
+    {
+        
+    }
+
 }
