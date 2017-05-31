@@ -114,7 +114,7 @@ class SetujuiKredit
 		{
 			throw new Exception("Bukan Wewenang Anda. Pengajuan di atas Rp 10.000.000 hanya dapat dilakukan komisaris", 1);
 		}
-		elseif($role['role'] != 'pimpinan')
+		elseif($role['role'] != 'pimpinan' && $role['role'] != 'komisaris')
 		{
 			throw new Exception("Bukan Wewenang Anda", 1);
 		}

@@ -10,6 +10,7 @@ use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
 use TCommands\Kredit\LanjutkanUntukSurvei;
+use TCommands\Kredit\GandakanSurvei;
 
 use TCommands\Kredit\MenungguPersetujuan;
 use TCommands\Kredit\SetujuiKredit;
@@ -354,6 +355,34 @@ class KreditController extends Controller
 
 			return $this->generateRedirect(route('credit.index'));
 		}
+	}
+
+	/**
+	 * status kredit
+	 *
+	 * @return Response
+	 */
+	public function gandakan_survei($dari_id, $ke_id)
+	{
+		try
+		{
+			$gandakan 		= new GandakanSurvei($dari_id, $ke_id);
+			$gandakan 		= $gandakan->handle();
+			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
+		}
+		catch(Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
+
+		return $this->generateRedirect(route('credit.show', $this->request->ke_id));
 	}
 
 	/**
