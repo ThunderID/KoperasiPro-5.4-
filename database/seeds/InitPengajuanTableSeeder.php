@@ -38,6 +38,8 @@ class InitPengajuanTableSeeder extends Seeder
 								'koperasi'			=> 	[
 															'id'			=> 'MAJUJAYA',
 															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
 														],
 								'role'				=>  'pimpinan'
 							];
@@ -46,6 +48,8 @@ class InitPengajuanTableSeeder extends Seeder
 								'koperasi'			=> 	[
 															'id'			=> 'MAJUTERUS',
 															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
 														],
 								'role'				=>  'pimpinan'
 							];

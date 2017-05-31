@@ -1,24 +1,24 @@
 <?php
 
-namespace TImmigration\Models;
+namespace App\Domain\Kasir\Models;
+
+use App\Infrastructure\Models\BaseModel;
+
+use Validator, Exception;
 
 /**
- * Model Visa
+ * Model HeaderTransaksi
  *
- * Digunakan untuk menyimpan data nasabah.
- *
- * @package    Thunderlabid
- * @subpackage Immigration
  * @author     C Mooy <chelsy@thunderlab.id>
  */
-class Koperasi_RO extends BaseModel
+class HeaderTransaksi extends BaseModel
 {
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table				= 'immigration_ro_koperasi';
+	protected $table				= 'header_transaksi';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -27,19 +27,22 @@ class Koperasi_RO extends BaseModel
 	 */
 
 	protected $fillable				=	[
-											'id'					,
-											'nama'					,
-											'latitude'				,
-											'longitude'				,
+											'orang_id'				,
+											'koperasi_id'			,
+											'referensi_id'			,
+											'nomor_transaksi'		,
+											'tipe'					,
+											'status'				,
+											'tanggal_dikeluarkan'	,
+											'tanggal_jatuh_tempo'	,
 										];
-
 	/**
 	 * Basic rule of database
 	 *
 	 * @var array
 	 */
 	protected $rules				=	[
-											'nama'					=> 'required',
+										
 										];
 	/**
 	 * Date will be returned as carbon
@@ -47,15 +50,46 @@ class Koperasi_RO extends BaseModel
 	 * @var array
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
+	
+	/**
+	 * data hidden
+	 *
+	 * @var array
+	 */
+	protected $hidden				= 	[
+											'created_at', 
+											'updated_at', 
+											'deleted_at', 
+										];
+
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship orang
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function orang()
+	{
+		return $this->belongsTo('TKredit\Pengajuan\Models\Orang', 'orang_id');
+	}
+	
+	/**
+	 * relationship details
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function details()
+	{
+		return $this->hasMany('App\Domain\Kasir\Models\DetailTransaksi', 'header_transaksi_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	
+
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**
@@ -69,4 +103,34 @@ class Koperasi_RO extends BaseModel
 	}
 
 	/* ---------------------------------------------------------------------------- SCOPES ----------------------------------------------------------------------------*/
+
+	public function scopeKoperasi($query, $value)
+	{
+		if(is_array($value))
+		{
+			return $query->whereIn('koperasi_id', $value);
+		}
+
+		return $query->where('koperasi_id', $value);
+	}
+
+	public function scopeStatus($query, $value)
+	{
+		if(is_array($value))
+		{
+			return $query->whereIn('status', $value);
+		}
+
+		return $query->where('status', $value);
+	}
+
+	public function scopeNomorKredit($query, $value)
+	{
+		if(is_array($value))
+		{
+			return $query->whereIn('referensi_id', $value);
+		}
+
+		return $query->where('referensi_id', $value);
+	}
 }
