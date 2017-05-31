@@ -110,6 +110,15 @@ class AsetUsaha_A extends BaseModel
 		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
 	}
 	
+	/**
+	 * relationship alamat
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function alamat()
+	{
+		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
+	}
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

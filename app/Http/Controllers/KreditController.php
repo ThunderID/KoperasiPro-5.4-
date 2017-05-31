@@ -9,6 +9,7 @@ use TCommands\UIHelper\UploadGambar;
 use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
+use TCommands\Kredit\LanjutkanUntukSurvei;
 
 use TCommands\Kredit\MenungguPersetujuan;
 use TCommands\Kredit\SetujuiKredit;
