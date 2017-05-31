@@ -304,6 +304,9 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	//SEEMS NO USE
 	// route for pdf kredit
 	Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+
+	// Kasir - BILLING
+	Route::get('kasir/billing',		['uses' => 'KasirController@billing',			'as' => 'kasir.billing']);
 });
 
 

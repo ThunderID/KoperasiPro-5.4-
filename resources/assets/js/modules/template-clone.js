@@ -47,6 +47,10 @@ window.templateClone = function() {
 			}
 		});
 	});
+
+	$('.add-item').on('click', function(){
+		console.log('halo');
+	});
 }
 /**
  * on document ready triger click btn 'add' for template clone & event pjax:end

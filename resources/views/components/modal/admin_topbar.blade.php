@@ -22,9 +22,9 @@
 			@foreach(TQueries\Navigation\NavbarService::all() as $key => $item)
 
 				@if (is_null($item['route']))
-					<div class="col-xs-6 text-center">
+					<div class="col-xs-6 text-center m-b-lg">
 						<a class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" href="#{{ $key }}-menu" data-menu-to="#{{ $key }}-menu" data-menu-from="#main-menu">
-							<img src="/icons/{{ $key }}.svg" alt="" class="m-b-xs"/><br/>
+							{{-- <img src="/icons/{{ $key }}.svg" alt="" class="m-b-xs"/><br/> --}}
 							{{ ucwords(str_replace('_', ' ', $key)) }}
 						</a>
 					</div>

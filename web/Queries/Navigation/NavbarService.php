@@ -44,6 +44,12 @@ class NavbarService
 													'data_kredit' 		=> route('credit.index'),
 												]				
 								],
-			]; 
+				'kasir'		=> 	[
+									'route' => null,
+									'sub'	=> 	[
+													'billing'	=> route('kasir.billing'),
+												]
+								],
+			];
 	}
 }

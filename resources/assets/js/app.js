@@ -1,4 +1,4 @@
-// window._ = require('lodash');
+window._ = require('lodash');
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
@@ -10,34 +10,34 @@ require('./plugins');
 // require('./modules/uac');
 
 // module push notification
-require('./modules/push-notification');
+// require('./modules/push-notification');
 
 // add module template clone
-require('./modules/template-clone');
+// require('./modules/template-clone');
 
 // add module set workspace height
-require('./modules/height-optimizer');
+// require('./modules/height-optimizer');
 
 // add module choice select
-require('./modules/choice-select');
+// require('./modules/choice-select');
 
 // add module auto-tabindex form
-require('./modules/auto-tabindex');
+// require('./modules/auto-tabindex');
 
 // add module select
-require('./modules/select');
+// require('./modules/select');
 
 // add module list-js
-require('./modules/list');
+// require('./modules/list');
 
 // add module modal
-require('./modules/modal');
+// require('./modules/modal');
 
 // add module button print show window
-require('./modules/print');
+// require('./modules/print');
 
 // add button upload
-require('./modules/form');
+// require('./modules/form');
 
 // add panel
-require ('./modules/panel')
+// require ('./modules/panel')
