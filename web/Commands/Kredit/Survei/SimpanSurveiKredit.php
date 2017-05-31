@@ -24,6 +24,7 @@ class SimpanSurveiKredit
 {
 	protected $survei;
 	protected $kredit_id;
+	private $survei_base;
 
 	/**
 	 * Create a new job instance.
@@ -35,6 +36,12 @@ class SimpanSurveiKredit
 	{
 		$this->survei		= $survei;
 		$this->kredit_id	= $kredit_id;
+		$this->survei_base	= [];
+	}
+
+	public function setDuplicate($survei_base)
+	{
+		$this->survei_base	= $survei_base;
 	}
 
 	/**
@@ -59,15 +66,23 @@ class SimpanSurveiKredit
 				$tanggal 	= Carbon::now()->format('d/m/Y');
 			}
 
-			$survei_base 	= 	[
-									'petugas' 	=> [
-										'id'	=> TAuth::loggedUser()['id'],
-										'nama'	=> TAuth::loggedUser()['nama'],
-										'role' 	=> TAuth::activeOffice()['role'],
-									],
-									'nomor_dokumen_kredit'	=> $this->kredit_id,
-									'tanggal_survei'		=> $tanggal,
-								];
+			if(!(array)$this->survei_base)
+			{
+				$survei_base 	= 	[
+										'petugas' 	=> [
+											'id'	=> TAuth::loggedUser()['id'],
+											'nama'	=> TAuth::loggedUser()['nama'],
+											'role' 	=> TAuth::activeOffice()['role'],
+										],
+										'nomor_dokumen_kredit'	=> $this->kredit_id,
+										'tanggal_survei'		=> $tanggal,
+									];
+			}
+			else
+			{
+				$survei_base 	= 	$this->survei_base;
+			}
+
 
 			if(isset($this->survei['aset_kendaraan']))
 			{
