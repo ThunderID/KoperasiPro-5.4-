@@ -14,7 +14,7 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Menunggu Persetujuan
 							</div>
 							<div class="row">
@@ -30,7 +30,7 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Ditolak
 							</div>
 							<div class="row">
@@ -46,7 +46,7 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Terealisasi
 							</div>
 							<div class="row">
@@ -62,7 +62,7 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Pengajuan Kredit
 							</div>
 							<div class="row">
@@ -81,6 +81,9 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
+							<div class="panel-title m-b-xs">
+								Kredit Menunggu Persetujuan
+							</div>							
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -120,12 +123,15 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
+							<div class="panel-title m-b-xs">
+								Kredit Terealisasi
+							</div>							
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th class="text-left">Koperasi</th>
 										<th class="text-right">Jumlah Kredit</th>
-										<th>&nbsp;<th>
+										<th>&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody>

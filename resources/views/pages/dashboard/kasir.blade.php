@@ -14,11 +14,11 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Menunggu Realisasi
 							</div>
 							<div class="row">
-								<div class="col-sm-12 text-right">
+								<div class="col-sm-12 text-center">
 									<h4>{{$page_datas->stat_kredit_menunggu_realisasi}}</h4>
 									<p><small><small>Pekerjaan Belum Terselesaikan</small></small></p>
 								</div>
@@ -30,11 +30,11 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Ditolak
 							</div>
 							<div class="row">
-								<div class="col-sm-12 text-right">
+								<div class="col-sm-12 text-center">
 									<h4>{{$page_datas->stat_kredit_ditolak}}</h4>
 									<p><small><small>Total Kredit Ditolak</small></small></p>
 								</div>
@@ -46,11 +46,11 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kredit Terealisasi
 							</div>
 							<div class="row">
-								<div class="col-sm-12 text-right">
+								<div class="col-sm-12 text-center">
 									<h4>{{$page_datas->stat_kredit_terealisasi}}</h4>
 									<p><small><small>Total Kredit Terealisasi</small></small></p>
 								</div>
@@ -62,11 +62,11 @@
 				<div class="col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title">
+							<div class="panel-title m-b-xs">
 								Kas Pending
 							</div>
 							<div class="row">
-								<div class="col-sm-12 text-right">
+								<div class="col-sm-12 text-center">
 									<h4>{{$page_datas->stat_kas_pending}}</h4>
 									<p><small><small>Total Kas Pending</small></small></p>
 								</div>
@@ -81,6 +81,9 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
+							<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
+								Kredit Menunggu Realisasi
+							</div>							
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -120,13 +123,16 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
+							<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
+								Kas Pending
+							</div>							
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th class="text-left">Nomor Transaksi</th>
 										<th class="text-right">Total</th>
 										<th class="text-left">Jatuh Tempo</th>
-										<th>&nbsp;<th>
+										<th>&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody>
