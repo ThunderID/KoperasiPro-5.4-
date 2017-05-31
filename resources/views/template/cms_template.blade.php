@@ -126,7 +126,7 @@
 		<p>Apakah anda ingin Logout ?</p>
 		</div>
 		<div class="modal-footer">
-			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax" >
+			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
 				Cancel
 			</a>
 			<a href="{{ route('login.destroy') }}" type="button" class="btn btn-danger" no-data-pjax>Logout
