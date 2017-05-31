@@ -91,6 +91,7 @@ class DetailTransaksi extends BaseModel
 		$this->attributes['diskon_satuan']	= $this->formatMoneyFrom($value);
 	}
 
+
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
 
 	/**

@@ -38,6 +38,9 @@ class SetujuiKredit
 			//check data pengajuan
 			$kredit 		= Pengajuan::id($this->kredit_id)->with(['kreditur'])->firstorfail();
 
+			//0. VALIDASI
+			$this->authorize($kredit);
+
 			DB::BeginTransaction();
 
 			//1. hapus dokumen sebelumnya
@@ -99,5 +102,21 @@ class SetujuiKredit
 			DB::rollback();
 			throw $e;
 		}
+	}
+
+	private function authorize($kredit)
+	{
+		$role 		= TAuth::activeOffice();
+
+		if($kredit->pengajuan_kredit > 10000000 && $role['role'] != 'komisaris')
+		{
+			throw new Exception("Bukan Wewenang Anda. Pengajuan di atas Rp 10.000.000 hanya dapat dilakukan komisaris", 1);
+		}
+		elseif($role['role'] != 'pimpinan')
+		{
+			throw new Exception("Bukan Wewenang Anda", 1);
+		}
+
+		return true;
 	}
 }

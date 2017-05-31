@@ -57,7 +57,7 @@ class RiwayatKredit_RO extends BaseModel
 											'nomor_kredit'			=> 'max:255',
 											'nomor_dokumen_kredit'	=> 'max:255',
 											'pengajuan_kredit'		=> 'numeric',
-											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi',
+											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi,tolak',
 											'tanggal'				=> 'date_format:"Y-m-d"',
 										];
 	/**
