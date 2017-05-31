@@ -47,6 +47,7 @@ class RiwayatKredit_RO extends BaseModel
 											'nomor_dokumen_kredit'	,
 											'status'				,
 											'tanggal'				,
+											'catatan'				,
 										];
 	/**
 	 * Basic rule of database

@@ -14,6 +14,7 @@ use Exception, DB, TAuth, Carbon\Carbon, Validator;
 class SetujuiKredit
 {
 	protected $kredit_id;
+	protected $catatan;
 
 	/**
 	 * Create a new job instance.
@@ -21,9 +22,10 @@ class SetujuiKredit
 	 * @param  $pengajuan
 	 * @return void
 	 */
-	public function __construct($kredit_id)
+	public function __construct($kredit_id, $catatan = '')
 	{
 		$this->kredit_id	= $kredit_id;
+		$this->catatan		= $catatan;
 	}
 
 	/**
@@ -62,7 +64,7 @@ class SetujuiKredit
 			$kredit_aktif->save();
 
 			//3. parse perubahan status
-			$riwayat 		= ['status' => 'menunggu_realisasi', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id']];
+			$riwayat 		= ['status' => 'menunggu_realisasi', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id'], 'catatan' => $this->catatan];
 			$status 		= new RiwayatKredit_RO;
 			$status->fill($riwayat);
 			$status->save();
