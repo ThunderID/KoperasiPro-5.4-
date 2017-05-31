@@ -81,7 +81,7 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title m-b-xs">
+							<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #DDDDDD">
 								Survei Kredit
 							</div>					
 							<table class="table table-hover">
@@ -123,7 +123,7 @@
 				<div class="col-sm-6">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="panel-title m-b-xs">
+
 								Pengajuan Baru
 							</div>	
 							<table class="table table-hover">
