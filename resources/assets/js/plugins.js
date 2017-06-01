@@ -40,20 +40,20 @@ $(document).ready(function(){
 		NProgress.done();  
 		
 		// push notification
-		// htmlNotify();
+		htmlNotify();
 		// call module enter to tabs
-		// formEntertoTabs();
 		// call module form wizard();
-		// wizard();
 		//optimize height
 		optimizeHeight();
 		// call module plugin print
 		// print();
 
-		// window.formEntertoTabs();
-		// window.noEnterToSubmit();
+		window.formEntertoTabs();
+		window.noEnterToSubmit();
 		window.formInputMask();
-		window.templateClone();
+		window.templateClone.init();
+		window.wizard.init();
+		window.select();
 	});
 
     // Form Submit with get method
@@ -72,7 +72,7 @@ $(document).ready(function(){
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-// window.steps = require('./plugins/jquery-steps/jquery.steps');
+window.steps = require('./plugins/jquery-steps/jquery.steps');
 // $(document).ready(function() {
 	// wizard();
 // });
@@ -103,7 +103,7 @@ window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
 // class for inputmask
 $(document).ready( function() {
 	// call module form input mask 
-	formInputMask();
+	// formInputMask();
 });
 
 /**
@@ -111,14 +111,14 @@ $(document).ready( function() {
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-// window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
+window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
 
 // /**
 //  * 9. jQuery selectize
 //  * Description: plugin jQuery customize select options 
 //  * Usage & Documentation: http://selectize.github.io/selectize.js/
 //  */
-// window.select2 = require('./plugins/select2/select2.min');
+window.select2 = require('./plugins/select2/select2.min');
 // $(document).ready( function() {
 	// window.select();
 // });
@@ -142,7 +142,7 @@ window.list = require('./plugins/list-js/list.js');
  * Description: plugin jQuery for switch radion button
  * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
  */
-// window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
-// $(document).ready( function() {
-// 	$('.input-switch').bootstrapSwitch();
-// });
+window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
+$(document).ready( function() {
+	$('.input-switch').bootstrapSwitch();
+});

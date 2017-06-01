@@ -10,22 +10,19 @@ require('./plugins');
 // require('./modules/uac');
 
 // module push notification
-// require('./modules/push-notification');
-
-// add module template clone
-require('./modules/template-clone');
+require('./modules/push-notification');
 
 // add module set workspace height
 require('./modules/height-optimizer');
 
 // add module choice select
-// require('./modules/choice-select');
+require('./modules/choice-select');
 
 // add module auto-tabindex form
-// require('./modules/auto-tabindex');
+require('./modules/auto-tabindex');
 
 // add module select
-// require('./modules/select');
+require('./modules/select');
 
 // add module list-js
 require('./modules/list');
@@ -34,10 +31,13 @@ require('./modules/list');
 require('./modules/modal');
 
 // add module button print show window
-// require('./modules/print');
+require('./modules/print');
 
 // add button upload
 require('./modules/form');
 
 // add panel
 require ('./modules/panel')
+
+// add module template clone
+require('./modules/template-clone');
