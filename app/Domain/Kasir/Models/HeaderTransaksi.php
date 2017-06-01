@@ -4,6 +4,8 @@ namespace App\Domain\Kasir\Models;
 
 use App\Infrastructure\Models\BaseModel;
 
+use App\Infrastructure\Traits\TanggalTrait;
+
 use Validator, Exception;
 
 /**
@@ -13,6 +15,8 @@ use Validator, Exception;
  */
 class HeaderTransaksi extends BaseModel
 {
+	use TanggalTrait;
+	
 	/**
 	 * The database table used by the model.
 	 *
@@ -88,7 +92,51 @@ class HeaderTransaksi extends BaseModel
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
+	/**
+	 * formatting tanggal
+	 *
+	 * @param string $value ["Y-m-d H:i:s"]
+	 */	
+	protected function setTanggalDikeluarkanAttribute($value)
+	{
+		$this->attributes['tanggal_dikeluarkan']	= $this->formatDateFrom($value);
+	}
+
+
+	/**
+	 * formatting tanggal
+	 *
+	 * @param string $value ["Y-m-d H:i:s"]
+	 */	
+	protected function setTanggalJatuhTempoAttribute($value)
+	{
+		$this->attributes['tanggal_jatuh_tempo']	= $this->formatDateFrom($value);
+	}
+
+
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+
+	/**
+	 * formatting tanggal
+	 *
+	 * @param string $value ["Y-m-d H:i:s"]
+	 * @return string $value ["d/m/Y"]
+	 */	
+	protected function getTanggalDikeluarkanAttribute($value)
+	{
+		return $this->formatDateTo($value);
+	}
+
+	/**
+	 * formatting tanggal
+	 *
+	 * @param string $value ["Y-m-d H:i:s"]
+	 * @return string $value ["d/m/Y"]
+	 */	
+	protected function getTanggalJatuhTempoAttribute($value)
+	{
+		return $this->formatDateTo($value);
+	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
@@ -132,5 +180,16 @@ class HeaderTransaksi extends BaseModel
 		}
 
 		return $query->where('referensi_id', $value);
+	}
+
+	public function countTotal()
+	{
+		$total 		= 0;
+		foreach ($this->details as $key => $value) 
+		{
+			$total 	= $total + ($value->kuantitas * ($value->harga_satuan - $value->diskon_satuan));
+		}
+
+		return $total;
 	}
 }

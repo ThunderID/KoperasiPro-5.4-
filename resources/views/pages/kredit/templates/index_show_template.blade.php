@@ -1,9 +1,9 @@
 @php
 	$color_switcher 	= [
 			'survei' 				=> '#FCA985',
-			'tolak' 				=> '#F98CB6',
-			'menunggu_persetujuan' 	=> '#48B5A3',
-			'menunggu_realisasi' 	=> '#48B5A3',
+			'tolak' 				=> '#e74c3c',
+			'menunggu_persetujuan' 	=> '#9966cc',
+			'menunggu_realisasi' 	=> '#6666cc',
 			'terealisasi' 			=> '#48B5A3',
 			'pengajuan'				=> '#0BB7D6',
 	];
@@ -35,11 +35,11 @@
 				<div class="list-group">
 				    @foreach($page_datas->credits as $key => $value)
 				        <a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+							<span class="badge badge-state pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
+								{{ str_replace('_', ' ', $value['status']) }}
+							</span>
 				            <h4 class="list-group-item-heading">
 				                {{ $value['kreditur']['nama'] }} 
-								<span class="badge pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
-									{{ $value['status'] }}
-								</span>
 				            </h4>
 				            <p>{{$value['nomor_kredit']}}</p>
 				            <p class="list-group-item-text p-t-xs">
@@ -65,8 +65,12 @@
 					@include('pages.kredit.components.top_menu.pengajuan')
 				@elseif ($page_datas->credit['status'] == 'survei')
 					@include('pages.kredit.components.top_menu.survei')
-				@elseif ($page_datas->credit['status'] == 'realisasi')
-					@include('pages.kredit.components.top_menu.realisasi')
+				@elseif ($page_datas->credit['status'] == 'menunggu_persetujuan')
+					@include('pages.kredit.components.top_menu.menunggu_persetujuan')
+				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
+					@include('pages.kredit.components.top_menu.menunggu_realisasi')
+				@elseif ($page_datas->credit['status'] == 'terealisasi')
+					@include('pages.kredit.components.top_menu.terealisasi')
 				@else
 					@include('pages.kredit.components.top_menu.tolak')
 				@endif
@@ -76,13 +80,17 @@
 					@yield('page_content')
 			</div>
 
-			@if(isset($page_datas->credit['kreditur']['id']))
-				@if($page_datas->credit['status'] == 'pengajuan')
+			@if (isset($page_datas->credit['kreditur']['id']))
+				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.bottom_menu.pengajuan')
-				@elseif($page_datas->credit['status'] == 'survei')
+				@elseif ($page_datas->credit['status'] == 'survei')
 					@include('pages.kredit.components.bottom_menu.survei')
-				@elseif($page_datas->credit['status'] == 'realisasi')
-					@include('pages.kredit.components.bottom_menu.realisasi')
+				@elseif ($page_datas->credit['status'] == 'menunggu_persetujuan')
+					@include('pages.kredit.components.bottom_menu.menunggu_persetujuan')
+				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
+					@include('pages.kredit.components.bottom_menu.menunggu_realisasi')
+				@elseif ($page_datas->credit['status'] == 'terealisasi')
+					@include('pages.kredit.components.bottom_menu.terealisasi')
 				@else
 					@include('pages.kredit.components.bottom_menu.'.$page_datas->credit['status_sebelumnya'])
 				@endif

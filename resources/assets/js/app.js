@@ -1,4 +1,4 @@
-// window._ = require('lodash');
+window._ = require('lodash');
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
@@ -11,9 +11,6 @@ require('./plugins');
 
 // module push notification
 require('./modules/push-notification');
-
-// add module template clone
-require('./modules/template-clone');
 
 // add module set workspace height
 require('./modules/height-optimizer');
@@ -41,3 +38,6 @@ require('./modules/form');
 
 // add panel
 require ('./modules/panel')
+
+// add module template clone
+require('./modules/template-clone');

@@ -41,7 +41,7 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'komisaris'
 							];
 		$visa_2 		= 	[
 								'id'				=> null,
@@ -51,7 +51,7 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'komisaris'
 							];
 
 		$admin 			= new Pengguna;
@@ -123,7 +123,7 @@ class InitPengajuanTableSeeder extends Seeder
 						'petugas'		=> [
 							'id'		=> $admin->id,
 							'nama'		=> $admin->nama,
-							'role'		=> 'pimpinan',
+							'role'		=> 'komisaris',
 						]
 			];
 			$kendaraan 	= [
@@ -178,5 +178,141 @@ class InitPengajuanTableSeeder extends Seeder
 			$pengajuan 		= new \TCommands\Kredit\PengajuanKreditBaru($kredit);
 			$pengajuan->handle();
 		}
+
+
+
+		//3. simpan pimpinan
+		$credentials	=	[
+								'email'				=> 'pimpinan@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Pimpinan'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'pimpinan'
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'pimpinan'
+							];
+
+		$pimpinan 			= new Pengguna;
+		$pimpinan->fill($credentials);
+		$pimpinan->grantVisa($visa_1);
+		$pimpinan->grantVisa($visa_2);
+		$pimpinan->save();
+
+		//4. simpan marketing
+		$credentials	=	[
+								'email'				=> 'marketing@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Marketing'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'marketing'
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'marketing'
+							];
+
+		$marketing 			= new Pengguna;
+		$marketing->fill($credentials);
+		$marketing->grantVisa($visa_1);
+		$marketing->grantVisa($visa_2);
+		$marketing->save();
+
+		//5. simpan surveyor
+		$credentials	=	[
+								'email'				=> 'surveyor@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Surveyor'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'surveyor'
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'surveyor'
+							];
+
+		$surveyor 			= new Pengguna;
+		$surveyor->fill($credentials);
+		$surveyor->grantVisa($visa_1);
+		$surveyor->grantVisa($visa_2);
+		$surveyor->save();
+
+
+
+		//6. simpan kasir
+		$credentials	=	[
+								'email'				=> 'kasir@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Kasir'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'kasir'
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'kasir'
+							];
+
+		$kasir 			= new Pengguna;
+		$kasir->fill($credentials);
+		$kasir->grantVisa($visa_1);
+		$kasir->grantVisa($visa_2);
+		$kasir->save();
 	}
 }

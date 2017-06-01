@@ -44,7 +44,7 @@ class InitKasTableSeeder extends Seeder
 				'diskon_satuan'			=> 'Rp 0',
 			];
 
-			$transaksi 			= new KasMasukBaru(0, 0, rand(11111111,99999999), Carbon::parse(rand(-28,-0).' months')->format('Y-m-d H:i:s'), [$details]);
+			$transaksi 			= new KasMasukBaru(0, 0, rand(11111111,99999999), Carbon::parse(rand(-28,-0).' months')->format('d/m/Y'), [$details]);
 			$transaksi->save();
 		}
 
@@ -63,7 +63,7 @@ class InitKasTableSeeder extends Seeder
 				'diskon_satuan'			=> 'Rp 0',
 			];
 
-			$transaksi 			= new KasKeluarBaru(0, 0, rand(11111111,99999999), Carbon::parse(rand(-28,-0).' months')->format('Y-m-d H:i:s'), [$details]);
+			$transaksi 			= new KasKeluarBaru(0, 0, rand(11111111,99999999), Carbon::parse(rand(-28,-0).' months')->format('d/m/Y'), [$details]);
 			$transaksi->save();
 		}
 

@@ -61,7 +61,7 @@ class KasKeluarBaru
 		 	$variable['tipe']					= 'bukti_kas_keluar';
 		 	$variable['status']					= 'pending';
 		 	$variable['tanggal_dikeluarkan']	= $this->tanggal_dikeluarkan;
-		 	$variable['tanggal_jatuh_tempo']	= Carbon::parse($variable['tanggal_dikeluarkan'])->addMonths(1)->format('Y-m-d H:i:s');
+		 	$variable['tanggal_jatuh_tempo']	= Carbon::createFromFormat('d/m/Y', $variable['tanggal_dikeluarkan'])->addMonths(1)->format('d/m/Y');
 
 		 	// 3. validate $details
 		 	$details 							= $this->validate_details();

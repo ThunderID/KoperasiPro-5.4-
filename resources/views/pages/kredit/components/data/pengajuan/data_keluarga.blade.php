@@ -21,7 +21,7 @@
 					@if (!empty($page_datas->credit['kreditur']['relasi']))
 						@if ($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="{{ route('kreditur.relasi.destroy', ['kredit_id' => $page_datas->credit['id'], 'relasi_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md" href="#" data-url="{{ route('kreditur.relasi.destroy', ['kredit_id' => $page_datas->credit['id'], 'relasi_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a>&nbsp;

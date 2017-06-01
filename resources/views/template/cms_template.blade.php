@@ -84,6 +84,28 @@
 
 	<!-- End of pjax fragment replacement -->
 	</div>
+
+	@component('components.modal', [
+			'id'			=> 'modal-delete',
+			'title'			=> 'Hapus Data',
+			'settings'		=> [
+				'hide_buttons' => 'false'
+			]
+		])
+		<div class="modal-footer">
+			<form action="" class="form form-delete" method="delete" no-data-pjax>
+				<div class="form-group text-left">
+					<label class="text-light">Masukkan password untuk menghapus data ini</label>
+					{!! Form::password('password', ['class' => 'form-control set-focus', 'placeholder' => '**********']) !!}
+				</div>
+				<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
+					Batal
+				</a>
+				{!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
+			</form>
+		</div>		
+	@endcomponent
+
 	{{-- modal change koperasi --}}
 	@component('components.modal', [
 			'id'			=> 'modal-change-koperasi',
@@ -126,8 +148,8 @@
 		<p>Apakah anda ingin Logout ?</p>
 		</div>
 		<div class="modal-footer">
-			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax" >
-				Cancel
+			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
+				Batal
 			</a>
 			<a href="{{ route('login.destroy') }}" type="button" class="btn btn-danger" no-data-pjax>Logout
 			</a>

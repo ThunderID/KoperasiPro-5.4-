@@ -19,6 +19,7 @@ class CreateRiwayatKreditTable extends Migration
 			$table->string('nomor_dokumen_kredit', 255);
 			$table->string('status', 255);
 			$table->date('tanggal');
+			$table->text('catatan')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 

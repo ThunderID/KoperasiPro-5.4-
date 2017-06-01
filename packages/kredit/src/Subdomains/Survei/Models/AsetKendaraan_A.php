@@ -39,6 +39,7 @@ class AsetKendaraan_A extends BaseModel
 
 	protected $fillable				=	[
 											'id'					,
+											'survei_id'				,
 											'tipe'					,
 											'nomor_bpkb'			,
 										];

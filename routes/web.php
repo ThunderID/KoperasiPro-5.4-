@@ -280,30 +280,33 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::resource('credit', 'KreditController');
 
 	//Menu Status Kredit
-	Route::any('kredit/{id}/{status}',		['uses' => 'KreditController@status', 	'as' => 'credit.status']);
+	Route::any('kredit/{id}/{status}',																	['uses' => 'KreditController@status', 	'as' => 'credit.status']);
 	
 	//Menu jaminan
-	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
-	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
-	Route::any('hapus/kreditur/relasi/{kredit_id}/{relasi_id}',	['uses' => 'KreditController@destroy', 	'as' => 'kreditur.relasi.destroy']);
+	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
+	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
+	Route::any('hapus/kreditur/relasi/{kredit_id}/{relasi_id}',											['uses' => 'KreditController@destroy', 	'as' => 'kreditur.relasi.destroy']);
 
 	//Menu survei / hapus
-	Route::any('hapus/survei/aset/usaha/{kredit_id}/{survei_aset_usaha_id}',					['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.usaha.destroy']);
-	Route::any('hapus/survei/aset/kendaraan/{kredit_id}/{survei_aset_kendaraan_id}',			['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.kendaraan.destroy']);
-	Route::any('hapus/survei/aset/tanah/bangunan/{kredit_id}/{survei_aset_tanah_bangunan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.tanah.bangunan.destroy']);
+	Route::any('hapus/survei/aset/usaha/{kredit_id}/{survei_aset_usaha_id}',							['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.usaha.destroy']);
+	Route::any('hapus/survei/aset/kendaraan/{kredit_id}/{survei_aset_kendaraan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.kendaraan.destroy']);
+	Route::any('hapus/survei/aset/tanah/bangunan/{kredit_id}/{survei_aset_tanah_bangunan_id}',			['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.tanah.bangunan.destroy']);
 
-	Route::any('hapus/survei/jaminan/kendaraan/{kredit_id}/{survei_jaminan_kendaraan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.kendaraan.destroy']);
-	Route::any('hapus/survei/jaminan/tanah/bangunan/{kredit_id}/{survei_jaminan_tanah_bangunan_id}',		['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.tanah.bangunan.destroy']);
+	Route::any('hapus/survei/jaminan/kendaraan/{kredit_id}/{survei_jaminan_kendaraan_id}',				['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.kendaraan.destroy']);
+	Route::any('hapus/survei/jaminan/tanah/bangunan/{kredit_id}/{survei_jaminan_tanah_bangunan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.tanah.bangunan.destroy']);
 
-	Route::any('hapus/survei/rekening/{kredit_id}/{survei_rekening_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
-	Route::any('hapus/survei/kepribadian/{kredit_id}/{survei_kepribadian_id}',											['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
+	Route::any('hapus/survei/rekening/{kredit_id}/{survei_rekening_id}',								['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
+	Route::any('hapus/survei/kepribadian/{kredit_id}/{survei_kepribadian_id}',						['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
 
 	// route for print kredit
-	Route::get('print/kredit/{mode}/{id}', 	['uses' => 'KreditController@prints',	'as' => 'credit.print']);
+	Route::get('print/kredit/{mode}/{id}', 																['uses' => 'KreditController@prints',	'as' => 'credit.print']);
 	
 	//SEEMS NO USE
 	// route for pdf kredit
-	Route::get('kredit/pdf/rencana-kredit/{id}', 	['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+	Route::get('kredit/pdf/rencana-kredit/{id}', 														['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+
+	// Kasir - BILLING
+	Route::get('kasir/billing',																			['uses' => 'KasirController@billing',			'as' => 'kasir.billing']);
 });
 
 
