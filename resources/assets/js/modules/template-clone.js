@@ -51,13 +51,15 @@ window.templateClone = function() {
 	var buttonAdd = document.getElementsByClassName('add')[0];
 
 	// add event click listener to button add
-	buttonAdd.addEventListener('click', function(e) {
-		e.preventDefault();
-		// call function clone add
-		add(this);
-	});
-	// first call to clone template
-	buttonAdd.click();
+	if (typeof (buttonAdd) !== 'undefined') {
+		buttonAdd.addEventListener('click', function(e) {
+			e.preventDefault();
+			// call function clone add
+			add(this);
+		});
+		// first call to clone template
+		buttonAdd.click();
+	}
 
 
 	function add (elem) {

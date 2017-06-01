@@ -1,9 +1,9 @@
 @php
 	$color_switcher 	= [
 			'survei' 				=> '#FCA985',
-			'tolak' 				=> '#F98CB6',
-			'menunggu_persetujuan' 	=> '#48B5A3',
-			'menunggu_realisasi' 	=> '#48B5A3',
+			'tolak' 				=> '#cc0000',
+			'menunggu_persetujuan' 	=> '#9966cc',
+			'menunggu_realisasi' 	=> '#6666cc',
 			'terealisasi' 			=> '#48B5A3',
 			'pengajuan'				=> '#0BB7D6',
 	];
@@ -35,11 +35,11 @@
 				<div class="list-group">
 				    @foreach($page_datas->credits as $key => $value)
 				        <a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+							<span class="badge badge-state pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
+								{{ str_replace('_', ' ', $value['status']) }}
+							</span>
 				            <h4 class="list-group-item-heading">
 				                {{ $value['kreditur']['nama'] }} 
-								<span class="badge pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
-									{{ $value['status'] }}
-								</span>
 				            </h4>
 				            <p>{{$value['nomor_kredit']}}</p>
 				            <p class="list-group-item-text p-t-xs">

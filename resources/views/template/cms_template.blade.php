@@ -84,6 +84,28 @@
 
 	<!-- End of pjax fragment replacement -->
 	</div>
+
+	@component('components.modal', [
+			'id'			=> 'modal-delete',
+			'title'			=> 'Hapus Data',
+			'settings'		=> [
+				'hide_buttons' => 'false'
+			]
+		])
+		<div class="modal-footer">
+			{!! Form::open(['class' => 'form']) !!}
+				<div class="form-group text-left">
+					<label class="text-light">Masukkan password untuk menghapus data ini</label>
+					{!! Form::password('password', ['class' => 'form-control']) !!}
+				</div>
+				<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
+					Cancel
+				</a>
+				{!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
+			{!! Form::close() !!}
+		</div>		
+	@endcomponent
+
 	{{-- modal change koperasi --}}
 	@component('components.modal', [
 			'id'			=> 'modal-change-koperasi',
