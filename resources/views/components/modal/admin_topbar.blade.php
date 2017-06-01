@@ -57,7 +57,9 @@
 					@foreach ($item['sub'] as $caption => $route)
 						<div class="col-xs-6 text-center">
 							<a href="{{ $route }}" class="btn btn-success btn-block p-t-lg p-b-lg mobile-menu-content menu-content" data-menu-from="#{{ $key }}">
-								<img src="/icons/{{ $caption }}.svg" alt="" class="m-b-xs"/><br/>
+								@if ($caption != 'billing')
+									<img src="/icons/{{ $caption }}.svg" alt="" class="m-b-xs"/><br/>
+								@endif
 								{{ ucwords(str_replace('_', ' ', $caption)) }}
 							</a>
 						</div>

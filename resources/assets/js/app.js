@@ -13,10 +13,10 @@ require('./plugins');
 // require('./modules/push-notification');
 
 // add module template clone
-// require('./modules/template-clone');
+require('./modules/template-clone');
 
 // add module set workspace height
-// require('./modules/height-optimizer');
+require('./modules/height-optimizer');
 
 // add module choice select
 // require('./modules/choice-select');
@@ -37,7 +37,7 @@ require('./plugins');
 // require('./modules/print');
 
 // add button upload
-// require('./modules/form');
+require('./modules/form');
 
 // add panel
 // require ('./modules/panel')

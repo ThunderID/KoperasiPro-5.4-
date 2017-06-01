@@ -84,7 +84,4 @@ window.formInputMask = function () {
 // add event on document ready & document pjax:end
 $(document).ready( function() {
 	window.formInputMask();
-	$(document).on("pjax:end", function() { 
-		window.formInputMask();
-	});
 });

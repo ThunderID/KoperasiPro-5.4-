@@ -25,45 +25,47 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-// window.pjax = require('./plugins/pjax/pjax');
-// $(document).ready(function(){
-//     $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
+window.pjax = require('./plugins/pjax/pjax');
+$(document).ready(function(){
+    $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
-// 	//using nprogress to indicate loading
-// 	$(document).on('pjax:start', function() { 
-// 		NProgress.start();
+	//using nprogress to indicate loading
+	$(document).on('pjax:start', function() { 
+		NProgress.start();
 
-// 		//fix nice scroll bug: remove nice scroll
-// 		$("div[class^='nicescroll-rails']").remove();
-// 	});
-// 	$(document).on('pjax:end',   function() { 
-// 		NProgress.done();  
+		//fix nice scroll bug: remove nice scroll
+		$("div[class^='nicescroll-rails']").remove();
+	});
+	$(document).on('pjax:end',   function() { 
+		NProgress.done();  
 		
-// 		// push notification
-// 		htmlNotify();
-// 		// call module enter to tabs
-// 		formEntertoTabs();
-// 		// call module form wizard();
-// 		// wizard();
-// 		//optimize height
-// 		optimizeHeight();
-// 		// call module plugin print
-// 		print();
+		// push notification
+		// htmlNotify();
+		// call module enter to tabs
+		// formEntertoTabs();
+		// call module form wizard();
+		// wizard();
+		//optimize height
+		optimizeHeight();
+		// call module plugin print
+		// print();
 
-// 		window.formEntertoTabs();
-// 		window.noEnterToSubmit();
-// 	});
+		// window.formEntertoTabs();
+		// window.noEnterToSubmit();
+		window.formInputMask();
+		window.templateClone();
+	});
 
-//     // Form Submit with get method
-//     $(document).on('submit', 'form[data-pjax]', function(event) {
-//       $.pjax.submit(event, '#pjax-container')
-//     })    
+    // Form Submit with get method
+    $(document).on('submit', 'form[data-pjax]', function(event) {
+      $.pjax.submit(event, '#pjax-container')
+    })    
 
-//     // does current browser support PJAX
-//     if ($.support.pjax) {
-//         $.pjax.defaults.timeout = 5000; // time in milliseconds
-//     }
-// });
+    // does current browser support PJAX
+    if ($.support.pjax) {
+        $.pjax.defaults.timeout = 5000; // time in milliseconds
+    }
+});
 
 /**
  * 4. JjQuery Step (for wizard form)
@@ -97,12 +99,12 @@ window.validate = require('./plugins/jquery-validate/jquery.validate');
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-// window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
-// // class for inputmask
-// $(document).ready( function() {
-// 	// call module form input mask 
-// 	formInputMask();
-// });
+window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
+// class for inputmask
+$(document).ready( function() {
+	// call module form input mask 
+	formInputMask();
+});
 
 /**
  * 8. jQuery quick selection

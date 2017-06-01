@@ -9,48 +9,163 @@ var dataObj = {};
 var templateClone, rootTemplate, $template, availableAdd, typeClone;
 window.templateClone = function() {
 
-	$('.add').click(function(e) {
+	// $('.add').click(function(e) {
+	// 	e.preventDefault();
+
+	// 	$template 		= $(this);
+	// 	rootTemplate 	= $template.data('root-template');		// class root dari template clone
+	// 	availableAdd 	= $template.data('available-add');		// jumlah yang boleh diclone
+	// 	typeClone 		= $template.data('type-clone');			// type clone
+	// 	templateClone 	= $template.data('template-clone');
+
+	// 	switch (typeClone) {
+	// 		case 'table':
+	// 			var inputParsing 	= $template.data('input-get');	// class input yang diparsing di form yang diclone
+	// 			var inputPrefix 	= $template.data('input-prefix');
+	// 			var countAdd 		= countDataClone(rootTemplate);	// ambil total data yang sudah diclone
+
+	// 			checkAvailableAdd(countAdd, availableAdd); // check data template lbh dari 3
+	// 			rowAdd($template, inputParsing, inputPrefix);
+
+	// 			$('body .modal').modal('hide');
+	// 			break;
+	// 		case 'form':
+	// 			formAdd($template);
+	// 			break;
+	// 	}
+
+	// 	$('.remove').on('click', function(e) {
+	// 		e.preventDefault();
+
+	// 		rootTemplate 	= $(this).data('root-template');
+	// 		availableAdd 	= $(this).data('available-add');
+	// 		typeClone 		= $(this).data('type-clone');
+
+	// 		switch (typeClone) {
+	// 			case 'table':
+	// 				rowRemove($(this));
+	// 		}
+	// 	});
+	// });
+	
+	var buttonAdd = document.getElementsByClassName('add')[0];
+
+	// add event click listener to button add
+	buttonAdd.addEventListener('click', function(e) {
 		e.preventDefault();
+		// call function clone add
+		add(this);
+	});
+	// first call to clone template
+	buttonAdd.click();
 
-		$template 		= $(this);
-		rootTemplate 	= $template.data('root-template');		// class root dari template clone
-		availableAdd 	= $template.data('available-add');		// jumlah yang boleh diclone
-		typeClone 		= $template.data('type-clone');			// type clone
-		templateClone 	= $template.data('template-clone');
 
-		switch (typeClone) {
-			case 'table':
-				var inputParsing 	= $template.data('input-get');	// class input yang diparsing di form yang diclone
-				var inputPrefix 	= $template.data('input-prefix');
-				var countAdd 		= countDataClone(rootTemplate);	// ambil total data yang sudah diclone
+	function add (elem) {
+		var templateItem = document.getElementById('template-item');
+		var contentItem = document.getElementById('content-item');
+		var cloneItem = templateItem.firstElementChild.cloneNode(true);
+		var item = parseInt(elem.dataset.item);
 
-				checkAvailableAdd(countAdd, availableAdd); // check data template lbh dari 3
-				rowAdd($template, inputParsing, inputPrefix);
+		if (item != 0) {
+			cloneItem.getElementsByClassName('add')[0].classList.add('hide');
+			cloneItem.getElementsByClassName('remove')[0].classList.remove('hide');
 
-				$('body .modal').modal('hide');
-				break;
-			case 'form':
-				formAdd($template);
-				break;
+			// replace icon button add to remove
+			cloneItem.getElementsByClassName('remove')[0].getElementsByTagName('i')[0].classList.add('fa-minus-circle');
+			cloneItem.getElementsByClassName('remove')[0].getElementsByTagName('i')[0].classList.remove('fa-plus-circle');
+
+			// set total item in button add
+			lengthButtonAdd = contentItem.getElementsByClassName('add').length;
+			contentItem.getElementsByClassName('add')[lengthButtonAdd - 1].dataset.item = item + 1;
+			// set total item in button remove
+			cloneItem.getElementsByClassName('remove')[0].dataset.item = item + 1;
+		} else {
+			cloneItem.getElementsByClassName('add')[0].dataset.item = item + 1;
+			cloneItem.getElementsByClassName('remove')[0].dataset.item = item + 1;
 		}
 
-		$('.remove').on('click', function(e) {
+		// get element qty, diskon, harga
+		var qtyInput = cloneItem.getElementsByClassName('qty')[0];
+		var diskonInput = cloneItem.getElementsByClassName('diskon')[0];
+		var hargaInput = cloneItem.getElementsByClassName('harga')[0];
+
+		// add event listener keypress on qty, diskon, harga
+		initEventKeyPress(qtyInput, 'item' + (item + 1));
+		initEventKeyPress(diskonInput, 'item' + (item + 1));
+		initEventKeyPress(hargaInput, 'item' + (item + 1));
+		
+		// add class item with jumlah item div clone item
+		cloneItem.classList.add('item' + (item + 1));
+
+		var buttonAdd = cloneItem.getElementsByClassName('add')[0];
+		var buttonRemove = cloneItem.getElementsByClassName('remove')[0];
+
+		// add event click listener to button add
+		buttonAdd.addEventListener('click', function(e) {
 			e.preventDefault();
-
-			rootTemplate 	= $(this).data('root-template');
-			availableAdd 	= $(this).data('available-add');
-			typeClone 		= $(this).data('type-clone');
-
-			switch (typeClone) {
-				case 'table':
-					rowRemove($(this));
-			}
+			// call function clone add
+			add(this);
 		});
-	});
 
-	$('.add-item').on('click', function(){
-		console.log('halo');
-	});
+		// add event click listener to button remove
+		buttonRemove.addEventListener('click', function(e) {
+			e.preventDefault();
+			// get row item id 
+			var itemID = this.dataset.item;
+			remove('item' + itemID);
+		});
+
+		// add clone item to content item
+		if (item != 0) {
+			contentItem.prepend(cloneItem);
+		} else {
+			contentItem.append(cloneItem);
+		}
+
+	}
+
+	function remove (id) {
+		var contentItem = document.getElementById('content-item');
+		// remove item 
+		contentItem.getElementsByClassName(id)[0].remove();
+	}
+
+	function initEventKeyPress(elem, flag) {
+		elem.dataset.flag = flag;
+		elem.onkeypress = function(e) {
+			setTimeout(function() {
+				totalRow(flag);
+			}, 300);
+		}
+	}
+
+	function totalRow (rowID) {
+		var parent = document.getElementById('content-item').getElementsByClassName(rowID)[0];
+		var qty = parent.getElementsByClassName('qty')[0].value;
+		var diskon = parent.getElementsByClassName('diskon')[0].value.replace(/\./g, '').slice(3);
+		var harga = parent.getElementsByClassName('harga')[0].value.replace(/\./g, '').slice(3);
+
+		// get total row and parse to data attribute total in row 
+		total = (harga - diskon)*qty;
+		parent.dataset.total = total;
+
+		// call function sub total
+		subtotal();
+	}
+
+	function subtotal () {
+		var lengthContent = document.getElementById('content-item').getElementsByClassName('item').length;
+		var content = document.getElementById('content-item').getElementsByClassName('item');
+		var subTotal = document.getElementsByClassName('subtotal')[0];
+
+		// get & set total all item
+		var temp = 0;
+		for (var i=0; i<lengthContent; i++) {
+			temp += parseInt(content[i].dataset.total);
+		}
+
+		subTotal.value = temp;
+	}
 }
 /**
  * on document ready triger click btn 'add' for template clone & event pjax:end
@@ -58,11 +173,6 @@ window.templateClone = function() {
 $(document).ready(function() {
 	window.templateClone();
 	$('.add.init-add-one').trigger('click');
-	// add event on pjax:end
-	$(document).on('pjax:end',   function() { 
-		window.templateClone();
-		$('.add.init-add-one').trigger('click');
-	});
 });
 /**
  * function template add
