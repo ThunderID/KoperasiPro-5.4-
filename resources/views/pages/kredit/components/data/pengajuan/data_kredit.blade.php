@@ -87,8 +87,10 @@
 	<div class="row p-t-lg m-b-sm">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<p class="text-capitalize text-light m-b-sm">Tanda Tangan</p>
-			<div class="img-thumbnail" style="width: 50%">
-				<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-rounded" style="height: 120px;"/>
+			<div class="img-thumbnail" style="width: 50%; min-height: 120px;">
+				@if (isset($page_datas->credit['spesimen_ttd']))
+					<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-rounded" style="height: 120px;"/>
+				@endif
 			</div>
 		</div>
 	</div>

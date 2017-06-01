@@ -28,10 +28,10 @@ require('./modules/height-optimizer');
 // require('./modules/select');
 
 // add module list-js
-// require('./modules/list');
+require('./modules/list');
 
 // add module modal
-// require('./modules/modal');
+require('./modules/modal');
 
 // add module button print show window
 // require('./modules/print');
@@ -40,4 +40,4 @@ require('./modules/height-optimizer');
 require('./modules/form');
 
 // add panel
-// require ('./modules/panel')
+require ('./modules/panel')

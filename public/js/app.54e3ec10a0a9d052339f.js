@@ -10355,10 +10355,10 @@ __webpack_require__(31);
 // require('./modules/select');
 
 // add module list-js
-// require('./modules/list');
+__webpack_require__(39);
 
 // add module modal
-// require('./modules/modal');
+__webpack_require__(37);
 
 // add module button print show window
 // require('./modules/print');
@@ -10367,7 +10367,7 @@ __webpack_require__(31);
 __webpack_require__(33);
 
 // add panel
-// require ('./modules/panel')
+__webpack_require__(38);
 
 /***/ }),
 /* 3 */
@@ -50261,12 +50261,13 @@ $(document).ready(function () {
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {window.setFocus = function (el) {
-	$(el).focus();
+/* WEBPACK VAR INJECTION */(function($) {window.setFocusModule = {
+	init: function init() {
+		$('.set-focus').focus();
+	}
 };
-
 $(document).ready(function () {
-	window.setFocus('.set-focus');
+	window.setFocusModule.init();
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -50607,6 +50608,136 @@ function checkAvailableAdd(state, available) {
 // 		$(this).attr('name', inputHidden+ '[' +(count-1)+ ']' +name );
 // 	});
 // }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.moduleModal = {
+	menuModal: function menuModal() {
+		$('a.mobile-menu-content').on('click', function () {
+			var toRoute = $(this).data('menu-to') || false;
+			var fromRoute = $(this).data('menu-from') || false;
+
+			if (toRoute !== false && fromRoute !== false) {
+				$(fromRoute).addClass('hidden').css('opacity', 0);
+				$('div.loading').removeClass('hidden');
+				setTimeout(function () {
+					$(toRoute).removeClass('hidden').css('opacity', 1);
+					$('div.loading').addClass('hidden');
+				}, 300);
+			} else {
+				$(this).closest('.modal').modal('hide');
+				// $(fromRoute).addClass('hidden').css('opacity', 0);
+				// $('#main-menu').removeClass('hidden').css('opacity', 1);
+			}
+		});
+	},
+	deleteModal: function deleteModal() {
+		$('#modal-delete').on('shown.bs.modal', function (e) {
+			url = $(e.relatedTarget).attr('data-url');
+
+			if (typeof url !== 'undefined') {
+				$(this).find('.form-delete').attr('action', url).attr('method', 'delete');
+				window.setFocusModule.init();
+			}
+		});
+	},
+	init: function init() {
+		this.menuModal();
+		this.deleteModal();
+	}
+};
+
+window.callModal = function () {}
+// $(".modal").on("shown.bs.modal", function(e) {
+// 	// call plugin be use on modal
+// 	window.quickSelect();
+// 	window.formInputMask();
+// 	$(".input-switch").bootstrapSwitch(); // active switch button
+
+// 	modal = $(this);
+// 	$(document).on("pjax:end", function() { 
+// 		modal.modal("hide");
+// 	});
+// });
+// $(".modal").on("hidden.bs.modal", function(e) {
+// 	// $(this).find("input, textarea").val("");
+// 	// $(this).find("input[type=checkbox], input[type=radiobox]").prop("checked", "");
+// 	// $(this).find("select").val("");
+// });
+
+// $('a[data-toggle="modal"]').on('click', function(e) {
+// 	if ($(this).hasClass('disabled')) {
+// 		e.stopPropagation();
+// 	}
+// });
+
+
+// add event call on document ready & document pjax:end
+;$(document).ready(function () {
+	window.moduleModal.init();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.panelModule = {
+	panelFormHidden: function panelFormHidden() {
+		$("body").on("click", "*[data-toggle=hidden]", function (e) {
+			e.preventDefault();
+
+			target = $(this).data("target");
+			panel = $(this).data('panel');
+
+			$("div[data-panel=" + panel + "]").addClass("hidden");
+			$("div[data-form=" + target + "]").removeClass("hidden");
+		});
+	},
+	panelFormClose: function panelFormClose() {
+		$("body").on("click", "*[data-dismiss=panel]", function (e) {
+			e.preventDefault();
+
+			target = $(this).data("target");
+			panel = $(this).data('panel');
+
+			$("div[data-panel=" + panel + "]").removeClass("hidden");
+			$("div[data-form=" + target + "]").addClass("hidden");
+		});
+	},
+	init: function init() {
+		this.panelFormHidden();
+		this.panelFormClose();
+	}
+};
+
+$(document).ready(function () {
+	window.panelModule.init();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {window.listModule = {
+	listKoperasi: function listKoperasi() {
+		options = {
+			valueNames: ['name']
+		};
+		var listKoperasi = new List('list-koperasi', options);
+	},
+	init: function init() {
+		this.listKoperasi();
+	}
+};
+
+$(document).ready(function () {
+	window.listModule.init();
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })

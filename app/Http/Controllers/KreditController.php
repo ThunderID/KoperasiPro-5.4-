@@ -524,7 +524,7 @@ class KreditController extends Controller
 	 * @param string $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		try {
 			if($this->request->is('hapus/jaminan/kendaraan/*'))

@@ -93,16 +93,16 @@
 			]
 		])
 		<div class="modal-footer">
-			{!! Form::open(['class' => 'form']) !!}
+			<form action="" class="form form-delete" method="delete" no-data-pjax>
 				<div class="form-group text-left">
 					<label class="text-light">Masukkan password untuk menghapus data ini</label>
-					{!! Form::password('password', ['class' => 'form-control']) !!}
+					{!! Form::password('password', ['class' => 'form-control set-focus', 'placeholder' => '**********']) !!}
 				</div>
 				<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
-					Cancel
+					Batal
 				</a>
 				{!! Form::submit('Hapus', ['class' => 'btn btn-danger']) !!}
-			{!! Form::close() !!}
+			</form>
 		</div>		
 	@endcomponent
 
@@ -149,7 +149,7 @@
 		</div>
 		<div class="modal-footer">
 			<a type='button' class="btn btn-default" data-dismiss='modal' no-data-pjax>
-				Cancel
+				Batal
 			</a>
 			<a href="{{ route('login.destroy') }}" type="button" class="btn btn-danger" no-data-pjax>Logout
 			</a>

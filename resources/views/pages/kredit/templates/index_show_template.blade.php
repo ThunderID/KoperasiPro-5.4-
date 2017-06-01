@@ -1,7 +1,7 @@
 @php
 	$color_switcher 	= [
 			'survei' 				=> '#FCA985',
-			'tolak' 				=> '#cc0000',
+			'tolak' 				=> '#e74c3c',
 			'menunggu_persetujuan' 	=> '#9966cc',
 			'menunggu_realisasi' 	=> '#6666cc',
 			'terealisasi' 			=> '#48B5A3',
@@ -65,8 +65,12 @@
 					@include('pages.kredit.components.top_menu.pengajuan')
 				@elseif ($page_datas->credit['status'] == 'survei')
 					@include('pages.kredit.components.top_menu.survei')
-				@elseif ($page_datas->credit['status'] == 'realisasi')
-					@include('pages.kredit.components.top_menu.realisasi')
+				@elseif ($page_datas->credit['status'] == 'menunggu_persetujuan')
+					@include('pages.kredit.components.top_menu.menunggu_persetujuan')
+				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
+					@include('pages.kredit.components.top_menu.menunggu_realisasi')
+				@elseif ($page_datas->credit['status'] == 'terealisasi')
+					@include('pages.kredit.components.top_menu.terealisasi')
 				@else
 					@include('pages.kredit.components.top_menu.tolak')
 				@endif
@@ -76,13 +80,17 @@
 					@yield('page_content')
 			</div>
 
-			@if(isset($page_datas->credit['kreditur']['id']))
-				@if($page_datas->credit['status'] == 'pengajuan')
+			@if (isset($page_datas->credit['kreditur']['id']))
+				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.bottom_menu.pengajuan')
-				@elseif($page_datas->credit['status'] == 'survei')
+				@elseif ($page_datas->credit['status'] == 'survei')
 					@include('pages.kredit.components.bottom_menu.survei')
-				@elseif($page_datas->credit['status'] == 'realisasi')
-					@include('pages.kredit.components.bottom_menu.realisasi')
+				@elseif ($page_datas->credit['status'] == 'menunggu_persetujuan')
+					@include('pages.kredit.components.bottom_menu.menunggu_persetujuan')
+				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
+					@include('pages.kredit.components.bottom_menu.menunggu_realisasi')
+				@elseif ($page_datas->credit['status'] == 'terealisasi')
+					@include('pages.kredit.components.bottom_menu.terealisasi')
 				@else
 					@include('pages.kredit.components.bottom_menu.'.$page_datas->credit['status_sebelumnya'])
 				@endif

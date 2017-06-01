@@ -1,7 +1,8 @@
-window.setFocus = function(el) {
-	$(el).focus();
+window.setFocusModule = {
+	init: function () {
+		$('.set-focus').focus();
+	}
 }
-
 $(document).ready(function() {
-	window.setFocus('.set-focus');
+	window.setFocusModule.init();
 });

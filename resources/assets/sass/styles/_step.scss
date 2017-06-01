@@ -22,6 +22,11 @@
 				color: lighten($color-white, 15%);
 				border-right: 0;
 			}
+			&.failed {
+				background-color: $brand-danger;
+				color: $color-white;
+				border-right: 0;
+			}
 			&:last-child {
 				border-right: 0;
 			}
