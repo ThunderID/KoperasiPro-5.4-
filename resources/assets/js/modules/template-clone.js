@@ -357,8 +357,8 @@ window.templateClone = {
 		var harga = parseInt(parent.find('.harga').val());
 
 		// get total row and parse to data attribute total in row 
-		total = (harga - diskon)*qty;
-		parent.attr('data-total', total);
+		// total = (harga - diskon)*qty;
+		// parent.attr('data-total', total);
 		// parent.dataset.total = total;
 	},
 	setSubTotal: function () {

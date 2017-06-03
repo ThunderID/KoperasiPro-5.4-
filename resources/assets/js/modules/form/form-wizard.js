@@ -112,11 +112,3 @@ window.wizard = {
 		});
 	}
 }
-
-$(document).ready(function (){
-	window.wizard.init();
-});
-
-$(document).on('pjax:end',   function() { 
-	window.wizard.init();
-});

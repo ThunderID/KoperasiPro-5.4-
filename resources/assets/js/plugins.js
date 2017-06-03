@@ -54,6 +54,7 @@ $(document).ready(function(){
 		window.templateClone.init();
 		window.wizard.init();
 		window.select();
+		$('.input-switch').bootstrapSwitch();
 	});
 
     // Form Submit with get method
@@ -73,9 +74,6 @@ $(document).ready(function(){
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
 window.steps = require('./plugins/jquery-steps/jquery.steps');
-// $(document).ready(function() {
-	// wizard();
-// });
 
 /**
  * 5. Jquery Validation & Additional
@@ -100,11 +98,6 @@ Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
 window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
-// class for inputmask
-$(document).ready( function() {
-	// call module form input mask 
-	// formInputMask();
-});
 
 /**
  * 8. jQuery quick selection
@@ -113,15 +106,12 @@ $(document).ready( function() {
  */
 window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
 
-// /**
-//  * 9. jQuery selectize
-//  * Description: plugin jQuery customize select options 
-//  * Usage & Documentation: http://selectize.github.io/selectize.js/
-//  */
+/**
+ * 9. jQuery selectize
+ * Description: plugin jQuery customize select options 
+ * Usage & Documentation: http://selectize.github.io/selectize.js/
+ */
 window.select2 = require('./plugins/select2/select2.min');
-// $(document).ready( function() {
-	// window.select();
-// });
 
 /**
  * 10. jQuery Nice Scroll

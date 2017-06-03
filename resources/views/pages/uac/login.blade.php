@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 			<div class="form-wrap p-b-sm m-b-md">
-				<h1 class="m-b-xl">Chayono Group</h1>
+				<h1 class="m-b-xl">GO-Kredit.com</h1>
 				<p class="m-b-lg">Silahkan masukkan Email dan Password Anda.</p>
 
 				@include('components.alertbox')

@@ -5,22 +5,22 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="data-nasabah" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_nasabah')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_nasabah')
 				</div>
 				<div class="tab-pane fade" id="data-kepribadian" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_kepribadian')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_kepribadian')
 				</div>
 				<div class="tab-pane fade" id="data-aset" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_aset')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_aset')
 				</div>
 				<div class="tab-pane fade" id="data-jaminan" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_jaminan')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_jaminan')
 				</div>
 				<div class="tab-pane fade" id="data-rekening" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_rekening')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_rekening')
 				</div>
 				<div class="tab-pane fade" id="data-keuangan" role="tabpanel">
-					@include ('pages.kredit.components.panel.survei.panel_keuangan')
+					@include ('pages.kredit.components.panel.menunggu_persetujuan.panel_keuangan')
 				</div>
 			</div>
 		</div>
