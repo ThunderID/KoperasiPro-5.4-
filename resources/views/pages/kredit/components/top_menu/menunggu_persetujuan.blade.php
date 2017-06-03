@@ -28,9 +28,12 @@
 				<a href="{{ route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'tolak']) }}" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>
-				<a href="{{ route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']]) }}" class="btn p-r-none p-l-sm success">
+<!-- 				<a href="{{ route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']]) }}" class="btn p-r-none p-l-sm success">
 					<i class="fa fa-check" aria-hidden="true"></i> Setujui Persetujuan
-				</a>
+				</a> -->
+				<a href="#modal-change-status" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
+					<i class="fa fa-check" aria-hidden="true"></i> Setujui
+				</a>				
 			</div>
 		</div>
 	</div>
@@ -49,3 +52,17 @@
 		</div>
 	</div>
 </div>
+
+@section('page_modals')
+	@component('components.modal', [
+			'id'			=> 'modal-change-status',
+			'title'			=> 'Setujui Kredit',
+			'settings'		=> [
+				'hide_buttons'	=> true
+			]
+		])
+		<div id="list-koperasi">
+			<p>halo</p>
+		</div>
+	@endcomponent
+@append
