@@ -29,7 +29,7 @@
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>
 				<a href="{{ route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']]) }}" class="btn p-r-none p-l-sm success">
-					<i class="fa fa-check" aria-hidden="true"></i> Setujui Persetujuan
+					<i class="fa fa-check" aria-hidden="true"></i> Setujui
 				</a>
 			</div>
 		</div>
