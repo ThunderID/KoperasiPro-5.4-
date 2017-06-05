@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use TKredit\KreditAktif\Models\KreditAktif_RO;
+use App\Domain\Kasir\Models\HeaderTransaksi;
 use TAuth;
 
 class DashboardController extends Controller
@@ -53,6 +54,9 @@ class DashboardController extends Controller
 				# code...
 				break;
 		}
+
+		$this->kasir($a_of);
+		$this->view						= view('pages.dashboard.kasir');		
 
 		//initialize view
 
