@@ -33,6 +33,5 @@ trait WaktuTrait {
 	public function formatDateTimeTo($value)
 	{
 		return Carbon::parse($value)->format('d/m/Y H:i');
-		return $value->toDateTime()->format('d/m/Y H:i');
 	}
 }

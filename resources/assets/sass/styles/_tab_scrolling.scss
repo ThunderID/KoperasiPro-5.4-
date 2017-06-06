@@ -1,0 +1,42 @@
+.menu-tabs {
+	position: relative;
+	height: 40px;
+	overflow: hidden;
+	border-bottom: 1px solid $line-color-default !important;
+	.arrow-left, .arrow-right {
+		position: absolute;
+		top: 0;
+		background-color: $color-white;
+		padding-left: 18px;
+		padding-right: 18px;
+		padding-top: 11px;
+		padding-bottom: 11px;
+		z-index: 9;
+		i {
+			margin-top: 3px;
+		}
+	}
+	.arrow-left {
+		left: 0;
+		margin-left: 0;
+	}
+	.arrow-right {
+		right: 0;
+		margin-right: 0;
+	}
+	.tab-lists {
+		position: absolute;
+		border-bottom: 0 !important;
+		min-width: 1500px;
+		.list-item {
+			&.active {
+				a {
+					background-color: transparent !important;
+					border: 0;
+					border-bottom: 3px solid $color-active;
+					padding-bottom: 10px !important;
+				}
+			}
+		}
+	}
+}

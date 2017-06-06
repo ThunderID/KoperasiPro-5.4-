@@ -3,7 +3,7 @@
 		{{-- panel data kredit --}}
 		<div data-panel="data-kredit">
 			@include ('pages.kredit.components.data.pengajuan.data_kredit', [
-				'edit' => true
+				'edit' => (in_array($page_datas->credit['status'], ['pengajuan', 'survei'])) ? true : false
 			])
 		</div>
 		

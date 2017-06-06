@@ -60,5 +60,14 @@ class Kernel extends HttpKernel
         'pjax' =>  \App\Http\Middleware\PjaxMiddleware::class,
         'authenticated' =>  \App\Http\Middleware\AuthenticatedMiddleware::class,
         'tapi' =>  \TQueries\ACL\TApiMiddleware::class,
+
+        'modifikasi_koperasi'   =>  \App\Http\Middleware\ACL\ModifikasiKoperasiMiddleware::class,
+        'pengajuan_kredit'      =>  \App\Http\Middleware\ACL\PengajuanKreditMiddleware::class,
+        'survei_kredit'         =>  \App\Http\Middleware\ACL\SurveiKreditMiddleware::class,
+        'setujui_kredit'        =>  \App\Http\Middleware\ACL\SetujuiKreditMiddleware::class,
+        'realisasi_kredit'      =>  \App\Http\Middleware\ACL\RealisasiKreditMiddleware::class,
+        'kas_harian'            =>  \App\Http\Middleware\ACL\KasHarianMiddleware::class,
+        'transaksi_harian'      =>  \App\Http\Middleware\ACL\TransaksiHarianMiddleware::class,
+        'atur_akses'            =>  \App\Http\Middleware\ACL\AturAksesMiddleware::class,
     ];
 }

@@ -28,35 +28,41 @@ class DashboardController extends Controller
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title	= "Dashboard";
 
-		switch ($a_of['role']) 
+		foreach ($a_of['scopes'] as $key => $value) 
 		{
-			case 'komisaris':
-				$this->komisaris($a_of);
-				$this->view				= view('pages.dashboard.komisaris');
-				break;
-			case 'pimpinan':
-				$this->pimpinan($a_of);
-				$this->view				= view('pages.dashboard.pimpinan');
-				break;
-			case 'surveyor':
-				$this->surveyor($a_of);
-				$this->view				= view('pages.dashboard.surveyor');
-				break;
-			case 'marketing':
-				$this->marketing($a_of);
-				$this->view				= view('pages.dashboard.surveyor');
-				break;
-			case 'kasir':
-				$this->kasir($a_of);
-				$this->view				= view('pages.dashboard.kasir');
-				break;
-			default:
-				# code...
-				break;
+			if(!isset($value['expired_at']) || $value['expired_at'] > Carbon::now()->format('d/m/Y'))
+			{
+				switch ($value['list']) 
+				{
+					case 'modifikasi_koperasi': case 'atur_akses' :
+						$this->page_attributes->hook[0][0]	='pages.dashboard.widgets.last_login';
+						$this->page_attributes->hook[0][1]	='pages.dashboard.widgets.inactive_user';
+						break;
+					
+					case 'pengajuan_kredit' :
+						$this->page_attributes->hook[1][0]	='pages.dashboard.widgets.pengajuan_baru';
+						break;
+
+					case 'survei_kredit' :
+						$this->page_attributes->hook[1][1]	='pages.dashboard.widgets.survei_kredit';
+						break;
+
+					case 'setujui_kredit' :
+						$this->page_attributes->hook[2][0]	='pages.dashboard.widgets.setujui_kredit';
+						break;
+
+					case 'realisasi_kredit' :case 'transaksi_harian' : case 'kas_harian' :
+						$this->page_attributes->hook[3][0]	='pages.dashboard.widgets.realisasi_kredit';
+						$this->page_attributes->hook[3][1]	='pages.dashboard.widgets.kas_hari_ini';
+						break;
+					default:
+						# code...
+						break;
+				}
+			}
 		}
 
-		$this->kasir($a_of);
-		$this->view						= view('pages.dashboard.kasir');		
+		$this->view						= view('pages.dashboard.index');		
 
 		//initialize view
 

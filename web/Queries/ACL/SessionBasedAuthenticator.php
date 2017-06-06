@@ -6,8 +6,10 @@ namespace TQueries\ACL;
 //   Models  //
 ///////////////
 use TImmigration\Models\Pengguna as Model;
+use TImmigration\Models\Visa_A;
 
 use Hash, Exception, Session;
+use Carbon\Carbon;
 
 /**
  * Class Services Application
@@ -46,6 +48,9 @@ class SessionBasedAuthenticator
 		{
 			throw new Exception("Password Tidak Cocok!", 1);
 		}
+
+		$user->visas[0]->last_logged		= Carbon::now()->format('Y-m-d H:i:s');
+		$user->visas[0]->save();
 
 		Session::put('logged.id', $user->id);
 		Session::put('accesses.idx', $user->visas[0]['id']);
@@ -127,6 +132,10 @@ class SessionBasedAuthenticator
 	 */
 	public static function setOffice($idx)
 	{
+		$visa 			= Visa_A::where('immigration_pengguna_id', Session::get('logged.id'))->id($idx)->firstorfail();
+		$visa->last_logged 	= Carbon::now()->format('Y-m-d H:i:s');
+		$visa->save();
+
 		Session::put('accesses.idx', $idx);
 
 		return true;

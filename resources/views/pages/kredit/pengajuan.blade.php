@@ -17,6 +17,18 @@
 				<div class="tab-pane fade" id="data-jaminan" role="tabpanel">
 					@include ('pages.kredit.components.panel.pengajuan.panel_jaminan')
 				</div>
+				<div class="tab-pane fade" id="data-kepribadian" role="tabpanel">
+					@include ('pages.kredit.components.panel.pengajuan.panel_kepribadian')
+				</div>
+				<div class="tab-pane fade" id="data-aset" role="tabpanel">
+					@include ('pages.kredit.components.panel.pengajuan.panel_aset')
+				</div>
+				<div class="tab-pane fade" id="data-rekening" role="tabpanel">
+					@include ('pages.kredit.components.panel.pengajuan.panel_rekening')
+				</div>
+				<div class="tab-pane fade" id="data-keuangan" role="tabpanel">
+					@include ('pages.kredit.components.panel.pengajuan.panel_keuangan')
+				</div>
 			</div>
 		</div>
 	</div>
