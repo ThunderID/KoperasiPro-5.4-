@@ -323,7 +323,7 @@
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan.</p>
+			<p class="text-light">Belum ada data disimpan. </p>
 		</div>
 	</div>
 @endif

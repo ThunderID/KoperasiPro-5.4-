@@ -2,7 +2,9 @@
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Nasabah</h4>
 		<hr/>
-		<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['nasabah']['survei']) && !empty($page_datas->credit['nasabah']['survei'])) ? $page_datas->credit['nasabah']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['nasabah']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['nasabah']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		@if (isset($page_datas->credit['nasabah']) && !empty($page_datas->credit['nasabah']))
+			<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['nasabah']['survei']) && !empty($page_datas->credit['nasabah']['survei'])) ? $page_datas->credit['nasabah']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['nasabah']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['nasabah']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		@endif
 	</div>
 </div>
 
@@ -59,7 +61,7 @@
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. </p>
+			<p class="text-light">Belum ada data disimpan. </p>
 		</div>
 	</div>
 @endif

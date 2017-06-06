@@ -41,3 +41,6 @@ require ('./modules/panel')
 
 // add module template clone
 require('./modules/template-clone');
+
+// add module tab-scrolling
+require ('./modules/tab-scrolling.js');

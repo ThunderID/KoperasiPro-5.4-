@@ -155,7 +155,7 @@
 	<!-- No data -->
 	<div class="row m-b-xl">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif

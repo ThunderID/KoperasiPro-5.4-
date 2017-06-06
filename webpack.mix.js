@@ -43,10 +43,8 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css')
 			'resources/assets/js/vendors.js',
 			'resources/assets/js/app.js'
 		], 'public/js/app.js')
-	.version(['public/css/app.css', 'public/js/app.js'])
+	.version()
 	.copy('resources/assets/fonts', 'public/fonts/')
 	.copy('resources/assets/icons', 'public/icons')
-	// .autoload({ 
-	// 	'jquery': ['window.$', 'window.jQuery'],
-	// })
+	.browserSync('koperasipro.dev')
 	;

@@ -35,7 +35,9 @@
 
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				@if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
+					<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				@endif
 			</div>
 		</div>
 		<div class="row p-t-lg">
@@ -66,7 +68,7 @@
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#rekening" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p class="text-light">Belum ada data disimpan. <a href="#rekening" data-toggle="hidden" data-target="rekening" data-panel="data-rekening" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif
