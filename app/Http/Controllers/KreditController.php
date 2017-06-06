@@ -394,29 +394,31 @@ class KreditController extends Controller
 	{
 		try
 		{
+			$notes 		= Input::get("notes");
+
 			if(str_is(strtolower($status), 'survei'))
 			{
-				$simpan 	= new LanjutkanUntukSurvei($id);
+				$simpan 	= new LanjutkanUntukSurvei($id, $notes);
 				$simpan->handle();
 			}
 			elseif(str_is(strtolower($status), 'menunggu_persetujuan'))
 			{
-				$simpan 	= new MenungguPersetujuan($id);
+				$simpan 	= new MenungguPersetujuan($id, $notes);
 				$simpan->handle();
 			}
 			elseif(str_is(strtolower($status), 'menunggu_realisasi'))
 			{
-				$simpan 	= new SetujuiKredit($id);
+				$simpan 	= new SetujuiKredit($id, $notes);
 				$simpan->handle();
 			}
 			elseif(str_is(strtolower($status), 'terealisasi'))
 			{
-				$simpan 	= new RealisasiKredit($id);
+				$simpan 	= new RealisasiKredit($id, $notes);
 				$simpan->handle();
 			}
 			elseif(str_is(strtolower($status), 'tolak'))
 			{
-				$simpan 	= new TolakKredit($id);
+				$simpan 	= new TolakKredit($id, $notes);
 				$simpan->handle();
 			}
 			else

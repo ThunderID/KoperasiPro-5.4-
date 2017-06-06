@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				{!! Form::open(['url' => '', 'class' => 'form no-enter', 'data-ajax-submit' => true]) !!}
+				{!! Form::open(['url' => route('kasir.kas.store', ['status' => $page_datas->status]), 'class' => 'form no-enter', 'data-ajax-submit' => true]) !!}
 					{!! Form::hidden('koperasi_id', '') !!}
 					{{-- <h5 class="text-uppercase text-light">Debitur ID</h5> --}}
 					<div class="form-group">

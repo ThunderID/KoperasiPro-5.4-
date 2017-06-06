@@ -5,15 +5,7 @@
 @stop
 
 @push('content')
-<?php
-	dd($page_datas);
-?>
-
-	<div class="row field">
-		<div class="col-sm-12">
-			<h3>Dashboard</h3>
-			<div class="clearfix">&nbsp;</div>
-		</div>	
+	<div class="row">
 		<div class="col-sm-12 text-center">
 
 			<!-- Nav tabs -->

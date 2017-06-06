@@ -8,6 +8,9 @@ use App\Domain\Kasir\Models\DetailTransaksi;
 use App\Domain\Kasir\Models\HeaderTransaksi;
 use App\Service\Kasir\DaftarKas;
 
+use App\Service\Kasir\KasMasukBaru;
+use App\Service\Kasir\KasKeluarBaru;
+
 use Illuminate\Http\Request;
 use Exception, Input;
 
@@ -58,6 +61,54 @@ class KasirController extends Controller
 		$this->view 							= view('pages.kasir.create');
 
 		return $this->generateView();
+	}
+
+	public function store (Request $request, $status)
+	{
+		$details 		= [];
+
+		foreach ($request->get('item') as $key => $value) 
+		{
+			$details[$key]['item']			= $request->get('item')[$key];
+			$details[$key]['deskripsi']		= $request->get('deskripsi')[$key];
+			$details[$key]['kuantitas']		= $request->get('qty')[$key];
+			$details[$key]['harga_satuan']	= $request->get('harga_satuan')[$key];
+			$details[$key]['diskon_satuan']	= $request->get('diskon_satuan')[$key];
+		}
+
+		try
+		{
+			switch ($status) 
+			{
+				case 'masuk':
+					$data 	= new KasMasukBaru($request->get('debitur_id'), 0, $request->get('nomor_nota'), $request->get('tanggal'), $details);
+					break;
+				case 'keluar':
+					$data 	= new KasKeluarBaru($request->get('debitur_id'), 0, $request->get('nomor_nota'), $request->get('tanggal'), $details);
+					break;
+				
+				default:
+					throw new Exception("Status tidak valid", 1);
+					break;
+			}
+			$data 	= $data->save();
+		
+			return $this->generateRedirect(route('kasir.kas.show', $data['id']));
+		}
+		catch(Exception $e)
+		{
+			dd($e);
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error']    = $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error']    = [$e->getMessage()];
+			}
+		
+			return $this->generateRedirect(route('kasir.kas.create', ['status' => $status]));
+		}
 	}
 
 	public function show ($id)

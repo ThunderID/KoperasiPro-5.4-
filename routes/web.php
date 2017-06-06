@@ -61,6 +61,7 @@ Route::group(['middleware' => ['transaksi_harian']], function()
 	Route::get('kasir/kas', 																	['uses' => 'KasirController@index', 'as' => 'kasir.kas.index']);
 	Route::get('kasir/kas/{id}',																['uses' => 'KasirController@show', 'as' => 'kasir.kas.show']);
 	Route::get('kasir/kas/{status}/baru',														['uses' => 'KasirController@create', 'as' => 'kasir.kas.create']);
+	Route::post('kasir/kas/{status}/simpan',													['uses' => 'KasirController@store', 'as' => 'kasir.kas.store']);
 });
 
 Route::group(['middleware' => ['modifikasi_koperasi']], function()
