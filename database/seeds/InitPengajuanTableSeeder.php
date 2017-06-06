@@ -41,8 +41,35 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'komisaris'
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
 							];
+
 		$visa_2 		= 	[
 								'id'				=> null,
 								'koperasi'			=> 	[
@@ -51,7 +78,33 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'komisaris'
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
 							];
 
 		$admin 			= new Pengguna;
@@ -195,7 +248,34 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'pimpinan',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+										'param'		=> ['limit' => 'Rp 10.000.000']
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
 							];
 		$visa_2 		= 	[
 								'id'				=> null,
@@ -205,7 +285,34 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'pimpinan',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+										'param'		=> ['limit' => 'Rp 10.000.000']
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
 							];
 
 		$pimpinan 			= new Pengguna;
@@ -228,7 +335,12 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'marketing'
+								'role'				=>  'marketing',
+								'scopes'			=>  [
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+								],
 							];
 		$visa_2 		= 	[
 								'id'				=> null,
@@ -238,7 +350,12 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'marketing'
+								'role'				=>  'marketing',
+								'scopes'			=>  [
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+								],
 							];
 
 		$marketing 			= new Pengguna;
@@ -261,7 +378,12 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'surveyor'
+								'role'				=>  'surveyor',
+								'scopes'			=>  [
+									[
+										'list'		=> 'survei_kredit',
+									],
+								],
 							];
 		$visa_2 		= 	[
 								'id'				=> null,
@@ -271,7 +393,12 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'surveyor'
+								'role'				=>  'surveyor',
+								'scopes'			=>  [
+									[
+										'list'		=> 'survei_kredit',
+									],
+								],
 							];
 
 		$surveyor 			= new Pengguna;
@@ -296,7 +423,15 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 														],
-								'role'				=>  'kasir'
+								'role'				=>  'kasir',
+								'scopes'			=>  [
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+								],
 							];
 		$visa_2 		= 	[
 								'id'				=> null,
@@ -306,7 +441,15 @@ class InitPengajuanTableSeeder extends Seeder
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
 														],
-								'role'				=>  'kasir'
+								'role'				=>  'kasir',
+								'scopes'			=>  [
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+								],
 							];
 
 		$kasir 			= new Pengguna;

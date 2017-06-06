@@ -50,6 +50,14 @@ class NavbarService
 													'billing'	=> route('kasir.billing'),
 												]
 								],
+				'pengaturan'=> 	[
+									'route' => null,
+									'sub'	=> 	[
+													'buka_baru'			=> route('koperasi.create'),
+													'koperasi'			=> route('koperasi.index'),
+													'user'				=> '#',
+												]
+								],
 			];
 	}
 }

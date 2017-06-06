@@ -127,6 +127,7 @@ class Pengguna extends BaseModel
 
 		$visa_ag->fill([
 			'role'							=> $visa['role'],
+			'scopes'						=> $visa['scopes'],
 			'immigration_ro_koperasi_id'	=> $koperasi_ro->id,
 			'immigration_pengguna_id'		=> $this->id
 		]);
