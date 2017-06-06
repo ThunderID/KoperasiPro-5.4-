@@ -67,6 +67,11 @@ Route::group(['middleware' => ['modifikasi_koperasi']], function()
 	Route::resource('koperasi', 'KoperasiController');
 });
 
+Route::group(['middleware' => ['atur_akses']], function()
+{
+	//Menu Pengguna
+	Route::resource('pengguna', 'PenggunaController');
+});
 
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {

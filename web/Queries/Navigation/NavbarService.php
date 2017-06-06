@@ -55,7 +55,7 @@ class NavbarService
 									'sub'	=> 	[
 													'buka_baru'			=> route('koperasi.create'),
 													'koperasi'			=> route('koperasi.index'),
-													'user'				=> '#',
+													'pengguna'			=> route('pengguna.index'),
 												]
 								],
 			];
