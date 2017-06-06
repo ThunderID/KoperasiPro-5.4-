@@ -21,7 +21,7 @@
 					{!! Form::submit('Login', ['id' => 'btn-login', 'class' => 'btn btn-custom btn-block auto-tabindex']) !!}
 					{{-- <input type="submit" id="btn-login" class="btn btn-custom btn-block" value="Login"> --}}
 				{!! Form::close() !!}
-				{{-- </form> --}}
+
 				{{-- <a class="forget" data-toggle="modal" data-target=".forget-modal" no-data-pjax>Forgot your password?</a> --}}
 			</div>
 		</div>

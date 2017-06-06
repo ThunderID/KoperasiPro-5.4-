@@ -70,6 +70,7 @@ class JaminanTanahBangunan_A extends BaseModel
 											'taksasi_bangunan'			,
 											'njop'						,
 											'uraian'					,
+											'url_barcode'				,
 										];
 	/**
 	 * Basic rule of database

@@ -2,12 +2,16 @@
 
 namespace TImmigration\Models;
 
+use App\Infrastructure\Traits\WaktuTrait;
+
 /**
  * Used for Visa Models
  * 
  * @author cmooy
  */
 use TImmigration\Models\Traits\Policies\VisaIDTrait;
+
+use Validator, Exception;
 
 /**
  * Model Visa
@@ -20,6 +24,7 @@ use TImmigration\Models\Traits\Policies\VisaIDTrait;
  */
 class Visa_A extends BaseModel
 {
+	use WaktuTrait;
 	use VisaIDTrait;
 	
 	/**
@@ -38,6 +43,7 @@ class Visa_A extends BaseModel
 	protected $fillable				=	[
 											'id'							,
 											'role'							,
+											'scopes'						,
 											'immigration_ro_koperasi_id'	,
 											'immigration_pengguna_id'		,
 										];
@@ -69,8 +75,38 @@ class Visa_A extends BaseModel
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
+	protected function setScopesAttribute($variable)
+	{
+		$rules 		= [
+			'list'				=> 'required',
+			'expired_at'		=> 'date_format:"Y-m-d H:i:s"',
+			'params'			=> 'array'
+		];
+
+		foreach ($variable as $key => $value) 
+		{
+			if(isset($value['expired_at']))
+			{
+				$value['expired_at']= $this->formatDateTimeFrom($value['expired_at']);
+			}
+
+			$validator 				= Validator::make($value, $rules);
+
+			if(!$validator->passes())
+			{
+				throw new Exception($validator->messages()->toJson(), 1);
+			}
+		}
+
+		$this->attributes['scopes'] = json_encode($variable);
+	}
+
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	
+	protected function getScopesAttribute($variable)
+	{
+		return json_decode($this->attributes['scopes'], true);
+	}
+
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**

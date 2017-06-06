@@ -26,8 +26,8 @@ class RemoveVisa implements ShouldQueue
 	 */
 	public function __construct($pengguna_id, $visa_id)
 	{
-		$this->pengguna_id     = $pengguna_id;
-		$this->visa_id  		   = $visa_id;
+		$this->pengguna_id	= $pengguna_id;
+		$this->visa_id		= $visa_id;
 	}
 
 	/**

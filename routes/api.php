@@ -17,9 +17,8 @@ Route::group(['middleware' => ['tapi']], function()
 {
 	Route::get('/pengaturan', function () 
 	{
-		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 'Rp 2.500.000'])->asArray();
+		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y')])->asArray();
 	});
-
 
 	// Here lies credit controller all things started here
 	Route::get('pengajuan', 	['uses' => 'KreditController@index']);
