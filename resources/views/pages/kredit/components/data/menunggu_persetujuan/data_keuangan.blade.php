@@ -8,7 +8,9 @@
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Keuangan</h4>
 		<hr/>
-		<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['keuangan']['survei']) && !empty($page_datas->credit['keuangan']['survei'])) ? $page_datas->credit['keuangan']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['keuangan']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['keuangan']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		@if (isset($page_datas->credit['keuangan']) && !empty($page_datas->credit['keuangan']))
+			<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['keuangan']['survei']) && !empty($page_datas->credit['keuangan']['survei'])) ? $page_datas->credit['keuangan']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['keuangan']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['keuangan']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		@endif
 	</div>
 </div>
 
@@ -161,7 +163,7 @@
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. </p>
+			<p class="text-light">Belum ada data disimpan. </p>
 		</div>
 	</div>
 @endif

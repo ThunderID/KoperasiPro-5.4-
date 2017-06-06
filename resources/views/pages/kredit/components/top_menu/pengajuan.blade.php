@@ -35,13 +35,21 @@
 	</div>
 	<div class="col-md-12 " style="background-color: white;">
 		<div class="row">
-			<div class="col-sm-12 p-l-none p-r-none" style>
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
-					<li role="presentation"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
-					<li role="presentation"><a href="#data-keluarga" data-toggle="tab" role="tab">Data Keluarga</a></li>
-					<li role="presentation"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
-				</ul>
+			<div class="col-sm-12 p-l-none p-r-none menu-tabs" style>
+				<a href="#" class="arrow-left"><i class="fa fa-chevron-left"></i></a>
+				<a href="#" class="arrow-right"><i class="fa fa-chevron-right"></i></a>
+				<div class="lists">
+					<ul class="nav nav-tabs tab-lists" role="tablist">
+						<li role="presentation" class="active list-item"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
+						<li role="presentation" class="list-item"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
+						<li role="presentation" class="list-item"><a href="#data-kepribadian" data-toggle="tab" role="tab">Data Kepribadian</a></li>
+						<li role="presentation" class="list-item"><a href="#data-keluarga" data-toggle="tab" role="tab">Data Keluarga</a></li>
+						<li role="presentation" class="list-item"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
+						<li role="presentation" class="list-item"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
+						<li role="presentation" class="list-item"><a href="#data-rekening" data-toggle="tab" role="tab">Data Rekening</a></li>
+						<li role="presentation" class="list-item"><a href="#data-keuangan" data-toggle="tab" role="tab">Data Keuangan</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

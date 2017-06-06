@@ -423,6 +423,7 @@ class KreditController extends Controller
 			{
 				throw new Exception("Invalid Status", 1);
 			}
+			$this->page_attributes->msg['success']		= ['Status berhasil diupdate'];
 		}
 		catch(Exception $e)
 		{
@@ -437,7 +438,7 @@ class KreditController extends Controller
 		}
 
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
+		return $this->generateRedirect(route('credit.show', $id));
 	}
 
 	/**
