@@ -16,7 +16,7 @@ require('./modules/push-notification');
 require('./modules/height-optimizer');
 
 // add module choice select
-require('./modules/choice-select');
+// require('./modules/choice-select');
 
 // add module auto-tabindex form
 require('./modules/auto-tabindex');

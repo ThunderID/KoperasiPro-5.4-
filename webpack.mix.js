@@ -46,5 +46,5 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css')
 	.version()
 	.copy('resources/assets/fonts', 'public/fonts/')
 	.copy('resources/assets/icons', 'public/icons')
-	.browserSync('koperasipro.dev')
+	// .browserSync('koperasipro.dev')
 	;

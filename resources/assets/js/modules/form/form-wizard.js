@@ -21,7 +21,7 @@ window.wizard = {
 		window.__validation();
 	},
 	init: function () {
-		this.validation();
+		// this.validation();
 		$('.wizard').steps({
 			/* appreance */
 			headerTag: 'h3',
@@ -65,7 +65,7 @@ window.wizard = {
 				window.setFocusModule.init();
 				window.wizard.customButtonActions();
 				window.wizard.disablePreviousButtonOnFirstStep(currentIndex);
-				window.formInputMask();
+				window.formInputMask.init();
 				window.select();
 			}, 
 			onInit: function (event, currentIndex) {
@@ -73,9 +73,9 @@ window.wizard = {
 				window.setFocusModule.init();
 				window.wizard.customButtonActions();
 				window.wizard.disablePreviousButtonOnFirstStep(currentIndex);
-				window.formInputMask();
+				window.formInputMask.init();
 				// $('.input-switch').bootstrapSwitch(); // active switch button
-				window.select();
+				// window.select();
 			},
 			onFinishing: function (event, currentIndex) {
 				form = $(this);
@@ -87,28 +87,31 @@ window.wizard = {
 				form.submit();
 			},
 		})
-		.validate({
-			errorClass: 'has-error',
-			errorPlacement: function errorPlacement(error, element) { 
-				error.addClass('help-block');
-				parent = element.parent().parent();
+		// .validate({
+		// 	errorClass: 'has-error',
+		// 	errorPlacement: function errorPlacement(error, element) { 
+		// 		error.addClass('help-block');
+		// 		parent = element.parent().parent();
 
-				// penempatan display message error validasi
-				// check input original tanpa add on 
-				if (parent.hasClass('row')) {
-					parent.parent().append(error);
-				// input yang ditambahkan add on
-				} else {
-					parent.parent().parent().append(error)
-				}
-				window.wizard.resizeContent();
-			},
-			highlight: function(element, errorClass) {
-				$(element).closest('fieldset.form-group').addClass(errorClass);
-			},
-			unhighlight: function(element, errorClass) {
-				$(element).closest('fieldset.form-group').removeClass(errorClass);
-			}
-		});
+		// 		// penempatan display message error validasi
+		// 		// check input original tanpa add on 
+		// 		if (parent.hasClass('row')) {
+		// 			parent.parent().append(error);
+		// 		// input yang ditambahkan add on
+		// 		} else {
+		// 			parent.parent().parent().append(error)
+		// 		}
+		// 		window.wizard.resizeContent();
+		// 	},
+		// 	highlight: function(element, errorClass) {
+		// 		$(element).closest('fieldset.form-group').addClass(errorClass);
+		// 	},
+		// 	unhighlight: function(element, errorClass) {
+		// 		$(element).closest('fieldset.form-group').removeClass(errorClass);
+		// 	}
+		// });
 	}
 }
+$(document).ready(function() {
+	window.wizard.init();
+});

@@ -38,8 +38,8 @@ window.templateClone = {
 					break;
 				case 'form-with-value':
 					// call function clone add 'form-with-value'
-					// var item = parseInt(this.dataset.item);
-					// window.templateClone.methodAdd({item: item}, 'form-with-value');
+					var item = parseInt(this.dataset.item);
+					window.templateClone.methodAdd({item: item}, 'form-with-value');
 
 					break;
 			}
@@ -127,18 +127,18 @@ window.templateClone = {
 				var diskonInput = cloneItem.find('.diskon');
 				var hargaInput = cloneItem.find('.harga');
 
-				qtyInput.attr('data-flag', param.item + 1);
-				diskonInput.attr('data-flag', param.item + 1);
-				hargaInput.attr('data-flag', param.item + 1);
+				// qtyInput.attr('data-flag', param.item + 1);
+				// diskonInput.attr('data-flag', param.item + 1);
+				// hargaInput.attr('data-flag', param.item + 1);
 
 				// var qtyInput = cloneItem[0].getElementsByClassName('qty')[0];
 				// var diskonInput = cloneItem[0].getElementsByClassName('diskon')[0];
 				// var hargaInput = cloneItem[0].getElementsByClassName('harga')[0];
 
-				// // add event listener keypress on qty, diskon, harga
-				// this.initEventKeyPress(qtyInput, 'item' + (param.item + 1));
-				// this.initEventKeyPress(diskonInput, 'item' + (param.item + 1));
-				// this.initEventKeyPress(hargaInput, 'item' + (param.item + 1));
+				// add event listener keypress on qty, diskon, harga
+				this.initEventKeyPress(qtyInput, 'item' + (param.item + 1));
+				this.initEventKeyPress(diskonInput, 'item' + (param.item + 1));
+				this.initEventKeyPress(hargaInput, 'item' + (param.item + 1));
 
 				cloneItem.addClass('item' + (param.item + 1));
 
@@ -153,11 +153,6 @@ window.templateClone = {
 					// contentItem.getElementsByClassName('add')[lengthButtonAdd - 1].dataset.item = item + 1;
 					// cloneItem.getElementsByClassName('remove')[0].getElementsByTagName('i')[0].classList.add('fa-minus-circle');
 					// cloneItem.getElementsByClassName('remove')[0].getElementsByTagName('i')[0].classList.remove('fa-plus-circle');
-
-					// set total item in button add
-					// lengthButtonAdd = contentItem.getElementsByClassName('add').length;
-					// set total item in button remove
-					// cloneItem.getElementsByClassName('remove')[0].dataset.item = item + 1;
 				} else {
 					cloneItem.find('.add').attr('data-item', param.item + 1);
 					cloneItem.find('.remove').attr('data-item', param.item + 1);
@@ -190,7 +185,8 @@ window.templateClone = {
 				}
 
 				window.templateClone.buttonRemove();
-				window.templateClone.initEventKeyPress();
+				// window.templateClone.initEventKeyPress();
+				window.formInputMask.init();
 
 				// function initEventKeyPress(elem, flag) {
 				// 	elem.dataset.flag = flag;
@@ -323,43 +319,46 @@ window.templateClone = {
 		// 		window.templateClone.setSubTotal();
 		// 	}, 300);
 		// }
-		$('.qty').on('keypress', function(e) {
-			idRow = $(this).data('flag');
-			setTimeout(function(){
-				window.templateClone.setTotal('item' +idRow);
+		elem.on('keypress', function(e) {
+			// e.preventDefault();
+			setTimeout( function() {
+				window.templateClone.setTotal(flag);
 				window.templateClone.setSubTotal();
 			}, 200);
 		});
-		$('.diskon').on('keypress', function(e) {
-			idRow = $(this).data('flag');
-			setTimeout(function(){
-				window.templateClone.setTotal('item' +idRow);
-				window.templateClone.setSubTotal();
-			}, 200);
-		});
-		$('.harga').on('keypress', function(e) {
-			idRow = $(this).data('flag');
-			setTimeout(function(){
-				window.templateClone.setTotal('item' +idRow);
-				window.templateClone.setSubTotal();
-			}, 200);
-		});
+		// $('.qty').on('keypress', function(e) {
+		// 	idRow = $(this).data('flag');
+		// 	setTimeout(function(){
+		// 		window.templateClone.setTotal('item' +idRow);
+		// 		window.templateClone.setSubTotal();
+		// 	}, 200);
+		// });
+		// $('.diskon').on('keypress', function(e) {
+		// 	idRow = $(this).data('flag');
+		// 	setTimeout(function(){
+		// 		window.templateClone.setTotal('item' +idRow);
+		// 		window.templateClone.setSubTotal();
+		// 	}, 200);
+		// });
+		// $('.harga').on('keypress', function(e) {
+		// 	idRow = $(this).data('flag');
+		// 	setTimeout(function(){
+		// 		window.templateClone.setTotal('item' +idRow);
+		// 		window.templateClone.setSubTotal();
+		// 	}, 200);
+		// });
 	},
 	setTotal: function (idRow) {
 		var content = window.templateClone.content;
 		var parent = $('#'+ content).find('.' + idRow);
-		// var parent = document.getElementById('content-item').getElementsByClassName(rowID)[0];
 
 		var qty = parseInt(parent.find('.qty').val());
-		// var diskon = parent.find('.diskon').val().replace(/\./g, '').slice(3);
-		var diskon = parseInt(parent.find('.diskon').val());
-		// var harga = parent.find('.harga').val().replace(/\./g, '').slice(3);
-		var harga = parseInt(parent.find('.harga').val());
+		var diskon = parseInt(parent.find('.diskon').val().replace(/\./g, '').slice(3));
+		var harga = parseInt(parent.find('.harga').val().replace(/\./g, '').slice(3));
 
 		// get total row and parse to data attribute total in row 
-		// total = (harga - diskon)*qty;
-		// parent.attr('data-total', total);
-		// parent.dataset.total = total;
+		total = (harga - diskon)*qty;
+		parent.attr('data-total', total);
 	},
 	setSubTotal: function () {
 		var subTotalInput = $('.subtotal');
@@ -376,8 +375,11 @@ window.templateClone = {
 	init: function () {
 		this.buttonAdd();
 	}
-
-
+}
+$(document).ready(function() {
+	window.templateClone.init();
+	$('.add.init-add-one').trigger('click');
+});
 	// 	$template 		= $(this);
 	// 	rootTemplate 	= $template.data('root-template');		// class root dari template clone
 	// 	availableAdd 	= $template.data('available-add');		// jumlah yang boleh diclone
@@ -412,7 +414,7 @@ window.templateClone = {
 	// 				rowRemove($(this));
 	// 		}
 		// });
-}
+// }
 	
 	// var buttonAdd = document.getElementsByClassName('add')[0];
 // console.log(buttonAdd);
@@ -541,10 +543,6 @@ window.templateClone = {
 /**
  * on document ready triger click btn 'add' for template clone & event pjax:end
  */
-$(document).ready(function() {
-	window.templateClone.init();
-	$('.add.init-add-one').trigger('click');
-});
 /**
  * function template add
  * description: ...

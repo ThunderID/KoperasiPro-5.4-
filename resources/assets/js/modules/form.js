@@ -8,7 +8,7 @@ require ('./form/button-upload');
 require ('./form/form-inputmask');
 
 // add module form validation
-require ('./form/form-validate');
+// require ('./form/form-validate');
 
 // add module form wizard
 require ('./form/form-wizard');

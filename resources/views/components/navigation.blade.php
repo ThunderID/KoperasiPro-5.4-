@@ -15,6 +15,7 @@
 	*/
 
 	// note: if menu have sub's, route parameter should be assigned with null. this will prevent menu from redirecting rather than showing it's sub's navigation menu.
+			// dd(TQueries\Navigation\NavbarService::all());
 @endphp
 
 <!-- first layer -->

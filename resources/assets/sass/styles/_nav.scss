@@ -53,14 +53,14 @@ nav {
 		margin-top: 50px;
 		padding: 0px;
 		background: $navbar-bg-default; 
-		min-height: 31px;
+		min-height: 35px;
 
 		.menu-list {
 			.active {
 				a {
 					border-top: 2px solid $color-active; 
 					background: $navbar-bg-primary;
-					padding: 6px 16px;
+					padding: 6px 16px 10px 16px;
 				    border-bottom: 1px solid $navbar-bg-primary;				
 				}
 			}
@@ -75,7 +75,7 @@ nav {
 		}
 	}
 	&.layer2 {
-		margin-top: 80px;
+		margin-top: 85px;
 		padding: 0px;
 		background: $navbar-bg-primary; 
 		min-height: 35px;

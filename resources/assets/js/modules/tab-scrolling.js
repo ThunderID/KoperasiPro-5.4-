@@ -12,7 +12,12 @@ window.tabScrolling = {
 		return (($('.lists').outerWidth()) - this.widthOfTab() - this.getLeftPosition()) - this.scrollBarWidths;
 	},
 	getLeftPosition: function () {
-		return $('.tab-lists').position().left;
+		var leftPosition = $('.tab-lists').position();
+		
+		if (typeof (leftPosition) != 'undefined') {
+			var newLeftPosition = $('.tab-lists').position().left;
+		}
+		return newLeftPosition;
 	},
 	reAdjustPosition: function ()  {
 		if (($('.lists').outerWidth()) < this.widthOfTab()) {
@@ -61,6 +66,3 @@ window.tabScrolling = {
 		this.windowResize();
 	}
 }
-$(document).ready( function() {
-	window.tabScrolling.init();
-});

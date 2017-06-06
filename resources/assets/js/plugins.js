@@ -48,13 +48,18 @@ $(document).ready(function(){
 		// call module plugin print
 		// print();
 
-		window.formEntertoTabs();
-		window.noEnterToSubmit();
-		window.formInputMask();
-		window.templateClone.init();
+		// plugin yang tidak jalan ketikan n-progress
+		window.tabScrolling.init();
+		window.formEntertoTabs.init();
+		window.noEnterToSubmit.init();
+		window.formInputMask.init();
 		window.wizard.init();
-		window.select();
-		$('.input-switch').bootstrapSwitch();
+		// window.select();
+		// $('.input-switch').bootstrapSwitch();
+		
+		// khusus module template clone
+		window.templateClone.init();
+		$('.add.init-add-one').trigger('click');
 	});
 
     // Form Submit with get method
@@ -97,7 +102,7 @@ window.validate = require('./plugins/jquery-validate/jquery.validate');
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
+window.Inputmask = require('inputmask');
 
 /**
  * 8. jQuery quick selection
@@ -134,5 +139,5 @@ window.list = require('./plugins/list-js/list.js');
  */
 window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
 $(document).ready( function() {
-	$('.input-switch').bootstrapSwitch();
+	// $('.input-switch').bootstrapSwitch();
 });
