@@ -5,6 +5,10 @@
 @stop
 
 @push('content')
+<?php
+	dd($page_datas);
+?>
+
 	<div class="row field">
 		<div class="col-sm-12">
 			<h3>Dashboard</h3>
@@ -26,9 +30,11 @@
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="tab" href="#kas" role="tab">Laporan Kas</a>
 				</li>
+				{{--
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#calculator" role="tab">Calculator</a>
 				</li>
+				--}}
 			</ul>
 
 			<!-- Tab panes -->
@@ -272,6 +278,7 @@
 
 				</div>
 
+				{{-- 
 				<div class="tab-pane" id="calculator" role="tabpanel">
 					
 					<div class="row">
@@ -288,6 +295,7 @@
 					</div>					
 
 				</div>
+				--}}
 
 			</div>
 
