@@ -44,6 +44,7 @@ class Visa_A extends BaseModel
 											'id'							,
 											'role'							,
 											'scopes'						,
+											'last_logged'					,
 											'immigration_ro_koperasi_id'	,
 											'immigration_pengguna_id'		,
 										];
@@ -69,6 +70,11 @@ class Visa_A extends BaseModel
 	public function koperasi()
 	{
 		return $this->belongsTo('TImmigration\Models\Koperasi_RO', 'immigration_ro_koperasi_id');
+	}
+
+	public function pengguna()
+	{
+		return $this->belongsTo('TImmigration\Models\Pengguna', 'immigration_pengguna_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
