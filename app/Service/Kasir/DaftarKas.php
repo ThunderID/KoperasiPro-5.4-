@@ -150,13 +150,19 @@ class DaftarKas
 		//2.allow kantor
 		$model  				= $model->koperasi($active_office['koperasi']['id']);
 
-		//5.allow nomor_kredit
+		//3.allow nomor_kredit
 		if(isset($queries['nomor_kredit']))
 		{
 			$model  			= $model->nomorkredit($queries['nomor_kredit']);
 		}
 
-		//7.sort klien
+		//4.cari realisasi
+		if(isset($queries['menunggu_realisasi']))
+		{
+			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->Where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
+		}
+
+		//5.sort klien
 		if(isset($queries['urutkan']))
 		{
 			foreach ($queries['urutkan'] as $key => $value) 
