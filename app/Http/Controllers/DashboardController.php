@@ -52,8 +52,8 @@ class DashboardController extends Controller
 						break;
 
 					case 'realisasi_kredit' :case 'transaksi_harian' : case 'kas_harian' :
-						$this->page_attributes->hook[3][0]	='pages.dashboard.widgets.realisasi_kredit';
-						$this->page_attributes->hook[3][1]	='pages.dashboard.widgets.kas_hari_ini';
+						$this->page_attributes->hook[2][1]	='pages.dashboard.widgets.realisasi_kredit';
+						$this->page_attributes->hook[3][0]	='pages.dashboard.widgets.kas_hari_ini';
 						break;
 					default:
 						# code...
@@ -63,6 +63,7 @@ class DashboardController extends Controller
 		}
 
 		$this->view						= view('pages.dashboard.index');		
+		// $this->view						= view('pages.dashboard.kasir');		
 
 		//initialize view
 

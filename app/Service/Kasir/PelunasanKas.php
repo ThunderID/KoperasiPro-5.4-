@@ -6,6 +6,8 @@ use App\Domain\Kasir\Models\HeaderTransaksi as Model;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 
+use TCommands\Kredit\RealisasiKredit;
+
 class PelunasanKas
 {
 	protected $id;
@@ -40,11 +42,18 @@ class PelunasanKas
 			{
 				throw new Exception("Bukti Tidak Ditemukan", 1);
 			}
-	
+
 			DB::BeginTransaction();
 
 			$model->status	= 'lunas';
 			$model->save();
+
+			//check if model = bukti kas keluar
+			if($model->tipe=='bukti_kas_keluar')
+			{
+				$kredit 	= new RealisasiKredit($model->referensi_id, '');
+				$kredit 	= $kredit->handle();
+			}
 
 			DB::commit();
 

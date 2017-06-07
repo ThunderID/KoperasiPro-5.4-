@@ -163,6 +163,11 @@ class KreditAktif_RO extends BaseModel
 
 	public function scopeNomorDokumenKredit($query, $value)
 	{
+		if(is_array($value))
+		{
+			return $query->whereIn('nomor_dokumen_kredit', $value);
+		}
+
 		return $query->where('nomor_dokumen_kredit', $value);
 	}
 

@@ -53,21 +53,20 @@ nav {
 		margin-top: 50px;
 		padding: 0px;
 		background: $navbar-bg-default; 
-		min-height: 31px;
+		min-height: 35px;
 
 		.menu-list {
 			.active {
 				a {
 					border-top: 2px solid $color-active; 
 					background: $navbar-bg-primary;
-					padding: 6px 16px;
+					padding: 6px 16px 10px 16px;
 				    border-bottom: 1px solid $navbar-bg-primary;				
 				}
 			}
 			a {
 				color: $font-color-primary;	
-				padding: 8px 16px;
-				
+				padding: 9px 16px;
 				&:hover {
 					background: $navbar-bg-primary;
 				}			
@@ -75,7 +74,7 @@ nav {
 		}
 	}
 	&.layer2 {
-		margin-top: 80px;
+		margin-top: 85px;
 		padding: 0px;
 		background: $navbar-bg-primary; 
 		min-height: 35px;
@@ -91,8 +90,7 @@ nav {
 
 		.menu-list {
 			left: 0;
-	    	position: fixed;
-
+		    	position: fixed;
 			.active {
 				a {
 					color: $font-color-active;
