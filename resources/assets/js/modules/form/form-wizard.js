@@ -66,7 +66,7 @@ window.wizard = {
 				window.wizard.customButtonActions();
 				window.wizard.disablePreviousButtonOnFirstStep(currentIndex);
 				window.formInputMask.init();
-				window.select();
+				// window.select();
 			}, 
 			onInit: function (event, currentIndex) {
 				window.wizard.resizeContent();

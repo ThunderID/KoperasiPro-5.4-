@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 		// plugin yang tidak jalan ketikan n-progress
 		window.tabScrolling.init();
-		window.formEntertoTabs.init();
+		// window.formEntertoTabs.init();
 		window.noEnterToSubmit.init();
 		window.formInputMask.init();
 		window.wizard.init();
@@ -60,6 +60,7 @@ $(document).ready(function(){
 		// khusus module template clone
 		window.templateClone.init();
 		$('.add.init-add-one').trigger('click');
+		$('.modal').modal('hide');
 	});
 
     // Form Submit with get method

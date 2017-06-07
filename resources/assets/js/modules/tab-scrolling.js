@@ -29,7 +29,7 @@ window.tabScrolling = {
 		if (this.getLeftPosition < 0) {
 			$('.arrow-left').show();
 		} else {
-			$('.list-item').animate({ left: "-=" +this.getLeftPosition()+ "px" },'slow');
+			$('.list-item').animate({ left: "-=" +this.getLeftPosition()+ "px" },'fast');
 			$('.arrow-left').hide();
 		}
 	},
@@ -40,7 +40,7 @@ window.tabScrolling = {
 
 			$('.arrow-left').fadeIn('slow');
 			$('.arrow-right').fadeOut('slow');
-			$('.tab-lists').animate({left: "+=" +widthOfHidden+ "px" },'slow',function(){
+			$('.tab-lists').animate({left: "+=" +widthOfHidden+ "px" }, 200,function(){
 			});
 		});
 	},
@@ -49,7 +49,7 @@ window.tabScrolling = {
 		$('.arrow-left').on('click', function(e) {
 			$('.arrow-right').fadeIn('slow');
 			$('.arrow-left').fadeOut('slow');
-			$('.tab-lists').animate({left: "-=" +widthOfHidden+ "px" },'slow',function(){
+			$('.tab-lists').animate({left: "-=" +widthOfHidden+ "px" }, 200,function(){
 			});
 		});
 	},

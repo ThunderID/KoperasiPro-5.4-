@@ -4,7 +4,7 @@
 window.formAjaxSubmit = {
 	loadingEffect: function (btn) {
 		button = btn.find('button[type="submit"]');
-		checkSearch = searcButton.attr('data-search');
+		checkSearch = button.attr('data-search');
 
 		if (typeof (button) != 'undefined') {
 			button.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>');

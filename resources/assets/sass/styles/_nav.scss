@@ -66,8 +66,7 @@ nav {
 			}
 			a {
 				color: $font-color-primary;	
-				padding: 8px 16px;
-				
+				padding: 9px 16px;
 				&:hover {
 					background: $navbar-bg-primary;
 				}			
@@ -91,8 +90,7 @@ nav {
 
 		.menu-list {
 			left: 0;
-	    	position: fixed;
-
+		    	position: fixed;
 			.active {
 				a {
 					color: $font-color-active;
