@@ -67,7 +67,7 @@
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+		
 		<style>
 			@yield('template-styles')
 			input[type=number]::-webkit-inner-spin-button, 
@@ -88,11 +88,11 @@
 		<!-- common vendors -->
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		@yield('script-plugins')
 
 		<script src="{{ mix('js/app.js') }}"></script>
-		
 		<script type="text/javascript">
 			@yield('template-scripts')
-		</script>		
+		</script>
 	</body>
 </html>
