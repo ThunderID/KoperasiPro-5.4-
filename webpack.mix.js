@@ -46,5 +46,6 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css')
 	.version()
 	.copy('resources/assets/fonts', 'public/fonts/')
 	.copy('resources/assets/icons', 'public/icons')
-	// .browserSync('koperasipro.dev')
+	.copy('resources/assets/js/jquery-gmaps-latlon-picker.js','public/js/jquery-gmaps-latlon-picker.js')
+	.copy('resources/assets/js/jquery-2.1.1.min.js','public/js/jquery-2.1.1.min.js')
 	;
