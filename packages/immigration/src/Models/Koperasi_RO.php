@@ -31,6 +31,8 @@ class Koperasi_RO extends BaseModel
 											'nama'					,
 											'latitude'				,
 											'longitude'				,
+											'alamat'				,
+											'nomor_telepon'			,
 										];
 
 	/**

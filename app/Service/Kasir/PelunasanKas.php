@@ -49,7 +49,7 @@ class PelunasanKas
 			$model->save();
 
 			//check if model = bukti kas keluar
-			if($model->tipe=='bukti_kas_keluar')
+			if($model->tipe=='bukti_kas_keluar' && (!is_null($model->referensi_id) || $model->referensi_id!=0))
 			{
 				$kredit 	= new RealisasiKredit($model->referensi_id, '');
 				$kredit 	= $kredit->handle();
