@@ -73,7 +73,7 @@ class SetujuiKredit
 			//4a. check header transaksi
 			$ex_header 						= HeaderTransaksi::where('referensi_id', $kredit_aktif->nomor_kredit)->where('tipe', 'bukti_kas_keluar')->first();
 
-			if($ex_header)
+			if(!$ex_header)
 			{
 				$header 						= new HeaderTransaksi;
 				$header->orang_id 				= $kredit->kreditur_id;
@@ -82,8 +82,8 @@ class SetujuiKredit
 				$header->nomor_transaksi		= 0;
 				$header->tipe					= 'bukti_kas_keluar';
 				$header->status					= 'pending';
-				$header->tanggal_dikeluarkan	= Carbon::now()->format('Y-m-d H:i:s');
-				$header->tanggal_jatuh_tempo	= Carbon::parse('+ 1 month')->format('Y-m-d H:i:s');
+				$header->tanggal_dikeluarkan	= Carbon::now()->format('d/m/Y');
+				$header->tanggal_jatuh_tempo	= Carbon::parse('+ 1 month')->format('d/m/Y');
 				$header->save();
 
 				$detail 						= new DetailTransaksi;
