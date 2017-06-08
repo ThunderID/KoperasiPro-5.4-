@@ -12,18 +12,6 @@ namespace App\Infrastructure\Traits;
  * @author     C Mooy <chelsymooy1108@gmail.com>
  */
 trait GuidTrait {
- 	
- 	/**
-	 * Boot the scope.
-	 * 
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-
-		$this->attributes['_id']		= $this->createID('test');
-	}
 
 	/**
 	 * Add Event_list to queue
