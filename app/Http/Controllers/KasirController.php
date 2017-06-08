@@ -122,7 +122,6 @@ class KasirController extends Controller
 		}
 		catch(Exception $e)
 		{
-			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error']    = $e->getMessage();
@@ -166,7 +165,6 @@ class KasirController extends Controller
 			$this->page_datas->kas				= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);
 			$this->page_datas->total_kas		= $this->service->count(['status' => $status]);
 		}
-
 		//3. Memanggil fungsi filter active
 		// $this->page_datas->kas_filters 			= $this->service->statusLists();
 	}

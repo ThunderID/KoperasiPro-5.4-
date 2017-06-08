@@ -11,7 +11,8 @@
 |
 */
 //Menu Login
-Route::get('/',			['uses'	=> 'LoginController@index',			'as' => 'index']);
+Route::get('/',			['uses'	=> 'HomeController@index',			'as' => 'home.index']);
+
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
 Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destroy']);

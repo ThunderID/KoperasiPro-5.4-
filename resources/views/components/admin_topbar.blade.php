@@ -9,8 +9,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand m-b-none" href="{{route('dashboard.index')}}">{{ Config::get('app.name') }}</a>
-			<a class="navbar-brand m-b-none m-l-xs p-r-lg" style="font-size: 14px;" href="{{route('dashboard.index')}}"><i class="fa fa-home"></i> Beranda</a>
+			<a class="navbar-brand m-b-none" href="{{route('home.index')}}">{{ Config::get('app.name') }}</a>
+			<a class="navbar-brand m-b-none m-l-xs p-r-lg" style="font-size: 14px;" href="{{route('home.index')}}"><i class="fa fa-home"></i> Beranda</a>
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="list-organisation pull-left m-l-xs">
 				<div class="dropdown p-t-xs">

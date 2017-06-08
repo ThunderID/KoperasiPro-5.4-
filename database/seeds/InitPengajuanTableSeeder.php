@@ -27,6 +27,9 @@ class InitPengajuanTableSeeder extends Seeder
 		DB::table('immigration_ro_koperasi')->truncate();
 		DB::table('immigration_visa')->truncate();
 
+
+		$faker			= \Faker\Factory::create();
+
 		//1. simpan imigrasi
 		$credentials	=	[
 								'email'				=> 'admin@ksp.id',
@@ -40,6 +43,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Jaya',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'komisaris',
 								'scopes'			=>  [
@@ -77,6 +82,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Terus',
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'komisaris',
 								'scopes'			=>  [
@@ -118,7 +125,6 @@ class InitPengajuanTableSeeder extends Seeder
 		$gndr   	= ['perempuan', 'laki-laki'];
 		$sp   		= ['belum_kawin', 'kawin', 'cerai', 'cerai_mati'];
 		$jw   		= [6,10,12,18,24,30,36,42,48,54,60];
-		$faker		= \Faker\Factory::create();
 
 		$type_k	= ['roda_2', 'roda_3', 'roda_4', 'roda_6'];
 		$merk_k	= ['honda', 'yamaha', 'suzuki', 'kawasaki', 'mitsubishi', 'toyota', 'nissan', 'kia', 'daihatsu', 'isuzu'];
@@ -157,7 +163,7 @@ class InitPengajuanTableSeeder extends Seeder
 						'jenis_kelamin'	=> $gndr[rand(0,1)],
 
 						'status_perkawinan'		=> $sp[rand(0,3)],
-						'telepon'				=> $faker->e164PhoneNumber,
+						'telepon'				=> $faker->PhoneNumber,
 						'pekerjaan'				=> $pekerjaan[rand(0,5)],
 						'penghasilan_bersih'	=> 'Rp '.rand(3,8).'.000.000',
 						'foto_ktp'				=> $foto[rand(0,4)],
