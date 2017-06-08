@@ -12,7 +12,7 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-			{!! Form::open(['url' => route('credit.store'), 'data-ajax-submit' => true]) !!}
+			{!! Form::open(['url' => route('koperasi.store'), 'data-ajax-submit' => true]) !!}
 				<fieldset class="form-group">
 					<label class="text-sm">Nama Koperasi</label>
 					<div class="row">
