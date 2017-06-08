@@ -47,9 +47,11 @@ class NavbarService
 				'kasir'		=> 	[
 									'route' => null,
 									'sub'	=> 	[
-													'kas'			=> route('kasir.kas.index'),
+													'realisasi_kredit'		=> route('kasir.realisasi.kredit'),
+													'kas'				=> route('kasir.kas.index'),
 													'tambah_kas_masuk'		=> route('kasir.kas.create', ['status' => 'masuk']),
 													'tambah_kas_keluar'		=> route('kasir.kas.create', ['status' => 'keluar']),
+													'bayar_angsuran'		=> route('kasir.kas.index'),
 												]
 								],
 				'pengaturan'=> 	[
