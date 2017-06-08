@@ -4,7 +4,7 @@
 	active in
 @stop
 
-@section('kas')
+@section(Route::is('kasir.kas.index') ? 'kas' : 'realisasi_kredit')
 	active
 @stop
 @php

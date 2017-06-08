@@ -49,6 +49,31 @@ class KasirController extends Controller
 		return $this->generateView();
 	}
 
+	public function realisasi ()
+	{
+		$page 				= 1;
+
+		if (Input::has('page'))
+		{
+			$page 			= (int)Input::get('page');
+		}
+
+		$this->page_attributes->title			= "Realisasi Kredit";
+		$this->page_attributes->breadcrumb		= 	[
+														'Realisasi Kredit'   => route('kasir.kas.index'),
+													];
+		// dd($this->service->get());
+		// get list kreditur
+		$this->getlistKas($page, 10);
+
+		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_kas, $page, 10);
+
+		$this->view								= view('pages.kasir.index');
+
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
 	public function create ($status)
 	{
 		$this->page_attributes->title           = 'Kas ' . $status;

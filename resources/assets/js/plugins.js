@@ -60,12 +60,12 @@ $(document).ready(function(){
 		// khusus module template clone
 		window.templateClone.init();
 		$('.add.init-add-one').trigger('click');
-		$('.modal').modal('hide');
 	});
 
     // Form Submit with get method
     $(document).on('submit', 'form[data-pjax]', function(event) {
-      $.pjax.submit(event, '#pjax-container')
+		$.pjax.submit(event, '#pjax-container')
+		$('.modal').modal('hide');
     })    
 
     // does current browser support PJAX
