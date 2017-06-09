@@ -33,10 +33,10 @@ class NavbarService
 		*/
 		// note: if menu have sub's, route parameter should be assigned with null. this will prevent menu from redirecting rather than showing it's sub's navigation menu.
 		return [
-				'dashboard' => 	[
-									'route' => route('dashboard.index'),
-									'sub'	=> []
-								],
+				// 'dashboard' => 	[
+				// 					'route' => route('dashboard.index'),
+				// 					'sub'	=> []
+				// 				],
 				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[

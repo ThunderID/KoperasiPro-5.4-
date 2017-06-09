@@ -16,6 +16,8 @@ class KoperasiBaru
 	protected $nama;
 	protected $latitude;
 	protected $longitude;
+	protected $alamat;
+	protected $nomor_telepon;
 
 	/**
 	 * Create new instance.
@@ -23,12 +25,16 @@ class KoperasiBaru
 	 * @param  string $nama
 	 * @param  string $latitude
 	 * @param  string $longitude
+	 * @param  string $alamat
+	 * @param  string $nomor_telepon
 	 */
-	public function __construct($nama, $latitude, $longitude)
+	public function __construct($nama, $latitude, $longitude, $alamat, $nomor_telepon)
 	{
 		$this->nama				= $nama;
 		$this->latitude			= $latitude;
 		$this->longitude		= $longitude;
+		$this->alamat			= $alamat;
+		$this->nomor_telepon	= $nomor_telepon;
 	}
 
 	/**
@@ -45,9 +51,11 @@ class KoperasiBaru
 			$this->authorize();
 
 			// 2. Orang ID 
-		 	$variable['nama']		= $this->nama;
-		 	$variable['latitude']	= $this->latitude;
-		 	$variable['longitude']	= $this->longitude;
+		 	$variable['nama']			= $this->nama;
+		 	$variable['latitude']		= $this->latitude;
+		 	$variable['longitude']		= $this->longitude;
+		 	$variable['alamat']			= $this->alamat;
+		 	$variable['nomor_telepon']	= $this->nomor_telepon;
 
 		 	// 3. validate $details
 			DB::BeginTransaction();
@@ -56,6 +64,25 @@ class KoperasiBaru
 			$koperasi 				= new Koperasi_RO;
 			$koperasi 				= $koperasi->fill($variable);
 			$koperasi->save();
+
+			//2b. auto giving access to the one who created this org
+			$isi_acl 				= [
+				'role'				=> $this->activeOffice['role'],
+				'scopes'			=> [
+											[
+												'list'		=> 'modifikasi_koperasi',
+											],
+											[
+												'list'		=> 'atur_akses',
+											],
+										]
+				'immigration_pengguna_id'		=> $this->loggedUser['id'],
+				'immigration_ro_koperasi_id'	=> $koperasi->id,
+			];
+
+			$acl 					= new Visa_A;
+			$acl->fill($isi_acl);
+			$acl->save();
 
 			return $koperasi->toArray();
 		}

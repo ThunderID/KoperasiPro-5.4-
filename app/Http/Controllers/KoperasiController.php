@@ -90,7 +90,7 @@ class KoperasiController extends Controller
 		try
 		{
 			$data 					= Koperasi_RO::findornew($id);
-			$data->fill($request->only(['nama', 'latitude', 'longitude']));
+			$data->fill($request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude']));
 			$data->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];

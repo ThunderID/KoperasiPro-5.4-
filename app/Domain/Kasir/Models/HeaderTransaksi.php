@@ -39,6 +39,7 @@ class HeaderTransaksi extends BaseModel
 											'status'				,
 											'tanggal_dikeluarkan'	,
 											'tanggal_jatuh_tempo'	,
+											'tanggal_pelunasan'		,
 										];
 	/**
 	 * Basic rule of database
@@ -78,6 +79,16 @@ class HeaderTransaksi extends BaseModel
 		return $this->belongsTo('TKredit\Pengajuan\Models\Orang', 'orang_id');
 	}
 	
+	/**
+	 * relationship referensi
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function referensi()
+	{
+		return $this->belongsTo('TKredit\KreditAktif\Models\KreditAktif_RO', 'referensi_id', 'nomor_kredit');
+	}
+
 	/**
 	 * relationship details
 	 *

@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use TImmigration\Models\Pengguna;
+use TImmigration\Models\Koperasi_RO;
 
 use Carbon\Carbon;
 use TQueries\ACL\SessionBasedAuthenticator;
@@ -102,22 +103,43 @@ class InitPengajuanTableSeeder extends Seeder
 									[
 										'list'		=> 'realisasi_kredit',
 									],
+									// [
+									// 	'list'		=> 'kas_harian',
+									// ],
+									// [
+									// 	'list'		=> 'transaksi_harian',
+									// ],
+									// [
+									// 	'list'		=> 'atur_akses',
+									// ],
+								],
+							];
+
+			$visa_3 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'AYOMAJUAYOJAYA',
+															'nama'			=> 'Ayo Maju Ayo Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
+														],
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
 									[
-										'list'		=> 'kas_harian',
-									],
-									[
-										'list'		=> 'transaksi_harian',
+										'list'		=> 'modifikasi_koperasi',
 									],
 									[
 										'list'		=> 'atur_akses',
 									],
 								],
 							];
-
 		$admin 			= new Pengguna;
 		$admin->fill($credentials);
 		$admin->grantVisa($visa_1);
 		$admin->grantVisa($visa_2);
+		$admin->grantVisa($visa_3);
 		$admin->save();
 
 		//2. simpan kredit
@@ -309,15 +331,15 @@ class InitPengajuanTableSeeder extends Seeder
 									[
 										'list'		=> 'realisasi_kredit',
 									],
-									[
-										'list'		=> 'kas_harian',
-									],
-									[
-										'list'		=> 'transaksi_harian',
-									],
-									[
-										'list'		=> 'atur_akses',
-									],
+									// [
+									// 	'list'		=> 'kas_harian',
+									// ],
+									// [
+									// 	'list'		=> 'transaksi_harian',
+									// ],
+									// [
+									// 	'list'		=> 'atur_akses',
+									// ],
 								],
 							];
 
@@ -367,7 +389,7 @@ class InitPengajuanTableSeeder extends Seeder
 		$marketing 			= new Pengguna;
 		$marketing->fill($credentials);
 		$marketing->grantVisa($visa_1);
-		$marketing->grantVisa($visa_2);
+		// $marketing->grantVisa($visa_2);
 		$marketing->save();
 
 		//5. simpan surveyor
@@ -410,7 +432,7 @@ class InitPengajuanTableSeeder extends Seeder
 		$surveyor 			= new Pengguna;
 		$surveyor->fill($credentials);
 		$surveyor->grantVisa($visa_1);
-		$surveyor->grantVisa($visa_2);
+		// $surveyor->grantVisa($visa_2);
 		$surveyor->save();
 
 
@@ -461,7 +483,7 @@ class InitPengajuanTableSeeder extends Seeder
 		$kasir 			= new Pengguna;
 		$kasir->fill($credentials);
 		$kasir->grantVisa($visa_1);
-		$kasir->grantVisa($visa_2);
+		// $kasir->grantVisa($visa_2);
 		$kasir->save();
 	}
 }

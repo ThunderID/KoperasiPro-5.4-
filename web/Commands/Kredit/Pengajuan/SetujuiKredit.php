@@ -9,10 +9,14 @@ use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
 use App\Domain\Kasir\Models\HeaderTransaksi;
 use App\Domain\Kasir\Models\DetailTransaksi;
 
+use App\Infrastructure\Traits\GuidTrait;
+
 use Exception, DB, TAuth, Carbon\Carbon, Validator;
 
 class SetujuiKredit
 {
+	use GuidTrait;
+
 	protected $kredit_id;
 	protected $catatan;
 
@@ -50,7 +54,7 @@ class SetujuiKredit
 
 			//2. simpan kredit aktif
 			$kaktif			=	[
-									'nomor_kredit'			=> 0,
+									'nomor_kredit'			=> self::createID('nomor_kredit'),
 									'nomor_dokumen_kredit'	=> $kredit['id'],
 									'pengajuan_kredit'		=> $kredit['pengajuan_kredit'],
 									'status'				=> 'menunggu_realisasi',
@@ -79,7 +83,7 @@ class SetujuiKredit
 				$header->orang_id 				= $kredit->kreditur_id;
 				$header->koperasi_id			= $kredit_aktif->ro_koperasi_id;
 				$header->referensi_id			= $kredit_aktif->nomor_kredit;
-				$header->nomor_transaksi		= 0;
+				$header->nomor_transaksi		= self::createID('nomor_transaksi');
 				$header->tipe					= 'bukti_kas_keluar';
 				$header->status					= 'pending';
 				$header->tanggal_dikeluarkan	= Carbon::now()->format('d/m/Y');

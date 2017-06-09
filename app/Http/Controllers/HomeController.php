@@ -35,16 +35,16 @@ class HomeController extends Controller
 				switch ($value['list']) 
 				{
 					case 'modifikasi_koperasi': case 'atur_akses' :
-						$this->page_attributes->hook[0][0]	='pages.home.widgets.last_login';
-						$this->page_attributes->hook[0][1]	='pages.home.widgets.inactive_user';
+						$this->page_attributes->hook[0][0]	='pages.home.widgets.cabang_butuh_bantuan';
+						// $this->page_attributes->hook[0][1]	='pages.home.widgets.cabang_butuh_bantuan';
 						break;
 					
 					case 'pengajuan_kredit' :
-						$this->page_attributes->hook[1][0]	='pages.home.widgets.pengajuan_baru';
+						$this->page_attributes->hook[1][0]	='pages.home.widgets.inspeksi_dokumen_pengajuan';
 						break;
 
 					case 'survei_kredit' :
-						$this->page_attributes->hook[1][1]	='pages.home.widgets.survei_kredit';
+						$this->page_attributes->hook[1][1]	='pages.home.widgets.inspeksi_dokumen_survei';
 						break;
 
 					case 'setujui_kredit' :
@@ -64,8 +64,6 @@ class HomeController extends Controller
 
 		$this->view						= view('pages.home.index');		
 		// $this->view						= view('pages.home.kasir');		
-
-		//initialize view
 
 		//function from parent to generate view
 		return $this->generateView();

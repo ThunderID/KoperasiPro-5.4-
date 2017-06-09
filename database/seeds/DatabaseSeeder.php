@@ -12,14 +12,14 @@ class DatabaseSeeder extends Seeder
 	public function run()
 	{
 		//TABLE MIGRATION FOR VERSI II CONST
-		$this->call(InitPengajuanTableSeeder::class);
-		$this->call(InitLanjutSurveiTableSeeder::class);
-		$this->call(InitSurveiTableSeeder::class);
-		$this->call(InitKasTableSeeder::class);
+		// $this->call(InitPengajuanTableSeeder::class);
+		// $this->call(InitLanjutSurveiTableSeeder::class);
+		// $this->call(InitSurveiTableSeeder::class);
+		// $this->call(InitKasTableSeeder::class);
 		$this->call(IndonesiaTableSeeder::class);
 
 		//TABLE MIGRATION FOR API
-		$this->call(InitAPITestTableSeeder::class);
+		// $this->call(InitAPITestTableSeeder::class);
 
 		//TABLE MIGRATION FOR ANY USER
 		// $this->call(InitTestTableSeeder::class);

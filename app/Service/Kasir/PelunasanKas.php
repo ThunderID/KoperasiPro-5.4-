@@ -45,7 +45,8 @@ class PelunasanKas
 
 			DB::BeginTransaction();
 
-			$model->status	= 'lunas';
+			$model->status				= 'lunas';
+			$model->tanggal_pelunasan	= Carbon::now()->format('Y-m-d H:i:s');
 			$model->save();
 
 			//check if model = bukti kas keluar
