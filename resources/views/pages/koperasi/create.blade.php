@@ -12,7 +12,7 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-			{!! Form::open(['url' => route('credit.store'), 'data-ajax-submit' => true]) !!}
+			{!! Form::open(['url' => route('koperasi.store'), 'data-ajax-submit' => true]) !!}
 				<fieldset class="form-group">
 					<label class="text-sm">Nama Koperasi</label>
 					<div class="row">
@@ -30,7 +30,7 @@
 						      	<input id="autocomplete" name="alamat" onFocus="geolocate()" type="text" class="form-control gllpSearchField" placeholder="Masukkan alamat">
 								<span class="input-group-btn">
 							        <button class="btn btn-default gllpSearchButton" type="button" style="padding-bottom: 9px;">
-										<i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+										<i class="fa fa-search" aria-hidden="true"></i>
 							        </button>
 							    </span>
 						    </div>							
@@ -44,7 +44,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
-							<div class="gllpMap">Google Maps</div>
+							<div class="gllpMap">Loading Google Maps</div>
 						</div>
 					</div>
 					<br/>
@@ -57,7 +57,7 @@
 					<label class="text-sm">Telepon</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
-							{!! Form::text('telepon', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan nomor telepon']) !!}			
+							{!! Form::text('nomor_telepon', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan nomor telepon']) !!}			
 						</div>
 					</div>
 				</fieldset>	

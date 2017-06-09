@@ -109,7 +109,7 @@
 	{{-- modal change koperasi --}}
 	@component('components.modal', [
 			'id'			=> 'modal-change-koperasi',
-			'title'			=> 'Pindah Koperasi',
+			'title'			=> 'Menu Koperasi',
 			'settings'		=> [
 				'hide_buttons'	=> true
 			]
@@ -120,6 +120,9 @@
 				<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
 			</div>
 			<ul class="list-group list">
+<!-- 				<li class="list-group-item">
+					<a href="{{ route('koperasi.create') }}" onclick="$('.modal').modal('hide')"><i class="fa fa-plus"></i>&nbsp;&nbsp; Tambah Koperasi Baru</a>
+				</li>	 -->		
 				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
 					<li class="list-group-item">
 						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>

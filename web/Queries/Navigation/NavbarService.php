@@ -53,15 +53,7 @@ class NavbarService
 													'tambah_kas_keluar'		=> route('kasir.kas.create', ['status' => 'keluar']),
 													'bayar_angsuran'		=> route('kasir.kas.index'),
 												]
-								],
-				'pengaturan'=> 	[
-									'route' => null,
-									'sub'	=> 	[
-													'buka_baru'			=> route('koperasi.create'),
-													'koperasi'			=> route('koperasi.index'),
-													'pengguna'			=> route('pengguna.index'),
-												]
-								],
+								]
 			];
 	}
 }
