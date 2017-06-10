@@ -39,6 +39,7 @@ class HeaderTransaksi extends BaseModel
 											'status'				,
 											'tanggal_dikeluarkan'	,
 											'tanggal_jatuh_tempo'	,
+											'tanggal_pelunasan'		,
 										];
 	/**
 	 * Basic rule of database
@@ -66,6 +67,7 @@ class HeaderTransaksi extends BaseModel
 											'deleted_at', 
 										];
 
+	protected $appends				= ['tipe_dokumen'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	/**
@@ -78,6 +80,16 @@ class HeaderTransaksi extends BaseModel
 		return $this->belongsTo('TKredit\Pengajuan\Models\Orang', 'orang_id');
 	}
 	
+	/**
+	 * relationship referensi
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function referensi()
+	{
+		return $this->belongsTo('TKredit\KreditAktif\Models\KreditAktif_RO', 'referensi_id', 'nomor_kredit');
+	}
+
 	/**
 	 * relationship details
 	 *
@@ -138,6 +150,22 @@ class HeaderTransaksi extends BaseModel
 		return $this->formatDateTo($value);
 	}
 
+	protected function getTipeDokumenAttribute($value)
+	{
+		if(str_is($this->status, 'bukti_kas_keluar'))
+		{
+			if($this->referensi_id != 0 && !is_null($this->referensi_id))
+			{
+				return $this->attributes['tipe_dokumen']	= 'nota_realisasi';
+			}
+			else
+			{
+				return $this->attributes['tipe_dokumen']	= 'transaksi_keluar';
+			}
+		}
+
+		return $this->attributes['tipe_dokumen']			= 'transaksi_masuk';
+	}
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**

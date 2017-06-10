@@ -67,7 +67,7 @@ class InitKasTableSeeder extends Seeder
 			$transaksi->save();
 		}
 
-		//4. Pelunasan
+		// 4. Pelunasan
 		foreach (range(0, 9) as $key) 
 		{
 			$rand_trs 			= HeaderTransaksi::skip(rand(0,20))->take(1)->get();
@@ -77,12 +77,12 @@ class InitKasTableSeeder extends Seeder
 		}
 
 		//5. delete
-		foreach (range(0, 0) as $key) 
-		{
-			$rand_trs 			= HeaderTransaksi::skip(rand(0,20))->take(1)->get();
+		// foreach (range(0, 0) as $key) 
+		// {
+		// 	$rand_trs 			= HeaderTransaksi::skip(rand(0,20))->take(1)->get();
 
-			$transaksi 			= new HapusBuktiKas($rand_trs[0]['id']);
-			$transaksi->save();
-		}
+		// 	$transaksi 			= new HapusBuktiKas($rand_trs[0]['id']);
+		// 	$transaksi->save();
+		// }
 	}
 }

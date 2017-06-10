@@ -1,7 +1,7 @@
 @inject('dokcab', '\App\Service\Analis\InspeksiDokumenCabang')
 
 @php
-	$dokcab 	= $dokcab->survei();
+	$dokcab 	= $dokcab->pengajuan();
 @endphp
 <div class="row" style="padding:15px;">
 	<div class="col-sm-12">
@@ -27,24 +27,20 @@
 								<td class="text-right">
 									@if(!$value['data_nasabah'])
 										Data Nasabah <i class="fa fa-close"></i>
+									@else
+										Data Nasabah <i class="fa fa-check"></i>
 									@endif
 									<br>
-									@if(!$value['data_kepribadian'])
-										Data Kepribadian <i class="fa fa-close"></i>
-									@endif
-									@if(!$value['data_aset'])
-										Data Aset <i class="fa fa-close"></i>
+									@if(!$value['data_relasi'])
+										Data Relasi <i class="fa fa-close"></i>
+									@else
+										Data Relasi <i class="fa fa-check"></i>
 									@endif
 									<br>
 									@if(!$value['data_jaminan'])
 										Data Jaminan <i class="fa fa-close"></i>
-									@endif
-									<br>
-									@if(!$value['data_rekening'])
-										Data Rekening <i class="fa fa-close"></i>
-									@endif
-									@if(!$value['data_keuangan'])
-										Data Keuangan <i class="fa fa-close"></i>
+									@else
+										Data Jaminan <i class="fa fa-check"></i>
 									@endif
 								</td>
 								<td class="text-right">

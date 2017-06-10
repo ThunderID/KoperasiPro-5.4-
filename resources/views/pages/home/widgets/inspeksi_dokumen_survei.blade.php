@@ -27,24 +27,38 @@
 								<td class="text-right">
 									@if(!$value['data_nasabah'])
 										Data Nasabah <i class="fa fa-close"></i>
+									@else
+										Data Nasabah <i class="fa fa-check"></i>
 									@endif
 									<br>
 									@if(!$value['data_kepribadian'])
 										Data Kepribadian <i class="fa fa-close"></i>
+									@else
+										Data Kepribadian <i class="fa fa-check"></i>
 									@endif
+									<br>
 									@if(!$value['data_aset'])
 										Data Aset <i class="fa fa-close"></i>
+									@else
+										Data Aset <i class="fa fa-check"></i>
 									@endif
 									<br>
 									@if(!$value['data_jaminan'])
 										Data Jaminan <i class="fa fa-close"></i>
+									@else
+										Data Jaminan <i class="fa fa-check"></i>
 									@endif
 									<br>
 									@if(!$value['data_rekening'])
 										Data Rekening <i class="fa fa-close"></i>
+									@else
+										Data Rekening <i class="fa fa-check"></i>
 									@endif
+									<br>
 									@if(!$value['data_keuangan'])
 										Data Keuangan <i class="fa fa-close"></i>
+									@else
+										Data Keuangan <i class="fa fa-check"></i>
 									@endif
 								</td>
 								<td class="text-right">
@@ -60,7 +74,7 @@
 						@endforelse
 						@if(count($dokcab))
 							<tr>
-								<td colspan="4" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
+								<td colspan="4" class="text-right"><a href="{{route('credit.index', ['status' => 'survei'])}}">Lihat Lainnya</a></td>
 							</tr>
 						@endif
 					</tbody>

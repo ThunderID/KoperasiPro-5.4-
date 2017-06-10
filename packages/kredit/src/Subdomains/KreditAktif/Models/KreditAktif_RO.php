@@ -82,7 +82,7 @@ class KreditAktif_RO extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
-											'nomor_dokumen_kredit', 
+											// 'nomor_dokumen_kredit', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 

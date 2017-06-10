@@ -35,7 +35,8 @@ class RealisasiKredit
 		try
 		{
 			//check data pengajuan
-			$kredit 		= Pengajuan::id($this->kredit_id)->with(['kreditur'])->firstorfail();
+			$nomor_kredit 	= KreditAktif_RO::where('nomor_kredit', $kredit['id'])->first()->toArray();
+			$kredit 		= Pengajuan::id($nomor_kredit['nomor_dokumen_kredit'])->with(['kreditur'])->firstorfail();
 
 			DB::BeginTransaction();
 
@@ -44,14 +45,14 @@ class RealisasiKredit
 
 			//2. simpan kredit aktif
 			$kaktif			=	[
-									'nomor_kredit'			=> 0,
+									'nomor_kredit'			=> $this->kredit_id,
 									'nomor_dokumen_kredit'	=> $kredit['id'],
 									'pengajuan_kredit'		=> $kredit['pengajuan_kredit'],
 									'status'				=> 'terealisasi',
 									'tanggal'				=> $kredit['tanggal_pengajuan'],
 									'nama_kreditur'			=> $kredit['kreditur']['nama'],
 									'ro_koperasi_id'		=> TAuth::activeOffice()['koperasi']['id'],
-									'ro_mobile_model_id'	=> 0,
+									'ro_mobile_model_id'	=> $nomor_kredit['ro_mobile_model_id'],
 								];
 			$kredit_aktif 	= new KreditAktif_RO;
 			$kredit_aktif->fill($kaktif);
@@ -59,6 +60,7 @@ class RealisasiKredit
 
 			//3. parse perubahan status
 			$riwayat 		= ['status' => 'terealisasi', 'tanggal' => Carbon::now()->format('d/m/Y'), 'nomor_dokumen_kredit' => $kredit['id'], 'catatan' => $this->catatan];
+		
 			$status 		= new RiwayatKredit_RO;
 			$status->fill($riwayat);
 			$status->save();

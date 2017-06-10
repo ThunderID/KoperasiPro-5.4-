@@ -23,6 +23,7 @@ class CreateHeaderTransaksiTable extends Migration
             $table->enum('status', ['pending', 'lunas']);
             $table->datetime('tanggal_dikeluarkan');
             $table->datetime('tanggal_jatuh_tempo')->nullable();
+            $table->datetime('tanggal_pelunasan')->nullable();
             
             $table->timestamps();
             $table->softDeletes();

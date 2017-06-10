@@ -65,6 +65,15 @@ class DetailTransaksi extends BaseModel
 
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship header
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function header()
+	{
+		return $this->belongsTo('App\Domain\Kasir\Models\HeaderTransaksi', 'header_transaksi_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
