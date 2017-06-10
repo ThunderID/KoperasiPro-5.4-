@@ -35,7 +35,7 @@ class RealisasiKredit
 		try
 		{
 			//check data pengajuan
-			$nomor_kredit 	= KreditAktif_RO::where('nomor_kredit', $kredit['id'])->first()->toArray();
+			$nomor_kredit 	= KreditAktif_RO::where('nomor_kredit', $this->kredit_id)->first()->toArray();
 			$kredit 		= Pengajuan::id($nomor_kredit['nomor_dokumen_kredit'])->with(['kreditur'])->firstorfail();
 
 			DB::BeginTransaction();
