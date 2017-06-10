@@ -74,6 +74,14 @@ class DaftarKas
 	{
 		$model 		= $this->queries([]);
 		$model 		= $model->id($id)->with(['details', 'orang', 'referensi'])->first();
+		$model 		= $model->toArray();
+
+		if(!empty($model['referensi']))
+		{
+			$pengajuan 	= Pengajuan::where('id', $model->referensi_id)->with(['kreditur', 'referensi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
+			
+			$model['pengajuan']	= $pengajuan->toArray();
+		}
 
 		return $model->toArray();
 	}
