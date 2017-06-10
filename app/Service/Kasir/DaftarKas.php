@@ -73,7 +73,7 @@ class DaftarKas
 	public function detailed($id)
 	{
 		$model 		= $this->queries([]);
-		$model 		= $model->id($id)->with(['details', 'orang'])->first();
+		$model 		= $model->id($id)->with(['details', 'orang', 'referensi'])->first();
 
 		return $model->toArray();
 	}
@@ -159,7 +159,7 @@ class DaftarKas
 		//4.cari realisasi
 		if(isset($queries['menunggu_realisasi']))
 		{
-			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->Where('tipe', 'bukti_kas_keluar')->where('status', 'pending')->with(['referensi']);
+			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->Where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
 		}
 
 		//5.sort klien
