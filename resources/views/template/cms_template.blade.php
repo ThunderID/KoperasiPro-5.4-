@@ -115,14 +115,20 @@
 			]
 		])
 		<div id="list-koperasi">
-			<div class="form-group has-feedback">
-				<input type="text" class="search form-control" placeholder="cari nama koperasi">
-				<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+		<div class="row">
+			<div class="col-sm-8 col-xs-9 p-r-none">
+				<div class="form-group has-feedback">
+					<input type="text" class="search form-control" placeholder="cari nama koperasi">
+					<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+				</div>
 			</div>
-			<ul class="list-group list">
-<!-- 				<li class="list-group-item">
-					<a href="{{ route('koperasi.create') }}" onclick="$('.modal').modal('hide')"><i class="fa fa-plus"></i>&nbsp;&nbsp; Tambah Koperasi Baru</a>
-				</li>	 -->		
+			<div class="col-sm-4 col-xs-3">
+				<a class="btn btn-block btn-success text-right" href="{{ route('koperasi.create') }}" onclick="$('.modal').modal('hide')"><i class="fa fa-plus"></i>
+				<span class="hidden-xs">&nbsp;&nbsp; Koperasi Baru</span>
+				</a>
+			</div>
+		</div>
+			<ul class="list-group list">		
 				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
 					<li class="list-group-item">
 						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
@@ -133,10 +139,33 @@
 		
 		<div class="clearfix">&nbsp;</div>
 		<div class="modal-footer" style="margin-left: -15px; margin-right: -15px;">
+			<div class="row text-left">
+				<div class="col-xs-12 p-b-xs">
+					<h5 class="m-b-none">Terpilih : </h5>	
+				</div>		
+				<div class="col-xs-12 col-sm-6">
+					<h4 class="p-b-none m-b-none">
+						<i class="fa fa-building"></i>&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} 
+					</h4>
+					<div class="hidden-sm hidden-md hidden-lg">
+						</br>
+						</br>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					{{-- Non Mobile --}}
+					<a class="btn pull-right hidden-xs" href="#" ><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>
+					{{-- Mobile --}}
+					<a class="btn btn-success btn-block hidden-sm hidden-md hidden-lg m-l-none" href="#" ><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>					
+				</div>
+			</div>
+
+			{{--
 			<p class="text-left m-b-none">
 				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['koperasi']['nama'] }}
 				</span>
 			</p>
+			--}}
 		</div>
 	@endcomponent
 
