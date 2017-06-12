@@ -22,8 +22,8 @@
 			</div>
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
-					@foreach($page_datas->kas_all as $key => $value)
-						<a href="{{ route('kasir.kas.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+					@foreach($page_datas->cashes as $key => $value)
+						<a href="{{ route('kasir.kas.show', array_merge(['id' => $value['id'], 'section' => (!is_null($value['referensi_id']) ? 'realisasi' : 'kas')], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
 							@if (Route::is('kasir.kas.index'))
 								<span class="pull-right">
 									@if ($value['tipe'] == 'bukti_kas_keluar')
@@ -59,8 +59,8 @@
 			</div>			
 		</div>
 		<div class="col-xs-12 col-sm-9">
-			@if (isset($page_datas->kas['id']))
-				@if ($page_datas->kas['tipe_dokumen'] == 'realisasi_kredit')
+			@if (isset($page_datas->cash['id']))
+				@if ($page_datas->cash['tipe_dokumen'] == 'realisasi_kredit')
 					@include('pages.kasir.components.top_menu.realisasi_kredit')
 				@else
 					@include('pages.kasir.components.top_menu.kas')

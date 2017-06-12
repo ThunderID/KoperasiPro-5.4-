@@ -39,8 +39,8 @@ class KasirController extends Controller
 													];
 
 		// get list kreditur
-		$this->getlistKas($page, 10, 'kas');
-		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_kas, $page, 10);
+		$this->getlistKas($page, 10);
+		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_cashes, $page, 10);
 
 		$this->view								= view('pages.kasir.index');
 
@@ -61,9 +61,10 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb		= 	[
 														'Realisasi Kredit'   => route('kasir.kas.index'),
 													];
-
-		$this->getlistKas($page, 10, 'realisasi');
-		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_kas, $page, 10);
+		// dd($this->service->get());
+		// get list kreditur
+		$this->getlistKas($page, 10, 'realisasi_kredit');
+		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_cashes, $page, 10);
 
 		$this->view								= view('pages.kasir.index');
 
@@ -132,7 +133,7 @@ class KasirController extends Controller
 		}
 	}
 
-	public function show ($id)
+	public function show ($id, $section)
 	{
 		$page 									= 1;
 		if (Input::has('page'))
@@ -144,14 +145,14 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb      =   [
 														'Kas'	=> route('kasir.kas.show', ['id' => $id])
 													];
-		$this->getlistKas($page, 10);
+		$this->getlistKas($page, 10, ($section == 'realisasi') ? 'realisasi_kredit' : null);
 
-		$this->paginate(route('kasir.kas.show', array_merge(['id' => $id])), $this->page_datas->total_kas, $page, 10);
+		$this->paginate(route('kasir.kas.show', array_merge(['id' => $id])), $this->page_datas->total_cashes, $page, 10);
 
 		//parsing master data here
 		try
 		{
-			$this->page_datas->kas						= $this->service->detailed($id);
+			$this->page_datas->cash						= $this->service->detailed($id);
 		}
 		catch (Exception $e)
 		{
@@ -181,7 +182,8 @@ class KasirController extends Controller
 		return $this->generateView();
 	}
 
-	private function getListKas ($page, $take, $flag)
+
+	private function getListKas ($page, $take, $menunggu_realisasi = null)
 	{
 		//1. Parsing status
 		$status 									= null; 
@@ -190,34 +192,33 @@ class KasirController extends Controller
 			$status 								= Input::get('status');
 			$this->kas_active_filters['status'] 	= $status;
 		}
-
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			if ($flag == 'kas') 
+			if(!is_null($menunggu_realisasi))
 			{
-				$this->page_datas->kas_all			= $this->service->get(['status' => $status, 'kas' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
-			}
-			else 
-			{
-				$this->page_datas->kas_all 		= $this->service->get(['menunggu_realisasi' => true, 'status' => $status, 'kas' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
-			}
-
-			$this->page_datas->total_kas		= $this->service->count(['status' => $status, 'kas' => Input::get('q')]);
-			$this->kas_active_filters['q'] 		= Input::get('q');
-		}
-		else
-		{
-			if ($flag == 'kas')
-			{
-				$this->page_datas->kas_all			= $this->service->get(['menunggu_realisasi' => true, 'status' => $status, 'per_page' => $take, 'page' => $page]);
+				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page, 'menunggu_realisasi' => '', 'kas' => Input::get('q')]);
+				$this->page_datas->total_cashes		= $this->service->count(['status' => $status, 'menunggu_realisasi' => '', 'kas' => Input::get('q')]);
 			}
 			else
 			{
-				$this->page_datas->kas_all		= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);	
+				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page, 'kas' => Input::get('q')]);
+				$this->page_datas->total_cashes		= $this->service->count(['status' => $status, 'kas' => Input::get('q')]);
 			}
-
-			$this->page_datas->total_kas		= $this->service->count(['status' => $status]);
+			$this->credit_active_filters['q'] 		= Input::get('q');
+		}
+		else
+		{
+			if(!is_null($menunggu_realisasi))
+			{
+				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page, 'menunggu_realisasi' => '']);
+				$this->page_datas->total_cashes		= $this->service->count(['status' => $status, 'menunggu_realisasi' => '']);
+			}
+			else
+			{
+				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);
+				$this->page_datas->total_cashes		= $this->service->count(['status' => $status]);
+			}
 		}
 
 		//3. Memanggil fungsi filter active
