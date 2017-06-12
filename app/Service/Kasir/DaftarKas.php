@@ -74,6 +74,14 @@ class DaftarKas
 	{
 		$model 		= $this->queries([]);
 		$model 		= $model->id($id)->with(['details', 'orang', 'referensi'])->first();
+		$model 		= $model->toArray();
+
+		if(!empty($model['referensi']))
+		{
+			$pengajuan 	= Pengajuan::where('id', $model->referensi_id)->with(['kreditur', 'referensi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
+			
+			$model['pengajuan']	= $pengajuan->toArray();
+		}
 
 		return $model->toArray();
 	}
@@ -159,7 +167,7 @@ class DaftarKas
 		//4.cari realisasi
 		if(isset($queries['menunggu_realisasi']))
 		{
-			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->Where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
+			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
 		}
 
 		//5.sort klien
