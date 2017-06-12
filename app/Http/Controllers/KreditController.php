@@ -429,6 +429,7 @@ class KreditController extends Controller
 		}
 		catch(Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();

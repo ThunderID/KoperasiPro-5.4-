@@ -37,10 +37,9 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb		= 	[
 														'Kas'   => route('kasir.kas.index'),
 													];
-		
-		// get list kreditur
-		$this->getlistKas($page, 10);
 
+		// get list kreditur
+		$this->getlistKas($page, 10, 'kas');
 		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_kas, $page, 10);
 
 		$this->view								= view('pages.kasir.index');
@@ -62,10 +61,8 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb		= 	[
 														'Realisasi Kredit'   => route('kasir.kas.index'),
 													];
-		// dd($this->service->get());
-		// get list kreditur
-		$this->getlistKas($page, 10);
 
+		$this->getlistKas($page, 10, 'realisasi');
 		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_kas, $page, 10);
 
 		$this->view								= view('pages.kasir.index');
@@ -82,7 +79,6 @@ class KasirController extends Controller
 													];	
 		$this->getParamToView(['kreditur']);
 		$this->page_datas->status 				= $status;
-
 		$this->view 							= view('pages.kasir.create');
 
 		return $this->generateView();
@@ -120,8 +116,9 @@ class KasirController extends Controller
 		
 			return $this->generateRedirect(route('kasir.kas.show', $data['id']));
 		}
-		catch(Exception $e)
+		catch (Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error']    = $e->getMessage();
@@ -137,34 +134,92 @@ class KasirController extends Controller
 
 	public function show ($id)
 	{
+		$page 									= 1;
+		if (Input::has('page'))
+		{
+			$page 								= (int)Input::get('page');
+		}
+
 		$this->page_attributes->title           = 'Kas ';
 		$this->page_attributes->breadcrumb      =   [
-														'Kas'	=> route('kasir.kas.show', $id)
+														'Kas'	=> route('kasir.kas.show', ['id' => $id])
 													];
+		$this->getlistKas($page, 10);
+
+		$this->paginate(route('kasir.kas.show', array_merge(['id' => $id])), $this->page_datas->total_kas, $page, 10);
+
+		//parsing master data here
+		try
+		{
+			$this->page_datas->kas						= $this->service->detailed($id);
+		}
+		catch (Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		
+			return $this->generateRedirect(route('kasir.kas.index'));
+		}
+		
+		$this->page_datas->id 							= $id;
+
+		if ($this->page_datas->kas['tipe_dokumen'] == 'realisasi_kredit') 
+		{
+			$this->view 								= view('pages.kasir.realisasi_kredit');
+		}
+		else 
+		{
+			$this->view 								= view('pages.kasir.kas');
+		}
+
+		return $this->generateView();
 	}
 
-	private function getListKas ($page, $take)
+	private function getListKas ($page, $take, $flag)
 	{
 		//1. Parsing status
 		$status 									= null; 
 		if (Input::has('status'))
 		{
 			$status 								= Input::get('status');
-			$this->credit_active_filters['status'] 	= $status;
+			$this->kas_active_filters['status'] 	= $status;
 		}
 
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			$this->page_datas->kas				= $this->service->get(['status' => $status, 'kas' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
+			if ($flag == 'kas') 
+			{
+				$this->page_datas->kas_all			= $this->service->get(['status' => $status, 'kas' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
+			}
+			else 
+			{
+				$this->page_datas->kas_all 		= $this->service->get(['menunggu_realisasi' => true, 'status' => $status, 'kas' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
+			}
+
 			$this->page_datas->total_kas		= $this->service->count(['status' => $status, 'kas' => Input::get('q')]);
-			$this->credit_active_filters['q'] 		= Input::get('q');
+			$this->kas_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{
-			$this->page_datas->kas				= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);
+			if ($flag == 'kas')
+			{
+				$this->page_datas->kas_all			= $this->service->get(['menunggu_realisasi' => true, 'status' => $status, 'per_page' => $take, 'page' => $page]);
+			}
+			else
+			{
+				$this->page_datas->kas_all		= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);	
+			}
+
 			$this->page_datas->total_kas		= $this->service->count(['status' => $status]);
 		}
+
 		//3. Memanggil fungsi filter active
 		// $this->page_datas->kas_filters 			= $this->service->statusLists();
 	}
@@ -196,6 +251,18 @@ class KasirController extends Controller
 		
 			return $this->generateRedirect(route('kasir.billing'));
 		}
+	}
+
+	public function angsuran () 
+	{
+		$this->page_attributes->title           = 'Bayar Angsuran ';
+		$this->page_attributes->breadcrumb      =   [
+														'Bayar Angsuran'	=> route('kasir.angsuran')
+													];
+
+		$this->view 							= view('pages.kasir.angsuran');
+
+		return $this->generateView();
 	}
 
 	private function getParamToView ($element)
