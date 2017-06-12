@@ -167,7 +167,7 @@ class DaftarKas
 		//4.cari realisasi
 		if(isset($queries['menunggu_realisasi']))
 		{
-			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->Where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
+			$model  			= $model->wherenotnull('referensi_id')->where('referensi_id', '<>', 0)->where('tipe', 'bukti_kas_keluar')->where('status', 'pending');
 		}
 
 		//5.sort klien
