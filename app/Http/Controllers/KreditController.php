@@ -29,8 +29,11 @@ use TQueries\Kredit\UIHelper\JenisKredit;
 use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
 use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
 
+use TImmigration\Models\Koperasi_RO;
+use TImmigration\Models\Visa_A;
+
 use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon, Exception;
+use Input, PDF, Carbon\Carbon, Exception, TAuth;
 
 /**
  * Kelas CreditController
@@ -814,5 +817,47 @@ class KreditController extends Controller
 		$path 			= $file->storeAs('photos', $location . $name . '.jpg');
 
 		return $path;
+	}
+
+
+	/**
+	 * Fungsi untuk menampilkan halaman rencana kredit yang akan di print
+	 */
+	public function print_realisasi($id, $dokumen)
+	{
+		//check kredit
+		$kredit			= $this->service->detailed($id);
+		$koperasi 		= Koperasi_RO::id(TAuth::activeOffice()['koperasi']['id'])->first();
+		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
+
+		if(!empty($kredit['jaminan_kendaraan']))
+		{
+			switch (strtolower($dokumen)) 
+			{
+				case 'berita_acara_penyerahan_jaminan':
+					return view('print.realisasi.jaminan_bpkb.berita_acara_penyerahan_jaminan', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'pernyataan_penjamin_jaminan':
+					return view('print.realisasi.jaminan_bpkb.pernyataan_penjamin_jaminan', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'pernyataan_penjamin':
+					return view('print.realisasi.jaminan_bpkb.pernyataan_penjamin', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_kuasa_beban_fiducia':
+					return view('print.realisasi.jaminan_bpkb.surat_kuasa_beban_fiducia', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_serah_terima_fiducia':
+					return view('print.realisasi.jaminan_bpkb.surat_serah_terima_fiducia', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_bpkb.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				
+				default:
+					throw new Exception("Invalid dokumen", 1);
+					break;
+			}
+		}
+
 	}
 }

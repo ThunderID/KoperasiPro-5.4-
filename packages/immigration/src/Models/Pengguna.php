@@ -112,8 +112,12 @@ class Pengguna extends BaseModel
 		$koperasi			= new Koperasi_RO;
 		$koperasi_ro		= $koperasi->findornew($visa['koperasi']['id']);
 		$koperasi_ro->fill([
-			'id' 	=> $visa['koperasi']['id'],
-			'nama' 	=> $visa['koperasi']['nama'],
+			'id' 			=> $visa['koperasi']['id'],
+			'nama' 			=> $visa['koperasi']['nama'],
+			'latitude' 		=> $visa['koperasi']['latitude'],
+			'longitude' 	=> $visa['koperasi']['longitude'],
+			'alamat' 		=> $visa['koperasi']['alamat'],
+			'nomor_telepon' => $visa['koperasi']['nomor_telepon'],
 		]);
 
 		$koperasi_ro->save();

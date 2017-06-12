@@ -123,7 +123,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4 col-xs-3">
-				<a class="btn btn-block btn-success text-right" href="{{ route('koperasi.create') }}" onclick="$('.modal').modal('hide')"><i class="fa fa-plus"></i>
+				<a class="btn btn-block btn-success text-right" href="#" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.create') }}'"><i class="fa fa-plus"></i>
 				<span class="hidden-xs">&nbsp;&nbsp; Koperasi Baru</span>
 				</a>
 			</div>
@@ -131,7 +131,7 @@
 			<ul class="list-group list">		
 				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
 					<li class="list-group-item">
-						<a class="name" href="{{ route('office.activate', ['idx' => $value['id']]) }}" ><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
+						<a class="name" href="#" data-dismiss="modal" onclick="javascript:window.location='{{ route('office.activate', ['idx' => $value['id']]) }}'"><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
 					</li>
 				@endforeach
 			</ul>
@@ -154,9 +154,9 @@
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					{{-- Non Mobile --}}
-					<a class="btn pull-right hidden-xs" href="#" ><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>
+					<a class="btn pull-right hidden-xs" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => TAuth::activeOffice()['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>
 					{{-- Mobile --}}
-					<a class="btn btn-success btn-block hidden-sm hidden-md hidden-lg m-l-none" href="#" ><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>					
+					<a class="btn btn-block hidden-sm hidden-md hidden-lg m-l-none" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => TAuth::activeOffice()['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>					
 				</div>
 			</div>
 

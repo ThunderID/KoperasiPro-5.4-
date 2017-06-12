@@ -8,7 +8,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
-					Pengajuan Baru
+					Survei
 				</div>							
 				<table class="table table-hover">
 					<thead>

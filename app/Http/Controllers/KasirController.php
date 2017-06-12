@@ -182,7 +182,6 @@ class KasirController extends Controller
 		return $this->generateView();
 	}
 
-
 	private function getListKas ($page, $take, $menunggu_realisasi = null)
 	{
 		//1. Parsing status
