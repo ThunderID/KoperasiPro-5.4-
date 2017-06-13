@@ -130,6 +130,11 @@ class DaftarKredit
 
 				$parsed_credit 	=  $complete;
 
+				if(empty($parsed_credit['kreditur']['alamat']))
+				{
+					$parsed_credit['kreditur']['alamat'][0]	= null;
+				}
+
 				$parsed_credit['kelengkapan_nasabah']			= false;
 				$parsed_credit['kelengkapan_kepribadian']		= false;
 				$parsed_credit['kelengkapan_aset']				= false;

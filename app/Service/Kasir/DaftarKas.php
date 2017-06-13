@@ -8,6 +8,7 @@ namespace App\Service\Kasir;
 use App\Domain\Kasir\Models\HeaderTransaksi as Model;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
+use TKredit\Pengajuan\Models\Pengajuan;
 
 /**
  * Class Services Application
@@ -83,7 +84,7 @@ class DaftarKas
 			$model['pengajuan']	= $pengajuan->toArray();
 		}
 
-		return $model->toArray();
+		return $model;
 	}
 
 	/**
