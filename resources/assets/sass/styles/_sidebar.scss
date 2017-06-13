@@ -181,3 +181,33 @@
 		border: 0 !important;
 	}
 }
+
+.beranda{ 
+	h4{
+		color: #46BE8A;
+	}
+ 	
+ 	.panel-body{
+ 		border-bottom: 1px;
+ 	}
+
+ 	.list-group{
+		margin-bottom: 0px;
+		border-top: 1px solid #dedddd;
+	}
+
+	.list-group-item{
+		border-radius: 0 !important;
+		border-top: none !important;
+		border-left: none !important;
+		border-right: none !important;
+	}
+ 	.list-group li.active{
+ 		a{
+			background-color: #46BE8A;
+ 			h5{
+				color: white!important;
+ 			}
+ 		}
+	}
+}
