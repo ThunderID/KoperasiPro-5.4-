@@ -9,6 +9,7 @@ use App\Domain\Kasir\Models\HeaderTransaksi as Model;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
 use TKredit\Pengajuan\Models\Pengajuan;
+use TKredit\KreditAktif\Models\KreditAktif_RO;
 
 /**
  * Class Services Application
