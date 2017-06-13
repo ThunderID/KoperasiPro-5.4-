@@ -26,7 +26,7 @@
 								<td class="text-right">{{$value['referensi']['pengajuan_kredit']}}</td>
 								<td class="text-center">{{$value['tanggal_jatuh_tempo']}}</td>
 								<td class="text-right">
-									<a href="{{route('kasir.kas.show', $value['id'])}}" style="text-decoration: none;">
+									<a href="{{route('kasir.kas.show', ['section' => 'realisasi','id' => $value['id']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>

@@ -80,11 +80,12 @@
 							</li>
 						</ul>
 					</p>
+
 					<p>
-						Selanjutnya sehubungan dengan hal – hal yang diuraikan diatas, maka Pihak Pertama menerangkan bahwa terhadap pelunasan hutang Debitur, baik berupa pokok kredit, bunga, provisi, denda dan ongkos – ongkos penagihan maupun beban – beban lainnya yang timbul, maka Pihak Pertama dengan ini mengikat diri sebagai Penjamin (borg), untuk secara pribadi turut bertanggung jawab sepenuhnya dan sanggup untuk menyelesaikan seluruh pinjaman Debitur termaksuddengan melepaskan hak – hak yang diberikan oleh Undang – Undang kepada Penjamin, yaitu hak – hak dalam pasal – pasal 1430, 1831, 1837, 1847, 1848, 1849, 1830 dan 1832 Kitab Undang – Undang Hukum Perdata dan dengan sukarela menyerahkan Jaminan berupa :
+						Selanjutnya sehubungan dengan hal – hal yang diuraikan diatas, maka Pihak Pertama menerangkan bahwa terhadap pelunasan hutang Debitur, baik berupa pokok kredit, bunga, provisi, denda dan ongkos – ongkos penagihan maupun beban – beban lainnya yang timbul, maka Pihak Pertama dengan ini mengikat diri sebagai Penjamin (borg), untuk secara pribadi turut bertanggung jawab sepenuhnya dan sanggup untuk menyelesaikan seluruh pinjaman Debitur termaksud dengan melepaskan hak – hak yang diberikan oleh Undang – Undang kepada Penjamin, yaitu hak – hak dalam pasal – pasal 1430, 1831, 1837, 1847, 1848, 1849, 1830 dan 1832 Kitab Undang – Undang Hukum Perdata dan dengan sukarela menyerahkan Jaminan berupa :
 					</p>
 					<p>
-						@foreach($kredit['jaminan_kendaraan'] as $key1 => $value1)
+						@foreach($kredit['jaminan_tenah_bangunan'] as $key1 => $value1)
 							&emsp;&emsp;&emsp;<p>Kendaraan {{$key1+1}}</p>
 							@foreach($value1 as $key2 => $value2)
 								@if(in_array($key2, ['tipe', 'merk', 'tahun', 'atas_nama', 'nomor_rangka', 'nomor_mesin', 'nomor_bpkb', 'nomor_polisi', 'status_kepemilikan']))

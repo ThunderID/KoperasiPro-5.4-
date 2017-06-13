@@ -859,5 +859,31 @@ class KreditController extends Controller
 			}
 		}
 
+		if(!empty($kredit['jaminan_tanah_bangunan']))
+		{
+			switch (strtolower($dokumen)) 
+			{
+				case 'pernyataan_penjamin_jaminan':
+					return view('print.realisasi.jaminan_sertifikat.pernyataan_penjamin_jaminan', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'pernyataan_penjamin':
+					return view('print.realisasi.jaminan_sertifikat.pernyataan_penjamin', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_pemasangan_plang':
+					return view('print.realisasi.jaminan_sertifikat.surat_pemasangan_plang', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				
+				default:
+					throw new Exception("Invalid dokumen", 1);
+					break;
+			}
+		}
+
 	}
 }
