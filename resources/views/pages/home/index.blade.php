@@ -42,7 +42,7 @@
 
 		<div class="col-sm-9 p-l-none">
 			<div class="clearfix">&nbsp;</div>
-			<div class="tab-content">
+			<div class="tab-content _window" data-padd-top="auto" data-padd-bottom="0">
 				@foreach($page_attributes->content as $key => $value)
 				<div id="{{$key}}" class="tab-pane fade in {{ $key == $first_key ? 'active' : '' }}">
 					@foreach($value as $key2 => $value2)
