@@ -21,7 +21,7 @@
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
-				<a href="#" data-url="{{ route('kasir.kas.index', ['mode' => 'pengajuan', 'id' => $page_datas->kas['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
+				<a href="#" data-url="{{ route('kasir.kas.index', ['mode' => 'pengajuan', 'id' => $page_datas->cash['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
 				<a href="#modal-change-status" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
@@ -42,7 +42,7 @@
 		])
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::open(['url' => route('kasir.kas.index', ['id' => $page_datas->kas['id'], 'status' => '']), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
+				{!! Form::open(['url' => route('kasir.kas.index', ['id' => $page_datas->cash['id'], 'status' => '']), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
 					<div class="form-group">
 						<label for="password">Password</label>
 						{!! Form::password('password', ['class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'Masukkan Password Anda', 'required' => 'required']) !!}

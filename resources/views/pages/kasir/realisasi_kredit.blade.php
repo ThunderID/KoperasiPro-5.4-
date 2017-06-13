@@ -1,9 +1,10 @@
 @extends('pages.kasir.templates.index_show_template')
 
+@section('realisasi_kredit')
+	active
+@stop
+
 @section('page_content')
-	@php
-		// dd($page_datas);
-	@endphp
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="row p-t-sm m-b-sm">

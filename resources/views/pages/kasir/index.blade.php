@@ -1,5 +1,9 @@
 @extends('pages.kasir.templates.index_show_template')
 
+@section(Route::is('kasir.kas.index') ? 'kas' : 'realisasi_kredit')
+	active
+@stop
+
 @section('page_content')
 	<div class="row">
 		<div class="col-md-12 text-center">
