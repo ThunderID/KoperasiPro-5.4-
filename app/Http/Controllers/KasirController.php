@@ -119,7 +119,6 @@ class KasirController extends Controller
 		}
 		catch (Exception $e)
 		{
-			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error']    = $e->getMessage();
@@ -133,7 +132,7 @@ class KasirController extends Controller
 		}
 	}
 
-	public function show ($id, $section)
+	public function show ($id)
 	{
 		$page 									= 1;
 		if (Input::has('page'))
@@ -145,7 +144,7 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb      =   [
 														'Kas'	=> route('kasir.kas.show', ['id' => $id])
 													];
-		$this->getlistKas($page, 10, ($section == 'realisasi') ? 'realisasi_kredit' : null);
+		$this->getlistKas($page, 10, (Input::get('section') == 'realisasi') ? 'realisasi_kredit' : null);
 
 		$this->paginate(route('kasir.kas.show', array_merge(['id' => $id])), $this->page_datas->total_cashes, $page, 10);
 
@@ -153,6 +152,7 @@ class KasirController extends Controller
 		try
 		{
 			$this->page_datas->cash						= $this->service->detailed($id);
+			dd($this->page_datas);
 		}
 		catch (Exception $e)
 		{
@@ -167,10 +167,10 @@ class KasirController extends Controller
 		
 			return $this->generateRedirect(route('kasir.kas.index'));
 		}
-		
+
 		$this->page_datas->id 							= $id;
 
-		if ($this->page_datas->kas['tipe_dokumen'] == 'realisasi_kredit') 
+		if ($this->page_datas->cash['tipe_dokumen'] == 'realisasi_kredit') 
 		{
 			$this->view 								= view('pages.kasir.realisasi_kredit');
 		}
@@ -194,7 +194,7 @@ class KasirController extends Controller
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			if(!is_null($menunggu_realisasi))
+			if (!is_null($menunggu_realisasi))
 			{
 				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page, 'menunggu_realisasi' => '', 'kas' => Input::get('q')]);
 				$this->page_datas->total_cashes		= $this->service->count(['status' => $status, 'menunggu_realisasi' => '', 'kas' => Input::get('q')]);
@@ -208,7 +208,7 @@ class KasirController extends Controller
 		}
 		else
 		{
-			if(!is_null($menunggu_realisasi))
+			if (!is_null($menunggu_realisasi))
 			{
 				$this->page_datas->cashes			= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page, 'menunggu_realisasi' => '']);
 				$this->page_datas->total_cashes		= $this->service->count(['status' => $status, 'menunggu_realisasi' => '']);

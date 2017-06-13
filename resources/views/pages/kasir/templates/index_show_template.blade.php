@@ -4,12 +4,6 @@
 	active in
 @stop
 
-@section(Route::is('kasir.kas.index') ? 'kas' : 'realisasi_kredit')
-	active
-@stop
-@php
-	// dd($page_datas);
-@endphp
 @push('content')
 	<div class="row field">
 		<div class="{{ (isset($page_datas->kas['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
@@ -23,7 +17,12 @@
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
 					@foreach($page_datas->cashes as $key => $value)
-						<a href="{{ route('kasir.kas.show', array_merge(['id' => $value['id'], 'section' => (!is_null($value['referensi_id']) ? 'realisasi' : 'kas')], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+						<a href="
+							@if ($value['tipe_dokumen'] == 'nota_realisasi')
+								{{ route('kasir.kas.show', array_merge(['id' => $value['id'], 'section' => 'realisasi'], Input::all())) }}
+							@else
+								{{ route('kasir.realisasi.show', array_merge(['id' => $value['id'], 'section' => 'kas'], Input::all())) }}
+							@endif" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
 							@if (Route::is('kasir.kas.index'))
 								<span class="pull-right">
 									@if ($value['tipe'] == 'bukti_kas_keluar')

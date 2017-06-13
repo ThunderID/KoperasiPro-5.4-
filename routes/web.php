@@ -62,10 +62,11 @@ Route::group(['middleware' => ['transaksi_harian']], function()
 {
 	// Kasir - KAS masuk & keluar
 	Route::get('kasir/kas', 																['uses' => 'KasirController@index', 'as' => 'kasir.kas.index']);
-	Route::get('kasir/{section?}/{id}',													['uses' => 'KasirController@show', 'as' => 'kasir.kas.show']);
+	Route::get('kasir/kas/{id}',															['uses' => 'KasirController@show', 'as' => 'kasir.kas.show']);
 	Route::get('kasir/kas/{status}/baru',													['uses' => 'KasirController@create', 'as' => 'kasir.kas.create']);
 	Route::post('kasir/kas/{status}/simpan',												['uses' => 'KasirController@store', 'as' => 'kasir.kas.store']);
 	Route::get('kasir/realisasi/',														['uses' => 'KasirController@realisasi', 'as' => 'kasir.realisasi.kredit']);
+	Route::get('kasir/realisasi/{id}',														['uses' => 'KasirController@show', 'as' => 'kasir.realisasi.show']);
 	Route::get('kasir/angsuran/bayar',														['uses' => 'KasirController@angsuran', 'as' => 'kasir.angsuran']);
 });
 

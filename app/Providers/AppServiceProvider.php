@@ -21,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('marital', function ($expression) {
             return "<?php echo ($expression == 'single') ? 'Belum Menikah' : 'Menikah'; ?>";
         });
+
+		Blade::directive('money', function ($expression) 
+		{
+			return "<?php echo 'Rp ' . number_format($expression, 0, ',', '.'); ?>";
+		});
 	}
 
 	/**
