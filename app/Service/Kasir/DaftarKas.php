@@ -9,6 +9,7 @@ use App\Domain\Kasir\Models\HeaderTransaksi as Model;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
 use TKredit\Pengajuan\Models\Pengajuan;
+use TKredit\KreditAktif\Models\KreditAktif_RO;
 
 /**
  * Class Services Application
@@ -79,7 +80,9 @@ class DaftarKas
 
 		if(!empty($model['referensi']))
 		{
-			$pengajuan 	= Pengajuan::where('id', $model->referensi_id)->with(['kreditur', 'referensi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
+			$ka_aktif 	= KreditAktif_RO::where('nomor_kredit', $model['referensi_id'])->first();
+
+			$pengajuan 	= Pengajuan::where('id', $ka_aktif->nomor_dokumen_kredit)->with(['kreditur', 'referensi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
 			
 			$model['pengajuan']	= $pengajuan->toArray();
 		}
