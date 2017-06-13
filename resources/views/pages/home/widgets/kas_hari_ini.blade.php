@@ -13,8 +13,8 @@
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#rekap" role="tab">Rekap</a>
+				<li class="nav-item active">
+					<a class="nav-link" data-toggle="tab" href="#rekap" role="tab">Rekap</a>
 				</li>			
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#pemasukan" role="tab">Pemasukan</a>
