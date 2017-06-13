@@ -84,7 +84,7 @@ class DaftarKas
 			$model['pengajuan']	= $pengajuan->toArray();
 		}
 
-		return $model->toArray();
+		return $model;
 	}
 
 	/**
