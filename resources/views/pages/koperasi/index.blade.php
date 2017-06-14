@@ -14,38 +14,7 @@
 
 @push('content')
 	<div class="row field">
-		{{--
-		<div class="{{ (isset($page_datas->id) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
-			<div class="sidebar-header p-b-sm">
-				@include('components.sidebar.basic_header',[ 'param' => [
-					'title' 			=> 'Data Koperasi',
-					'status'			=> 	['semua' => 'semua'],
-					'status_default'	=> 'semua'
-				]])
-			</div>
 
-			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
-				<div class="list-group">
-				    @foreach($page_datas->koperasi as $key => $value)
-				        <a href="{{ route('koperasi.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
-				            <h4 class="list-group-item-heading">
-				                {{ $value['nama'] }} 
-				            </h4>
-				        </a>
-				    @endforeach
-				</div>
-			</div>
-
-			<div class="sidebar-footer">
-				<div class="col-md-12 text-center">
-					@include('components.custom_paginator',[
-						'range' 	=> 5
-					])
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-sm-9">
-		--}}
 		<div class="col-md-12 hidden-md hidden-lg" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
 			<div class="row">
 				<div class="col-xs-12">
@@ -57,19 +26,17 @@
 		</div>
 		<div class="col-md-12 " style="background-color: white; height: 42px; border-bottom: 1px solid #e6e8e6;">
 			<div class="row">
-				<div class="col-xs-5 col-sm-6 hidden-md hidden-lg">
-				</div>
 				<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
 					<p class="text-muted p-t-sm text-lg">
 						<span class="p-r-xs"><i class="fa fa-building"></i> {{ $page_datas->data['nama'] }}</span>
 					</p>
 				</div>
-				<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-right">
 					<a href="#modal-change-status" data-toggle="modal" data-target="" class="btn success p-r-sm p-l-sm">
-						<i class="fa fa-pencil" aria-hidden="true"></i> Edit
+						<i class="fa fa-pencil" aria-hidden="true"></i> Edit Koperasi
 					</a>				
-					<a href="#modal-tolak" data-toggle="modal" data-target="" class="btn p-r-none p-l-sm danger">
-						<i class="fa fa-trash" aria-hidden="true"></i> Hapus
+					<a href="#" data-url="#" data-toggle="modal" data-target="#modal-delete" class="btn p-r-none p-l-sm danger">
+						<i class="fa fa-trash" aria-hidden="true"></i> Hapus Koperasi
 					</a>					
 				</div>
 			</div>
@@ -112,7 +79,10 @@
 								<div class="row p-t-lg">
 									<div class="col-xs-12">
 										<fieldset class="gllpLatlonPicker">
-											<div class="gllpMap">Loading Google Maps</div>
+											<div class="gllpMap">
+												Loading Google Maps
+												<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+											</div>
 												<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitidue'] == '' ? 0 : $page_datas->data['latitidue']}}"/>
 												<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
 												<input type="hidden" class="gllpZoom" value="14"/>
@@ -149,119 +119,85 @@
 					</div>
 				</div>
 				<div class="row _window" data-padd-top="auto" data-padd-bottom="0">
-					
+					<div class="col-xs-12">
+
+					@forelse($page_datas->users as $key => $value)
+						<div class="row">
+							<div class="col-sm-2 col-md-1">
+								<i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i>
+							</div>
+							<div class="col-sm-10 col-md-11">
+								<div class="row">
+									<div class="col-xs-8">
+										<h4>{{ $value['pengguna']['nama'] }}</h4>
+										<div class="row m-b-xs">
+											<div class="col-xs-5">
+												<p>Last Login</p>
+											</div>
+											<div class="col-xs-7">
+												<p>{{ $value['last_logged'] == '' ? '_' : $value['last_logged'] }}</p>
+											</div>
+										</div>
+										<div class="row m-b-xs">
+											<div class="col-xs-5">
+												<p>Email</p>
+											</div>
+											<div class="col-xs-7">
+												<p>{{ $value['pengguna']['email'] }}</p>
+											</div>
+										</div>
+										<div class="row m-b-xs">
+											<div class="col-xs-5">
+												<p>Role</p>
+											</div>
+											<div class="col-xs-7">
+												<p>{{ ucwords($value['role']) }}</p>
+											</div>
+										</div>
+										<div class="row m-b-xs">
+											<div class="col-xs-5">
+												<p>Scope</p>
+											</div>
+											<div class="col-xs-7">
+												@foreach($value['scopes'] as $keyScope => $scope)
+													<span class="badge badge-primary">{{ ucwords(str_replace("_"," ", $scope['list'])) }}</span>
+												@endforeach
+											</div>
+										</div>																					
+									</div>
+									<div class="col-xs-4 text-right p-r-none">
+										<a href="#" data-toggle="modal" data-target="" class="btn">
+											<i class="fa fa-pencil" aria-hidden="true"></i> Edit
+										</a>				
+										<a href="#" data-url="#" data-toggle="modal" data-target="#modal-delete" class="btn danger">
+											<i class="fa fa-trash" aria-hidden="true"></i> Hapus
+										</a>										
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr/>
+					@empty
+						<div class="row">
+							<div class="col-xs-12 text-center p-t-sm p-b-sm">
+								Data User Belum Ada
+							</div>
+						</div>
+					@endforelse
+
+					</div>
 				</div>
 			</div>
 
 		</div>
 
-		{{--
-		<div class="col-xs-12 col-sm-12">
-			@if(!isset($page_datas->id))
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h4 style="margin-top: 21%">Belum Ada Data Dipilih</h4>
-						<p class="p-b-md">Silahkan Terlebih Dahulu Memilih Data Kredit</p>
-						<span class="glyphicon glyphicon-hand-left" style="font-size: 30px;"></span>
-					</div>
-				</div>
-			@else
-				<div class="row p-r-none p-b-none">
-					<div class="col-md-12 hidden-md hidden-lg" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
-						<div class="row">
-							<div class="col-xs-12">
-								<p class="text-muted p-t-sm ">
-									<span class="p-r-xs"><i class="fa fa-building"></i> &nbsp; {{ $page_datas->data['nama'] }}</span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 " style="background-color: white; height: 42px; border-bottom: 1px solid #e6e8e6;">
-						<div class="row">
-							<div class="col-xs-5 col-sm-6 hidden-md hidden-lg">
-							</div>
-							<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
-								<p class="text-muted p-t-sm text-lg">
-									<span class="p-r-xs"><i class="fa fa-building"></i> {{ $page_datas->data['nama'] }}</span>
-								</p>
-							</div>
-							<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row _window p-t-md" data-padd-top="auto" data-padd-bottom="0">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-sm-12">
-								<h4 class="text-uppercase">Data Koperasi
-									<span class="pull-right text-capitalize">
-										<small>
-										<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" no-data-pjax>
-											<i class="fa fa-pencil" aria-hidden="true"></i>
-											 Edit
-										</a>
-										&nbsp; &nbsp;
-										<a href="#" class="danger" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" no-data-pjax>
-											<i class="fa fa-trash" aria-hidden="true"></i>
-											 Hapus
-										</a>										
-										</small>
-									</span>
-								</h4>
-								<hr/>
-							</div>
-						</div>					
-						<div class="row p-t-lg">
-							<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-								<p class="text-capitalize text-light">Nama Koperasi</p>
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-								<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nama'] == "" ? '_' : $page_datas->data['nama'] }}</p>
-							</div>
-						</div>
-						<div class="row p-t-lg">
-							<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-								<p class="text-capitalize text-light">Nomor Telepon</p>
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-								<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nomor_telepon'] == "" ? '_' : $page_datas->data['nomor_telepon'] }}</p>
-							</div>
-						</div>					
-						<div class="row p-t-lg">
-							<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-								<p class="text-capitalize text-light">Alamat</p>
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-								<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['alamat'] == "" ? '_' : $page_datas->data['alamat'] }}</p>
-							</div>
-						</div>
-						<div class="row p-t-lg">
-							<div class="col-xs-12 col-sm-9 col-md-7 col-lg-7">
-								<fieldset class="gllpLatlonPicker">
-									<div class="gllpMap">Loading Google Maps</div>
-										<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitidue'] == '' ? 0 : $page_datas->data['latitidue']}}"/>
-										<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
-										<input type="hidden" class="gllpZoom" value="14"/>
-								</fieldset>		
-							</div>
-						</div>	
-					</div>
-				</div>
-			@endif
-		</div>
-		--}}
-
 	</div>  
 @endpush
 
-@push('modals')
-	@yield('page_modals')
-@endpush
 
 @section('script-plugins')
 	<script src="/js/jquery-2.1.1.min.js"></script>
-	<script src="/js/jquery-gmaps-latlon-picker.js"></script>    	    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete"
 	        async defer></script>	
+	<script src="/js/jquery-gmaps-latlon-picker.js"></script>    	    
 @stop
