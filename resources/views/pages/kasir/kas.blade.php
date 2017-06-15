@@ -10,7 +10,7 @@
 			<div class="row p-t-sm m-b-sm">
 				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
 					<p class="text-capitalize text-light">
-						No. Transaksi
+						No. Nota
 					</p>
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
@@ -24,7 +24,7 @@
 			<div class="row p-t-sm m-b-sm">
 				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
 					<p class="text-capitalize text-light">
-						Tanggal Jatuh Tempo
+						Tanggal Transaksi
 					</p>
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
