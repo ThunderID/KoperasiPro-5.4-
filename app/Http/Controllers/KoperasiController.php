@@ -92,8 +92,14 @@ class KoperasiController extends Controller
 	{
 		try
 		{
+			if(is_null($id))
+			{
+				$id 				= str_replace(' ', '', $this->request->get('nama'));
+			}
+
 			$data 					= Koperasi_RO::findornew($id);
-			$data->fill($request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude']));
+			$data->fill($this->request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude']));
+			$data->id 				= $id;
 			$data->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
@@ -111,7 +117,7 @@ class KoperasiController extends Controller
 				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
 			}
 		
-			return $this->generateRedirect(route('koperasi.edit', $id));
+			return $this->generateRedirect(route('koperasi.create', $id));
 		}
 	}
 

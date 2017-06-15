@@ -32,10 +32,10 @@
 					</p>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-right">
-					<a href="#modal-change-status" data-toggle="modal" data-target="" class="btn success p-r-sm p-l-sm">
+					<a href="{{ route('koperasi.edit', ['id' => $page_datas->id]) }}" data-toggle="modal" data-target="" class="btn success p-r-sm p-l-sm">
 						<i class="fa fa-pencil" aria-hidden="true"></i> Edit Koperasi
 					</a>				
-					<a href="#" data-url="#" data-toggle="modal" data-target="#modal-delete" class="btn p-r-none p-l-sm danger">
+					<a href="#" data-url="{{ route('koperasi.destroy',['id' => $page_datas->id]) }}" data-toggle="modal" data-target="#modal-delete" class="btn p-r-none p-l-sm danger">
 						<i class="fa fa-trash" aria-hidden="true"></i> Hapus Koperasi
 					</a>					
 				</div>
@@ -83,7 +83,7 @@
 												Loading Google Maps
 												<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
 											</div>
-												<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitidue'] == '' ? 0 : $page_datas->data['latitidue']}}"/>
+												<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitude'] == '' ? 0 : $page_datas->data['latitude']}}"/>
 												<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
 												<input type="hidden" class="gllpZoom" value="14"/>
 										</fieldset>		
@@ -105,7 +105,7 @@
 			<div class="col-md-12 p-l-none"> 
 				<div class="row">
 					<div class="col-sm-12">
-						<h4 class="text-uppercase">Data User
+						<h4 class="text-uppercase">Data Pengguna
 							<span class="pull-right text-capitalize">
 								<small>
 								<a href="#" data-toggle="" data-target="" data-panel="" no-data-pjax>
@@ -180,7 +180,7 @@
 					@empty
 						<div class="row">
 							<div class="col-xs-12 text-center p-t-sm p-b-sm">
-								Data User Belum Ada
+								Data Pengguna Belum Ada
 							</div>
 						</div>
 					@endforelse

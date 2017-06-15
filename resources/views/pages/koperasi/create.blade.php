@@ -17,7 +17,7 @@
 					<label class="text-sm">Nama Koperasi</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
-							{!! Form::text('nama', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan nama koperasi']) !!}			
+							{!! Form::text('nama', $page_datas->data['nama'], ['class' => 'form-control required', 'placeholder' => 'Masukkan nama koperasi']) !!}			
 						</div>
 					</div>
 				</fieldset>
@@ -27,7 +27,12 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
 							<div class="input-group">
-						      	<input id="autocomplete" name="alamat" onFocus="geolocate()" type="text" class="form-control gllpSearchField" placeholder="Masukkan alamat">
+								{!! Form::text('alamat', $page_datas->data['alamat'], [
+									'class' => 'form-control gllpSearchField required', 
+									'placeholder' => 'Masukkan alamat',
+									'onFocus' => 'geolocate()',
+									'id' => 'autocomplete'
+								]) !!}			
 								<span class="input-group-btn">
 							        <button class="btn btn-default gllpSearchButton" type="button" style="padding-bottom: 9px;">
 										<i class="fa fa-search" aria-hidden="true"></i>
@@ -37,19 +42,27 @@
 						</div>
 					</div>
 					<br/>
+					{{--
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
 							<label class="text-sm">Lokasi Dalam Peta</label>
 						</div>
 					</div>
+					--}}
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
-							<div class="gllpMap">Loading Google Maps</div>
+							<div class="gllpMap">
+								Loading Google Maps
+								<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+							</div>
 						</div>
 					</div>
 					<br/>
-					<input type="hidden" name="latitude" class="gllpLatitude"/>
-					<input type="hidden" name="longitude" class="gllpLongitude"/>
+					{!! Form::hidden('latitude', $page_datas->data['latitude'], ['class' => 'gllpLatitude']) !!}
+					{!! Form::hidden('longitude', $page_datas->data['longitude'], ['class' => 'gllpLongitude']) !!}
+
+					<input type="hidden" name="latitude" class="gllpLatitude" value="{{ $page_datas->data['latitude'] }}" />
+					<input type="hidden" name="longitude" class="gllpLongitude" value="{{ $page_datas->data['longitude'] }}" />
 					<input type="hidden" class="gllpZoom"/>
 				</fieldset>
 
@@ -57,7 +70,7 @@
 					<label class="text-sm">Telepon</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-8 col-md-5">
-							{!! Form::text('nomor_telepon', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan nomor telepon']) !!}			
+							{!! Form::text('nomor_telepon', $page_datas->data['nomor_telepon'], ['class' => 'form-control required', 'placeholder' => 'Masukkan nomor telepon']) !!}			
 						</div>
 					</div>
 				</fieldset>	
@@ -149,7 +162,7 @@
 	      }
 	    </script>
 	<script src="/js/jquery-2.1.1.min.js"></script>
-	<script src="/js/jquery-gmaps-latlon-picker.js"></script>    	    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete"
-	        async defer></script>	
+	        async defer></script>
+	<script src="/js/jquery-gmaps-latlon-picker.js"></script>	        	
 @stop
