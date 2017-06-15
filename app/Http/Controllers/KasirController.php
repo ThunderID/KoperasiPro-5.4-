@@ -152,7 +152,6 @@ class KasirController extends Controller
 		try
 		{
 			$this->page_datas->cash						= $this->service->detailed($id);
-			dd($this->page_datas);
 		}
 		catch (Exception $e)
 		{
@@ -170,7 +169,7 @@ class KasirController extends Controller
 
 		$this->page_datas->id 							= $id;
 
-		if ($this->page_datas->cash['tipe_dokumen'] == 'realisasi_kredit') 
+		if (!empty($this->page_datas->cash['referensi_id']))
 		{
 			$this->view 								= view('pages.kasir.realisasi_kredit');
 		}
