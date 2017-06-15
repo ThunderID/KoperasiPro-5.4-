@@ -6,13 +6,14 @@
 
 @push('content')
 	<div class="row field">
-		<div class="{{ (isset($page_datas->kas['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
+		<div class="{{ (isset($page_datas->cash['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
 			<div class="sidebar-header p-b-sm">
-				{{-- @include('components.sidebar.basic_header',[ 'param' => [
-					'title' 			=> 'Data Kredit',
+				@include('components.sidebar.basic_header',[ 'param' => [
+					'title' 			=> 'Data Kas',
 					'status'			=> null,
-					'status_default'	=> 'semua'
-				]]) --}}
+					'status_default'	=> 'semua',
+					'placeholder_input' => ($page_datas->flag == 'kas') ? 'Cari Daftar Kas' : 'Cari Daftar Realisasi Kredit',
+				]])
 			</div>
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">

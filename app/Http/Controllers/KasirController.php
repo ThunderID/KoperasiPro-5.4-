@@ -42,6 +42,7 @@ class KasirController extends Controller
 		$this->getlistKas($page, 10);
 		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_cashes, $page, 10);
 
+		$this->page_datas->flag 				= 'kas';
 		$this->view								= view('pages.kasir.index');
 
 		//function from parent to generate view
@@ -61,11 +62,11 @@ class KasirController extends Controller
 		$this->page_attributes->breadcrumb		= 	[
 														'Realisasi Kredit'   => route('kasir.kas.index'),
 													];
-		// dd($this->service->get());
 		// get list kreditur
 		$this->getlistKas($page, 10, 'realisasi_kredit');
 		$this->paginate(route('kasir.kas.index'), $this->page_datas->total_cashes, $page, 10);
 
+		$this->page_datas->flag 				= 'realisasi';
 		$this->view								= view('pages.kasir.index');
 
 		//function from parent to generate view
