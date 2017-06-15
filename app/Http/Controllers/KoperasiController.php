@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Input, PDF, Carbon\Carbon, Exception, StdClass;
+use Input, PDF, Carbon\Carbon, Exception, StdClass, TAuth, Redirect;
 
 use TImmigration\Models\Visa_A;
 use TImmigration\Models\Koperasi_RO;
@@ -51,11 +51,17 @@ class KoperasiController extends Controller
 	 */
 	public function show($id)
 	{
+		$origin_id = TAuth::activeOffice()['koperasi']['id'];
+		if($id != $origin_id){
+			return Redirect::to(route('koperasi.show', ['id' => $origin_id]));
+		}
+
 		$page_datas 				= new StdClass;
 		$page_datas->koperasi 		= Koperasi_RO::paginate();
 		$page_datas->data 			= Koperasi_RO::findorfail($id);
 		$page_datas->id 			= $id;
 		$page_datas->users 			= Visa_A::where('immigration_ro_koperasi_id', $id)->with(['pengguna'])->get()->toArray();
+
 
 		$page_attributes 			= new StdClass;
 		$page_attributes->paging 	= $page_datas->koperasi;

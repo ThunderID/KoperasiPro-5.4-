@@ -197,7 +197,7 @@
 
 @section('script-plugins')
 	<script src="/js/jquery-2.1.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places"
 	        async defer></script>	
 	<script src="/js/jquery-gmaps-latlon-picker.js"></script>    	    
 @stop
