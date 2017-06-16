@@ -30,23 +30,22 @@
 					'status_default'	=> 'semua'
 				]])
 			</div>
-
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
-				    @foreach($page_datas->credits as $key => $value)
-				        <a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
+					@foreach($page_datas->credits as $key => $value)
+						<a href="{{ route('credit.show', array_merge(['id' => $value['id']], Input::all())) }}" class="list-group-item {{ $key == 0? 'first': '' }} {{ ((isset($page_datas->id) && $page_datas->id == $value['id']) ? 'active' : '') }}">
 							<span class="badge badge-state pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
 								{{ str_replace('_', ' ', $value['status']) }}
 							</span>
-				            <h4 class="list-group-item-heading">
-				                {{ $value['kreditur']['nama'] }} 
-				            </h4>
-				            <p>{{$value['nomor_kredit']}}</p>
-				            <p class="list-group-item-text p-t-xs">
-				            	{{ $value['pengajuan_kredit'] }}
-				                <span class="pull-right">{{$value['tanggal']}}</span>
-				            </p>
-				        </a>
+						  <h4 class="list-group-item-heading">
+							 {{ $value['kreditur']['nama'] }} 
+						  </h4>
+						  <p>{{$value['nomor_kredit']}}</p>
+						  <p class="list-group-item-text p-t-xs">
+							{{ $value['pengajuan_kredit'] }}
+							 <span class="pull-right">{{$value['tanggal']}}</span>
+						  </p>
+					   </a>
 				    @endforeach
 				</div>
 			</div>
@@ -77,7 +76,7 @@
 			@endif
 
 			<div class="row _window" data-padd-top="auto" data-padd-bottom="39" style="padding:16px;overflow-y: auto;">
-					@yield('page_content')
+				@yield('page_content')
 			</div>
 
 			@if (isset($page_datas->credit['kreditur']['id']))
