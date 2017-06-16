@@ -40,14 +40,46 @@
 				<a href="#" class="arrow-right"><i class="fa fa-chevron-right"></i></a>
 				<div class="lists">
 					<ul class="nav nav-tabs tab-lists" role="tablist">
-						<li role="presentation" class="active list-item"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
-						<li role="presentation" class="list-item"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
-						<li role="presentation" class="list-item"><a href="#data-kepribadian" data-toggle="tab" role="tab">Data Kepribadian</a></li>
-						<li role="presentation" class="list-item"><a href="#data-keluarga" data-toggle="tab" role="tab">Data Keluarga</a></li>
-						<li role="presentation" class="list-item"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
-						<li role="presentation" class="list-item"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
-						<li role="presentation" class="list-item"><a href="#data-rekening" data-toggle="tab" role="tab">Data Rekening</a></li>
-						<li role="presentation" class="list-item"><a href="#data-keuangan" data-toggle="tab" role="tab">Data Keuangan</a></li>
+						<li role="presentation" class="active list-item">
+							<a href="#data-kredit" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_kredit']) && ($page_datas->credit['kelengkapan_kredit'] == false)) title="Kelengkapan Data Kredit Belum Lengkap" @endif>
+								Data Kredit @if (isset($page_datas->credit['kelengkapan_kredit']) && ($page_datas->credit['kelengkapan_kredit'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-nasabah" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) title="Kelengkapan Data Nasabah Belum Lengkap" @endif>
+								Data Nasabah @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-kepribadian" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_kepribadian']) && ($page_datas->credit['kelengkapan_kepribadian'] == false)) title="Kelengkapan Data Kepribadian Belum Lengkap" @endif>
+								Data Kepribadian @if (isset($page_datas->credit['kelengkapan_kepribadian']) && ($page_datas->credit['kelengkapan_kepribadian'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-keluarga" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_keluarga']) && ($page_datas->credit['kelengkapan_keluarga'] == false)) title="Kelengkapan Data Keluarga Belum Lengkap" @endif>
+								Data Keluarga @if (isset($page_datas->credit['kelengkapan_keluarga']) && ($page_datas->credit['kelengkapan_keluarga'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-aset" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_aset']) && ($page_datas->credit['kelengkapan_aset'] == false)) title="Kelengkapan Data Aset Belum Lengkap" @endif>
+								Data Aset @if (isset($page_datas->credit['kelengkapan_aset']) && ($page_datas->credit['kelengkapan_aset'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a  href="#data-jaminan" data-placement="right" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_jaminan']) && ($page_datas->credit['kelengkapan_jaminan'] == false)) title="Kelengkapan Data Jaminan Belum Lengkap" @endif>
+								Data Jaminan @if (isset($page_datas->credit['kelengkapan_jaminan']) && ($page_datas->credit['kelengkapan_jaminan'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-rekening" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_rekening']) && ($page_datas->credit['kelengkapan_rekening'] == false)) title="Kelengkapan Data Rekening Belum Lengkap" @endif>
+								Data Rekening @if (isset($page_datas->credit['kelengkapan_rekening']) && ($page_datas->credit['kelengkapan_rekening'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-keuangan" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_keuangan']) && ($page_datas->credit['kelengkapan_keuangan'] == false)) title="Kelengkapan Data Keuangan Belum Lengkap" @endif>
+								Data Keuangan @if (isset($page_datas->credit['kelengkapan_keuangan']) && ($page_datas->credit['kelengkapan_keuangan'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
