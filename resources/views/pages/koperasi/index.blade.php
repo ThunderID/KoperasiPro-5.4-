@@ -100,95 +100,57 @@
 		</div>
 
 		<div class="col-sm-9 p-l-none p-r-none">
-			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>	
 
 			<div class="col-md-12 p-l-none"> 
 				<div class="row">
 					<div class="col-sm-12">
-						<h4 class="text-uppercase">Data Pengguna
-							<span class="pull-right text-capitalize">
-								<small>
-								<a href="#" data-toggle="" data-target="" data-panel="" no-data-pjax>
-									<i class="fa fa-plus" aria-hidden="true"></i>
-									Tambah Baru
-								</a>
-								</small>
-							</span>
-						</h4>
-						<hr/>
+						<div style="border-bottom: 1px solid #e6e8e6;">
+
+							<div data-panel="data-index">
+								<h4 class="text-uppercase">Data Pengguna
+									<span class="pull-right text-capitalize">
+										<small>
+										<a href="#" data-toggle="hidden" data-target="create" data-panel="data-index" no-data-pjax>
+											<i class="fa fa-plus" aria-hidden="true"></i>
+											Tambah Baru
+										</a>
+										</small>
+									</span>
+								</h4>
+							</div>
+
+							<div class="hidden" data-form="create">
+								<h4 class="text-uppercase">Tambah Pengguna</h4>
+							</div>
+
+							@foreach($page_datas->users as $key => $value)
+							<div class="hidden" data-form="edit_{{ $value['id'] }}">
+								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['pengguna']['nama']) }}</h4>
+							</div>
+							@endforeach
+
+						</div>
 					</div>
 				</div>
-				<div class="row _window" data-padd-top="auto" data-padd-bottom="0">
+
+				<div class="row _window p-t-md" data-padd-top="auto" data-padd-bottom="0">
 					<div class="col-xs-12">
 
-					@forelse($page_datas->users as $key => $value)
-						<div class="row">
-							<div class="col-sm-2 col-md-1">
-								<i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i>
-							</div>
-							<div class="col-sm-10 col-md-11">
-								<div class="row">
-									<div class="col-xs-8">
-										<h4>{{ $value['pengguna']['nama'] }}</h4>
-										<div class="row m-b-xs">
-											<div class="col-xs-5">
-												<p>Last Login</p>
-											</div>
-											<div class="col-xs-7">
-												<p>{{ $value['last_logged'] == '' ? '_' : $value['last_logged'] }}</p>
-											</div>
-										</div>
-										<div class="row m-b-xs">
-											<div class="col-xs-5">
-												<p>Email</p>
-											</div>
-											<div class="col-xs-7">
-												<p>{{ $value['pengguna']['email'] }}</p>
-											</div>
-										</div>
-										<div class="row m-b-xs">
-											<div class="col-xs-5">
-												<p>Role</p>
-											</div>
-											<div class="col-xs-7">
-												<p>{{ ucwords($value['role']) }}</p>
-											</div>
-										</div>
-										<div class="row m-b-xs">
-											<div class="col-xs-5">
-												<p>Scope</p>
-											</div>
-											<div class="col-xs-7">
-												@foreach($value['scopes'] as $keyScope => $scope)
-													<span class="badge badge-primary">{{ ucwords(str_replace("_"," ", $scope['list'])) }}</span>
-												@endforeach
-											</div>
-										</div>																					
-									</div>
-									<div class="col-xs-4 text-right p-r-none">
-										<a href="#" data-toggle="modal" data-target="" class="btn">
-											<i class="fa fa-pencil" aria-hidden="true"></i> Edit
-										</a>				
-										<a href="#" data-url="#" data-toggle="modal" data-target="#modal-delete" class="btn danger">
-											<i class="fa fa-trash" aria-hidden="true"></i> Hapus
-										</a>										
-									</div>
-								</div>
-							</div>
+						<div data-panel="data-index">
+							@include('pages.koperasi.components.panel.index')
 						</div>
-						<hr/>
-					@empty
-						<div class="row">
-							<div class="col-xs-12 text-center p-t-sm p-b-sm">
-								Data Pengguna Belum Ada
-							</div>
+
+						<div data-form="create" class="hidden">
+							@include('pages.koperasi.components.panel.create')
 						</div>
-					@endforelse
+						
+						@include('pages.koperasi.components.panel.edit')
 
 					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 
 	</div>  
@@ -199,5 +161,5 @@
 	<script src="/js/jquery-2.1.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places"
 	        async defer></script>	
-	<script src="/js/jquery-gmaps-latlon-picker.js"></script>    	    
+	<script src="/js/jquery-gmaps-latlon-picker.js"></script>
 @stop
