@@ -15,7 +15,7 @@
 @push('content')
 	<div class="row field">
 
-		<div class="col-md-12 hidden-md hidden-lg" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
+		<div class="col-md-12 hidden-md hidden-lg hidden-sm" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
 			<div class="row">
 				<div class="col-xs-12">
 					<p class="text-muted p-t-sm ">
@@ -26,7 +26,7 @@
 		</div>
 		<div class="col-md-12 " style="background-color: white; height: 42px; border-bottom: 1px solid #e6e8e6;">
 			<div class="row">
-				<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
+				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs">
 					<p class="text-muted p-t-sm text-lg">
 						<span class="p-r-xs"><i class="fa fa-building"></i> {{ $page_datas->data['nama'] }}</span>
 					</p>
@@ -42,7 +42,8 @@
 			</div>
 		</div>
 
-		<div class="col-sm-3 col-xs-12 beranda">
+		{{-- Non Mobile --}}
+		<div class="col-sm-3 hidden-xs beranda">
 			<div class="clearfix">&nbsp;</div>
 			<div class="sidebar-header p-b-sm">
 				<div class="panel panel-default" >
@@ -98,6 +99,64 @@
 				</div>
 			</div>
 		</div>
+
+		{{-- Mobile --}}
+		<div class="col-xs-12 hidden-sm hidden-md hidden-lg beranda">
+			<div class="clearfix">&nbsp;</div>
+			<div class="sidebar-header p-b-sm">
+				<div class="panel panel-default" >
+					<div class="panel-body" style="border-bottom: 1px solid #dedddd;">
+						<h4>Informasi</h4>
+					</div>
+					<div class="panel-content">
+						<div class="sidebar-content">
+							<div class="col-md-12">
+								<div class="row p-t-lg">
+									<div class="col-xs-12">
+										<p class="text-capitalize text-light text-muted">Nama Koperasi</p>
+									</div>
+									<div class="col-xs-12">
+										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nama'] == "" ? '_' : $page_datas->data['nama'] }}</p>
+									</div>
+								</div>
+								<div class="row p-t-lg">
+									<div class="col-xs-12">
+										<p class="text-capitalize text-light text-muted">Nomor Telepon</p>
+									</div>
+									<div class="col-xs-12">
+										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nomor_telepon'] == "" ? '_' : $page_datas->data['nomor_telepon'] }}</p>
+									</div>
+								</div>					
+								<div class="row p-t-lg">
+									<div class="col-xs-12">
+										<p class="text-capitalize text-light text-muted">Alamat</p>
+									</div>
+									<div class="col-xs-12">
+										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['alamat'] == "" ? '_' : $page_datas->data['alamat'] }}</p>
+									</div>
+								</div>
+								<div class="row p-t-lg">
+									<div class="col-xs-12">
+										<fieldset class="gllpLatlonPicker">
+											<div class="gllpMap">
+												Loading Google Maps
+												<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+											</div>
+												<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitude'] == '' ? 0 : $page_datas->data['latitude']}}"/>
+												<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
+												<input type="hidden" class="gllpZoom" value="14"/>
+										</fieldset>		
+									</div>
+								</div>
+								<div class="row clearfix">
+									&nbsp;
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
 
 		<div class="col-sm-9 p-l-none p-r-none">
 			<div class="clearfix">&nbsp;</div>	
