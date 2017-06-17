@@ -24,7 +24,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light m-b-xs">
-				{{ (isset($page_datas->credit['nasabah']['status']) && !is_null($page_datas->credit['nasabah']['status'])) ? $page_datas->credit['nasabah']['status'] : '-' }}
+				{{ (isset($page_datas->credit['nasabah']['status']) && !is_null($page_datas->credit['nasabah']['status'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['status']) : '-' }}
 			</p>
 		</div>
 	</div>
@@ -36,7 +36,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light m-b-xs">
-				{{ (isset($page_datas->credit['nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['nasabah']['kredit_terdahulu'])) ? $page_datas->credit['nasabah']['kredit_terdahulu'] : '-' }}
+				{{ (isset($page_datas->credit['nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['nasabah']['kredit_terdahulu'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['kredit_terdahulu']) : '-' }}
 			</p>
 		</div>
 	</div>
