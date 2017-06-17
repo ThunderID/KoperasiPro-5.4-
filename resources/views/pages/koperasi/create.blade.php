@@ -2,7 +2,7 @@
 
 @push('content')
 
-	<div class="container-fluid">
+	<div class="container-fluid _window" data-padd-top="auto" data-padd-bottom="0">
 
 		<div class="row p-b-sm">
 			<div class="col-sm-12">
