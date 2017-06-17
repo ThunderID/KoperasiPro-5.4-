@@ -13,13 +13,24 @@
 ?>
 
 @push('content')
-	<div class="row field">
+<style>
+	@media screen and (max-width: 767px) {
+	.mobile-padding{
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+</style>
 
-		<div class="col-md-12 hidden-md hidden-lg hidden-sm" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
+	<div class="row field" style="overflow-x: hidden;">
+
+		<div class="col-md-12 hidden-md hidden-lg hidden-sm p-r-none m-r-none" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
 			<div class="row">
 				<div class="col-xs-12">
 					<p class="text-muted p-t-sm ">
-						<span class="p-r-xs"><i class="fa fa-building"></i> &nbsp; {{ $page_datas->data['nama'] }}</span>
+						<i class="fa fa-building"></i> &nbsp; {{ $page_datas->data['nama'] }}
+						<a href="#modal-koperasi" data-target="#modal-koperasi" data-toggle="modal" no-data-pjax  class="btn pull-right" style="margin-top: -10px;">
+							<i class="fa fa-info" aria-hidden="true"></i> Info
+						</a>
 					</p>
 				</div>
 			</div>
@@ -42,8 +53,7 @@
 			</div>
 		</div>
 
-		{{-- Non Mobile --}}
-		<div class="col-sm-3 hidden-xs beranda">
+		<div class="col-sm-3 beranda hidden-xs">
 			<div class="clearfix">&nbsp;</div>
 			<div class="sidebar-header p-b-sm">
 				<div class="panel panel-default" >
@@ -51,7 +61,7 @@
 						<h4>Informasi</h4>
 					</div>
 					<div class="panel-content">
-						<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="29">
+						<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="29" on-mobile="off">
 							<div class="col-md-12">
 								<div class="row p-t-lg">
 									<div class="col-xs-12">
@@ -100,68 +110,10 @@
 			</div>
 		</div>
 
-		{{-- Mobile --}}
-		<div class="col-xs-12 hidden-sm hidden-md hidden-lg beranda">
-			<div class="clearfix">&nbsp;</div>
-			<div class="sidebar-header p-b-sm">
-				<div class="panel panel-default" >
-					<div class="panel-body" style="border-bottom: 1px solid #dedddd;">
-						<h4>Informasi</h4>
-					</div>
-					<div class="panel-content">
-						<div class="sidebar-content">
-							<div class="col-md-12">
-								<div class="row p-t-lg">
-									<div class="col-xs-12">
-										<p class="text-capitalize text-light text-muted">Nama Koperasi</p>
-									</div>
-									<div class="col-xs-12">
-										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nama'] == "" ? '_' : $page_datas->data['nama'] }}</p>
-									</div>
-								</div>
-								<div class="row p-t-lg">
-									<div class="col-xs-12">
-										<p class="text-capitalize text-light text-muted">Nomor Telepon</p>
-									</div>
-									<div class="col-xs-12">
-										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nomor_telepon'] == "" ? '_' : $page_datas->data['nomor_telepon'] }}</p>
-									</div>
-								</div>					
-								<div class="row p-t-lg">
-									<div class="col-xs-12">
-										<p class="text-capitalize text-light text-muted">Alamat</p>
-									</div>
-									<div class="col-xs-12">
-										<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['alamat'] == "" ? '_' : $page_datas->data['alamat'] }}</p>
-									</div>
-								</div>
-								<div class="row p-t-lg">
-									<div class="col-xs-12">
-										<fieldset class="gllpLatlonPicker">
-											<div class="gllpMap">
-												Loading Google Maps
-												<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
-											</div>
-												<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitude'] == '' ? 0 : $page_datas->data['latitude']}}"/>
-												<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
-												<input type="hidden" class="gllpZoom" value="14"/>
-										</fieldset>		
-									</div>
-								</div>
-								<div class="row clearfix">
-									&nbsp;
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>		
-
-		<div class="col-sm-9 p-l-none p-r-none">
+		<div class="col-sm-9">
 			<div class="clearfix">&nbsp;</div>	
 
-			<div class="col-md-12 p-l-none"> 
+			<div class="col-md-12 p-l-none p-r-none mobile-padding"> 
 				<div class="row">
 					<div class="col-sm-12">
 						<div style="border-bottom: 1px solid #e6e8e6;">
@@ -193,7 +145,7 @@
 					</div>
 				</div>
 
-				<div class="row _window p-t-md" data-padd-top="auto" data-padd-bottom="0">
+				<div class="row _window p-t-md" data-padd-top="auto" data-padd-bottom="0" on-mobile="off">
 					<div class="col-xs-12">
 
 						<div data-panel="data-index">
@@ -215,10 +167,68 @@
 	</div>  
 @endpush
 
+@push('modals')
+	@component('components.modal', [
+			'id'			=> 'modal-koperasi',
+			'title'			=> 'Informasi Koperasi',
+			'settings'		=> [
+				'hide_buttons' => 'false'
+			]
+		])
+			<div class="row p-t-sm">
+				<div class="col-xs-12">
+					<p class="text-capitalize text-light text-muted">Nama Koperasi</p>
+				</div>
+				<div class="col-xs-12">
+					<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nama'] == "" ? '_' : $page_datas->data['nama'] }}</p>
+				</div>
+			</div>
+			<div class="row p-t-lg">
+				<div class="col-xs-12">
+					<p class="text-capitalize text-light text-muted">Nomor Telepon</p>
+				</div>
+				<div class="col-xs-12">
+					<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['nomor_telepon'] == "" ? '_' : $page_datas->data['nomor_telepon'] }}</p>
+				</div>
+			</div>					
+			<div class="row p-t-lg">
+				<div class="col-xs-12">
+					<p class="text-capitalize text-light text-muted">Alamat</p>
+				</div>
+				<div class="col-xs-12">
+					<p class="m-b-xs text-capitalize text-light">{{ $page_datas->data['alamat'] == "" ? '_' : $page_datas->data['alamat'] }}</p>
+				</div>
+			</div>
+			<div class="row p-t-lg">
+				<div class="col-xs-12">
+					<fieldset class="gllpLatlonPicker">
+						<div class="gllpMap">
+							Loading Google Maps
+							<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+						</div>
+							<input type="hidden" class="gllpLatitude" value="{{ $page_datas->data['latitude'] == '' ? 0 : $page_datas->data['latitude']}}"/>
+							<input type="hidden" class="gllpLongitude" value="{{ $page_datas->data['longitude'] == '' ? 0 : $page_datas->data['longitude']}}"/>
+							<input type="hidden" class="gllpZoom" value="14"/>
+					</fieldset>		
+				</div>
+			</div>
+			<div class="row clearfix">
+				&nbsp;
+			</div>
+	@endcomponent
+@endpush
 
 @section('script-plugins')
 	<script src="/js/jquery-2.1.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places"
 	        async defer></script>	
 	<script src="/js/jquery-gmaps-latlon-picker.js"></script>
+
+	<script>
+	$(document).ready(function() {
+    	$( "#modal-koperasi" ).on('shown', function(){
+			$(window).trigger('resize');
+	    });
+	});	
+	</script>	
 @stop

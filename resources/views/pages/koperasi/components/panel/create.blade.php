@@ -56,7 +56,7 @@
 		<fieldset class="form-group">
 			<label class="text-sm">Hak Akses Pengguna</label>
 			<div class="row">
-				<div class="col-md-4 col-xs-12">
+				<div class="col-md-4 col-xs-6">
 					<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 						{!! Form::checkbox('scope[]', 'modifikasi_koperasi', false, ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 						Modifikasi Kredit
@@ -81,7 +81,7 @@
 						Realisasi Kredit
 					</label>
 				</div>
-				<div class="col-md-4 col-xs-12">
+				<div class="col-md-4 col-xs-6">
 					<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 						{!! Form::checkbox('scope[]', 'kas_harian', false, ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 						Kas Harian
