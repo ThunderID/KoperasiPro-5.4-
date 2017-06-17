@@ -1,10 +1,10 @@
 
 		@forelse($page_datas->users as $key => $value)
 			<div class="row">
-				<div class="col-sm-2 col-md-1">
+				<div class="col-xs-2 col-sm-2 col-md-1">
 					<i class="fa fa-user-circle-o fa-4x" aria-hidden="true"></i>
 				</div>
-				<div class="col-sm-10 col-md-11">
+				<div class="col-xs-10 col-sm-10 col-md-11">
 					<div class="row">
 						<div class="col-xs-8">
 							<h4>{{ $value['pengguna']['nama'] }}</h4>

@@ -2,7 +2,7 @@
 
 @push('content')
 
-	<div class="container-fluid">
+	<div class="container-fluid _window" data-padd-top="auto" data-padd-bottom="0">
 
 		<div class="row p-b-sm">
 			<div class="col-sm-12">
@@ -164,5 +164,4 @@
 	<script src="/js/jquery-2.1.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete"
 	        async defer></script>
-	<script src="/js/jquery-gmaps-latlon-picker.js"></script>	        	
 @stop
