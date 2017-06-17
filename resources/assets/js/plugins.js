@@ -142,3 +142,6 @@ window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
 $(document).ready( function() {
 	// $('.input-switch').bootstrapSwitch();
 });
+
+// Map
+require('./plugins/map/jquery-gmaps-latlon-picker.js');
