@@ -275,6 +275,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Jaya',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'pimpinan',
 								'scopes'			=>  [
@@ -312,6 +314,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Terus',
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'pimpinan',
 								'scopes'			=>  [
@@ -362,6 +366,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Jaya',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'marketing',
 								'scopes'			=>  [
@@ -377,6 +383,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Terus',
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'marketing',
 								'scopes'			=>  [
@@ -405,6 +413,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Jaya',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'surveyor',
 								'scopes'			=>  [
@@ -420,6 +430,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Terus',
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'surveyor',
 								'scopes'			=>  [
@@ -450,6 +462,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Jaya',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'kasir',
 								'scopes'			=>  [
@@ -468,6 +482,8 @@ class InitPengajuanTableSeeder extends Seeder
 															'nama'			=> 'Maju Terus',
 															'latitude'		=> -6.21462,
 															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
 								'role'				=>  'kasir',
 								'scopes'			=>  [
