@@ -102,6 +102,10 @@ class PengajuanKreditBaru
 
 				$kaktif['ro_koperasi_id']		= TAuth::activeOffice()['koperasi']['id'];
 			}
+			elseif(isset($this->kredit['lokasi']))
+			{
+				$kaktif['ro_koperasi_id']		= $this->kredit['lokasi'];
+			}
 
 			//3. store mobile
 			if(isset($this->kredit['mobile']))
@@ -129,6 +133,18 @@ class PengajuanKreditBaru
 					$referensi_ro->save();
 
 					$kredit->referensi_id		= $referensi_ro->id;
+				}
+				else
+				{
+					//3a. check if it has previous pengajuan
+					$total_mobile  	= PengajuanMobile_RO::where('mobile_id', $this->kredit['mobile'])->get(['kredit_id']);
+
+					$check_kredit 	= KreditAktif_RO::nomordokumenkredit($total_mobile)->status('pengajuan')->count();
+
+					if($check_kredit > 2)
+					{
+						throw new Exception("Maksimal pengajuan kredit adalah 3", 1);
+					}
 				}
 			}
 

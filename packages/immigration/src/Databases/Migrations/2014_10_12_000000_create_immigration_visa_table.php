@@ -16,6 +16,7 @@ class CreateImmigrationVisaTable extends Migration
 		Schema::create('immigration_visa', function (Blueprint $table) {
 			$table->string('id');
 			$table->string('role');
+			$table->datetime('last_logged')->nullable();
 			$table->string('immigration_ro_koperasi_id');
 			$table->string('immigration_pengguna_id');
 			$table->timestamps();

@@ -20,6 +20,8 @@ use TKredit\Survei\Models\Keuangan_A;
 use TKredit\Survei\Models\Nasabah_A;
 use TKredit\Survei\Models\Rekening_A;
 
+use TKredit\RiwayatKredit\Models\RiwayatKredit_RO;
+
 use Hash, Exception, Session, TAuth;
 
 /**
@@ -97,13 +99,48 @@ class DaftarKredit
 				$parsed_credit['status_sebelumnya']	= '';
 				$parsed_credit['status']			= 'pengajuan';
 				$parsed_credit['nomor_kredit']		= '';
+
+				$parsed_credit['kelengkapan_jaminan']			= true;
+				$parsed_credit['kelengkapan_relasi']			= true;
+				$parsed_credit['kelengkapan_nasabah']			= true;
+				if(empty($complete['jaminan_kendaraan'] && empty($complete['jaminan_tanah_bangunan'])))
+				{
+					$parsed_credit['kelengkapan_jaminan']		= false;
+				}
+
+				if(empty($complete['kreditur']) || $complete['kreditur']['nama']=='Pengajuan Melalui HP')
+				{
+					$parsed_credit['kelengkapan_nasabah']		= false;
+				}
+
+				if(empty($complete['kreditur']['relasi']))
+				{
+					$parsed_credit['kelengkapan_relasi']		= false;
+				}
+
 				break;
 
 			case 'survei':
+			case 'menunggu_persetujuan':
+			case 'menunggu_realisasi':
+			case 'terealisasi':
+			case 'tolak':
 				$complete	= Pengajuan::id($id)->with(['kreditur', 'kreditur.alamat', 'kreditur.relasi', 'jaminan_tanah_bangunan', 'jaminan_kendaraan'])->first()->toArray();
 				$survei 	= Survei::nomordokumenkredit($id)->get(['id']);
 
 				$parsed_credit 	=  $complete;
+
+				if(empty($parsed_credit['kreditur']['alamat']))
+				{
+					$parsed_credit['kreditur']['alamat'][0]	= null;
+				}
+
+				$parsed_credit['kelengkapan_nasabah']			= false;
+				$parsed_credit['kelengkapan_kepribadian']		= false;
+				$parsed_credit['kelengkapan_aset']				= false;
+				$parsed_credit['kelengkapan_jaminan']			= false;
+				$parsed_credit['kelengkapan_rekening']			= false;
+				$parsed_credit['kelengkapan_keuangan']			= false;
 
 				if($survei->count())
 				{
@@ -113,11 +150,26 @@ class DaftarKredit
 					
 					$parsed_credit['aset_tanah_bangunan']= AsetTanahBangunan_A::whereIn('survei_id', $survei)->with(['alamat', 'survei', 'survei.petugas'])->get()->toArray();
 					
+					if(count($parsed_credit['aset_kendaraan']) || count($parsed_credit['aset_kendaraan']) || count($parsed_credit['aset_kendaraan']))
+					{
+						$parsed_credit['kelengkapan_aset']		= true;
+					}
+
 					$parsed_credit['jaminan_kendaraan']	= JaminanKendaraan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
 					
 					$parsed_credit['jaminan_tanah_bangunan']= JaminanTanahBangunan_A::whereIn('survei_id', $survei)->with(['alamat', 'survei', 'survei.petugas'])->get()->toArray();
-					
+
+					if(count($parsed_credit['jaminan_kendaraan']) || count($parsed_credit['jaminan_tanah_bangunan']))
+					{
+						$parsed_credit['kelengkapan_jaminan']		= true;
+					}
+
 					$parsed_credit['kepribadian']		= Kepribadian_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->get()->toArray();
+
+					if(count($parsed_credit['kepribadian']))
+					{
+						$parsed_credit['kelengkapan_kepribadian']		= true;
+					}
 					
 					$parsed_credit['keuangan']			= Keuangan_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first();
 
@@ -126,21 +178,28 @@ class DaftarKredit
 						$parsed_credit['keuangan']		= $parsed_credit['keuangan']->toArray();
 					}
 					
+					if(count($parsed_credit['keuangan']))
+					{
+						$parsed_credit['kelengkapan_keuangan']		= true;
+					}
+
 					$parsed_credit['nasabah']			= Nasabah_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas'])->first();
 					if($parsed_credit['nasabah'])
 					{
 						$parsed_credit['nasabah']		= $parsed_credit['nasabah']->toArray();
+						$parsed_credit['kelengkapan_nasabah']		= true;
 					}
 
 					$parsed_credit['rekening']			= Rekening_A::whereIn('survei_id', $survei)->with(['survei', 'survei.petugas', 'details'])->orderby('nama_bank', 'desc')->get()->toArray();
 
-					$parsed_credit['status_berikutnya']	= 'setujui';
-					$parsed_credit['status_sebelumnya']	= 'pengajuan';
-					$parsed_credit['status']			= 'survei';
-					$parsed_credit['nomor_kredit']		= '';
+					if(count($parsed_credit['rekening']))
+					{
+						$parsed_credit['kelengkapan_rekening']		= true;
+					}
+
 				}
 				else
-				{
+				{				
 					$parsed_credit['aset_kendaraan']		= null;
 					$parsed_credit['aset_usaha']			= null;
 					$parsed_credit['aset_tanah_bangunan']	= null;
@@ -150,18 +209,52 @@ class DaftarKredit
 					$parsed_credit['keuangan']				= null;
 					$parsed_credit['nasabah']				= null;
 					$parsed_credit['rekening']				= null;
+				}
 
-					$parsed_credit['status_berikutnya']	= 'setujui';
+
+				if(str_is('survei',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'menunggu_persetujuan';
 					$parsed_credit['status_sebelumnya']	= 'pengajuan';
 					$parsed_credit['status']			= 'survei';
-					$parsed_credit['nomor_kredit']		= '';	
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('menunggu_persetujuan',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'menunggu_realisasi';
+					$parsed_credit['status_sebelumnya']	= 'survei';
+					$parsed_credit['status']			= 'menunggu_persetujuan';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('menunggu_realisasi',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= 'terealisasi';
+					$parsed_credit['status_sebelumnya']	= 'menunggu_persetujuan';
+					$parsed_credit['status']			= 'menunggu_realisasi';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('terealisasi',$model->status))
+				{
+					$parsed_credit['status_berikutnya']	= '';
+					$parsed_credit['status_sebelumnya']	= 'menunggu_realisasi';
+					$parsed_credit['status']			= 'terealisasi';
+					$parsed_credit['nomor_kredit']		= '';
+				}
+				elseif(str_is('tolak',$model->status))
+				{
+					$riwayat	= RiwayatKredit_RO::NomorDokumenKredit($id)->where('status', '<>', 'tolak')->orderby('created_at', 'desc')->first();
+					$parsed_credit['status_berikutnya']	= '';
+					$parsed_credit['status_sebelumnya']	= $riwayat->status;
+					$parsed_credit['status']			= 'tolak';
+					$parsed_credit['nomor_kredit']		= '';
 				}
 				break;
+
 			default:
 				throw new Exception("NOT FOUND", 404);
 				break;
 		}
-
+// dd($parsed_credit);
 		return $parsed_credit;
 	}
 
@@ -190,8 +283,11 @@ class DaftarKredit
 		$current_user 	= TAuth::activeOffice();
 		switch (strtolower($current_user['role'])) 
 		{
+			case 'komisaris':
+				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'menunggu_realisasi', 'terealisasi', 'tolak'];
+				break;
 			case 'pimpinan':
-				return ['pengajuan', 'survei', 'realisasi', 'tolak'];
+				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'menunggu_realisasi', 'terealisasi', 'tolak'];
 				break;
 			case 'marketing':
 				return ['pengajuan'];
@@ -199,7 +295,9 @@ class DaftarKredit
 			case 'surveyor':
 				return ['pengajuan', 'survei'];
 				break;
-			
+			case 'kasir':
+				return ['menunggu_realisasi', 'terealisasi'];
+				break;
 			default:
 				throw new Exception("Forbidden", 1);
 				break;
@@ -226,7 +324,7 @@ class DaftarKredit
 		$model  				= $model->status($queries['status']);
 		
 		//2.allow koperasi
-		$queries['koperasi_id']	= [TAuth::activeOffice()['koperasi']['id'], "0"];
+		$queries['koperasi_id']	= [TAuth::activeOffice()['koperasi']['id']];
 
 		$model  				= $model->koperasi($queries['koperasi_id']);
 

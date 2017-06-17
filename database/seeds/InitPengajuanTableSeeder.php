@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use TImmigration\Models\Pengguna;
+use TImmigration\Models\Koperasi_RO;
 
 use Carbon\Carbon;
 use TQueries\ACL\SessionBasedAuthenticator;
@@ -27,6 +28,9 @@ class InitPengajuanTableSeeder extends Seeder
 		DB::table('immigration_ro_koperasi')->truncate();
 		DB::table('immigration_visa')->truncate();
 
+
+		$faker			= \Faker\Factory::create();
+
 		//1. simpan imigrasi
 		$credentials	=	[
 								'email'				=> 'admin@ksp.id',
@@ -38,22 +42,104 @@ class InitPengajuanTableSeeder extends Seeder
 								'koperasi'			=> 	[
 															'id'			=> 'MAJUJAYA',
 															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
 							];
+
 		$visa_2 		= 	[
 								'id'				=> null,
 								'koperasi'			=> 	[
 															'id'			=> 'MAJUTERUS',
 															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
 														],
-								'role'				=>  'pimpinan'
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									// [
+									// 	'list'		=> 'kas_harian',
+									// ],
+									// [
+									// 	'list'		=> 'transaksi_harian',
+									// ],
+									// [
+									// 	'list'		=> 'atur_akses',
+									// ],
+								],
 							];
 
+			$visa_3 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'AYOMAJUAYOJAYA',
+															'nama'			=> 'Ayo Maju Ayo Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+															'nomor_telepon'	=> $faker->PhoneNumber,
+															'alamat'		=> $faker->address,
+														],
+								'role'				=>  'komisaris',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
+							];
 		$admin 			= new Pengguna;
 		$admin->fill($credentials);
 		$admin->grantVisa($visa_1);
 		$admin->grantVisa($visa_2);
+		$admin->grantVisa($visa_3);
 		$admin->save();
 
 		//2. simpan kredit
@@ -61,7 +147,6 @@ class InitPengajuanTableSeeder extends Seeder
 		$gndr   	= ['perempuan', 'laki-laki'];
 		$sp   		= ['belum_kawin', 'kawin', 'cerai', 'cerai_mati'];
 		$jw   		= [6,10,12,18,24,30,36,42,48,54,60];
-		$faker		= \Faker\Factory::create();
 
 		$type_k	= ['roda_2', 'roda_3', 'roda_4', 'roda_6'];
 		$merk_k	= ['honda', 'yamaha', 'suzuki', 'kawasaki', 'mitsubishi', 'toyota', 'nissan', 'kia', 'daihatsu', 'isuzu'];
@@ -100,7 +185,7 @@ class InitPengajuanTableSeeder extends Seeder
 						'jenis_kelamin'	=> $gndr[rand(0,1)],
 
 						'status_perkawinan'		=> $sp[rand(0,3)],
-						'telepon'				=> $faker->e164PhoneNumber,
+						'telepon'				=> $faker->PhoneNumber,
 						'pekerjaan'				=> $pekerjaan[rand(0,5)],
 						'penghasilan_bersih'	=> 'Rp '.rand(3,8).'.000.000',
 						'foto_ktp'				=> $foto[rand(0,4)],
@@ -119,7 +204,7 @@ class InitPengajuanTableSeeder extends Seeder
 						'petugas'		=> [
 							'id'		=> $admin->id,
 							'nama'		=> $admin->nama,
-							'role'		=> 'pimpinan',
+							'role'		=> 'komisaris',
 						]
 			];
 			$kendaraan 	= [
@@ -174,5 +259,231 @@ class InitPengajuanTableSeeder extends Seeder
 			$pengajuan 		= new \TCommands\Kredit\PengajuanKreditBaru($kredit);
 			$pengajuan->handle();
 		}
+
+
+
+		//3. simpan pimpinan
+		$credentials	=	[
+								'email'				=> 'pimpinan@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Pimpinan'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'pimpinan',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+										'param'		=> ['limit' => 'Rp 10.000.000']
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									[
+										'list'		=> 'kas_harian',
+									],
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'atur_akses',
+									],
+								],
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'pimpinan',
+								'scopes'			=>  [
+									[
+										'list'		=> 'modifikasi_koperasi',
+									],
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+									[
+										'list'		=> 'survei_kredit',
+									],
+									[
+										'list'		=> 'setujui_kredit',
+										'param'		=> ['limit' => 'Rp 10.000.000']
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+									// [
+									// 	'list'		=> 'kas_harian',
+									// ],
+									// [
+									// 	'list'		=> 'transaksi_harian',
+									// ],
+									// [
+									// 	'list'		=> 'atur_akses',
+									// ],
+								],
+							];
+
+		$pimpinan 			= new Pengguna;
+		$pimpinan->fill($credentials);
+		$pimpinan->grantVisa($visa_1);
+		$pimpinan->grantVisa($visa_2);
+		$pimpinan->save();
+
+		//4. simpan marketing
+		$credentials	=	[
+								'email'				=> 'marketing@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Marketing'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'marketing',
+								'scopes'			=>  [
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+								],
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'marketing',
+								'scopes'			=>  [
+									[
+										'list'		=> 'pengajuan_kredit',
+									],
+								],
+							];
+
+		$marketing 			= new Pengguna;
+		$marketing->fill($credentials);
+		$marketing->grantVisa($visa_1);
+		// $marketing->grantVisa($visa_2);
+		$marketing->save();
+
+		//5. simpan surveyor
+		$credentials	=	[
+								'email'				=> 'surveyor@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Surveyor'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'surveyor',
+								'scopes'			=>  [
+									[
+										'list'		=> 'survei_kredit',
+									],
+								],
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'surveyor',
+								'scopes'			=>  [
+									[
+										'list'		=> 'survei_kredit',
+									],
+								],
+							];
+
+		$surveyor 			= new Pengguna;
+		$surveyor->fill($credentials);
+		$surveyor->grantVisa($visa_1);
+		// $surveyor->grantVisa($visa_2);
+		$surveyor->save();
+
+
+
+		//6. simpan kasir
+		$credentials	=	[
+								'email'				=> 'kasir@ksp.id',
+								'password'			=> 'admin',
+								'nama'				=> 'Kasir'
+							];
+		$visa_1 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUJAYA',
+															'nama'			=> 'Maju Jaya',
+															'latitude'		=> -7.24917,
+															'longitude'		=> 112.75083,
+														],
+								'role'				=>  'kasir',
+								'scopes'			=>  [
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+								],
+							];
+		$visa_2 		= 	[
+								'id'				=> null,
+								'koperasi'			=> 	[
+															'id'			=> 'MAJUTERUS',
+															'nama'			=> 'Maju Terus',
+															'latitude'		=> -6.21462,
+															'longitude'		=> 106.84513,
+														],
+								'role'				=>  'kasir',
+								'scopes'			=>  [
+									[
+										'list'		=> 'transaksi_harian',
+									],
+									[
+										'list'		=> 'realisasi_kredit',
+									],
+								],
+							];
+
+		$kasir 			= new Pengguna;
+		$kasir->fill($credentials);
+		$kasir->grantVisa($visa_1);
+		// $kasir->grantVisa($visa_2);
+		$kasir->save();
 	}
 }

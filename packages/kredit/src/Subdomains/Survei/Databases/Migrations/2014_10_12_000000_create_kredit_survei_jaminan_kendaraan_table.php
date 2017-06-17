@@ -30,6 +30,7 @@ class CreateKreditSurveiJaminanKendaraanTable extends Migration
 			$table->string('status_kepemilikan', 255);
 			$table->double('harga_taksasi');
 			$table->string('fungsi_sehari_hari', 255);
+			$table->text('url_barcode')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 

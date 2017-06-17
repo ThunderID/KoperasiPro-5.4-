@@ -42,21 +42,30 @@ $(document).ready(function(){
 		// push notification
 		htmlNotify();
 		// call module enter to tabs
-		formEntertoTabs();
 		// call module form wizard();
-		wizard();
 		//optimize height
 		optimizeHeight();
 		// call module plugin print
-		print();
+		// print();
 
-		window.formEntertoTabs();
-		window.noEnterToSubmit();
+		// plugin yang tidak jalan ketikan n-progress
+		window.tabScrolling.init();
+		// window.formEntertoTabs.init();
+		window.noEnterToSubmit.init();
+		window.formInputMask.init();
+		window.wizard.init();
+		// window.select();
+		// $('.input-switch').bootstrapSwitch();
+		
+		// khusus module template clone
+		window.templateClone.init();
+		$('.add.init-add-one').trigger('click');
 	});
 
     // Form Submit with get method
     $(document).on('submit', 'form[data-pjax]', function(event) {
-      $.pjax.submit(event, '#pjax-container')
+		$.pjax.submit(event, '#pjax-container')
+		$('.modal').modal('hide');
     })    
 
     // does current browser support PJAX
@@ -71,9 +80,6 @@ $(document).ready(function(){
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
 window.steps = require('./plugins/jquery-steps/jquery.steps');
-$(document).ready(function() {
-	wizard();
-});
 
 /**
  * 5. Jquery Validation & Additional
@@ -87,22 +93,17 @@ window.validate = require('./plugins/jquery-validate/jquery.validate');
  * Description: plugin jQuery browser cookies for save state jQuery steps
  * Usage & Documentation: https://github.com/js-cookie/js-cookie
  */
-window.cookies = require('./plugins/jquery-cookie/js.cookie.js');
-$(document).ready( function() {
-	window.cookies();
-});
+// window.cookies = require('./plugins/jquery-cookie/js.cookie.js');
+// $(document).ready( function() {
+// 	window.cookies();
+// });
 
 /*
 7. jQuery Inputmask
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.inputmask = require('./plugins/inputmask/jquery.inputmask.bundle');
-// class for inputmask
-$(document).ready( function() {
-	// call module form input mask 
-	formInputMask();
-});
+window.Inputmask = require('inputmask');
 
 /**
  * 8. jQuery quick selection
@@ -111,15 +112,12 @@ $(document).ready( function() {
  */
 window.quickselect = require('./plugins/jquery-quick-selection/jquery.quickselect.min');
 
-// /**
-//  * 9. jQuery selectize
-//  * Description: plugin jQuery customize select options 
-//  * Usage & Documentation: http://selectize.github.io/selectize.js/
-//  */
+/**
+ * 9. jQuery selectize
+ * Description: plugin jQuery customize select options 
+ * Usage & Documentation: http://selectize.github.io/selectize.js/
+ */
 window.select2 = require('./plugins/select2/select2.min');
-$(document).ready( function() {
-	// window.select();
-});
 
 /**
  * 10. jQuery Nice Scroll
@@ -142,5 +140,5 @@ window.list = require('./plugins/list-js/list.js');
  */
 window.bootstrapSwitch = require('./plugins/bootstrap-switch/bootstrap-switch');
 $(document).ready( function() {
-	$('.input-switch').bootstrapSwitch();
+	// $('.input-switch').bootstrapSwitch();
 });

@@ -40,6 +40,7 @@ class CreateKreditSurveiJaminanTanahBangunanTable extends Migration
 			$table->double('taksasi_bangunan');
 			$table->double('njop');
 			$table->text('uraian')->nullable();
+			$table->text('url_barcode')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 

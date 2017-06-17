@@ -68,8 +68,5 @@ window.select = function(element, param) {
 
 // document ready & document pjax:end
 $(document).ready( function() {
-	window.select();
-	$(document).on("pjax:end", function() { 
-		window.select();
-	});
+	// window.select();
 });

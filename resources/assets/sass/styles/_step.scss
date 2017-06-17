@@ -4,117 +4,35 @@
 		height: 38px; 
 		overflow: hidden;  
 		width: 100%; 
-		div {
-			float: left;
-		}
-		.triangle {
-			width: 95%;
-			a {
-				background: $color-white;
-				color: $color-active;
-				float: left; 
-				text-align:center;
-				position: relative;
-				opacity: 1 !important; 
-			}
-			// &::after, &::before {
-			// 	border-top: 19px solid transparent;
-			// 	border-bottom: 19px solid transparent;
-			// 	border-left: 1em solid;
-			// 	content: "";
-			// 	margin-top: -19px;   
-			// 	position: absolute;
-			// 	top: 50%;
-			// 	right: 2px;
-			// }
-			// &::after {
-			// 	background-color: $color-active;
-			// 	border-left-color: $color-white;
-			// 	margin-top: -20px;
-			// 	right: -1px;
-			// 	z-index: 1;
-			// }
-			// &::before {
-			// 	border-left-color: $color-white;
-			// }
-			// .disabled {
-			// 	&::after {
-			// 		border-left-color: $color-white;
-			// 		color: $color-white;
-			// 		z-index: 1;
-			// 	}
-			// }
+		.state {
+			border-right: 1px solid $border-color-default;
+			color: $color-default;
+			height: 38px;
+			padding: 5px;
+			padding-top: 10px;
+			width: 20%;
+			font-size: 13px;
 			&.active {
-				a {
-					background: $color-active;
-					color: $color-white;
-					float: left; 
-					text-align:center;
-					opacity: 1 !important; 
-					position: relative;
-					// &.disabled {
-					// 	background: $color-active;
-					// 	color: $color-white;
-					// 	float: left; 
-					// 	text-align:center;
-					// 	position: relative;
-					// }
-				}
-				// &::after, &::before {
-				// 	border-top: 19px solid transparent;
-				// 	border-bottom: 19px solid transparent;
-				// 	border-left: 1em solid;
-				// 	content: "";
-				// 	margin-top: -19px;   
-				// 	position: absolute;
-				// 	top: 50%;
-				// 	right: 2px;
-				// 	@media (max-width: $screen-sm - 1) {
-				// 		right: -8px;
-				// 	}
-				// }
-				// &::after {
-				// 	background-color: $color-white;
-				// 	border-left-color: $color-active;
-				// 	z-index: 1;
-				// }
+				background-color: $color-active;
+				color: $color-white;
+				border-right: 0;
 			}
-			&.disabled {
-				a {
-					background: white;
-					color: $color-default;
-					float: left; text-align:center;
-					opacity: 1 !important;
-					position: relative;
-				}
-				// &::before {
-				// 	border-left-color: $color-white;
-				// 	z-index: 1;
-				// 	right: -2px;
-				// }
-				// &::after {
-				// 	background-color: $color-white;
-				// 	border-left-color: $color-white;
-				// 	z-index: 10;
-				// }
-				&.last {
-					&.active {
-						// &::after {
-						// 	border-left-color: $color-active;
-						// 	color: white;
-						// 	z-index: 1;
-						// }
-					}
-				}
+			&.complete {
+				background-color: lighten($color-active, 15%);
+				color: lighten($color-white, 15%);
+				border-right: 0;
 			}
-			
-			&.first {
-				// &::after {
-				// 	background-color: $color-white;
-				// 	border-left-color: $color-white;
-				// 	z-index: 10;
-				// }
+			&.failed {
+				background-color: $brand-danger;
+				color: $color-white;
+				border-right: 0;
+			}
+			&:last-child {
+				border-right: 0;
 			}
 		}
+	}
+	div {
+		float: left;
 	}
 }
