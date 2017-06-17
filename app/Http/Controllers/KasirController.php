@@ -172,10 +172,12 @@ class KasirController extends Controller
 
 		if (!empty($this->page_datas->cash['referensi_id']))
 		{
+			$this->page_datas->flag 						= 'realisai';
 			$this->view 								= view('pages.kasir.realisasi_kredit');
 		}
 		else 
 		{
+			$this->page_datas->flag 						= 'kas';
 			$this->view 								= view('pages.kasir.kas');
 		}
 
