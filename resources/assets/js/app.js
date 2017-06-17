@@ -44,3 +44,6 @@ require('./modules/template-clone');
 
 // add module tab-scrolling
 require ('./modules/tab-scrolling.js');
+
+// add module map
+require ('./modules/map.js');

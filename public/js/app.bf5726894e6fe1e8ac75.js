@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -12160,19 +12160,19 @@ module.exports = function(module) {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(45);
+window._ = __webpack_require__(47);
 
 // window.$ = window.jQuery = jQuery = require('./vendors/jquery-2.2.4.js');
 
 
 //js 3rd party plugins goes here
-__webpack_require__(27);
+__webpack_require__(28);
 
 //your js modules goes here
 // require('./modules/uac');
 
 // module push notification
-__webpack_require__(23);
+__webpack_require__(24);
 
 // add module set workspace height
 __webpack_require__(18);
@@ -12184,41 +12184,44 @@ __webpack_require__(18);
 __webpack_require__(9);
 
 // add module select
-__webpack_require__(24);
+__webpack_require__(25);
 
 // add module list-js
 __webpack_require__(19);
 
 // add module modal
-__webpack_require__(20);
+__webpack_require__(21);
 
 // add module button print show window
-__webpack_require__(22);
+__webpack_require__(23);
 
 // add button upload
 __webpack_require__(10);
 
 // add panel
-__webpack_require__(21);
+__webpack_require__(22);
 
 // add module template clone
-__webpack_require__(26);
+__webpack_require__(27);
 
 // add module tab-scrolling
-__webpack_require__(25);
+__webpack_require__(26);
+
+// add module map
+__webpack_require__(20);
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(38);
+/* WEBPACK VAR INJECTION */(function(jQuery, __webpack_provided_window_dot_jQuery) {window.$ = __webpack_provided_window_dot_jQuery = jQuery = __webpack_require__(40);
 // window.$ = window.halo = 'halo'
 // $ = window.jQuery;
 
 // var $ =  window.jQuery = require('jquery');
 // window.jQuery = $;
 
-__webpack_require__(39);
+__webpack_require__(41);
 
 // require('./vendors/jquery-2.2.4.js');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
@@ -12886,6 +12889,25 @@ $(document).ready(function () {
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {$('#modal-koperasi').on('shown.bs.modal', function (e) {
+	$(window).trigger('resize');
+	console.log(1);
+	$obj = $("#modal-koperasi").gMapsLatLonPicker();
+
+	$obj.params.strings.markerText = "Drag this Marker (example edit)";
+
+	$obj.params.displayError = function (message) {
+		console.log("MAPS ERROR: " + message); // instead of alert()
+	};
+
+	$obj.init($(this));
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {window.moduleModal = {
 	menuModal: function menuModal() {
 		$('a.mobile-menu-content').on('click', function () {
@@ -12954,7 +12976,7 @@ window.callModal = function () {}
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.panelModule = {
@@ -12992,7 +13014,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -13029,7 +13051,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -13103,7 +13125,7 @@ window.notify = function (msg, title, type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.select = function (element, param) {
@@ -13181,7 +13203,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.tabScrolling = {
@@ -13253,7 +13275,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/**
@@ -13878,7 +13900,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {/*
@@ -13886,7 +13908,7 @@ $(document).ready(function () {
 Description : jQuery pop up notification plugins.
 Usage and Documentation : https://github.com/CodeSeven/toastr#quick-start
 */
-window.toastr = __webpack_require__(37);
+window.toastr = __webpack_require__(39);
 
 /*
 2. nprogress
@@ -13894,7 +13916,7 @@ Description : jQuery plugins for displaying loading bar status (youtube style li
 Usage and Documentation : https://github.com/rstacruz/nprogress
 Note : will be use on pjax
 */
-window.NProgress = __webpack_require__(34);
+window.NProgress = __webpack_require__(36);
 NProgress.configure({
   showSpinner: false,
   trickleSpeed: 300
@@ -13908,7 +13930,7 @@ Note :
 - jquery version : 2 > your version > 3 
 - need server side configuration. you should use pjaxmiddleware(laravel)
 */
-window.pjax = __webpack_require__(35);
+window.pjax = __webpack_require__(37);
 $(document).ready(function () {
   $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
@@ -13962,14 +13984,14 @@ $(document).ready(function () {
  * Description: form wizard
  * Usage & Documentation: http://www.jquery-steps.com/GettingStarted
  */
-window.steps = __webpack_require__(30);
+window.steps = __webpack_require__(31);
 
 /**
  * 5. Jquery Validation & Additional
  * Description: jquery validation for form
  * Usage & Documentation: https://jqueryvalidation.org/
  */
-window.validate = __webpack_require__(31);
+window.validate = __webpack_require__(32);
 
 /**
  * 6. Jquery Cookies
@@ -13986,49 +14008,52 @@ window.validate = __webpack_require__(31);
 Description : formating input masking
 Usage and Documentation : https://github.com/RobinHerbots/Inputmask
 */
-window.Inputmask = __webpack_require__(44);
+window.Inputmask = __webpack_require__(46);
 
 /**
  * 8. jQuery quick selection
  * Description: plugin jQuery for select box with quick click
  * Usage & Documentation: http://quick-select.wstone.io/
  */
-window.quickselect = __webpack_require__(29);
+window.quickselect = __webpack_require__(30);
 
 /**
  * 9. jQuery selectize
  * Description: plugin jQuery customize select options 
  * Usage & Documentation: http://selectize.github.io/selectize.js/
  */
-window.select2 = __webpack_require__(36);
+window.select2 = __webpack_require__(38);
 
 /**
  * 10. jQuery Nice Scroll
  * Description: plugin jQuery for better look of scrollbar
  * Usage & Documentation: http://nicescroll.areaaperta.com/
  */
-window.nicescroll = __webpack_require__(33);
+window.nicescroll = __webpack_require__(35);
 
 /**
  * 11. jQuery plugin List-js
  * Description: plugin jQuery for list & search
  * Usage & Documentation: http://listjs.com/docs/
  */
-window.list = __webpack_require__(32);
+window.list = __webpack_require__(33);
 
 /**
  * 12. jQuery plugin bootstrap-switch
  * Description: plugin jQuery for switch radion button
  * Usage & Documentation: https://github.com/Bttstrp/bootstrap-switch/
  */
-window.bootstrapSwitch = __webpack_require__(28);
+window.bootstrapSwitch = __webpack_require__(29);
 $(document).ready(function () {
   // $('.input-switch').bootstrapSwitch();
 });
+
+// Map
+__webpack_require__(34);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -14820,7 +14845,7 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -14977,7 +15002,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -16855,7 +16880,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -18411,7 +18436,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (http://www.listjs.com) by Jonny Strömberg (http://javve.com)
@@ -19735,7 +19760,255 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
   }, {}] }, {}, [4]);
 
 /***/ }),
-/* 33 */
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(jQuery) {/**
+ *
+ * A JQUERY GOOGLE MAPS LATITUDE AND LONGITUDE LOCATION PICKER
+ * version 1.2
+ *
+ * Supports multiple maps. Works on touchscreen. Easy to customize markup and CSS.
+ *
+ * To see a live demo, go to:
+ * http://www.wimagguc.com/projects/jquery-latitude-longitude-picker-gmaps/
+ *
+ * by Richard Dancsi
+ * http://www.wimagguc.com/
+ *
+ */
+
+(function ($) {
+
+	// for ie9 doesn't support debug console >>>
+	if (!window.console) window.console = {};
+	if (!window.console.log) window.console.log = function () {};
+	// ^^^
+
+	$.fn.gMapsLatLonPicker = function () {
+
+		var _self = this;
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		// PARAMETERS (MODIFY THIS PART) //////////////////////////////////////////////////////////////
+		_self.params = {
+			defLat: -0.789275,
+			defLng: 113.92132700000002,
+			defZoom: 4,
+			queryLocationNameWhenLatLngChanges: true,
+			queryElevationWhenLatLngChanges: true,
+			mapOptions: {
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				mapTypeControl: false,
+				disableDoubleClickZoom: true,
+				zoomControlOptions: true,
+				streetViewControl: false
+			},
+			strings: {
+				markerText: "Drag this Marker",
+				error_empty_field: "Couldn't find coordinates for this place",
+				error_no_results: "Couldn't find coordinates for this place"
+			},
+			displayError: function displayError(message) {
+				alert(message);
+			}
+		};
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		// VARIABLES USED BY THE FUNCTION (DON'T MODIFY THIS PART) ////////////////////////////////////
+		_self.vars = {
+			ID: null,
+			LATLNG: null,
+			map: null,
+			marker: null,
+			geocoder: null
+		};
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		// PRIVATE FUNCTIONS FOR MANIPULATING DATA ////////////////////////////////////////////////////
+		var setPosition = function setPosition(position) {
+			_self.vars.marker.setPosition(position);
+			_self.vars.map.panTo(position);
+
+			$(_self.vars.cssID + ".gllpZoom").val(_self.vars.map.getZoom());
+			$(_self.vars.cssID + ".gllpLongitude").val(position.lng());
+			$(_self.vars.cssID + ".gllpLatitude").val(position.lat());
+
+			$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
+
+			if (_self.params.queryLocationNameWhenLatLngChanges) {
+				getLocationName(position);
+			}
+			if (_self.params.queryElevationWhenLatLngChanges) {
+				getElevation(position);
+			}
+		};
+
+		// for reverse geocoding
+		var getLocationName = function getLocationName(position) {
+			var latlng = new google.maps.LatLng(position.lat(), position.lng());
+			_self.vars.geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK && results[1]) {
+					$(_self.vars.cssID + ".gllpLocationName").val(results[1].formatted_address);
+				} else {
+					$(_self.vars.cssID + ".gllpLocationName").val("");
+				}
+				$(_self.vars.cssID).trigger("location_name_changed", $(_self.vars.cssID));
+			});
+		};
+
+		// for getting the elevation value for a position
+		var getElevation = function getElevation(position) {
+			var latlng = new google.maps.LatLng(position.lat(), position.lng());
+
+			var locations = [latlng];
+
+			var positionalRequest = { 'locations': locations };
+
+			_self.vars.elevator.getElevationForLocations(positionalRequest, function (results, status) {
+				if (status == google.maps.ElevationStatus.OK) {
+					if (results[0]) {
+						$(_self.vars.cssID + ".gllpElevation").val(results[0].elevation.toFixed(3));
+					} else {
+						$(_self.vars.cssID + ".gllpElevation").val("");
+					}
+				} else {
+					$(_self.vars.cssID + ".gllpElevation").val("");
+				}
+				$(_self.vars.cssID).trigger("elevation_changed", $(_self.vars.cssID));
+			});
+		};
+
+		// search function
+		var performSearch = function performSearch(string, silent) {
+			if (string == "") {
+				if (!silent) {
+					_self.params.displayError(_self.params.strings.error_empty_field);
+				}
+				return;
+			}
+			_self.vars.geocoder.geocode({ "address": string }, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					$(_self.vars.cssID + ".gllpZoom").val(17);
+					_self.vars.map.setZoom(parseInt($(_self.vars.cssID + ".gllpZoom").val()));
+					setPosition(results[0].geometry.location);
+				} else {
+					if (!silent) {
+						_self.params.displayError(_self.params.strings.error_no_results);
+					}
+				}
+			});
+		};
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		// PUBLIC FUNCTIONS  //////////////////////////////////////////////////////////////////////////
+		var publicfunc = {
+
+			// INITIALIZE MAP ON DIV //////////////////////////////////////////////////////////////////
+			init: function init(object) {
+
+				if (!$(object).attr("id")) {
+					if ($(object).attr("name")) {
+						$(object).attr("id", $(object).attr("name"));
+					} else {
+						$(object).attr("id", "_MAP_" + Math.ceil(Math.random() * 10000));
+					}
+				}
+
+				_self.vars.ID = $(object).attr("id");
+				_self.vars.cssID = "#" + _self.vars.ID + " ";
+
+				_self.params.defLat = $(_self.vars.cssID + ".gllpLatitude").val() ? $(_self.vars.cssID + ".gllpLatitude").val() : _self.params.defLat;
+				_self.params.defLng = $(_self.vars.cssID + ".gllpLongitude").val() ? $(_self.vars.cssID + ".gllpLongitude").val() : _self.params.defLng;
+				_self.params.defZoom = $(_self.vars.cssID + ".gllpZoom").val() ? parseInt($(_self.vars.cssID + ".gllpZoom").val()) : _self.params.defZoom;
+
+				_self.vars.LATLNG = new google.maps.LatLng(_self.params.defLat, _self.params.defLng);
+
+				_self.vars.MAPOPTIONS = _self.params.mapOptions;
+				_self.vars.MAPOPTIONS.zoom = _self.params.defZoom;
+				_self.vars.MAPOPTIONS.center = _self.vars.LATLNG;
+
+				_self.vars.map = new google.maps.Map($(_self.vars.cssID + ".gllpMap").get(0), _self.vars.MAPOPTIONS);
+				_self.vars.geocoder = new google.maps.Geocoder();
+				_self.vars.elevator = new google.maps.ElevationService();
+
+				_self.vars.marker = new google.maps.Marker({
+					position: _self.vars.LATLNG,
+					map: _self.vars.map,
+					title: _self.params.strings.markerText,
+					draggable: true
+				});
+
+				// Set position on doubleclick
+				google.maps.event.addListener(_self.vars.map, 'dblclick', function (event) {
+					setPosition(event.latLng);
+				});
+
+				// Set position on marker move
+				google.maps.event.addListener(_self.vars.marker, 'dragend', function (event) {
+					setPosition(_self.vars.marker.position);
+				});
+
+				// Set zoom feld's value when user changes zoom on the map
+				google.maps.event.addListener(_self.vars.map, 'zoom_changed', function (event) {
+					$(_self.vars.cssID + ".gllpZoom").val(_self.vars.map.getZoom());
+					$(_self.vars.cssID).trigger("location_changed", $(_self.vars.cssID));
+				});
+
+				// Update location and zoom values based on input field's value
+				$(_self.vars.cssID + ".gllpUpdateButton").bind("click", function () {
+					var lat = $(_self.vars.cssID + ".gllpLatitude").val();
+					var lng = $(_self.vars.cssID + ".gllpLongitude").val();
+					var latlng = new google.maps.LatLng(lat, lng);
+					_self.vars.map.setZoom(parseInt($(_self.vars.cssID + ".gllpZoom").val()));
+					setPosition(latlng);
+				});
+
+				// Search function by search button
+				$(_self.vars.cssID + ".gllpSearchButton").bind("click", function () {
+					performSearch($(_self.vars.cssID + ".gllpSearchField").val(), false);
+				});
+
+				// Search function by gllp_perform_search listener
+				$(document).bind("gllp_perform_search", function (event, object) {
+					performSearch($(object).attr('string'), true);
+				});
+
+				// Zoom function triggered by gllp_perform_zoom listener
+				$(document).bind("gllp_update_fields", function (event) {
+					var lat = $(_self.vars.cssID + ".gllpLatitude").val();
+					var lng = $(_self.vars.cssID + ".gllpLongitude").val();
+					var latlng = new google.maps.LatLng(lat, lng);
+					_self.vars.map.setZoom(parseInt($(_self.vars.cssID + ".gllpZoom").val()));
+					setPosition(latlng);
+				});
+			},
+
+			// EXPORT PARAMS TO EASILY MODIFY THEM ////////////////////////////////////////////////////
+			params: _self.params
+
+		};
+
+		return publicfunc;
+	};
+
+	$(document).ready(function () {
+		if (!$.gMapsLatLonPickerNoAutoInit) {
+			$(".gllpLatlonPicker").each(function () {
+				$obj = $(document).gMapsLatLonPicker();
+				$obj.init($(this));
+			});
+		}
+	});
+
+	$(document).bind("location_changed", function (event, object) {
+		console.log("changed: " + $(object).attr('id'));
+	});
+})(jQuery);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -22928,7 +23201,7 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23420,7 +23693,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -24353,7 +24626,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -25479,7 +25752,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -25909,10 +26182,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         }();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-})(__webpack_require__(46));
+})(__webpack_require__(48));
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -35323,7 +35596,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -37707,7 +37980,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38193,7 +38466,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38298,7 +38571,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38650,7 +38923,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -38719,13 +38992,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(40);
-__webpack_require__(41);
 __webpack_require__(42);
 __webpack_require__(43);
+__webpack_require__(44);
+__webpack_require__(45);
 
 // require("./dist/inputmask/phone-codes/phone-be");
 // require("./dist/inputmask/phone-codes/phone-nl");
@@ -38737,7 +39010,7 @@ module.exports = __webpack_require__(2);
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -55826,10 +56099,10 @@ module.exports = __webpack_require__(2);
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(47), __webpack_require__(5)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(49), __webpack_require__(5)(module)))
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -55838,7 +56111,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports) {
 
 var g;
@@ -55865,7 +56138,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(7);
