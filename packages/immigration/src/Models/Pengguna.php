@@ -106,7 +106,6 @@ class Pengguna extends BaseModel
 		{
 			throw new Exception($validator->messages()->toJson(), 1);
 		}
-
 		//3. simpan visa
 		//3a. simpan koperasi
 		$koperasi			= new Koperasi_RO;
