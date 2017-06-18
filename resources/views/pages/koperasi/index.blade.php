@@ -13,14 +13,6 @@
 ?>
 
 @push('content')
-<style>
-	@media screen and (max-width: 767px) {
-	.mobile-padding{
-		padding-left: 16px;
-		padding-right: 16px;
-	}
-</style>
-
 	<div class="row field" style="overflow-x: hidden;">
 
 		<div class="col-md-12 hidden-md hidden-lg hidden-sm p-r-none m-r-none" style="background-color: white; height: 37px; border-bottom: 1px solid #e6e8e6;">
