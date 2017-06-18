@@ -1,4 +1,4 @@
-<div class="dropdown">
+<!-- <div class="dropdown">
 	<div class="hidden-xs">
 		<a id="notification" href="#" class="dropdown-toggle text-center primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="fa fa-bell fa-md" style="font-size: 14px;"></i>
@@ -12,7 +12,6 @@
 				// @endforeach --}}
 				@endphp
 				<li><a href="#" target="_blank" class="text-center"><i>Nothing here</i></a></li>
-				<!-- <li><a href="{{route('notification.index')}}" target="_blank" class="text-center">View All</a></li> -->
 			</ul>
 		</a>
 	</div>
@@ -28,8 +27,7 @@
 				// @endforeach --}}
 				@endphp
 				<li><a href="#" target="_blank" class="text-center"><i>Nothing here</i></a></li>
-				<!-- <li><a href="{{route('notification.index')}}" target="_blank" class="text-center">View All</a></li> -->
 			</ul>
 		</a>
 	</div>
-</div>
+</div> -->
