@@ -19,7 +19,7 @@
 						</div>
 					</div>
 					<div class="panel-content">
-						<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
+						<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39" on-mobile="off">
 							<ul class="list-group">
 								@foreach($page_attributes->content as $key => $value)
 								<li class="{{ $key == $first_key ? 'active' : '' }}">
