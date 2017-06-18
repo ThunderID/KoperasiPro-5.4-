@@ -43,10 +43,9 @@ mix.sass('resources/assets/sass/app.scss', 'public/css/app.css')
 			'resources/assets/js/vendors.js',
 			'resources/assets/js/app.js'
 		], 'public/js/app.js')
-	.version(['public/css/app.css', 'public/js/app.js'])
+	.version()
 	.copy('resources/assets/fonts', 'public/fonts/')
 	.copy('resources/assets/icons', 'public/icons')
-	// .autoload({ 
-	// 	'jquery': ['window.$', 'window.jQuery'],
-	// })
+	//.copy('resources/assets/js/plugins/map/jquery-gmaps-latlon-picker.js','public/js/jquery-gmaps-latlon-picker.js')
+	//.copy('resources/assets/js/plugins/map/jquery-2.1.1.min.js','public/js/jquery-2.1.1.min.js')
 	;

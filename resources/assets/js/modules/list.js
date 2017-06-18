@@ -1,5 +1,15 @@
+window.listModule = {
+	listKoperasi: function () {
+		options = {
+			valueNames: ['name']
+		};
+		var listKoperasi = new List('list-koperasi', options);
+	},
+	init: function () {
+		this.listKoperasi();
+	}
+}
 
-options = {
-    valueNames: [ 'name' ]
-};
-var xxx = new List('list-koperasi', options);
+$(document).ready(function () {
+	window.listModule.init();
+});

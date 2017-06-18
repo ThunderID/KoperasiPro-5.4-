@@ -22,7 +22,7 @@
 					@if(!empty($page_datas->credit['aset_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
@@ -61,7 +61,7 @@
 	<!-- No data -->
 	<div class="row m-b-md">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#aset-kendaraan" data-toggle="hidden" data-target="aset-kendaraan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p class="text-light">Belum ada data disimpan. <a href="#aset-kendaraan" data-toggle="hidden" data-target="aset-kendaraan" data-panel="data-aset" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif

@@ -1,13 +1,13 @@
-window.buttonUpload = function () {
-	$('input[type="file"]').on('change', function() {
-		$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
-	});
+window.buttonUpload = {
+	upload: function () {
+		$('input[type="file"').on('change', function () {
+			$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
+		});
+	},
+	init: function () {
+		this.upload();
+	}
 }
-
 $(document).ready( function() {
-	window.buttonUpload();
-	// add event on pjax:end
-	$(document).on("pjax:end", function() { 
-		window.buttonUpload();
-	});
+	window.buttonUpload.init();
 });

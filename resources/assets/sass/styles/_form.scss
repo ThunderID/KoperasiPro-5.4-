@@ -1,16 +1,17 @@
 // Forms ======================================================================
 
 .form-control, input, select {
-	border-width: 2px;
+	border-width: 1px;
 	height: 38px;
 	padding: 8px 15px;
 	@include box-shadow(none);
 	&:focus {
 		@include box-shadow(none);
 	}
+	border-radius: 2px;
 }
 .input-group-addon {
-	border-width: 2px !important;
+	border-width: 1px !important;
 }
 .no-resize { resize: none; }
 .help-block { font-size: 11px !important; }

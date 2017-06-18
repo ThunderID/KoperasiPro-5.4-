@@ -21,7 +21,7 @@
 					@if (!empty($page_datas->credit['kepribadian']))
 						@if ($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" no-data-pjax>
+								<a class="text-danger m-r-md delete" href="#" data-url="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
@@ -39,7 +39,7 @@
 		</div>
 		<div class="row p-t-lg m-b-xl">
 			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-				<p class="m-b-xs text-sm"><strong>Referens</strong></p>
+				<p class="m-b-xs text-sm"><strong>Referensi</strong></p>
 				<p class="text-capitalize text-light">{{ (isset($value['nama_referens']) && !is_null($value['nama_referens'])) ? $value['nama_referens'] : '-' }} - {{ (isset($value['hubungan']) && !is_null($value['hubungan'])) ? str_replace('_', ' ', $value['hubungan']) : '-'  }}</p>
 				<p class="text-capitalize text-light">{{ (isset($value['telepon_referens']) && !is_null($value['telepon_referens'])) ? $value['telepon_referens'] : '-' }}</p>
 			</div>
@@ -67,7 +67,7 @@
 	<!-- No data -->
 	<div class="row">
 		<div class="col-sm-12">
-			<p>Belum ada data disimpan. <a href="#kepribadian" data-toggle="hidden" data-target="kepribadian" data-panel="data-kepribadian" no-data-pjax> Tambahkan Sekarang </a></p>
+			<p class="text-light">Belum ada data disimpan. <a href="#kepribadian" data-toggle="hidden" data-target="kepribadian" data-panel="data-kepribadian" no-data-pjax> Tambahkan Sekarang </a></p>
 		</div>
 	</div>
 @endif

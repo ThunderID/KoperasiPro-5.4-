@@ -20,6 +20,7 @@ class UploadBase64Gambar
 	public function __construct($pre, $file)
 	{
 		$this->file     		= $file;
+		$this->pre     			= $pre;
 	}
 
 	/**
@@ -43,7 +44,7 @@ class UploadBase64Gambar
 			}
 			
 			$date 		= Carbon::now();
-			$fn 		= $pre.'-'.Str::slug(microtime()).'.jpg'; 
+			$fn 		= $this->pre.'-'.Str::slug(microtime()).'.jpg'; 
 
 			$dp 		= $date->format('Y/m/d');
 

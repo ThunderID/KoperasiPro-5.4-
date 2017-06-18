@@ -41,7 +41,7 @@ class DaftarkanPengguna implements ShouldQueue
 			$pengguna		= $pengguna->fill($this->pengguna);
 			$pengguna->save();
 
-			return true;
+			return $pengguna->toArray();
 		}
 		catch(Exception $e)
 		{

@@ -23,12 +23,12 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody class="root-template-kendaraan">
-				<tr class="template-clone-default">
+			<tbody id="content-items-kendaraan">
+				<tr id="template-clone-kendaraan-default">
 					<td class="text-center" colspan="7">Belum ada jaminan kendaraan</td>
 				</tr>
 
-				<tr class="template-clone-kendaraan hidden">
+				<tr id="template-clone-kendaraan" class="hidden">
 					<td class="nomor text-capitalize"></td>
 					<td class="tipe text-capitalize"></td>
 					<td class="tahun text-capitalize"></td>
@@ -48,37 +48,35 @@
 <div class="row p-t-md">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<h5 class="text-uppercase text-light">Jaminan Tanah &amp; Bangunan</h5>
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>Jenis Jaminan</th>
-						<th>Jenis Sertifikat</th>
-						<th>No. Sertifikat</th>
-						<th>Masa Berlaku</th>
-						<th>Atas Nama</th>
-						{{-- <th>Alamat</th> --}}
-						<th></th>
-					</tr>
-				</thead>
-				<tbody class="root-template-tanah-bangunan">
-					<tr class="template-clone-default">
-						<td class="text-center" colspan="8">Belum ada jaminan tanah &amp; Bangunan</td>
-					</tr>
-					<tr class="template-clone-tanah-bangunan hidden">
-						<td class="nomor text-capitalize"></td>
-						<td class="tipe text-capitalize"></td>
-						<td class="jenis_sertifikat text-capitalize"></td>
-						<td class="nomor_sertifikat text-capitalize"></td>
-						<td class="masa_berlaku_sertifikat text-capitalize"></td>
-						<td class="atas_nama text-capitalize"></td>
-						{{-- <td class="alamat text-capitalize"></td> --}}
-						<td class="action text-capitalize"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Jenis Jaminan</th>
+					<th>Jenis Sertifikat</th>
+					<th>No. Sertifikat</th>
+					<th>Masa Berlaku</th>
+					<th>Atas Nama</th>
+					{{-- <th>Alamat</th> --}}
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="content-items-tanah-bangunan">
+				<tr id="template-clone-tanah-bangunan-default">
+					<td class="text-center" colspan="8">Belum ada jaminan tanah &amp; Bangunan</td>
+				</tr>
+				<tr id="template-clone-tanah-bangunan" class="hidden">
+					<td class="nomor text-capitalize"></td>
+					<td class="tipe text-capitalize"></td>
+					<td class="jenis_sertifikat text-capitalize"></td>
+					<td class="nomor_sertifikat text-capitalize"></td>
+					<td class="masa_berlaku_sertifikat text-capitalize"></td>
+					<td class="atas_nama text-capitalize"></td>
+					{{-- <td class="alamat text-capitalize"></td> --}}
+					<td class="action text-capitalize"></td>
+				</tr>
+			</tbody>
+		</table>
 		<fieldset class="form-group">
 			<a href="#" class="p-t-md p-b-md modal-add-jaminan" data-toggle="modal" data-target="#modal-jaminan-tanah-bangunan"><i class="fa fa-plus"></i> Tambah Jaminan Tanah &amp; Bangunan</a>
 			<span class="text-muted text-capitalize text-sm p-l-lg p-t-md p-b-md text-info hidden info-add"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 3</em></span>
@@ -109,7 +107,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-kendaraan" data-root-template="root-template-kendaraan" data-available-add="2" data-input-get=".input-kendaraan" data-input-prefix="jaminan_kendaraan">
+				<a href="#" class="btn btn-success add" data-typeclone="table" data-template="template-clone-kendaraan" data-content="content-items-kendaraan" data-availableadd="2" data-inputget=".input-kendaraan" data-inputprefix="jaminan_kendaraan">
 					Simpan
 				</a>
 			</div>	
@@ -134,7 +132,7 @@
 				<a type='button' class="btn btn-default" data-dismiss='modal'>
 					Cancel
 				</a>
-				<a href="#" class="btn btn-success add" data-type-clone="table" data-template-clone="template-clone-tanah-bangunan" data-root-template="root-template-tanah-bangunan" data-available-add="3" data-input-get=".input-tanah-bangunan" data-input-prefix="jaminan_tanah_bangunan">
+				<a href="#" class="btn btn-success add" data-typeclone="table" data-template="template-clone-tanah-bangunan" data-content="content-items-tanah-bangunan" data-availableadd="3" data-inputget=".input-tanah-bangunan" data-inputprefix="jaminan_tanah_bangunan">
 					Simpan
 				</a>
 			</div>	

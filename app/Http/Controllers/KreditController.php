@@ -10,6 +10,13 @@ use TQueries\Kredit\DaftarKredit;
 use TCommands\Kredit\PengajuanKreditBaru;
 use TCommands\Kredit\SimpanPengajuanKredit;
 use TCommands\Kredit\LanjutkanUntukSurvei;
+use TCommands\Kredit\GandakanSurvei;
+
+use TCommands\Kredit\MenungguPersetujuan;
+use TCommands\Kredit\SetujuiKredit;
+use TCommands\Kredit\RealisasiKredit;
+use TCommands\Kredit\TolakKredit;
+
 use TCommands\Kredit\HapusPengajuanKredit;
 use TCommands\Kredit\HapusSurveiKredit;
 
@@ -22,8 +29,11 @@ use TQueries\Kredit\UIHelper\JenisKredit;
 use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
 use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
 
+use TImmigration\Models\Koperasi_RO;
+use TImmigration\Models\Visa_A;
+
 use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon, Exception;
+use Input, PDF, Carbon\Carbon, Exception, TAuth;
 
 /**
  * Kelas CreditController
@@ -355,19 +365,13 @@ class KreditController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function status($id, $status)
+	public function gandakan_survei($dari_id, $ke_id)
 	{
 		try
 		{
-			if(str_is(strtolower($status), 'survei'))
-			{
-				$simpan 	= new LanjutkanUntukSurvei($id);
-				$simpan->handle();
-			}
-			else
-			{
-				throw new Exception("Invalid Status", 1);
-			}
+			$gandakan 		= new GandakanSurvei($dari_id, $ke_id);
+			$gandakan 		= $gandakan->handle();
+			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 		}
 		catch(Exception $e)
 		{
@@ -381,8 +385,66 @@ class KreditController extends Controller
 			}
 		}
 
+		return $this->generateRedirect(route('credit.show', $this->request->ke_id));
+	}
+
+	/**
+	 * status kredit
+	 *
+	 * @return Response
+	 */
+	public function status($id, $status)
+	{
+		try
+		{
+			$notes 		= Input::get("notes");
+
+			if(str_is(strtolower($status), 'survei'))
+			{
+				$simpan 	= new LanjutkanUntukSurvei($id, $notes);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'menunggu_persetujuan'))
+			{
+				$simpan 	= new MenungguPersetujuan($id, $notes);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'menunggu_realisasi'))
+			{
+				$simpan 	= new SetujuiKredit($id, $notes);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'terealisasi'))
+			{
+				$simpan 	= new RealisasiKredit($id, $notes);
+				$simpan->handle();
+			}
+			elseif(str_is(strtolower($status), 'tolak'))
+			{
+				$simpan 	= new TolakKredit($id, $notes);
+				$simpan->handle();
+			}
+			else
+			{
+				throw new Exception("Invalid Status", 1);
+			}
+			$this->page_attributes->msg['success']		= ['Status berhasil diupdate'];
+		}
+		catch(Exception $e)
+		{
+			dd($e);
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
+
 		//function from parent to redirecting
-		return $this->generateRedirect(route('credit.show', $this->request->kredit_id));
+		return $this->generateRedirect(route('credit.show', $id));
 	}
 
 	/**
@@ -440,19 +502,27 @@ class KreditController extends Controller
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
 			case 'pengajuan':
-				$this->view                                = view('pages.kredit.pengajuan');
+				$this->view 						= view('pages.kredit.pengajuan');
 				break;
 			
 			case 'survei':
-				$this->view                                = view('pages.kredit.survei');
+				$this->view                  		= view('pages.kredit.survei');
 				break;
 
-			case 'realisasi':
-				$this->view                                = view('pages.kredit.realisasi');
+			case 'menunggu_persetujuan':
+				$this->view 						= view('pages.kredit.menunggu_persetujuan');
+				break;
+
+			case 'menunggu_realisasi':
+				$this->view 						= view('pages.kredit.menunggu_realisasi');
+				break;
+
+			case 'terealisasi':
+				$this->view 						= view('pages.kredit.terrealisasi');
 				break;	
 
 			default:
-				$this->view                                = view('pages.kredit.pengajuan');
+				$this->view 						= view('pages.kredit.pengajuan');
 				break;
 		}
 
@@ -469,7 +539,7 @@ class KreditController extends Controller
 	 * @param string $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		try {
 			if($this->request->is('hapus/jaminan/kendaraan/*'))
@@ -747,5 +817,73 @@ class KreditController extends Controller
 		$path 			= $file->storeAs('photos', $location . $name . '.jpg');
 
 		return $path;
+	}
+
+
+	/**
+	 * Fungsi untuk menampilkan halaman rencana kredit yang akan di print
+	 */
+	public function print_realisasi($id, $dokumen)
+	{
+		//check kredit
+		$kredit			= $this->service->detailed($id);
+		$koperasi 		= Koperasi_RO::id(TAuth::activeOffice()['koperasi']['id'])->first();
+		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
+
+		if(!empty($kredit['jaminan_kendaraan']))
+		{
+			switch (strtolower($dokumen)) 
+			{
+				case 'berita_acara_penyerahan_jaminan':
+					return view('print.realisasi.jaminan_bpkb.berita_acara_penyerahan_jaminan', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'pernyataan_penjamin_jaminan':
+					return view('print.realisasi.jaminan_bpkb.pernyataan_penjamin_jaminan', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'pernyataan_penjamin':
+					return view('print.realisasi.jaminan_bpkb.pernyataan_penjamin', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_kuasa_beban_fiducia':
+					return view('print.realisasi.jaminan_bpkb.surat_kuasa_beban_fiducia', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_serah_terima_fiducia':
+					return view('print.realisasi.jaminan_bpkb.surat_serah_terima_fiducia', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_bpkb.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));				
+					break;
+				
+				default:
+					throw new Exception("Invalid dokumen", 1);
+					break;
+			}
+		}
+
+		if(!empty($kredit['jaminan_tanah_bangunan']))
+		{
+			switch (strtolower($dokumen)) 
+			{
+				case 'pernyataan_penjamin_jaminan':
+					return view('print.realisasi.jaminan_sertifikat.pernyataan_penjamin_jaminan', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'pernyataan_penjamin':
+					return view('print.realisasi.jaminan_sertifikat.pernyataan_penjamin', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_perjanjian_kredit':
+					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				case 'surat_pemasangan_plang':
+					return view('print.realisasi.jaminan_sertifikat.surat_pemasangan_plang', compact('kredit', 'koperasi', 'pimpinan'));
+					break;
+				
+				default:
+					throw new Exception("Invalid dokumen", 1);
+					break;
+			}
+		}
+
 	}
 }

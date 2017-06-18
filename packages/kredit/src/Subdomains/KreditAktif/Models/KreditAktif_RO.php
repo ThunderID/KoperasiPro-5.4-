@@ -63,7 +63,7 @@ class KreditAktif_RO extends BaseModel
 											'nomor_kredit'			=> 'max:255',
 											'nomor_dokumen_kredit'	=> 'max:255',
 											'pengajuan_kredit'		=> 'numeric',
-											'status'				=> 'in:survei,pengajuan,setujui',
+											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi,tolak',
 											'tanggal'				=> 'date_format:"Y-m-d"',
 											'nama_kreditur'			=> 'max:255',
 											'ro_koperasi_id'		=> 'max:255',
@@ -82,7 +82,7 @@ class KreditAktif_RO extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
-											'nomor_dokumen_kredit', 
+											// 'nomor_dokumen_kredit', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 
@@ -91,6 +91,10 @@ class KreditAktif_RO extends BaseModel
 	protected $appends 				= ['kreditur'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	public function cabang()
+	{
+		return $this->belongsTo('TImmigration\Models\Koperasi_RO', 'ro_koperasi_id');
+	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -159,6 +163,11 @@ class KreditAktif_RO extends BaseModel
 
 	public function scopeNomorDokumenKredit($query, $value)
 	{
+		if(is_array($value))
+		{
+			return $query->whereIn('nomor_dokumen_kredit', $value);
+		}
+
 		return $query->where('nomor_dokumen_kredit', $value);
 	}
 

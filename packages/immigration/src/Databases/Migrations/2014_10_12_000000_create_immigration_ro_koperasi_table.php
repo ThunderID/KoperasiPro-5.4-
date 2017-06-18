@@ -16,6 +16,10 @@ class CreateImmigrationRoKoperasiTable extends Migration
 		Schema::create('immigration_ro_koperasi', function (Blueprint $table) {
 			$table->string('id');
 			$table->string('nama');
+			$table->float('latitude')->nullable();
+			$table->float('longitude')->nullable();
+			$table->text('alamat')->nullable();
+			$table->string('nomor_telepon')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

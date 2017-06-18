@@ -1,8 +1,9 @@
 .panel-workspace{
-	padding-top: 115px;
+	padding-top: 120px;
 
 	.panel-workspace-container{
 		background: $navbar-bg-primary;
+		min-height: calc(100vh - 120px);
 		// border: 1px solid $line-color-default;
 
 		h1, p{
@@ -35,3 +36,10 @@
 }
 
 @import "panels/images";
+
+@media screen and (max-width: 767px) {
+	.mobile-padding{
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}

@@ -9,8 +9,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand m-b-none" href="{{route('dashboard.index')}}">{{ Config::get('app.name') }}</a>
-			
+			<a class="navbar-brand m-b-none" href="{{route('home.index')}}">{{ Config::get('app.name') }}</a>
+			<a class="navbar-brand m-b-none m-l-xs p-r-lg" style="font-size: 14px;" href="{{route('home.index')}}"><i class="fa fa-home"></i> Beranda</a>
 			<!-- HERE SHOULD BE MODIFIED OFFICE SELECTOR -->
 			<span class="list-organisation pull-left m-l-xs">
 				<div class="dropdown p-t-xs">
@@ -62,7 +62,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<div class="navbar-brand text-center">
-				{{ Config::get('app.name') }} 
+				{{ Config::get('app.name') }}
 				<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
 					<i class="fa fa-building"></i>&nbsp;&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;<span class="caret"></span>
 				</a>

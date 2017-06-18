@@ -62,6 +62,7 @@ class JaminanKendaraan_A extends BaseModel
 											'harga_taksasi'				,
 											'fungsi_sehari_hari'		,
 											'atas_nama'					,
+											'url_barcode'				,
 										];
 	/**
 	 * Basic rule of database
