@@ -34,7 +34,7 @@
 							</div>
 							<div class="row m-b-xs">
 								<div class="col-xs-5">
-									<p>Scope</p>
+									<p>Hak Akses</p>
 								</div>
 								<div class="col-xs-7">
 									@foreach($value['scopes'] as $keyScope => $scope)
