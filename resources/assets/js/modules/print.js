@@ -6,26 +6,25 @@
  * 	- class: 'btn-print'
  * 	- data-url: url for get page element window
  */
-window.print = function () {
-	// class btn-print
-	$('.btn-print').click( function(e) {
-		e.preventDefault();
-		// get data url
-		url = $(this).data('url');
-		// call function openWindow
-		openWindow(url);
-	});
+window.printModule = {
+ 	button: function () {
+ 		$('.btn-print').on('click', function(e) {
+ 			e.preventDefault();
+ 			url = $(this).attr('data-url');
+ 			window.printModule.openWindow(url);
+ 		});
+ 	},
+ 	openWindow: function (url) {
+ 		// new window using url on button print
+		newWindow = window.open(url, 'test', 'directories=no, titlebar=no, toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		// window open dialog print
+		newWindow.print();
+		// newWindow.close();
+ 	},
+ 	init: function () {
+ 		window.printModule.button();
+ 	}
 }
-
-// function to open new window no address bar
-function openWindow(url) {
-	// new window using url on button print
-	newWindow = window.open(url, 'test', 'directories=no, titlebar=no, toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	// window open dialog print
-	newWindow.print();
-	// newWindow.close();
-}
-
 $(document).ready( function() {
-	print();
+	window.printModule.init();
 });

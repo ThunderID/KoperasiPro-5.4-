@@ -66,3 +66,6 @@ window.tabScrolling = {
 		this.windowResize();
 	}
 }
+$(document).ready(function(){
+	window.tabScrolling.init();
+});

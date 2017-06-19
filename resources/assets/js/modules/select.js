@@ -1,3 +1,4 @@
+import $ from 'jquery';
 window.select = function(element, param) {
 	$('.select').select2({
 		theme: "bootstrap",
@@ -68,5 +69,5 @@ window.select = function(element, param) {
 
 // document ready & document pjax:end
 $(document).ready( function() {
-	// window.select();
+	window.select();
 });
