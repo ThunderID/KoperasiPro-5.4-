@@ -137,7 +137,7 @@ class PengajuanKreditBaru
 				else
 				{
 					//3a. check if it has previous pengajuan
-					$total_mobile  	= PengajuanMobile_RO::where('mobile_id', $this->kredit['mobile'])->get(['kredit_id']);
+					$total_mobile  	= PengajuanMobile_RO::where('mobile_id', $this->kredit['mobile']['id'])->get(['kredit_id'])->toArray();
 
 					$check_kredit 	= KreditAktif_RO::nomordokumenkredit($total_mobile)->status('pengajuan')->count();
 
