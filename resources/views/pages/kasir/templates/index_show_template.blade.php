@@ -12,7 +12,7 @@
 					'title' 			=> 'Data Kas',
 					'status'			=> null,
 					'status_default'	=> 'semua',
-					'placeholder_input' => ($page_datas->flag == 'kas') ? 'Cari Daftar Kas' : 'Cari Daftar Realisasi Kredit',
+					'placeholder_input' => 'Cari',
 				]])
 			</div>
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">

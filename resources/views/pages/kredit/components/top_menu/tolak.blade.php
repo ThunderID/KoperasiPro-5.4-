@@ -21,9 +21,9 @@
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
-				{{-- <a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
+				<!-- <a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
 					<i class="fa fa-info-circle"></i> Riwayat Note
-				</a> --}}
+				</a> -->
 				<p class="p-r-sm p-t-sm p-l-sm text-danger">
 					Ditolak
 				</p>
