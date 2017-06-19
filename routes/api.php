@@ -15,9 +15,13 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['tapi']], function()
 {
-	Route::get('/pengaturan', function () 
+	Route::get('/pengaturan', function (Request $request) 
 	{
-		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y')])->asArray();
+		$mobile  	= \TKredit\Pengajuan\Models\PengajuanMobile_RO::where('mobile_id', $request->get('mobile')['id'])->get(['kredit_id'])->toArray();
+
+		$total 		= \TKredit\KreditAktif\Models\KreditAktif_RO::nomordokumenkredit($mobile)->status('pengajuan')->count();
+
+		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => (3 - $total)])->asArray();
 	});
 
 	// Here lies credit controller all things started here
