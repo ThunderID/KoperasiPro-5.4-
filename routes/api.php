@@ -17,7 +17,7 @@ Route::group(['middleware' => ['tapi']], function()
 {
 	Route::get('/pengaturan', function (Request $request) 
 	{
-		$mobile  	= \TKredit\Pengajuan\Models\PengajuanMobile_RO::where('mobile_id', $request->get('mobile')['id'])->get(['kredit_id'])->toArray();
+		$mobile  	= \TKredit\Pengajuan\Models\PengajuanMobile_RO::where('mobile_id', $request->get('id'))->get(['kredit_id'])->toArray();
 
 		$kredit_ids = array_column($mobile, 'kredit_id');
 
