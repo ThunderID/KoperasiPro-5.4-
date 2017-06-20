@@ -19,7 +19,9 @@ Route::group(['middleware' => ['tapi']], function()
 	{
 		$mobile  	= \TKredit\Pengajuan\Models\PengajuanMobile_RO::where('mobile_id', $request->get('mobile')['id'])->get(['kredit_id'])->toArray();
 
-		$total 		= \TKredit\KreditAktif\Models\KreditAktif_RO::nomordokumenkredit($mobile)->status('pengajuan')->count();
+		$kredit_ids = array_column($mobile, 'kredit_id');
+
+		$total 		= \TKredit\KreditAktif\Models\KreditAktif_RO::nomordokumenkredit($kredit_ids)->status('pengajuan')->count();
 
 		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => (3 - $total)])->asArray();
 	});
