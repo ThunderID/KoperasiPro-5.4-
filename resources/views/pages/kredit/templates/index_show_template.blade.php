@@ -8,7 +8,7 @@
 			'pengajuan'				=> '#0BB7D6',
 	];
 @endphp
-@inject('cservice', 'TQueries\Kredit\DaftarKredit')
+@inject('cservice', 'App\Service\Helpers\ACL\KewenanganKredit')
 
 @extends('template.cms_template')
 
@@ -26,7 +26,7 @@
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
-					'status'			=> 	$cservice->statusLists(),
+					'status'			=> 	$cservice::statusLists(),
 					'status_default'	=> 'semua'
 				]])
 			</div>

@@ -14,10 +14,12 @@ use App\Service\Pengajuan\HapusDataKredit;
 
 use App\Service\Pengajuan\SurveiKredit;
 
-use TQueries\Kredit\UIHelper\JangkaWaktuKredit;
-use TQueries\Kredit\UIHelper\JenisKredit;
-use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
-use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
+use App\Service\Helpers\Kredit\JangkaWaktuKredit;
+use App\Service\Helpers\Kredit\JenisKredit;
+use App\Service\Helpers\Kredit\JenisJaminanKendaraan;
+use App\Service\Helpers\Kredit\MerkJaminanKendaraan;
+
+use App\Service\Teritorial\TeritoriIndonesia;
 
 use Input, PDF, Carbon\Carbon, Exception, TAuth;
 

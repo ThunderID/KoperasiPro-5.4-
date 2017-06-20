@@ -5,10 +5,10 @@ namespace App\Service\Teritorial;
 ///////////////
 //   Models  //
 ///////////////
-use App\Domain\Territorial\Models\Provinsi_RO as Model;
-use App\Domain\Territorial\Models\Regensi_RO;
-use App\Domain\Territorial\Models\Distrik_RO;
-use App\Domain\Territorial\Models\Desa_RO;
+use App\Domain\Teritori\Models\Provinsi as Model;
+use App\Domain\Teritori\Models\Regensi;
+use App\Domain\Teritori\Models\Distrik;
+use App\Domain\Teritori\Models\Desa;
 
 use Hash, Exception, Session, TAuth;
 
