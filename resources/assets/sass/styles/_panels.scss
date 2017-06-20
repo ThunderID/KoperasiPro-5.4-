@@ -36,3 +36,10 @@
 }
 
 @import "panels/images";
+
+@media screen and (max-width: 767px) {
+	.mobile-padding{
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}

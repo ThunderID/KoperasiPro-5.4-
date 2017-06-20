@@ -6,19 +6,20 @@
 
 @push('content')
 	<div class="row field">
-		<div class="{{ (isset($page_datas->kas['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
+		<div class="{{ (isset($page_datas->cash['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
 			<div class="sidebar-header p-b-sm">
-				{{-- @include('components.sidebar.basic_header',[ 'param' => [
-					'title' 			=> 'Data Kredit',
+				@include('components.sidebar.basic_header',[ 'param' => [
+					'title' 			=> 'Data Kas',
 					'status'			=> null,
-					'status_default'	=> 'semua'
-				]]) --}}
+					'status_default'	=> 'semua',
+					'placeholder_input' => ($page_datas->flag == 'kas') ? 'Cari Daftar Kas' : 'Cari Daftar Realisasi Kredit',
+				]])
 			</div>
 			<div class="sidebar-content _window" data-padd-top="auto" data-padd-bottom="39">
 				<div class="list-group">
 					@foreach($page_datas->cashes as $key => $value)
 						<a href="
-							@if ($value['tipe_dokumen'] == 'nota_realisasi')
+							@if (!empty($value['referensi_id']) && ($value['tipe'] == 'nota_realisasi'))
 								{{ route('kasir.kas.show', array_merge(['id' => $value['id'], 'section' => 'realisasi'], Input::all())) }}
 							@else
 								{{ route('kasir.realisasi.show', array_merge(['id' => $value['id'], 'section' => 'kas'], Input::all())) }}
@@ -59,7 +60,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-9">
 			@if (isset($page_datas->cash['id']))
-				@if ($page_datas->cash['tipe_dokumen'] == 'realisasi_kredit')
+				@if (!empty($page_datas->cash['referensi_id']) && ($page_datas->cash['tipe'] == 'nota_realisasi'))
 					@include('pages.kasir.components.top_menu.realisasi_kredit')
 				@else
 					@include('pages.kasir.components.top_menu.kas')
