@@ -2,7 +2,8 @@
 
 namespace App\Service\Pengaturan;
 
-use TImmigration\Models\Koperasi_RO;
+use App\Domain\Akses\Models\Visa;
+use App\Domain\Akses\Models\Koperasi;
 
 use Exception, TAuth, Carbon\Carbon, DB, Validator;
 
@@ -51,6 +52,7 @@ class KoperasiBaru
 			$this->authorize();
 
 			// 2. Orang ID 
+			$variable['id']				= str_replace(' ', '', $this->nama);
 		 	$variable['nama']			= $this->nama;
 		 	$variable['latitude']		= $this->latitude;
 		 	$variable['longitude']		= $this->longitude;
@@ -61,7 +63,7 @@ class KoperasiBaru
 			DB::BeginTransaction();
 
 			//2a. store koperasi transaksi
-			$koperasi 				= new Koperasi_RO;
+			$koperasi 				= new Koperasi;
 			$koperasi 				= $koperasi->fill($variable);
 			$koperasi->save();
 
@@ -75,12 +77,12 @@ class KoperasiBaru
 											[
 												'list'		=> 'atur_akses',
 											],
-										]
-				'immigration_pengguna_id'		=> $this->loggedUser['id'],
-				'immigration_ro_koperasi_id'	=> $koperasi->id,
+										],
+				'orang_id'			=> $this->loggedUser['id'],
+				'akses_koperasi_id'	=> $koperasi->id,
 			];
 
-			$acl 					= new Visa_A;
+			$acl 					= new Visa;
 			$acl->fill($isi_acl);
 			$acl->save();
 
@@ -113,7 +115,7 @@ class KoperasiBaru
 		//demi menghemat resource
 		$this->activeOffice 	= TAuth::activeOffice();
 		$this->loggedUser 		= TAuth::loggedUser();
-		$this->koperasi 		= Koperasi_RO::find($this->activeOffice['koperasi']['id']);
+		$this->koperasi 		= Koperasi::find($this->activeOffice['koperasi']['id']);
 
 		return true;
 	

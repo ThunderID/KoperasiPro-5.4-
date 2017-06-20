@@ -20,7 +20,7 @@
 				{{-- content form nasabah --}}
 				@include ('pages.kredit.components.form.pengajuan.nasabah', [
 					'param'	=> [
-						'data'		=> isset($page_datas->credit['kreditur']) ? $page_datas->credit['kreditur'] : null,
+						'data'		=> isset($page_datas->credit['debitur']) ? $page_datas->credit['debitur'] : null,
 					]
 				])
 				<hr/>
@@ -29,7 +29,7 @@
 				<h5 class="text-uppercase text-light">Pekerjaan</h5>
 				@include('pages.kredit.components.form.pengajuan.pekerjaan', [
 					'param'		=> [
-						'data'		=> isset($page_datas->credit['kreditur']) ? $page_datas->credit['kreditur'] : null,
+						'data'		=> isset($page_datas->credit['debitur']) ? $page_datas->credit['debitur'] : null,
 					],
 					'data'		=> [
 						'select_jenis_pekerjaan' 	=> $page_datas->select_jenis_pekerjaan
@@ -55,15 +55,15 @@
 			</div>
 
 			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-				{{-- content form kontak kreditur --}}
+				{{-- content form kontak debitur --}}
 				@include('components.helpers.forms.contact', [ 
 					'param'		=> [
-						'prefix'	=> 'kreditur',
+						'prefix'	=> 'debitur',
 						'data'		=> null,
 					],
 				])
 				
-				{{-- button action form kreditur --}}
+				{{-- button action form debitur --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
 					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="kontak">Cancel</a>
@@ -85,7 +85,7 @@
 				{{-- content form alamat nasabah --}}
 				@include('components.helpers.forms.address', [
 					'param'		=> [
-						'prefix'	=> 'kreditur',
+						'prefix'	=> 'debitur',
 						'data'		=> null,
 					],
 					'data'		=> [

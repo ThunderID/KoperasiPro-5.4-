@@ -11,7 +11,7 @@
 	<div class="row m-b-sm">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="row">
-				@include('pages.kredit.print.pengajuan.data_kreditur')
+				@include('pages.kredit.print.pengajuan.data_debitur')
 				@include('pages.kredit.print.pengajuan.data_kredit')
 			</div>
 		</div>
