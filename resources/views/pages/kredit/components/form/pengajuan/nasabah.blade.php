@@ -62,7 +62,7 @@
 	<label class="text-sm">Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
+			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-date auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
 		</div>
 	</div>
