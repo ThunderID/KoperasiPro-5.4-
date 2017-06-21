@@ -27,9 +27,12 @@ class CreateKreditKTPOrangTable extends Migration
 			
 			$table->text('alamat')->nullable();
 
+			$table->string('cif', 255)->nullable();
 			$table->string('nip', 255)->nullable();
 			$table->string('email', 255)->nullable();
 			$table->string('password', 255)->nullable();
+		
+			$table->date('tanggal_masuk')->nullable();
 			
 			$table->timestamps();
 			$table->softDeletes();

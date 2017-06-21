@@ -15,6 +15,10 @@ class CreateImmigrationRoKoperasiTable extends Migration
 	{
 		Schema::create('akses_koperasi', function (Blueprint $table) {
 			$table->string('id');
+			
+			$table->string('pusat_id')->nullable();
+			$table->string('kode');
+
 			$table->string('nama');
 			$table->decimal('latitude')->nullable();
 			$table->decimal('longitude')->nullable();

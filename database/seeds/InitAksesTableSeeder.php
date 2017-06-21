@@ -30,13 +30,17 @@ class InitAksesTableSeeder extends Seeder
 		$credentials	=	[
 								'email'				=> 'admin@ksp.id',
 								'password'			=> 'admin',
-								'nama'				=> 'C Mooy'
+								'nama'				=> 'C Mooy',
+								'tanggal_masuk'		=> Carbon::now()->format('d/m/Y'),
+								'nip'				=> '2017.0001'
 							];
 		$visa_1 		= 	[
 								'id'				=> null,
 								'koperasi'			=> 	[
 															'id'			=> 'MAJUJAYA',
+															'pusat_id'		=> 'Holding',
 															'nama'			=> 'Maju Jaya',
+															'kode'			=> rand(1000000, 9999999),
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 															'nomor_telepon'	=> $faker->PhoneNumber,
@@ -113,8 +117,8 @@ class InitAksesTableSeeder extends Seeder
 			$visa_3 		= 	[
 								'id'				=> null,
 								'koperasi'			=> 	[
-															'id'			=> 'AYOMAJUAYOJAYA',
-															'nama'			=> 'Ayo Maju Ayo Jaya',
+															'id'			=> 'HOLDING',
+															'nama'			=> 'Holding',
 															'latitude'		=> -7.24917,
 															'longitude'		=> 112.75083,
 															'nomor_telepon'	=> $faker->PhoneNumber,
@@ -154,10 +158,10 @@ class InitAksesTableSeeder extends Seeder
 		$sba 				= new SessionBasedAuthenticator;
 		$sba 				= $sba->login($credentials);
 
-		$koperasi_baru_2	= new KoperasiBaru($visa_2['koperasi']['nama'], $visa_2['koperasi']['latitude'], $visa_2['koperasi']['longitude'], $visa_2['koperasi']['nomor_telepon'], $visa_2['koperasi']['alamat']);
+		$koperasi_baru_2	= new KoperasiBaru($visa_2['koperasi']['nama'], rand(1000000, 9999999), $visa_2['koperasi']['latitude'], $visa_2['koperasi']['longitude'], $visa_2['koperasi']['nomor_telepon'], $visa_2['koperasi']['alamat'], 'Holding');
 		$koperasi_baru_2 	= $koperasi_baru_2->save();
 
-		$koperasi_baru_3 	= new KoperasiBaru($visa_3['koperasi']['nama'], $visa_3['koperasi']['latitude'], $visa_3['koperasi']['longitude'], $visa_3['koperasi']['nomor_telepon'], $visa_3['koperasi']['alamat']);
+		$koperasi_baru_3 	= new KoperasiBaru($visa_3['koperasi']['nama'],  rand(1000000, 9999999), $visa_3['koperasi']['latitude'], $visa_3['koperasi']['longitude'], $visa_3['koperasi']['nomor_telepon'], $visa_3['koperasi']['alamat']);
 		$koperasi_baru_3 	= $koperasi_baru_3->save();
 
 		$admin_2 			= new GrantVisa($orang['id'], $visa_2['role'], $visa_2['scopes']);

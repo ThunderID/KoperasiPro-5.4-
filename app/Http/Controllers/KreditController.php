@@ -115,24 +115,25 @@ class KreditController extends Controller
 			//============ DATA KREDIT ============//
 			$kredit		= Input::only('jenis_kredit', 'pengajuan_kredit', 'jangka_waktu');
 			
-			//============ DATA KREDITUR ============//
-			$kredit['kreditur'] 				= Input::get('kreditur');
+			//============ DATA debitur ============//
+			$kredit['debitur'] 				= Input::get('debitur');
 
-			// kreditur is e-ktp
-			if (!isset($kredit['kreditur']['is_ektp'])) 
+			// debitur is e-ktp
+			if (!isset($kredit['debitur']['is_ektp'])) 
 			{
-				$kredit['kreditur']['is_ektp']	= false; 
+				$kredit['debitur']['is_ektp']	= false; 
 			}
 			else
 			{
-				$kredit['kreditur']['is_ektp']	= true;
+				$kredit['debitur']['is_ektp']	= true;
 			}
-			$kredit['kreditur']['nik']			= '35-'.$kredit['kreditur']['nik'];
+
+			$kredit['debitur']['nik']			= '35-'.$kredit['debitur']['nik'];
 
 			// check input file foto_ktp
-			if (Input::file('kreditur')['foto_ktp'])
+			if (Input::file('debitur')['foto_ktp'])
 			{
-				$upload 		= new UploadGambar(Input::file('kreditur')['foto_ktp']);
+				$upload 		= new UploadGambar(Input::file('debitur')['foto_ktp']);
 				$upload 		= $upload->handle();
 
 				$foto_ktp 		= $upload['url'];
@@ -189,7 +190,7 @@ class KreditController extends Controller
 
 			$simpan 	= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), [], null, $foto_ktp, null, null);
 
-			$simpan->setDebitur($kredit['kreditur']['nik'], $kredit['kreditur']['nama'], $kredit['kreditur']['tanggal_lahir'], $kredit['kreditur']['jenis_kelamin'], $kredit['kreditur']['status_perkawinan'], $kredit['kreditur']['telepon'], $kredit['kreditur']['pekerjaan'], $kredit['kreditur']['penghasilan_bersih'], $kredit['kreditur']['is_ektp'], $kredit['kreditur']['alamat']);
+			$simpan->setDebitur($kredit['debitur']['nik'], $kredit['debitur']['nama'], $kredit['debitur']['tanggal_lahir'], $kredit['debitur']['jenis_kelamin'], $kredit['debitur']['status_perkawinan'], $kredit['debitur']['telepon'], $kredit['debitur']['pekerjaan'], $kredit['debitur']['penghasilan_bersih'], $kredit['debitur']['is_ektp'], $kredit['debitur']['alamat']);
 
 			foreach ($temp_jaminan_kendaraan as $key => $value) 
 			{
@@ -208,6 +209,7 @@ class KreditController extends Controller
 		}
 		catch (Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -230,31 +232,31 @@ class KreditController extends Controller
 	{
 		try
 		{
-			//update data kreditur
-			if (Input::has('kreditur'))
+			//update data debitur
+			if (Input::has('debitur'))
 			{
-				$kreditur 							= Input::get('kreditur');
+				$debitur 							= Input::get('debitur');
 
-				if (Input::file('kreditur')['foto_ktp'])
+				if (Input::file('debitur')['foto_ktp'])
 				{
-					$upload 						= new UploadGambar(Input::file('kreditur')['foto_ktp']);
+					$upload 						= new UploadGambar(Input::file('debitur')['foto_ktp']);
 					$upload 						= $upload->handle();
 
-					$kreditur['foto_ktp'] 			= $upload['url'];
+					$debitur['foto_ktp'] 			= $upload['url'];
 				}
 
-				$kreditur['nik'] 					= '35-'.$kreditur['nik'];
-				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$debitur['nik'] 					= '35-'.$debitur['nik'];
+				$simpan 	= new SimpanPengajuanKredit($id, ['debitur' => $debitur]);
 				$simpan->handle();
 			}
 
 			if (Input::has('relasi'))
 			{
-				$kreditur								= Input::only('relasi');
-				// $kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
-				// $kreditur['relasi']['telepon']		= '';
+				$debitur								= Input::only('relasi');
+				// $debitur['relasi']['nik']			= '35-'.$debitur['relasi']['nik'];
+				// $debitur['relasi']['telepon']		= '';
 
-				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
+				$simpan 	= new SimpanPengajuanKredit($id, ['debitur' => $debitur]);
 				$simpan->handle();
 			}
 
@@ -498,7 +500,7 @@ class KreditController extends Controller
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		$person_id 									= $this->page_datas->credit['debitur']['id'];
 
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
@@ -555,7 +557,7 @@ class KreditController extends Controller
 				$simpan 	= $hapus->hapusJaminanTanahBangunan($this->request->jaminan_tanah_bangunan_id);
 			}
 
-			if($this->request->is('hapus/kreditur/relasi/*'))
+			if($this->request->is('hapus/debitur/relasi/*'))
 			{
 				$simpan 	= $hapus->hapusRelasiDebitur($this->request->relasi_id);
 			}
@@ -658,7 +660,7 @@ class KreditController extends Controller
 	{
 		foreach ($data as $k => $v)
 		{
-			if (!isset($v['kreditur']['relasi']) || empty($v['kreditur']['relasi']))
+			if (!isset($v['debitur']['relasi']) || empty($v['debitur']['relasi']))
 			{
 				$complete 							= false;  
 			}
@@ -702,7 +704,7 @@ class KreditController extends Controller
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		$person_id 									= $this->page_datas->credit['debitur']['id'];
 
 		//function from parent to generate view
 		return $this->generateView();

@@ -21,13 +21,40 @@ class PenggunaBaru
 	 * @param  $kredit
 	 * @return void
 	 */
-	public function __construct($nama, $email, $password, $role, $scopes)
+	public function __construct($nip = null, $nama, $email, $password, $role, $scopes, $tanggal_masuk = Carbon::now())
 	{
-		$this->nama			= $nama;
-		$this->email		= $email;
-		$this->password		= $password;
-		$this->role			= $role;
-		$this->scopes		= $scopes;
+		$this->nip				= $nip;
+		$this->nama				= $nama;
+		$this->email			= $email;
+		$this->password			= $password;
+		$this->role				= $role;
+		$this->scopes			= $scopes;
+		$this->tanggal_masuk	= $tanggal_masuk;
+	}
+
+	private function generateNIP($tanggal_masuk)
+	{
+		if(!is_null($nip))
+		{
+			return $nip;
+		}
+
+		$nip 		= $tanggal_masuk->format('Y');
+
+		$karyawan 	= Orang::wherehas('visas', function($q){$q;})->where('nip', 'like', '%'.$nip)->orderby('created_at', 'desc')->first();
+		if(!$karyawan)
+		{
+			$norut 	= 1;
+		}
+		else
+		{
+			$norut 	= explode('.', $norut);
+			$norut 	= ((int)$norut[1] * 1) + 1;
+		}
+
+		$norut 		= str_pad($norut, 4, '0', STR_PAD_LEFT);
+
+		return $nip.'.'.$norut;
 	}
 
 	/**
@@ -41,12 +68,16 @@ class PenggunaBaru
 		{
 			DB::BeginTransaction();
 
+			$nip 		= $this->generateNIP($this->tanggal_masuk);
+
 			//1. simpan user
 			$orang 			= new Orang;
 			$orang->fill([
-				'nama'		=> $this->nama,
-				'email'		=> $this->email,
-				'password'	=> $this->password,
+				'nama'			=> $this->nama,
+				'email'			=> $this->email,
+				'password'		=> $this->password,
+				'nip'			=> $nip,
+				'tanggal_masuk'	=> $this->tanggal_masuk->format('d/m/Y'),
 				]);
 			$orang->save();
 

@@ -27,6 +27,8 @@ class PengajuanKredit
 	protected $jaminan_kendaraan;
 	protected $jaminan_tanah_bangunan;
 
+	protected $notes;
+
 	/**
 	 * Create a new job instance.
 	 *
@@ -47,10 +49,20 @@ class PengajuanKredit
 
 	public function tambahJaminanKendaraan($tipe, $merk, $tahun, $nomor_bpkb, $atas_nama)
 	{
+		//limit kendaraan
 		if(count($this->jaminan_kendaraan) > 2)
 		{
 			throw new Exception("Maksimal Jaminan Kendaraan = 2", 1);
 		}
+		
+		//pastikan kendaraan tidak dipakai di kredit aktif lain
+		$check_bpkb 		= JaminanKendaraan::where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
+
+		if(count($check_bpkb))
+		{
+			throw new Exception("Jaminan sudah di pakai atas nama ".$check_bpkb[0]->pengajuan->debitur->nama.' dengan nomor pengajuan kredit '.$check_bpkb[0]->pengajuan->id, 1);
+		}
+
 		$this->jaminan_kendaraan[]	= [
 			'tipe'			=> $tipe,
 			'merk'			=> $merk,
@@ -58,6 +70,16 @@ class PengajuanKredit
 			'nomor_bpkb'	=> $nomor_bpkb,
 			'atas_nama'		=> $atas_nama,
 		];
+
+		$check_pemakaian 	= JaminanKendaraan::where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q;})->get();
+
+		foreach ((array)$check_pemakaian as $key => $value) 
+		{
+			if(!empty($value))
+			{
+				$this->notes['jaminan_kendaraan'][]	= 'Jaminan Pernah dipakai di kredit pengajuan nomor '.$value->pengajuan->debitur->nama;
+			}
+		}
 
 		return $this;
 	}
@@ -67,6 +89,14 @@ class PengajuanKredit
 		if(count($this->jaminan_tanah_bangunan) > 3)
 		{
 			throw new Exception("Maksimal Jaminan Tanah & Bangunan = 3", 1);
+		}
+
+		//pastikan kendaraan tidak dipakai di kredit aktif lain
+		$check_sertifikat 		= JaminanTanahBangunan::where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
+
+		if(count($check_sertifikat))
+		{
+			throw new Exception("Jaminan sudah di pakai atas nama ".$check_sertifikat[0]->pengajuan->debitur->nama.' dengan nomor pengajuan kredit '.$check_sertifikat[0]->pengajuan->id, 1);
 		}
 
 		$this->jaminan_tanah_bangunan[]	= [
@@ -79,13 +109,27 @@ class PengajuanKredit
 			'luas_tanah'				=> $luas_tanah,
 			'alamat'					=> $alamat,
 		];
+
+		$check_pemakaian 	= JaminanTanahBangunan::where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q;})->get();
+
+		foreach ((array)$check_pemakaian as $key => $value) 
+		{
+			if(!empty($value))
+			{
+				$this->notes['jaminan_tanah_bangunan'][]	= 'Jaminan Pernah dipakai di kredit pengajuan nomor '.$value->pengajuan->debitur->nama;
+			}
+		}
+
 		return $this;
 	}
 
 	public function setDebitur($nik, $nama, $tanggal_lahir, $jenis_kelamin, $status_perkawinan, $telepon, $pekerjaan, $penghasilan_bersih, $is_ektp = true, $alamat = [])
 	{
+		$cif 			= $this->generateCIF($nik);
+
 		$this->debitur 	= [
 			'nik'				=> $nik,
+			'cif'				=> $cif,
 			'nama'				=> $nama,
 			'tanggal_lahir'		=> $tanggal_lahir,
 			'jenis_kelamin'		=> $jenis_kelamin,
@@ -96,6 +140,37 @@ class PengajuanKredit
 			'is_ektp'			=> $is_ektp,
 			'alamat'			=> $alamat,
 		];
+	}
+
+	private function generateCIF($nik = null)
+	{
+		$orang			= Orang::where('nik', $nik)->first();
+		$activeOffice 	= TAuth::activeOffice()['koperasi'];
+
+		$koperasi 		= Koperasi::id($activeOffice['id'])->with(['kantor_pusat'])->first();
+	
+		if($orang && !is_null($orang->cif))
+		{
+			return $cif;
+		}
+
+		$first_letter 	= $koperasi['kantor_pusat']['kode'].'.'.$koperasi['kode'].'.'.Carbon::now()->format('md').'.';
+
+		$latest_nasabah = Orang::where('cif', 'like', $first_letter.'%')->orderby('created_at', 'desc')->first();
+
+		if($latest_nasabah)
+		{
+			$last_letter 	= explode('.', $latest_nasabah['cif']);
+			$last_letter 	= ((int)$last_letter[3] * 1) + 1;
+		}
+		else
+		{
+			$last_letter 	= 1;
+		}
+
+		$last_letter 	= str_pad($last_letter, 4, '0', STR_PAD_LEFT);
+
+		return $first_letter.$last_letter;
 	}
 
 	/**
@@ -119,6 +194,7 @@ class PengajuanKredit
 					$orang 	= new Orang;
 					$orang->fill([
 							'is_ektp'				=> $this->debitur['is_ektp'],
+							'cif'					=> $this->debitur['cif'],
 							'nik'					=> $this->debitur['nik'],
 							'nama'					=> $this->debitur['nama'],
 							'tanggal_lahir'			=> $this->debitur['tanggal_lahir'],
@@ -261,6 +337,7 @@ class PengajuanKredit
 				]);
 			$riwayat->petugas_id 	= TAuth::loggedUser()['id'];
 			$riwayat->pengajuan_id 	= $pengajuan->id;
+			$riwayat->uraian 		= json_encode($this->notes);
 			$riwayat->save();
 
 			// DB::commit();

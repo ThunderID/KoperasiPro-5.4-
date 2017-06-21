@@ -31,6 +31,8 @@ class Koperasi extends BaseModel
 	protected $fillable				=	[
 											'id'					,
 											'nama'					,
+											'pusat_id'				,
+											'kode'					,
 											'latitude'				,
 											'longitude'				,
 											'alamat'				,
@@ -51,6 +53,16 @@ class Koperasi extends BaseModel
 	 * @var array
 	 */
 	protected $dates				= ['created_at', 'updated_at', 'deleted_at'];
+
+	/**
+	 * relationship pusat
+	 *
+	 * @return Kredit $model
+	 */	
+	public function kantor_pusat()
+	{
+		return $this->belongsto('App\Domain\Akses\Models\Koperasi', 'pusat_id');
+	}
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 

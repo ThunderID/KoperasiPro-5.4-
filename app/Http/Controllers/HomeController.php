@@ -23,6 +23,7 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
+		dd(\App\Domain\HR\Models\Orang::wherenotnull('nip')->get());
 		$a_of 		= TAuth::activeOffice();
 
 		// set page attributes (please check parent variable)

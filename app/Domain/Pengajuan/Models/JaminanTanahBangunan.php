@@ -94,6 +94,16 @@ class JaminanTanahBangunan extends BaseModel
 		return $this->hasMany('App\Domain\Survei\Models\JaminanTanahBangunan');
 	}
 
+	/**
+	 * relationship pengajuan
+	 *
+	 * @return Kredit $model
+	 */	
+	public function pengajuan()
+	{
+		return $this->belongsto('App\Domain\Pengajuan\Models\Pengajuan');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

@@ -15,6 +15,8 @@ use Exception, TAuth, Carbon\Carbon, DB, Validator;
 class KoperasiBaru
 {
 	protected $nama;
+	protected $pusat_id;
+	protected $kode;
 	protected $latitude;
 	protected $longitude;
 	protected $alamat;
@@ -29,9 +31,11 @@ class KoperasiBaru
 	 * @param  string $alamat
 	 * @param  string $nomor_telepon
 	 */
-	public function __construct($nama, $latitude, $longitude, $alamat, $nomor_telepon)
+	public function __construct($nama, $kode, $latitude, $longitude, $alamat, $nomor_telepon, $pusat_id = null)
 	{
 		$this->nama				= $nama;
+		$this->pusat_id			= $pusat_id;
+		$this->kode				= $kode;
 		$this->latitude			= $latitude;
 		$this->longitude		= $longitude;
 		$this->alamat			= $alamat;
@@ -53,6 +57,7 @@ class KoperasiBaru
 
 			// 2. Orang ID 
 			$variable['id']				= str_replace(' ', '', $this->nama);
+		 	$variable['kode']			= $this->kode;
 		 	$variable['nama']			= $this->nama;
 		 	$variable['latitude']		= $this->latitude;
 		 	$variable['longitude']		= $this->longitude;

@@ -52,12 +52,14 @@ class Orang extends BaseModel
 											'jenis_kelamin'			,
 											'status_perkawinan'		,
 											'nip'					,
+											'cif'					,
 											'email'					,
 											'password'				,
 											'telepon'				,
 											'pekerjaan'				,
 											'penghasilan_bersih'	,
 											'alamat'				,
+											'tanggal_masuk'			,
 										];
 
 	/**
@@ -146,6 +148,16 @@ class Orang extends BaseModel
 	}
 
 	/**
+	 * set attribute tanggal lahir
+	 *
+	 * @param d/m/Y $value
+	 */
+	protected function setTanggalMasukAttribute($value)
+	{
+		$this->attributes['tanggal_masuk']	= $this->formatDateFrom($value);
+	}
+
+	/**
 	 * set attribute nik
 	 *
 	 * @param pp-kk-cc-hhbbtt-rrrr $value
@@ -182,6 +194,11 @@ class Orang extends BaseModel
 	protected function getPenghasilanBersihAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
+	}
+
+	protected function getTanggalMasukAttribute($value)
+	{
+		return $this->formatDateTo($value);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
