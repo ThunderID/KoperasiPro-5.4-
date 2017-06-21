@@ -50,7 +50,7 @@
 <div class="search">
 	<form class="form" action="{{ route(Route::currentRouteName(), Input::only('status','sort')) }}" data-pjax=true data-ajax-submit=false>
 		<div class="input-group">
-			<input class="form-control" name="q" type="text" placeholder="Cari Data Kredit" value="{{ Input::get('q') }}">
+			<input class="form-control" name="q" type="text" placeholder="Cari Data" value="{{ Input::get('q') }}">
 			<span class="input-group-btn group-btn-search">
 				<a class="btn clear-search {{ !Input::has('q') ? 'disabled' : '' }}" href="{{ route(Route::currentRouteName(), Input::only('status','sort')) }}" data-toggle="tooltip" title="Hapus pencarian">
 					<i class="fa fa-window-close" aria-hidden="true"></i>
