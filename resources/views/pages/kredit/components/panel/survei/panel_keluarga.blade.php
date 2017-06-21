@@ -9,8 +9,8 @@
 		
 		{{-- panel form keluarga --}}
 		{{-- form untuk data yg sudah ada --}}
-		@if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->credit['kreditur']['relasi']))
-			@foreach ($page_datas->credit['kreditur']['relasi'] as $k => $v)
+		@if (isset($page_datas->credit['debitur']['relasi']) && !empty($page_datas->credit['debitur']['relasi']))
+			@foreach ($page_datas->credit['debitur']['relasi'] as $k => $v)
 				<div class="hidden" data-form="keluarga-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">

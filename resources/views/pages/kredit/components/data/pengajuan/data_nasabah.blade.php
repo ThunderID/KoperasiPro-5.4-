@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Nasabah
-			@if (!empty($page_datas->credit['kreditur']))
+			@if (!empty($page_datas->credit['debitur']))
 				@if ($edit == true)
 					<span class="pull-right text-capitalize">
 						<small>
@@ -24,7 +24,7 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kreditur']))
+@if (isset($page_datas->credit['debitur']) && !empty($page_datas->credit['debitur']))
 	<div class="row">
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
 			<div class="row">
@@ -40,7 +40,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<p class="text-capitalize text-light">
-						{{ (isset($page_datas->credit['kreditur']['nama']) && !is_null($page_datas->credit['kreditur']['nama'])) ? $page_datas->credit['kreditur']['nama'] : '-' }}
+						{{ (isset($page_datas->credit['debitur']['nama']) && !is_null($page_datas->credit['debitur']['nama'])) ? $page_datas->credit['debitur']['nama'] : '-' }}
 					</p>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					<p class="text-capitalize text-light">
-						{{ (isset($page_datas->credit['kreditur']['tanggal_lahir']) && !is_null($page_datas->credit['kreditur']['tanggal_lahir'])) ? $page_datas->credit['kreditur']['tanggal_lahir'] : '-' }}
+						{{ (isset($page_datas->credit['debitur']['tanggal_lahir']) && !is_null($page_datas->credit['debitur']['tanggal_lahir'])) ? $page_datas->credit['debitur']['tanggal_lahir'] : '-' }}
 					</p>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					<p class="text-capitalize text-light">
-						{{ (isset($page_datas->credit['kreditur']['jenis_kelamin']) && !is_null($page_datas->credit['kreditur']['jenis_kelamin'])) ? $page_datas->credit['kreditur']['jenis_kelamin'] : '-' }}
+						{{ (isset($page_datas->credit['debitur']['jenis_kelamin']) && !is_null($page_datas->credit['debitur']['jenis_kelamin'])) ? $page_datas->credit['debitur']['jenis_kelamin'] : '-' }}
 					</p>
 				</div>
 			</div>
@@ -75,9 +75,9 @@
 					</p>
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-					@if (isset($page_datas->credit['kreditur']['telepon']) && !is_null($page_datas->credit['kreditur']['telepon']))
+					@if (isset($page_datas->credit['debitur']['telepon']) && !is_null($page_datas->credit['debitur']['telepon']))
 						<p class="text-capitalize text-light">
-							{{ $page_datas->credit['kreditur']['telepon'] }}
+							{{ $page_datas->credit['debitur']['telepon'] }}
 						</p>
 					@else
 						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kontak" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
@@ -91,8 +91,8 @@
 					</p>
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-					@if (isset($page_datas->credit['kreditur']['alamat']) && !empty($page_datas->credit['kreditur']['alamat']))
-						@foreach ($page_datas->credit ['kreditur']['alamat'] as $k => $v)
+					@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
+						@foreach ($page_datas->credit ['debitur']['alamat'] as $k => $v)
 							{{-- @if ($k == 0) --}}
 								<p class="text-capitalize text-light">
 									{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
@@ -123,7 +123,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					<p class="text-capitalize text-light">
-						{{ (isset($page_datas->credit['kreditur']['pekerjaan']) && !is_null($page_datas->credit['kreditur']['pekerjaan'])) ? str_replace('_', ' ', $page_datas->credit['kreditur']['pekerjaan']) : '-' }}
+						{{ (isset($page_datas->credit['debitur']['pekerjaan']) && !is_null($page_datas->credit['debitur']['pekerjaan'])) ? str_replace('_', ' ', $page_datas->credit['debitur']['pekerjaan']) : '-' }}
 					</p>
 				</div>
 			</div>
@@ -135,17 +135,17 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					<p class="text-capitalize text-light">
-						{{ (isset($page_datas->credit['kreditur']['penghasilan_bersih']) && !is_null($page_datas->credit['kreditur']['penghasilan_bersih'])) ? $page_datas->credit['kreditur']['penghasilan_bersih'] : '-' }}
+						{{ (isset($page_datas->credit['debitur']['penghasilan_bersih']) && !is_null($page_datas->credit['debitur']['penghasilan_bersih'])) ? $page_datas->credit['debitur']['penghasilan_bersih'] : '-' }}
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-			@if (isset($page_datas->credit['kreditur']['foto_ktp']) && !is_null($page_datas->credit['kreditur']['foto_ktp']))
+			@if (isset($page_datas->credit['debitur']['foto_ktp']) && !is_null($page_datas->credit['debitur']['foto_ktp']))
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>foto KTP</strong></p>
-						<img src="{{ $page_datas->credit['kreditur']['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded"/>
+						<img src="{{ $page_datas->credit['debitur']['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded"/>
 					</div>
 				</div>
 			@endif

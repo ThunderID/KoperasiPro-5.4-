@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<p class="text-muted p-t-sm">
-					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['kreditur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['kreditur']['nik'] }}</span>
+					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['debitur']['nik'] }}</span>
 				</p>
 			</div>
 		</div>
@@ -17,10 +17,13 @@
 			</div>
 			<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
 				<p class="text-muted text-lg p-t-sm">
-					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['kreditur']['nama'] }} | {{ $page_datas->credit['kreditur']['nik'] }}
+					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['debitur']['nama'] }} | {{ $page_datas->credit['debitur']['nik'] }}
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
+				<a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
+					<i class="fa fa-info-circle"></i> Riwayat Note
+				</a>
 				<a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
@@ -40,14 +43,46 @@
 				<a href="#" class="arrow-right"><i class="fa fa-chevron-right"></i></a>
 				<div class="lists">
 					<ul class="nav nav-tabs tab-lists" role="tablist">
-						<li role="presentation" class="active list-item"><a href="#data-kredit" data-toggle="tab" role="tab">Data Kredit</a></li>
-						<li role="presentation" class="list-item"><a href="#data-nasabah" data-toggle="tab" role="tab">Data Nasabah</a></li>
-						<li role="presentation" class="list-item"><a href="#data-kepribadian" data-toggle="tab" role="tab">Data Kepribadian</a></li>
-						<li role="presentation" class="list-item"><a href="#data-keluarga" data-toggle="tab" role="tab">Data Keluarga</a></li>
-						<li role="presentation" class="list-item"><a href="#data-aset" data-toggle="tab" role="tab">Data Aset</a></li>
-						<li role="presentation" class="list-item"><a href="#data-jaminan" data-toggle="tab" role="tab">Data Jaminan</a></li>
-						<li role="presentation" class="list-item"><a href="#data-rekening" data-toggle="tab" role="tab">Data Rekening</a></li>
-						<li role="presentation" class="list-item"><a href="#data-keuangan" data-toggle="tab" role="tab">Data Keuangan</a></li>
+						<li role="presentation" class="active list-item">
+							<a href="#data-kredit" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_kredit']) && ($page_datas->credit['kelengkapan_kredit'] == false)) title="Kelengkapan Data Kredit Belum Lengkap" @endif>
+								Data Kredit @if (isset($page_datas->credit['kelengkapan_kredit']) && ($page_datas->credit['kelengkapan_kredit'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-nasabah" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) title="Kelengkapan Data Nasabah Belum Lengkap" @endif>
+								Data Nasabah @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-kepribadian" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_kepribadian']) && ($page_datas->credit['kelengkapan_kepribadian'] == false)) title="Kelengkapan Data Kepribadian Belum Lengkap" @endif>
+								Data Kepribadian @if (isset($page_datas->credit['kelengkapan_kepribadian']) && ($page_datas->credit['kelengkapan_kepribadian'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-keluarga" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_keluarga']) && ($page_datas->credit['kelengkapan_keluarga'] == false)) title="Kelengkapan Data Keluarga Belum Lengkap" @endif>
+								Data Keluarga @if (isset($page_datas->credit['kelengkapan_keluarga']) && ($page_datas->credit['kelengkapan_keluarga'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-aset" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_aset']) && ($page_datas->credit['kelengkapan_aset'] == false)) title="Kelengkapan Data Aset Belum Lengkap" @endif>
+								Data Aset @if (isset($page_datas->credit['kelengkapan_aset']) && ($page_datas->credit['kelengkapan_aset'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a  href="#data-jaminan" data-placement="right" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_jaminan']) && ($page_datas->credit['kelengkapan_jaminan'] == false)) title="Kelengkapan Data Jaminan Belum Lengkap" @endif>
+								Data Jaminan @if (isset($page_datas->credit['kelengkapan_jaminan']) && ($page_datas->credit['kelengkapan_jaminan'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-rekening" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_rekening']) && ($page_datas->credit['kelengkapan_rekening'] == false)) title="Kelengkapan Data Rekening Belum Lengkap" @endif>
+								Data Rekening @if (isset($page_datas->credit['kelengkapan_rekening']) && ($page_datas->credit['kelengkapan_rekening'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
+						<li role="presentation" class="list-item">
+							<a href="#data-keuangan" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_keuangan']) && ($page_datas->credit['kelengkapan_keuangan'] == false)) title="Kelengkapan Data Keuangan Belum Lengkap" @endif>
+								Data Keuangan @if (isset($page_datas->credit['kelengkapan_keuangan']) && ($page_datas->credit['kelengkapan_keuangan'] == false)) &nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> @endif
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -56,6 +91,24 @@
 </div>
 
 @section('page_modals')
+	@component('components.modal', [
+			'id'			=> 'modal-riwayat-note',
+			'title'			=> 'Riwayat Note',
+			'settings'		=> [
+				'hide_buttons'	=> true
+			]
+		])
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group text-right">
+					<a type="button" class="btn btn-default" data-dismiss="modal" no-data-pjax="">
+						Tutup
+					</a>
+				</div>
+			</div>
+		</div>
+	@endcomponent
+
 	@component('components.modal', [
 			'id'			=> 'modal-change-status',
 			'title'			=> 'Survei',

@@ -29,6 +29,22 @@
 		border-bottom: 0 !important;
 		min-width: 1500px;
 		.list-item {
+			// padding: 10px 20px;
+			// &:hover {
+			// 	background-color: $color-active;
+			// 	a {
+			// 		color: $color-white;
+			// 	}
+			// }
+			// a {
+			// 	// border: 0 !important;
+			// 	// padding: 0 !important;
+			// 	&:hover {
+			// 		background-color: transparent !important; 
+			// 		border: 0;
+			// 		// padding: 0 !important;
+			// 	}
+			// }
 			&.active {
 				a {
 					background-color: transparent !important;

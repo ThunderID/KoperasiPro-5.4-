@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Input, PDF, Carbon\Carbon, Exception, StdClass;
 
+use TCommands\ACL\DaftarkanPengguna;
+
 use TImmigration\Models\Pengguna;
 
 /**
@@ -93,34 +95,34 @@ class PenggunaController extends Controller
 
 			if(!$data)
 			{
-				$simpan 			= new DaftarkanPengguna($request->only(['email', 'password', 'nama']));
+				$simpan 			= new DaftarkanPengguna($this->request->only(['email', 'password', 'nama']));
 				$simpan 			= $simpan->handle();
 
 				$data 				= Pengguna::find($simpan['id']);
 			}
 			else
 			{
-				$data->fill($request->only(['email', 'password', 'nama']));
+				$data->fill($this->request->only(['email', 'password', 'nama']));
 				$data->save();
 			}
 
 			if($reuqest->has('add_visa'))
 			{
-				$visa 				= $request->get('add_visa');
+				$visa 				= $this->request->get('add_visa');
 				$simpan_visa 		= new GrantVisa($data['id'], $visa);
 				$simpan_visa 		= $simpan_visa->handle();
 			}
 
 			if($reuqest->has('remove_visa'))
 			{
-				$visa 				= $request->get('remove_visa');
+				$visa 				= $this->request->get('remove_visa');
 				$hapus_visa 		= new RemoveVisa($data['id'], $visa);
 				$hapus_visa 		= $hapus_visa->handle();
 			}
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 
-			return $this->generateRedirect(route('pengguna.show', $data->id));
+			return $this->generateRedirect(route('koperasi.show', 0));
 		}
 		catch (Exception $e)
 		{
@@ -133,7 +135,7 @@ class PenggunaController extends Controller
 				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
 			}
 		
-			return $this->generateRedirect(route('pengguna.edit', $id));
+			return $this->generateRedirect(route('koperasi.show', 0));
 		}
 	}
 

@@ -16,6 +16,7 @@
 			<h2>{{ $param['title'] }}</h2>
 		</div>
 		<div class="col-xs-6 col-md-6 p-r-none text-right filters" style="margin-top: -6px;">
+			@if(!is_null($param['status']))
 			<div class="dropdown">
 				<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
 					@if (Input::has('status'))
@@ -42,6 +43,7 @@
 					@endforeach
 				</ul>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>

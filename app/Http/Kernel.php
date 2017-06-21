@@ -59,7 +59,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'pjax' =>  \App\Http\Middleware\PjaxMiddleware::class,
         'authenticated' =>  \App\Http\Middleware\AuthenticatedMiddleware::class,
-        'tapi' =>  \TQueries\ACL\TApiMiddleware::class,
+        'tapi' =>  \App\Http\Middleware\API\TApiMiddleware::class,
 
         'modifikasi_koperasi'   =>  \App\Http\Middleware\ACL\ModifikasiKoperasiMiddleware::class,
         'pengajuan_kredit'      =>  \App\Http\Middleware\ACL\PengajuanKreditMiddleware::class,
