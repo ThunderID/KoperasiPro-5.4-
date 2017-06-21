@@ -7,6 +7,7 @@ use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
+use App\Infrastructure\Traits\AlamatTrait;
 
 use Validator, Exception;
 
@@ -27,6 +28,7 @@ class JaminanTanahBangunan extends BaseModel
 	use GuidTrait;
 
 	use IDRTrait;
+	use AlamatTrait;
 
 	/**
 	 * The database table used by the model.
@@ -122,25 +124,6 @@ class JaminanTanahBangunan extends BaseModel
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 		
-	/**
-	 * relationship survei
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function survei()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-	
-	/**
-	 * relationship alamat
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function alamat()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
-	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
@@ -166,6 +149,10 @@ class JaminanTanahBangunan extends BaseModel
 		return $this->formatMoneyTo($value);
 	}
 
+	public function getAlamatAttribute($value)
+	{
+		return $this->formatAlamatTo($value);
+	}
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
 	public function setNilaiJaminanAttribute($value)
@@ -183,6 +170,10 @@ class JaminanTanahBangunan extends BaseModel
 		$this->attributes['taksasi_bangunan']			= $this->formatMoneyFrom($value);
 	}
 
+	public function setAlamatAttribute($value)
+	{
+		$this->attributes['alamat']		  	= $this->formatAlamatFrom($value);
+	}
 	public function setNjopAttribute($value)
 	{
 		$this->attributes['njop']						= $this->formatMoneyFrom($value);

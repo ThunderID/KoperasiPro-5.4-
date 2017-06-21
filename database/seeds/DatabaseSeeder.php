@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 		// $this->call(InitLanjutSurveiTableSeeder::class);
 		// $this->call(InitSurveiTableSeeder::class);
 		// $this->call(InitKasTableSeeder::class);
-		$this->call(IndonesiaTableSeeder::class);
+		// $this->call(IndonesiaTableSeeder::class);
 
 		//TABLE MIGRATION FOR API
 		// $this->call(InitAPITestTableSeeder::class);

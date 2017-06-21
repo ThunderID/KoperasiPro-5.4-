@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Service\Pengajuan\PengajuanKredit;
 
 use Carbon\Carbon;
-use TQueries\ACL\SessionBasedAuthenticator;
+use App\Service\Akses\SessionBasedAuthenticator;
 
 class InitPengajuanKreditTableSeeder extends Seeder
 {

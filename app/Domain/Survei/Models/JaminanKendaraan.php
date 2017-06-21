@@ -7,6 +7,7 @@ use App\Infrastructure\Traits\GuidTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
 use App\Infrastructure\Traits\TanggalTrait;
+use App\Infrastructure\Traits\AlamatTrait;
 
 use Validator, Exception;
 
@@ -28,6 +29,7 @@ class JaminanKendaraan extends BaseModel
 
 	use IDRTrait;
 	use TanggalTrait;
+	use AlamatTrait;
 
 	/**
 	 * The database table used by the model.
@@ -137,6 +139,10 @@ class JaminanKendaraan extends BaseModel
 		return $this->formatMoneyTo($value);
 	}
 
+	public function getAlamatAttribute($value)
+	{
+		return $this->formatAlamatTo($value);
+	}
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 	public function setMasaBerlakuStnkAttribute($value)
 	{
@@ -148,6 +154,10 @@ class JaminanKendaraan extends BaseModel
 		$this->attributes['harga_taksasi']		= $this->formatMoneyFrom($value);
 	}
 
+	public function setAlamatAttribute($value)
+	{
+		$this->attributes['alamat']		  	= $this->formatAlamatFrom($value);
+	}
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 
 	/**

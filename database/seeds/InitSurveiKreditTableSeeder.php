@@ -8,7 +8,7 @@ use App\Service\Survei\SurveiKredit;
 use App\Service\Pengajuan\UpdateStatusKredit;
 
 use Carbon\Carbon;
-use TQueries\ACL\SessionBasedAuthenticator;
+use App\Service\Akses\SessionBasedAuthenticator;
 
 class InitSurveiKreditTableSeeder extends Seeder
 {

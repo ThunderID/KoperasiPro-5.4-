@@ -12,7 +12,7 @@ use App\Domain\Akses\Models\Koperasi;
 use App\Domain\HR\Models\Orang;
 
 use Carbon\Carbon;
-use TQueries\ACL\SessionBasedAuthenticator;
+use App\Service\Akses\SessionBasedAuthenticator;
 
 class InitAksesTableSeeder extends Seeder
 {

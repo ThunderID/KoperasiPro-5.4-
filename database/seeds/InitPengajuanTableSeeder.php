@@ -7,7 +7,7 @@ use TImmigration\Models\Pengguna;
 use TImmigration\Models\Koperasi_RO;
 
 use Carbon\Carbon;
-use TQueries\ACL\SessionBasedAuthenticator;
+use App\Service\Akses\SessionBasedAuthenticator;
 
 class InitPengajuanTableSeeder extends Seeder
 {
