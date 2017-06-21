@@ -528,7 +528,7 @@ class KreditController extends Controller
 
 		// get parameter from function getParamToView to parsing view
 		$this->getParamToView(['provinsi', 'jenis_kendaraan', 'jenis_kredit', 'jangka_waktu', 'merk_kendaraan', 'jenis_pekerjaan']);
-											 
+
 		//function from parent to generate view
 		return $this->generateView();
 	}

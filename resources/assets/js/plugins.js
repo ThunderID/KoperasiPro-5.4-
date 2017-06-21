@@ -56,6 +56,7 @@ $(document).ready(function(){
 		window.wizard.init();
 		// window.select();
 		// $('.input-switch').bootstrapSwitch();
+		window.printModule.init();
 		
 		// khusus module template clone
 		window.templateClone.init();

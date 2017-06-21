@@ -1,6 +1,39 @@
 window.wizard = {
-	step: function () {
-		
+	validation: function () {
+		define(["jquery-validation"], function( $ ) {
+			$.validator.addClassRules({
+				required: {
+					required: true,
+				}, 
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true
+				},
+				number: {
+					required: true,
+					number: true
+				},
+				date: {
+					required: true,
+					dateIND: true
+				}
+			});
+
+			// custom error message jQuery validation
+			$.extend($.validator.messages, {
+				required: "Inputan harus diisi",
+				'email': "Silahkan inputkan dengan format email",
+				'number': "Silahkan inputkan dengan format angka"
+			});
+			$.validator.addMethod(
+				"dateIND", function (val, el){
+					return val.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+				}, "Silahkan inputkan dengan format tanggal (dd/mm/yyyy)"
+			);
+		});
 	},
 	resizeContent: function () {
 		$('.wizard').find('.content').css({ height: $('.body.current').outerHeight() });
@@ -17,11 +50,8 @@ window.wizard = {
 			$(".wizard .actions a[href='#previous']").show();
 		}
 	},
-	validation: function () {
-		window.__validation();
-	},
 	init: function () {
-		// this.validation();
+		// window.wizard.validation();
 		$('.wizard').steps({
 			/* appreance */
 			headerTag: 'h3',
@@ -45,20 +75,20 @@ window.wizard = {
 			saveState: true,
 			/* Event */
 			onStepChanging: function (event, currentIndex, newIndex) {
-				form = $(this);
+				form = $('.wizard');
 				// // check previous tanpa memunculkan error
-				if (currentIndex > newIndex) {
+				// if (currentIndex > newIndex) {
 					return true;
-				}
+				// }
 
 				// // check next apabila ada error di stage sebelumnya
-				if (currentIndex < newIndex) {
-					form.find(".body:eq(" + newIndex + ") label.error").remove();
-					form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-				}
+				// if (currentIndex < newIndex) {
+				// 	form.find(".body:eq(" + newIndex + ") label.error").remove();
+				// 	form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+				// }
 
-				form.validate().settings.ignore = ":disabled,:hidden";
-				return form.valid();
+				// form.validate().settings.ignore = ":disabled,:hidden";
+				// return form.valid();
 			},
 			onStepChanged: function (event, currentIndex, priorIndex) {
 				window.wizard.resizeContent();
@@ -78,15 +108,15 @@ window.wizard = {
 				// window.select();
 			},
 			onFinishing: function (event, currentIndex) {
-				form = $(this);
-				form.validate().settings.ignore = ":disabled,:hidden";
+				form = $('.wizard');
+				// form.validate().settings.ignore = ":disabled,:hidden";
 				return form.valid();
 			},
 			onFinished: function (event, currentIndex) {
-				form = $(this);
+				form = $('.wizard');
 				form.submit();
 			},
-		})
+		});
 		// .validate({
 		// 	errorClass: 'has-error',
 		// 	errorPlacement: function errorPlacement(error, element) { 

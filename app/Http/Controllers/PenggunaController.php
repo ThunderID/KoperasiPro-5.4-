@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Input, PDF, Carbon\Carbon, Exception, StdClass;
 
 use TCommands\ACL\DaftarkanPengguna;
+use TCommands\ACL\GrantVisa;
 
 use TImmigration\Models\Pengguna;
+use TImmigration\Models\Koperasi_RO;
+
+use TAuth;
 
 /**
  * Kelas PenggunaController
@@ -91,6 +95,7 @@ class PenggunaController extends Controller
 	{
 		try
 		{
+			\DB::BeginTransaction();
 			$data 					= Pengguna::find($id);
 
 			if(!$data)
@@ -106,26 +111,42 @@ class PenggunaController extends Controller
 				$data->save();
 			}
 
-			if($reuqest->has('add_visa'))
-			{
-				$visa 				= $this->request->get('add_visa');
+			// if($this->request->has('add_visa'))
+			// {
+				$koperasi 					= Koperasi_RO::find(TAuth::ActiveOffice()['koperasi']['id']);
+
+				$visa['role'] 						= $this->request->get('role');
+				$visa['koperasi']['id'] 			= $koperasi['id'];
+				$visa['koperasi']['nama'] 			= $koperasi['nama'];
+				$visa['koperasi']['latitude'] 		= $koperasi['latitude'];
+				$visa['koperasi']['longitude'] 		= $koperasi['longitude'];
+				$visa['koperasi']['alamat'] 		= $koperasi['alamat'];
+				$visa['koperasi']['nomor_telepon'] 	= $koperasi['nomor_telepon'];
+
+				foreach ($this->request->get('scope') as $key => $value) 
+				{
+					$visa['scopes'][]			= ['list' => $value];
+				}
 				$simpan_visa 		= new GrantVisa($data['id'], $visa);
 				$simpan_visa 		= $simpan_visa->handle();
-			}
+			// }
 
-			if($reuqest->has('remove_visa'))
+			if($this->request->has('remove_visa'))
 			{
 				$visa 				= $this->request->get('remove_visa');
 				$hapus_visa 		= new RemoveVisa($data['id'], $visa);
 				$hapus_visa 		= $hapus_visa->handle();
 			}
 
+			\DB::commit();
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 
 			return $this->generateRedirect(route('koperasi.show', 0));
 		}
 		catch (Exception $e)
 		{
+			\DB::rollback();
+
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();

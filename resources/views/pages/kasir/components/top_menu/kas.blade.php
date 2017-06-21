@@ -21,8 +21,11 @@
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
-				<a href="#" data-url="{{ route('kasir.kas.index', ['mode' => 'pengajuan', 'id' => $page_datas->cash['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
+				{{-- <a href="#" data-url="{{ route('kasir.kas.index', ['mode' => 'pengajuan', 'id' => $page_datas->cash['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
+				</a>	 --}}
+				<a href="{{ route('credit.status', ['id' => $page_datas->cash['pengajuan']['id'], 'status' => 'terealisasi']) }}" class="btn p-r-sm p-l-none success hidden-xs hidden-sm">
+					<i class="fa fa-check" aria-hidden="true"></i> Konfirmasi
 				</a>	
 			</div>
 		</div>

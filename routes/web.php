@@ -11,7 +11,6 @@
 |
 */
 //Menu Login
-Route::get('/',			['uses'	=> 'HomeController@index',			'as' => 'home.index']);
 
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
@@ -20,6 +19,8 @@ Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destr
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
+	Route::get('/',			['uses'	=> 'HomeController@index',			'as' => 'home.index']);
+
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
 

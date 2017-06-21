@@ -15,7 +15,7 @@ class TApiMiddleware
 			$decoder 		= base64_decode($header[1]);
 
 			list($credentials['key'], $credentials['salt'], $credentials['secret']) 	= array_map('trim', explode('::', $decoder));
-			
+
 			$logged			= new APIAuthenticator;
 			$logged->authenticating($credentials);
 

@@ -44,16 +44,16 @@ class NavbarService
 													'data_kredit' 		=> route('credit.index'),
 												]				
 								],
-				'kasir'		=> 	[
-									'route' => null,
-									'sub'	=> 	[
-													'realisasi_kredit'		=> route('kasir.realisasi.kredit'),
-													'kas'				=> route('kasir.kas.index'),
-													'tambah_kas_masuk'		=> route('kasir.kas.create', ['status' => 'masuk']),
-													'tambah_kas_keluar'		=> route('kasir.kas.create', ['status' => 'keluar']),
-													'bayar_angsuran'		=> route('kasir.kas.index'),
-												]
-								]
+				// 'kasir'		=> 	[
+				// 					'route' => null,
+				// 					'sub'	=> 	[
+				// 									'realisasi_kredit'		=> route('kasir.realisasi.kredit'),
+				// 									'kas'				=> route('kasir.kas.index'),
+				// 									'tambah_kas_masuk'		=> route('kasir.kas.create', ['status' => 'masuk']),
+				// 									'tambah_kas_keluar'		=> route('kasir.kas.create', ['status' => 'keluar']),
+				// 									// 'bayar_angsuran'		=> route('kasir.kas.index'),
+				// 								]
+				// 				]
 			];
 	}
 }
