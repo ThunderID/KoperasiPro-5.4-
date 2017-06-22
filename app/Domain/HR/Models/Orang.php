@@ -92,7 +92,7 @@ class Orang extends BaseModel
     protected $hidden				= ['created_at', 'updated_at', 'deleted_at'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	
+
 	public function visas()
 	{
 		return $this->hasMany('App\Domain\Akses\Models\Visa', 'orang_id');
@@ -105,7 +105,7 @@ class Orang extends BaseModel
 	 */	
 	public function relasi()
 	{
-		return $this->belongsToMany('App\Domain\HR\Models\Orang', 'relasi_orang', 'id', 'orang_id');
+		return $this->belongsToMany('App\Domain\HR\Models\Orang', 'relasi_orang', 'orang_id', 'relasi_id')->withPivot('hubungan')->wherenull('relasi_orang.deleted_at');
 	}
 	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -144,7 +144,11 @@ class Orang extends BaseModel
 	 */
 	protected function setTanggalLahirAttribute($value)
 	{
-		$this->attributes['tanggal_lahir']	= $this->formatDateFrom($value);
+		if(!is_null($value))
+		{
+			$this->attributes['tanggal_lahir']	= $this->formatDateFrom($value);
+		}
+		unset($this->attributes['tanggal_lahir']);
 	}
 
 	/**
@@ -154,7 +158,10 @@ class Orang extends BaseModel
 	 */
 	protected function setTanggalMasukAttribute($value)
 	{
-		$this->attributes['tanggal_masuk']	= $this->formatDateFrom($value);
+		if(!is_null($value))
+		{
+			$this->attributes['tanggal_masuk']	= $this->formatDateFrom($value);
+		}
 	}
 
 	/**
@@ -164,15 +171,18 @@ class Orang extends BaseModel
 	 */
 	protected function setNikAttribute($value)
 	{
-		// //1. Check duplikat nik
-		// $exists_person 						= Orang::where('nik', $value)->notid($this->id)->first();
+		if(!is_null($value))
+		{
+			//1. Check duplikat nik
+			$exists_person 						= Orang::where('nik', $value)->notid($this->id)->first();
 
-		// if($exists_person)
-		// {
-		// 	throw new DuplicateException("NIK", 1);
-		// }
+			if($exists_person)
+			{
+				throw new Exception("NIK", 1);
+			}
 
-		$this->attributes['nik']			= $this->formatNIKFrom($value);
+			$this->attributes['nik']			= $this->formatNIKFrom($value);
+		}
 	}
 
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
@@ -193,6 +203,7 @@ class Orang extends BaseModel
 	 */
 	protected function getPenghasilanBersihAttribute($value)
 	{
+
 		return $this->formatMoneyTo($value);
 	}
 
@@ -274,10 +285,13 @@ class Orang extends BaseModel
 	 */
 	public function setPenghasilanBersihAttribute($value)
 	{
-		//1. simpan penghasilan_bersih
-		$this->attributes['penghasilan_bersih']	= $this->formatMoneyFrom($value);
+		if(!is_null($value))
+		{
+			//1. simpan penghasilan_bersih
+			$this->attributes['penghasilan_bersih']	= $this->formatMoneyFrom($value);
 
-		//2. it's a must to return value
+			//2. it's a must to return value
+		}
 		return $this;
 	}
 

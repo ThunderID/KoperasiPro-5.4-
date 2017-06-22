@@ -45,7 +45,7 @@
 			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 				<p class="text-capitalize text-light">
 					{{ (isset($value['nama']) && !is_null($value['nama'])) ? $value['nama'] : '-' }}
-					( {{ (isset($value['hubungan']) && !is_null($value['hubungan'])) ? str_replace('_', ' ', $value['hubungan']) : '-'  }} )
+					( {{ (isset($value['pivot']['hubungan']) && !is_null($value['pivot']['hubungan'])) ? str_replace('_', ' ', $value['pivot']['hubungan']) : '-'  }} )
 				</p>
 			</div>
 		</div>

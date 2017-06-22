@@ -45,7 +45,6 @@ class UpdateDebitur
 		];
 	}
 
-
 	/**
 	 * Execute the job.
 	 *
@@ -62,7 +61,7 @@ class UpdateDebitur
 			{
 				$orang		= Orang::where('nik', $value['nik'])->first();
 				
-				if(!$orang)
+				if(!$orang || is_null($value['nik']))
 				{
 					$orang 	= new Orang;
 				}
@@ -81,8 +80,11 @@ class UpdateDebitur
 						'penghasilan_bersih'	=> $value['penghasilan_bersih'],
 						'alamat'				=> $value['alamat'],
 					]);
+			
+				$orang['attributes'] 		= array_filter($orang['attributes']);
+
 				$orang->save();
-				
+
 				$relasi 			= new Relasi;
 				$relasi->orang_id 	= $this->orang->id;
 				$relasi->relasi_id 	= $orang->id;

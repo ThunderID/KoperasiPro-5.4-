@@ -2,7 +2,7 @@
 
 namespace App\Service\Pengajuan;
 
-use App\Domain\Pengajuan\Models\Relasi;
+use App\Domain\HR\Models\Relasi;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\JaminanKendaraan;
 use App\Domain\Pengajuan\Models\JaminanTanahBangunan;
@@ -14,11 +14,26 @@ use App\Domain\Survei\Models\AsetTanahBangunan;
 use App\Domain\Survei\Models\Rekening;
 use App\Domain\Survei\Models\Keuangan;
 
+use App\Domain\Pengajuan\Models\JaminanKendaraan as SJaminanKendaraan;
+use App\Domain\Pengajuan\Models\JaminanTanahBangunan as SJaminanTanahBangunan;
+
 use Exception, DB, TAuth, Carbon\Carbon;
 
 class HapusDataKredit
 {
 	protected $id;
+	protected $jaminan_kendaraan_ids;
+	protected $jaminan_tanah_bangunan_ids;
+	protected $survei_jaminan_kendaraan_ids;
+	protected $survei_jaminan_tanah_bangunan_ids;
+	protected $survei_aset_usaha_ids;
+	protected $survei_aset_tanah_bangunan_ids;
+	protected $survei_aset_kendaraan_ids;
+	protected $survei_rekening_ids;
+	protected $survei_kepribadian_ids;
+	protected $survei_keuangan_ids;
+	protected $relasi_ids;
+	protected $pengajuan;
 
 	/**
 	 * Create a new job instance.
@@ -28,8 +43,19 @@ class HapusDataKredit
 	 */
 	public function __construct($id)
 	{
-		$this->id     				= $id;
-		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->firstorfail();
+		$this->id     			= $id;
+		$this->pengajuan 		= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->firstorfail();
+		$this->jaminan_kendaraan_ids 				= [];
+		$this->jaminan_tanah_bangunan_ids 			= [];
+		$this->survei_jaminan_kendaraan_ids 		= [];
+		$this->survei_jaminan_tanah_bangunan_ids 	= [];
+		$this->survei_aset_usaha_ids 				= [];
+		$this->survei_aset_tanah_bangunan_ids 		= [];
+		$this->survei_aset_kendaraan_ids 			= [];
+		$this->survei_rekening_ids 					= [];
+		$this->survei_kepribadian_ids 				= [];
+		$this->survei_keuangan_ids 					= [];
+		$this->relasi_ids 							= [];
 	}
 
 	public function hapusJaminanKendaraan($id)
@@ -133,7 +159,7 @@ class HapusDataKredit
 			$rekening 		= Rekening::id($this->survei_rekening_ids)->where('pengajuan_id', $this->id)->delete();
 			$keuangan 		= Keuangan::id($this->survei_keuangan_ids)->where('pengajuan_id', $this->id)->delete();
 			
-			$relasi 		= Relasi::id($this->relasi_ids)->where('orang_id', $this->pengajuan->orang_id)->delete();
+			$relasi 		= Relasi::whereIn('relasi_id', $this->relasi_ids)->where('orang_id', $this->pengajuan->orang_id)->delete();
 
 			// DB::commit();
 
