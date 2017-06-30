@@ -332,7 +332,7 @@ class KreditController extends Controller
 			// kepribadian for survei
 			if (Input::has('kepribadian'))
 			{
-				$update->setKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian']);
+				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian']);
 			}
 
 			// nasabah for survei
@@ -349,6 +349,7 @@ class KreditController extends Controller
 		}
 		catch (Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -399,34 +400,34 @@ class KreditController extends Controller
 	{
 		try
 		{
-			$status 	= new UpdateStatusKredit($id);
+			$u_status 	= new UpdateStatusKredit($id);
 			$notes 		= Input::get("notes");
 
 			if(str_is(strtolower($status), 'survei'))
 			{
-				dD(1390139);
-				$status 	= $status->toSurvei($notes);
+				$u_status 	= $u_status->toSurvei($notes);
 			}
 			elseif(str_is(strtolower($status), 'menunggu_persetujuan'))
 			{
-				$status 	= $status->toMenungguPersetujuan($notes);
+				$u_status 	= $u_status->toMenungguPersetujuan($notes);
 			}
 			elseif(str_is(strtolower($status), 'menunggu_realisasi'))
 			{
-				$status 	= $status->toMenungguRealisasi($notes);
+				$u_status 	= $u_status->toMenungguRealisasi($notes);
 			}
 			elseif(str_is(strtolower($status), 'terealisasi'))
 			{
-				$status 	= $status->toRealisasi($notes);
+				$u_status 	= $u_status->toRealisasi($notes);
 			}
 			elseif(str_is(strtolower($status), 'tolak'))
 			{
-				$status 	= $status->toTolak($notes);
+				$u_status 	= $u_status->toTolak($notes);
 			}
 			else
 			{
 				throw new Exception("Invalid Status", 1);
 			}
+			$u_status->save();
 			$this->page_attributes->msg['success']		= ['Status berhasil diupdate'];
 		}
 		catch(Exception $e)
@@ -476,7 +477,7 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_nasabah', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'marketing'])->first();
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'marketing'])->first();
 		}
 		catch(Exception $e)
 		{
@@ -539,6 +540,7 @@ class KreditController extends Controller
 	 */
 	public function destroy()
 	{
+				dd(139019301);
 		try {
 
 			$hapus 			= new HapusDataKredit($this->request->kredit_id);

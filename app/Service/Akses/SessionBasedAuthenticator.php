@@ -56,7 +56,7 @@ class SessionBasedAuthenticator
 
 		Session::put('logged.id', $user->id);
 		Session::put('accesses.idx', $user->visas[0]['id']);
-	
+
 		// dispatch($event);
 
 		return true;

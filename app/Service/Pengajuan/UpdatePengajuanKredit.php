@@ -50,7 +50,4 @@ class UpdatePengajuanKredit
 		$this->kredit->orang_id 	= $debitur->id;
 		$this->kredit->save();		
 	}
-
-
-
 }

@@ -6,7 +6,6 @@ use App\Domain\HR\Models\Orang;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Akses\Models\Mobile;
-use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
 
 use App\Infrastructure\Traits\PengajuanKreditTrait;

@@ -11,14 +11,14 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['kepribadian']) && !empty($page_datas->credit['kepribadian']))
-	@foreach ($page_datas->credit['kepribadian'] as $key => $value)
+@if (isset($page_datas->credit['survei_kepribadian']) && !empty($page_datas->credit['survei_kepribadian']))
+	@foreach ($page_datas->credit['survei_kepribadian'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-md text-capitalize">
 					kepribadian {{ $key+1 }}
 
-					@if (!empty($page_datas->credit['kepribadian']))
+					@if (!empty($page_datas->credit['survei_kepribadian']))
 						@if ($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md delete" href="#" data-url="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
@@ -34,7 +34,12 @@
 					@endif
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				@if(isset($value['surveyor']) && !empty($value['surveyor']))
+					@php
+						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($value['surveyor']['visas'], $acl_active_office);
+					@endphp
+					<p class="text-capitalize text-sm">disurvei {!!  $value['tanggal_survei'] . ' oleh ' . $value['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . $role . ' )</span></em>'  !!}</p>
+				@endif
 			</div>
 		</div>
 		<div class="row p-t-lg m-b-xl">

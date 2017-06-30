@@ -7,8 +7,11 @@
 		</div>
 
 		{{---------------- FORM KEPRIBADIAN --------------}}
-		@if (isset($page_datas->credit['kepribadian']))
-			@foreach ($page_datas->credit['kepribadian'] as $k => $v)
+		@php
+		@endphp
+
+		@if (isset($page_datas->credit['survei_kepribadian']))
+			@foreach ($page_datas->credit['survei_kepribadian'] as $k => $v)
 				<div class="hidden" data-form="kepribadian-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">

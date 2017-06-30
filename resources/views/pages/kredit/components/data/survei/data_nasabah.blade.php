@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="text-uppercase">Data Nasabah
-			@if (!empty($page_datas->credit['nasabah']))
+			@if (!empty($page_datas->credit['survei_nasabah']))
 				@if ($edit == true)
 					<span class="pull-right text-capitalize">
 						<small>
@@ -21,13 +21,20 @@
 			@endif
 		</h4>
 		<hr/>
-		@if (isset($page_datas->credit['nasabah']) && !empty($page_datas->credit['nasabah']))
-			<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['nasabah']['survei']) && !empty($page_datas->credit['nasabah']['survei'])) ? $page_datas->credit['nasabah']['survei']['tanggal_survei'] . ' oleh ' . $page_datas->credit['nasabah']['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $page_datas->credit['nasabah']['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+		
+
+		@if (isset($page_datas->credit['survei_nasabah']) && !empty($page_datas->credit['survei_nasabah']))
+
+			@php
+				$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($page_datas->credit['survei_nasabah']['surveyor']['visas'], $acl_active_office);
+			@endphp
+			<p class="text-capitalize text-muted text-sm">disurvei {!! (isset($page_datas->credit['survei_nasabah']['surveyor']) && !empty($page_datas->credit['survei_nasabah']['surveyor'])) ? $page_datas->credit['survei_nasabah']['tanggal_survei'] . ' oleh ' . $page_datas->credit['survei_nasabah']['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . 
+			$role . ' )</span></em>'  : '-'  !!}</p>
 		@endif
 	</div>
 </div>
 
-@if (isset($page_datas->credit['nasabah']) && !empty($page_datas->credit['nasabah']))
+@if (isset($page_datas->credit['survei_nasabah']) && !empty($page_datas->credit['survei_nasabah']))
 	<div class="row p-t-lg m-b-sm">
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 			<p class="text-capitalize text-light">
@@ -36,7 +43,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['nasabah']['nama']) && !is_null($page_datas->credit['nasabah']['nama'])) ? $page_datas->credit['nasabah']['nama'] : '-' }}
+				{{ (isset($page_datas->credit['survei_nasabah']['nama']) && !is_null($page_datas->credit['survei_nasabah']['nama'])) ? $page_datas->credit['survei_nasabah']['nama'] : '-' }}
 			</p>
 		</div>
 	</div>
@@ -48,7 +55,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['nasabah']['status']) && !is_null($page_datas->credit['nasabah']['status'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['status']) : '-' }}
+				{{ (isset($page_datas->credit['survei_nasabah']['status']) && !is_null($page_datas->credit['survei_nasabah']['status'])) ? str_replace('_', ' ', $page_datas->credit['survei_nasabah']['status']) : '-' }}
 			</p>
 		</div>
 	</div>
@@ -60,7 +67,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['nasabah']['kredit_terdahulu'])) ? str_replace('_', ' ', $page_datas->credit['nasabah']['kredit_terdahulu']) : '-' }}
+				{{ (isset($page_datas->credit['survei_nasabah']['kredit_terdahulu']) && !is_null($page_datas->credit['survei_nasabah']['kredit_terdahulu'])) ? str_replace('_', ' ', $page_datas->credit['survei_nasabah']['kredit_terdahulu']) : '-' }}
 			</p>
 		</div>
 	</div>
@@ -72,7 +79,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['nasabah']['jaminan_terdahulu']) && !is_null($page_datas->credit['nasabah']['jaminan_terdahulu'])) ? $page_datas->credit['nasabah']['jaminan_terdahulu'] : '-' }}
+				{{ (isset($page_datas->credit['survei_nasabah']['jaminan_terdahulu']) && !is_null($page_datas->credit['survei_nasabah']['jaminan_terdahulu'])) ? $page_datas->credit['survei_nasabah']['jaminan_terdahulu'] : '-' }}
 			</p>
 		</div>
 	</div>

@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Traits;
 
 
+use App\Domain\Akses\Models\Koperasi;
 use App\Domain\HR\Models\Orang;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\JaminanKendaraan;
@@ -130,7 +131,7 @@ trait PengajuanKreditTrait {
 	
 		if($orang && !is_null($orang->cif))
 		{
-			return $cif;
+			return $orang->cif;
 		}
 
 		$first_letter 	= $koperasi['kantor_pusat']['kode'].'.'.$koperasi['kode'].'.'.Carbon::now()->format('md').'.';
@@ -187,6 +188,7 @@ trait PengajuanKreditTrait {
 							'luas_bangunan'				=> $value['luas_bangunan'],
 							'alamat'					=> $value['alamat'],
 			]);
+			$jaminan_tb['attributes']	= array_filter($jaminan_tb['attributes']);
 			$jaminan_tb->pengajuan_id 	= $pengajuan_id;
 			$jaminan_tb->save();
 		}
@@ -213,6 +215,8 @@ trait PengajuanKreditTrait {
 					'alamat'				=> $debitur['alamat'],
 				]);
 		}
+
+		$orang['attributes']		= array_filter($orang['attributes']);
 
 		$orang->save();
 

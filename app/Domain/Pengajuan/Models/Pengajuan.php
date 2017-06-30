@@ -122,7 +122,7 @@ class Pengajuan extends BaseModel
 	 */	
 	public function jaminan_kendaraan()
 	{
-		return $this->hasMany('App\Domain\Pengajuan\Models\JaminanKendaraan');
+		return $this->hasMany('App\Domain\Pengajuan\Models\JaminanKendaraan', 'pengajuan_id');
 	}
 
 	/**
@@ -132,42 +132,42 @@ class Pengajuan extends BaseModel
 	 */	
 	public function jaminan_tanah_bangunan()
 	{
-		return $this->hasMany('App\Domain\Pengajuan\Models\JaminanTanahBangunan');
+		return $this->hasMany('App\Domain\Pengajuan\Models\JaminanTanahBangunan', 'pengajuan_id');
 	}
 
 	public function survei_kepribadian()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\Kepribadian', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\Kepribadian', 'pengajuan_id');
 	}
 
 	public function survei_nasabah()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\Nasabah', 'id', 'pengajuan_id');
+		return $this->hasone('App\Domain\Survei\Models\Nasabah', 'pengajuan_id');
 	}
 
 	public function survei_aset_usaha()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\AsetUsaha', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\AsetUsaha', 'pengajuan_id');
 	}
 
 	public function survei_aset_tanah_bangunan()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\AsetTanahBangunan', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\AsetTanahBangunan', 'pengajuan_id');
 	}
 
 	public function survei_aset_kendaraan()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\AsetKendaraan', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\AsetKendaraan', 'pengajuan_id');
 	}
 
 	public function survei_rekening()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\Rekening', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\Rekening', 'pengajuan_id');
 	}
 
 	public function survei_keuangan()
 	{
-		return $this->hasMany('App\Domain\Survei\Models\Keuangan', 'id', 'pengajuan_id');
+		return $this->hasMany('App\Domain\Survei\Models\Keuangan', 'pengajuan_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

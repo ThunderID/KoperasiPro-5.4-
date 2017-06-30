@@ -63,7 +63,7 @@ trait PengajuanKreditTrait {
 		return $this;
 	}
 
-	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $alamat, $luas_bangunan, $luas_tanah)
+	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat = null, $atas_nama, $alamat, $luas_bangunan, $luas_tanah)
 	{
 		if(count($this->jaminan_tanah_bangunan) > 3)
 		{
@@ -187,6 +187,8 @@ trait PengajuanKreditTrait {
 							'luas_bangunan'				=> $value['luas_bangunan'],
 							'alamat'					=> $value['alamat'],
 			]);
+		
+			$jaminan_tb['attributes']	= array_filter($jaminan_tb['attributes']);
 			$jaminan_tb->pengajuan_id 	= $pengajuan_id;
 			$jaminan_tb->save();
 		}
@@ -213,6 +215,7 @@ trait PengajuanKreditTrait {
 					'alamat'				=> $debitur['alamat'],
 				]);
 		}
+		$orang['attributes']		= array_filter($orang['attributes']);
 
 		$orang->save();
 

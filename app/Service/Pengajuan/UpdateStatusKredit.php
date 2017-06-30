@@ -5,6 +5,8 @@ namespace App\Service\Pengajuan;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
 
+use App\Domain\Survei\Models\Nasabah;
+
 use Exception, DB, TAuth, Carbon\Carbon;
 
 class UpdateStatusKredit
@@ -27,10 +29,71 @@ class UpdateStatusKredit
 		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->firstorfail();
 	}
 
-	public function toSurvei($catatan = null)
+	public function toSurvei($note = null)
 	{
+		$catatan['surveyor']	= $note;
+
 		$this->status 	= 'survei';
-		$this->uraian 	= $catatan;
+
+		//1. check status nasabah
+		if($this->pengajuan->debitur->kredit->count())
+		{
+			$nasabah['status'] 			= 'lama';
+
+			foreach ($this->pengajuan->debitur->kredit as $key => $value) 
+			{
+				if($value['id'] != $this->pengajuan->id)
+				{
+					foreach ((array) $value->jaminan_kendaraan as $key2 => $value2) 
+					{
+						foreach ((array)$this->pengajuan->jaminan_kendaraan as $key3 => $value3) 
+						{
+							if($value2['nomor_bpkb'] == $value3['nomor_bpkb'])
+							{
+								$catatan['jaminan'][]	= 'BPKB '.$value3['nomor_bpkb'].' Pernah dipakai di kredit nomor '.$value['nomor_perjanjian_kredit'];
+							}
+						}
+					}
+
+					foreach ((array) $value->jaminan_tanah_bangunan as $key2 => $value2) 
+					{
+						foreach ((array)$this->pengajuan->jaminan_tanah_bangunan as $key3 => $value3) 
+						{
+							if($value2['nomor_sertifikat'] == $value3['nomor_sertifikat'])
+							{
+								$catatan['jaminan'][]	= strtoupper($value['jenis_sertifikat']).' '.$value3['nomor_sertifikat'].' Pernah dipakai di kredit nomor '.$value['nomor_perjanjian_kredit'];
+							}
+						}
+					}
+				}
+			}
+
+			if(isset($catatan['jaminan']) && count($catatan['jaminan']) == (count($this->pengajuan->jaminan_kendaraan) + count($this->pengajuan->jaminan_tanah_bangunan)))
+			{
+				$nasabah['jaminan_terdahulu']	= 'sama';
+				$nasabah['uraian']				= $catatan['jaminan'];
+			}
+			else
+			{
+				$nasabah['jaminan_terdahulu']	= 'tidak_sama';
+			}
+
+
+			$nasabah['kredit_terdahulu']	= 'lancar';
+
+			$data_nasabah 					= new Nasabah;
+			$data_nasabah->fill($nasabah);
+			$data_nasabah->petugas_id 		= TAuth::loggedUser()['id'];
+			$data_nasabah->pengajuan_id		= $this->pengajuan->id;
+
+			$data_nasabah->save();
+		}
+		else
+		{
+			$this->pengajuan->status 	= 'baru';
+		}
+
+		$this->uraian 	= json_encode($catatan);
 
 		return $this;
 	}

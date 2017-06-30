@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
-use Redirect, Request;
+use Redirect, Request, View, TAuth;
 
 class Controller extends BaseController
 {
@@ -26,6 +26,16 @@ class Controller extends BaseController
 	}   
 
 	public function generateView(){
+		
+		$acl_active_office 				= TAuth::activeOffice();
+		$acl_logged_user 				= TAuth::loggedUser();
+
+		define('acl_active_office', $acl_active_office);
+		define('acl_logged_user', $acl_logged_user);
+
+		View::share('acl_active_office', $acl_active_office);
+		View::share('acl_logged_user', $acl_logged_user);
+
 		return $this->view
             ->with('page_attributes', $this->page_attributes)
 			->with('page_datas', $this->page_datas)

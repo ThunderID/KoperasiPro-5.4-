@@ -20,7 +20,7 @@
 				{{-- content form nasabah --}}
 				@include ('pages.kredit.components.form.survei.nasabah', [
 					'param'	=> [
-						'data'	=> isset($page_datas->credit['nasabah']) ? $page_datas->credit['nasabah'] : null,
+						'data'	=> isset($page_datas->credit['survei_nasabah']) ? $page_datas->credit['survei_nasabah'] : null,
 					]
 				])
 				

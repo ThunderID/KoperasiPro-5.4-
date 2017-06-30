@@ -53,6 +53,12 @@ abstract class BaseModel extends Model
 		parent::__construct();
 
 		$this->attributes['id']		= $this->createID('KOPERASI');
+
+		if(isset($this->ext_appends))
+		{
+			$this->appends 			= array_merge($this->appends, $this->ext_appends);
+		}
+
 	}
 
 	/**

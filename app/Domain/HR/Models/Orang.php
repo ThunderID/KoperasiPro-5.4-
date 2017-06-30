@@ -98,6 +98,11 @@ class Orang extends BaseModel
 		return $this->hasMany('App\Domain\Akses\Models\Visa', 'orang_id');
 	}
 	
+	public function kredit()
+	{
+		return $this->hasMany('App\Domain\Pengajuan\Models\Pengajuan', 'orang_id');
+	}
+
 	/**
 	 * relationship relasi
 	 *
