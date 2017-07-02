@@ -78,7 +78,7 @@ class SessionBasedAuthenticator
 			return $e;
 		}
 
-		return $e;
+		return true;
 	}
 
 	/**
