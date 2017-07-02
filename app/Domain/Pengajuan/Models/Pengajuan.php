@@ -104,6 +104,16 @@ class Pengajuan extends BaseModel
 	}
 
 	/**
+	 * relationship hp
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function hp()
+	{
+		return $this->belongsTo('App\Domain\Akses\Models\Mobile', 'hp_id');
+	}
+
+	/**
 	 * relationship kreditur
 	 *
 	 * @return Kredit $model
