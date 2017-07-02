@@ -4,6 +4,8 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\AlamatTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
 use App\Infrastructure\Traits\TanggalTrait;
@@ -25,6 +27,8 @@ use Validator, Exception;
 class AsetUsaha extends BaseModel
 {
 	use GuidTrait;
+	use AlamatTrait;
+	use SurveiTrait;
 
 	use IDRTrait;
 	use TanggalTrait;
@@ -97,48 +101,40 @@ class AsetUsaha extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	
-	/**
-	 * relationship survei
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function survei()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-	
-	/**
-	 * relationship alamat
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function alamat()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
-	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
-	public function getTanggalBerdiriAttribute($value)
+	protected function getTanggalBerdiriAttribute($value)
 	{
 		return $this->formatDateTo($value);
 	}
 
-	public function getNilaiAsetAttribute($value)
+	protected function getNilaiAsetAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
 	}
 
+	protected function getAlamatAttribute($value)
+	{
+		return $this->formatAlamatTo($value);
+	}
+
+
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
-	public function setTanggalBerdiriAttribute($value)
+	protected function setTanggalBerdiriAttribute($value)
 	{
 		$this->attributes['tanggal_berdiri']	= $this->formatDateFrom($value);
 	}
 
-	public function setNilaiAsetAttribute($value)
+	protected function setNilaiAsetAttribute($value)
 	{
 		$this->attributes['nilai_aset']			= $this->formatMoneyFrom($value);
+	}
+
+	protected function setAlamatAttribute($value)
+	{
+		$this->attributes['alamat']	= $this->formatAlamatFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/

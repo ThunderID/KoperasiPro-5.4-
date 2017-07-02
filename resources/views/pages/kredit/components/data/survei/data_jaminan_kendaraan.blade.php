@@ -17,15 +17,27 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-sm text-capitalize">
 					jaminan kendaraan {{ $key+1 }}
+				</p>
+			</div>
+		</div>
+		@foreach($value['survei_jaminan_kendaraan'] as $k => $v)
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
+				@if(isset($v['surveyor']) && !empty($v['surveyor']))
+					@php
+						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($v['surveyor']['visas'], $acl_active_office);
+					@endphp
+					<p class="text-capitalize text-sm">disurvei {!!  $v['tanggal_survei'] . ' oleh ' . $v['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . $role . ' )</span></em>'  !!}
+				@endif
 
 					@if(!empty($page_datas->credit['jaminan_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_kendaraan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
-								<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
+								<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}-{{$k}}" data-panel="data-jaminan" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
 								</a>
@@ -35,7 +47,6 @@
 
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
 		</div>
 		<div class="row p-t-lg">
@@ -187,6 +198,7 @@
 			</div>
 		</div>
 		<div class="clearfix">&nbsp;</div>
+		@endforeach
 	@empty
 	@endforelse
 

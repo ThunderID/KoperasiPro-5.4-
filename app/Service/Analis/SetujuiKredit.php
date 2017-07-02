@@ -5,7 +5,7 @@ namespace App\Service\Analis;
 ///////////////
 //   Models  //
 ///////////////
-use TKredit\KreditAktif\Models\KreditAktif_RO as Model;
+use App\Domain\Pengajuan\Models\Pengajuan as Model;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
 use App\Infrastructure\Traits\IDRTrait;
@@ -53,12 +53,12 @@ class SetujuiKredit
 				{
 					if(isset($value2['param']) && isset($value2['param']['limit']))
 					{
-						$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+						$koperasi_id[]	= $value['akses_koperasi_id'];
 						$limit 			= $this->formatMoneyFrom($value2['param']['limit']);
 					}
 					else
 					{
-						$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+						$koperasi_id[]	= $value['akses_koperasi_id'];
 						$limit 			= null;
 					}
 				}
@@ -69,11 +69,11 @@ class SetujuiKredit
 
 		if(!is_null($limit))
 		{
-			$kredit 			= $this->model->koperasi($koperasi_id)->status('menunggu_persetujuan')->where('pengajuan_kredit', '<', $limit)->with(['cabang'])->get()->toArray();
+			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->where('pengajuan_kredit', '<', $limit)->with(['koperasi'])->get()->toArray();
 		}
 		else
 		{
-			$kredit 			= $this->model->koperasi($koperasi_id)->status('menunggu_persetujuan')->with(['cabang'])->get()->toArray();
+			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->with(['cabang'])->get()->toArray();
 		}
 
 		return $kredit;

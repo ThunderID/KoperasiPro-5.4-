@@ -13,9 +13,10 @@ use App\Domain\Survei\Models\AsetTanahBangunan;
 
 use App\Domain\Survei\Models\Rekening;
 use App\Domain\Survei\Models\Keuangan;
+use App\Domain\Survei\Models\Kepribadian;
 
-use App\Domain\Pengajuan\Models\JaminanKendaraan as SJaminanKendaraan;
-use App\Domain\Pengajuan\Models\JaminanTanahBangunan as SJaminanTanahBangunan;
+use App\Domain\Survei\Models\JaminanKendaraan as SJaminanKendaraan;
+use App\Domain\Survei\Models\JaminanTanahBangunan as SJaminanTanahBangunan;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 
@@ -149,13 +150,15 @@ class HapusDataKredit
 
 			$jaminan_tb 	= JaminanTanahBangunan::id($this->jaminan_tanah_bangunan_ids)->where('pengajuan_id', $this->id)->delete();
 
-			$sjaminan_k 	= SJaminanKendaraan::id($this->survei_jaminan_kendaraan_ids)->whereIn('jaminan_kendaraan_id', $this->jaminan_kendaraan_ids)->delete();
-			$sjaminan_tb 	= SJaminanTanahBangunan::id($this->survei_jaminan_tanah_bangunan_ids)->whereIn('jaminan_tanah_bangunan_id', $this->jaminan_tanah_bangunan_ids)->delete();
+			$pid 			= $this->id;
+			$sjaminan_k 	= SJaminanKendaraan::id($this->survei_jaminan_kendaraan_ids)->wherehas('jaminan_kendaraan', function($q)use($pid){$q->where('pengajuan_id', $pid);})->delete();
+			$sjaminan_tb 	= SJaminanTanahBangunan::id($this->survei_jaminan_tanah_bangunan_ids)->wherehas('jaminan_tanah_bangunan', function($q)use($pid){$q->where('pengajuan_id', $pid);})->delete();
 
 			$aset_u 		= AsetUsaha::id($this->survei_aset_usaha_ids)->where('pengajuan_id', $this->id)->delete();
 			$aset_k 		= AsetKendaraan::id($this->survei_aset_kendaraan_ids)->where('pengajuan_id', $this->id)->delete();
 			$aset_tb 		= AsetTanahBangunan::id($this->survei_aset_tanah_bangunan_ids)->where('pengajuan_id', $this->id)->delete();
 
+			$kepribadian 	= Kepribadian::id($this->survei_kepribadian_ids)->where('pengajuan_id', $this->id)->delete();
 			$rekening 		= Rekening::id($this->survei_rekening_ids)->where('pengajuan_id', $this->id)->delete();
 			$keuangan 		= Keuangan::id($this->survei_keuangan_ids)->where('pengajuan_id', $this->id)->delete();
 			

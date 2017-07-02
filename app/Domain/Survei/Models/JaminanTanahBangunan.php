@@ -5,6 +5,7 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
 use App\Infrastructure\Traits\AlamatTrait;
@@ -26,6 +27,7 @@ use Validator, Exception;
 class JaminanTanahBangunan extends BaseModel
 {
 	use GuidTrait;
+	use SurveiTrait;
 
 	use IDRTrait;
 	use AlamatTrait;
@@ -123,7 +125,16 @@ class JaminanTanahBangunan extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-		
+	
+	/**
+	 * relationship survei
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function jaminan_tanah_bangunan()
+	{
+		return $this->belongsTo('App\Domain\Pengajuan\Models\JaminanTanahBangunan', 'jaminan_tanah_bangunan_id');
+	}	
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	

@@ -4,6 +4,7 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use Validator, Exception;
 
@@ -25,6 +26,7 @@ use App\Infrastructure\Traits\TanggalTrait;
 class Rekening extends BaseModel
 {
 	use GuidTrait;
+	use SurveiTrait;
 
 	use IDRTrait;
 	use TanggalTrait;
@@ -84,26 +86,6 @@ class Rekening extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	
-	/**
-	 * relationship survei
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function survei()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-		
-	/**
-	 * relationship details
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function details()
-	{
-		return $this->hasMany('TKredit\Survei\Models\RekeningDetail_A', 'rekening_id')->orderby('tanggal', 'asc');
-	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	

@@ -45,14 +45,14 @@ class RealisasiKredit
 			{
 				if((str_is('realisasi_kredit', $value2['list'])) && (!isset($value2['expired_at']) || $value2['expired_at'] > Carbon::now()->format('d/m/Y')))
 				{
-					$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+					$koperasi_id[]	= $value['akses_koperasi_id'];
 				}
 			}
 		}
 
 		$koperasi_id 		= array_unique($koperasi_id);
 
-		$bkk 				= $this->model->status('pending')->where('tipe', 'bukti_kas_keluar')->wherenotnull('referensi_id')->Where('referensi_id', '<>', 0)->with(['orang', 'referensi'])->get()->toArray();
+		$bkk 				= $this->model->status('pending')->where('tipe', 'bukti_kas_keluar')->wherenotnull('pengajuan_id')->Where('pengajuan_id', '<>', 0)->with(['orang', 'referensi'])->get()->toArray();
 
 		return $bkk;
 	}

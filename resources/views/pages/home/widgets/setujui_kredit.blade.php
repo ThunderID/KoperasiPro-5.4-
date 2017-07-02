@@ -22,7 +22,7 @@
 					<tbody>
 						@forelse($dokcab as $key => $value)
 							<tr>
-								<td class="text-left">{{$value['kreditur']['nama']}}</td>
+								<td class="text-left">{{$value['debitur']['nama']}}</td>
 								<td class="text-right">{{$value['pengajuan_kredit']}}</td>
 								<td class="text-right">
 									<a href="{{route('credit.show', $value['id'])}}" style="text-decoration: none;">

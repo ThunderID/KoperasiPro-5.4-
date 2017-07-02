@@ -11,14 +11,14 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['aset_tanah_bangunan']) && !empty($page_datas->credit['aset_tanah_bangunan']))
-	@foreach ($page_datas->credit['aset_tanah_bangunan'] as $key => $value)
+@if (isset($page_datas->credit['survei_aset_tanah_bangunan']) && !empty($page_datas->credit['survei_aset_tanah_bangunan']))
+	@foreach ($page_datas->credit['survei_aset_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-md text-capitalize">
 					aset tanah &amp; bangunan {{ $key+1 }}
 
-					@if(!empty($page_datas->credit['aset_tanah_bangunan']))
+					@if(!empty($page_datas->credit['survei_aset_tanah_bangunan']))
 						@if($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.aset.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">

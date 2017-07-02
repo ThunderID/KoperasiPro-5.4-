@@ -28,7 +28,7 @@ class UpdateDebitur
 		$this->orang				= Orang::id($id)->first();
 	}
 
-	public function tembahRelasi($hubungan, $nik, $nama, $tanggal_lahir, $jenis_kelamin, $status_perkawinan, $telepon, $pekerjaan, $penghasilan_bersih, $is_ektp = true, $alamat = [])
+	public function tembahRelasi($hubungan, $nik, $nama, $tanggal_lahir, $jenis_kelamin, $status_perkawinan, $telepon, $pekerjaan, $penghasilan_bersih, $is_ektp = true, $alamat = [], $id = null)
 	{
 		$this->relasi[] 	= [
 			'hubungan'			=> $hubungan,
@@ -42,6 +42,7 @@ class UpdateDebitur
 			'penghasilan_bersih'=> $penghasilan_bersih,
 			'is_ektp'			=> $is_ektp,
 			'alamat'			=> $alamat,
+			'id'				=> $id,
 		];
 	}
 
@@ -59,9 +60,9 @@ class UpdateDebitur
 			//1. simpan relasi
 			foreach ($this->relasi as $key => $value) 
 			{
-				$orang		= Orang::where('nik', $value['nik'])->first();
+				$orang		= Orang::where('id', $value['id'])->first();
 				
-				if(!$orang || is_null($value['nik']))
+				if(!$orang)
 				{
 					$orang 	= new Orang;
 				}
@@ -85,7 +86,11 @@ class UpdateDebitur
 
 				$orang->save();
 
-				$relasi 			= new Relasi;
+				$relasi 			= Relasi::where('orang_id', $this->orang->id)->where('relasi_id', $orang->id)->first();
+				if(!$relasi)
+				{
+					$relasi 		= new Relasi;
+				}
 				$relasi->orang_id 	= $this->orang->id;
 				$relasi->relasi_id 	= $orang->id;
 				$relasi->hubungan 	= $value['hubungan'];

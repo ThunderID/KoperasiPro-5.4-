@@ -3,28 +3,39 @@
 	<label text-sm="">Nama Bank</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('rekening[nama_bank]', [
+			{!! Form::select('rekening[rekening]', [
 				'bca'		=> 'BCA',
 				'bni'		=> 'BNI',
 				'bri'		=> 'BRI',
 				'danamon'	=> 'Danamon',
 				'mandiri'	=> 'Mandiri',
 				'lain_lain'	=> 'Lainnya',
-			], (isset($param['data']['nama_bank']) ? (in_array($param['data']['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? $param['data']['nama_bank'] : 'lain_lain') : 'bca'), 
+			], (isset($param['data']['rekening']) ? (in_array($param['data']['rekening'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? $param['data']['rekening'] : 'lain_lain') : 'bca'), 
 			['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-rekening-nama-bank']) !!} <br/>
-			{!! Form::text('rekening[nama_bank]', (isset($param['data']['nama_bank']) ? $param['data']['nama_bank'] : 'bca'), ['class' => 'form-control auto-tabindex m-t-sm input-rekening-nama-bank ' . 
-			(isset($param['data']['nama_bank']) && (in_array($param['data']['nama_bank'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? 'hidden' : !isset($param['data']['nama_bank']) ? 'hidden' : ''))]) !!}
+			{!! Form::text('rekening[rekening]', (isset($param['data']['rekening']) ? $param['data']['rekening'] : 'bca'), ['class' => 'form-control auto-tabindex m-t-sm input-rekening-nama-bank ' . 
+			(isset($param['data']['rekening']) && (in_array($param['data']['rekening'], ['bca', 'bni', 'bri', 'danamon', 'mandiri']) ? 'hidden' : !isset($param['data']['rekening']) ? 'hidden' : ''))]) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label text-sm="">Atas Nama</label>
+	<label text-sm="">Nomor Rekening</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('rekening[atas_nama]', (isset($param['data']['atas_nama']) ? $param['data']['atas_nama'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'atas nama']) !!}
+			{!! Form::text('rekening[nomor_rekening]', (isset($param['data']['nomor_rekening']) ? $param['data']['nomor_rekening'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'nomor rekening']) !!}
 		</div>
 	</div>
 </fieldset>
+
+<fieldset class="form-group">
+	<label text-sm="">Tanggal Saldo Awal</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('rekening[tanggal_awal]', (isset($param['data']['tanggal_awal']) ? $param['data']['tanggal_awal'] : null), ['class' => 'form-control date mask-date auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
+		</div>
+	</div>
+</fieldset>
+
+
 <fieldset class="form-group">
 	<label text-sm="">Saldo Awal</label>
 	<div class="row">
@@ -33,6 +44,16 @@
 		</div>
 	</div>
 </fieldset>
+
+<fieldset class="form-group">
+	<label text-sm="">Tanggal Saldo Akhir</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('rekening[tanggal_akhir]', (isset($param['data']['tanggal_akhir']) ? $param['data']['tanggal_akhir'] : null), ['class' => 'form-control date mask-date auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
+		</div>
+	</div>
+</fieldset>
+
 <fieldset class="form-group">
 	<label text-sm="">Saldo Akhir</label>
 	<div class="row">

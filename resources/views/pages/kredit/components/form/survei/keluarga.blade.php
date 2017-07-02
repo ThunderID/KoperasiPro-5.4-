@@ -9,7 +9,7 @@
 				'orang_tua'		=> 'Orang Tua',
 				'pasangan'		=> 'Pasangan',
 				'saudara'		=> 'Saudara',
-			], (!empty($param['data']['hubungan']) ? $param['data']['hubungan'] : ''), ['class' => 'form-control quick-select focus', 'data-other' => 'input-hubungan-keluarga']) !!}
+			], (!empty($param['data']['pivot']['hubungan']) ? $param['data']['pivot']['hubungan'] : ''), ['class' => 'form-control quick-select focus', 'data-other' => 'input-hubungan-keluarga']) !!}
 			{!! Form::hidden('relasi[hubungan]', 'orang_tua', ['class' => 'input-hubungan-keluarga']) !!}
 		</div>
 	</div>

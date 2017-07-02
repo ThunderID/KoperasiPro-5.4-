@@ -11,14 +11,14 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
-	@foreach ($page_datas->credit['rekening'] as $key => $value)
+@if (isset($page_datas->credit['survei_rekening']) && !empty($page_datas->credit['survei_rekening']))
+	@foreach ($page_datas->credit['survei_rekening'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-sm text-capitalize">
 					rekening {{ $key+1 }}
 
-					@if (!empty($page_datas->credit['rekening']))
+					@if (!empty($page_datas->credit['survei_rekening']))
 						@if ($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.rekening.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_rekening_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
@@ -35,17 +35,20 @@
 
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				@if (isset($page_datas->credit['rekening']) && !empty($page_datas->credit['rekening']))
-					<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				@if(isset($value['surveyor']) && !empty($value['surveyor']))
+					@php
+						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($value['surveyor']['visas'], $acl_active_office);
+					@endphp
+					<p class="text-capitalize text-sm">disurvei {!!  $value['tanggal_survei'] . ' oleh ' . $value['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . $role . ' )</span></em>'  !!}</p>
 				@endif
 			</div>
 		</div>
 		<div class="row p-t-lg">
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<p class="text-uppercase text-light">{{ (isset($value['nama_bank']) && !is_null($value['nama_bank'])) ? str_replace('_', ' ', $value['nama_bank']) : '-' }}</p>
+				<p class="text-uppercase text-light">{{ (isset($value['rekening']) && !is_null($value['rekening'])) ? str_replace('_', ' ', $value['rekening']) : '-' }}</p>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<p class="text-capitalize text-light">{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? $value['atas_nama'] : '-' }} </p>
+				<p class="text-capitalize text-light">{{ (isset($value['nomor_rekening']) && !is_null($value['nomor_rekening'])) ? $value['nomor_rekening'] : '-' }} </p>
 			</div>
 			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 				<p class="m-b-xs text-capitalize text-light">{{ (isset($value['saldo_awal']) && !is_null($value['saldo_awal'])) ? $value['saldo_awal'] : '-' }} </p>
