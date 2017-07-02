@@ -19,7 +19,7 @@
 <div class="row p-t-xl">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="row m-l-none m-r-none fade" id="main-menu" style="opacity: 1;">
-			@foreach(TQueries\Navigation\NavbarService::all() as $key => $item)
+			@foreach(App\Service\Helpers\UI\NavbarService::all() as $key => $item)
 
 				@if (is_null($item['route']))
 					<div class="col-xs-6 text-center m-b-lg">
@@ -47,7 +47,7 @@
 				@endif
 			@endforeach
 		</div>
-		@foreach (TQueries\Navigation\NavbarService::all() as $key => $item)
+		@foreach (App\Service\Helpers\UI\NavbarService::all() as $key => $item)
 			@if (count($item['sub']) > 0)
 				<div class="row m-l-none m-r-none hidden fade" id="{{ $key }}-menu">
 					<h4 class="m-l-md m-b-xs text-capitalize"><strong>Menu {{ $key }}</strong></h4>

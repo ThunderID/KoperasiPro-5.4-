@@ -32,7 +32,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	//Menu jaminan
 	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
 	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
-	Route::any('hapus/kreditur/relasi/{kredit_id}/{relasi_id}',										['uses' => 'KreditController@destroy', 	'as' => 'kreditur.relasi.destroy']);
+	Route::any('hapus/debitur/relasi/{kredit_id}/{relasi_id}',										['uses' => 'KreditController@destroy', 	'as' => 'debitur.relasi.destroy']);
 });
 
 Route::group(['middleware' => ['survei_kredit']], function()

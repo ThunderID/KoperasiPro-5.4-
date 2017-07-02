@@ -7,7 +7,7 @@ use TImmigration\Models\Pengguna;
 use TImmigration\Models\Koperasi_RO;
 
 use Carbon\Carbon;
-use TQueries\ACL\SessionBasedAuthenticator;
+use App\Service\Akses\SessionBasedAuthenticator;
 
 class InitPengajuanTableSeeder extends Seeder
 {
@@ -135,25 +135,25 @@ class InitPengajuanTableSeeder extends Seeder
 									],
 								],
 							];
-		$admin 			= new Pengguna;
+		$admin 			= new Orang;
 		$admin->fill($credentials);
 		$admin->grantVisa($visa_1);
 		$admin->grantVisa($visa_2);
 		$admin->grantVisa($visa_3);
 		$admin->save();
 
-		//2. simpan kredit
-		$jk   		= ['pa', 'pt', 'rumah_delta'];
-		$gndr   	= ['perempuan', 'laki-laki'];
-		$sp   		= ['belum_kawin', 'kawin', 'cerai', 'cerai_mati'];
-		$jw   		= [6,10,12,18,24,30,36,42,48,54,60];
+		// //2. simpan kredit
+		// $jk   		= ['pa', 'pt', 'rumah_delta'];
+		// $gndr   	= ['perempuan', 'laki-laki'];
+		// $sp   		= ['belum_kawin', 'kawin', 'cerai', 'cerai_mati'];
+		// $jw   		= [6,10,12,18,24,30,36,42,48,54,60];
 
-		$type_k	= ['roda_2', 'roda_3', 'roda_4', 'roda_6'];
-		$merk_k	= ['honda', 'yamaha', 'suzuki', 'kawasaki', 'mitsubishi', 'toyota', 'nissan', 'kia', 'daihatsu', 'isuzu'];
-		$char 	= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		// $type_k	= ['roda_2', 'roda_3', 'roda_4', 'roda_6'];
+		// $merk_k	= ['honda', 'yamaha', 'suzuki', 'kawasaki', 'mitsubishi', 'toyota', 'nissan', 'kia', 'daihatsu', 'isuzu'];
+		// $char 	= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-		$type_tb	= ['tanah', 'tanah_bangunan'];
-		$type_s		= ['hgb', 'shm'];
+		// $type_tb	= ['tanah', 'tanah_bangunan'];
+		// $type_s		= ['hgb', 'shm'];
 	
 		$kab 		= ['Banyuwangi', 'Gresik', 'Kediri', 'Lamongan', 'Magetan', 'malang', 'Mojokerto', 'Pamekasan', 'Pasuruan', 'Ponorogo', 'Situbondo', 'Sumenep', 'Tuban', 'Bangkalan', 'Bondowoso', 'Jember', 'Ngawi', 'Pacitan', 'Sampang', 'tulungagung', 'Blitar', 'Bojonegoro', 'Jombang', 'Lumajang', 'Madiun', 'Nganjuk', 'Probolinggo', 'Sidoarjo', 'Trenggalek'];
 

@@ -185,7 +185,7 @@ return [
         // Barryvdh\DomPDF\ServiceProvider::class,
 		// Jenssegers\Mongodb\MongodbServiceProvider::class,
 
-        TWeb\WebServiceProvider::class,
+        App\Providers\WebServiceProvider::class,
 	],
 
 	/*
@@ -240,7 +240,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
 
-		'TAuth' => TFacades\TAuth::class,
+		'TAuth' => App\Service\Akses\Facades\TAuth::class,
 	],
 
 ];

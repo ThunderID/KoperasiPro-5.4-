@@ -46,7 +46,7 @@
 	<label class="text-sm">Tanggal Pengajuan</label>
 	<div class="row">
 		<div class="col-xs-12 col-sm-5 col-md-5">
-			{!! Form::text('tanggal_pengajuan', (isset($param['data']['tanggal_pengajuan']) ? $param['data']['tanggal_pengajuan'] : Carbon\Carbon::now()->format('d/m/Y')), ['class' => 'form-control required mask-date-format auto-tabindex focus', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
+			{!! Form::text('tanggal_pengajuan', (isset($param['data']['tanggal_pengajuan']) ? $param['data']['tanggal_pengajuan'] : Carbon\Carbon::now()->format('d/m/Y')), ['class' => 'form-control required mask-date auto-tabindex focus', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
 		</div>
 	</div>

@@ -1,10 +1,10 @@
-@if (isset($page_datas->credit['kepribadian']) && !empty($page_datas->credit['kepribadian']))
+@if (isset($page_datas->credit['survei_kepribadian']) && !empty($page_datas->credit['survei_kepribadian']))
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>kepribadian</strong></p>
 		</div>
 	</div>
-	@foreach ($page_datas->credit['kepribadian'] as $key => $value)
+	@foreach ($page_datas->credit['survei_kepribadian'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-xs text-capitalize">

@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Models;
 
+use App\Infrastructure\Traits\GuidTrait;
+
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\MessageBag;
@@ -24,10 +26,11 @@ abstract class BaseModel extends Model
 	 *
 	 */
 	use SoftDeletes;
+	use GuidTrait;
 
-	// protected $keyType 	= 'string';
+	protected $keyType 	= 'string';
 	
-	// public $incrementing = false;
+	public $incrementing = false;
 
 	/* ---------------------------------------------------------------------------- ERRORS ----------------------------------------------------------------------------*/
 
@@ -48,6 +51,14 @@ abstract class BaseModel extends Model
 	function __construct() 
 	{
 		parent::__construct();
+
+		$this->attributes['id']		= $this->createID('KOPERASI');
+
+		if(isset($this->ext_appends))
+		{
+			$this->appends 			= array_merge($this->appends, $this->ext_appends);
+		}
+
 	}
 
 	/**

@@ -110,7 +110,8 @@ window.wizard = {
 			onFinishing: function (event, currentIndex) {
 				form = $('.wizard');
 				// form.validate().settings.ignore = ":disabled,:hidden";
-				return form.valid();
+				// return form.valid();
+				return form;
 			},
 			onFinished: function (event, currentIndex) {
 				form = $('.wizard');

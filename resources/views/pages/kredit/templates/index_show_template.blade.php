@@ -8,7 +8,7 @@
 			'pengajuan'				=> '#0BB7D6',
 	];
 @endphp
-@inject('cservice', 'TQueries\Kredit\DaftarKredit')
+@inject('cservice', 'App\Service\Helpers\ACL\KewenanganKredit')
 
 @extends('template.cms_template')
 
@@ -22,11 +22,11 @@
 
 @push('content')
 	<div class="row field">
-		<div class="{{ (isset($page_datas->credit['kreditur']['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
+		<div class="{{ (isset($page_datas->credit['debitur']['id']) ? 'hidden-xs' : '') }} col-sm-3 content-sidebar">
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
-					'status'			=> 	$cservice->statusLists(),
+					'status'			=> 	$cservice::statusLists(),
 					'status_default'	=> 'semua'
 				]])
 			</div>
@@ -37,15 +37,15 @@
 							<span class="badge badge-state pull-right" style="background-color:{{ $color_switcher[$value['status']] }};">
 								{{ str_replace('_', ' ', $value['status']) }}
 							</span>
-						  <h4 class="list-group-item-heading">
-							 {{ $value['kreditur']['nama'] }} 
-						  </h4>
-						  <p>{{$value['nomor_kredit']}}</p>
-						  <p class="list-group-item-text p-t-xs">
-							{{ $value['pengajuan_kredit'] }}
-							 <span class="pull-right">{{$value['tanggal']}}</span>
-						  </p>
-					   </a>
+				            <h4 class="list-group-item-heading">
+				                {{ $value['debitur']['nama'] }} 
+				            </h4>
+				            <p>{{$value['nomor_kredit']}}</p>
+				            <p class="list-group-item-text p-t-xs">
+				            	{{ $value['pengajuan_kredit'] }}
+				                <span class="pull-right">{{$value['tanggal']}}</span>
+				            </p>
+				        </a>
 				    @endforeach
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-9">
 
-			@if (isset($page_datas->credit['kreditur']['id']))
+			@if (isset($page_datas->credit['debitur']['id']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.top_menu.pengajuan')
 				@elseif ($page_datas->credit['status'] == 'survei')
@@ -79,7 +79,7 @@
 				@yield('page_content')
 			</div>
 
-			@if (isset($page_datas->credit['kreditur']['id']))
+			@if (isset($page_datas->credit['debitur']['id']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.bottom_menu.pengajuan')
 				@elseif ($page_datas->credit['status'] == 'survei')

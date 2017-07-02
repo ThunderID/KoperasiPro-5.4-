@@ -8,7 +8,7 @@
 					'dikenal'			=> 'Dikenal',
 					'kurang_dikenal'	=> 'Kurang Dikenal',
 					'tidak_dikenal'		=> 'Tidak Dikenal'
-				], $page_datas->credit['kreditur']['kepribadian']['lingkungan_tinggal'], ['class' => 'form-control quick-select residence-acquinted']) !!}
+				], $page_datas->credit['debitur']['kepribadian']['lingkungan_tinggal'], ['class' => 'form-control quick-select residence-acquinted']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -21,7 +21,7 @@
 					'dikenal'			=> 'Dikenal',
 					'kurang_dikenal'	=> 'Kurang Dikenal',
 					'tidak_dikenal'		=> 'Tidak Dikenal'
-				], $page_datas->credit['kreditur']['kepribadian']['lingkungan_pekerjaan'], ['class' => 'form-control quick-select workplace-acquinted']) !!}
+				], $page_datas->credit['debitur']['kepribadian']['lingkungan_pekerjaan'], ['class' => 'form-control quick-select workplace-acquinted']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -34,7 +34,7 @@
 					'baik'			=> 'Baik',
 					'cukup_baik'	=> 'Cukup Baik',
 					'tidak_baik'	=> 'Tidak Baik'
-				], $page_datas->credit['kreditur']['kepribadian']['karakter'] , ['class' => 'form-control quick-select karakter']) !!}
+				], $page_datas->credit['debitur']['kepribadian']['karakter'] , ['class' => 'form-control quick-select karakter']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -46,7 +46,7 @@
 				{!! Form::select('kepribadian[pola_hidup]', [
 					'sederhana'		=> 'Sederhana',
 					'mewah'			=> 'Mewah'
-				], $page_datas->credit['kreditur']['kepribadian']['pola_hidup'], ['class' => 'form-control quick-select pola_hidup']) !!}
+				], $page_datas->credit['debitur']['kepribadian']['pola_hidup'], ['class' => 'form-control quick-select pola_hidup']) !!}
 			</div>
 		</div>
 	</fieldset>
@@ -55,7 +55,7 @@
 		<label for="">Keterangan Lain</label>
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::text('kepribadian[keterangan]', $page_datas->credit['kreditur']['kepribadian']['keterangan'], ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
+				{!! Form::text('kepribadian[keterangan]', $page_datas->credit['debitur']['kepribadian']['keterangan'], ['class' => 'form-control no-resize required auto-tabindex', 'placeholder' => 'Keterangan Lain']) !!}
 			</div>
 		</div>
 	</fieldset>

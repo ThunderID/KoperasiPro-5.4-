@@ -2,7 +2,7 @@
 @php 
 $edit = false;
 
-if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kreditur']))
+if (isset($page_datas->credit['debitur']) && !empty($page_datas->credit['debitur']))
 {
 	$edit = true;
 }
@@ -10,8 +10,8 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="text-uppercase">Data Kreditur
-			@if(!empty($page_datas->credit['kreditur']))
+		<h4 class="text-uppercase">Data debitur
+			@if(!empty($page_datas->credit['debitur']))
 				@if($edit == true)
 					<span class="pull-right">
 						<small>
@@ -28,7 +28,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 	</div>
 </div>
 
-@if ( empty($page_datas->credit['kreditur']) && (!isset($page_datas->credit['kreditur'])) )
+@if ( empty($page_datas->credit['debitur']) && (!isset($page_datas->credit['debitur'])) )
 	<!-- no data -->
 	<div class="row">
 		<div class="col-sm-12">
@@ -44,13 +44,13 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Status Nasabah</strong></p>
-					<p>{{ (isset($page_datas->credit['kreditur']['status']) ? ucwords($page_datas->credit['kreditur']['status']) : '-')  }}</p>
+					<p>{{ (isset($page_datas->credit['debitur']['status']) ? ucwords($page_datas->credit['debitur']['status']) : '-')  }}</p>
 				</div>
 			</div>
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Record Kredit Sebelumnya</strong></p>
-					<p>{{ (isset($page_datas->credit['kreditur']['lingkungan_tinggal']) ? ucwords($page_datas->credit['kreditur']['lingkungan_tinggal']) : '-')  }}</p>
+					<p>{{ (isset($page_datas->credit['debitur']['lingkungan_tinggal']) ? ucwords($page_datas->credit['debitur']['lingkungan_tinggal']) : '-')  }}</p>
 				</div>
 			</div>
 		</div>
@@ -58,7 +58,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 			<div class="row m-b-xl">
 				<div class="col-sm-12">
 					<p class="p-b-sm"><strong>Jaminan Kredit Sebelumnya</strong></p>
-					<p>{{ (isset($page_datas->credit['kreditur']['lingkungan_pekerjaan']) ? ucwords($page_datas->credit['kreditur']['lingkungan_pekerjaan']) : '-') }}</p>
+					<p>{{ (isset($page_datas->credit['debitur']['lingkungan_pekerjaan']) ? ucwords($page_datas->credit['debitur']['lingkungan_pekerjaan']) : '-') }}</p>
 				</div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@ if (isset($page_datas->credit['kreditur']) && !empty($page_datas->credit['kredit
 				'hide_buttons'	=> true
 			]	
 		])
-			{{-- @include('pages.kredit.components.form.survei.data_kreditur') --}}
+			{{-- @include('pages.kredit.components.form.survei.data_debitur') --}}
 		@endcomponent
 
 	@endif

@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<p class="text-muted p-t-sm">
-					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['kreditur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['kreditur']['nik'] }}</span>
+					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['debitur']['nik'] }}</span>
 				</p>
 			</div>
 		</div>
@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
 				<p class="text-muted text-lg p-t-sm">
-					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['kreditur']['nama'] }} | {{ $page_datas->credit['kreditur']['nik'] }}
+					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['debitur']['nama'] }} | {{ $page_datas->credit['debitur']['nik'] }}
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
@@ -30,7 +30,7 @@
 				<a href="#modal-tolak" data-toggle="modal" data-target="#modal-tolak" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>					
-				<a href="#modal-change-status" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
+				<a href="{{route('credit.status', ['id' => $page_datas->id, 'status' => 'survei'])}}" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
 					<i class="fa fa-check" aria-hidden="true"></i> Survei
 				</a>					
 			</div>
@@ -118,7 +118,7 @@
 		])
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::open(['url' => route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']]), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
+				{!! Form::open(['url' => route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'survei']), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
 					<div class="form-group">
 						<label for="password">Password</label>
 						{!! Form::password('password', ['class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'Masukkan Password Anda', 'required' => 'required']) !!}

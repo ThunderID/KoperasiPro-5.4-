@@ -4,36 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use TCommands\UIHelper\UploadGambar;
+use App\Domain\Pengajuan\Models\Pengajuan;
+use App\Service\Pengajuan\PengajuanKredit;
+use App\Service\Pengajuan\UpdatePengajuanKredit;
 
-use TQueries\Kredit\DaftarKredit;
-use TCommands\Kredit\PengajuanKreditBaru;
-use TCommands\Kredit\SimpanPengajuanKredit;
-use TCommands\Kredit\LanjutkanUntukSurvei;
-use TCommands\Kredit\GandakanSurvei;
+use App\Service\Pengajuan\UpdateStatusKredit;
+use App\Service\Pengajuan\UpdateDebitur;
+use App\Service\Pengajuan\HapusDataKredit;
+use App\Service\Survei\SurveiKredit;
 
-use TCommands\Kredit\MenungguPersetujuan;
-use TCommands\Kredit\SetujuiKredit;
-use TCommands\Kredit\RealisasiKredit;
-use TCommands\Kredit\TolakKredit;
+use App\Service\Helpers\UI\UploadGambar;
+use App\Service\Helpers\ACL\KewenanganKredit;
 
-use TCommands\Kredit\HapusPengajuanKredit;
-use TCommands\Kredit\HapusSurveiKredit;
+use App\Service\Helpers\Kredit\JangkaWaktuKredit;
+use App\Service\Helpers\Kredit\JenisKredit;
+use App\Service\Helpers\Kredit\JenisJaminanKendaraan;
+use App\Service\Helpers\Kredit\MerkJaminanKendaraan;
 
-use TCommands\Kredit\SimpanSurveiKredit;
+use App\Service\Teritorial\TeritoriIndonesia;
 
-use TQueries\Territorial\TeritoriIndonesia;
-
-use TQueries\Kredit\UIHelper\JangkaWaktuKredit;
-use TQueries\Kredit\UIHelper\JenisKredit;
-use TQueries\Kredit\UIHelper\JenisJaminanKendaraan;
-use TQueries\Kredit\UIHelper\MerkJaminanKendaraan;
-
-use TImmigration\Models\Koperasi_RO;
-use TImmigration\Models\Visa_A;
-
-use App\Web\Services\Person;
-use Input, PDF, Carbon\Carbon, Exception, TAuth;
+use Input, PDF, Exception, TAuth;
+use Carbon\Carbon;
 
 /**
  * Kelas CreditController
@@ -53,7 +44,7 @@ class KreditController extends Controller
 	{
 		parent::__construct();
 
-		$this->service 		= new DaftarKredit;
+		$this->service 		= new Pengajuan;
 		$this->request 		= $request;
 	}
 
@@ -126,32 +117,37 @@ class KreditController extends Controller
 			//============ DATA KREDIT ============//
 			$kredit		= Input::only('jenis_kredit', 'pengajuan_kredit', 'jangka_waktu');
 			
-			//============ DATA KREDITUR ============//
-			$kredit['kreditur'] 				= Input::get('kreditur');
+			//============ DATA debitur ============//
+			$kredit['debitur'] 				= Input::get('debitur');
 
-			// kreditur is e-ktp
-			if (!isset($kredit['kreditur']['is_ektp'])) 
+			// debitur is e-ktp
+			if (!isset($kredit['debitur']['is_ektp'])) 
 			{
-				$kredit['kreditur']['is_ektp']	= false; 
+				$kredit['debitur']['is_ektp']	= false; 
 			}
 			else
 			{
-				$kredit['kreditur']['is_ektp']	= true;
+				$kredit['debitur']['is_ektp']	= true;
 			}
-			$kredit['kreditur']['nik']			= '35-'.$kredit['kreditur']['nik'];
+
+			$kredit['debitur']['nik']			= '35-'.$kredit['debitur']['nik'];
 
 			// check input file foto_ktp
-			if (Input::file('kreditur')['foto_ktp'])
+			if (Input::file('debitur')['foto_ktp'])
 			{
-				$upload 						= new UploadGambar(Input::file('kreditur')['foto_ktp']);
-				$upload 						= $upload->handle();
+				$upload 		= new UploadGambar(Input::file('debitur')['foto_ktp']);
+				$upload 		= $upload->handle();
 
-				$kredit['kreditur']['foto_ktp'] = $upload['url'];
+				$foto_ktp 		= $upload['url'];
+			}
+			else
+			{
+				$foto_ktp 		= null;
 			}
 
 			//============ DATA JAMINAN ============//
 			// JAMINAN KENDARAAN
-			$jaminan_kendaraan 					= Input::get('jaminan_kendaraan');
+			$jaminan_kendaraan 	= Input::get('jaminan_kendaraan');
 			if (!is_null($jaminan_kendaraan))
 			{
 				foreach ($jaminan_kendaraan as $k => $v)
@@ -194,14 +190,28 @@ class KreditController extends Controller
 			$kredit['jaminan_kendaraan']		= $temp_jaminan_kendaraan;
 			$kredit['jaminan_tanah_bangunan']	= $temp_jaminan_tanah_bangunan;
 
-			$simpan 	= new PengajuanKreditBaru($kredit);
-			$simpan->handle();
+			$simpan 	= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), [], null, $foto_ktp, null, null);
+
+			$simpan->setDebitur($kredit['debitur']['nik'], $kredit['debitur']['nama'], $kredit['debitur']['tanggal_lahir'], $kredit['debitur']['jenis_kelamin'], $kredit['debitur']['status_perkawinan'], $kredit['debitur']['telepon'], $kredit['debitur']['pekerjaan'], $kredit['debitur']['penghasilan_bersih'], $kredit['debitur']['is_ektp'], $kredit['debitur']['alamat']);
+
+			foreach ($temp_jaminan_kendaraan as $key => $value) 
+			{
+				$simpan->tambahJaminanKendaraan($value['tipe'], $value['merk'], $value['tahun'], $value['nomor_bpkb'], $value['atas_nama']);
+			}
+
+			foreach ($temp_jaminan_tanah_bangunan as $key => $value) 
+			{
+				$simpan->tambahJaminanTanahBangunan($value['tipe'], $value['jenis_sertifikat'], $value['nomor_sertifikat'], $value['masa_berlaku_sertifikat'], $value['atas_nama'], $value['alamat'], $value['luas_bangunan'], $value['luas_tanah']);
+			}
+
+			$simpan->save();
 
 			//function from parent to redirecting
 			return $this->generateRedirect(route('credit.index'));
 		}
 		catch (Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -224,122 +234,114 @@ class KreditController extends Controller
 	{
 		try
 		{
-			//update data kreditur
-			if (Input::has('kreditur'))
+			$kredit 			= Pengajuan::findorfail($id);
+
+			if($kredit->status=='pengajuan')
 			{
-				$kreditur 							= Input::get('kreditur');
+				$update 		= new UpdatePengajuanKredit($id);
+			}
+			elseif($kredit->status=='survei')
+			{
+				$update 		= new SurveiKredit($id);
+			}
 
-				if (Input::file('kreditur')['foto_ktp'])
-				{
-					$upload 						= new UploadGambar(Input::file('kreditur')['foto_ktp']);
-					$upload 						= $upload->handle();
+			//update data debitur
+			if (Input::has('debitur'))
+			{
+				$debitur 		= Input::get('debitur');
+				$debitur['nik'] = '35-'.$debitur['nik'];
 
-					$kreditur['foto_ktp'] 			= $upload['url'];
-				}
-
-				$kreditur['nik'] 					= '35-'.$kreditur['nik'];
-				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
-				$simpan->handle();
+				$update->setDebitur($debitur);
 			}
 
 			if (Input::has('relasi'))
 			{
-				$kreditur								= Input::only('relasi');
-				// $kreditur['relasi']['nik']			= '35-'.$kreditur['relasi']['nik'];
-				// $kreditur['relasi']['telepon']		= '';
-
-				$simpan 	= new SimpanPengajuanKredit($id, ['kreditur' => $kreditur]);
-				$simpan->handle();
+				$debitur 		= new UpdateDebitur($kredit->orang_id);
+				$debitur->tembahRelasi(Input::get('relasi')['hubungan'], null, Input::get('relasi')['nama'], null, null, null, Input::get('relasi')['telepon'], null, null, true, Input::get('relasi')['alamat']);
+				$debitur->save();
 			}
 
 			//update jaminan
 			if (Input::has('pengajuan'))
 			{
-				$jaminan = Input::only('pengajuan');
+				$jaminan = Input::get('pengajuan');
 
-				if (isset($jaminan['pengajuan']['jaminan_kendaraan']))
+				if (isset($jaminan['jaminan_kendaraan']))
 				{
-					$jaminan_kendaraan['jaminan_kendaraan']				= $jaminan['pengajuan']['jaminan_kendaraan'];
-					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_kendaraan);
-					$simpan->handle();
+					$update->tambahJaminanKendaraan($jaminan['jaminan_kendaraan']['tipe'], $jaminan['jaminan_kendaraan']['merk'], $jaminan['jaminan_kendaraan']['tahun'], $jaminan['jaminan_kendaraan']['nomor_bpkb'], $jaminan['jaminan_kendaraan']['atas_nama']);
 				}
 
-				if (isset($jaminan['pengajuan']['jaminan_tanah_bangunan']))
+				if (isset($jaminan['jaminan_tanah_bangunan']))
 				{
-					$jaminan_tanah_bangunan['jaminan_tanah_bangunan'] 	= $jaminan['pengajuan']['jaminan_tanah_bangunan'];
-					$simpan 					= new SimpanPengajuanKredit($id, $jaminan_tanah_bangunan);
-					$simpan->handle();
+					$update->tambahJaminanTanahBangunan($jaminan['jaminan_tanah_bangunan']['tipe'], $jaminan['jaminan_tanah_bangunan']['jenis_sertifikat'], $jaminan['jaminan_tanah_bangunan']['nomor_sertifikat'], $jaminan['jaminan_tanah_bangunan']['masa_berlaku_sertifikat'], $jaminan['jaminan_tanah_bangunan']['atas_nama'], $jaminan['jaminan_tanah_bangunan']['alamat'], $jaminan['jaminan_tanah_bangunan']['luas_bangunan'], $jaminan['jaminan_tanah_bangunan']['luas_tanah']);
 				}
 			}
 
 			if (Input::has('jangka_waktu'))
 			{
-				$simpan 	= new SimpanPengajuanKredit($id, Input::only('tanggal_pengajuan', 'pengajuan_kredit', 'jenis_kredit', 'jangka_waktu'));
-				$simpan->handle();
+				$update->setjangkawaktu(Input::get('jangka_waktu'));
+			}
+
+			if (Input::has('pengajuan_kredit'))
+			{
+				$update->setpengajuankredit(Input::get('pengajuan_kredit'));
 			}
 
 			// aset usaha for survei
 			if (Input::has('aset_usaha'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_usaha'));
-				$simpan->handle();
+				$update->tambahAsetUsaha(Input::get('aset_usaha')['bidang_usaha'], Input::get('aset_usaha')['nama_usaha'], Input::get('aset_usaha')['tanggal_berdiri'], Input::get('aset_usaha')['status'], Input::get('aset_usaha')['status_tempat_usaha'], Input::get('aset_usaha')['luas_tempat_usaha'], Input::get('aset_usaha')['jumlah_karyawan'], Input::get('aset_usaha')['nilai_aset'], Input::get('aset_usaha')['perputaran_stok'], Input::get('aset_usaha')['jumlah_konsumen_perbulan'], Input::get('aset_usaha')['jumlah_saingan_perkota'], Input::get('aset_usaha')['alamat']);
 			}
 
 			// aset kendaraan for survei
 			if (Input::has('aset_kendaraan'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_kendaraan'));
-				$simpan->handle();
+				$update->tambahAsetKendaraan(Input::get('aset_kendaraan')['tipe'], Input::get('aset_kendaraan')['nomor_bpkb']);
 			}
 
 			// aset tanah & bangunan for survei
 			if (Input::has('aset_tanah_bangunan'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('aset_tanah_bangunan'));
-				$simpan->handle();
+				$update->tambahAsetTanahBangunan(Input::get('aset_tanah_bangunan')['nomor_sertifikat'], Input::get('aset_tanah_bangunan')['tipe'], Input::get('aset_tanah_bangunan')['luas'], Input::get('aset_tanah_bangunan')['alamat']);
 			}
 
 			// jaminan kendaraan for survei
 			if (Input::has('jaminan_kendaraan'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_kendaraan'));
-				$simpan->handle();
+				$update->tambahJaminanKendaraan(Input::get('jaminan_kendaraan')['tipe'], Input::get('jaminan_kendaraan')['merk'], Input::get('jaminan_kendaraan')['warna'], Input::get('jaminan_kendaraan')['tahun'], Input::get('jaminan_kendaraan')['nomor_polisi'], Input::get('jaminan_kendaraan')['nomor_bpkb'], Input::get('jaminan_kendaraan')['nomor_mesin'], Input::get('jaminan_kendaraan')['nomor_rangka'], Input::get('jaminan_kendaraan')['masa_berlaku_stnk'], Input::get('jaminan_kendaraan')['status_kepemilikan'], Input::get('jaminan_kendaraan')['harga_taksasi'], Input::get('jaminan_kendaraan')['fungsi_sehari_hari'], Input::get('jaminan_kendaraan')['atas_nama'], Input::get('jaminan_kendaraan')['alamat']);
 			}
 
 			// jaminan tanah & bangunan for survei
 			if (Input::has('jaminan_tanah_bangunan'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('jaminan_tanah_bangunan'));
-				$simpan->handle();
+				$update->tambahJaminanTanahBangunan(Input::get('jaminan_tanah_bangunan')['tipe'], Input::get('jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('jaminan_tanah_bangunan')['atas_nama'], Input::get('jaminan_tanah_bangunan')['luas_tanah'], Input::get('jaminan_tanah_bangunan')['jalan'], Input::get('jaminan_tanah_bangunan')['lebar_jalan'], Input::get('jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('jaminan_tanah_bangunan')['lingkungan'], Input::get('jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('jaminan_tanah_bangunan')['njop'], Input::get('jaminan_tanah_bangunan')['listrik'], Input::get('jaminan_tanah_bangunan')['air'], Input::get('jaminan_tanah_bangunan')['url_barcode'], Input::get('jaminan_tanah_bangunan')['alamat'], Input::get('jaminan_tanah_bangunan')['luas_bangunan'], Input::get('jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('jaminan_tanah_bangunan')['dinding'], Input::get('jaminan_tanah_bangunan')['taksasi_bangunan']);
 			}
 
 			// rekening for survei
 			if (Input::has('rekening'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('rekening'));
-				$simpan->handle();
+				$update->setRekening(Input::get('rekening')['rekening'], Input::get('rekening')['nomor_rekening'], Input::get('rekening')['tanggal_awal'], Input::get('rekening')['tanggal_akhir'], Input::get('rekening')['saldo_awal'], Input::get('rekening')['saldo_akhir']);
 			}
 
 			// keuangan for survei
 			if (Input::has('keuangan'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('keuangan'));
-				$simpan->handle();
+				$update->setKeuangan(Input::get('keuangan')['penghasilan_rutin'], Input::get('keuangan')['penghasilan_pasangan'], Input::get('keuangan')['penghasilan_usaha'], Input::get('keuangan')['penghasilan_lain'], Input::get('keuangan')['biaya_rumah_tangga'], Input::get('keuangan')['biaya_rutin'], Input::get('keuangan')['biaya_pendidikan'], Input::get('keuangan')['biaya_angsuran'], Input::get('keuangan')['biaya_lain'], Input::get('keuangan')['sumber_penghasilan_utama'], Input::get('keuangan')['jumlah_tanggungan_keluarga']);
 			}
 
 			// kepribadian for survei
 			if (Input::has('kepribadian'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('kepribadian'));
-				$simpan->handle();
+				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian']);
 			}
 
 			// nasabah for survei
 			if (Input::has('nasabah'))
 			{
-				$simpan 	= new SimpanSurveiKredit($id, Input::only('nasabah'));
-				$simpan->handle();
+				$update->setNasabah(Input::get('nasabah')['status'], Input::get('nasabah')['kredit_terdahulu'], Input::get('nasabah')['jaminan_terdahulu']);
 			}
+
+			$update->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 		
@@ -347,6 +349,7 @@ class KreditController extends Controller
 		}
 		catch (Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -397,42 +400,38 @@ class KreditController extends Controller
 	{
 		try
 		{
+			$u_status 	= new UpdateStatusKredit($id);
 			$notes 		= Input::get("notes");
 
 			if(str_is(strtolower($status), 'survei'))
 			{
-				$simpan 	= new LanjutkanUntukSurvei($id, $notes);
-				$simpan->handle();
+				$u_status 	= $u_status->toSurvei($notes);
 			}
 			elseif(str_is(strtolower($status), 'menunggu_persetujuan'))
 			{
-				$simpan 	= new MenungguPersetujuan($id, $notes);
-				$simpan->handle();
+				$u_status 	= $u_status->toMenungguPersetujuan($notes);
 			}
 			elseif(str_is(strtolower($status), 'menunggu_realisasi'))
 			{
-				$simpan 	= new SetujuiKredit($id, $notes);
-				$simpan->handle();
+				$u_status 	= $u_status->toMenungguRealisasi($notes);
 			}
 			elseif(str_is(strtolower($status), 'terealisasi'))
 			{
-				$simpan 	= new RealisasiKredit($id, $notes);
-				$simpan->handle();
+				$u_status 	= $u_status->toRealisasi($notes);
 			}
 			elseif(str_is(strtolower($status), 'tolak'))
 			{
-				$simpan 	= new TolakKredit($id, $notes);
-				$simpan->handle();
+				$u_status 	= $u_status->toTolak($notes);
 			}
 			else
 			{
 				throw new Exception("Invalid Status", 1);
 			}
+			$u_status->save();
 			$this->page_attributes->msg['success']		= ['Status berhasil diupdate'];
 		}
 		catch(Exception $e)
 		{
-			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -478,7 +477,7 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= $this->service->detailed($id);
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'marketing'])->first();
 		}
 		catch(Exception $e)
 		{
@@ -497,7 +496,7 @@ class KreditController extends Controller
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		$person_id 									= $this->page_datas->credit['debitur']['id'];
 
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
@@ -541,67 +540,69 @@ class KreditController extends Controller
 	 */
 	public function destroy()
 	{
+				dd(139019301);
 		try {
+
+			$hapus 			= new HapusDataKredit($this->request->kredit_id);
+
 			if($this->request->is('hapus/jaminan/kendaraan/*'))
 			{
-				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['id' => $this->request->jaminan_kendaraan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusJaminanKendaraan($this->request->jaminan_kendaraan_id);
 			}
 
 			if($this->request->is('hapus/jaminan/tanah/bangunan/*'))
 			{
-				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->jaminan_tanah_bangunan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusJaminanTanahBangunan($this->request->jaminan_tanah_bangunan_id);
 			}
 
-			if($this->request->is('hapus/kreditur/relasi/*'))
+			if($this->request->is('hapus/debitur/relasi/*'))
 			{
-				$simpan 	= new HapusPengajuanKredit(['id' => $this->request->kredit_id], ['kreditur' => ['relasi' => ['id' => $this->request->relasi_id]]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusRelasiDebitur($this->request->relasi_id);
 			}
 
 			if($this->request->is('hapus/survei/aset/usaha/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_usaha' => ['id' => $this->request->survei_aset_usaha_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiAsetUsaha($this->request->survei_aset_usaha_id);
 			}
 			if($this->request->is('hapus/survei/aset/kendaraan/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_kendaraan' => ['id' => $this->request->survei_aset_kendaraan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiAsetKendaraan($this->request->survei_aset_kendaraan_id);
 			}
 			if($this->request->is('hapus/survei/aset/tanah/bangunan/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['aset_tanah_bangunan' => ['id' => $this->request->survei_aset_tanah_bangunan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiAsetTanahBangunan($this->request->survei_aset_tanah_bangunan_id);
 			}
 
 			if($this->request->is('hapus/survei/jaminan/kendaraan/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_kendaraan' => ['id' => $this->request->survei_jaminan_kendaraan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiJaminanKendaraan($this->request->survei_jaminan_kendaraan_id);
 			}
 			if($this->request->is('hapus/survei/jaminan/tanah/bangunan/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['jaminan_tanah_bangunan' => ['id' => $this->request->survei_jaminan_tanah_bangunan_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiJaminanTanahBangunan($this->request->survei_jaminan_tanah_bangunan_id);
 			}
 
 			if($this->request->is('hapus/survei/rekening/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['rekening' => ['id' => $this->request->survei_rekening_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiRekening($this->request->survei_rekening_id);
 			}
 
 			if($this->request->is('hapus/survei/kepribadian/*'))
 			{
-				$simpan 	= new HapusSurveiKredit(['id' => $this->request->kredit_id], ['kepribadian' => ['id' => $this->request->survei_kepribadian_id]]);
-				$simpan->handle();
+				$hapus 	= $hapus->hapusSurveiKepribadian($this->request->survei_kepribadian_id);
 			}
 			
+			if($this->request->is('hapus/survei/keuangan/*'))
+			{
+				$hapus 	= $hapus->hapusSurveiKeuangan($this->request->survei_keuangan_id);
+			}
+
+			$hapus 		= $hapus->save();
+
 			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
 
 		} catch (Exception $e) {
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -624,7 +625,8 @@ class KreditController extends Controller
 	private function getCreditLists($page, $take)
 	{
 		//1. Parsing status
-		$status 									= null; 
+		$status 									= KewenanganKredit::statusLists(); 
+
 		if (Input::has('status'))
 		{
 			$status 								= Input::get('status');
@@ -634,18 +636,22 @@ class KreditController extends Controller
 		//2. Parsing search box
 		if (Input::has('q'))
 		{
-			$this->page_datas->credits				= $this->service->get(['status' => $status, 'kreditur' => Input::get('q'), 'per_page' => $take, 'page' => $page]);
-			$this->page_datas->total_credits		= $this->service->count(['status' => $status, 'kreditur' => Input::get('q')]);
+			$nama 	= Input::get('q');
+
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->namaDebitur($nama)->with(['debitur'])->paginate($take);
+			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->namaDebitur($nama)->count();
+
 			$this->credit_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->get(['status' => $status, 'per_page' => $take, 'page' => $page]);
-			$this->page_datas->total_credits		= $this->service->count(['status' => $status]);
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur'])->paginate($take);
+
+			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->count();
 		}
 
 		//3. Memanggil fungsi filter active
-		$this->page_datas->credit_filters 			= $this->service->statusLists();
+		$this->page_datas->credit_filters 			= $status;
 	}
 
 	/**
@@ -655,7 +661,7 @@ class KreditController extends Controller
 	{
 		foreach ($data as $k => $v)
 		{
-			if (!isset($v['kreditur']['relasi']) || empty($v['kreditur']['relasi']))
+			if (!isset($v['debitur']['relasi']) || empty($v['debitur']['relasi']))
 			{
 				$complete 							= false;  
 			}
@@ -699,7 +705,7 @@ class KreditController extends Controller
 		$this->page_datas->id 						= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['kreditur']['id'];
+		$person_id 									= $this->page_datas->credit['debitur']['id'];
 
 		//function from parent to generate view
 		return $this->generateView();

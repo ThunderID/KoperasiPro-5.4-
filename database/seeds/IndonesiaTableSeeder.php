@@ -3,11 +3,11 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use TTerritorial\Models\Negara_RO;
-use TTerritorial\Models\Provinsi_RO;
-use TTerritorial\Models\Regensi_RO;
-use TTerritorial\Models\Distrik_RO;
-use TTerritorial\Models\Desa_RO;
+use App\Domain\Teritori\Models\Negara;
+use App\Domain\Teritori\Models\Provinsi;
+use App\Domain\Teritori\Models\Regensi;
+use App\Domain\Teritori\Models\Distrik;
+use App\Domain\Teritori\Models\Desa;
 
 class IndonesiaTableSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class IndonesiaTableSeeder extends Seeder
 		DB::table('territorial_negara')->truncate();
 	
 		$negara		= ['id' => 'ID', 'nama' => 'Indonesia'];
-		$model 		= new Negara_RO;
+		$model 		= new Negara;
 		$model->fill($negara);
 		$model->save();
 
@@ -30,7 +30,7 @@ class IndonesiaTableSeeder extends Seeder
 			while (($data = fgetcsv($handle, 500, ",")) !== FALSE) 
 			{
 				$attr 		= ['id' => $data[0], 'nama' => $data[2], 'territorial_negara_id' => $data[1]];
-				$model 		= new Provinsi_RO;
+				$model 		= new Provinsi;
 				$model->fill($attr);
 				$model->save();
 			}
@@ -43,7 +43,7 @@ class IndonesiaTableSeeder extends Seeder
 			while (($data = fgetcsv($handle, 500, ",")) !== FALSE) 
 			{
 				$attr 		= ['id' => $data[0], 'nama' => $data[2], 'territorial_provinsi_id' => $data[1]];
-				$model 		= new Regensi_RO;
+				$model 		= new Regensi;
 				$model->fill($attr);
 				$model->save();
 			}
@@ -56,7 +56,7 @@ class IndonesiaTableSeeder extends Seeder
 			while (($data = fgetcsv($handle, 500, ",")) !== FALSE) 
 			{
 				$attr 		= ['id' => $data[0], 'nama' => $data[2], 'territorial_regensi_id' => $data[1]];
-				$model 		= new Distrik_RO;
+				$model 		= new Distrik;
 				$model->fill($attr);
 				$model->save();
 			}
@@ -69,7 +69,7 @@ class IndonesiaTableSeeder extends Seeder
 			while (($data = fgetcsv($handle, 500, ",")) !== FALSE) 
 			{
 				$attr 		= ['id' => $data[0], 'nama' => $data[2], 'territorial_distrik_id' => $data[1]];
-				$model 		= new Desa_RO;
+				$model 		= new Desa;
 				$model->fill($attr);
 				$model->save();
 			}

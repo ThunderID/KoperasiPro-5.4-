@@ -11,17 +11,17 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['kreditur']['relasi']) && !empty($page_datas->credit['kreditur']['relasi']))
-	@foreach ($page_datas->credit['kreditur']['relasi'] as $key => $value)
+@if (isset($page_datas->credit['debitur']['relasi']) && !empty($page_datas->credit['debitur']['relasi']))
+	@foreach ($page_datas->credit['debitur']['relasi'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-md text-capitalize">
 					keluarga {{ $key+1 }}
 
-					@if (!empty($page_datas->credit['kreditur']['relasi']))
+					@if (!empty($page_datas->credit['debitur']['relasi']))
 						@if ($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="#" data-url="{{ route('kreditur.relasi.destroy', ['kredit_id' => $page_datas->credit['id'], 'relasi_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+								<a class="text-danger m-r-md" href="#" data-url="{{ route('debitur.relasi.destroy', ['kredit_id' => $page_datas->credit['id'], 'relasi_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a>&nbsp;
@@ -45,7 +45,7 @@
 			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 				<p class="text-capitalize text-light">
 					{{ (isset($value['nama']) && !is_null($value['nama'])) ? $value['nama'] : '-' }}
-					( {{ (isset($value['hubungan']) && !is_null($value['hubungan'])) ? str_replace('_', ' ', $value['hubungan']) : '-'  }} )
+					( {{ (isset($value['pivot']['hubungan']) && !is_null($value['pivot']['hubungan'])) ? str_replace('_', ' ', $value['pivot']['hubungan']) : '-'  }} )
 				</p>
 			</div>
 		</div>
