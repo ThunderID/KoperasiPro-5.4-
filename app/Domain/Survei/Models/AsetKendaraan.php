@@ -4,6 +4,7 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use Validator, Exception;
 
@@ -22,6 +23,7 @@ use Validator, Exception;
 class AsetKendaraan extends BaseModel
 {
 	use GuidTrait;
+	use SurveiTrait;
 
 	/**
 	 * The database table used by the model.
@@ -73,16 +75,6 @@ class AsetKendaraan extends BaseModel
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
-	/**
-	 * relationship survei
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function survei()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/

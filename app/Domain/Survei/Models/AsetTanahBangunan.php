@@ -4,6 +4,8 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\AlamatTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use Validator, Exception;
 
@@ -22,6 +24,8 @@ use Validator, Exception;
 class AsetTanahBangunan extends BaseModel
 {
 	use GuidTrait;
+	use AlamatTrait;
+	use SurveiTrait;
 
 	/**
 	 * The database table used by the model.
@@ -74,29 +78,20 @@ class AsetTanahBangunan extends BaseModel
 											'deleted_at', 
 										];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
-	/**
-	 * relationship survei
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function survei()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-
-	/**
-	 * relationship alamat
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function alamat()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
-	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
+	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
+	protected function getAlamatAttribute($value)
+	{
+		return $this->formatAlamatTo($value);
+	}
+
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
+	protected function setAlamatAttribute($value)
+	{
+		$this->attributes['alamat']	= $this->formatAlamatFrom($value);
+	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
 

@@ -47,6 +47,7 @@ Route::group(['middleware' => ['survei_kredit']], function()
 
 	Route::any('hapus/survei/rekening/{kredit_id}/{survei_rekening_id}',							['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
 	Route::any('hapus/survei/kepribadian/{kredit_id}/{survei_kepribadian_id}',						['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
+	Route::any('hapus/survei/keuangan/{kredit_id}/{survei_keuangan_id}',						['uses' => 'KreditController@destroy', 	'as' => 'survei.keuangan.destroy']);
 
 	// route for print kredit
 	Route::get('print/kredit/{mode}/{id}', 													['uses' => 'KreditController@prints',	'as' => 'credit.print']);

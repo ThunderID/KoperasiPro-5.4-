@@ -24,6 +24,14 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
+	<label class="text-sm">Penghasilan Lain</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('keuangan[penghasilan_lain]', (isset($param['data']['penghasilan_lain']) ? $param['data']['penghasilan_lain'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
 	<label class="text-sm">Biaya Rutin</label>
 	<div class="row">
 		<div class="col-md-5">
@@ -67,7 +75,7 @@
 	<label class="text-sm">Sumber Pendapatan Utama</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('keuangan[sumber_pendapatan_utama]', (isset($param['data']['sumber_pendapatan_utama']) ? $param['data']['sumber_pendapatan_utama'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+			{!! Form::text('keuangan[sumber_pendapatan_utama]', (isset($param['data']['sumber_pendapatan_utama']) ? $param['data']['sumber_pendapatan_utama'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>

@@ -7,8 +7,8 @@
 		</div>
 
 		{{---------------- FORM REKENING --------------}}
-		@if (isset($page_datas->credit['rekening']))
-			@foreach ($page_datas->credit['rekening'] as $k => $v)
+		@if (isset($page_datas->credit['survei_rekening']))
+			@foreach ($page_datas->credit['survei_rekening'] as $k => $v)
 				<div class="hidden" data-form="rekening-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">

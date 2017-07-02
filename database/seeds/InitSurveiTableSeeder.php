@@ -255,6 +255,7 @@ class InitSurveiTableSeeder extends Seeder
 
 				$m_persegi 	= rand(500000, 4000000);
 				$m_bangunan = rand(200000, 500000);
+
 				$nilai_jaminan 		= ($check_kredit->jaminan_tanah_bangunan[0]->luas_tanah * $m_persegi) +  ($check_kredit->jaminan_tanah_bangunan[0]->luas_bangunan * $m_bangunan); 
 				$taksasi_tanah 		= ($check_kredit->jaminan_tanah_bangunan[0]->luas_tanah * $m_persegi); 
 				$taksasi_bangunan 	= ($check_kredit->jaminan_tanah_bangunan[0]->luas_bangunan * $m_bangunan); 

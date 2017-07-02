@@ -46,18 +46,19 @@ class SurveiKredit
 		$this->pengajuan_id			= $pengajuan_id;
 	}
 
-	public function tambahAsetKendaraan($tipe, $nomor_bpkb, $uraian = null)
+	public function tambahAsetKendaraan($tipe, $nomor_bpkb, $id = null, $uraian = null)
 	{
 		$this->aset_kendaraan[]	= [
 			'tipe'			=> $tipe,
 			'nomor_bpkb'	=> $nomor_bpkb,
 			'uraian'		=> $uraian,
+			'id'			=> $id,
 		];
 
 		return $this;
 	}
 
-	public function tambahAsetTanahBangunan($nomor_sertifikat, $tipe, $luas, $alamat, $uraian = null)
+	public function tambahAsetTanahBangunan($nomor_sertifikat, $tipe, $luas, $alamat, $id = null, $uraian = null)
 	{
 		$this->aset_tanah_bangunan[]	= [
 			'nomor_sertifikat'	=> $nomor_sertifikat,
@@ -65,12 +66,13 @@ class SurveiKredit
 			'luas'				=> $luas,
 			'alamat'			=> $alamat,
 			'uraian'			=> $uraian,
+			'id'				=> $id,
 		];
 
 		return $this;
 	}
 
-	public function tambahAsetUsaha($bidang_usaha, $nama_usaha, $tanggal_berdiri, $status, $status_tempat_usaha, $luas_tempat_usaha, $jumlah_karyawan, $nilai_aset, $perputaran_stok, $jumlah_konsumen_perbulan, $jumlah_saingan_perkota, $alamat, $uraian = null)
+	public function tambahAsetUsaha($bidang_usaha, $nama_usaha, $tanggal_berdiri, $status, $status_tempat_usaha, $luas_tempat_usaha, $jumlah_karyawan, $nilai_aset, $perputaran_stok, $jumlah_konsumen_perbulan, $jumlah_saingan_perkota, $alamat, $id = null, $uraian = null)
 	{
 		$this->aset_usaha[]	= [
 			'bidang_usaha'				=> $bidang_usaha,
@@ -86,12 +88,13 @@ class SurveiKredit
 			'jumlah_saingan_perkota'	=> $jumlah_saingan_perkota,
 			'alamat'					=> $alamat,
 			'uraian'					=> $uraian,
+			'id'						=> $id,
 		];
 
 		return $this;
 	}
 
-	public function tambahJaminanKendaraan($tipe, $merk, $warna, $tahun, $nomor_polisi, $nomor_bpkb, $nomor_mesin, $nomor_rangka, $masa_berlaku_stnk, $status_kepemilikan, $harga_taksasi, $fungsi_sehari_hari, $atas_nama, $alamat, $url_barcode = null, $uraian = null)
+	public function tambahJaminanKendaraan($tipe, $merk, $warna, $tahun, $nomor_polisi, $nomor_bpkb, $nomor_mesin, $nomor_rangka, $masa_berlaku_stnk = null, $status_kepemilikan, $harga_taksasi, $fungsi_sehari_hari, $atas_nama, $alamat, $id = null, $url_barcode = null, $uraian = null)
 	{
 		$this->jaminan_kendaraan[]	= [
 			'tipe'					=> $tipe,
@@ -110,12 +113,13 @@ class SurveiKredit
 			'url_barcode'			=> $url_barcode,
 			'alamat'				=> $alamat,
 			'uraian'				=> $uraian,
+			'id'					=> $id,
 		];
 
 		return $this;
 	}
 
-	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $uraian = null)
+	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $id = null, $uraian = null)
 	{
 		$this->jaminan_tanah_bangunan[]	= [
 			'tipe'						=> $tipe,
@@ -143,24 +147,26 @@ class SurveiKredit
 			'dinding'					=> $dinding,
 			'taksasi_bangunan'			=> $taksasi_bangunan,
 			'uraian'					=> $uraian,
+			'id'						=> $id,
 		];
 
 		return $this;
 	}
 
-	public function tambahKepribadian($nama_referens, $telepon_referens, $hubungan, $uraian = null)
+	public function tambahKepribadian($nama_referens, $telepon_referens, $hubungan, $uraian = null, $id = null)
 	{
 		$this->kepribadian[]	= [
 			'nama_referens'		=> $nama_referens,
 			'telepon_referens'	=> $telepon_referens,
 			'hubungan'			=> $hubungan,
-			'uraian'			=> $uraian
+			'uraian'			=> $uraian,
+			'id'				=> $id,
 		];
 
 		return $this;
 	}
 
-	public function setKeuangan($penghasilan_rutin, $penghasilan_pasangan, $penghasilan_usaha, $penghasilan_lain, $biaya_rumah_tangga, $biaya_rutin, $biaya_pendidikan, $biaya_angsuran, $biaya_lain, $sumber_penghasilan_utama, $jumlah_tanggungan_keluarga, $uraian = null)
+	public function setKeuangan($penghasilan_rutin, $penghasilan_pasangan, $penghasilan_usaha, $penghasilan_lain, $biaya_rumah_tangga, $biaya_rutin, $biaya_pendidikan, $biaya_angsuran, $biaya_lain, $sumber_penghasilan_utama, $jumlah_tanggungan_keluarga, $id = null, $uraian = null)
 	{
 		$this->keuangan[]	= [
 			'penghasilan_rutin'				=> $penghasilan_rutin,
@@ -175,6 +181,7 @@ class SurveiKredit
 			'sumber_penghasilan_utama'		=> $sumber_penghasilan_utama,
 			'jumlah_tanggungan_keluarga'	=> $jumlah_tanggungan_keluarga,
 			'uraian'						=> $uraian,
+			'id'							=> $id,
 		];
 		return $this;
 	}
@@ -191,7 +198,7 @@ class SurveiKredit
 		return $this;
 	}
 
-	public function setRekening($rekening, $nomor_rekening, $tanggal_awal, $tanggal_akhir, $saldo_awal, $saldo_akhir, $uraian = null)
+	public function setRekening($rekening, $nomor_rekening, $tanggal_awal, $tanggal_akhir, $saldo_awal, $saldo_akhir, $id = null, $uraian = null)
 	{
 		$this->rekening[]		= [
 			'rekening'				=> $rekening,
@@ -201,6 +208,7 @@ class SurveiKredit
 			'saldo_awal'			=> $saldo_awal,
 			'saldo_akhir'			=> $saldo_akhir,
 			'uraian'				=> $uraian,
+			'id'					=> $id,
 		];
 
 		return $this;
@@ -225,7 +233,7 @@ class SurveiKredit
 			//1. simpan aset kendaraan
 			foreach ((array)$this->aset_kendaraan as $key => $value) 
 			{
-				$aset_k 	= AsetKendaraan::where('nomor_bpkb', $value['nomor_bpkb'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_k 	= AsetKendaraan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
 				
 				if(!$aset_k)
 				{
@@ -245,7 +253,7 @@ class SurveiKredit
 			//2. simpan aset tanah_bangunan
 			foreach ((array)$this->aset_tanah_bangunan as $key => $value) 
 			{
-				$aset_tb 	= AsetTanahBangunan::where('nomor_sertifikat', $value['nomor_sertifikat'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_tb 	= AsetTanahBangunan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
 
 				if(!$aset_tb)
 				{
@@ -267,7 +275,7 @@ class SurveiKredit
 			//3. simpan aset usaha
 			foreach ((array)$this->aset_usaha as $key => $value) 
 			{
-				$aset_u 	= AsetUsaha::where('nama_usaha', $value['nama_usaha'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_u 	= AsetUsaha::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
 
 				if(!$aset_u)
 				{
@@ -309,10 +317,11 @@ class SurveiKredit
 						'nomor_bpkb'		=> $value['nomor_bpkb'],
 						'atas_nama'			=> $value['atas_nama'],
 						]);
+					$jaminan_kendaraan->pengajuan_id 		= $this->pengajuan_id;
 					$jaminan_kendaraan->save();
 				}
 
-				$jaminan_k 			= JaminanKendaraan::where('nomor_bpkb', $value['nomor_bpkb'])->where('petugas_id', $this->loggedUser['id'])->where('jaminan_kendaraan_id', $jaminan_kendaraan->id)->first();
+				$jaminan_k 			= JaminanKendaraan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('jaminan_kendaraan_id', $jaminan_kendaraan->id)->first();
 
 				if(!$jaminan_k)
 				{
@@ -339,6 +348,7 @@ class SurveiKredit
 						'alamat'					=> $value['alamat'],
 						'uraian'					=> $value['uraian'],
 					]);
+				$jaminan_k['attributes']			= array_filter($jaminan_k['attributes']);
 				$jaminan_k->save();
 			}
 
@@ -360,10 +370,11 @@ class SurveiKredit
 							'luas_bangunan'				=> $value['luas_bangunan'],
 							'alamat'					=> $value['alamat'],
 						]);
+					$jaminan_tanah_bangunan->pengajuan_id 		= $this->pengajuan_id;
 					$jaminan_tanah_bangunan->save();
 				}
 
-				$jaminan_tb 		= JaminanTanahBangunan::where('nomor_sertifikat', $value['nomor_sertifikat'])->where('petugas_id', $this->loggedUser['id'])->where('jaminan_tanah_bangunan_id', $jaminan_tanah_bangunan->id)->first();
+				$jaminan_tb 		= JaminanTanahBangunan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('jaminan_tanah_bangunan_id', $jaminan_tanah_bangunan->id)->first();
 
 				if(!$jaminan_tb)
 				{
@@ -399,13 +410,14 @@ class SurveiKredit
 						'alamat'						=> $value['alamat'],
 						'uraian'						=> $value['uraian'],
 					]);
+				$jaminan_tb['attributes']			= array_filter($jaminan_tb['attributes']);
 				$jaminan_tb->save();
 			}
 
 			//6. simpan kepribadian
 			foreach ((array)$this->kepribadian as $key => $value) 
 			{
-				$kepribadian 	= Kepribadian::where('nama_referens', $value['nama_referens'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$kepribadian 	= Kepribadian::where('id', $value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$kepribadian)
 				{
@@ -426,7 +438,7 @@ class SurveiKredit
 			//7. simpan keuangan
 			foreach ((array)$this->keuangan as $key => $value) 
 			{
-				$keuangan 		= Keuangan::where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$keuangan 		= Keuangan::id($value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$keuangan)
 				{
@@ -476,7 +488,7 @@ class SurveiKredit
 			//9. simpan rekening
 			foreach ((array)$this->rekening as $key => $value) 
 			{
-				$rekening 		= Rekening::where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$rekening 		= Rekening::id($value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$rekening)
 				{

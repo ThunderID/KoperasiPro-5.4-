@@ -4,6 +4,7 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
 
@@ -24,6 +25,7 @@ use Validator, Exception;
 class Keuangan extends BaseModel
 {
 	use GuidTrait;
+	use SurveiTrait;
 	
 	use IDRTrait;
 

@@ -12,28 +12,30 @@
 		{{----------------  FORM JAMINAN KENDARAAN  --------------}}
 		@if (isset($page_datas->credit['jaminan_kendaraan']))
 			@foreach ($page_datas->credit['jaminan_kendaraan'] as $k => $v)
-				<div class="hidden" data-form="jaminan-kendaraan-{{ $k }}">
+				@foreach($v['survei_jaminan_kendaraan'] as $k2 => $v2)
+				<div class="hidden" data-form="jaminan-kendaraan-{{ $k }}-{{ $k2 }}">
 					<div class="row">
 						<div class="col-sm-12">
 							<h4 class="text-uppercase">form jaminan kendaraan</h4>
 							<hr/>
 						</div>
 					</div>
-					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-					
-						@include ('pages.kredit.components.form.survei.jaminan_kendaraan', [
-							'param'	=> [
-								'data'	=> isset($v) ? $v : null,
-							]
-						])
+						{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
+						
+							@include ('pages.kredit.components.form.survei.jaminan_kendaraan', [
+								'param'	=> [
+									'data'	=> isset($v2) ? $v2 : null,
+								]
+							])
 
-						<div class="clearfix">&nbsp;</div>
-						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}">Cancel</a>
-							<button type="submit" class="btn btn-primary">Simpan</button>
-						</div>
-					{!! Form::close() !!}
+							<div class="clearfix">&nbsp;</div>
+							<div class="text-right">
+								<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}-{{ $k2 }}">Cancel</a>
+								<button type="submit" class="btn btn-primary">Simpan</button>
+							</div>
+						{!! Form::close() !!}
 				</div>
+				@endforeach
 			@endforeach
 		@endif
 
@@ -64,7 +66,8 @@
 		{{---------------- FORM JAMINAN TANAH & BANGUNAN --------------}}
 		@if (isset($page_datas->credit['jaminan_tanah_bangunan']))
 			@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $k => $v)
-				<div class="hidden" data-form="jaminan-tanah-bangunan-{{ $k }}">
+				@foreach($v['survei_jaminan_tanah_bangunan'] as $k2 => $v2)
+				<div class="hidden" data-form="jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">
 					<div class="row">
 						<div class="col-sm-12">
 							<h4 class="text-uppercase">form jaminan tanah bangunan</h4>
@@ -74,17 +77,18 @@
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 						@include ('pages.kredit.components.form.survei.jaminan_tanah_bangunan', [
 							'param'	=> [
-								'data'	=> isset($v) ? $v : null,
+								'data'	=> isset($v2) ? $v2 : null,
 							]
 						])
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}">Cancel</a>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">Cancel</a>
 							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
+				@endforeach
 			@endforeach
 		@endif
 

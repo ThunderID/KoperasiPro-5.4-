@@ -12,29 +12,41 @@
 </div>
 
 @if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
-	@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
+	@forelse($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-sm text-capitalize">
-					jaminan tanah &amp; bangunan {{ $key+1 }}
+					jaminan tanah bangunan {{ $key+1 }}
+				</p>
+			</div>
+		</div>
+		@foreach($value['survei_jaminan_tanah_bangunan'] as $k => $v)
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
+				@if(isset($v['surveyor']) && !empty($v['surveyor']))
+					@php
+						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($v['surveyor']['visas'], $acl_active_office);
+					@endphp
+					<p class="text-capitalize text-sm">disurvei {!!  $v['tanggal_survei'] . ' oleh ' . $v['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . $role . ' )</span></em>'  !!}
+				@endif
 
-					@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
-						@if ($edit == true)
+					@if(!empty($page_datas->credit['jaminan_tanah_bangunan']))
+						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a> &nbsp;
-								<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
+								<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}-{{$k}}" data-panel="data-jaminan" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
 								</a>
 							</span>
 						@endif
 					@endif
+
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
 			</div>
 		</div>
 		<div class="row p-t-lg">
@@ -333,7 +345,10 @@
 			</div>
 		</div>
 		<div class="clearfix">&nbsp;</div>
-	@endforeach
+		@endforeach
+	@empty
+	@endforelse
+
 
 	<div class="row m-t-md m-b-md">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

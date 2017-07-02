@@ -55,14 +55,15 @@
 	</div>
 </fieldset>
 
+
 @include('components.helpers.forms.address', [
 	'param'		=> [
-		'prefix'	=> 'jaminan_tanah_bangunan',
+		'prefix'	=> 'jaminan_kendaraan',
 		'data'		=> isset($param['data']['alamat']) ? $param['data']['alamat'] : null,
 	],
 	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 	'settings'	=> [
-		'class'		=> 'input-tanah-bangunan'
+		'class'		=> 'input-kendaraan'
 	]
 ])
 

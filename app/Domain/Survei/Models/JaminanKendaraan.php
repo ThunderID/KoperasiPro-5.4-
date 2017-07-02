@@ -4,6 +4,7 @@ namespace App\Domain\Survei\Models;
 
 use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
+use App\Infrastructure\Traits\SurveiTrait;
 
 use App\Infrastructure\Traits\IDRTrait;
 use App\Infrastructure\Traits\TanggalTrait;
@@ -26,6 +27,7 @@ use Validator, Exception;
 class JaminanKendaraan extends BaseModel
 {
 	use GuidTrait;
+	use SurveiTrait;
 
 	use IDRTrait;
 	use TanggalTrait;
@@ -111,19 +113,9 @@ class JaminanKendaraan extends BaseModel
 	 *
 	 * @return Kredit $model
 	 */	
- 	public function survei()
+ 	public function jaminan_kendaraan()
 	{
-		return $this->belongsTo('TKredit\Survei\Models\Survei', 'survei_id');
-	}
-
-	/**
-	 * relationship alamat
-	 *
-	 * @return Kredit $model
-	 */	
- 	public function alamat()
-	{
-		return $this->belongsTo('TKredit\Survei\Models\Alamat_A', 'alamat_id');
+		return $this->belongsTo('App\Domain\Pengajuan\Models\JaminanKendaraan', 'jaminan_kendaraan_id');
 	}
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -146,12 +138,18 @@ class JaminanKendaraan extends BaseModel
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 	public function setMasaBerlakuStnkAttribute($value)
 	{
-		$this->attributes['masa_berlaku_stnk']	= $this->formatDateFrom($value);
+		if(!is_null($value))
+		{
+			$this->attributes['masa_berlaku_stnk']	= $this->formatDateFrom($value);
+		}
 	}
 
 	public function setHargaTaksasiAttribute($value)
 	{
-		$this->attributes['harga_taksasi']		= $this->formatMoneyFrom($value);
+		if(!is_null($value))
+		{
+			$this->attributes['harga_taksasi']		= $this->formatMoneyFrom($value);
+		}
 	}
 
 	public function setAlamatAttribute($value)
