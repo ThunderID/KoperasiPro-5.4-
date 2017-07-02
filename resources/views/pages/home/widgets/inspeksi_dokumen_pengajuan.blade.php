@@ -22,8 +22,8 @@
 					<tbody>
 						@forelse($dokcab as $key => $value)
 							<tr>
-								<td class="text-left">{{$value['cabang']['nama']}}</td>
-								<td class="text-left">{{$value['nama_kreditur']}}</td>
+								<td class="text-left">{{$value['koperasi']['nama']}}</td>
+								<td class="text-left">{{$value['debitur']['nama']}}</td>
 								<td class="text-right">
 									@if(!$value['data_nasabah'])
 										Data Nasabah <i class="fa fa-close"></i>
@@ -44,7 +44,7 @@
 									@endif
 								</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', $value['nomor_dokumen_kredit'])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', $value['id'])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>

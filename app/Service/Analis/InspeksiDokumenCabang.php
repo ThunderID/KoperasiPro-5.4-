@@ -5,22 +5,7 @@ namespace App\Service\Analis;
 ///////////////
 //   Models  //
 ///////////////
-use TKredit\KreditAktif\Models\KreditAktif_RO as Model;
-use TKredit\Pengajuan\Models\Pengajuan;
-use TKredit\Pengajuan\Models\Relasi_A;
-use TKredit\Pengajuan\Models\JaminanKendaraan_A;
-use TKredit\Pengajuan\Models\JaminanTanahBangunan_A;
-
-use TKredit\Survei\Models\Survei;
-use TKredit\Survei\Models\Nasabah_A;
-use TKredit\Survei\Models\Kepribadian_A;
-use TKredit\Survei\Models\AsetUsaha_A;
-use TKredit\Survei\Models\AsetKendaraan_A;
-use TKredit\Survei\Models\AsetTanahBangunan_A;
-use TKredit\Survei\Models\JaminanKendaraan_A as JaminanKendaraan_AS;
-use TKredit\Survei\Models\JaminanTanahBangunan_A as JaminanTanahBangunan_AS;
-use TKredit\Survei\Models\Rekening_A;
-use TKredit\Survei\Models\Keuangan_A;
+use App\Domain\Pengajuan\Models\Pengajuan as Model;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
 
@@ -65,13 +50,13 @@ class InspeksiDokumenCabang
 			}
 		}
 
-		$kredit_aktif 		= $this->model->koperasi($koperasi_id)->status('pengajuan')->with(['cabang'])->get()->toArray();
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('pengajuan')->with(['debitur', 'debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->get()->toArray();
 
 		foreach ($kredit_aktif as $key => $value) 
 		{
 			//check data pengajuan
 			//check data nasabah
-			if(str_is($value['nama_kreditur'], 'Pengajuan Melalui HP'))
+			if(str_is($value['debitur']['nama'], 'Pengajuan Melalui HP'))
 			{
 				$kredit_aktif[$key]['data_nasabah']	= false;
 			}
@@ -80,10 +65,7 @@ class InspeksiDokumenCabang
 				$kredit_aktif[$key]['data_nasabah']	= true;
 			}
 
-			//check data keluarga
-			$person 		= Pengajuan::id($value['nomor_dokumen_kredit'])->first();
-
-			$relasi 		= Relasi_A::where('orang_id', $person->kreditur_id)->count();
+			$relasi 		= count($value['debitur']['relasi']);
 			if(!$relasi)
 			{
 				$kredit_aktif[$key]['data_relasi']	= false;
@@ -94,8 +76,8 @@ class InspeksiDokumenCabang
 			}
 
 			//check data jaminan
-			$jaminank 		= JaminanKendaraan_A::where('pengajuan_id', $person->id)->count();
-			$jaminantb 		= JaminanTanahBangunan_A::where('pengajuan_id', $person->id)->count();
+			$jaminank 		= count($value['jaminan_kendaraan']);
+			$jaminantb 		= count($value['jaminan_tanah_bangunan']);
 		
 			if(!$jaminank && !$jaminantb)
 			{
@@ -138,25 +120,13 @@ class InspeksiDokumenCabang
 			}
 		}
 
-		$kredit_aktif 		= $this->model->koperasi($koperasi_id)->status('survei')->with(['cabang'])->get()->toArray();
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('survei')->with(['survei_kepribadian', 'survei_nasabah', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'koperasi', 'debitur'])->get()->toArray();
 
 		foreach ($kredit_aktif as $key => $value) 
 		{
 			//check data survei
 			//check data nasabah
-			if(str_is($value['nama_kreditur'], 'Pengajuan Melalui HP'))
-			{
-				$kredit_aktif[$key]['data_nasabah']	= false;
-			}
-			else
-			{
-				$kredit_aktif[$key]['data_nasabah']	= true;
-			}
-
-			$survei 		= Survei::NomorDokumenKredit($value['nomor_dokumen_kredit'])->get(['id']);
-			
-			//check data nasabah
-			$nasabah 		= Nasabah_A::whereIn('survei_id', $survei)->count();
+			$nasabah 		= count($value['survei_nasabah']);
 			if(!$nasabah)
 			{
 				$kredit_aktif[$key]['data_nasabah']	= false;
@@ -167,7 +137,7 @@ class InspeksiDokumenCabang
 			}
 
 			//check data kepribadian
-			$kepribadian	= Kepribadian_A::whereIn('survei_id', $survei)->count();
+			$kepribadian 	= count($value['survei_kepribadian']);
 			if(!$kepribadian)
 			{
 				$kredit_aktif[$key]['data_kepribadian']	= false;
@@ -178,9 +148,9 @@ class InspeksiDokumenCabang
 			}
 
 			//check data aset
-			$aset_u 	= AsetUsaha_A::whereIn('survei_id', $survei)->count();
-			$aset_k 	= AsetKendaraan_A::whereIn('survei_id', $survei)->count();
-			$aset_tb	= AsetTanahBangunan_A::whereIn('survei_id', $survei)->count();
+			$aset_u 	= count($value['survei_aset_usaha']);
+			$aset_k 	= count($value['survei_aset_kendaraan']);
+			$aset_tb 	= count($value['survei_aset_tanah_bangunan']);
 
 			if(!$aset_u && !$aset_k && !$aset_tb)
 			{
@@ -192,8 +162,16 @@ class InspeksiDokumenCabang
 			}
 
 			//check data jaminan
-			$jaminan_k 	= JaminanKendaraan_AS::whereIn('survei_id', $survei)->count();
-			$jaminan_tb	= JaminanTanahBangunan_AS::whereIn('survei_id', $survei)->count();
+			$jaminan_k 	= 0;
+			$jaminan_tb = 0;
+			foreach ($value['jaminan_kendaraan'] as $key2 => $value2) 
+			{
+				$jaminan_k 	= $jaminan_k + count($value2['survei_jaminan_kendaraan']);
+			}
+			foreach ($value['jaminan_tanah_bangunan'] as $key2 => $value2) 
+			{
+				$jaminan_tb	= $jaminan_tb + count($value2['survei_jaminan_tanah_bangunan']);
+			}
 
 			if(!$jaminan_k && !$jaminan_tb)
 			{
@@ -205,7 +183,7 @@ class InspeksiDokumenCabang
 			}
 
 			//check data rekening
-			$rekening	= Rekening_A::whereIn('survei_id', $survei)->count();
+			$rekening 	= count($value['survei_rekening']);
 			if(!$rekening)
 			{
 				$kredit_aktif[$key]['data_rekening']	= false;
@@ -216,7 +194,7 @@ class InspeksiDokumenCabang
 			}
 
 			//check data keuangan
-			$keuangan	= Keuangan_A::whereIn('survei_id', $survei)->count();
+			$keuangan 	= count($value['survei_keuangan']);
 			if(!$keuangan)
 			{
 				$kredit_aktif[$key]['data_keuangan']	= false;
