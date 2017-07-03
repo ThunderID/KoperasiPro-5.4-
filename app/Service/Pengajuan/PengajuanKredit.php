@@ -157,7 +157,7 @@ class PengajuanKredit
 			if(is_null($this->referensi) && isset($mobile))
 			{
 				$max 	= Pengajuan::where('hp_id', $pengajuan->hp_id)->where('status', 'pengajuan')->count();
-				if($max < 3)
+				if($max >= 3)
 				{
 					throw new Exception("Pengajuan Max 3", 1);
 				}
