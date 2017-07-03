@@ -14,7 +14,7 @@
 					<label class="text-sm">Nama</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::text('nama', $value['pengguna']['nama'], ['class' => 'form-control required focus', 'placeholder' => 'Nama Pengguna']) !!}
+							{!! Form::text('nama', $value['petugas']['nama'], ['class' => 'form-control required focus', 'placeholder' => 'Nama Pengguna']) !!}
 						</div>
 					</div>
 				</fieldset>
@@ -23,7 +23,7 @@
 					<label class="text-sm">Email</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::text('email', $value['pengguna']['email'], ['class' => 'form-control required', 'placeholder' => 'Email Pengguna']) !!}
+							{!! Form::text('email', $value['petugas']['email'], ['class' => 'form-control required', 'placeholder' => 'Email Pengguna']) !!}
 						</div>
 					</div>
 				</fieldset>

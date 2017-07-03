@@ -60,7 +60,7 @@ class KoperasiController extends Controller
 		$page_datas->koperasi 		= Koperasi::paginate();
 		$page_datas->data 			= Koperasi::findorfail($id);
 		$page_datas->id 			= $id;
-		$page_datas->users 			= Visa::where('akses_koperasi_id', $id)->with(['pengguna'])->get()->toArray();
+		$page_datas->users 			= Visa::where('akses_koperasi_id', $id)->with(['petugas'])->get()->toArray();
 
 
 		$page_attributes 			= new StdClass;
