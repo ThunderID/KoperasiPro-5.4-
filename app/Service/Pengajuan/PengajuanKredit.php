@@ -100,6 +100,10 @@ class PengajuanKredit
 			//2. simpan mobile
 			if((array)$this->mobile)
 			{
+				if(!isset($mobile))
+				{
+					$mobile 	= new Mobile;
+				}
 				$mobile = $mobile->fill(['mobile_id' => $this->mobile['id'], 'mobile_model' => $this->mobile['model']]);
 				$mobile->save();
 
