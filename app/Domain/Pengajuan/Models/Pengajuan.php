@@ -93,6 +93,25 @@ class Pengajuan extends BaseModel
     protected $appends 				= [];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
+	/**
+	 * relationship koperasi
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function koperasi()
+	{
+		return $this->belongsTo('App\Domain\Akses\Models\Koperasi', 'akses_koperasi_id');
+	}
+
+	/**
+	 * relationship hp
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function hp()
+	{
+		return $this->belongsTo('App\Domain\Akses\Models\Mobile', 'hp_id');
+	}
 
 	/**
 	 * relationship kreditur

@@ -19,16 +19,14 @@ Route::group(['middleware' => ['tapi']], function()
 	{
 		if($request->has('referensi'))
 		{
-			return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => 1])->asArray();
+			return \App\Service\Helpers\API\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => 1])->asArray();
 		}
 
-		$mobile  	= \TKredit\Pengajuan\Models\PengajuanMobile_RO::where('mobile_id', $request->get('id'))->get(['kredit_id'])->toArray();
+		$mobile_id  = $request->get('id');
 
-		$kredit_ids = array_column($mobile, 'kredit_id');
+		$total 		= \App\Domain\Pengajuan\Models\Pengajuan::whereHas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id)})->status('pengajuan')->count();
 
-		$total 		= \TKredit\KreditAktif\Models\KreditAktif_RO::nomordokumenkredit($kredit_ids)->status('pengajuan')->count();
-
-		return \TAPIQueries\UIHelper\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => (3 - $total)])->asArray();
+		return \App\Service\Helpers\API\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => (3 - $total)])->asArray();
 	});
 
 	// Here lies credit controller all things started here
@@ -45,12 +43,12 @@ Route::group(['middleware' => ['tapi']], function()
 			$credentials 	= Input::only('email', 'password');
 			$login 			= TAuth::login($credentials);
 		} catch (Exception $e) {
-			return \TAPIQueries\UIHelper\JSend::error($e->getMessage())->asArray();
+			return \App\Service\Helpers\API\JSend::error($e->getMessage())->asArray();
 		}
 
 		$returned 		= TAuth::loggedUser();
 	
-		return \TAPIQueries\UIHelper\JSend::success(['id' => $returned['id'], 'nama' => $returned['nama']])->asArray();
+		return \App\Service\Helpers\API\JSend::success(['id' => $returned['id'], 'nama' => $returned['nama']])->asArray();
 	});
 
 });

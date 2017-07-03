@@ -33,7 +33,7 @@ class HeaderTransaksi extends BaseModel
 	protected $fillable				=	[
 											'orang_id'				,
 											'koperasi_id'			,
-											'referensi_id'			,
+											'pengajuan_id'			,
 											'nomor_transaksi'		,
 											'tipe'					,
 											'status'				,
@@ -77,7 +77,7 @@ class HeaderTransaksi extends BaseModel
 	 */	
  	public function orang()
 	{
-		return $this->belongsTo('TKredit\Pengajuan\Models\Orang', 'orang_id');
+		return $this->belongsTo('App\Domain\HR\Models\Orang', 'orang_id');
 	}
 	
 	/**
@@ -87,7 +87,7 @@ class HeaderTransaksi extends BaseModel
 	 */	
  	public function referensi()
 	{
-		return $this->belongsTo('TKredit\KreditAktif\Models\KreditAktif_RO', 'referensi_id', 'nomor_kredit');
+		return $this->belongsTo('App\Domain\Pengajuan\Models\Pengajuan', 'pengajuan_id');
 	}
 
 	/**
@@ -154,7 +154,7 @@ class HeaderTransaksi extends BaseModel
 	{
 		if(str_is($this->status, 'bukti_kas_keluar'))
 		{
-			if($this->referensi_id != 0 && !is_null($this->referensi_id))
+			if($this->pengajuan_id != 0 && !is_null($this->pengajuan_id))
 			{
 				return $this->attributes['tipe_dokumen']	= 'nota_realisasi';
 			}
@@ -204,10 +204,10 @@ class HeaderTransaksi extends BaseModel
 	{
 		if(is_array($value))
 		{
-			return $query->whereIn('referensi_id', $value);
+			return $query->whereIn('pengajuan_id', $value);
 		}
 
-		return $query->where('referensi_id', $value);
+		return $query->where('pengajuan_id', $value);
 	}
 
 	public function countTotal()

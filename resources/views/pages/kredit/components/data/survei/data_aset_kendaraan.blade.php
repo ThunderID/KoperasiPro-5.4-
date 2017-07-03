@@ -12,14 +12,14 @@
 </div>
 
 {{-- check data aset kendaraan --}}
-@if (isset($page_datas->credit['aset_kendaraan']) && !empty($page_datas->credit['aset_kendaraan']))
+@if (isset($page_datas->credit['survei_aset_kendaraan']) && !empty($page_datas->credit['survei_aset_kendaraan']))
 	{{-- foreach data aset kendaraan --}}
-	@foreach ($page_datas->credit['aset_kendaraan'] as $key => $value)
+	@foreach ($page_datas->credit['survei_aset_kendaraan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-md text-capitalize">
 					aset kendaraan {{ $key+1 }}
-					@if(!empty($page_datas->credit['aset_kendaraan']))
+					@if(!empty($page_datas->credit['survei_aset_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.aset.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
@@ -36,7 +36,12 @@
 					@endif
 				</p>
 				<hr class="m-t-sm m-b-sm"/>
-				<p class="text-capitalize text-sm">disurvei {!! (isset($value['survei']) && !empty($value['survei'])) ? $value['survei']['tanggal_survei'] . ' oleh ' . $value['survei']['petugas']['nama'] . '<span class="text-muted"><em> ( ' . $value['survei']['petugas']['role'] . ' )</span></em>'  : '-'  !!}</p>
+				@if(isset($value['surveyor']) && !empty($value['surveyor']))
+					@php
+						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($value['surveyor']['visas'], $acl_active_office);
+					@endphp
+					<p class="text-capitalize text-sm">disurvei {!!  $value['tanggal_survei'] . ' oleh ' . $value['surveyor']['nama'] . '<span class="text-muted"><em> ( ' . $role . ' )</span></em>'  !!}</p>
+				@endif
 			</div>
 		</div>
 		<div class="row p-t-lg">

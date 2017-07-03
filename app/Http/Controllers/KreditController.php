@@ -256,7 +256,7 @@ class KreditController extends Controller
 			if (Input::has('relasi'))
 			{
 				$debitur 		= new UpdateDebitur($kredit->orang_id);
-				$debitur->tembahRelasi(Input::get('relasi')['hubungan'], null, Input::get('relasi')['nama'], null, null, null, Input::get('relasi')['telepon'], null, null, true, Input::get('relasi')['alamat']);
+				$debitur->tembahRelasi(Input::get('relasi')['hubungan'], null, Input::get('relasi')['nama'], null, null, null, Input::get('relasi')['telepon'], null, null, true, Input::get('relasi')['alamat'], Input::get('relasi')['id']);
 				$debitur->save();
 			}
 
@@ -289,49 +289,50 @@ class KreditController extends Controller
 			// aset usaha for survei
 			if (Input::has('aset_usaha'))
 			{
-				$update->tambahAsetUsaha(Input::get('aset_usaha')['bidang_usaha'], Input::get('aset_usaha')['nama_usaha'], Input::get('aset_usaha')['tanggal_berdiri'], Input::get('aset_usaha')['status'], Input::get('aset_usaha')['status_tempat_usaha'], Input::get('aset_usaha')['luas_tempat_usaha'], Input::get('aset_usaha')['jumlah_karyawan'], Input::get('aset_usaha')['nilai_aset'], Input::get('aset_usaha')['perputaran_stok'], Input::get('aset_usaha')['jumlah_konsumen_perbulan'], Input::get('aset_usaha')['jumlah_saingan_perkota'], Input::get('aset_usaha')['alamat']);
+				$update->tambahAsetUsaha(Input::get('aset_usaha')['bidang_usaha'], Input::get('aset_usaha')['nama_usaha'], Input::get('aset_usaha')['tanggal_berdiri'], Input::get('aset_usaha')['status'], Input::get('aset_usaha')['status_tempat_usaha'], Input::get('aset_usaha')['luas_tempat_usaha'], Input::get('aset_usaha')['jumlah_karyawan'], Input::get('aset_usaha')['nilai_aset'], Input::get('aset_usaha')['perputaran_stok'], Input::get('aset_usaha')['jumlah_konsumen_perbulan'], Input::get('aset_usaha')['jumlah_saingan_perkota'], Input::get('aset_usaha')['alamat'], Input::get('aset_usaha')['id']);
 			}
 
 			// aset kendaraan for survei
 			if (Input::has('aset_kendaraan'))
 			{
-				$update->tambahAsetKendaraan(Input::get('aset_kendaraan')['tipe'], Input::get('aset_kendaraan')['nomor_bpkb']);
+				$update->tambahAsetKendaraan(Input::get('aset_kendaraan')['tipe'], Input::get('aset_kendaraan')['nomor_bpkb'], Input::get('aset_kendaraan')['id']);
 			}
 
 			// aset tanah & bangunan for survei
 			if (Input::has('aset_tanah_bangunan'))
 			{
-				$update->tambahAsetTanahBangunan(Input::get('aset_tanah_bangunan')['nomor_sertifikat'], Input::get('aset_tanah_bangunan')['tipe'], Input::get('aset_tanah_bangunan')['luas'], Input::get('aset_tanah_bangunan')['alamat']);
+				$update->tambahAsetTanahBangunan(Input::get('aset_tanah_bangunan')['nomor_sertifikat'], Input::get('aset_tanah_bangunan')['tipe'], Input::get('aset_tanah_bangunan')['luas'], Input::get('aset_tanah_bangunan')['alamat'], Input::get('aset_tanah_bangunan')['id']);
 			}
 
 			// jaminan kendaraan for survei
 			if (Input::has('jaminan_kendaraan'))
 			{
-				$update->tambahJaminanKendaraan(Input::get('jaminan_kendaraan')['tipe'], Input::get('jaminan_kendaraan')['merk'], Input::get('jaminan_kendaraan')['warna'], Input::get('jaminan_kendaraan')['tahun'], Input::get('jaminan_kendaraan')['nomor_polisi'], Input::get('jaminan_kendaraan')['nomor_bpkb'], Input::get('jaminan_kendaraan')['nomor_mesin'], Input::get('jaminan_kendaraan')['nomor_rangka'], Input::get('jaminan_kendaraan')['masa_berlaku_stnk'], Input::get('jaminan_kendaraan')['status_kepemilikan'], Input::get('jaminan_kendaraan')['harga_taksasi'], Input::get('jaminan_kendaraan')['fungsi_sehari_hari'], Input::get('jaminan_kendaraan')['atas_nama'], Input::get('jaminan_kendaraan')['alamat']);
+				$update->tambahJaminanKendaraan(Input::get('jaminan_kendaraan')['tipe'], Input::get('jaminan_kendaraan')['merk'], Input::get('jaminan_kendaraan')['warna'], Input::get('jaminan_kendaraan')['tahun'], Input::get('jaminan_kendaraan')['nomor_polisi'], Input::get('jaminan_kendaraan')['nomor_bpkb'], Input::get('jaminan_kendaraan')['nomor_mesin'], Input::get('jaminan_kendaraan')['nomor_rangka'], Input::get('jaminan_kendaraan')['masa_berlaku_stnk'], Input::get('jaminan_kendaraan')['status_kepemilikan'], Input::get('jaminan_kendaraan')['harga_taksasi'], Input::get('jaminan_kendaraan')['fungsi_sehari_hari'], Input::get('jaminan_kendaraan')['atas_nama'], Input::get('jaminan_kendaraan')['alamat'], Input::get('jaminan_kendaraan')['id']);
 			}
 
 			// jaminan tanah & bangunan for survei
 			if (Input::has('jaminan_tanah_bangunan'))
 			{
-				$update->tambahJaminanTanahBangunan(Input::get('jaminan_tanah_bangunan')['tipe'], Input::get('jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('jaminan_tanah_bangunan')['atas_nama'], Input::get('jaminan_tanah_bangunan')['luas_tanah'], Input::get('jaminan_tanah_bangunan')['jalan'], Input::get('jaminan_tanah_bangunan')['lebar_jalan'], Input::get('jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('jaminan_tanah_bangunan')['lingkungan'], Input::get('jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('jaminan_tanah_bangunan')['njop'], Input::get('jaminan_tanah_bangunan')['listrik'], Input::get('jaminan_tanah_bangunan')['air'], Input::get('jaminan_tanah_bangunan')['url_barcode'], Input::get('jaminan_tanah_bangunan')['alamat'], Input::get('jaminan_tanah_bangunan')['luas_bangunan'], Input::get('jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('jaminan_tanah_bangunan')['dinding'], Input::get('jaminan_tanah_bangunan')['taksasi_bangunan']);
+				$barcode 	= null;
+				$update->tambahJaminanTanahBangunan(Input::get('jaminan_tanah_bangunan')['tipe'], Input::get('jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('jaminan_tanah_bangunan')['atas_nama'], Input::get('jaminan_tanah_bangunan')['luas_tanah'], Input::get('jaminan_tanah_bangunan')['jalan'], Input::get('jaminan_tanah_bangunan')['lebar_jalan'], Input::get('jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('jaminan_tanah_bangunan')['lingkungan'], Input::get('jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('jaminan_tanah_bangunan')['njop'], Input::get('jaminan_tanah_bangunan')['listrik'], Input::get('jaminan_tanah_bangunan')['air'], $barcode, Input::get('jaminan_tanah_bangunan')['alamat'], Input::get('jaminan_tanah_bangunan')['luas_bangunan'], Input::get('jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('jaminan_tanah_bangunan')['dinding'], Input::get('jaminan_tanah_bangunan')['taksasi_bangunan'], Input::get('jaminan_tanah_bangunan')['id']);
 			}
 
 			// rekening for survei
 			if (Input::has('rekening'))
 			{
-				$update->setRekening(Input::get('rekening')['rekening'], Input::get('rekening')['nomor_rekening'], Input::get('rekening')['tanggal_awal'], Input::get('rekening')['tanggal_akhir'], Input::get('rekening')['saldo_awal'], Input::get('rekening')['saldo_akhir']);
+				$update->setRekening(Input::get('rekening')['rekening'], Input::get('rekening')['nomor_rekening'], Input::get('rekening')['tanggal_awal'], Input::get('rekening')['tanggal_akhir'], Input::get('rekening')['saldo_awal'], Input::get('rekening')['saldo_akhir'], Input::get('rekening')['id']);
 			}
 
 			// keuangan for survei
 			if (Input::has('keuangan'))
 			{
-				$update->setKeuangan(Input::get('keuangan')['penghasilan_rutin'], Input::get('keuangan')['penghasilan_pasangan'], Input::get('keuangan')['penghasilan_usaha'], Input::get('keuangan')['penghasilan_lain'], Input::get('keuangan')['biaya_rumah_tangga'], Input::get('keuangan')['biaya_rutin'], Input::get('keuangan')['biaya_pendidikan'], Input::get('keuangan')['biaya_angsuran'], Input::get('keuangan')['biaya_lain'], Input::get('keuangan')['sumber_penghasilan_utama'], Input::get('keuangan')['jumlah_tanggungan_keluarga']);
+				$update->setKeuangan(Input::get('keuangan')['penghasilan_rutin'], Input::get('keuangan')['penghasilan_pasangan'], Input::get('keuangan')['penghasilan_usaha'], Input::get('keuangan')['penghasilan_lain'], Input::get('keuangan')['biaya_rumah_tangga'], Input::get('keuangan')['biaya_rutin'], Input::get('keuangan')['biaya_pendidikan'], Input::get('keuangan')['biaya_angsuran_kredit'], Input::get('keuangan')['biaya_lain'], Input::get('keuangan')['sumber_pendapatan_utama'], Input::get('keuangan')['jumlah_tanggungan_keluarga']);
 			}
 
 			// kepribadian for survei
 			if (Input::has('kepribadian'))
 			{
-				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian']);
+				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian'], Input::get('kepribadian')['id']);
 			}
 
 			// nasabah for survei
@@ -476,7 +477,8 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'marketing'])->first();
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing'])->first();
+		
 		}
 		catch(Exception $e)
 		{
@@ -539,7 +541,6 @@ class KreditController extends Controller
 	 */
 	public function destroy()
 	{
-				dd(139019301);
 		try {
 
 			$hapus 			= new HapusDataKredit($this->request->kredit_id);
@@ -571,7 +572,6 @@ class KreditController extends Controller
 			{
 				$hapus 	= $hapus->hapusSurveiAsetTanahBangunan($this->request->survei_aset_tanah_bangunan_id);
 			}
-
 			if($this->request->is('hapus/survei/jaminan/kendaraan/*'))
 			{
 				$hapus 	= $hapus->hapusSurveiJaminanKendaraan($this->request->survei_jaminan_kendaraan_id);

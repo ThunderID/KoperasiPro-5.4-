@@ -5,8 +5,8 @@ namespace App\Service\Analis;
 ///////////////
 //   Models  //
 ///////////////
-use TImmigration\Models\Koperasi_RO as Model;
-use TImmigration\Models\Visa_A;
+use App\Domain\Akses\Models\Koperasi as Model;
+use App\Domain\Akses\Models\Visa;
 
 use Hash, Exception, Session, TAuth, Carbon\Carbon;
 
@@ -59,7 +59,7 @@ class CabangKekuranganOrang
 
 		foreach ($koperasi as $key => $value) 
 		{
-			$pengguna 		= collect(Visa_A::where('immigration_ro_koperasi_id', $value['id'])->get()->toArray());
+			$pengguna 		= collect(Visa::where('akses_koperasi_id', $value['id'])->get()->toArray());
 
 			$koperasi[$key]['total_user']		= $pengguna->groupby('immigration_pengguna_id')->count();
 			$koperasi[$key]['scopes']			= [];

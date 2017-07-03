@@ -17,8 +17,8 @@
 		
 		{{----------------  FORM ASET USAHA --------------}}
 		{{-- form untuk data yg sudah ada --}}
-		@if (isset($page_datas->credit['aset_usaha']))
-			@foreach ($page_datas->credit['aset_usaha'] as $k => $v)
+		@if (isset($page_datas->credit['survei_aset_usaha']))
+			@foreach ($page_datas->credit['survei_aset_usaha'] as $k => $v)
 				<div class="hidden" data-form="aset-usaha-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">
@@ -75,8 +75,8 @@
 
 		{{----------------  FORM ASET KENDARAAN  --------------}}
 		{{-- form untuk data yang sudah ada --}}
-		@if (isset($page_datas->credit['aset_kendaraan']))
-			@foreach ($page_datas->credit['aset_kendaraan'] as $k => $v)
+		@if (isset($page_datas->credit['survei_aset_kendaraan']))
+			@foreach ($page_datas->credit['survei_aset_kendaraan'] as $k => $v)
 				<div class="hidden" data-form="aset-kendaraan-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">
@@ -132,8 +132,8 @@
 
 		{{----------------  FORM ASET TANAH & BANGUNAN  --------------}}
 		{{-- form untuk data yg sudah ada --}}
-		@if (isset($page_datas->credit['aset_tanah_bangunan']))
-			@foreach ($page_datas->credit['aset_tanah_bangunan'] as $k => $v)
+		@if (isset($page_datas->credit['survei_aset_tanah_bangunan']))
+			@foreach ($page_datas->credit['survei_aset_tanah_bangunan'] as $k => $v)
 				<div class="hidden" data-form="aset-tanah-bangunan-{{ $k }}">
 					<div class="row">
 						<div class="col-sm-12">

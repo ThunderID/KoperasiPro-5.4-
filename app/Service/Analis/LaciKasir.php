@@ -5,7 +5,7 @@ namespace App\Service\Analis;
 ///////////////
 //   Models  //
 ///////////////
-use TKredit\KreditAktif\Models\KreditAktif_RO as Model;
+use App\Domain\Pengajuan\Models\Pengajuan as Model;
 
 use App\Domain\Kasir\Models\DetailTransaksi;
 use App\Domain\Kasir\Models\HeaderTransaksi;
@@ -52,7 +52,7 @@ class LaciKasir
 			{
 				if((str_is('transaksi_harian', $value2['list'])) && (!isset($value2['expired_at']) || $value2['expired_at'] > Carbon::now()->format('d/m/Y')))
 				{
-					$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+					$koperasi_id[]	= $value['akses_koperasi_id'];
 				}
 			}
 		}
@@ -84,7 +84,7 @@ class LaciKasir
 			{
 				if((str_is('transaksi_harian', $value2['list'])) && (!isset($value2['expired_at']) || $value2['expired_at'] > Carbon::now()->format('d/m/Y')))
 				{
-					$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+					$koperasi_id[]	= $value['akses_koperasi_id'];
 				}
 			}
 		}
@@ -113,7 +113,7 @@ class LaciKasir
 			{
 				if((str_is('transaksi_harian', $value2['list'])) && (!isset($value2['expired_at']) || $value2['expired_at'] > Carbon::now()->format('d/m/Y')))
 				{
-					$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+					$koperasi_id[]	= $value['akses_koperasi_id'];
 				}
 			}
 		}
@@ -142,7 +142,7 @@ class LaciKasir
 			{
 				if((str_is('transaksi_harian', $value2['list'])) && (!isset($value2['expired_at']) || $value2['expired_at'] > Carbon::now()->format('d/m/Y')))
 				{
-					$koperasi_id[]	= $value['immigration_ro_koperasi_id'];
+					$koperasi_id[]	= $value['akses_koperasi_id'];
 				}
 			}
 		}
