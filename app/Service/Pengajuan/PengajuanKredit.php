@@ -105,6 +105,16 @@ class PengajuanKredit
 					$mobile 	= new Mobile;
 				}
 				$mobile = $mobile->fill(['mobile_id' => $this->mobile['id'], 'mobile_model' => $this->mobile['model']]);
+				
+				if(!is_null($this->referensi))
+				{
+					$mobile->orang_id 	= $this->referensi['id'];
+				}
+				else
+				{
+					$mobile->orang_id 	= $this->orang->id;
+				}
+
 				$mobile->save();
 
 				$pengajuan->hp_id 	= $mobile->id;
