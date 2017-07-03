@@ -122,12 +122,7 @@ class PengajuanKredit
 			}
 
 			//3. check assign koperasi id
-			if(TAuth::isLogged())
-			{
-				\Log::info(2);
-				$pengajuan->akses_koperasi_id 	= TAuth::activeOffice()['koperasi']['id'];
-			}
-			elseif(!is_null($this->lokasi))
+			if(!is_null($this->lokasi))
 			{
 				\Log::info(3);
 				$all_koperasi 			= Koperasi::get();
@@ -148,6 +143,11 @@ class PengajuanKredit
 						$pengajuan->akses_koperasi_id	= $value['id'];
 					}
 				}
+			}
+			elseif(TAuth::isLogged())
+			{
+				\Log::info(2);
+				$pengajuan->akses_koperasi_id 	= TAuth::activeOffice()['koperasi']['id'];
 			}
 
 			//see petugas
