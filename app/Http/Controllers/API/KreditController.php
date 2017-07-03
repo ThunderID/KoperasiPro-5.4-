@@ -30,7 +30,7 @@ class KreditController extends Controller
 	public function index()
 	{
 		$mobile_id 	= $this->request->input('id');
-		$data 		= Pengajuan::wherehas('melalui_mobile', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->get();
+		$data 		= Pengajuan::wherehas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->get();
 		
 		return JSend::success($data)->asArray();
 	}
