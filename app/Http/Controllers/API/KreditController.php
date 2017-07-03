@@ -18,7 +18,7 @@ use App\Service\Pengajuan\PengajuanKredit;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Pengajuan\Models\Pengajuan;
 
-use Input;
+use Input, Carbon\Carbon;
 
 class KreditController extends Controller
 {
@@ -95,7 +95,7 @@ class KreditController extends Controller
 			$lokasi 			= null;
 		}
 
-		$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], $kredit['tanggal_pengajuan'], $kredit['jenis_kredit'], $kredit['mobile'], $kredit['spesimen_ttd'], $foto_ktp, $lokasi, $kredit['referensi']);
+		$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), $kredit['jenis_kredit'], $kredit['mobile'], $kredit['spesimen_ttd'], $foto_ktp, $lokasi, $kredit['referensi']);
 
 		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
 		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
