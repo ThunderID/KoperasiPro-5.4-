@@ -115,7 +115,7 @@ class KreditController extends Controller
 			$pengajuan_baru 	= $pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
 		}
 
-		$pengajuan_baru 		= $pengajuan_baru->setDebitur(null, null, null, null, null, $this->kredit['nomor_telepon'], null, null)
+		$pengajuan_baru 		= $pengajuan_baru->setDebitur(null, null, null, null, null, $this->kredit['nomor_telepon'], null, null);
 
 		try {
 			$pengajuan_baru 	= $pengajuan_baru->save();
