@@ -57991,8 +57991,9 @@ __webpack_require__("./resources/assets/js/modules/form/input-search-ajax.js");
 
 window.buttonUpload = {
 	upload: function upload() {
-		$('input[type="file"').on('change', function () {
-			$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
+		$('.file-upload').on('change', function () {
+			alert('halo');
+			// $('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
 		});
 	},
 	init: function init() {

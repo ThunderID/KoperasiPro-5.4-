@@ -17,7 +17,7 @@ require ('./form/form-wizard');
 require ('./form/form-ajax-submit');
 
 // add module form input key enter to tab
-// require ('./form/form-enter-to-tab');
+require ('./form/form-enter-to-tab');
 
 // add module form can't enter to submit
 require ('./form/form-no-enter-submit');
