@@ -112,7 +112,7 @@ class PengajuanKredit
 				}
 				else
 				{
-					$mobile->orang_id 	= $this->orang->id;
+					$mobile->orang_id 	= $orang->id;
 				}
 
 				$mobile->save();
