@@ -41,6 +41,7 @@ Route::group(['middleware' => ['tapi']], function()
 	{
 		try {
 			$credentials 	= Input::only('email', 'password');
+			$credentials['nip']		= $credentials['email'];
 			$login 			= TAuth::login($credentials);
 		} catch (Exception $e) {
 			return \App\Service\Helpers\API\JSend::error($e->getMessage())->asArray();
