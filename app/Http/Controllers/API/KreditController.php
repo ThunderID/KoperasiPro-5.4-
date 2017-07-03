@@ -70,25 +70,6 @@ class KreditController extends Controller
 		if(Input::has('location'))
 		{
 			$lokasi 					= Input::get('location');
-			$koperasi 					= Koperasi::get();
-
-			$lat_ln 					= 0;
-			foreach ($koperasi as $key => $value) 
-			{
-				$selisih_lat 			= $lokasi['latitude'] - $value['latitude'];
-				$selisih_lon 			= $lokasi['longitude'] - $value['longitude'];
-
-				if($key == 0)
-				{
-					$lat_ln 			= $selisih_lon + $selisih_lat;
-					$kredit['lokasi']	= $value['id'];
-				}
-				elseif($lat_ln > $selisih_lat+$selisih_lon)
-				{
-					$lat_ln 			= $selisih_lat + $selisih_lon;
-					$kredit['lokasi']	= $value['id'];
-				}
-			}
 		}
 		else
 		{

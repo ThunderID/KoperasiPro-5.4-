@@ -42,6 +42,7 @@ class PengajuanKredit
 		$this->spesimen_ttd			= $spesimen_ttd;
 		$this->foto_ktp				= $foto_ktp;
 		$this->lokasi				= $lokasi;
+		$this->referensi			= $referensi;
 	}
 
 	/**
@@ -123,10 +124,12 @@ class PengajuanKredit
 			//3. check assign koperasi id
 			if(TAuth::isLogged())
 			{
+				\Log::info(2);
 				$pengajuan->akses_koperasi_id 	= TAuth::activeOffice()['koperasi']['id'];
 			}
 			elseif(!is_null($this->lokasi))
 			{
+				\Log::info(3);
 				$all_koperasi 			= Koperasi::get();
 
 				foreach ($all_koperasi as $key => $value) 
