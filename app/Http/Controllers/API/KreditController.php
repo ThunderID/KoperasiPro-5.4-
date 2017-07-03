@@ -16,6 +16,7 @@ use App\Service\Helpers\API\JSend;
 use App\Service\Pengajuan\PengajuanKredit;
 
 use App\Domain\Akses\Models\Koperasi;
+use App\Domain\Pengajuan\Models\Pengajuan;
 
 use Input;
 
