@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use Input, PDF, Carbon\Carbon, Exception, StdClass, TAuth, Redirect;
 
-use TImmigration\Models\Visa_A;
-use TImmigration\Models\Koperasi_RO;
+use App\Domain\Akses\Models\Visa;
+use App\Domain\Akses\Models\Koperasi;
 
 /**
  * Kelas KoperasiController
@@ -36,7 +36,7 @@ class KoperasiController extends Controller
 	public function index()
 	{
 		$page_datas 				= new StdClass;
-		$page_datas->koperasi 		= Koperasi_RO::paginate();
+		$page_datas->koperasi 		= Koperasi::paginate();
 		
 		$page_attributes 			= new StdClass;
 		$page_attributes->paging 	= $page_datas->koperasi;
@@ -57,10 +57,10 @@ class KoperasiController extends Controller
 		}
 
 		$page_datas 				= new StdClass;
-		$page_datas->koperasi 		= Koperasi_RO::paginate();
-		$page_datas->data 			= Koperasi_RO::findorfail($id);
+		$page_datas->koperasi 		= Koperasi::paginate();
+		$page_datas->data 			= Koperasi::findorfail($id);
 		$page_datas->id 			= $id;
-		$page_datas->users 			= Visa_A::where('immigration_ro_koperasi_id', $id)->with(['pengguna'])->get()->toArray();
+		$page_datas->users 			= Visa::where('akses_koperasi_id', $id)->with(['pengguna'])->get()->toArray();
 
 
 		$page_attributes 			= new StdClass;
@@ -79,8 +79,8 @@ class KoperasiController extends Controller
 	public function create($id = null)
 	{
 		$page_datas 				= new StdClass;
-		// $page_datas->koperasi 		= Koperasi_RO::paginate();
-		$page_datas->data 			= Koperasi_RO::findornew($id);
+		// $page_datas->koperasi 		= Koperasi::paginate();
+		$page_datas->data 			= Koperasi::findornew($id);
 		$page_datas->id 			= $id;
 		
 		$page_attributes 			= new StdClass;
@@ -103,7 +103,7 @@ class KoperasiController extends Controller
 				$id 				= str_replace(' ', '', $this->request->get('nama'));
 			}
 
-			$data 					= Koperasi_RO::findornew($id);
+			$data 					= Koperasi::findornew($id);
 			$data->fill($this->request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude']));
 			$data->id 				= $id;
 			$data->save();
@@ -136,7 +136,7 @@ class KoperasiController extends Controller
 	{
 		try
 		{
-			$data 					= Koperasi_RO::findorfail($id);
+			$data 					= Koperasi::findorfail($id);
 			$data->delete();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];

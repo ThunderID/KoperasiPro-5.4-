@@ -49,7 +49,7 @@ class LoginController extends Controller
 	public function logging()
 	{
 		//get input
-		$credentials				= Input::only('email', 'key');
+		$credentials				= Input::only('nip', 'key');
 		$credentials['password']	= $credentials['key'];
 
 		// $credentials['email']		= 'admin@ksp.id';
