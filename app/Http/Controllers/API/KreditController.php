@@ -107,16 +107,16 @@ class KreditController extends Controller
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']	= 0;
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']= 0;
 
-			$pengajuan_baru 	= $pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
+			$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
 		}
 
 
 		foreach ((array)$kredit['jaminan_kendaraan'] as $key => $value) 
 		{
-			$pengajuan_baru 	= $pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
+			$pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
 		}
 
-		$pengajuan_baru 		= $pengajuan_baru->setDebitur(null, null, null, null, null, $kredit['kreditur']['nomor_telepon'], null, null);
+		$pengajuan_baru->setDebitur(null, null, null, null, null, $kredit['kreditur']['nomor_telepon'], null, null);
 
 		try {
 			$pengajuan_baru 	= $pengajuan_baru->save();
