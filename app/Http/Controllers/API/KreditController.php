@@ -124,6 +124,6 @@ class KreditController extends Controller
 			return JSend::error($e->getMessage())->asArray();
 		}
 
-		return JSend::success(['nomor_kredit' => $data_kredit['id']])->asArray();
+		return JSend::success(['nomor_kredit' => $pengajuan_baru['id']])->asArray();
 	}
 }
