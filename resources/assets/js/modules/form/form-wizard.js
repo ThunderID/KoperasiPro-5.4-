@@ -104,6 +104,7 @@ window.wizard = {
 				window.wizard.customButtonActions();
 				window.wizard.disablePreviousButtonOnFirstStep(currentIndex);
 				window.formInputMask.init();
+				window.buttonUpload.init();
 				// $('.input-switch').bootstrapSwitch(); // active switch button
 				// window.select();
 			},

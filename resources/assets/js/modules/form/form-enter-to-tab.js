@@ -4,7 +4,7 @@ window.formEntertoTabs = {
 	},
 	init: function () {
 		$('input, a').on('keypress', function(e) {
-			check = window.checkKeyCode(e);
+			check = window.formEntertoTabs.checkKeyCode(e);
 			
 			if (check == true) {
 				elements = $(this).parents('section').eq(0).find('.auto-tabindex');

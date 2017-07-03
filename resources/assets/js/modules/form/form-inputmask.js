@@ -31,6 +31,17 @@ window.formInputMask = {
 		var selector = $('.mask-money-right');
 		moneyRight.mask(selector);
 	},
+	birthDay: function () {
+		var today = new Date();
+		var year = today.getFullYear();
+
+		var birthDate = new Inputmask({
+			alias: 'dd/mm/yyyy',
+			yearrange: {minyear: 1700, maxyear: (year - 10)}
+		});
+		var selector = $('.mask-birthdate');
+		birthDate.mask(selector);
+	},
 	date: function () {
 		var date = new Inputmask({
 			alias: 'dd/mm/yyyy'
@@ -125,6 +136,7 @@ window.formInputMask = {
 		this.money();
 		this.moneyRight();
 		this.date();
+		this.birthDay();
 		this.year();
 		this.idKTP();
 		this.noTelp();

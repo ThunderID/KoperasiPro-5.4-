@@ -21,7 +21,7 @@ window.select = function(element, param) {
 		// get parent select on aktif
 		rootSelect = $(this).parent().parent().parent().parent();
 		$elementTarget = rootSelect.find($targetParsing);
-		console.log($caption);
+
 		// get data list on ajax
 		$.ajax({
 			type: "GET",
@@ -69,5 +69,9 @@ window.select = function(element, param) {
 
 // document ready & document pjax:end
 $(document).ready( function() {
+	window.select();
+});
+
+$(document).on('pjax:end',   function() { 
 	window.select();
 });
