@@ -24,7 +24,7 @@ Route::group(['middleware' => ['tapi']], function()
 
 		$mobile_id  = $request->get('id');
 
-		$total 		= \App\Domain\Pengajuan\Models\Pengajuan::whereHas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id)})->status('pengajuan')->count();
+		$total 		= \App\Domain\Pengajuan\Models\Pengajuan::whereHas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->status('pengajuan')->count();
 
 		return \App\Service\Helpers\API\JSend::success(['minimum_pengajuan' => 2500000, 'minimum_shgb' => Carbon\Carbon::now()->format('Y'), 'remain_pengajuan' => (3 - $total)])->asArray();
 	});
@@ -41,6 +41,7 @@ Route::group(['middleware' => ['tapi']], function()
 	{
 		try {
 			$credentials 	= Input::only('email', 'password');
+			$credentials['nip']		= $credentials['email'];
 			$login 			= TAuth::login($credentials);
 		} catch (Exception $e) {
 			return \App\Service\Helpers\API\JSend::error($e->getMessage())->asArray();

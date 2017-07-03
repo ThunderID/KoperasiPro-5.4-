@@ -5,14 +5,14 @@
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 			<div class="form-wrap p-b-sm m-b-md">
 				<h1 class="m-b-xl">GO-Kredit.com</h1>
-				<p class="m-b-lg">Silahkan masukkan Email dan Password Anda.</p>
+				<p class="m-b-lg">Silahkan masukkan NIP dan Password Anda.</p>
 
 				@include('components.alertbox')
 
 				{!! Form::open(['url' => route('login.store'), 'id' => 'login-form', 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
 					<div class="form-group">
-						<label for="email" class="sr-only">Email</label>
-						{!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'somebody@example.com']) !!}
+						<label for="nip" class="sr-only">NIP</label>
+						{!! Form::text('nip', null, ['id' => 'nip', 'class' => 'form-control set-focus auto-tabindex', 'placeholder' => '2000.0001']) !!}
 					</div>
 					<div class="form-group">
 						<label for="key" class="sr-only">Password</label>
@@ -40,8 +40,8 @@
 					<h4 class="modal-title">Recovery password</h4>
 				</div>
 				<div class="modal-body">
-					<p>Type your email account</p>
-					<input type="email" name="recovery-email" id="recovery-email" class="form-control" autocomplete="off">
+					<p>Type your nip account</p>
+					<input type="nip" name="recovery-nip" id="recovery-nip" class="form-control" autocomplete="off">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

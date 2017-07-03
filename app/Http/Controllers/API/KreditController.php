@@ -16,8 +16,9 @@ use App\Service\Helpers\API\JSend;
 use App\Service\Pengajuan\PengajuanKredit;
 
 use App\Domain\Akses\Models\Koperasi;
+use App\Domain\Pengajuan\Models\Pengajuan;
 
-use Input;
+use Input, Carbon\Carbon;
 
 class KreditController extends Controller
 {
@@ -29,7 +30,7 @@ class KreditController extends Controller
 	public function index()
 	{
 		$mobile_id 	= $this->request->input('id');
-		$data 		= Pengajuan::wherehas('melalui_mobile', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->get();
+		$data 		= Pengajuan::wherehas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->get()->toArray();
 		
 		return JSend::success($data)->asArray();
 	}
@@ -69,32 +70,13 @@ class KreditController extends Controller
 		if(Input::has('location'))
 		{
 			$lokasi 					= Input::get('location');
-			$koperasi 					= Koperasi::get();
-
-			$lat_ln 					= 0;
-			foreach ($koperasi as $key => $value) 
-			{
-				$selisih_lat 			= $lokasi['latitude'] - $value['latitude'];
-				$selisih_lon 			= $lokasi['longitude'] - $value['longitude'];
-
-				if($key == 0)
-				{
-					$lat_ln 			= $selisih_lon + $selisih_lat;
-					$kredit['lokasi']	= $value['id'];
-				}
-				elseif($lat_ln > $selisih_lat+$selisih_lon)
-				{
-					$lat_ln 			= $selisih_lat + $selisih_lon;
-					$kredit['lokasi']	= $value['id'];
-				}
-			}
 		}
 		else
 		{
 			$lokasi 			= null;
 		}
 
-		$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], $kredit['tanggal_pengajuan'], $kredit['jenis_kredit'], $kredit['mobile'], $kredit['spesimen_ttd'], $foto_ktp, $lokasi, $kredit['referensi']);
+		$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), $kredit['mobile'], $kredit['spesimen_ttd'], $data_ktp['url'], $lokasi, $kredit['referensi']);
 
 		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
 		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
@@ -106,16 +88,16 @@ class KreditController extends Controller
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']	= 0;
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']= 0;
 
-			$pengajuan_baru 	= $pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
+			$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
 		}
 
 
 		foreach ((array)$kredit['jaminan_kendaraan'] as $key => $value) 
 		{
-			$pengajuan_baru 	= $pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
+			$pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
 		}
 
-		$pengajuan_baru 		= $pengajuan_baru->setDebitur(null, null, null, null, null, $this->kredit['nomor_telepon'], null, null)
+		$pengajuan_baru->setDebitur(null, null, null, null, null, $kredit['kreditur']['nomor_telepon'], null, null);
 
 		try {
 			$pengajuan_baru 	= $pengajuan_baru->save();
@@ -123,6 +105,6 @@ class KreditController extends Controller
 			return JSend::error($e->getMessage())->asArray();
 		}
 
-		return JSend::success(['nomor_kredit' => $data_kredit['id']])->asArray();
+		return JSend::success(['nomor_kredit' => $pengajuan_baru['id']])->asArray();
 	}
 }

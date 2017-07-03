@@ -7,7 +7,7 @@
 				<div class="col-xs-10 col-sm-10 col-md-11">
 					<div class="row">
 						<div class="col-xs-8">
-							<h4>{{ $value['pengguna']['nama'] }}</h4>
+							<h4>{{ $value['petugas']['nama'] }}</h4>
 							<div class="row m-b-xs">
 								<div class="col-xs-5">
 									<p>Last Login</p>
@@ -21,7 +21,7 @@
 									<p>Email</p>
 								</div>
 								<div class="col-xs-7">
-									<p>{{ $value['pengguna']['email'] }}</p>
+									<p>{{ $value['petugas']['email'] }}</p>
 								</div>
 							</div>
 							<div class="row m-b-xs">

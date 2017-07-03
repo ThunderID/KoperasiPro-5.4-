@@ -129,7 +129,7 @@
 
 							@foreach($page_datas->users as $key => $value)
 							<div class="hidden" data-form="edit_{{ $value['id'] }}">
-								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['pengguna']['nama']) }}</h4>
+								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['petugas']['nama']) }}</h4>
 							</div>
 							@endforeach
 

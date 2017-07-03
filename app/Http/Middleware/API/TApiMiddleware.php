@@ -5,6 +5,8 @@ namespace App\Http\Middleware\API;
 use Closure;
 use Illuminate\Http\Request;
 
+use App\Service\Akses\APIAuthenticator;
+
 class TApiMiddleware
 {
 	public function handle($request, Closure $next)

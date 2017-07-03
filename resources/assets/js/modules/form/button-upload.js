@@ -1,11 +1,8 @@
 window.buttonUpload = {
-	upload: function () {
-		$('input[type="file"').on('change', function () {
+	init: function () {
+		$('.btn-upload').change(function () {
 			$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
 		});
-	},
-	init: function () {
-		this.upload();
 	}
 }
 $(document).ready( function() {

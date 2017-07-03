@@ -32,7 +32,7 @@ $(document).ready(function(){
 	//using nprogress to indicate loading
 	$(document).on('pjax:start', function() { 
 		NProgress.start();
-
+		// window.select();
 		//fix nice scroll bug: remove nice scroll
 		$("div[class^='nicescroll-rails']").remove();
 	});
@@ -54,7 +54,7 @@ $(document).ready(function(){
 		window.noEnterToSubmit.init();
 		window.formInputMask.init();
 		window.wizard.init();
-		// window.select();
+		window.select();
 		// $('.input-switch').bootstrapSwitch();
 		window.printModule.init();
 		

@@ -57990,13 +57990,10 @@ __webpack_require__("./resources/assets/js/modules/form/input-search-ajax.js");
 /***/ (function(module, exports) {
 
 window.buttonUpload = {
-	upload: function upload() {
-		$('input[type="file"').on('change', function () {
+	init: function init() {
+		$('.btn-upload').change(function () {
 			$('.input-upload').val($(this).val().replace(/.*(\/|\\)/, ''));
 		});
-	},
-	init: function init() {
-		this.upload();
 	}
 };
 $(document).ready(function () {
@@ -58346,13 +58343,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;window.wizard = 
 				window.wizard.customButtonActions();
 				window.wizard.disablePreviousButtonOnFirstStep(currentIndex);
 				window.formInputMask.init();
+				window.buttonUpload.init();
 				// $('.input-switch').bootstrapSwitch(); // active switch button
 				// window.select();
 			},
 			onFinishing: function onFinishing(event, currentIndex) {
 				form = $('.wizard');
 				// form.validate().settings.ignore = ":disabled,:hidden";
-				return form.valid();
+				// return form.valid();
+				return form;
 			},
 			onFinished: function onFinished(event, currentIndex) {
 				form = $('.wizard');
@@ -58940,6 +58939,10 @@ window.select = function (element, param) {
 
 // document ready & document pjax:end
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+	window.select();
+});
+
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('pjax:end', function () {
 	window.select();
 });
 
@@ -59682,7 +59685,7 @@ $(document).ready(function () {
   //using nprogress to indicate loading
   $(document).on('pjax:start', function () {
     NProgress.start();
-
+    // window.select();
     //fix nice scroll bug: remove nice scroll
     $("div[class^='nicescroll-rails']").remove();
   });
