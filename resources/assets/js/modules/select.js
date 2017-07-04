@@ -7,45 +7,45 @@ window.select = function(element, param) {
 	});
 
 	$('.select-get-ajax').on('select2:select', function(evt) {
-		$url = $(this).data('url');
-		$val = $(this).find('option:selected').val();
-		$caption = $(this).find('option:selected').html();
-		dataFlag = $(this).data('value-from-caption');
+		var url = $(this).attr('data-url');
+		var val = $(this).find('option:selected').val();
+		var caption = $(this).find('option:selected').html();
+		var dataFlag = $(this).data('value-from-caption');
 		
 		if ((typeof dataFlag != 'undefined')) {
-			$(this).val($caption);
+			$(this).val(caption);
 		}
 
 		// get select2 to parsing data
-		$targetParsing = $(this).data('target-parsing');
+		var targetParsing = $(this).data('target-parsing');
 		// get parent select on aktif
-		rootSelect = $(this).parent().parent().parent().parent();
-		$elementTarget = rootSelect.find($targetParsing);
+		var rootSelect = $(this).parent().parent().parent().parent();
+		var elementTarget = rootSelect.find(targetParsing);
 
 		// get data list on ajax
 		$.ajax({
 			type: "GET",
-			url: $url,
-			data: {id: $val},
+			url: url,
+			data: {id: val},
 			cache: true,
 			success: function (data) {
 				console.log(data);
 				// parsing data ajax to content
-				$elementTarget.html('');
+				elementTarget.html('');
 				$.each(data, function(index, value) {
-					$option = $("<option value='" + index + "' data-id='" +index+ "'>" + value +"</option>");
+					var $option = $("<option value='" + index + "' data-id='" +index+ "'>" + value +"</option>");
 					// $option.val(v.id).text(v.nama);
-					// $elementTarget.append($option);
-					$elementTarget.append($option);
+					// elementTarget.append($option);
+					elementTarget.append($option);
 				});
 				// remove default on selected
-				$elementTarget.val('');
+				elementTarget.val('');
 			}
 		});
 		// remove disable select regensi
-		$elementTarget.removeAttr('disabled');
+		elementTarget.removeAttr('disabled');
 		// after get data, set focus to select-regensi
-		$elementTarget.focus();
+		elementTarget.focus();
 	});
 
 	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
