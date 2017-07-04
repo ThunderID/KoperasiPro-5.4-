@@ -88,7 +88,7 @@ class KreditController extends Controller
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']	= 0;
 			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']= 0;
 
-			$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
+			$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku'], $kredit['jaminan_tanah_bangunan'][$key]['atas_nama'], $kredit['jaminan_tanah_bangunan'][$key]['alamat'], $kredit['jaminan_tanah_bangunan'][$key]['luas_tanah'], $kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']);
 		}
 
 
