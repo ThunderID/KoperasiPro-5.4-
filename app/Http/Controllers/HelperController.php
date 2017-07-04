@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use TQueries\Territorial\TeritoriIndonesia;
-use TQueries\Kredit\DaftarKreditur;
+use App\Service\Teritorial\TeritoriIndonesia;
+// use TQueries\Kredit\DaftarKreditur;
 
 /**
  * Class HelperController
@@ -19,15 +19,15 @@ Class HelperController extends Controller
 	function getRegensi()
 	{
 		$id 			= request()->input('id');
-		$call 			= new TeritoriIndonesia;
+		$call 		= new TeritoriIndonesia;
 
 		// get data regensi
 		$regensi		= collect($call->get(['regensi_dari' => $id]));
 		// sort data city by 'nama'
 		$regensi 		= $regensi->sortBy('nama');
-		$regensi 		= $regensi->pluck('nama', 'id');
+		// $regensi 		= $regensi->pluck('nama', 'id');
 
-        return response()->json($regensi);
+        return response()->json($regensi->pluck('nama', 'id'));
 	}
 
 	/**
@@ -37,7 +37,7 @@ Class HelperController extends Controller
 	function getDistrik()
 	{
 		$id 			= request()->input('id');
-		$call 			= new TeritoriIndonesia;
+		$call 		= new TeritoriIndonesia;
 
 		// get data distrik for regensi 'id'
 		$distrik 		= collect($call->get(['distrik_dari'	=> $id]));
@@ -55,13 +55,13 @@ Class HelperController extends Controller
 	function getDesa()
 	{
 		$id 			= request()->input('id');
-		$call			= new TeritoriIndonesia;
+		$call		= new TeritoriIndonesia;
 
 		// get data desa dari distrik 'nama';
-		$desa 			= collect($call->get(['desa_dari' => $id]));
+		$desa 		= collect($call->get(['desa_dari' => $id]));
 		// sort data desa by 'nama'
-		$desa 			= $desa->sortBy('nama');
-		$desa 			= $desa->pluck('nama', 'id');
+		$desa 		= $desa->sortBy('nama');
+		$desa 		= $desa->pluck('nama', 'id');
 
 		return response()->json($desa);
 	}
@@ -70,14 +70,14 @@ Class HelperController extends Controller
 	 * fungsi get data kreditur
 	 * description: untuk mendapatkan data kreditur yang sudah ada
 	 */
-	function getDaftarKreditur()
-	{
-		$id 			= request()->input('nik');
-		$call 			= new DaftarKreditur;
+	// function getDaftarKreditur()
+	// {
+	// 	$id 			= request()->input('nik');
+	// 	$call 			= new DaftarKreditur;
 
-		// get data kreditur
-		$kreditur 		= collect($call->get(['nik' => $id]));
+	// 	// get data kreditur
+	// 	$kreditur 		= collect($call->get(['nik' => $id]));
 
-		return response()->json($kreditur[0]);
-	}
+	// 	return response()->json($kreditur[0]);
+	// }
 }

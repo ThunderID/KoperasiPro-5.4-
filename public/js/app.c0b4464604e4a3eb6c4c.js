@@ -57976,7 +57976,7 @@ __webpack_require__("./resources/assets/js/modules/form/form-wizard.js");
 __webpack_require__("./resources/assets/js/modules/form/form-ajax-submit.js");
 
 // add module form input key enter to tab
-// require ('./form/form-enter-to-tab');
+__webpack_require__("./resources/assets/js/modules/form/form-enter-to-tab.js");
 
 // add module form can't enter to submit
 __webpack_require__("./resources/assets/js/modules/form/form-no-enter-submit.js");
@@ -58070,6 +58070,38 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/js/modules/form/form-enter-to-tab.js":
+/***/ (function(module, exports) {
+
+window.formEntertoTabs = {
+	checkKeyCode: function checkKeyCode(event) {
+		return event.keyCode == 13 ? true : false;
+	},
+	init: function init() {
+		$('input, a').on('keypress', function (e) {
+			check = window.formEntertoTabs.checkKeyCode(e);
+
+			if (check == true) {
+				elements = $(this).parents('section').eq(0).find('.auto-tabindex');
+				idx = elements.index(this);
+
+				if (idx == elements.length - 1) {
+					// set to button next wizard
+					$('.wizard').find('a[href$="#next"]').focus();
+				} else {
+					elements[idx + 1].focus();
+					// elements[idx + 1].select();
+				}
+			}
+		});
+	}
+};
+$(document).ready(function () {
+	window.formEntertoTabs.init();
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/modules/form/form-inputmask.js":
 /***/ (function(module, exports) {
 
@@ -58105,6 +58137,17 @@ window.formInputMask = {
 		});
 		var selector = $('.mask-money-right');
 		moneyRight.mask(selector);
+	},
+	birthDay: function birthDay() {
+		var today = new Date();
+		var year = today.getFullYear();
+
+		var birthDate = new Inputmask({
+			alias: 'dd/mm/yyyy',
+			yearrange: { minyear: 1700, maxyear: year - 10 }
+		});
+		var selector = $('.mask-birthdate');
+		birthDate.mask(selector);
 	},
 	date: function date() {
 		var date = new Inputmask({
@@ -58198,6 +58241,7 @@ window.formInputMask = {
 		this.money();
 		this.moneyRight();
 		this.date();
+		this.birthDay();
 		this.year();
 		this.idKTP();
 		this.noTelp();
@@ -58877,45 +58921,45 @@ window.select = function (element, param) {
 	});
 
 	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.select-get-ajax').on('select2:select', function (evt) {
-		$url = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('url');
-		$val = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).find('option:selected').val();
-		$caption = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).find('option:selected').html();
-		dataFlag = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('value-from-caption');
+		var url = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).attr('data-url');
+		var val = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).find('option:selected').val();
+		var caption = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).find('option:selected').html();
+		var dataFlag = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('value-from-caption');
 
 		if (typeof dataFlag != 'undefined') {
-			__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val($caption);
+			__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val(caption);
 		}
 
 		// get select2 to parsing data
-		$targetParsing = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('target-parsing');
+		var targetParsing = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('target-parsing');
 		// get parent select on aktif
-		rootSelect = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).parent().parent().parent().parent();
-		$elementTarget = rootSelect.find($targetParsing);
-		console.log($caption);
+		var rootSelect = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).parent().parent().parent().parent();
+		var elementTarget = rootSelect.find(targetParsing);
+
 		// get data list on ajax
 		__WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
 			type: "GET",
-			url: $url,
-			data: { id: $val },
+			url: url,
+			data: { id: val },
 			cache: true,
 			success: function success(data) {
 				console.log(data);
 				// parsing data ajax to content
-				$elementTarget.html('');
+				elementTarget.html('');
 				__WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(data, function (index, value) {
-					$option = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("<option value='" + index + "' data-id='" + index + "'>" + value + "</option>");
+					var $option = __WEBPACK_IMPORTED_MODULE_0_jquery___default()("<option value='" + index + "' data-id='" + index + "'>" + value + "</option>");
 					// $option.val(v.id).text(v.nama);
-					// $elementTarget.append($option);
-					$elementTarget.append($option);
+					// elementTarget.append($option);
+					elementTarget.append($option);
 				});
 				// remove default on selected
-				$elementTarget.val('');
+				elementTarget.val('');
 			}
 		});
 		// remove disable select regensi
-		$elementTarget.removeAttr('disabled');
+		elementTarget.removeAttr('disabled');
 		// after get data, set focus to select-regensi
-		$elementTarget.focus();
+		elementTarget.focus();
 	});
 
 	// on event select2 'desa' on selected after focus to 'select-desa' on form kontak
@@ -59707,7 +59751,7 @@ $(document).ready(function () {
     window.noEnterToSubmit.init();
     window.formInputMask.init();
     window.wizard.init();
-    // window.select();
+    window.select();
     // $('.input-switch').bootstrapSwitch();
     window.printModule.init();
 
