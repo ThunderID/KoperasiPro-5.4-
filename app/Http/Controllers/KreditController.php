@@ -758,10 +758,10 @@ class KreditController extends Controller
 		if (in_array('provinsi', $element))
 		{
 			// initialize teritori indonesia
-			$teritori									= new TeritoriIndonesia;
+			$teritori								= new TeritoriIndonesia;
 			// get data provinsi
-			$provinsi 									= collect($teritori->get());
-			$provinsi 									= $provinsi->sortBy('nama');
+			$provinsi 							= collect($teritori->get());
+			$provinsi 							= $provinsi->sortBy('nama');
 
 			$this->page_datas->provinsi 				= $provinsi->pluck('nama', 'id');
 		}
