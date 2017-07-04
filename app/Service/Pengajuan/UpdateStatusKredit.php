@@ -44,9 +44,9 @@ class UpdateStatusKredit
 			{
 				if($value['id'] != $this->pengajuan->id)
 				{
-					foreach ((array) $value->jaminan_kendaraan as $key2 => $value2) 
+					foreach ((array) $value->jaminan_kendaraan->toArray() as $key2 => $value2) 
 					{
-						foreach ((array)$this->pengajuan->jaminan_kendaraan as $key3 => $value3) 
+						foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key3 => $value3) 
 						{
 							if($value2['nomor_bpkb'] == $value3['nomor_bpkb'])
 							{
@@ -55,9 +55,9 @@ class UpdateStatusKredit
 						}
 					}
 
-					foreach ((array) $value->jaminan_tanah_bangunan as $key2 => $value2) 
+					foreach ((array) $value->jaminan_tanah_bangunan->toArray() as $key2 => $value2) 
 					{
-						foreach ((array)$this->pengajuan->jaminan_tanah_bangunan as $key3 => $value3) 
+						foreach ((array)$this->pengajuan->jaminan_tanah_bangunan->toArray() as $key3 => $value3) 
 						{
 							if($value2['nomor_sertifikat'] == $value3['nomor_sertifikat'])
 							{

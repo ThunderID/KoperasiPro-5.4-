@@ -30,9 +30,21 @@ class KreditController extends Controller
 	public function index()
 	{
 		$mobile_id 	= $this->request->input('id');
-		$data 		= Pengajuan::where('status', 'pengajuan')->wherehas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->get(['jenis_kredit', 'pengajuan_kredit', 'jangka_waktu', 'tanggal_pengajuan'])->toArray();
+		$data 		= Pengajuan::where('status', 'pengajuan')->wherehas('hp', function($q)use($mobile_id){$q->where('mobile_id', $mobile_id);})->with(['hp'])->get()->toArray();
+
+		$data_baru 	= [];
+		foreach ($data as $key => $value) 
+		{
+			$data_baru[$key]['id']							= $value['id'];
+			$data_baru[$key]['kredit_id']					= $value['id'];
+			$data_baru[$key]['kredit']['jenis_kredit']		= $value['jenis_kredit'];
+			$data_baru[$key]['kredit']['pengajuan_kredit']	= $value['pengajuan_kredit'];
+			$data_baru[$key]['kredit']['jangka_waktu']		= $value['jangka_waktu'];
+			$data_baru[$key]['kredit']['tanggal_pengajuan']	= $value['tanggal_pengajuan'];
+			$data_baru[$key]['model']						= $value['hp']['mobile_model'];
+		}
 		
-		return JSend::success($data)->asArray();
+		return JSend::success($data_baru)->asArray();
 	}
 
 	public function store()
@@ -105,6 +117,6 @@ class KreditController extends Controller
 			return JSend::error($e->getMessage())->asArray();
 		}
 
-		return JSend::success(['nomor_kredit' => $pengajuan_baru['id']])->asArray();
+		return JSend::success(['nomor_pengajuan' => $pengajuan_baru['id']])->asArray();
 	}
 }
