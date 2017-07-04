@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use TKredit\KreditAktif\Models\KreditAktif_RO;
 use App\Domain\Kasir\Models\HeaderTransaksi;
 use TAuth;
 

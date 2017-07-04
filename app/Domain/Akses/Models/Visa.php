@@ -101,10 +101,20 @@ class Visa extends BaseModel
 		$this->attributes['scopes'] = json_encode($variable);
 	}
 
+	protected function setRoleAttribute($variable)
+	{
+		$this->attributes['role']	= str_replace(' ', '_', $variable);
+	}
+
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
 	protected function getScopesAttribute($variable)
 	{
 		return json_decode($this->attributes['scopes'], true);
+	}
+
+	protected function getRoleAttribute($variable)
+	{
+		return ucwords(str_replace('_', ' ', $this->attributes['role']));
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/

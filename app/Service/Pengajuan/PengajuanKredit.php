@@ -42,6 +42,7 @@ class PengajuanKredit
 		$this->spesimen_ttd			= $spesimen_ttd;
 		$this->foto_ktp				= $foto_ktp;
 		$this->lokasi				= $lokasi;
+		$this->referensi			= $referensi;
 	}
 
 	/**
@@ -100,18 +101,28 @@ class PengajuanKredit
 			//2. simpan mobile
 			if((array)$this->mobile)
 			{
+				if(!isset($mobile))
+				{
+					$mobile 	= new Mobile;
+				}
 				$mobile = $mobile->fill(['mobile_id' => $this->mobile['id'], 'mobile_model' => $this->mobile['model']]);
+				
+				if(!is_null($this->referensi))
+				{
+					$mobile->orang_id 	= $this->referensi['id'];
+				}
+				else
+				{
+					$mobile->orang_id 	= $orang->id;
+				}
+
 				$mobile->save();
 
 				$pengajuan->hp_id 	= $mobile->id;
 			}
 
 			//3. check assign koperasi id
-			if(TAuth::isLogged())
-			{
-				$pengajuan->akses_koperasi_id 	= TAuth::activeOffice()['koperasi']['id'];
-			}
-			elseif(!is_null($this->lokasi))
+			if(!is_null($this->lokasi))
 			{
 				$all_koperasi 			= Koperasi::get();
 
@@ -132,6 +143,10 @@ class PengajuanKredit
 					}
 				}
 			}
+			elseif(TAuth::isLogged())
+			{
+				$pengajuan->akses_koperasi_id 	= TAuth::activeOffice()['koperasi']['id'];
+			}
 
 			//see petugas
 			if(!is_null($this->referensi))
@@ -143,7 +158,7 @@ class PengajuanKredit
 			if(is_null($this->referensi) && isset($mobile))
 			{
 				$max 	= Pengajuan::where('hp_id', $pengajuan->hp_id)->where('status', 'pengajuan')->count();
-				if($max < 3)
+				if($max >= 3)
 				{
 					throw new Exception("Pengajuan Max 3", 1);
 				}

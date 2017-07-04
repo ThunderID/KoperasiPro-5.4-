@@ -37,11 +37,11 @@ class SessionBasedAuthenticator
 	{
 		// $event 	= (new \App\Jobs\FireEventUserLogged(['test']));
 
-		$user 	= $this->model->where('email', $credentials['email'])->first();
+		$user 	= $this->model->where('nip', $credentials['nip'])->first();
 
 		if(!$user)
 		{
-			throw new Exception("Email tidak terdaftar!", 1);
+			throw new Exception("nip tidak terdaftar!", 1);
 		}
 
 		if(!Hash::check($credentials['password'], $user->password))

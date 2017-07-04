@@ -3,13 +3,13 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use TImmigration\Models\PandoraBox;
+use App\Domain\Akses\Models\PandoraBox;
 
 class InitAPITestTableSeeder extends Seeder
 {
 	public function run()
 	{
-		DB::table('immigration_pandora_box')->truncate();
+		DB::table('akses_pandora_box')->truncate();
 
 		//1. simpan imigrasi
 		$credentials 		= 
