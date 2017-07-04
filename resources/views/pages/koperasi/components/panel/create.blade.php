@@ -10,7 +10,6 @@
 				</div>
 			</div>
 		</fieldset>
-
 		<fieldset class="form-group">
 			<label class="text-sm">Email</label>
 			<div class="row">
@@ -19,18 +18,11 @@
 				</div>
 			</div>
 		</fieldset>
-
 		<fieldset class="form-group">
 			<label class="text-sm">Role</label>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
-					{!! Form::select('role', [
-						'komisaris'			=> 'Komisaris',
-						'Pimpinan'			=> 'Pimpinan',
-						'Kasir'				=> 'Kasir',
-						'Marketing' 		=> 'Marketing',
-						'Surveyor' 			=> 'Surveyor',
-					], null, ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
+					{!! Form::select('role', \App\Service\Helpers\UI\UserRolo::lists(), null, ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
 				</div> 
 			</div> 
 		</fieldset>

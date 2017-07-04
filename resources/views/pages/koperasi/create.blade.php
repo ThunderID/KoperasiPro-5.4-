@@ -22,6 +22,24 @@
 					</div>
 				</fieldset>
 
+				<fieldset class="form-group">
+					<label class="text-sm">Kode Kantor</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-8 col-md-5">
+							{!! Form::text('kode', $page_datas->data['kode'], ['class' => 'form-control required', 'placeholder' => 'Masukkan kode kantor']) !!}			
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label class="text-sm">Kode Pusat</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-8 col-md-5">
+							{!! Form::text('kode_pusat', $page_datas->data['kode_pusat'], ['class' => 'form-control required', 'placeholder' => 'Masukkan kode pusat']) !!}			
+						</div>
+					</div>
+				</fieldset>
+
 				<fieldset class="gllpLatlonPicker">
 					<label class="text-sm">Alamat Lengkap</label>
 					<div class="row">

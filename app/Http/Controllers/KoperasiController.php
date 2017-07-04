@@ -9,6 +9,8 @@ use Input, PDF, Carbon\Carbon, Exception, StdClass, TAuth, Redirect;
 use App\Domain\Akses\Models\Visa;
 use App\Domain\Akses\Models\Koperasi;
 
+use App\Service\Pengaturan\GrantVisa;
+
 /**
  * Kelas KoperasiController
  *
@@ -103,10 +105,22 @@ class KoperasiController extends Controller
 				$id 				= str_replace(' ', '', $this->request->get('nama'));
 			}
 
+
 			$data 					= Koperasi::findornew($id);
-			$data->fill($this->request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude']));
+			$data->fill($this->request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude', 'kode']));
 			$data->id 				= $id;
+
+			$pusat 					= Koperasi::where('kode', $this->request->get('kode'))->first();
+			if($pusat)
+			{
+				$data->pusat_id		= $pusat->id;
+			}
+
 			$data->save();
+
+			//set user
+			$user_baru 				= new GrantVisa(TAuth::loggedUser()['id'], TAuth::activeOffice()['role'], [['list' => 'modifikasi_koperasi'], ['list' => 'atur_akses']], $data->id);
+			$user_baru->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
 
