@@ -46,47 +46,68 @@ class UpdateStatusKredit
 		//1. check status nasabah
 		if($this->pengajuan->debitur->kredit->count())
 		{
-			$nasabah['status'] 			= 'lama';
+			$nasabah['status'] 				= 'lama';
+			$nasabah['jaminan_terdahulu']	= 'tidak_sama';
 
-			//1a. check riwayat nasabah
-			foreach ($this->pengajuan->debitur->kredit as $key => $value) 
+			foreach ((array)$this->pengajuan->jaminan_tanah_bangunan->toArray() as $key => $value) 
 			{
-				if($value['id'] != $this->pengajuan->id)
-				{
-					foreach ((array) $value->jaminan_kendaraan->toArray() as $key2 => $value2) 
-					{
-						foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key3 => $value3) 
-						{
-							if($value2['nomor_bpkb'] == $value3['nomor_bpkb'])
-							{
-								$catatan['jaminan'][]	= 'BPKB '.$value3['nomor_bpkb'].' Pernah dipakai di kredit nomor '.$value['nomor_perjanjian_kredit'];
-							}
-						}
-					}
+				//1a. check jaminan tanah bangunan pernah dipakai jaminan
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('jaminan_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
 
-					foreach ((array) $value->jaminan_tanah_bangunan->toArray() as $key2 => $value2) 
+				if(count($check_j_t_b))
+				{
+					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						foreach ((array)$this->pengajuan->jaminan_tanah_bangunan->toArray() as $key3 => $value3) 
-						{
-							if($value2['nomor_sertifikat'] == $value3['nomor_sertifikat'])
-							{
-								$catatan['jaminan'][]	= strtoupper($value['jenis_sertifikat']).' '.$value3['nomor_sertifikat'].' Pernah dipakai di kredit nomor '.$value['nomor_perjanjian_kredit'];
-							}
-						}
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+
+						$nasabah['jaminan_terdahulu']	= 'sama';
+					}
+				}
+
+				//1b. check jaminan tanah bangunan pernah dipakai jaminan orang lain
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
+
+				if(count($check_j_t_b))
+				{
+					foreach ($check_j_t_b as $key2 => $value2) 
+					{
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					}
+				}
+				//1c. check jaminan digunakan sebagai tempat tinggal
+			}
+
+			foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key => $value) 
+			{
+				//2a. check jaminan kendaraan pernah dipakai jaminan
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('jaminan_kendaraan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
+
+				if(count($check_j_t_b))
+				{
+					foreach ($check_j_t_b as $key2 => $value2) 
+					{
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+
+						$nasabah['jaminan_terdahulu']	= 'sama';
+					}
+				}
+
+				//2b. check jaminan kendaraan pernah dipakai jaminan orang lain
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_tanah_bangunan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
+
+				if(count($check_j_t_b))
+				{
+					foreach ($check_j_t_b as $key2 => $value2) 
+					{
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 					}
 				}
 			}
 
-			if(isset($catatan['jaminan']) && count($catatan['jaminan']) == (count($this->pengajuan->jaminan_kendaraan) + count($this->pengajuan->jaminan_tanah_bangunan)))
+			if(isset($catatan['jaminan']))
 			{
-				$nasabah['jaminan_terdahulu']	= 'sama';
-				$nasabah['uraian']				= $catatan['jaminan'];
+				$nasabah['uraian']			= json_encode($catatan['jaminan']);
 			}
-			else
-			{
-				$nasabah['jaminan_terdahulu']	= 'tidak_sama';
-			}
-
 
 			$nasabah['kredit_terdahulu']	= 'lancar';
 
@@ -120,7 +141,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan di kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 
@@ -131,7 +152,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai aset di kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai aset kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 		}

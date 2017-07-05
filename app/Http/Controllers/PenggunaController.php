@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use Input, PDF, Carbon\Carbon, Exception, StdClass;
 
 use App\Service\Pengaturan\GrantVisa;
 
+use App\Service\Helpers\UI\UploadKaryawan;
+
 use App\Domain\HR\Models\Orang;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Akses\Models\Visa;
 
-use TAuth;
+use TAuth, URL;
 
 /**
  * Kelas PenggunaController
@@ -169,4 +172,27 @@ class PenggunaController extends Controller
 		}
 		return $this->generateRedirect(route('koperasi.show', 0));
 	}
+
+	public function batch()
+	{
+		if(Input::hasfile('pengguna'))
+		{
+			$file 		= Input::file('pengguna');
+
+			$fn 		= 'pengguna-'.Str::slug(microtime()).'.'.$file->getClientOriginalExtension(); 
+
+			$date 		= Carbon::now();
+			$dp 		= $date->format('Y/m/d');
+
+      		$file->move(public_path().'/'.$dp, $fn); // uploading file to given path
+
+			$karyawan 	= new UploadKaryawan(fopen(public_path().'/'.$dp.'/'.$fn, "r"), public_path().'/'.$dp.'/', 'password-'.$fn);
+      		$returned 	= $karyawan->save(); 
+			
+			return response()->download(public_path().'/'.$dp.'/'.$returned['url']);
+		}
+
+  		return $this->generateRedirect(route('koperasi.show', 0));
+	}
+
 }

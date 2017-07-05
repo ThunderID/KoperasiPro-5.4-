@@ -1,6 +1,22 @@
 
 <div class="col-xs-12">
 
+	{!! Form::open(['url' => route('pengguna.batch'), 'files' => true]) !!}
+	
+	<fieldset class="form-group">
+		<label class="text-sm">Upload File</label>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-3">
+			    {!! Form::file('pengguna') !!}
+			</div>
+			<div class="col-xs-12 col-sm-2 col-md-2 text-right">
+				{!! Form::submit() !!}
+			</div>
+		</div>
+	</fieldset>
+
+	{!! Form::close() !!}
+
 	{!! Form::open(['url' => route('pengguna.store'), 'class' => 'form', 'method' => 'STORE']) !!}			
 		<fieldset class="form-group">
 			<label class="text-sm">Nama</label>

@@ -478,7 +478,6 @@ class KreditController extends Controller
 		try
 		{
 			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing'])->first();
-		
 		}
 		catch(Exception $e)
 		{

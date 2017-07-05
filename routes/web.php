@@ -76,12 +76,16 @@ Route::group(['middleware' => ['modifikasi_koperasi']], function()
 {
 	//Menu Koperasi
 	Route::resource('koperasi', 'KoperasiController');
+	
+	Route::post('koperasi/batch/store', ['uses' => 'KoperasiController@batch', 'as' => 'koperasi.batch']);
 });
 
 Route::group(['middleware' => ['atur_akses']], function()
 {
 	//Menu Pengguna
 	Route::resource('pengguna', 'PenggunaController');
+	
+	Route::post('pengguna/batch/store', ['uses' => 'PenggunaController@batch', 'as' => 'pengguna.batch']);
 });
 
 Route::group(['middleware' => ['pjax', 'authenticated']], function()

@@ -81,9 +81,9 @@ class InitSurveiKreditTableSeeder extends Seeder
 
 			$survei->tambahAsetKendaraan($type_k[rand(0,2)], $char[rand(0,25)].' '.rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9));
 
-			$survei->tambahAsetTanahBangunan(rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), $at_b[rand(0,4)], rand(36,144), $faker->address);
+			$survei->tambahAsetTanahBangunan(rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), $at_b[rand(0,4)], rand(36,144), [['alamat' => $faker->address]]);
 
-			$survei->tambahAsetUsaha($bu[rand(0,2)], $faker->company, Carbon::parse(rand(2,10).' years ago')->format('d/m/Y'), $s_usaha[rand(0,3)], $s_tempat_usaha[rand(0,2)], rand(36,144), rand(4,15), 'Rp '.number_format(rand(10000000,100000000),0, "," ,"."), rand(100,5000), rand(100,5000), rand(4,20), $faker->address);
+			$survei->tambahAsetUsaha($bu[rand(0,2)], $faker->company, Carbon::parse(rand(2,10).' years ago')->format('d/m/Y'), $s_usaha[rand(0,3)], $s_tempat_usaha[rand(0,2)], rand(36,144), rand(4,15), 'Rp '.number_format(rand(10000000,100000000),0, "," ,"."), rand(100,5000), rand(100,5000), rand(4,20), [['alamat' => $faker->address]]);
 
 			if($value->jaminan_kendaraan->count())
 			{
@@ -93,7 +93,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 					$taksasi 		= 2017 - $value2['tahun'];
 					$taksasi 		= $ha - ($ha * $taksasi * 0.05);
 
-					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], $faker->address);
+					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], [['alamat' => $faker->address]]);
 				}
 			}
 

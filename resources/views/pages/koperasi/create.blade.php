@@ -10,6 +10,26 @@
 			</div>
 		</div>
 
+		<div class="row p-b-sm">
+			<div class="col-sm-12">
+				{!! Form::open(['url' => route('koperasi.batch'), 'files' => true]) !!}
+				
+				<fieldset class="form-group">
+					<label class="text-sm">Upload File</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-3">
+						    {!! Form::file('koperasi') !!}
+						</div>
+						<div class="col-xs-12 col-sm-2 col-md-2 text-right">
+							{!! Form::submit() !!}
+						</div>
+					</div>
+				</fieldset>
+
+				{!! Form::close() !!}
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-sm-12">
 			{!! Form::open(['url' => route('koperasi.store'), 'data-ajax-submit' => true]) !!}
