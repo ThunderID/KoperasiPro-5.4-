@@ -22,6 +22,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 		//1. simpan imigrasi
 		$credentials	=	[
+								'nip'				=> '2017.0001',
 								'email'				=> 'admin@ksp.id',
 								'password'			=> 'admin',
 								'nama'				=> 'C Mooy'

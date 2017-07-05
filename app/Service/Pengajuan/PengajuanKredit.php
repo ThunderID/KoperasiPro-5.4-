@@ -57,7 +57,7 @@ class PengajuanKredit
 			// DB::BeginTransaction();
 
 			//1. simpan orang
-			if(!empty($this->debitur))
+			if(!empty($this->debitur) && !is_null($this->debitur['nik']))
 			{
 				$orang		= Orang::where('nik', $this->debitur['nik'])->first();
 				
@@ -68,6 +68,8 @@ class PengajuanKredit
 			}
 			elseif((array)$this->mobile)
 			{
+				\Log::info('Here lies mobile checker');
+
 				$mobile 	= Mobile::where('mobile_id', $this->mobile['id'])->where('mobile_model', $this->mobile['model'])->with(['pemilik'])->first();	
 
 				if(!empty($mobile['pemilik']) && !isset($orang))
@@ -81,10 +83,8 @@ class PengajuanKredit
 				$orang 		= new Orang;
 				$orang->save();
 			}
-			else
-			{
-				$orang 		= $this->simpanDebitur($orang, $this->debitur);
-			}
+
+			$orang 			= $this->simpanDebitur($orang, $this->debitur);
 
 			$pengajuan 		= new Pengajuan;
 			$pengajuan->fill([
