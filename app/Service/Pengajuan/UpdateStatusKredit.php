@@ -162,7 +162,7 @@ class UpdateStatusKredit
 		}
 
 		//3. penghasilan bersih di survei 
-		if($this->pengajuan->debitur->count() && $this->pengajuan->debitur->penghasilan_bersih > 0))
+		if($this->pengajuan->debitur->count() && $this->pengajuan->debitur->penghasilan_bersih > 0)
 		{
 			$pengajuan_pb 	= $this->pengajuan->debitur->penghasilan_bersih;
 
