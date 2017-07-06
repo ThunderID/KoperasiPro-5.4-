@@ -49,8 +49,8 @@ class KreditController extends Controller
 
 	public function store()
 	{
-		$kredit['mobile'] 		= Input::get('mobile');
 		$kredit 				= Input::get('kredit');
+		$kredit['mobile'] 		= Input::get('mobile');
 		$kredit['kreditur'] 	= Input::get('kreditur');
 
 		if(Input::has('referensi'))
