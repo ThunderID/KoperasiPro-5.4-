@@ -18,7 +18,7 @@ use App\Service\Pengajuan\PengajuanKredit;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Pengajuan\Models\Pengajuan;
 
-use Input, Carbon\Carbon;
+use Input, Carbon\Carbon, Exception;
 
 class KreditController extends Controller
 {
@@ -49,8 +49,8 @@ class KreditController extends Controller
 
 	public function store()
 	{
-		$kredit 				= Input::get('kredit');
 		$kredit['mobile'] 		= Input::get('mobile');
+		$kredit 				= Input::get('kredit');
 		$kredit['kreditur'] 	= Input::get('kreditur');
 
 		if(Input::has('referensi'))
@@ -61,6 +61,7 @@ class KreditController extends Controller
 		{
 			$kredit['referensi']= null;
 		}
+	
 
 		//upload foto ktp
 		$ktp 							= base64_decode($kredit['kreditur']['foto_ktp']);
@@ -88,32 +89,34 @@ class KreditController extends Controller
 			$lokasi 			= null;
 		}
 
-		$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), $kredit['mobile'], $kredit['spesimen_ttd'], $data_ktp['url'], $lokasi, $kredit['referensi']);
-
-		$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
-		$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
-
-		foreach ((array)$kredit['jaminan_tanah_bangunan'] as $key => $value) 
+		try 
 		{
-			$kredit['jaminan_tanah_bangunan'][$key]['alamat']		= ['regensi' => $value['kota'], 'desa' => $value['kelurahan'], 'alamat' => $value['alamat']];
-			$kredit['jaminan_tanah_bangunan'][$key]['tipe']			= 'tanah';
-			$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']	= 0;
-			$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']= 0;
+			$pengajuan_baru 		= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), $kredit['mobile'], $kredit['spesimen_ttd'], $data_ktp['url'], $lokasi, $kredit['referensi']);
 
-			$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku'], null, $kredit['jaminan_tanah_bangunan'][$key]['alamat'], 0, 0);
-		}
+			$kredit['jaminan_kendaraan']		= $this->request->input('jaminan_kendaraan');
+			$kredit['jaminan_tanah_bangunan']	= $this->request->input('jaminan_tanah_bangunan');
 
+			foreach ((array)$kredit['jaminan_tanah_bangunan'] as $key => $value) 
+			{
+				$kredit['jaminan_tanah_bangunan'][$key]['alamat']		= ['regensi' => $value['kota'], 'desa' => $value['kelurahan'], 'alamat' => $value['alamat']];
+				$kredit['jaminan_tanah_bangunan'][$key]['tipe']			= 'tanah';
+				$kredit['jaminan_tanah_bangunan'][$key]['luas_tanah']	= 0;
+				$kredit['jaminan_tanah_bangunan'][$key]['luas_bangunan']= 0;
 
-		foreach ((array)$kredit['jaminan_kendaraan'] as $key => $value) 
-		{
-			$pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
-		}
+				$pengajuan_baru->tambahJaminanTanahBangunan($kredit['jaminan_tanah_bangunan'][$key]['tipe'], $kredit['jaminan_tanah_bangunan'][$key]['jenis_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['nomor_sertifikat'], $kredit['jaminan_tanah_bangunan'][$key]['masa_berlaku'], null, $kredit['jaminan_tanah_bangunan'][$key]['alamat'], 0, 0);
+			}
 
-		$pengajuan_baru->setDebitur(null, null, null, null, null, $kredit['kreditur']['nomor_telepon'], null, null);
+			foreach ((array)$kredit['jaminan_kendaraan'] as $key => $value) 
+			{
+				$pengajuan_baru->tambahJaminanKendaraan($kredit['jaminan_kendaraan'][$key]['tipe'], $kredit['jaminan_kendaraan'][$key]['merk'], $kredit['jaminan_kendaraan'][$key]['tahun'], $kredit['jaminan_kendaraan'][$key]['nomor_bpkb'], $kredit['jaminan_kendaraan'][$key]['atas_nama']);
+			}
 
-		try {
+			$pengajuan_baru->setDebitur(null, null, null, null, null, $kredit['kreditur']['nomor_telepon'], null, null);
+
 			$pengajuan_baru 	= $pengajuan_baru->save();
-		} catch (Exception $e) {
+		} 
+		catch (Exception $e) 
+		{
 			return JSend::error($e->getMessage())->asArray();
 		}
 
