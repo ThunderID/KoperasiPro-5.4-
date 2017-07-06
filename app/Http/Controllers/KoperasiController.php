@@ -95,7 +95,13 @@ class KoperasiController extends Controller
 		$page_datas->id 			= $id;
 		
 		$page_attributes 			= new StdClass;
-		// $page_attributes->paging 	= $page_datas->koperasi;
+
+		// is edit?
+		if($id == null){
+			$page_attributes->title 	= 'Buat Koperasi Baru';
+		}else{
+			$page_attributes->title 	=  'Edit Koperasi ' . $page_datas->data['nama'];
+		}
 
 		return view('pages.koperasi.create', compact('page_datas', 'page_attributes'));
 	}
