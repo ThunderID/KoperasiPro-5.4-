@@ -6,7 +6,7 @@
 
 		<div class="row p-b-sm">
 			<div class="col-sm-12">
-				<h2>Buat Koperasi Baru</h2>
+				<h2>{{ $page_attributes->title }}</h2>
 			</div>
 		</div>
 
