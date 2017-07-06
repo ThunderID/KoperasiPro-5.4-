@@ -1,7 +1,7 @@
 @inject('analis', '\App\Service\Analis\CabangKekuranganOrang')
 
 @php
-	$analis 	= $analis->analize();
+	$analis 	= $analis->analize([], $acl_logged_user);
 @endphp
 <div class="row" style="padding:15px;">
 	<div class="col-sm-12">

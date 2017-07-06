@@ -1,7 +1,7 @@
 @inject('dokcab', '\App\Service\Analis\SetujuiKredit')
 
 @php
-	$dokcab 	= $dokcab->analize();
+	$dokcab 	= $dokcab->analize([], $acl_logged_user);
 @endphp
 <div class="row" style="padding:15px;">
 	<div class="col-sm-12">

@@ -26,6 +26,8 @@ class CreateImmigrationRoKoperasiTable extends Migration
 			$table->string('nomor_telepon')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+			
+			$table->primary('id');
 		});
 	}
 

@@ -1,7 +1,7 @@
 @inject('pengguna', '\TImmigration\Models\Visa_A')
 
 @php
-	$pengguna 	= $pengguna->where('immigration_ro_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->wherenull('last_logged')->orwhere('last_logged', '<', Carbon\Carbon::parse('- 7 days')->format('Y-m-d H:i:s'))->with(['pengguna'])->skip(0)->take(10)->get();
+	$pengguna 	= $pengguna->where('immigration_ro_koperasi_id', $acl_active_office['koperasi']['id'])->wherenull('last_logged')->orwhere('last_logged', '<', Carbon\Carbon::parse('- 7 days')->format('Y-m-d H:i:s'))->with(['pengguna'])->skip(0)->take(10)->get();
 @endphp
 <div class="row" style="padding:15px;">
 	<div class="col-sm-12">

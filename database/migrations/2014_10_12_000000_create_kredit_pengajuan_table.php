@@ -21,6 +21,7 @@ class CreateKreditPengajuanTable extends Migration
 			$table->date('tanggal_pengajuan');
 			$table->string('status', 255);
 			$table->string('orang_id', 255);
+			$table->string('nomor_kredit', 255)->nullable();
 			$table->string('petugas_id', 255)->nullable();
 			$table->string('akses_koperasi_id', 255)->nullable();
 			$table->string('hp_id', 255)->nullable();
@@ -30,7 +31,8 @@ class CreateKreditPengajuanTable extends Migration
 			$table->softDeletes();
 
             $table->primary('id');
-			$table->index(['deleted_at', 'created_at']);
+			$table->index(['deleted_at', 'status', 'created_at']);
+			$table->index(['deleted_at', 'status', 'tanggal_pengajuan']);
 		});
 	}
 

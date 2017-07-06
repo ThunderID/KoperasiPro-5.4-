@@ -44,8 +44,8 @@ class KreditController extends Controller
 	{
 		parent::__construct();
 
-		$this->service 		= new Pengajuan;
-		$this->request 		= $request;
+		$this->service 			= new Pengajuan;
+		$this->request 			= $request;
 	}
 
 	/**
@@ -55,12 +55,15 @@ class KreditController extends Controller
 	 */
 	public function index()
 	{
+		$this->setGlobal();
+
 		$page 				= 1;
 
 		if (Input::has('page'))
 		{
 			$page 			= (int)Input::get('page');
 		}
+
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title				= "Daftar Kredit";
 		$this->page_attributes->breadcrumb			= 	[
@@ -454,6 +457,8 @@ class KreditController extends Controller
 	 */
 	public function show($id)
 	{
+		$this->setGlobal();
+	
 		$page 										= 1;
 		if (Input::has('page'))
 		{
@@ -477,8 +482,7 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists())->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing'])->first();
-		
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing'])->first();
 		}
 		catch(Exception $e)
 		{
@@ -601,7 +605,6 @@ class KreditController extends Controller
 			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
 
 		} catch (Exception $e) {
-			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -624,7 +627,7 @@ class KreditController extends Controller
 	private function getCreditLists($page, $take)
 	{
 		//1. Parsing status
-		$status 									= KewenanganKredit::statusLists(); 
+		$status 									= KewenanganKredit::statusLists($this->acl_active_office['role']); 
 
 		if (Input::has('status'))
 		{
@@ -637,16 +640,16 @@ class KreditController extends Controller
 		{
 			$nama 	= Input::get('q');
 
-			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->namaDebitur($nama)->with(['debitur'])->paginate($take);
-			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->namaDebitur($nama)->count();
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->namaDebitur($nama)->with(['debitur'])->paginate($take);
+			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->namaDebitur($nama)->count();
 
 			$this->credit_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur'])->paginate($take);
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur'])->paginate($take);
 
-			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->count();
+			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->count();
 		}
 
 		//3. Memanggil fungsi filter active
@@ -832,8 +835,8 @@ class KreditController extends Controller
 	{
 		//check kredit
 		$kredit			= $this->service->detailed($id);
-		$koperasi 		= Koperasi_RO::id(TAuth::activeOffice()['koperasi']['id'])->first();
-		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
+		$koperasi 		= Koperasi_RO::id($this->acl_active_office['koperasi']['id'])->first();
+		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', $this->acl_active_office['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
 
 		if(!empty($kredit['jaminan_kendaraan']))
 		{

@@ -33,6 +33,10 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
 	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
 	Route::any('hapus/debitur/relasi/{kredit_id}/{relasi_id}',										['uses' => 'KreditController@destroy', 	'as' => 'debitur.relasi.destroy']);
+
+	// download
+	Route::get('/download/{filename}',			['uses'	=> 'DownloadController@download',			'as' => 'home.download']);
+
 });
 
 Route::group(['middleware' => ['survei_kredit']], function()
@@ -76,12 +80,16 @@ Route::group(['middleware' => ['modifikasi_koperasi']], function()
 {
 	//Menu Koperasi
 	Route::resource('koperasi', 'KoperasiController');
+	
+	Route::post('koperasi/batch/store', ['uses' => 'KoperasiController@batch', 'as' => 'koperasi.batch']);
 });
 
 Route::group(['middleware' => ['atur_akses']], function()
 {
 	//Menu Pengguna
 	Route::resource('pengguna', 'PenggunaController');
+	
+	Route::post('pengguna/batch/store', ['uses' => 'PenggunaController@batch', 'as' => 'pengguna.batch']);
 });
 
 Route::group(['middleware' => ['pjax', 'authenticated']], function()

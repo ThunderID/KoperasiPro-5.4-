@@ -34,9 +34,8 @@ class RealisasiKredit
 	 * 
 	 * @return array $data
 	 */
-	public function analize($queries = [])
+	public function analize($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 

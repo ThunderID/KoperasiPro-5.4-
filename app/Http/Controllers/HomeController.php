@@ -22,12 +22,12 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
-		$a_of 		= TAuth::activeOffice();
+		$this->setGlobal();
 
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title	= "Beranda";
 
-		foreach ($a_of['scopes'] as $key => $value) 
+		foreach ($this->acl_active_office['scopes'] as $key => $value) 
 		{
 			if(!isset($value['expired_at']) || $value['expired_at'] > Carbon::now()->format('d/m/Y'))
 			{

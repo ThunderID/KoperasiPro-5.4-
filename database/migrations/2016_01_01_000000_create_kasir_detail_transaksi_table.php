@@ -23,6 +23,8 @@ class CreateKasirDetailTransaksiTable extends Migration
             $table->double('diskon_satuan');
             $table->timestamps();
             $table->softDeletes();
+           
+            $table->index(['deleted_at', 'header_transaksi_id']);
         });
     }
 

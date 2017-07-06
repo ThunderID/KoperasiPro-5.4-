@@ -13,7 +13,7 @@ class CreateKreditSurveiAsetKendaraanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('survei_aset_kendaraan', function (Blueprint $table) {
+		Schema::create('s_aset_k', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('petugas_id', 255);
 			$table->string('pengajuan_id', 255);
@@ -24,7 +24,7 @@ class CreateKreditSurveiAsetKendaraanTable extends Migration
 			$table->softDeletes();
 
 			$table->primary('id');
-			$table->index(['deleted_at', 'petugas_id']);
+			$table->index(['deleted_at', 'nomor_bpkb', 'pengajuan_id']);
 		});
 	}
 
@@ -35,6 +35,6 @@ class CreateKreditSurveiAsetKendaraanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('survei_aset_kendaraan');
+		Schema::dropIfExists('s_aset_k');
 	}
 }

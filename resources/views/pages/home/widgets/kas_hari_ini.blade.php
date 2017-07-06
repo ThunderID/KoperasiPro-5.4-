@@ -1,11 +1,11 @@
 @inject('dokcab', '\App\Service\Analis\LaciKasir')
 
 @php
-	$pemasukan 		= $dokcab->pemasukan();
-	$pengeluaran 	= $dokcab->pengeluaran();
+	$pemasukan 		= $dokcab->pemasukan([], $acl_logged_user);
+	$pengeluaran 	= $dokcab->pengeluaran([], $acl_logged_user);
 	$total_kas 		= $dokcab->formatMoneyTo($dokcab->formatMoneyFrom($pemasukan) - $dokcab->formatMoneyFrom($pengeluaran));
-	$list_pemasukan		= $dokcab->list_pemasukan();
-	$list_pengeluaran	= $dokcab->list_pengeluaran();
+	$list_pemasukan		= $dokcab->list_pemasukan([], $acl_logged_user);
+	$list_pengeluaran	= $dokcab->list_pengeluaran([], $acl_logged_user);
 @endphp
 
 	<div class="row field">

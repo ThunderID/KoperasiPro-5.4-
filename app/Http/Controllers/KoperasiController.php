@@ -10,6 +10,9 @@ use App\Domain\Akses\Models\Visa;
 use App\Domain\Akses\Models\Koperasi;
 
 use App\Service\Pengaturan\GrantVisa;
+use Illuminate\Support\Str;
+
+use App\Service\Helpers\UI\UploadKaryawan;
 
 /**
  * Kelas KoperasiController
@@ -37,6 +40,8 @@ class KoperasiController extends Controller
 	 */
 	public function index()
 	{
+		$this->setGlobal();
+
 		$page_datas 				= new StdClass;
 		$page_datas->koperasi 		= Koperasi::paginate();
 		
@@ -53,7 +58,9 @@ class KoperasiController extends Controller
 	 */
 	public function show($id)
 	{
-		$origin_id = TAuth::activeOffice()['koperasi']['id'];
+		$this->setGlobal();
+
+		$origin_id = $this->acl_active_office['koperasi']['id'];
 		if($id != $origin_id){
 			return Redirect::to(route('koperasi.show', ['id' => $origin_id]));
 		}
@@ -80,13 +87,21 @@ class KoperasiController extends Controller
 	 */
 	public function create($id = null)
 	{
+		$this->setGlobal();
+
 		$page_datas 				= new StdClass;
 		// $page_datas->koperasi 		= Koperasi::paginate();
 		$page_datas->data 			= Koperasi::findornew($id);
 		$page_datas->id 			= $id;
 		
 		$page_attributes 			= new StdClass;
-		// $page_attributes->paging 	= $page_datas->koperasi;
+
+		// is edit?
+		if($id == null){
+			$page_attributes->title 	= 'Buat Koperasi Baru';
+		}else{
+			$page_attributes->title 	=  'Edit Koperasi ' . $page_datas->data['nama'];
+		}
 
 		return view('pages.koperasi.create', compact('page_datas', 'page_attributes'));
 	}
@@ -100,11 +115,12 @@ class KoperasiController extends Controller
 	{
 		try
 		{
+			$this->setGlobal();
+			
 			if(is_null($id))
 			{
 				$id 				= str_replace(' ', '', $this->request->get('nama'));
 			}
-
 
 			$data 					= Koperasi::findornew($id);
 			$data->fill($this->request->only(['nama', 'alamat', 'nomor_telepon', 'latitude', 'longitude', 'kode']));
@@ -119,7 +135,7 @@ class KoperasiController extends Controller
 			$data->save();
 
 			//set user
-			$user_baru 				= new GrantVisa(TAuth::loggedUser()['id'], TAuth::activeOffice()['role'], [['list' => 'modifikasi_koperasi'], ['list' => 'atur_akses']], $data->id);
+			$user_baru 				= new GrantVisa($this->acl_logged_user['id'], $this->acl_active_office['role'], [['list' => 'modifikasi_koperasi'], ['list' => 'atur_akses']], $data->id);
 			$user_baru->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
@@ -150,6 +166,8 @@ class KoperasiController extends Controller
 	{
 		try
 		{
+			$this->setGlobal();
+
 			$data 					= Koperasi::findorfail($id);
 			$data->delete();
 
@@ -169,6 +187,71 @@ class KoperasiController extends Controller
 			}
 		
 			return $this->generateRedirect(route('koperasi.show', $id));
+		}
+	}
+
+	public function batch()
+	{
+		if(Input::hasfile('koperasi'))
+		{
+			$file 		= Input::file('koperasi');
+
+			$fn 		= 'koperasi-'.Str::slug(microtime()).'.'.$file->getClientOriginalExtension(); 
+
+			$date 		= Carbon::now();
+			$dp 		= $date->format('Y/m/d');
+
+      		$file->move(public_path().'/'.$dp, $fn); // uploading file to given path
+
+			if (($handle = fopen(public_path().'/'.$dp.'/'.$fn, "r")) !== FALSE) 
+			{
+				$header 		= null;
+
+				while (($data = fgetcsv($handle, 500, ",")) !== FALSE) 
+				{
+					if ($header === null) 
+					{
+						$header = $data;
+						continue;
+					}
+				
+					$all_row 	= array_combine($header, $data);
+
+					$pusat 		= Koperasi::where('kode', $all_row['kode_pusat'])->first();
+
+					if(!$pusat)
+					{
+						$pusat 	= new Koperasi;
+					}
+
+					$koperasi_baru	= Koperasi::where('kode', $all_row['kode_kantor'])->first();
+
+					if(!$koperasi_baru)
+					{
+						$koperasi_baru 	= new Koperasi;
+					}
+
+					$koperasi 	= [
+						'id'			=> strtoupper(str_replace(' ', '', $all_row['nama_kantor'])),
+						'pusat_id'		=> $pusat->id,
+						'nama'			=> $all_row['nama_kantor'],
+						'kode'			=> $all_row['kode_kantor'],
+						'latitude'		=> $all_row['latitude'],
+						'longitude'		=> $all_row['longitude'],
+						'nomor_telepon'	=> $all_row['nomor_telepon'],
+						'alamat'		=> $all_row['alamat'],
+					];
+
+					$koperasi_baru->fill($koperasi);
+					$koperasi_baru->save();
+
+					$visa 		= new GrantVisa($this->acl_logged_user['id'], $this->acl_active_office['role'], [['list' => 'modifikasi_koperasi'], ['list' => 'atur_akses']], $koperasi_baru->id);
+					$visa->save();
+				}
+				fclose($handle);
+			}
+      	
+      		return $this->generateRedirect(route('koperasi.show', 0));
 		}
 	}
 }

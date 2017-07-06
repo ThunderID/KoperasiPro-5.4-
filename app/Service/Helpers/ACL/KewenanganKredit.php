@@ -9,11 +9,9 @@ use Carbon\Carbon;
 
 class KewenanganKredit
 {
-	public static function statusLists()
+	public static function statusLists($role)
 	{
-		$current_user 	= TAuth::activeOffice();
-
-		switch (strtolower($current_user['role'])) 
+		switch (strtolower($role)) 
 		{
 			case 'komisaris':
 				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'menunggu_realisasi', 'terealisasi', 'tolak'];
