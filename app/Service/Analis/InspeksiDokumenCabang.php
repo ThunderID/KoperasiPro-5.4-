@@ -34,9 +34,8 @@ class InspeksiDokumenCabang
 	 * 
 	 * @return array $data
 	 */
-	public function pengajuan($queries = [])
+	public function pengajuan($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 
@@ -104,9 +103,8 @@ class InspeksiDokumenCabang
 	 * 
 	 * @return array $data
 	 */
-	public function survei($queries = [])
+	public function survei($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 

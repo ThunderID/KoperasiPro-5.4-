@@ -38,7 +38,7 @@ class JaminanKendaraan extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_jaminan_kendaraan';
+	protected $table				= 's_jaminan_k';
 
 	/**
 	 * The attributes that are mass assignable.

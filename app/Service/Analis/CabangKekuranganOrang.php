@@ -35,9 +35,8 @@ class CabangKekuranganOrang
 	 * 
 	 * @return array $data
 	 */
-	public function analize($queries = [])
+	public function analize($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		$should_be_scope 	= ['pengajuan_kredit', 'survei_kredit', 'setujui_kredit', 'realisasi_kredit', 'kas_harian', 'transaksi_harian'];

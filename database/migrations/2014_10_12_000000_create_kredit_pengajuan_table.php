@@ -31,7 +31,8 @@ class CreateKreditPengajuanTable extends Migration
 			$table->softDeletes();
 
             $table->primary('id');
-			$table->index(['deleted_at', 'created_at']);
+			$table->index(['deleted_at', 'status', 'created_at']);
+			$table->index(['deleted_at', 'status', 'tanggal_pengajuan']);
 		});
 	}
 

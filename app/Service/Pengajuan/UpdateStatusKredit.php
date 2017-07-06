@@ -65,7 +65,7 @@ class UpdateStatusKredit
 				}
 
 				//1b. check jaminan tanah bangunan pernah dipakai jaminan orang lain
-				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('survei_aset_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
 
 				if(count($check_j_t_b))
 				{
@@ -93,7 +93,7 @@ class UpdateStatusKredit
 				}
 
 				//2b. check jaminan kendaraan pernah dipakai jaminan orang lain
-				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_tanah_bangunan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
+				$check_j_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('survei_aset_kendaraan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
 
 				if(count($check_j_t_b))
 				{
@@ -146,7 +146,7 @@ class UpdateStatusKredit
 			}
 
 			//1b. check aset tanah bangunan pernah dipakai aset orang lain
-			$check_a_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
+			$check_a_t_b 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('survei_aset_tanah_bangunan', function($q)use($value){$q->where('nomor_sertifikat', $value['nomor_sertifikat']);})->with(['debitur'])->get();
 
 			if(count($check_a_t_b))
 			{
@@ -171,7 +171,7 @@ class UpdateStatusKredit
 			}
 
 			//2b. check aset kendaraan pernah dipakai aset orang lain
-			$check_a_k 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('aset_kendaraan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
+			$check_a_k 	= Pengajuan::notid($this->pengajuan['id'])->whereHas('survei_aset_kendaraan', function($q)use($value){$q->where('nomor_bpkb', $value['nomor_bpkb']);})->with(['debitur'])->get();
 
 			if(count($check_a_k))
 			{

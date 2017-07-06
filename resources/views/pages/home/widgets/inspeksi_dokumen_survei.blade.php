@@ -1,7 +1,7 @@
 @inject('dokcab', '\App\Service\Analis\InspeksiDokumenCabang')
 
 @php
-	$dokcab 	= $dokcab->survei();
+	$dokcab 	= $dokcab->survei([], $acl_logged_user);
 @endphp
 <div class="row" style="padding:15px;">
 	<div class="col-sm-12">

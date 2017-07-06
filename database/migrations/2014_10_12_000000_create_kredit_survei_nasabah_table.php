@@ -25,7 +25,7 @@ class CreateKreditSurveiNasabahTable extends Migration
 			$table->softDeletes();
 
 			$table->primary('id');
-			$table->index(['deleted_at', 'petugas_id']);
+			$table->index(['deleted_at', 'pengajuan_id']);
 		});
 	}
 

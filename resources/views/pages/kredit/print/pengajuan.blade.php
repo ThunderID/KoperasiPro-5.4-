@@ -35,7 +35,7 @@
 
 	<div class="row">
 		<div class="col-sm-12 text-center">
-			<p>{{ TAuth::activeOffice()['koperasi']['nama'] }}, {{ date('d F Y') }}</p>
+			<p>{{ $acl_active_office['koperasi']['nama'] }}, {{ date('d F Y') }}</p>
 		</div>
 	</div>
 	<div class="clearfix">&nbsp;</div>

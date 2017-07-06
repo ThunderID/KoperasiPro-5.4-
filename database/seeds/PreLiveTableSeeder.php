@@ -146,7 +146,7 @@ class PreLiveTableSeeder extends Seeder
 
 		//upload init data karyawan
 		$csv_file 				= fopen(database_path().'/seeds/csv/user_pandaan.csv', "r");
-		$fungsi_karyawan_baru 	= new UploadKaryawan($csv_file, database_path().'/seeds/csv/', 'user_pandaan.csv');
+		$fungsi_karyawan_baru 	= new UploadKaryawan($csv_file, database_path().'/seeds/csv/', 'password_user_pandaan.csv');
 		$fungsi_karyawan_baru->save();
 		fclose($csv_file);
 	}

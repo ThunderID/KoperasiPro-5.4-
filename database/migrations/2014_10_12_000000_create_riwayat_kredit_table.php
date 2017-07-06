@@ -24,7 +24,7 @@ class CreateRiwayatKreditTable extends Migration
 			$table->softDeletes();
 
             $table->primary('id');
-			$table->index(['deleted_at', 'pengajuan_id']);
+			$table->index(['deleted_at', 'pengajuan_id', 'status']);
 		});
 	}
 
