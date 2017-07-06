@@ -33,6 +33,10 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
 	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
 	Route::any('hapus/debitur/relasi/{kredit_id}/{relasi_id}',										['uses' => 'KreditController@destroy', 	'as' => 'debitur.relasi.destroy']);
+
+	// download
+	Route::get('/download/{filename}',			['uses'	=> 'DownloadController@download',			'as' => 'home.download']);
+
 });
 
 Route::group(['middleware' => ['survei_kredit']], function()
