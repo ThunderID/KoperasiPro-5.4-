@@ -41,9 +41,8 @@ class LaciKasir
 	 * 
 	 * @return array $data
 	 */
-	public function pemasukan($queries = [])
+	public function pemasukan($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 
@@ -73,9 +72,8 @@ class LaciKasir
 	 * 
 	 * @return array $data
 	 */
-	public function list_pemasukan($queries = [])
+	public function list_pemasukan($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 
@@ -102,9 +100,8 @@ class LaciKasir
 	 * 
 	 * @return array $data
 	 */
-	public function list_pengeluaran($queries = [])
+	public function list_pengeluaran($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 
@@ -131,9 +128,8 @@ class LaciKasir
 	 * 
 	 * @return array $data
 	 */
-	public function pengeluaran($queries = [])
+	public function pengeluaran($queries = [], $user)
 	{
-		$user 				= TAuth::loggedUser();
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 

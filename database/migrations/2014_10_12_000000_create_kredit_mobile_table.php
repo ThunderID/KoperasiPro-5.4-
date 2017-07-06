@@ -22,7 +22,7 @@ class CreateKreditMobileTable extends Migration
 			$table->softDeletes();
 
 			$table->primary('id');
-			$table->index(['deleted_at', 'orang_id']);
+			$table->index(['deleted_at', 'mobile_id', 'orang_id']);
 		});
 	}
 

@@ -10,8 +10,8 @@
 				<i class="fa fa-power-off" aria-hidden="true" style="margin-top: 8px;"></i>
 			</a>
 		</span>
-		<p class="name text-capitalize m-t-xs m-b-none"><b>{{ TAuth::loggedUser()['nama'] }}</b></p>		
-		<p class="role text-capitalize text-muted m-b-none" style="font-size: 12px;">{{ TAuth::activeOffice()['role'] }}</p>
+		<p class="name text-capitalize m-t-xs m-b-none"><b>{{ $acl_logged_user['nama'] }}</b></p>		
+		<p class="role text-capitalize text-muted m-b-none" style="font-size: 12px;">{{ $acl_active_office['role'] }}</p>
 	</div>
 	<div class="col-xs-2 text-right">
 	</div>

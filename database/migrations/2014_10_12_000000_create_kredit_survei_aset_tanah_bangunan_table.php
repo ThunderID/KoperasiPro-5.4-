@@ -13,7 +13,7 @@ class CreateKreditSurveiAsetTanahBangunanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('survei_aset_tanah_bangunan', function (Blueprint $table) {
+		Schema::create('s_aset_tb', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('petugas_id', 255);
 			$table->string('pengajuan_id', 255);
@@ -26,7 +26,7 @@ class CreateKreditSurveiAsetTanahBangunanTable extends Migration
 			$table->softDeletes();
 
 			$table->primary('id');
-			$table->index(['deleted_at', 'petugas_id']);
+			$table->index(['deleted_at', 'nomor_sertifikat', 'pengajuan_id']);
 		});
 	}
 
@@ -37,6 +37,6 @@ class CreateKreditSurveiAsetTanahBangunanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('survei_aset_tanah_bangunan');
+		Schema::dropIfExists('s_aset_tb');
 	}
 }

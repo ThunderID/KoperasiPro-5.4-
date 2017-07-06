@@ -13,7 +13,7 @@ class CreateKreditJaminanKendaraanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pengajuan_jaminan_kendaraan', function (Blueprint $table) {
+		Schema::create('p_jaminan_k', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('pengajuan_id', 255);
 			$table->string('tipe', 255)->nullable();
@@ -25,7 +25,7 @@ class CreateKreditJaminanKendaraanTable extends Migration
 			$table->softDeletes();
 
             $table->primary('id');
-			$table->index(['deleted_at', 'pengajuan_id']);
+			$table->index(['deleted_at', 'pengajuan_id', 'nomor_bpkb']);
 		});
 	}
 
@@ -36,6 +36,6 @@ class CreateKreditJaminanKendaraanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('pengajuan_jaminan_kendaraan');
+		Schema::dropIfExists('p_jaminan_k');
 	}
 }

@@ -22,6 +22,9 @@ class CreateImmigrationVisaTable extends Migration
 			$table->string('orang_id');
 			$table->timestamps();
 			$table->softDeletes();
+			
+			$table->primary('id');
+			$table->index(['deleted_at', 'orang_id', 'akses_koperasi_id']);
 		});
 	}
 

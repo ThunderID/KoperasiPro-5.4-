@@ -13,8 +13,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 	public function run()
 	{
 		DB::table('pengajuan_kredit')->truncate();
-		DB::table('pengajuan_jaminan_kendaraan')->truncate();
-		DB::table('pengajuan_jaminan_tanah_bangunan')->truncate();
+		DB::table('p_jaminan_k')->truncate();
+		DB::table('p_jaminan_tb')->truncate();
 		DB::table('riwayat_kredit')->truncate();
 		DB::table('relasi_orang')->truncate();
 
@@ -56,7 +56,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 		];
 
 		//jaminan kendaraan
-		foreach (range(0, 9) as $key) 
+		foreach (range(0, 20) as $key) 
 		{
 			$alamat		= 	[
 								'alamat'			=> $faker->address,

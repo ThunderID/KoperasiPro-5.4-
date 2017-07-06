@@ -30,7 +30,7 @@ class AsetKendaraan extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_aset_kendaraan';
+	protected $table				= 's_aset_k';
 
 	/**
 	 * The attributes that are mass assignable.

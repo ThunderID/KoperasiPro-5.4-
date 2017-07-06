@@ -14,11 +14,11 @@ class InitSurveiKreditTableSeeder extends Seeder
 {
 	public function run()
 	{
-		DB::table('survei_aset_kendaraan')->truncate();
-		DB::table('survei_aset_tanah_bangunan')->truncate();
-		DB::table('survei_aset_usaha')->truncate();
-		DB::table('survei_jaminan_kendaraan')->truncate();
-		DB::table('survei_jaminan_tanah_bangunan')->truncate();
+		DB::table('s_aset_k')->truncate();
+		DB::table('s_aset_tb')->truncate();
+		DB::table('s_aset_u')->truncate();
+		DB::table('s_jaminan_k')->truncate();
+		DB::table('s_jaminan_tb')->truncate();
 		DB::table('survei_kepribadian')->truncate();
 		DB::table('survei_keuangan')->truncate();
 		DB::table('survei_nasabah')->truncate();

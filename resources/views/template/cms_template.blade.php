@@ -129,7 +129,7 @@
 			</div>
 		</div>
 			<ul class="list-group list">		
-				@foreach(TAuth::loggedUser()['visas'] as $key => $value)
+				@foreach($acl_logged_user['visas'] as $key => $value)
 					<li class="list-group-item">
 						<a class="name" href="#" data-dismiss="modal" onclick="javascript:window.location='{{ route('office.activate', ['idx' => $value['id']]) }}'"><i class="fa fa-building"></i>&nbsp;&nbsp; {{ $value['koperasi']['nama'] }}</a>
 					</li>
@@ -145,7 +145,7 @@
 				</div>		
 				<div class="col-xs-12 col-sm-6">
 					<h4 class="p-b-none m-b-none">
-						<i class="fa fa-building"></i>&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} 
+						<i class="fa fa-building"></i>&nbsp; {{ $acl_active_office['koperasi']['nama'] }} 
 					</h4>
 					<div class="hidden-sm hidden-md hidden-lg">
 						</br>
@@ -154,15 +154,15 @@
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					{{-- Non Mobile --}}
-					<a class="btn pull-right hidden-xs" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => TAuth::activeOffice()['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>
+					<a class="btn pull-right hidden-xs" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => $acl_active_office['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>
 					{{-- Mobile --}}
-					<a class="btn btn-block hidden-sm hidden-md hidden-lg m-l-none" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => TAuth::activeOffice()['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>					
+					<a class="btn btn-block hidden-sm hidden-md hidden-lg m-l-none" data-dismiss="modal" onclick="javascript:window.location='{{ route('koperasi.show',['id' => $acl_active_office['koperasi']['id']]) }}'"><i class="fa fa-cog"></i>&nbsp;&nbsp; Pengaturan Koperasi</a>					
 				</div>
 			</div>
 
 			{{--
 			<p class="text-left m-b-none">
-				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ TAuth::activeOffice()['koperasi']['nama'] }}
+				<span class="label label-primary">Aktif : &nbsp;&nbsp;&nbsp;<i class="fa fa-building"></i>&nbsp;&nbsp;{{ $acl_active_office['koperasi']['nama'] }}
 				</span>
 			</p>
 			--}}

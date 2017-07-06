@@ -13,7 +13,7 @@ class CreateKreditJaminanTanahBangunanTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pengajuan_jaminan_tanah_bangunan', function (Blueprint $table) {
+		Schema::create('p_jaminan_tb', function (Blueprint $table) {
 			$table->string('id', 255);
 			$table->string('pengajuan_id', 255);
 			$table->string('tipe', 255);
@@ -28,7 +28,7 @@ class CreateKreditJaminanTanahBangunanTable extends Migration
 			$table->softDeletes();
 			
 			$table->primary('id');
-			$table->index(['deleted_at', 'pengajuan_id']);
+			$table->index(['deleted_at', 'pengajuan_id', 'nomor_sertifikat']);
 		});
 	}
 
@@ -39,6 +39,6 @@ class CreateKreditJaminanTanahBangunanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('pengajuan_jaminan_tanah_bangunan');
+		Schema::dropIfExists('p_jaminan_tb');
 	}
 }

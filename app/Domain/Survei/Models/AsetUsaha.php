@@ -38,7 +38,7 @@ class AsetUsaha extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_aset_usaha';
+	protected $table				= 's_aset_u';
 
 	/**
 	 * The attributes that are mass assignable.

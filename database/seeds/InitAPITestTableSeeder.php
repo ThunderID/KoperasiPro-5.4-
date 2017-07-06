@@ -23,5 +23,20 @@ class InitAPITestTableSeeder extends Seeder
 		$pbox 			= new PandoraBox;
 		$pbox->fill($credentials);
 		$pbox->save();
+
+		return true;
+		foreach (range(0, 9999) as $key) 
+		{
+			$credentials 		= [
+				'key'			=> $faker->ean13,
+				'secret'		=> $faker->ean13,
+				'jenis'			=> 'mobile',
+				'versi'			=> '1.0.2',
+			];
+
+			$pbox 			= new PandoraBox;
+			$pbox->fill($credentials);
+			$pbox->save();
+		}
 	}
 }

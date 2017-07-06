@@ -21,6 +21,8 @@ class CreateImmigrationPandoraBoxTable extends Migration
 			$table->string('versi');
 			$table->timestamps();
 			$table->softDeletes();
+			
+			$table->primary('id');
 		});
 	}
 

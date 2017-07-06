@@ -26,7 +26,7 @@
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
-					'status'			=> 	$cservice::statusLists(),
+					'status'			=> 	$cservice::statusLists($acl_active_office['role']),
 					'status_default'	=> 'semua'
 				]])
 			</div>
