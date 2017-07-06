@@ -45,9 +45,9 @@
 <fieldset class="form-group">
 	<label class="text-sm">Tanggal Pengajuan</label>
 	<div class="row">
-		<div class="col-xs-12 col-sm-5 col-md-5">
-			{!! Form::text('tanggal_pengajuan', (isset($param['data']['tanggal_pengajuan']) ? $param['data']['tanggal_pengajuan'] : Carbon\Carbon::now()->format('d/m/Y')), ['class' => 'form-control required mask-date auto-tabindex focus', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
-			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
+		<div class="col-xs-12 col-sm-4 col-md-4">
+			{!! Form::text('tanggal_pengajuan', (isset($param['data']['tanggal_pengajuan']) ? $param['data']['tanggal_pengajuan'] : Carbon\Carbon::now()->format('d/m/Y')), ['class' => 'form-control required mask-date auto-tabindex set-focus', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			<span class="help-block">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>
 </fieldset>
@@ -63,8 +63,8 @@
 <fieldset class="form-group">
 	<label class="text-sm">Jenis Kredit</label>
 	<div class="row">
-		<div class="col-md-8">
-			{!! Form::select('jenis_kredit', $data['select_jenis_kredit'], (isset($param['data']['jenis_kredit']) ? $param['data']['jenis_kredit'] : 'pa'), ['class' => 'form-control quick-select required auto-tabindex focus', 'placeholder' => 'Jumlah pinjaman', 'data-other' => 'input-jenis-kredit']) !!} <br/>
+		<div class="col-md-4">
+			{!! Form::select('jenis_kredit', $data['select_jenis_kredit'], (isset($param['data']['jenis_kredit']) ? $param['data']['jenis_kredit'] : 'pa'), ['class' => 'form-control quick-select required auto-tabindex select', 'placeholder' => 'Jumlah pinjaman', 'data-other' => 'input-jenis-kredit']) !!} <br/>
 			{!! Form::hidden('jenis_kredit', 'pa', ['class' => 'form-control m-t-sm auto-tabindex input-jenis-kredit', 'placeholder' => 'Sebutkan', 'style' => 'width:60%']) !!}
 		</div>
 	</div>

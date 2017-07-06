@@ -19,8 +19,8 @@
 	<label class="text-sm">Tanggal Berdiri</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($param['data']['tanggal_berdiri']) ? $param['data']['tanggal_berdiri'] : null), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
-			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
+			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($param['data']['tanggal_berdiri']) ? $param['data']['tanggal_berdiri'] : null), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			<span class="help-block m-b-none">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>
 </fieldset>
@@ -33,8 +33,9 @@
 				'milik_keluarga'	=> 'Milik Keluarga',
 				'milik_sendiri'		=> 'Milik Sendiri',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($param['data']['status']) ? (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? $param['data']['status'] : 'lain_lain') : 'bagi_hasil'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status']) !!}	<br/>
-			{!! Form::text('aset_usaha[status]', (isset($param['data']['status']) ? $param['data']['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status ' . (isset($param['data']['status']) && (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? 'hidden' : (!isset($param['data']['status']) ? 'hidden' : ''))) ]) !!}
+			], (isset($param['data']['status']) ? (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? $param['data']['status'] : 'lain_lain') : 'bagi_hasil'), ['class' => 'form-control auto-tabindex quick-select select', 'data-other' => 'input-aset-usaha-status']) !!}	
+			{{-- <br/> --}}
+			{{-- {!! Form::text('aset_usaha[status]', (isset($param['data']['status']) ? $param['data']['status'] : 'bagi_hasil'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status ' . (isset($param['data']['status']) && (in_array($param['data']['status'], ['bagi_hasil', 'milik_sendiri', 'milik_keluarga']) ? 'hidden' : (!isset($param['data']['status']) ? 'hidden' : ''))) ]) !!} --}}
 		</div>
 	</div>
 </fieldset>
@@ -59,8 +60,8 @@
 				'milik_sendiri' 	=> 'Milik Sendiri',
 				'sewa'				=> 'Sewa',
 				'lain_lain'			=> 'Lainnya',
-			], (isset($param['data']['status_tempat_usaha']) ? (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? $param['data']['status_tempat_usaha'] : 'lain_lain') : 'milik_sendiri'), ['class' => 'form-control auto-tabindex quick-select', 'data-other' => 'input-aset-usaha-status-tempat-usaha']) !!}
-			{!! Form::text('aset_usaha[status_tempat_usaha]', (isset($param['data']['status_tempat_usaha']) ? $param['data']['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status-tempat-usaha ' . (isset($param['data']['status_tempat_usaha']) && (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? 'hidden' : (!isset($param['data']['status_tempat_usahastatus']) ? 'hidden' : ''))), 'style' => 'width: 80%;']) !!}
+			], (isset($param['data']['status_tempat_usaha']) ? (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? $param['data']['status_tempat_usaha'] : 'lain_lain') : 'milik_sendiri'), ['class' => 'form-control auto-tabindex quick-select select', 'data-other' => 'input-aset-usaha-status-tempat-usaha']) !!}
+			{{-- {!! Form::text('aset_usaha[status_tempat_usaha]', (isset($param['data']['status_tempat_usaha']) ? $param['data']['status_tempat_usaha'] : 'milik_sendiri'), ['class' => 'form-control auto-tabindex m-t-sm input-aset-usaha-status-tempat-usaha ' . (isset($param['data']['status_tempat_usaha']) && (in_array($param['data']['status_tempat_usaha'], ['milik_sendiri', 'sewa']) ? 'hidden' : (!isset($param['data']['status_tempat_usahastatus']) ? 'hidden' : ''))), 'style' => 'width: 80%;']) !!} --}}
 		</div>
 	</div>
 </fieldset>

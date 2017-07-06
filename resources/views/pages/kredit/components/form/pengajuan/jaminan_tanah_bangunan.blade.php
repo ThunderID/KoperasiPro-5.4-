@@ -26,24 +26,24 @@
 <fieldset class="form-group">
 	<label class="text-sm">Tipe</label>
 	<div class="row">
-		<div class="col-md-7">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="form-control quick-select auto-tabindex" data-field="tipe">
+		<div class="col-md-4">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="form-control quick-select select auto-tabindex" data-field="tipe">
 				<option value="bangunan" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'bangunan')) ? 'selected' : '' }}>Bangunan</option>
 				<option value="tanah" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'tanah')) ? 'selected' : '' }}>Tanah</option>
 			</select>
-			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="tipe" value="{{ (isset($param['data']['tipe']) && !is_null($param['data']['tipe'])) ? $param['data']['tipe'] : 'bangunan' }}">
+			{{-- <input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="tipe" value="{{ (isset($param['data']['tipe']) && !is_null($param['data']['tipe'])) ? $param['data']['tipe'] : 'bangunan' }}"> --}}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label class="text-sm">Jenis Sertifikat</label>
 	<div class="row">
-		<div class="col-md-7">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="form-control quick-select auto-tabindex" data-field="jenis_sertifikat">
+		<div class="col-md-5">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="form-control quick-select select auto-tabindex" data-field="jenis_sertifikat">
 				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>Hak Guna Bangunan (HGB)</option>
 				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
 			</select>
-			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="jenis_sertifikat" value="{{ (isset($param['data']['jenis_sertifikat']) && !is_null($param['data']['jenis_sertifikat'])) ? $param['data']['jenis_sertifikat'] : 'hgb' }}">
+			{{-- <input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="jenis_sertifikat" value="{{ (isset($param['data']['jenis_sertifikat']) && !is_null($param['data']['jenis_sertifikat'])) ? $param['data']['jenis_sertifikat'] : 'hgb' }}"> --}}
 		</div>
 	</div>
 </fieldset>
