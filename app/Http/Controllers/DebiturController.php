@@ -34,7 +34,6 @@ class DebiturController extends Controller
 	 */
 	public function index()
 	{
-		$pengguna 		= new Orang;
 		$pengguna 		= Orang::where('nik', Input::get('nik'))->first();
 
 		return Response::json($pengguna);

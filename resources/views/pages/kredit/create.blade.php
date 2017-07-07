@@ -98,4 +98,40 @@
 			document.getElementById("debitur_penghasilan_bersih").value = result.penghasilan_bersih;
 		}});
 	}
+
+	function autofillsertifikat() 
+	{
+		var jt = document.getElementById("jaminan_tanah_bangunan[nomor_sertifikat]").value;
+		console.log(jt);
+		$.ajax({url: "{{route('ajax.jaminan.tb')}}?nomor_sertifikat="+jt, success: function(result)
+		{
+			document.getElementById("jaminan_tanah_bangunan[tipe]").value = result.tipe;
+			document.getElementById("jaminan_tanah_bangunan[jenis_sertifikat]").value 			= result.jenis_sertifikat;
+			document.getElementById("jaminan_tanah_bangunan[masa_berlaku_sertifikat]").value 	= result.masa_berlaku_sertifikat;
+			document.getElementById("jaminan_tanah_bangunan[atas_nama]").value 					= result.atas_nama;
+			document.getElementById("jaminan_tanah_bangunan[luas_tanah]").value 				= result.luas_bangunan;
+
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][alamat]").value 		= result.alamat.alamat;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][rt]").value 			= result.alamat.rt;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][rw]").value 			= result.alamat.rw;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][provinsi]").value 	= result.alamat.provinsi;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][regensi]").value 	= result.alamat.regensi;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][distrik]").value 	= result.alamat.distrik;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][desa]").value 		= result.alamat.desa;
+			document.getElementById("jaminan_tanah_bangunan[alamat][0][negara]").value 		= result.alamat.negara;
+		}});
+	}
+
+	function autofillbpkb() 
+	{
+		var jt = document.getElementById("jaminan_kendaraan[nomor_bpkb]").value;
+		console.log(jt);
+		$.ajax({url: "{{route('ajax.jaminan.k')}}?nomor_bpkb="+jt, success: function(result)
+		{
+			document.getElementById("jaminan_kendaraan[tipe]").value 		= result.tipe;
+			document.getElementById("jaminan_kendaraan[tahun]").value 		= result.tahun;
+			document.getElementById("jaminan_kendaraan[merk]").value 		= result.merk;
+			document.getElementById("jaminan_kendaraan[atas_nama]").value 	= result.atas_nama;
+		}});
+	}
 @endpush

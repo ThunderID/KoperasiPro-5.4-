@@ -22,7 +22,9 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::get('/',				['uses'	=> 'HomeController@index',			'as' => 'home.index']);
 
 	//Menu Debitur
-	Route::any('ajax/debitur',	['uses' => 'DebiturController@index', 		'as' => 'ajax.debitur']);
+	Route::any('ajax/jaminan/tanah/bangunan',	['uses' => 'JaminanController@tanah_bangunan', 	'as' => 'ajax.jaminan.tb']);
+	Route::any('ajax/jaminan/kendaraan',		['uses' => 'JaminanController@kendaraan',	 	'as' => 'ajax.jaminan.k']);
+	Route::any('ajax/debitur',					['uses' => 'DebiturController@index', 			'as' => 'ajax.debitur']);
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');

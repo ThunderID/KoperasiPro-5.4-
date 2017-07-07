@@ -21,6 +21,7 @@ class UpdatePengajuanKredit
 	 */
 	public function __construct($kredit_id)
 	{
+		$this->pengajuan_id 		= $kredit_id;
 		$this->kredit 				= Pengajuan::id($kredit_id)->where('status', 'pengajuan')->firstorfail();
 	}
 
