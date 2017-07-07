@@ -27,7 +27,7 @@ trait PengajuanKreditTrait {
 
 	protected $notes;
 
-	public function tambahJaminanKendaraan($tipe, $merk, $tahun, $nomor_bpkb, $atas_nama)
+	public function tambahJaminanKendaraan($tipe, $merk, $tahun, $nomor_bpkb, $atas_nama, $id = null)
 	{
 		//limit kendaraan
 		if(count($this->jaminan_kendaraan) > 2)
@@ -36,7 +36,7 @@ trait PengajuanKreditTrait {
 		}
 		
 		//pastikan kendaraan tidak dipakai di kredit aktif lain
-		$check_bpkb 		= JaminanKendaraan::where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
+		$check_bpkb 		= JaminanKendaraan::where('pengajuan_id', '<>' , $this->pengajuan_id)->where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
 
 		if(count($check_bpkb))
 		{
@@ -44,6 +44,7 @@ trait PengajuanKreditTrait {
 		}
 
 		$this->jaminan_kendaraan[]	= [
+			'id'			=> $id,
 			'tipe'			=> $tipe,
 			'merk'			=> $merk,
 			'tahun'			=> $tahun,
@@ -51,7 +52,7 @@ trait PengajuanKreditTrait {
 			'atas_nama'		=> $atas_nama,
 		];
 
-		$check_pemakaian 	= JaminanKendaraan::where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q;})->get();
+		$check_pemakaian 	= JaminanKendaraan::where('pengajuan_id', '<>' , $this->pengajuan_id)->where('nomor_bpkb', $nomor_bpkb)->wherehas('pengajuan', function($q){$q;})->get();
 
 		foreach ((array)$check_pemakaian as $key => $value) 
 		{
@@ -64,7 +65,7 @@ trait PengajuanKreditTrait {
 		return $this;
 	}
 
-	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $alamat, $luas_bangunan, $luas_tanah)
+	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $alamat, $luas_bangunan, $luas_tanah, $id = null)
 	{
 		if(count($this->jaminan_tanah_bangunan) > 3)
 		{
@@ -72,7 +73,7 @@ trait PengajuanKreditTrait {
 		}
 
 		//pastikan kendaraan tidak dipakai di kredit aktif lain
-		$check_sertifikat 		= JaminanTanahBangunan::where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
+		$check_sertifikat 		= JaminanTanahBangunan::where('pengajuan_id', '<>' , $this->pengajuan_id)->where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q->where('status', '<>', 'lunas');})->get();
 
 		if(count($check_sertifikat))
 		{
@@ -80,6 +81,7 @@ trait PengajuanKreditTrait {
 		}
 
 		$this->jaminan_tanah_bangunan[]	= [
+			'id'						=> $id,
 			'tipe'						=> $tipe,
 			'jenis_sertifikat'			=> $jenis_sertifikat,
 			'nomor_sertifikat'			=> $nomor_sertifikat,
@@ -90,7 +92,7 @@ trait PengajuanKreditTrait {
 			'alamat'					=> $alamat,
 		];
 
-		$check_pemakaian 	= JaminanTanahBangunan::where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q;})->get();
+		$check_pemakaian 	= JaminanTanahBangunan::where('pengajuan_id', '<>' , $this->pengajuan_id)->where('nomor_sertifikat', $nomor_sertifikat)->wherehas('pengajuan', function($q){$q;})->get();
 
 		foreach ((array)$check_pemakaian as $key => $value) 
 		{
@@ -158,7 +160,7 @@ trait PengajuanKreditTrait {
 		//4. store jaminan kendaraan
 		foreach ((array)$jaminan_kendaraan as $key => $value) 
 		{
-			$jaminan_k 		= new JaminanKendaraan;
+			$jaminan_k 		= JaminanKendaraan::findornew($value['id']);
 			$jaminan_k->fill([
 							'tipe'			=> $value['tipe'],
 							'merk'			=> $value['merk'],
@@ -177,7 +179,7 @@ trait PengajuanKreditTrait {
 		//5. store jaminan tanah bangunan
 		foreach ((array)$jaminan_tanah_bangunan as $key => $value) 
 		{
-			$jaminan_tb 		= new JaminanTanahBangunan;
+			$jaminan_tb 		= JaminanTanahBangunan::findornew($value['id']);
 			$jaminan_tb->fill([
 							'tipe'						=> $value['tipe'],
 							'jenis_sertifikat'			=> $value['jenis_sertifikat'],

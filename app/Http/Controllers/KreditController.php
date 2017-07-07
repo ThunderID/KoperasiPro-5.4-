@@ -269,15 +269,14 @@ class KreditController extends Controller
 			if (Input::has('pengajuan'))
 			{
 				$jaminan = Input::get('pengajuan');
-
 				if (isset($jaminan['jaminan_kendaraan']))
 				{
-					$update->tambahJaminanKendaraan($jaminan['jaminan_kendaraan']['tipe'], $jaminan['jaminan_kendaraan']['merk'], $jaminan['jaminan_kendaraan']['tahun'], $jaminan['jaminan_kendaraan']['nomor_bpkb'], $jaminan['jaminan_kendaraan']['atas_nama']);
+					$update->tambahJaminanKendaraan($jaminan['jaminan_kendaraan']['tipe'], $jaminan['jaminan_kendaraan']['merk'], $jaminan['jaminan_kendaraan']['tahun'], $jaminan['jaminan_kendaraan']['nomor_bpkb'], $jaminan['jaminan_kendaraan']['atas_nama'], $jaminan['jaminan_kendaraan']['id']);
 				}
 
 				if (isset($jaminan['jaminan_tanah_bangunan']))
 				{
-					$update->tambahJaminanTanahBangunan($jaminan['jaminan_tanah_bangunan']['tipe'], $jaminan['jaminan_tanah_bangunan']['jenis_sertifikat'], $jaminan['jaminan_tanah_bangunan']['nomor_sertifikat'], $jaminan['jaminan_tanah_bangunan']['masa_berlaku_sertifikat'], $jaminan['jaminan_tanah_bangunan']['atas_nama'], $jaminan['jaminan_tanah_bangunan']['alamat'], $jaminan['jaminan_tanah_bangunan']['luas_bangunan'], $jaminan['jaminan_tanah_bangunan']['luas_tanah']);
+					$update->tambahJaminanTanahBangunan($jaminan['jaminan_tanah_bangunan']['tipe'], $jaminan['jaminan_tanah_bangunan']['jenis_sertifikat'], $jaminan['jaminan_tanah_bangunan']['nomor_sertifikat'], $jaminan['jaminan_tanah_bangunan']['masa_berlaku_sertifikat'], $jaminan['jaminan_tanah_bangunan']['atas_nama'], $jaminan['jaminan_tanah_bangunan']['alamat'], $jaminan['jaminan_tanah_bangunan']['luas_bangunan'], $jaminan['jaminan_tanah_bangunan']['luas_tanah'], $jaminan['jaminan_tanah_bangunan']['id']);
 				}
 			}
 
