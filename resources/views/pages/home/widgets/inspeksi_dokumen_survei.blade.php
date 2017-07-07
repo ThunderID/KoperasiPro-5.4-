@@ -8,11 +8,12 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
-					Pengajuan Baru
+					Dokumen Survei yang Belum Lengkap
 				</div>							
 				<table class="table table-hover">
 					<thead>
 						<tr>
+							<th class="text-center">No</th>
 							<th class="text-left">Koperasi</th>
 							<th class="text-left">Nama Nasabah</th>
 							<th class="text-right">Kelengkapan Dokumen</th>
@@ -22,6 +23,7 @@
 					<tbody>
 						@forelse($dokcab as $key => $value)
 							<tr>
+								<td class="text-center">{{$key+1}}</td>
 								<td class="text-left">{{$value['koperasi']['nama']}}</td>
 								<td class="text-left">{{$value['debitur']['nama']}}</td>
 								<td class="text-right">

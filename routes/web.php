@@ -19,7 +19,10 @@ Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destr
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
-	Route::get('/',			['uses'	=> 'HomeController@index',			'as' => 'home.index']);
+	Route::get('/',				['uses'	=> 'HomeController@index',			'as' => 'home.index']);
+
+	//Menu Debitur
+	Route::any('ajax/debitur',	['uses' => 'DebiturController@index', 		'as' => 'ajax.debitur']);
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
