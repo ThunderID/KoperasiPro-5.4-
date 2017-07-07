@@ -124,12 +124,30 @@
 							</div>
 
 							<div class="hidden" data-form="create">
-								<h4 class="text-uppercase">Tambah Pengguna</h4>
+								<h4 class="text-uppercase">Tambah Pengguna
+									<span class="pull-right text-capitalize">
+										<small>
+										<a href="#" data-dismiss="panel" data-panel="data-index" data-target="create" no-data-pjax>
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+											Kembali
+										</a>
+										</small>
+									</span>
+								</h4>
 							</div>
 
 							@foreach($page_datas->users as $key => $value)
 							<div class="hidden" data-form="edit_{{ $value['id'] }}">
-								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['petugas']['nama']) }}</h4>
+								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['petugas']['nama']) }}
+									<span class="pull-right text-capitalize">
+										<small>
+										<a href="#" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}" no-data-pjax >
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+											Kembali
+										</a>
+										</small>
+									</span>								
+								</h4>
 							</div>
 							@endforeach
 

@@ -6,7 +6,7 @@
 
 		<div class="row p-b-sm">
 			<div class="col-sm-12">
-				<h2>{{ $page_attributes->title }}</h2>
+				<h2>{{ $page_attributes->title }}</h2>			
 			</div>
 		</div>
 
@@ -109,7 +109,7 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-10">
 								@if(!is_null($page_datas->id))
-								<a class="btn btn-default" href="{{ URL::previous() }}">Batal</a>
+								<a class="btn btn-default" href="{{ URL::previous() }}" no-data-pjax>Batal</a>
 								@endif
 								<button type="submit" class="btn btn-primary">{{ is_null($page_datas->id) ? 'Tambahkan' : 'Simpan' }}</button>
 							</div>
@@ -120,7 +120,7 @@
 			</div>
 
 			@if(is_null($page_datas->id))
-			<div class="col-sm-6">
+			<div class="col-sm-6 hidden-xs">
 
 
 				<div class="row">
@@ -171,7 +171,7 @@
 			<div class="row p-t-sm">
 				<div class="col-xs-12 text-light">
 					<p class="text-muted">
-						Impor Data CSV mudahkan Anda untuk melakukan proses input data Koperasi dalam jumlah banyak. Anda hanya perlu mengikuti 3 langkah mudah berikut.
+						Impor Data CSV mudahkan Anda untuk melakukan proses input data koperasi dalam jumlah banyak. Anda hanya perlu mengikuti 3 langkah mudah berikut.
 					</p>
 					<br/>
 					<p class="p-b-md">
@@ -185,12 +185,12 @@
 					</p>
 					<p class="p-b-md">
 						<strong>2. Isikan Data</strong><br/><span class="text-muted">
-						Setelah template ter-unduh, buka file dan isikan data sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
+						Setelah template ter-unduh, buka dokumen dan isikan data koperasi sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
 						</span>
 					</p>
 					<p class="p-b-md">
 						<strong>3. Impor Data</strong><br/><span class="text-muted">
-						Pilih file yang akan Anda unggah pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
+						Pilih dokumen yang akan Anda unggah pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
 						</span>
 					</p>						
 				</div>
