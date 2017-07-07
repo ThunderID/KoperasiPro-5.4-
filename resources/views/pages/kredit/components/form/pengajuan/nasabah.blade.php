@@ -45,7 +45,7 @@
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index')]) !!}
+				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index'), 'onkeyup' => 'autofilldebitur()']) !!}
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 	<label class="text-sm">Nama</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('debitur[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama debitur']) !!}
+			{!! Form::text('debitur[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['id' => 'debitur_nama', 'class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama debitur']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -62,7 +62,7 @@
 	<label class="text-sm">Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['id' => 'debitur_tanggal_lahir', 'class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block m-b-none">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 			{!! Form::select('debitur[jenis_kelamin]', [
 				'laki-laki'		=> 'Laki-laki',
 				'perempuan'		=> 'Perempuan'
-			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : 'laki-laki'), ['class' => 'form-control quick-select auto-tabindex select']) !!}
+			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : 'laki-laki'), ['id' => 'debitur_jenis_kelamin', 'class' => 'form-control quick-select auto-tabindex select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -87,7 +87,7 @@
 				'cerai_hidup'		=> 'Cerai Hidup',
 				'cerai_mati'		=> 'Cerai Mati',
 				'kawin' 			=> 'Kawin',
-			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['class' => 'form-control quick-select auto-tabindex select']) !!}
+			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['id' => 'debitur_status_perkawinan', 'class' => 'form-control quick-select auto-tabindex select']) !!}
 		</div> 
 	</div> 
 </fieldset>

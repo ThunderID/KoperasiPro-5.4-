@@ -24,6 +24,14 @@
 
 {!! Form::hidden( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <fieldset class="form-group">
+	<label class="text-sm">No. Sertifikat</label>
+	<div class="row">
+		<div class="col-md-3">
+			<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" class="form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan" data-field="nomor_sertifikat" placeholder="No. Sertifikat" value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}">
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
 	<label class="text-sm">Tipe</label>
 	<div class="row">
 		<div class="col-md-4">
@@ -44,14 +52,6 @@
 				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
 			</select>
 			{{-- <input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="jenis_sertifikat" value="{{ (isset($param['data']['jenis_sertifikat']) && !is_null($param['data']['jenis_sertifikat'])) ? $param['data']['jenis_sertifikat'] : 'hgb' }}"> --}}
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label class="text-sm">No. Sertifikat</label>
-	<div class="row">
-		<div class="col-md-3">
-			<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" class="form-control auto-tabindex mask-no-sertifikat input-tanah-bangunan" data-field="nomor_sertifikat" placeholder="No. Sertifikat" value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}">
 		</div>
 	</div>
 </fieldset>

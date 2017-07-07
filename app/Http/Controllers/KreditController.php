@@ -90,6 +90,8 @@ class KreditController extends Controller
 	 */
 	public function create()
 	{
+		$this->setGlobal();
+	
 		// set page attributes (please check parent variable)
 		$this->page_attributes->title 				= "Kredit Baru";
 		$this->page_attributes->breadcrumb 			= [
