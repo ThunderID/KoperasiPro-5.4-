@@ -185,12 +185,12 @@
 					</p>
 					<p class="p-b-md">
 						<strong>2. Isikan Data</strong><br/><span class="text-muted">
-						Setelah template ter-download, buka file dan isikan data sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
+						Setelah template ter-unduh, buka file dan isikan data sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
 						</span>
 					</p>
 					<p class="p-b-md">
 						<strong>3. Impor Data</strong><br/><span class="text-muted">
-						Pilih file yang akan Anda upload pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
+						Pilih file yang akan Anda unggah pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
 						</span>
 					</p>						
 				</div>
