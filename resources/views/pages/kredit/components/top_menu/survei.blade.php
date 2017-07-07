@@ -16,28 +16,31 @@
 				</a>
 			</div>
 			<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
-				<p class="text-muted p-t-sm text-lg">
-					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> {{ $page_datas->credit['debitur']['nama'] }}</span>-
-					<span class="p-l-xs">{{ $page_datas->credit['debitur']['nik'] }}</span>
+				<p class="text-muted p-t-sm text-md">
+					<span class="p-r-xs">
+						<i class="fa fa-user"></i>&nbsp;&nbsp;
+						{{ $page_datas->credit['debitur']['nama'] }}
+					</span>
+					<span>[ {{ $page_datas->credit['debitur']['nik'] }} ]</span>
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
 				<!-- <a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
 					<i class="fa fa-info-circle"></i> Riwayat Note
 				</a> -->
-				<a href="#" data-url="{{ route('credit.print', ['mode' => 'survei', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
+				<a href="#" data-url="{{ route('credit.print', ['mode' => 'survei', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-none p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a>
-				<a href="#modal-tolak" data-toggle="modal" data-target="#modal-tolak" class="btn p-r-sm p-l-sm danger">
+				{{-- <a href="#modal-tolak" data-toggle="modal" data-target="#modal-tolak" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>					
 				<a href="#modal-change-status" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
 					<i class="fa fa-check" aria-hidden="true"></i> Survei Lengkap
-				</a>				
+				</a>				 --}}
 			</div>
 		</div>
 	</div>
-	<div class="col-md-12 " style="background-color: white;">
+	{{-- <div class="col-md-12 " style="background-color: white;">
 		<div class="row">
 			<div class="col-sm-12 p-l-none p-r-none menu-tabs" style>
 				<a href="#" class="arrow-left"><i class="fa fa-chevron-left"></i></a>
@@ -88,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 </div>
 
 @section('page_modals')

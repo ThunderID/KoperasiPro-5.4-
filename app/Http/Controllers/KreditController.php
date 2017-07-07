@@ -505,25 +505,25 @@ class KreditController extends Controller
 
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
-			case 'pengajuan':
-				$this->view 						= view('pages.kredit.pengajuan');
-				break;
+			// case 'pengajuan':
+			// 	$this->view 						= view('pages.kredit.pengajuan');
+			// 	break;
 			
-			case 'survei':
-				$this->view                  		= view('pages.kredit.survei');
-				break;
+			// case 'survei':
+			// 	$this->view                  			= view('pages.kredit.survei');
+			// 	break;
 
-			case 'menunggu_persetujuan':
-				$this->view 						= view('pages.kredit.menunggu_persetujuan');
-				break;
+			// case 'menunggu_persetujuan':
+			// 	$this->view 						= view('pages.kredit.menunggu_persetujuan');
+			// 	break;
 
-			case 'menunggu_realisasi':
-				$this->view 						= view('pages.kredit.menunggu_realisasi');
-				break;
+			// case 'menunggu_realisasi':
+			// 	$this->view 						= view('pages.kredit.menunggu_realisasi');
+			// 	break;
 
-			case 'terealisasi':
-				$this->view 						= view('pages.kredit.terrealisasi');
-				break;	
+			// case 'terealisasi':
+			// 	$this->view 						= view('pages.kredit.terrealisasi');
+			// 	break;	
 
 			default:
 				$this->view 						= view('pages.kredit.pengajuan');

@@ -19,7 +19,7 @@
 				'rumah'		=> 'Rumah',
 				'tambak'	=> 'Tambak',
 				'lain_lain'	=> 'Lain lain',
-				], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'ruko'), ['class' => 'form-control quick-select auto-tabindex focus']) !!}
+				], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'ruko'), ['class' => 'form-control quick-select select auto-tabindex focus']) !!}
 		</div>
 	</div>
 </fieldset>

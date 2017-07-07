@@ -38,17 +38,17 @@
  * 			contoh: 		tanggal_pengajuan
  */
 @endphp
-<fieldset class="form-group p-b-md">
-	<label for="">Jenis Pekerjaan</label>
+<fieldset class="form-group">
+	<label class="text-sm">Jenis Pekerjaan</label>
 	<div class="row">
-		<div class="col-md-12">
-			{!! Form::select('debitur[pekerjaan]', $data['select_jenis_pekerjaan'], (isset($param['data']['pekerjaan']) ? (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? $param['data']['pekerjaan'] : 'lain_lain') : 'tidak_bekerja'), ['class' => 'form-control quick-select auto-tabindex focus select-pekerjaan', 'data-other' => 'input-jenis-pekerjaan']) !!} <br/>
-			{!! Form::text('debitur[pekerjaan]', (isset($param['data']['pekerjaan']) ? $param['data']['pekerjaan'] : 'tidak_bekerja'), ['class' => 'form-control auto-tabindex m-t-sm input-jenis-pekerjaan ' . (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? 'hidden' : (!isset($param['data']['pekerjaan']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+		<div class="col-md-5">
+			{!! Form::select('debitur[pekerjaan]', $data['select_jenis_pekerjaan'], (isset($param['data']['pekerjaan']) ? (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? $param['data']['pekerjaan'] : 'lain_lain') : 'tidak_bekerja'), ['class' => 'form-control quick-select auto-tabindex focus select select-pekerjaan', 'data-other' => 'input-jenis-pekerjaan', 'style' => 'width:40%;']) !!} <br/>
+			{!! Form::text('debitur[pekerjaan]', (isset($param['data']['pekerjaan']) ? $param['data']['pekerjaan'] : 'tidak_bekerja'), ['class' => 'form-control auto-tabindex m-t-sm input-jenis-pekerjaan ' . (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? 'hidden' : (!isset($param['data']['pekerjaan']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label for="">Penghasilan Bersih</label>
+	<label class="text-sm">Penghasilan Bersih</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('debitur[penghasilan_bersih]', (isset($param['data']['penghasilan_bersih']) ? $param['data']['penghasilan_bersih'] : null), ['class' => 'form-control mask-money required auto-tabindex', 'placeholder' => 'Penghasilan bersih']) !!}

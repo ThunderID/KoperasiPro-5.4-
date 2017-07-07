@@ -68,7 +68,7 @@
 	<label class="text-sm">Jalan</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', (isset($param['data'][0]['alamat']) ? $param['data'][0]['alamat'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Ex. Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', (isset($param['data']['alamat']) ? $param['data']['alamat'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Ex. Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
 		</div>
 		<!-- <div class="col-md-3 p-l-none">
 			<a href="#" class="btn btn-link btn-sm p-l-none p-r-none open-modal" data-toggle="modal" data-target=".modal"><i class="fa fa-search"></i> Cari Alamat yg Ada</a>
@@ -79,11 +79,11 @@
 	<div class="row">
 		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			<label class="text-sm">RT</label>
-			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[rt]', (isset($param['data'][0]['rt']) ? $param['data'][0]['rt'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RT', 'data-field' => 'rt']) !!}
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[rt]', (isset($param['data']['rt']) ? $param['data']['rt'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RT', 'data-field' => 'rt']) !!}
 		</div>
 		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			<label class="text-sm">RW</label>
-			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[rw]', (isset($param['data'][0]['rw']) ? $param['data'][0]['rw'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RW', 'data-field' => 'rw']) !!}
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[rw]', (isset($param['data']['rw']) ? $param['data']['rw'] : null), ['class' => 'form-control auto-tabindex ' . (isset($settings['class']) ? $settings['class'] : ''), 'placeholder' => 'RW', 'data-field' => 'rw']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -93,7 +93,7 @@
 		<div class="col-md-6">
 			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[provinsi]' }}" class="form-control auto-tabindex select select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" placeholder="Pilih Provinsi" data-placeholder="Pilih Provinsi" data-url="{{ route('regensi.index') }}" data-target-parsing=".select-regensi" data-field="provinsi" data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" data-value-from-caption="yes">
 				@foreach ($data['provinsi'] as $k => $v)
-					<option value="{{ $k }}" data-id="{{ $k }}" {{ (isset($param['data'][0]['provinsi']) && ($param['data'][0]['provinsi'] == $v)) ? 'selected' : '' }}>{{ $v }}</option>
+					<option value="{{ $k }}" data-id="{{ $k }}" {{ (isset($param['data']['provinsi']) && (strtolower($param['data']['provinsi']) == strtolower($v))) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach
 			</select>
 		</div>

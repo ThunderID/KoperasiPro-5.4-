@@ -62,32 +62,32 @@
 	<label class="text-sm">Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'Hari/tanggal/tahun (dd/mm/yyyy)']) !!}
-			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
+			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			<span class="help-block m-b-none">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label class="text-sm">Jenis Kelamin</label>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-3">
 			{!! Form::select('debitur[jenis_kelamin]', [
 				'laki-laki'		=> 'Laki-laki',
 				'perempuan'		=> 'Perempuan'
-			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : 'laki-laki'), ['class' => 'form-control quick-select auto-tabindex']) !!}
+			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : 'laki-laki'), ['class' => 'form-control quick-select auto-tabindex select']) !!}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label class="text-sm">Status Pernikahan</label>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			{!! Form::select('debitur[status_perkawinan]', [
 				'belum_kawin'		=> 'Belum Kawin',
 				'cerai_hidup'		=> 'Cerai Hidup',
 				'cerai_mati'		=> 'Cerai Mati',
 				'kawin' 			=> 'Kawin',
-			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['class' => 'form-control quick-select auto-tabindex']) !!}
+			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['class' => 'form-control quick-select auto-tabindex select']) !!}
 		</div> 
 	</div> 
 </fieldset>

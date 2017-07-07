@@ -37,8 +37,8 @@
 <fieldset class="form-group">
 	<label class="text-sm">Jenis Kendaraan</label>
 	<div class="row">
-		<div class="col-md-7">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="form-control quick-select  auto-tabindex" placeholder="" data-other="input-tipe-jaminan-kendaraan" data-default="roda_2">
+		<div class="col-md-3">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="form-control quick-select select auto-tabindex" placeholder="" data-other="input-tipe-jaminan-kendaraan" data-default="roda_2">
 				@foreach($data['select_jenis_kendaraan'] as $k => $v)
 					<option value="{{ $k }}" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == $k)) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach
@@ -58,13 +58,13 @@
 <fieldset class="form-group">
 	<label class="text-sm">Merk</label>
 	<div class="row">
-		<div class="col-md-12">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="form-control quick-select  auto-tabindex" placeholder="Merk Kendaraan" data-other="input-merk-kendaraan">
+		<div class="col-md-4">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="form-control quick-select select auto-tabindex" placeholder="Merk Kendaraan" data-other="input-merk-kendaraan">
 				@foreach($data['select_merk_kendaraan'] as $k => $v)
 					<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
 				@endforeach
 			</select>
-			<br/>
+			{{-- <br/> --}}
 			{{-- {!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;', 'data-field' => 'merk']) !!} --}}
 		</div>
 	</div>
@@ -72,7 +72,7 @@
 <fieldset class="form-group">
 	<label class="text-sm">No. BPKB</label>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]' }}" value="{{ (isset($param['data']['nomor_bpkb']) && !is_null($param['data']['nomor_bpkb'])) ? $param['data']['nomor_bpkb'] : null }}" class="form-control auto-tabindex input-kendaraan" placeholder="Nomor BPKB" data-field="nomor_bpkb">
 		</div>
 	</div>
