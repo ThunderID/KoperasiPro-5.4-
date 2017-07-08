@@ -145,6 +145,4 @@ $(document).ready( function() {
 });
 
 // Map
-$(document).ready( function() {
-	require('./plugins/map/jquery-gmaps-latlon-picker.js');
-});
+require('./plugins/map/jquery-gmaps-latlon-picker.js');
