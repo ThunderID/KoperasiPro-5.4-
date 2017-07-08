@@ -84,7 +84,7 @@
 		<div class="col-md-4">
 			{!! Form::select('debitur[status_perkawinan]', [
 				'belum_kawin'		=> 'Belum Kawin',
-				'cerai_hidup'		=> 'Cerai Hidup',
+				'cerai'				=> 'Cerai Hidup',
 				'cerai_mati'		=> 'Cerai Mati',
 				'kawin' 			=> 'Kawin',
 			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['id' => 'debitur_status_perkawinan', 'class' => 'form-control quick-select auto-tabindex select']) !!}
