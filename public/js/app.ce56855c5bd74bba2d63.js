@@ -14134,9 +14134,7 @@ $(document).ready(function () {
 });
 
 // Map
-$(document).ready(function () {
-  __webpack_require__(35);
-});
+__webpack_require__(35);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -20079,14 +20077,14 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 		return publicfunc;
 	};
 
-	$(document).ready(function () {
+	window.mapInit = function () {
 		if (!$.gMapsLatLonPickerNoAutoInit) {
 			$(".gllpLatlonPicker").each(function () {
 				$obj = $(document).gMapsLatLonPicker();
 				$obj.init($(this));
 			});
 		}
-	});
+	};
 
 	$(document).bind("location_changed", function (event, object) {
 		console.log("changed: " + $(object).attr('id'));
