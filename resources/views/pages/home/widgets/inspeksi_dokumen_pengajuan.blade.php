@@ -3,12 +3,13 @@
 @php
 	$dokcab 	= $dokcab->pengajuan([], $acl_logged_user);
 @endphp
-<div class="row" style="padding:15px;">
+<div class="row">
 	<div class="col-sm-12">
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="border-top: none;border-top-left-radius: 0; border-top-right-radius: 0;">
 			<div class="panel-body">
 				<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
-					Dokumen Pengajuan yang Belum Lengkap
+					<h4>Checklists Pengajuan</h4>
+					<p>Harap melengkapi dokumen berikut agar pengajuan dapat diproses.</p>
 				</div>							
 				<table class="table table-hover">
 					<thead>
@@ -67,12 +68,12 @@
 							</tr>
 						@empty
 							<tr>
-								<td colspan="4" class="text-center"><i>Belum Ada</i></td>
+								<td colspan="5" class="text-center"><i>Belum Ada</i></td>
 							</tr>
 						@endforelse
 						@if(count($dokcab))
 							<tr>
-								<td colspan="4" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
+								<td colspan="5" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
 							</tr>
 						@endif
 					</tbody>

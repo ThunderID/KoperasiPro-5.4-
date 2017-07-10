@@ -45,7 +45,7 @@
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index'), 'onkeyup' => 'autofilldebitur()']) !!}
+				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index'), 'onchange' => 'autofilldebitur()']) !!}
 			</div>
 		</div>
 	</div>

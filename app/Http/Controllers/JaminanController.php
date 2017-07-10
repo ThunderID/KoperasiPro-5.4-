@@ -62,7 +62,7 @@ class JaminanController extends Controller
 						break;
 				}
 
-				$jtb['alamat']		= $jtb['alamat'][0];
+				// $jtb['alamat']		= $jtb['alamat'][0];
 			}
 			else
 			{

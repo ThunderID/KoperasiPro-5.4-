@@ -46,9 +46,7 @@
 				@foreach($page_attributes->content as $key => $value)
 					<div id="{{$key}}" class="tab-pane fade in {{ $key == $first_key ? 'active' : '' }}">
 						<div class="col-md-12 p-l-none"> 
-						@foreach($value as $key2 => $value2)
-							@include($value2)
-						@endforeach
+							@include($value['konten'], ['sub' => $value['sub']])
 						</div>
 					</div>
 				@endforeach
