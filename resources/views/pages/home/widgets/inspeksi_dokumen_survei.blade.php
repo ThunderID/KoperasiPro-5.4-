@@ -100,7 +100,7 @@
 									</div>
 								</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', $svalue['id'])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', ['id' => $svalue['id'], 'status' => 'survei', 'q' => $svalue['debitur']['nama']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>

@@ -44,7 +44,7 @@
 									@endforeach
 								</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', $value['id'])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', ['id' => $value['id'], 'status' => 'menunggu_persetujuan', 'q' => $value['debitur']['nama']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>

@@ -61,7 +61,7 @@
 									</p>
 								</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', $value['id'])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', ['id' => $value['id'], 'status' => 'pengajuan', 'q' => $value['debitur']['nama']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>

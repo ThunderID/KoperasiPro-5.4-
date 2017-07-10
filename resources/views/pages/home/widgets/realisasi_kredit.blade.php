@@ -44,7 +44,7 @@
 								</td>
 								<td class="text-center">{{$value['tanggal_jatuh_tempo']}}</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', ['id' => $value['pengajuan_id']])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', ['id' => $value['pengajuan_id'], 'status' => 'menunggu_realisasi', 'q' => $value['orang']['nama']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>
