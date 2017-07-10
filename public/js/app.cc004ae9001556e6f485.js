@@ -58770,6 +58770,8 @@ window.panelModule = {
 
 			$("div[data-panel=" + panel + "]").addClass("hidden");
 			$("div[data-form=" + target + "]").removeClass("hidden");
+
+			$(".button-action").addClass("hidden");
 		});
 	},
 	panelFormClose: function panelFormClose() {
@@ -58781,6 +58783,8 @@ window.panelModule = {
 
 			$("div[data-panel=" + panel + "]").removeClass("hidden");
 			$("div[data-form=" + target + "]").addClass("hidden");
+
+			$(".button-action").removeClass("hidden");
 		});
 	},
 	init: function init() {
@@ -65788,14 +65792,14 @@ var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// List.js v1.4.1 (htt
 		return publicfunc;
 	};
 
-	$(document).ready(function () {
+	window.mapInit = function () {
 		if (!$.gMapsLatLonPickerNoAutoInit) {
 			$(".gllpLatlonPicker").each(function () {
 				$obj = $(document).gMapsLatLonPicker();
 				$obj.init($(this));
 			});
 		}
-	});
+	};
 
 	$(document).bind("location_changed", function (event, object) {
 		console.log("changed: " + $(object).attr('id'));

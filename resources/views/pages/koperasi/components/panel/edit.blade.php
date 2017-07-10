@@ -104,10 +104,8 @@
 
 				<div class="clearfix">&nbsp;</div>
 
-				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}">Cancel</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-				</div>
+				<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}">Batal</a>
+				<button type="submit" class="btn btn-primary">Simpan</button>
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="clearfix">&nbsp;</div>

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text('aset_tanah_bangunan[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) ? $param['data']['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex']) !!}
+				{!! Form::text('aset_tanah_bangunan[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) ? $param['data']['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat']) !!}
 			</div>
 		</div>
 	</div>

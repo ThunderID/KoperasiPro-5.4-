@@ -6,7 +6,7 @@
 
 		<div class="row p-b-sm">
 			<div class="col-sm-12">
-				<h2>{{ $page_attributes->title }}</h2>
+				<h2>{{ $page_attributes->title }}</h2>			
 			</div>
 		</div>
 
@@ -64,11 +64,11 @@
 										'id' => 'autocomplete'
 									]) !!}			
 									<span class="input-group-btn">
-								        <button class="btn btn-default gllpSearchButton" type="button" style="padding-bottom: 9px;">
+										<button class="btn btn-default gllpSearchButton" type="button" style="padding-bottom: 9px;">
 											<i class="fa fa-search" aria-hidden="true"></i>
-								        </button>
-								    </span>
-							    </div>							
+										</button>
+									</span>
+								</div>							
 							</div>
 						</div>
 						<br/>
@@ -109,7 +109,7 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-10">
 								@if(!is_null($page_datas->id))
-								<a class="btn btn-default" href="{{ URL::previous() }}">Batal</a>
+								<a class="btn btn-default" href="{{ URL::previous() }}" no-data-pjax>Batal</a>
 								@endif
 								<button type="submit" class="btn btn-primary">{{ is_null($page_datas->id) ? 'Tambahkan' : 'Simpan' }}</button>
 							</div>
@@ -120,7 +120,7 @@
 			</div>
 
 			@if(is_null($page_datas->id))
-			<div class="col-sm-6">
+			<div class="col-sm-6 hidden-xs">
 
 
 				<div class="row">
@@ -140,7 +140,7 @@
 					<label class="text-sm">Upload File</label>
 					<div class="row">
 						<div class="col-xs-12 p-b-md">
-						    {!! Form::file('koperasi') !!}
+							{!! Form::file('koperasi') !!}
 						</div>
 						<div class="col-xs-12">
 							{!! Form::submit('Impor Data', ['class' => 'btn btn-primary']) !!}
@@ -171,7 +171,7 @@
 			<div class="row p-t-sm">
 				<div class="col-xs-12 text-light">
 					<p class="text-muted">
-						Impor Data CSV mudahkan Anda untuk melakukan proses input data Koperasi dalam jumlah banyak. Anda hanya perlu mengikuti 3 langkah mudah berikut.
+						Impor Data CSV mudahkan Anda untuk melakukan proses input data koperasi dalam jumlah banyak. Anda hanya perlu mengikuti 3 langkah mudah berikut.
 					</p>
 					<br/>
 					<p class="p-b-md">
@@ -185,12 +185,12 @@
 					</p>
 					<p class="p-b-md">
 						<strong>2. Isikan Data</strong><br/><span class="text-muted">
-						Setelah template ter-unduh, buka file dan isikan data sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
+						Setelah template ter-unduh, buka dokumen dan isikan data koperasi sesuai dengan inputan yang telah tersedia. Setelah Anda selesai mengisikan data, simpan dokumen tersebut.
 						</span>
 					</p>
 					<p class="p-b-md">
 						<strong>3. Impor Data</strong><br/><span class="text-muted">
-						Pilih file yang akan Anda unggah pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
+						Pilih dokumen yang akan Anda unggah pada section <strong>Upload File</strong>. Tekan Impor Data, dan tunggu proses hingga selesai.
 						</span>
 					</p>						
 				</div>
@@ -200,74 +200,78 @@
 
 @section('script-plugins')
 	<script src="/js/jquery-2.1.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete"
-	        async defer></script>
-    <script>
-      // This example displays an address form, using the autocomplete feature
-      // of the Google Places API to help users fill in the information.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      var placeSearch, autocomplete;
-      var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-      };
-
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-            {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
-      }
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-          document.getElementById(component).value = '';
-          document.getElementById(component).disabled = false;
-        }
-
-        // Get each component of the address from the place details
-        // and fill the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-          var addressType = place.address_components[i].types[0];
-          if (componentForm[addressType]) {
-            var val = place.address_components[i][componentForm[addressType]];
-            document.getElementById(addressType).value = val;
-          }
-        }
-      }
-
-      // Bias the autocomplete object to the user's geographical location,
-      // as supplied by the browser's 'navigator.geolocation' object.
-      function geolocate() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-              center: geolocation,
-              radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-          });
-        }
-      }
-    </script>	        
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places&callback=initAutocomplete" async defer></script>        
 @stop
+
+@push('scripts')
+	// This example displays an address form, using the autocomplete feature
+	// of the Google Places API to help users fill in the information.
+
+	// This example requires the Places library. Include the libraries=places
+	// parameter when you first load the API. For example:
+	// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+	var placeSearch, autocomplete;
+	var componentForm = {
+	street_number: 'short_name',
+	route: 'long_name',
+	locality: 'long_name',
+	administrative_area_level_1: 'short_name',
+	country: 'long_name',
+	postal_code: 'short_name'
+	};
+
+	function initAutocomplete() {
+	// Create the autocomplete object, restricting the search to geographical
+	// location types.
+	autocomplete = new google.maps.places.Autocomplete(
+		/** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+		{types: ['geocode']});
+
+	// When the user selects an address from the dropdown, populate the address
+	// fields in the form.
+	autocomplete.addListener('place_changed', fillInAddress);
+	}
+
+	function fillInAddress() {
+	// Get the place details from the autocomplete object.
+	var place = autocomplete.getPlace();
+
+	for (var component in componentForm) {
+		document.getElementById(component).value = '';
+		document.getElementById(component).disabled = false;
+	}
+
+	// Get each component of the address from the place details
+	// and fill the corresponding field on the form.
+	for (var i = 0; i < place.address_components.length; i++) {
+		var addressType = place.address_components[i].types[0];
+		if (componentForm[addressType]) {
+			var val = place.address_components[i][componentForm[addressType]];
+			document.getElementById(addressType).value = val;
+		}
+	}
+	}
+
+	// Bias the autocomplete object to the user's geographical location,
+	// as supplied by the browser's 'navigator.geolocation' object.
+	function geolocate() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var geolocation = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+				var circle = new google.maps.Circle({
+					center: geolocation,
+					radius: position.coords.accuracy
+				});
+				autocomplete.setBounds(circle.getBounds());
+			});
+		}
+	}
+
+	$(window).load( function() {
+		window.mapInit();
+	});	
+@endpush

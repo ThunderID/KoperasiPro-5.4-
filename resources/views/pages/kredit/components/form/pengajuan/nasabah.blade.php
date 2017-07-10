@@ -30,31 +30,36 @@
  */
 @endphp
 {!! Form::hidden('debitur[debitur_id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
-<h5 class="text-uppercase text-light">Info Umum</h5>
-<fieldset class="form-group">
-	<label class="text-sm">E-KTP</label>
-	<div class="row">
-		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-			{!! Form::checkbox('debitur[is_ektp]', true, (isset($param['data']['is_ektp']) ? $param['data']['is_ektp'] : true), ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak']) !!}
-		</div>
-	</div>
-</fieldset>
+<h5 class="text-uppercase text-light">Identitas Nasabah</h5>
 <fieldset class="form-group">
 	<label class="text-sm">NIK</label>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index'), 'onkeyup' => 'autofilldebitur()']) !!}
+				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index'), 'onchange' => 'autofilldebitur()']) !!}
 			</div>
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
+	<!-- <label class="text-sm">E-KTP</label> -->
+	<div class="row">
+		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 m-l-lg">
+			<label class="checkbox text-sm">Nasabah menggunakan E-KTP
+				{!! Form::checkbox('debitur[is_ektp]', true, (isset($param['data']['is_ektp']) ? $param['data']['is_ektp'] : true), ['class' => 'form-control input-switch auto-tabindex focus', 'data-inverse' => 'true', 'data-on-color' => 'primary', 'data-on-text' => 'Iya', 'data-off-text' => 'Tidak', 'style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
+			</label>
+		</div>
+	</div>
+</fieldset>
+
+<hr>
+<h5 class="text-uppercase text-light">Profil Nasabah</h5>
+<fieldset class="form-group">
 	<label class="text-sm">Nama</label>
 	<div class="row">
 		<div class="col-md-7">
-			{!! Form::text('debitur[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['id' => 'debitur_nama', 'class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama debitur']) !!}
+			{!! Form::text('debitur[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['id' => 'debitur_nama', 'class' => 'form-control required auto-tabindex', 'placeholder' => 'Nama Lengkap Nasabah']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -62,7 +67,7 @@
 	<label class="text-sm">Tanggal Lahir</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['id' => 'debitur_tanggal_lahir', 'class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			{!! Form::text('debitur[tanggal_lahir]', (isset($param['data']['tanggal_lahir']) ? $param['data']['tanggal_lahir'] : null), ['id' => 'debitur_tanggal_lahir', 'class' => 'form-control date mask-birthdate auto-tabindex', 'placeholder' => 'Tanggal/Bulan/Tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block m-b-none">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>
@@ -84,7 +89,7 @@
 		<div class="col-md-4">
 			{!! Form::select('debitur[status_perkawinan]', [
 				'belum_kawin'		=> 'Belum Kawin',
-				'cerai_hidup'		=> 'Cerai Hidup',
+				'cerai'				=> 'Cerai Hidup',
 				'cerai_mati'		=> 'Cerai Mati',
 				'kawin' 			=> 'Kawin',
 			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['id' => 'debitur_status_perkawinan', 'class' => 'form-control quick-select auto-tabindex select']) !!}
@@ -121,7 +126,7 @@
 	]
 ])
 <hr />
-
+<h5 class="text-uppercase text-light">Kontak</h5>
 {{-- panel contact --}}
 @include('components.helpers.forms.contact', [ 
 	'param'		=> [

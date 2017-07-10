@@ -34,6 +34,7 @@ class PengajuanKredit
 	 */
 	public function __construct($jenis_kredit, $jangka_waktu, $pengajuan_kredit, $tanggal_pengajuan, $mobile = [], $spesimen_ttd = null, $foto_ktp = null, $lokasi = null, $referensi = null)
 	{
+		$this->pengajuan_id 		= null;
 		$this->jenis_kredit     	= $jenis_kredit;
 		$this->jangka_waktu     	= $jangka_waktu;
 		$this->pengajuan_kredit     = $pengajuan_kredit;

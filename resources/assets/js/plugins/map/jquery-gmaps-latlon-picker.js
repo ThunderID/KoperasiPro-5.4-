@@ -230,8 +230,8 @@ $.fn.gMapsLatLonPicker = (function() {
 
 	return publicfunc;
 });
-	
-$(document).ready( function() {
+
+window.mapInit =  (function() {
 	if (!$.gMapsLatLonPickerNoAutoInit) {
 		$(".gllpLatlonPicker").each(function () {
 			$obj = $(document).gMapsLatLonPicker();

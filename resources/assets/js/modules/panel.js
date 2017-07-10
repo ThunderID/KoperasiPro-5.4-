@@ -8,6 +8,8 @@ window.panelModule = {
 
 			$("div[data-panel=" +panel+ "]").addClass("hidden");
 			$("div[data-form=" +target+ "]").removeClass("hidden");
+
+			$(".button-action").addClass("hidden");
 		});
 	},
 	panelFormClose: function () {
@@ -19,6 +21,8 @@ window.panelModule = {
 
 			$("div[data-panel=" +panel+ "]").removeClass("hidden");
 			$("div[data-form=" +target+ "]").addClass("hidden");
+
+			$(".button-action").removeClass("hidden");
 		});
 	},
 	init: function () {

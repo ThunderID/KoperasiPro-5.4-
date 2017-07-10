@@ -14,7 +14,7 @@
 	@forelse ($page_datas->credit['survei_keuangan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-sm text-capitalize">
+				<p class="m-b-xs text-capitalize">
 					keuangan {{ $key+1 }}
 
 					@if (!empty($page_datas->credit['survei_keuangan']))
@@ -33,7 +33,7 @@
 					@endif
 
 				</p>
-				<hr class="m-t-sm m-b-sm"/>
+				<hr class="m-t-xs m-b-xs"/>
 				@if(isset($value['surveyor']) && !empty($value['surveyor']))
 					@php
 						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($value['surveyor']['visas'], $acl_active_office);

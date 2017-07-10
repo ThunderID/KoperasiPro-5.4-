@@ -124,12 +124,30 @@
 							</div>
 
 							<div class="hidden" data-form="create">
-								<h4 class="text-uppercase">Tambah Pengguna</h4>
+								<h4 class="text-uppercase">Tambah Pengguna
+									<span class="pull-right text-capitalize">
+										<small>
+										<a href="#" data-dismiss="panel" data-panel="data-index" data-target="create" no-data-pjax>
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+											Kembali
+										</a>
+										</small>
+									</span>
+								</h4>
 							</div>
 
 							@foreach($page_datas->users as $key => $value)
 							<div class="hidden" data-form="edit_{{ $value['id'] }}">
-								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['petugas']['nama']) }}</h4>
+								<h4 class="text-uppercase">Edit Pengguna {{ ucwords($value['petugas']['nama']) }}
+									<span class="pull-right text-capitalize">
+										<small>
+										<a href="#" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}" no-data-pjax >
+											<i class="fa fa-angle-left" aria-hidden="true"></i>
+											Kembali
+										</a>
+										</small>
+									</span>								
+								</h4>
 							</div>
 							@endforeach
 
@@ -212,6 +230,11 @@
 
 @section('script-plugins')
 	<script src="/js/jquery-2.1.1.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places"
-			async defer></script>	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGU-wSjC89hoHPStx7bYGOjHpULJQHGI&libraries=places" async defer></script>
 @stop
+
+@push('scripts')
+	$(window).load( function() {
+		window.mapInit();
+	});
+@endpush

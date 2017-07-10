@@ -14,7 +14,7 @@
 	@forelse ($page_datas->credit['survei_aset_usaha'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left text-capitalize text-muted">
-				<p class="m-b-sm text-capitalize">
+				<p class="m-b-xs text-capitalize">
 					aset usaha {{ $key+1 }} 
 					
 					@if (!empty($page_datas->credit['survei_aset_usaha']))
@@ -30,7 +30,7 @@
 						@endif
 					@endif
 				</p>
-				<hr class="m-t-sm m-b-sm"/>
+				<hr class="m-t-xs m-b-xs"/>
 				@if (isset($page_datas->credit['survei_aset_usaha']) && !empty($page_datas->credit['survei_aset_usaha']))
 					@php
 						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($page_datas->credit['survei_nasabah']['surveyor']['visas'], $acl_active_office);
@@ -42,7 +42,7 @@
 				@endif
 			</div>
 		</div>
-		<div class="row m-b-sm">
+		<div class="row p-t-sm m-b-sm">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info usaha</strong></p>
 				<p class="text-capitalize text-light m-b-xs">
@@ -91,7 +91,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="row">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
 	@empty
 		@if ($page_datas->credit['status'] == 'pengajuan')
 			<div class="row">

@@ -100,6 +100,17 @@ class HeaderTransaksi extends BaseModel
 		return $this->hasMany('App\Domain\Kasir\Models\DetailTransaksi', 'header_transaksi_id');
 	}
 
+
+	/**
+	 * relationship pengajuan
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function pengajuan()
+	{
+		return $this->belongsTo('App\Domain\Pengajuan\Models\Pengajuan', 'pengajuan_id');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/

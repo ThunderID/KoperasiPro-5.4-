@@ -19,23 +19,25 @@ Route::get('logout',	['uses' => 'LoginController@logout', 		'as' => 'login.destr
 // Here lies credit controller all things started here
 Route::group(['middleware' => ['pjax', 'authenticated']], function()
 {
-	Route::get('/',				['uses'	=> 'HomeController@index',			'as' => 'home.index']);
+	Route::get('/',		['uses'	=> 'HomeController@index',			'as' => 'home.index']);
 
 	//Menu Debitur
-	Route::any('ajax/debitur',	['uses' => 'DebiturController@index', 		'as' => 'ajax.debitur']);
+	Route::any('ajax/jaminan/tanah/bangunan',	['uses' => 'JaminanController@tanah_bangunan', 	'as' => 'ajax.jaminan.tb']);
+	Route::any('ajax/jaminan/kendaraan',		['uses' => 'JaminanController@kendaraan',	 	'as' => 'ajax.jaminan.k']);
+	Route::any('ajax/debitur',					['uses' => 'DebiturController@index', 			'as' => 'ajax.debitur']);
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
 
 	//Menu Status Kredit
-	Route::any('kredit/{id}/{status}',																	['uses' => 'KreditController@status', 	'as' => 'credit.status']);
+	Route::any('kredit/{id}/{status}',						['uses' => 'KreditController@status',				'as' => 'credit.status']);
 
-	Route::any('kredit/print/realisasi/{id}/{dokumen}',																	['uses' => 'KreditController@print_realisasi', 	'as' => 'creadit.print.realisasi']);
+	Route::any('kredit/print/realisasi/{id}/{dokumen}',		['uses' => 'KreditController@print_realisasi', 		'as' => 'creadit.print.realisasi']);
 	
 	//Menu jaminan
-	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
-	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',					['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
-	Route::any('hapus/debitur/relasi/{kredit_id}/{relasi_id}',										['uses' => 'KreditController@destroy', 	'as' => 'debitur.relasi.destroy']);
+	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',			['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);
+	Route::any('hapus/jaminan/tanah/bangunan/{kredit_id}/{jaminan_tanah_bangunan_id}',	['uses' => 'KreditController@destroy', 	'as' => 'jaminan.tanah.bangunan.destroy']);
+	Route::any('hapus/debitur/relasi/{kredit_id}/{relasi_id}',							['uses' => 'KreditController@destroy', 	'as' => 'debitur.relasi.destroy']);
 
 	// download
 	Route::get('/download/{filename}',			['uses'	=> 'DownloadController@download',			'as' => 'home.download']);
@@ -50,33 +52,33 @@ Route::group(['middleware' => ['survei_kredit']], function()
 	Route::any('hapus/survei/aset/tanah/bangunan/{kredit_id}/{survei_aset_tanah_bangunan_id}',		['uses' => 'KreditController@destroy', 	'as' => 'survei.aset.tanah.bangunan.destroy']);
 
 	Route::any('hapus/survei/jaminan/kendaraan/{kredit_id}/{survei_jaminan_kendaraan_id}',			['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.kendaraan.destroy']);
-	Route::any('hapus/survei/jaminan/tanah/bangunan/{kredit_id}/{survei_jaminan_tanah_bangunan_id}', 	['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.tanah.bangunan.destroy']);
+	Route::any('hapus/survei/jaminan/tanah/bangunan/{kredit_id}/{survei_jaminan_tanah_bangunan_id}', ['uses' => 'KreditController@destroy', 	'as' => 'survei.jaminan.tanah.bangunan.destroy']);
 
 	Route::any('hapus/survei/rekening/{kredit_id}/{survei_rekening_id}',							['uses' => 'KreditController@destroy', 	'as' => 'survei.rekening.destroy']);
 	Route::any('hapus/survei/kepribadian/{kredit_id}/{survei_kepribadian_id}',						['uses' => 'KreditController@destroy', 	'as' => 'survei.kepribadian.destroy']);
-	Route::any('hapus/survei/keuangan/{kredit_id}/{survei_keuangan_id}',						['uses' => 'KreditController@destroy', 	'as' => 'survei.keuangan.destroy']);
+	Route::any('hapus/survei/keuangan/{kredit_id}/{survei_keuangan_id}',							['uses' => 'KreditController@destroy', 	'as' => 'survei.keuangan.destroy']);
 
 	// route for print kredit
-	Route::get('print/kredit/{mode}/{id}', 													['uses' => 'KreditController@prints',	'as' => 'credit.print']);
+	Route::get('print/kredit/{mode}/{id}', 		['uses' => 'KreditController@prints',	'as' => 'credit.print']);
 });
 	
 Route::group(['middleware' => ['survei_kredit']], function()
 {
 	//SEEMS NO USE
 	// route for pdf kredit
-	Route::get('kredit/pdf/rencana-kredit/{id}', 											['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
+	Route::get('rencana/kredit/pdf/{id}', 		['uses' => 'CreditController@pdf',				'as' => 'credit.pdf']);
 });
 
 Route::group(['middleware' => ['transaksi_harian']], function()
 {
 	// Kasir - KAS masuk & keluar
-	Route::get('kasir/kas', 																['uses' => 'KasirController@index', 'as' => 'kasir.kas.index']);
-	Route::get('kasir/kas/{id}',															['uses' => 'KasirController@show', 'as' => 'kasir.kas.show']);
-	Route::get('kasir/kas/{status}/baru',													['uses' => 'KasirController@create', 'as' => 'kasir.kas.create']);
-	Route::post('kasir/kas/{status}/simpan',												['uses' => 'KasirController@store', 'as' => 'kasir.kas.store']);
-	Route::get('kasir/realisasi/',														['uses' => 'KasirController@realisasi', 'as' => 'kasir.realisasi.kredit']);
-	Route::get('kasir/realisasi/{id}',														['uses' => 'KasirController@show', 'as' => 'kasir.realisasi.show']);
-	Route::get('kasir/angsuran/bayar',														['uses' => 'KasirController@angsuran', 'as' => 'kasir.angsuran']);
+	Route::get('kasir/kas', 					['uses' => 'KasirController@index', 'as' => 'kasir.kas.index']);
+	Route::get('kasir/kas/{id}',				['uses' => 'KasirController@show', 'as' => 'kasir.kas.show']);
+	Route::get('kasir/kas/{status}/baru',		['uses' => 'KasirController@create', 'as' => 'kasir.kas.create']);
+	Route::post('kasir/kas/{status}/simpan',	['uses' => 'KasirController@store', 'as' => 'kasir.kas.store']);
+	Route::get('kasir/realisasi/',				['uses' => 'KasirController@realisasi', 'as' => 'kasir.realisasi.kredit']);
+	Route::get('kasir/realisasi/{id}',			['uses' => 'KasirController@show', 'as' => 'kasir.realisasi.show']);
+	Route::get('kasir/angsuran/bayar',			['uses' => 'KasirController@angsuran', 'as' => 'kasir.angsuran']);
 });
 
 Route::group(['middleware' => ['modifikasi_koperasi']], function()
@@ -84,7 +86,7 @@ Route::group(['middleware' => ['modifikasi_koperasi']], function()
 	//Menu Koperasi
 	Route::resource('koperasi', 'KoperasiController');
 	
-	Route::post('koperasi/batch/store', ['uses' => 'KoperasiController@batch', 'as' => 'koperasi.batch']);
+	Route::post('koperasi/batch/store', 		['uses' => 'KoperasiController@batch', 'as' => 'koperasi.batch']);
 });
 
 Route::group(['middleware' => ['atur_akses']], function()
@@ -92,7 +94,7 @@ Route::group(['middleware' => ['atur_akses']], function()
 	//Menu Pengguna
 	Route::resource('pengguna', 'PenggunaController');
 	
-	Route::post('pengguna/batch/store', ['uses' => 'PenggunaController@batch', 'as' => 'pengguna.batch']);
+	Route::post('pengguna/batch/store', 		['uses' => 'PenggunaController@batch', 'as' => 'pengguna.batch']);
 });
 
 Route::group(['middleware' => ['pjax', 'authenticated']], function()

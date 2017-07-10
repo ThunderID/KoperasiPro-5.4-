@@ -124,6 +124,8 @@ class JaminanTanahBangunan extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
+
+	protected $appends 				= 	['harga_taksasi'];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
 	/**
@@ -164,6 +166,14 @@ class JaminanTanahBangunan extends BaseModel
 	{
 		return $this->formatAlamatTo($value);
 	}
+
+	public function getHargaTaksasiAttribute($value)
+	{
+		$total 		= ($this->attributes['taksasi_tanah'] + $this->attributes['taksasi_bangunan']);
+		
+		return $this->formatMoneyTo($total);
+	}
+
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
 	public function setNilaiJaminanAttribute($value)
