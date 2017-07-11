@@ -133,7 +133,7 @@
 							<i class="fa-li fa fa-history"></i> Riwayat Status
 						</a>
 					</li>
-					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Pencairan</strong></p>
+					<!-- <p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Pencairan</strong></p>
 					<li class="m-t-xs m-b-xs"><a href="#">
 						<a class="text-capitalize" href="#print_form_nota_pencairan_kredit" data-toggle="tab" role="tab">
 							<i class="fa-li fa fa-file-text-o"></i> Nota Pencairan Kredit
@@ -143,7 +143,7 @@
 						<a class="text-capitalize" href="#data-angsuran" aria-controls="data-angsuran" data-toggle="tab" role="tab">
 							<i class="fa-li fa fa-file-text-o"></i> Angsuran
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -213,7 +213,7 @@
 				<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Tolak</a> 
 				&nbsp;&nbsp;
 				<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
-					<i class="fa fa-check" aria-hidden="true"></i> Setujui
+					<i class="fa fa-check" aria-hidden="true"></i> Survei
 				</a>
 			</div>	
 		</div>

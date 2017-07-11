@@ -255,7 +255,7 @@ class KreditController extends Controller
 				$debitur 		= Input::get('debitur');
 				$debitur['nik'] = '35-'.$debitur['nik'];
 
-				$update->setDebitur($debitur);
+				$update->setDebitur($debitur['nik'], $debitur['nama'], $debitur['tanggal_lahir'], $debitur['jenis_kelamin'], $debitur['status_perkawinan'], $debitur['telepon'], $debitur['pekerjaan'], $debitur['penghasilan_bersih'], $debitur['is_ektp'], $debitur['alamat']);
 			}
 
 			if (Input::has('relasi'))

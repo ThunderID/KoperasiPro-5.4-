@@ -53,8 +53,8 @@ class HomeController extends Controller
 
 						break;
 					case 'modifikasi_koperasi': case 'atur_akses' :
-						$this->page_attributes->content['HR']['konten']		= 'pages.home.widgets.cabang_butuh_bantuan';
-						$this->page_attributes->content['HR']['sub']		= [];
+						$this->page_attributes->content['Personalia']['konten']		= 'pages.home.widgets.cabang_butuh_bantuan';
+						$this->page_attributes->content['Personalia']['sub']		= [];
 					default:
 						# code...
 						break;

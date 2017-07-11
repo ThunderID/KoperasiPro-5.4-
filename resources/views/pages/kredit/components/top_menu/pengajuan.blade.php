@@ -28,7 +28,7 @@
 				<!-- <a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
 					<i class="fa fa-info-circle"></i> Riwayat Note
 				</a> -->
-				<div class="dropdown pull-right">
+				<!-- <div class="dropdown pull-right">
 					<a class="btn p-r-sm p-l-none primary hidden-xs hidden-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						<i class="fa fa-print" aria-hidden="true"></i> Print&nbsp;&nbsp;
 						<i class="fa fa-angle-down"></i>
@@ -58,7 +58,7 @@
 							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Surat PK</a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 				{{-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
 				</a> --}}
