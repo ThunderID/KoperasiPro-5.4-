@@ -74,11 +74,11 @@
 								</li>
 							</li>
 						@endif
-						<li class="dropdown-header">Realisasi</li>
+						<!-- <li class="dropdown-header">Realisasi</li>
 							<li class="m-b-xs">
 								<a href="{{route('credit.print.realisasi', ['id' => $page_datas->credit['id'], 'jj' => 'jtb', 'dokumen' => 'pernyataan_penjamin_jaminan'])}}"><i class="fa fa-file-text-o"></i>&nbsp; Nota Pencairan </a>
 							</li>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				{{-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
