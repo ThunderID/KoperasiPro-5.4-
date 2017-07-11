@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<p class="text-capitalize text-lg m-b-sm">Data Pribadi
+		<p class="text-capitalize text-md m-b-sm">Informasi Pribadi
 			@if (!empty($page_datas->credit['debitur']))
 				@if ($edit == true)
 					<span class=" text-md pull-right text-capitalize">
@@ -37,16 +37,19 @@
 			<p class="text-capitalize text-light m-b-xs">
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					{{-- @foreach ($page_datas->credit ['debitur']['alamat'] as $k => $v) --}}
-						<p class="text-capitalize text-light">
-							{{ (isset($page_datas->credit['debitur']['alamat']['alamat']) && !is_null($page_datas->credit['debitur']['alamat']['alamat'])) ? $page_datas->credit['debitur']['alamat']['alamat'] : '' }}
-							RT {{ (isset($page_datas->credit['debitur']['alamat']['rt']) ? $page_datas->credit['debitur']['alamat']['rt'] : '-') }} / RW {{ isset($page_datas->credit['debitur']['alamat']['rw']) ? $page_datas->credit['debitur']['alamat']['rw'] : '-' }}
-							{{ (isset($page_datas->credit['debitur']['alamat']['desa']) && !is_null($page_datas->credit['debitur']['alamat']['desa'])) ? $page_datas->credit['debitur']['alamat']['desa'] : '' }} 
-							{!! (isset($page_datas->credit['debitur']['alamat']['distrik']) && !is_null($page_datas->credit['debitur']['alamat']['distrik'])) ? $page_datas->credit['debitur']['alamat']['distrik']  .' <br/>' : '' !!}
-							{!! (isset($page_datas->credit['debitur']['alamat']['regensi']) && !is_null($page_datas->credit['debitur']['alamat']['regensi'])) ? $page_datas->credit['debitur']['alamat']['regensi'] . ', ': '' !!}
-							{{ (isset($page_datas->credit['debitur']['alamat']['provinsi']) && !is_null($page_datas->credit['debitur']['alamat']['provinsi'])) ? $page_datas->credit['debitur']['alamat']['provinsi'] : '' }} - 
-							{{ (isset($page_datas->credit['debitur']['alamat']['negara']) && !is_null($page_datas->credit['debitur']['alamat']['negara'])) ? $page_datas->credit['debitur']['alamat']['negara'] : '' }}
-						</p>
-					{{-- @endforeach --}}
+					<p class="text-capitalize text-light">
+						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
+							@if ($k == 0)
+								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
+								{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
+								{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
+								{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+								{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
+								{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+							@endif
+						@endforeach
+					</p>
 				@else
 					<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="alamat" data-panel="data-pribadi" no-data-pjax> Tambahkan Sekarang </a></p>
 				@endif

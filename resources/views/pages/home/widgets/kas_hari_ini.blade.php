@@ -7,6 +7,7 @@
 	$list_pemasukan		= $dokcab->list_pemasukan([], $acl_logged_user);
 	$list_pengeluaran	= $dokcab->list_pengeluaran([], $acl_logged_user);
 @endphp
+	<div class="clearfix">&nbsp;</div>
 
 	<div class="row field">
 		<div class="col-sm-12 text-center">
@@ -55,8 +56,8 @@
 									</div>
 
 								</div>
-							</div>									
-						</div>										
+							</div>
+						</div>
 					</div>											
 
 				</div>

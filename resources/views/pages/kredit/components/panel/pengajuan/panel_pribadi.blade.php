@@ -1,6 +1,7 @@
 <div class="row m-l-none m-r-none m-b-md">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div data-panel="data-pribadi">
+			<p class="text-capitalize text-lg m-b-sm">Data Pribadi &amp; Keluarga</p>
 			{{-- NASABAH --}}
 			@include ('pages.kredit.components.data.pengajuan.data_nasabah_new', [
 				'edit' => true
@@ -10,13 +11,6 @@
 
 			{{-- KELUARGA --}}
 			@include ('pages.kredit.components.data.pengajuan.data_keluarga_new', [
-				'edit' => true
-			])
-
-			<hr class="m-b-sm p-b-sm">
-
-			{{-- KEPRIBADIAN --}}
-			@include ('pages.kredit.components.data.pengajuan.data_kepribadian_new', [
 				'edit' => true
 			])
 		</div>
@@ -116,7 +110,7 @@
 		</div>
 
 		{{-- FORM UNTUK EDIT DATA KEPRIBADIAN --}}
-		@if (isset($page_datas->credit['survei_kepribadian']))
+		{{-- @if (isset($page_datas->credit['survei_kepribadian']))
 			@foreach ($page_datas->credit['survei_kepribadian'] as $k => $v)
 				<div class="hidden" data-form="kepribadian-{{ $k }}">
 					<div class="row">
@@ -140,9 +134,9 @@
 					{!! Form::close() !!}
 				</div>
 			@endforeach
-		@endif
+		@endif --}}
 
-		<div class="hidden" data-form="kepribadian">
+		{{-- <div class="hidden" data-form="kepribadian">
 			<div class="row">
 				<div class="col-sm-12">
 					<p class="text-capitalize m-b-sm text-lg">form kepribadian</p>
@@ -162,7 +156,12 @@
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
-		</div>
+		</div> --}}
 		{{---------------- // FORM KEPRIBADIAN --------------}}
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
+		<hr class="m-b-sm">
 	</div>
 </div>

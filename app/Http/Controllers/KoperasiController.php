@@ -61,7 +61,17 @@ class KoperasiController extends Controller
 		$this->setGlobal();
 
 		$origin_id = $this->acl_active_office['koperasi']['id'];
-		if($id != $origin_id){
+	
+		if($id != $origin_id)
+		{
+			$visa	= Visa::where('akses_koperasi_id', $id)->where('orang_id', $this->acl_logged_user['id'])->first();
+			if($visa)
+			{
+				TAuth::setOffice($visa->id);
+
+				return Redirect::to(route('koperasi.show', ['id' => $id]));
+			}
+
 			return Redirect::to(route('koperasi.show', ['id' => $origin_id]));
 		}
 

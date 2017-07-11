@@ -1,6 +1,5 @@
 {{-- informasi umum --}}
 {!! Form::hidden('relasi[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
-<b><h5>Info Umum</h5></b>
 <fieldset class="form-group">
 	<label class="text-sm">Hubungan</label>
 	<div class="row">
@@ -10,7 +9,7 @@
 				'pasangan'		=> 'Pasangan',
 				'saudara'		=> 'Saudara',
 			], (!empty($param['data']['hubungan']) ? $param['data']['hubungan'] : ''), ['class' => 'form-control quick-select select set-focus', 'data-other' => 'input-hubungan-keluarga']) !!}
-			{!! Form::hidden('relasi[hubungan]', 'orang_tua', ['class' => 'input-hubungan-keluarga']) !!}
+			{{-- {!! Form::hidden('relasi[hubungan]', 'orang_tua', ['class' => 'input-hubungan-keluarga']) !!} --}}
 		</div>
 	</div>
 </fieldset>

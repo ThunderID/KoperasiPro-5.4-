@@ -68,11 +68,11 @@ class SetujuiKredit
 
 		if(!is_null($limit))
 		{
-			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->where('pengajuan_kredit', '<', $limit)->with(['koperasi'])->get()->toArray();
+			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->where('pengajuan_kredit', '<', $limit)->with(['koperasi', 'debitur', 'survei_keuangan', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan'])->get()->toArray();
 		}
 		else
 		{
-			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->with(['cabang'])->get()->toArray();
+			$kredit 			= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('menunggu_persetujuan')->with(['koperasi', 'debitur', 'survei_keuangan', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan'])->get()->toArray();
 		}
 
 		return $kredit;

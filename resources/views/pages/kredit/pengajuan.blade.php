@@ -7,7 +7,7 @@
 	<div data-panel="data-kredit">
 		<div class="row m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<h4>Info Kredit</h4>
+				<h4>Info Kredit @if (isset($page_datas->credit['hp_i'])) <small class="label label-info">Pengajuan dari HP</small>@endif</h4>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
 				@if ($page_datas->credit['status'] == 'pengajuan')
@@ -74,195 +74,76 @@
 			</div>
 		</div>
 
-		{{-- ANGGUNAN --}}
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<p class="text-capitalize m-b-sm text-lg">Jaminan</p>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				{{-- ANGGUNAN TANAH & BANGUNAN --}}
-				@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
-					@forelse ($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
-						<p class="m-t-sm m-b-xs text-capitalize text-sm">
-							<strong>tanah &amp; bangunan {{ $key+1 }}</strong>
-							@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
-								@if ($page_datas->credit['status'] == 'pengajuan')
-									<span class="pull-right">
-										<a class="text-danger m-r-md" href="#" data-url="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
-											<i class="fa fa-trash" aria-hidden="true"></i>
-											 Hapus
-										</a> &nbsp;
-										<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-kredit" no-data-pjax>
-											<i class="fa fa-pencil" aria-hidden="true"></i>
-											 Edit
-										</a>
-									</span>
-								@endif
-							@endif
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							{{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }}
-							<span> ( {{ (isset($value['jenis_sertifikat']) && !is_null($value['jenis_sertifikat'])) ? str_replace('_', ' ', $value['jenis_sertifikat']) : '-' }} )</span>
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							No. Sertifikat {{ (isset($value['nomor_sertifikat']) && !is_null($value['nomor_sertifikat'])) ? $value['nomor_sertifikat'] : '-' }}
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							{{ (isset($value['luas_bangunan']) && !is_null($value['luas_bangunan'])) ? str_replace('_', ' ', $value['luas_bangunan']) : '-'  }} M<sup>2</sup> / 
-							{{ (isset($value['luas_tanah']) && !is_null($value['luas_tanah'])) ? str_replace('_', ' ', $value['luas_tanah']) : '-'  }} M<sup>2</sup> 
-							<span class="text-capitalize text-muted" style="font-size: 11px;"><em>( bangunan / tanah )</em></span>
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? $value['atas_nama'] : '-' }}
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							{{ (isset($value['alamat']['alamat']) && !is_null($value['alamat']['alamat'])) ? $value['alamat']['alamat'] : '' }}
-							RT {{ (isset($value['alamat']['rt']) ? $value['alamat']['rt'] : '-') }} / RW {{ isset($value['alamat']['rw']) ? $value['alamat']['rw'] : '-' }}
-							{{ (isset($value['alamat']['desa']) && !is_null($value['alamat']['desa'])) ? $value['alamat']['desa'] : '' }} 
-							{!! (isset($value['alamat']['distrik']) && !is_null($value['alamat']['distrik'])) ? $value['alamat']['distrik'] .' <br/>' : '' !!}
-							{{ (isset($value['alamat']['regensi']) && !is_null($value['alamat']['regensi'])) ? $value['alamat']['regensi'] : '' }} - 
-							{{ (isset($value['alamat']['provinsi']) && !is_null($value['alamat']['provinsi'])) ? $value['alamat']['provinsi'] : '' }} - 
-							{{ (isset($value['alamat']['negara']) && !is_null($value['alamat']['negara'])) ? $value['alamat']['negara'] : '' }}
-						</p>
-						<p class="text-capitalize text-light m-b-xs">
-							Sertifikat berlaku sampai th. {{ (isset($value['masa_berlaku_sertifikat']) && !is_null($value['masa_berlaku_sertifikat'])) ? $value['masa_berlaku_sertifikat'] : '-' }}
-						</p>
-					@empty
-						<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>Tanah &amp; Bangunan</strong></p>
-						@if ($page_datas->credit['status'] != 'pengajuan')
-							<p class="text-light">Belum ada data disimpan.</p>
-						@else
-							<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-kredit" no-data-pjax> Tambahkan Sekarang </a></p>
-						@endif
-					@endforelse
-
-					@if ((count($page_datas->credit['jaminan_tanah_bangunan']) < 3) && count($page_datas->credit['jaminan_tanah_bangunan']) != 0)
-						<div class="row m-t-md m-b-md">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								@if ($page_datas->credit['status'] == 'pengajuan')
-									<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-jaminan-tanah-bangunan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
-								@endif
-							</div>
-						</div>
-					@endif
-				@else
-					<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>Tanah &amp; Bangunan</strong></p>
-					@if ($page_datas->credit['status'] != 'pengajuan')
-						<p class="text-light">Belum ada data disimpan.</p>
-					@else
-						<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-kredit" no-data-pjax> Tambahkan Sekarang </a></p>
-					@endif
-				@endif
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				{{-- ANGGUNAN KENDARAAN --}}
-				@if (isset($page_datas->credit['jaminan_kendaraan']) && !empty($page_datas->credit['jaminan_kendaraan']))
-					@forelse($page_datas->credit['jaminan_kendaraan'] as $key => $value)
-						<p class="m-t-sm m-b-xs text-capitalize text-sm">
-							<strong>kendaraan {{ $key+1 }}</strong>
-							@if (!empty($page_datas->credit['jaminan_kendaraan']))
-								@if ($page_datas->credit['status'] == 'pengajuan')
-									<span class="pull-right">
-										<a class="text-danger m-r-md" href="#" data-url="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
-											<i class="fa fa-trash" aria-hidden="true"></i>
-											 Hapus
-										</a> &nbsp;
-										<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-kredit" no-data-pjax>
-											<i class="fa fa-pencil" aria-hidden="true"></i>
-											 Edit
-										</a>
-									</span>
-								@endif
-							@endif
-						</p>
-						
-						<p class="text-capitalize text-light m-b-xs">
-							{{ (isset($value['merk']) && !is_null($value['merk'])) ? $value['merk'] : '-' }} 
-							Th. {{ (isset($value['tahun']) && !is_null($value['tahun'])) ? $value['tahun'] : '-' }}
-							({{ (isset($value['tipe']) && !is_null($value['tipe'])) ? str_replace('_', ' ', $value['tipe']) : '-' }})
-						</p>
-						
-						<p class="text-capitalize text-light m-b-xs">
-							No. BPKB {{ (isset($value['nomor_bpkb']) && !is_null($value['nomor_bpkb'])) ? $value['nomor_bpkb'] : '-' }}
-						</p>
-
-						<p class="text-capitalize text-light m-b-md">
-							{{ (isset($value['atas_nama']) && !is_null($value['atas_nama'])) ? $value['atas_nama'] : '-' }}
-						</p>
-					@empty
-						<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>Kendaraan</strong></p>
-						<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-kredit" no-data-pjax> Tambahkan Sekarang </a></p>	
-					@endforelse
-
-					@if ((count($page_datas->credit['jaminan_kendaraan']) < 2) && (count($page_datas->credit['jaminan_kendaraan']) != 0))
-						<div class="row m-t-md m-b-md">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-jaminan-kendaraan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Kendaraan</a>
-							</div>
-						</div>
-					@endif
-				@else
-					<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>Kendaraan</strong></p>
-					<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-kredit" no-data-pjax> Tambahkan Sekarang </a></p>	
-				@endif
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
-				<hr>
-			</div>
-		</div>
-
 		{{-- SUB MENU --}}
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<p class="text-capitalize m-b-sm text-md ">Informasi Lainnya</p>
+				<p class="text-capitalize m-b-sm text-lg">Informasi Lainnya</p>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-				<ul class="list-unstyled fa-ul m-l-xl">
-					<li class="m-t-sm m-b-sm">
-						<a href="#data-pribadi" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) title="Kelengkapan Data Pribadi Belum Lengkap" @endif>
-							<i class="fa-li fa fa-file-text-o"></i> Data Pribadi 
-							@if ($page_datas->credit['status'] == 'pengajuan')
-								@if (isset($page_datas->credit['debitur']['relasi']) && empty($page_datas->credit['debitur']['relasi']))
-									&nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i>
-								@endif
-							@else
-								@if ((isset($page_datas->credit['debitur']['relasi']) && empty($page_datas->credit['debitur']['relasi'])) && (isset($page_datas->credit['survei_kepribadian']) && empty($page_datas->credit['survei_kepribadian'])))
-									&nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i>
-								@endif
-							@endif
+			{{-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				
+			</div> --}}
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<ul class="list-unstyled fa-ul m-l-xl m-b-lg" role="tablist" style="width:30%; display: inline-grid;">
+					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Debitur</strong></p>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
+							<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
-					<li class="m-t-sm m-b-sm">
-						<a href="#data-aset" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_aset']) && ($page_datas->credit['kelengkapan_aset'] == false)) title="Kelengkapan Data Aset Belum Lengkap" @endif>
-							<i class="fa-li fa fa-file-text-o"></i> Data Aset
-							@if ((isset($page_datas->credit['survei_aset_tanah_bangunan']) && empty($page_datas->credit['survei_aset_tanah_bangunan'])) && (isset($page_datas->credit['survei_aset_usaha']) && empty($page_datas->credit['survei_aset_usaha'])) && (isset($page_datas->credit['survei_aset_kendaraan']) && empty($page_datas->credit['survei_aset_kendaraan'])))
-								&nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> 
-							@endif
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Riwayat Kredit
 						</a>
 					</li>
-					<li class="m-t-sm m-b-sm">
-						<a href="#data-keuangan" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_keuangan']) && ($page_datas->credit['kelengkapan_keuangan'] == false)) title="Kelengkapan Data Keuangan Belum Lengkap" @endif>
-							<i class="fa-li fa fa-file-text-o"></i> Data Keuangan 
-							@if (isset($page_datas->credit['survei_keuangan']) && empty($page_datas->credit['survei_keuangan'])) 
-								&nbsp;&nbsp;<i class="fa fa-exclamation-circle text-danger"></i> 
-							@endif
+					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Jaminan</strong></p>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Jaminan @if ($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-				<ul class="list-unstyled fa-ul">
-					<li class="m-t-sm m-b-sm"><a href="#"><i class="fa-li fa fa-file-text-o"></i> Daftar Survei</a></li>
-					<li class="m-t-sm m-b-sm"><a href="#"><i class="fa-li fa fa-file-text-o"></i> Lihat Angsuran</a></li>
-					<li class="m-t-sm m-b-sm"><a href="#"><i class="fa-li fa fa-history"></i> Riwayat Kredit</a></li>
+			
+				<ul class="list-unstyled fa-ul m-b-sm" role="tablist" style="width:30%; display: inline-grid;">
+					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Survei</strong></p>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan  @if ($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Kepribadian @if ($page_datas->credit['checklist']['kelengkapan_kepribadian'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#survei-keuangan" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Keuangan &amp; Rekening @if ($page_datas->credit['checklist']['kelengkapan_keuangan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#survei-aset" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Aset @if ($page_datas->credit['checklist']['kelengkapan_aset'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
 				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-				<ul class="list-unstyled fa-ul">
-					<li class="m-t-sm m-b-sm"><a href="#"><i class="fa-li fa fa-history"></i> Riwayat Note</a></li>
+				<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
+					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Analis</strong></p>
+					<li class="m-t-xs m-b-xs">
+						<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-history"></i> Riwayat Status
+						</a>
+					</li>
+					<!-- <p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Pencairan</strong></p>
+					<li class="m-t-xs m-b-xs"><a href="#">
+						<a class="text-capitalize" href="#print_form_nota_pencairan_kredit" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Nota Pencairan Kredit
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#data-angsuran" aria-controls="data-angsuran" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Angsuran
+						</a>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -275,40 +156,54 @@
 
 		{{-- data content --}}
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none tab-content">
-				{{-- panel pribadi --}}
-				<div class="tab-pane fade" id="data-pribadi" role="tabpanel">
-					@include ('pages.kredit.components.panel.pengajuan.panel_pribadi')
-				</div>
-				{{-- panel aset --}}
-				<div class="tab-pane fade" id="data-aset" role="tabpanel">
-					@include ('pages.kredit.components.panel.pengajuan.panel_aset')
-				</div>
-				{{-- panel keuangan --}}
-				<div class="tab-pane fade" id="data-keuangan" role="tabpanel">
-					@include ('pages.kredit.components.panel.pengajuan.panel_keuangan')
-				</div>
-				{{-- panel survei --}}
-				<div class="tab-pane fade" id="data-survei" role="tabpanel">
-
-				</div>
-				{{-- panel riwayat kredit --}}
-				<div class="tab-pane fade" id="data-riwayat-kredit" role="tabpanel">
-
-				</div>
-				{{-- panel riwayat note --}}
-				<div class="tab-pane fade" id="data-aset" role="tabpanel">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
-				<hr>
+				<div class="tab-content">
+					{{-- panel pribadi --}}
+					<div class="tab-pane fade" id="data-pribadi" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_pribadi')
+					</div>
+					{{-- panel survei kepribadian --}}
+					<div class="tab-pane fade" id="survei-kepribadian" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_kepribadian')
+					</div>
+					{{-- panel keuangan --}}
+					<div class="tab-pane fade" id="survei-keuangan" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_keuangan')
+					</div>
+					{{-- panel aset --}}
+					<div class="tab-pane fade" id="survei-aset" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_aset')
+					</div>
+					{{-- panel jaminan --}}
+					<div class="tab-pane fade" id="data-jaminan" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_jaminan')
+					</div>
+					{{-- panel riwayat note --}}
+					<div class="tab-pane fade" id="riwayat-kredit" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_riwayat_kredit')
+					</div>
+					{{-- panel survei jaminan --}}
+					<div class="tab-pane" id="survei-jaminan" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_survei_jaminan')
+					</div>
+					{{-- panel data angsuran --}}
+					<div class="tab-pane" id="data-angsuran" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_angsuran')
+					</div>
+					{{-- panel data checklist survei --}}
+					<div class="tab-pane" id="data-checklist-survei" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_data_checklist_survei')
+					</div>
+					{{-- panel riwayat status --}}
+					<div class="tab-pane fade" id="riwayat-status" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_riwayat_status')
+					</div>
+					
+				</div>
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row button-action">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="text-center" style="width: 50px">
 					TTD
@@ -317,14 +212,14 @@
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
 				<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Tolak</a> 
 				&nbsp;&nbsp;
-				<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => 'survei'])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
-					<i class="fa fa-check" aria-hidden="true"></i> Setujui
+				<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
+					<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
 				</a>
 			</div>	
 		</div>
 	</div>
 
-	{{----------------  FORM KREDIT  --------------}}
+	{{----------------  FORM status  --------------}}
 	<div class="hidden" data-form="kredit">
 		<div class="row">
 			<div class="col-sm-12">
@@ -355,70 +250,8 @@
 	</div>
 	{{----------------  // FORM KREDIT  --------------}}
 
-	{{----------------  FORM JAMINAN KENDARAAN  --------------}}
-	@if (isset($page_datas->credit['jaminan_kendaraan']) && !empty($page_datas->credit['jaminan_kendaraan']))
-		@foreach ($page_datas->credit['jaminan_kendaraan'] as $k => $v)
-			<div class="hidden" data-form="jaminan-kendaraan-{{ $k }}">
-				<div class="row">
-					<div class="col-sm-12">
-						<p class="text-capitalize m-b-sm text-lg">form jaminan kendaraan</p>
-						<hr/>
-					</div>
-				</div>
-				{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-				
-					@include ('pages.kredit.components.form.pengajuan.jaminan_kendaraan', [
-						'param'		=> [
-							'data'		=> isset($v) ? $v : null,
-							'prefix'	=> 'pengajuan',
-						],
-						'data'		=> [
-							'select_jenis_kendaraan'	=> $page_datas->select_jenis_kendaraan,
-							'select_merk_kendaraan'		=> $page_datas->select_merk_kendaraan,
-						]
-					])
-
-					<div class="clearfix">&nbsp;</div>
-					<div class="text-right">
-						<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="jaminan-kendaraan-{{ $k }}">Batal</a>
-						<button type="submit" class="btn btn-primary">Simpan</button>
-					</div>
-				{!! Form::close() !!}
-			</div>
-		@endforeach
-	@endif
-	
-	<div class="hidden" data-form="jaminan-kendaraan">
-		<div class="row">
-			<div class="col-sm-12">
-				<p class="text-capitalize m-b-sm text-lg">form jaminan kendaraan</p>
-				<hr/>
-			</div>
-		</div>
-		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-		
-			@include ('pages.kredit.components.form.pengajuan.jaminan_kendaraan', [
-				'param'		=> [
-					'prefix'	=> 'pengajuan',
-					'data'		=> null,
-				],
-				'data'		=> [
-					'select_jenis_kendaraan'	=> $page_datas->select_jenis_kendaraan,
-					'select_merk_kendaraan'		=> $page_datas->select_merk_kendaraan,
-				]
-			])
-
-			<div class="clearfix">&nbsp;</div>
-			<div class="text-right">
-				<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="jaminan-kendaraan">Batal</a>
-				<button type="submit" class="btn btn-primary">Simpan</button>
-			</div>
-		{!! Form::close() !!}
-	</div>
-	{{---------------- // FORM JAMINAN KENDARAAN --------------}}
-
 	{{---------------- FORM JAMINAN TANAH & BANGUNAN --------------}}
-	@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
+{{-- 	@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
 		@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $k => $v)
 			<div class="hidden" data-form="jaminan-tanah-bangunan-{{ $k }}">
 				<div class="row">
@@ -443,9 +276,9 @@
 				{!! Form::close() !!}
 			</div>
 		@endforeach
-	@endif
+	@endif --}}
 
-	<div class="hidden" data-form="jaminan-tanah-bangunan">
+	{{-- <div class="hidden" data-form="jaminan-tanah-bangunan">
 		<div class="row">
 			<div class="col-sm-12">
 				<p class="text-capitalize m-b-sm text-lg">form jaminan tanah &amp; bangunan</p>
@@ -466,7 +299,7 @@
 				<button type="submit" class="btn btn-primary">Simpan</button>
 			</div>
 		{!! Form::close() !!}
-	</div>
+	</div> --}}
 	{{---------------- // FORM JAMINAN TANAH & BANGUNAN --------------}}
 @stop
 

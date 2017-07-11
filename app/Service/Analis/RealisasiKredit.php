@@ -51,7 +51,7 @@ class RealisasiKredit
 
 		$koperasi_id 		= array_unique($koperasi_id);
 
-		$bkk 				= $this->model->status('pending')->where('tipe', 'bukti_kas_keluar')->wherenotnull('pengajuan_id')->Where('pengajuan_id', '<>', 0)->with(['orang', 'referensi'])->get()->toArray();
+		$bkk 				= $this->model->status('pending')->where('tipe', 'bukti_kas_keluar')->wherenotnull('pengajuan_id')->Where('pengajuan_id', '<>', 0)->with(['orang', 'referensi', 'pengajuan', 'pengajuan.jaminan_kendaraan', 'pengajuan.jaminan_tanah_bangunan'])->get()->toArray();
 
 		return $bkk;
 	}

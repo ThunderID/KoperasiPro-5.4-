@@ -33,7 +33,7 @@ class UpdateStatusKredit
 	public function __construct($id)
 	{
 		$this->id     				= $id;
-		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur'])->firstorfail();
+		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->firstorfail();
 	}
 
 	public function toSurvei($note = null)
@@ -42,6 +42,12 @@ class UpdateStatusKredit
 		$catatan['surveyor'][]	= $note;
 
 		$this->status 			= 'survei';
+
+		//0. validate there is agunan
+		if(!$this->pengajuan->jaminan_tanah_bangunan->count() && !$this->pengajuan->jaminan_kendaraan->count())
+		{
+			throw new Exception("Belum ada jaminan", 1);
+		}
 
 		//1. check status nasabah
 		if($this->pengajuan->debitur->kredit->count())
@@ -58,7 +64,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 
 						$nasabah['jaminan_terdahulu']	= 'sama';
 					}
@@ -71,7 +77,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 					}
 				}
 				//1c. check jaminan digunakan sebagai tempat tinggal
@@ -86,7 +92,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 
 						$nasabah['jaminan_terdahulu']	= 'sama';
 					}
@@ -99,7 +105,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 					}
 				}
 			}
@@ -123,7 +129,7 @@ class UpdateStatusKredit
 			$this->pengajuan->status 	= 'baru';
 		}
 
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -141,7 +147,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 
@@ -152,7 +158,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai aset kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah didaftarkan sebagai aset kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 		}
@@ -166,7 +172,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_k as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset kendaraan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah dipakai sebagai jaminan di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset kendaraan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah dipakai sebagai jaminan di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 
@@ -177,7 +183,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_k as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset kendaraan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah didaftarkan sebagai aset di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset kendaraan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah didaftarkan sebagai aset di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 		}
@@ -204,15 +210,15 @@ class UpdateStatusKredit
 
 			if($pb > 0)
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' bertambah dalam jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' bertambah sebesar '.$this->formatMoneyTo(abs($pb)).' dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 			elseif($pb==0)
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' tidak mengalami perubahan jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' tidak mengalami perubahan dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 			else
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' berkurang dalam jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' berkurang sebesar '.$this->formatMoneyTo(abs($pb)).' dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 		}
 
@@ -243,7 +249,7 @@ class UpdateStatusKredit
 		}
 
 		$this->status 	= 'menunggu_persetujuan';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -257,10 +263,11 @@ class UpdateStatusKredit
 			'orang_id'			=> $this->pengajuan->orang_id,
 			'pengajuan_id'		=> $this->pengajuan->id,
 			// 'nomor_transaksi'	=> $this->generateNomorTransaksi($this->pengajuan->id),
-			'tipe'				=> 'transaksi_keluar',
+			'tipe'				=> 'bukti_kas_keluar',
 			'status'			=> 'pending',
 			'tanggal_dikeluarkan'	=> Carbon::now()->format('d/m/Y'),
-			'tanggal_jatuh_tempo'	=> Carbon::addMonths(1)->format('d/m/Y'),
+			'tanggal_jatuh_tempo'	=> Carbon::now()->addMonths(1)->format('d/m/Y'),
+			'koperasi_id'			=> $this->pengajuan->akses_koperasi_id,
 		];
 
 		$attr_detail 		= [
@@ -271,11 +278,19 @@ class UpdateStatusKredit
 			'diskon_satuan'			=> 'Rp 0',
 		];
 
-		$transaksi 			= HeaderTransaksi::where('pengajuan_id', $this->pengajuan->id)->firstornew();
+		$transaksi 				= HeaderTransaksi::where('pengajuan_id', $this->pengajuan->id)->first();
+		if(!$transaksi)
+		{
+			$transaksi 			= new HeaderTransaksi;
+		}
 		$transaksi->fill($attributes);
 		$transaksi->save();
 
-		$detail_transaksi 	= DetailTransaksi::where('header_transaksi_id', $transaksi->id)->firstornew();
+		$detail_transaksi 		= DetailTransaksi::where('header_transaksi_id', $transaksi->id)->first();
+		if(!$detail_transaksi)
+		{
+			$detail_transaksi 	= new DetailTransaksi;
+		}
 		$detail_transaksi->fill($attr_detail);
 		$detail_transaksi->header_transaksi_id 	= $transaksi->id;
 		$detail_transaksi->save();
@@ -283,7 +298,7 @@ class UpdateStatusKredit
 		$this->pengajuan->nomor_kredit 	= $this->generateNomorKredit($this->pengajuan->id);
 
 		$this->status 	= 'menunggu_realisasi';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -323,7 +338,7 @@ class UpdateStatusKredit
 		$transaksi->save();
 
 		$this->status 	= 'realisasi';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -333,7 +348,17 @@ class UpdateStatusKredit
 		$catatan['surveyor'][]	= $note;
 		
 		$this->status 	= 'tolak';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
+
+		return $this;
+	}
+
+	public function toLunas($note = null)
+	{
+		$catatan['surveyor'][]	= $note;
+		
+		$this->status 	= 'lunas';
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}

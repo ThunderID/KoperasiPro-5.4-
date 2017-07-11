@@ -14,10 +14,10 @@
 	@forelse ($page_datas->credit['survei_aset_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-md text-capitalize">
+				<p class="m-b-xs text-capitalize">
 					aset tanah &amp; bangunan {{ $key+1 }}
 
-					@if(!empty($page_datas->credit['survei_aset_tanah_bangunan']))
+					@if (!empty($page_datas->credit['survei_aset_tanah_bangunan']))
 						@if($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.aset.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
@@ -33,7 +33,7 @@
 						@endif
 					@endif
 				</p>
-				<hr class="m-t-sm m-b-sm"/>
+				<hr class="m-t-xs m-b-xs"/>
 				@if (isset($page_datas->credit['survei_aset_tanah_bangunan']) && !empty($page_datas->credit['survei_aset_tanah_bangunan']))
 					@php
 						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($page_datas->credit['survei_nasabah']['surveyor']['visas'], $acl_active_office);
@@ -56,13 +56,17 @@
 					{{ (isset($value['nomor_sertifikat']) && !is_null($value['nomor_sertifikat'])) ? str_replace('_', ' ', $value['nomor_sertifikat']) : '-' }}
 				</p>
 				<p class="text-capitalize text-light">
-					{{ (isset($value['alamat']['alamat']) && !is_null($value['alamat']['alamat'])) ? $value['alamat']['alamat'] : '' }}
-					RT {{ (isset($value['alamat']['rt']) ? $value['alamat']['rt'] : '-') }} / RW {{ isset($value['alamat']['rw']) ? $value['alamat']['rw'] : '-' }} <br/>
-					{{ (isset($value['alamat']['desa']) && !is_null($value['alamat']['desa'])) ? $value['alamat']['desa'] : '' }} 
-					{{ (isset($value['alamat']['distrik']) && !is_null($value['alamat']['distrik'])) ? $value['alamat']['distrik'] .'<br/>' : '' }}
-					{{ (isset($value['alamat']['regensi']) && !is_null($value['alamat']['regensi'])) ? $value['alamat']['regensi'] : '' }} - 
-					{{ (isset($value['alamat']['provinsi']) && !is_null($value['alamat']['provinsi'])) ? $value['alamat']['provinsi'] : '' }} - 
-					{{ (isset($value['alamat']['negara']) && !is_null($value['alamat']['negara'])) ? $value['alamat']['negara'] : '' }}
+					@foreach ($value['alamat'] as $k => $v)
+						@if ($k == 0)
+							{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+							RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
+							{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
+							{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
+							{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+							{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
+							{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+						@endif
+					@endforeach
 				</p>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

@@ -190,6 +190,10 @@ class Pengajuan extends BaseModel
 		return $this->hasMany('App\Domain\Survei\Models\Keuangan', 'pengajuan_id');
 	}
 
+	public function riwayat_status()
+	{
+		return $this->hasMany('App\Domain\Pengajuan\Models\RiwayatKredit', 'pengajuan_id')->orderby('created_at', 'asc');
+	}
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/

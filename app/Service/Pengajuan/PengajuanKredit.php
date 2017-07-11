@@ -44,6 +44,7 @@ class PengajuanKredit
 		$this->foto_ktp				= $foto_ktp;
 		$this->lokasi				= $lokasi;
 		$this->referensi			= $referensi;
+		$this->notes				= [];
 	}
 
 	/**
@@ -178,7 +179,7 @@ class PengajuanKredit
 				]);
 			$riwayat->petugas_id 	= TAuth::loggedUser()['id'];
 			$riwayat->pengajuan_id 	= $pengajuan->id;
-			$riwayat->uraian 		= json_encode($this->notes);
+			$riwayat->uraian 		= $this->notes;
 			$riwayat->save();
 
 			// DB::commit();

@@ -39,7 +39,7 @@
 				{{-- button action form nasabah --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="nasabah">Cancel</a>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="nasabah">Batal</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
@@ -66,7 +66,7 @@
 				{{-- button action form debitur --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="kontak">Cancel</a>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="kontak">Batal</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
@@ -96,7 +96,7 @@
 				{{-- button action form nasabah --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="alamat">Cancel</a>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="alamat">Batal</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
@@ -125,7 +125,7 @@
 				{{-- button action form nasabah --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="pekerjaan">Cancel</a>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-nasabah" data-target="pekerjaan">Batal</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}

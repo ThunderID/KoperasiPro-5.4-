@@ -10,14 +10,14 @@
 	</div>
 </div>
 
-@if (isset($page_datas->credit['kepribadian']) && !empty($page_datas->credit['kepribadian']))
-	@foreach ($page_datas->credit['kepribadian'] as $key => $value)
+@if (isset($page_datas->credit['survei_kepribadian']) && !empty($page_datas->credit['survei_kepribadian']))
+	@foreach ($page_datas->credit['survei_kepribadian'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-md text-capitalize">
+				<p class="m-b-xs text-capitalize">
 					kepribadian {{ $key+1 }}
 
-					@if (!empty($page_datas->credit['kepribadian']))
+					@if (!empty($page_datas->credit['survei_kepribadian']))
 						@if ($edit == true)
 							<span class="pull-right">
 								<a class="text-danger m-r-md delete" href="#" data-url="{{ route('survei.kepribadian.destroy', ['kredit_id' => $page_datas->credit['id'], 'kepribadian_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
@@ -32,7 +32,7 @@
 						@endif
 					@endif
 				</p>
-				<hr class="m-t-sm m-b-sm"/>
+				<hr class="m-t-xs m-b-xs"/>
 				@if(isset($value['surveyor']) && !empty($value['surveyor']))
 					@php
 						$role 	= \App\Service\Helpers\UI\Inspector::checkOffice($value['surveyor']['visas'], $acl_active_office);
@@ -62,11 +62,28 @@
 		<div class="clearfix">&nbsp;</div>
 	@endforeach
 
-	<div class="row m-t-md m-b-md">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<a href="#" data-toggle="hidden" data-target="kepribadian" data-panel="data-pribadi" no-data-pjax><i class="fa fa-plus"></i> Tambahkan kepribadian</a>
+	@if (count($page_datas->credit['survei_aset_usaha']) > 0)
+		<div class="row m-t-md m-b-md">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<a href="#" data-toggle="hidden" data-target="kepribadian" data-panel="data-kepribadian" no-data-pjax><i class="fa fa-plus"></i> Tambahkan kepribadian</a>
+			</div>
 		</div>
-	</div>
+	@else
+		@if ($page_datas->credit['status'] == 'pengajuan')
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="text-light">Maaf data belum tersedia, data akan tersedia setelah data disurvei</p>
+				</div>
+			</div>
+		@else
+			<!-- No data -->
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kepribadian" data-panel="data-kepribadian" no-data-pjax> Tambahkan Sekarang </a></p>
+				</div>
+			</div>
+		@endif
+	@endif
 @else
 	@if ($page_datas->credit['status'] == 'pengajuan')
 		<div class="row">
@@ -78,7 +95,7 @@
 		<!-- No data -->
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kepribadian" data-panel="data-pribadi" no-data-pjax> Tambahkan Sekarang </a></p>
+				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kepribadian" data-panel="data-kepribadian" no-data-pjax> Tambahkan Sekarang </a></p>
 			</div>
 		</div>
 	@endif

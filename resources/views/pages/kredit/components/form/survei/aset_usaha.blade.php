@@ -19,7 +19,7 @@
 	<label class="text-sm">Tanggal Berdiri</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($param['data']['tanggal_berdiri']) ? $param['data']['tanggal_berdiri'] : null), ['class' => 'form-control date mask-date-format auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
+			{!! Form::text('aset_usaha[tanggal_berdiri]', (isset($param['data']['tanggal_berdiri']) ? $param['data']['tanggal_berdiri'] : null), ['class' => 'form-control date mask-date auto-tabindex', 'placeholder' => 'tanggal/bulan/tahun (dd/mm/yyyy)']) !!}
 			<span class="help-block m-b-none">format pengisian (tanggal/bulan/tahun)</span>
 		</div>
 	</div>

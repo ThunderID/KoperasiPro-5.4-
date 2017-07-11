@@ -87,12 +87,12 @@ class DashboardController extends Controller
 
 		$this->page_datas->stat_kredit_menunggu_persetujuan = KreditAktif_RO::koperasi($kantor)->status(['menunggu_persetujuan'])->where('pengajuan_kredit', '>', 10000000)->count();
 		$this->page_datas->stat_kredit_ditolak 				= KreditAktif_RO::koperasi($kantor)->status(['tolak'])->count();
-		$this->page_datas->stat_kredit_terealisasi 			= KreditAktif_RO::koperasi($kantor)->status(['terealisasi'])->count();
+		$this->page_datas->stat_kredit_realisasi 			= KreditAktif_RO::koperasi($kantor)->status(['realisasi'])->count();
 		$this->page_datas->stat_pengajuan_kredit 			= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->count();
 
 		$this->page_datas->kredit_menunggu_persetujuan 		= KreditAktif_RO::koperasi($kantor)->status(['menunggu_persetujuan'])->where('pengajuan_kredit', '>', 10000000)->take(10)->get();
 		
-		$this->page_datas->kredit_terealisasi 				= KreditAktif_RO::koperasi($kantor)->status(['menunggu_realisasi'])->with(['cabang'])->take(10)->get();
+		$this->page_datas->kredit_realisasi 				= KreditAktif_RO::koperasi($kantor)->status(['menunggu_realisasi'])->with(['cabang'])->take(10)->get();
 	}
 
 	private function pimpinan($a_of)
@@ -101,12 +101,12 @@ class DashboardController extends Controller
 
 		$this->page_datas->stat_kredit_menunggu_persetujuan = KreditAktif_RO::koperasi($kantor)->status(['menunggu_persetujuan'])->where('pengajuan_kredit', '<=', 10000000)->count();
 		$this->page_datas->stat_kredit_ditolak 				= KreditAktif_RO::koperasi($kantor)->status(['tolak'])->count();
-		$this->page_datas->stat_kredit_terealisasi 			= KreditAktif_RO::koperasi($kantor)->status(['terealisasi'])->count();
+		$this->page_datas->stat_kredit_realisasi 			= KreditAktif_RO::koperasi($kantor)->status(['realisasi'])->count();
 		$this->page_datas->stat_pengajuan_kredit 			= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->count();
 
 		$this->page_datas->kredit_menunggu_persetujuan 		= KreditAktif_RO::koperasi($kantor)->status(['menunggu_persetujuan'])->where('pengajuan_kredit', '<=', 10000000)->take(10)->get();
 		
-		$this->page_datas->kredit_terealisasi 				= KreditAktif_RO::koperasi($kantor)->status(['menunggu_realisasi'])->with(['cabang'])->take(10)->get();
+		$this->page_datas->kredit_realisasi 				= KreditAktif_RO::koperasi($kantor)->status(['menunggu_realisasi'])->with(['cabang'])->take(10)->get();
 	}
 
 	private function surveyor($a_of)
@@ -117,7 +117,7 @@ class DashboardController extends Controller
 		$this->page_datas->stat_pengajuan_baru	= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->count();
 
 		$this->page_datas->stat_kredit_ditolak 				= KreditAktif_RO::koperasi($kantor)->status(['tolak'])->count();
-		$this->page_datas->stat_kredit_terealisasi 			= KreditAktif_RO::koperasi($kantor)->status(['terealisasi'])->count();
+		$this->page_datas->stat_kredit_realisasi 			= KreditAktif_RO::koperasi($kantor)->status(['realisasi'])->count();
 
 		$this->page_datas->kredit_survei		= KreditAktif_RO::koperasi($kantor)->status(['survei'])->take(10)->get();
 		$this->page_datas->pengajuan_baru 		= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->take(10)->get();
@@ -131,7 +131,7 @@ class DashboardController extends Controller
 		$this->page_datas->stat_pengajuan_baru	= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->count();
 
 		$this->page_datas->stat_kredit_ditolak 				= KreditAktif_RO::koperasi($kantor)->status(['tolak'])->count();
-		$this->page_datas->stat_kredit_terealisasi 			= KreditAktif_RO::koperasi($kantor)->status(['terealisasi'])->count();
+		$this->page_datas->stat_kredit_realisasi 			= KreditAktif_RO::koperasi($kantor)->status(['realisasi'])->count();
 		
 		$this->page_datas->kredit_survei		= KreditAktif_RO::koperasi($kantor)->status(['survei'])->take(10)->get();
 		$this->page_datas->pengajuan_baru 		= KreditAktif_RO::koperasi($kantor)->status(['pengajuan'])->take(10)->get();
@@ -145,7 +145,7 @@ class DashboardController extends Controller
 		$this->page_datas->stat_kas_pending			= HeaderTransaksi::koperasi($kantor)->status(['pending'])->count();
 
 		$this->page_datas->stat_kredit_ditolak		= KreditAktif_RO::koperasi($kantor)->status(['tolak'])->count();
-		$this->page_datas->stat_kredit_terealisasi	= KreditAktif_RO::koperasi($kantor)->status(['terealisasi'])->count();
+		$this->page_datas->stat_kredit_realisasi	= KreditAktif_RO::koperasi($kantor)->status(['realisasi'])->count();
 		
 		$this->page_datas->kredit_menunggu_realisasi= KreditAktif_RO::koperasi($kantor)->status(['menunggu_realisasi'])->take(10)->get();
 		$this->page_datas->kas_pending				= HeaderTransaksi::koperasi($kantor)->status(['pending'])->take(10)->get();
