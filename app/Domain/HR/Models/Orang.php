@@ -153,7 +153,10 @@ class Orang extends BaseModel
 		{
 			$this->attributes['tanggal_lahir']	= $this->formatDateFrom($value);
 		}
-		unset($this->attributes['tanggal_lahir']);
+		else
+		{
+			unset($this->attributes['tanggal_lahir']);
+		}
 	}
 
 	/**

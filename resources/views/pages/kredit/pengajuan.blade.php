@@ -213,7 +213,7 @@
 				<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Tolak</a> 
 				&nbsp;&nbsp;
 				<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
-					<i class="fa fa-check" aria-hidden="true"></i> Survei
+					<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
 				</a>
 			</div>	
 		</div>
