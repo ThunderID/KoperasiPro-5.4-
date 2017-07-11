@@ -73,7 +73,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$pengajuan->tambahJaminanKendaraan($type_k[rand(0,2)], $merk_k[rand(0,9)], rand(1990,2016), $char[rand(0,25)].' '.rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9), $faker->name);
 
-			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), $alamat);
+			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), [$alamat]);
 
 			$pengajuan->save();
 		}
@@ -116,7 +116,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$pengajuan->tambahJaminanTanahBangunan('tanah_bangunan', $type_s[rand(0,1)], rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), rand(2018,2035), $faker->name, $alamat_tb_2, $lt, $lt*0.7);
 
-			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), $alamat);
+			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), [$alamat]);
 
 			$pengajuan->save();
 		}
