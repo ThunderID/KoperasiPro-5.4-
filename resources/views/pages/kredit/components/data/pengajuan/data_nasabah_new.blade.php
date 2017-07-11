@@ -38,6 +38,9 @@
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					{{-- @foreach ($page_datas->credit ['debitur']['alamat'] as $k => $v) --}}
 					<p class="text-capitalize text-light">
+					@php
+						// dd($page_datas->credit['debitur']);
+					@endphp
 						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
