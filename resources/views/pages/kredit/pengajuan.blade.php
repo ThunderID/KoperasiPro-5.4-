@@ -170,7 +170,7 @@
 				<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
 					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Analis</strong></p>
 					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print-form-riwayat-status" data-toggle="tab" role="tab">
+						<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
 							<i class="fa-li fa fa-history"></i> Riwayat Status
 						</a>
 					</li>
@@ -235,6 +235,11 @@
 					<div class="tab-pane" id="data-checklist-survei" role="tabpanel">
 						@include ('pages.kredit.components.panel.pengajuan.panel_data_checklist_survei')
 					</div>
+					{{-- panel riwayat status --}}
+					<div class="tab-pane fade" id="riwayat-status" role="tabpanel">
+						@include ('pages.kredit.components.panel.pengajuan.panel_riwayat_status')
+					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -255,7 +260,7 @@
 		</div>
 	</div>
 
-	{{----------------  FORM KREDIT  --------------}}
+	{{----------------  FORM status  --------------}}
 	<div class="hidden" data-form="kredit">
 		<div class="row">
 			<div class="col-sm-12">

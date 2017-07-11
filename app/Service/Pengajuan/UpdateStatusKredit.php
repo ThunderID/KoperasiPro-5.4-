@@ -64,7 +64,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 
 						$nasabah['jaminan_terdahulu']	= 'sama';
 					}
@@ -77,7 +77,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 					}
 				}
 				//1c. check jaminan digunakan sebagai tempat tinggal
@@ -92,7 +92,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 
 						$nasabah['jaminan_terdahulu']	= 'sama';
 					}
@@ -105,7 +105,7 @@ class UpdateStatusKredit
 				{
 					foreach ($check_j_t_b as $key2 => $value2) 
 					{
-						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+						$catatan['jaminan'][]	= 'Jaminan tanah & bangunan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah didaftarkan sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 					}
 				}
 			}
@@ -129,7 +129,7 @@ class UpdateStatusKredit
 			$this->pengajuan->status 	= 'baru';
 		}
 
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -147,7 +147,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah dipakai sebagai jaminan kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 
@@ -158,7 +158,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_t_b as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor sertifikat '.$value['nomor_sertifikat'].' pernah didaftarkan sebagai aset kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset tanah & bangunan dengan nomor Sertifikat "'.$value['nomor_sertifikat'].'" pernah didaftarkan sebagai aset kredit atas nama '.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 		}
@@ -172,7 +172,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_k as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset kendaraan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah dipakai sebagai jaminan di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset kendaraan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah dipakai sebagai jaminan di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 
@@ -183,7 +183,7 @@ class UpdateStatusKredit
 			{
 				foreach ($check_a_k as $key2 => $value2) 
 				{
-					$catatan['aset'][]	= 'Aset kendaraan dengan nomor bpkb '.$value['nomor_bpkb'].' pernah didaftarkan sebagai aset di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
+					$catatan['aset'][]	= 'Aset kendaraan dengan nomor BPKB "'.$value['nomor_bpkb'].'" pernah didaftarkan sebagai aset di kredit atas nama'.$value2['debitur']['nama'].' dengan nomor pengajuan '.$value2['id'];
 				}
 			}
 		}
@@ -249,7 +249,7 @@ class UpdateStatusKredit
 		}
 
 		$this->status 	= 'menunggu_persetujuan';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -298,7 +298,7 @@ class UpdateStatusKredit
 		$this->pengajuan->nomor_kredit 	= $this->generateNomorKredit($this->pengajuan->id);
 
 		$this->status 	= 'menunggu_realisasi';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -338,7 +338,7 @@ class UpdateStatusKredit
 		$transaksi->save();
 
 		$this->status 	= 'realisasi';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}
@@ -348,7 +348,17 @@ class UpdateStatusKredit
 		$catatan['surveyor'][]	= $note;
 		
 		$this->status 	= 'tolak';
-		$this->uraian 	= json_encode($catatan);
+		$this->uraian 	= $catatan;
+
+		return $this;
+	}
+
+	public function toLunas($note = null)
+	{
+		$catatan['surveyor'][]	= $note;
+		
+		$this->status 	= 'lunas';
+		$this->uraian 	= $catatan;
 
 		return $this;
 	}

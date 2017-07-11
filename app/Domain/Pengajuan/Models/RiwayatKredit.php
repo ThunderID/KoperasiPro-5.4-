@@ -55,7 +55,7 @@ class RiwayatKredit extends BaseModel
 	 */
 	protected $rules				=	[
 											'pengajuan_id'			=> 'max:255',
-											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi,tolak',
+											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi,tolak,lunas',
 											'tanggal'				=> 'date_format:"Y-m-d"',
 										];
 	/**
@@ -71,13 +71,10 @@ class RiwayatKredit extends BaseModel
 	 * @var array
 	 */
 	protected $hidden				= 	[
-											// 'nomor_dokumen_kredit', 
 											'created_at', 
 											'updated_at', 
 											'deleted_at', 
 										];
-
-	protected $appends 				= ['kreditur'];
 
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
@@ -87,14 +84,23 @@ class RiwayatKredit extends BaseModel
 
 	protected function setTanggalAttribute($value)
 	{
-		$this->attributes['tanggal']			= $this->formatDateFrom($value);
+		$this->attributes['tanggal']		= $this->formatDateFrom($value);
 	}
 
+	protected function setUraianAttribute($value)
+	{
+		$this->attributes['uraian']			= json_encode($value);
+	}
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
 
 	protected function getTanggalAttribute($value)
 	{
 		return $this->formatDateTo($value);
+	}
+
+	protected function getUraianAttribute($value)
+	{
+		return json_decode($value, true);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/
