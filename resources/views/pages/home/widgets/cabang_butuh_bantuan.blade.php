@@ -5,7 +5,7 @@
 	$index 		= 0;
 @endphp
 <div class="row" style="padding:15px;">
-	<div class="col-sm-12">
+	<div class="col-sm-12 p-r-none">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
