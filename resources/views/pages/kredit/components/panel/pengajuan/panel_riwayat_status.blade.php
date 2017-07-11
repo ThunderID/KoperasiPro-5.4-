@@ -14,11 +14,15 @@
 						<strong>Catatan {{$k}}</strong>
 					</p>
 					@if(is_array($v))
-						@foreach($v as $k2 => $v2)
+						@forelse($v as $k2 => $v2)
 							<p class="text-light m-b-md">
 								{{$v2}}
 							</p>
-						@endforeach
+						@empty
+							<p class="text-light m-b-md">
+								Tidak ada catatan
+							</p>
+						@endforelse
 					@else
 						<p class="text-light m-b-md">
 							{{$v}}

@@ -55,7 +55,7 @@ class RiwayatKredit extends BaseModel
 	 */
 	protected $rules				=	[
 											'pengajuan_id'			=> 'max:255',
-											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,terealisasi,tolak,lunas',
+											'status'				=> 'in:survei,pengajuan,menunggu_persetujuan,menunggu_realisasi,realisasi,tolak,lunas',
 											'tanggal'				=> 'date_format:"Y-m-d"',
 										];
 	/**

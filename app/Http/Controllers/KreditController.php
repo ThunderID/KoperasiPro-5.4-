@@ -353,7 +353,6 @@ class KreditController extends Controller
 		}
 		catch (Exception $e)
 		{
-			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -419,7 +418,7 @@ class KreditController extends Controller
 			{
 				$u_status 	= $u_status->toMenungguRealisasi($notes);
 			}
-			elseif(str_is(strtolower($status), 'terealisasi'))
+			elseif(str_is(strtolower($status), 'realisasi'))
 			{
 				$u_status 	= $u_status->toRealisasi($notes);
 			}
@@ -429,7 +428,7 @@ class KreditController extends Controller
 			}
 			elseif(str_is(strtolower($status), 'lunas'))
 			{
-				$u_status 	= $u_status->toTolak($notes);
+				$u_status 	= $u_status->toLunas($notes);
 			}
 			else
 			{
@@ -440,6 +439,7 @@ class KreditController extends Controller
 		}
 		catch(Exception $e)
 		{
+			dd($e);
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
@@ -594,18 +594,31 @@ class KreditController extends Controller
 
 			case 'menunggu_realisasi':
 				$this->page_datas->credit['status_sebelumnya']	= 'menunggu_persetujuan';
-				$this->page_datas->credit['status_berikutnya']	= 'terealisasi';
+				$this->page_datas->credit['status_berikutnya']	= 'realisasi';
 				// $this->view 						= view('pages.kredit.menunggu_realisasi');
 				break;
 
-			case 'terealisasi':
+			case 'realisasi':
 				$this->page_datas->credit['status_sebelumnya']	= 'menunggu_realisasi';
 				$this->page_datas->credit['status_berikutnya']	= 'lunas';
 				// $this->view 						= view('pages.kredit.terrealisasi');
 				break;	
 
 			case 'lunas':
-				$this->page_datas->credit['status_sebelumnya']	= 'terealisasi';
+				$this->page_datas->credit['status_sebelumnya']	= 'realisasi';
+				$this->page_datas->credit['status_berikutnya']	= null;
+				// $this->view 						= view('pages.kredit.terrealisasi');
+				break;	
+			case 'tolak':
+				if(isset($this->page_datas->credit['riwayat_status'][count($this->page_datas->credit['riwayat_status']) - 2]))
+				{
+					$this->page_datas->credit['status_sebelumnya']	= $this->page_datas->credit['riwayat_status'][count($this->page_datas->credit['riwayat_status']) - 2 ]['status'];
+				}
+				else
+				{
+					$this->page_datas->credit['status_sebelumnya']	= null;
+				}
+
 				$this->page_datas->credit['status_berikutnya']	= null;
 				// $this->view 						= view('pages.kredit.terrealisasi');
 				break;	
@@ -915,14 +928,14 @@ class KreditController extends Controller
 	/**
 	 * Fungsi untuk menampilkan halaman rencana kredit yang akan di print
 	 */
-	public function print_realisasi($id, $dokumen)
+	public function print_realisasi($id, $jj, $dokumen)
 	{
 		//check kredit
-		$kredit			= $this->service->detailed($id);
+		$kredit			= $this->service->id($id)->with(['jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
 		$koperasi 		= Koperasi_RO::id($this->acl_active_office['koperasi']['id'])->first();
 		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', $this->acl_active_office['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
 
-		if(!empty($kredit['jaminan_kendaraan']))
+		if(!empty($kredit['jaminan_kendaraan']) && $jj =='jk')
 		{
 			switch (strtolower($dokumen)) 
 			{
@@ -951,7 +964,7 @@ class KreditController extends Controller
 			}
 		}
 
-		if(!empty($kredit['jaminan_tanah_bangunan']))
+		if(!empty($kredit['jaminan_tanah_bangunan']) && $jj =='jtb')
 		{
 			switch (strtolower($dokumen)) 
 			{

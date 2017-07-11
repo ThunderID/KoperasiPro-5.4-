@@ -210,15 +210,15 @@ class UpdateStatusKredit
 
 			if($pb > 0)
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' bertambah dalam jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' bertambah sebesar '.$this->formatMoneyTo(abs($pb)).' dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 			elseif($pb==0)
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' tidak mengalami perubahan jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' tidak mengalami perubahan dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 			else
 			{
-				$catatan['rekening'][]	= 'Survei '.($key+1).' saldo rekening '.$value['rekening'].'('.$value['nomor_rekening'].') debitur '.' berkurang dalam jangka waktu '.$value['selisih_hari'].' hari ';
+				$catatan['rekening'][]	= 'Survei ke-'.($key+1).' rekening '.$value['rekening'].' ('.$value['nomor_rekening'].') milik debitur '.' berkurang sebesar '.$this->formatMoneyTo(abs($pb)).' dalam rentang waktu '.$value['selisih_hari'].' hari ';
 			}
 		}
 
