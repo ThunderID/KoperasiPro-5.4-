@@ -83,7 +83,7 @@
 			{!! Form::select('debitur[jenis_kelamin]', [
 				'laki-laki'		=> 'Laki-laki',
 				'perempuan'		=> 'Perempuan'
-			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : 'laki-laki'), ['id' => 'debitur_jenis_kelamin', 'class' => 'form-control quick-select auto-tabindex select']) !!}
+			], (isset($param['data']['jenis_kelamin']) ? $param['data']['jenis_kelamin'] : ''), ['id' => 'debitur_jenis_kelamin', 'class' => 'form-control auto-tabindex select', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -96,7 +96,7 @@
 				'cerai'				=> 'Cerai Hidup',
 				'cerai_mati'		=> 'Cerai Mati',
 				'kawin' 			=> 'Kawin',
-			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : 'belum_kawin'), ['id' => 'debitur_status_perkawinan', 'class' => 'form-control quick-select auto-tabindex select']) !!}
+			], (isset($param['data']['status_perkawinan']) ? $param['data']['status_perkawinan'] : ''), ['id' => 'debitur_status_perkawinan', 'class' => 'form-control quick-select auto-tabindex select', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih']) !!}
 		</div> 
 	</div> 
 </fieldset>
@@ -234,7 +234,7 @@
 	});	
 
 	/* Foto Ktp Previewer */
-	$(document).on('change', 'file_ktp', function(e) {
+	$(document).on('change', 'file:input:file_ktp', function(e) {
 		var reader = new FileReader();
         
         reader.onload = function (e) {
