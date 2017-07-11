@@ -3,7 +3,7 @@
 		<div class="state text-center {{ ($page_datas->credit['status'] == 'tolak') ? 'failed' : 'complete' }}">1. Pengajuan</div>
 		<div class="state text-center {{ ($page_datas->credit['status'] == 'tolak') ? 'failed' : 'complete' }}">2. Survei</div>
 		<div class="state text-center {{ ($page_datas->credit['status'] == 'tolak') ? 'failed' : 'complete' }}">3. Menunggu Persetujuan</div>
-		<div class="state text-center {{ ($page_datas->credit['status'] != 'tolak') ? 'active' : '' }}">4. Menunggu Realisasi</div>
+		<div class="state text-center {{ ($page_datas->credit['status'] != 'tolak') ? 'active' : 'failed' }}">4. Menunggu Realisasi</div>
 		<div class="state text-center">5. Selesai</div>
 	</div>
 </div>	

@@ -47,11 +47,11 @@
 					</p>
 
 					<p>
-						&emsp;&emsp;Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['nama']}}<br/>
+						&emsp;&emsp;Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['nama']}}<br/>
 
-						&emsp;&emsp;Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['alamat'][0]['alamat']}}<br/>
+						&emsp;&emsp;Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['alamat'][0]['alamat']}}<br/>
 						
-						&emsp;&emsp;No SPK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+						&emsp;&emsp;No SPK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['nomor_kredit']}}
 					</p>
 
 					<div class="clearfix">&nbsp;</div>
@@ -85,7 +85,7 @@
 				<div class="clearfix">&nbsp;</div>
 
 				<div class="col-sm-6">
-					<p>{{$kredit['kreditur']['nama']}}</p>
+					<p>{{$kredit['debitur']['nama']}}</p>
 					<p>Debitur</p>
 				</div>
 				<div class="col-sm-6">
