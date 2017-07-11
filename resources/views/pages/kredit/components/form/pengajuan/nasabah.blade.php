@@ -234,7 +234,7 @@
 	});	
 
 	/* Foto Ktp Previewer */
-	$(document).on('change', '.file_ktp', function(e) {
+	$(document).on('change', 'file_ktp', function(e) {
 		var reader = new FileReader();
         
         reader.onload = function (e) {

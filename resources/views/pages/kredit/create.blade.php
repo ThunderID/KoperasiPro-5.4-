@@ -77,7 +77,6 @@
 @push('scripts')
 
 	/* Not This Time: Due to API Support
-	
 	function autofillsertifikat() 
 	{
 		var jt = document.getElementById("jaminan_tanah_bangunan[nomor_sertifikat]").value;
