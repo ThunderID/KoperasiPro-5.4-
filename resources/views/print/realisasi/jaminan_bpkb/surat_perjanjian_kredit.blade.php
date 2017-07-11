@@ -34,7 +34,7 @@
 			<div class="row text-center">
 				<div class="col-sm-12">
 					<h3>SURAT PERJANJIAN  KREDIT</h3>
-					<h5>No : ...............................</h5>
+					<h5>No : {{$kredit['nomor_kredit']}} </h5>
 				</div> 
 			</div> 
 
@@ -53,7 +53,7 @@
 								{{$pimpinan['nama']}} jabatan Pimpinan BPR/KOPERASI, yang dalam hal ini bertindak untuk dan atas nama BPR/KOPERASI {{$koperasi['nama']}} yang berkedudukan di {{$koperasi['alamat']}}, selanjutnya disebut BPR/KOPERASI, dengan :
 							</li>
 							<li>
-								{{$kredit['kreditur']['nama']}}, beralamat di {{$kredit['kreditur']['alamat'][0]['alamat']}} yang dalam hal ini bertindak dan atas nama Pribadi selanjutnya disebut PEMINJAM.	
+								{{$kredit['debitur']['nama']}}, beralamat di {{$kredit['debitur']['alamat'][0]['alamat']}} yang dalam hal ini bertindak dan atas nama Pribadi selanjutnya disebut PEMINJAM.	
 							</li>
 						</ol>
 					</p>
@@ -105,7 +105,7 @@
 					({{$pimpinan['nama']}})
 				</div>
 				<div class="col-sm-6">
-					({{$kredit['kreditur']['nama']}})
+					({{$kredit['debitur']['nama']}})
 				</div>
 			</div>
 		
@@ -229,7 +229,7 @@
 						</ol>
 					</p>
 					<p>
-						Demikian syarat-syarat tersebut diatas merupakan satu kesatuan yang tidak terpisahkan dari SURAT PERJANJIAN KREDIT. No. ................... tertanggal ................. yang telah dimengerti dan disepakati oleh kedua belah pihak.
+						Demikian syarat-syarat tersebut diatas merupakan satu kesatuan yang tidak terpisahkan dari SURAT PERJANJIAN KREDIT. No. {{$kredit['nomor_kredit']}} tertanggal {{$kredit['tanggal_pengajuan']}} yang telah dimengerti dan disepakati oleh kedua belah pihak.
 					</p>
 				</div> 
 			</div> 

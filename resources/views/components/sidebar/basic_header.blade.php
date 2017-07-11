@@ -20,9 +20,9 @@
 			<div class="dropdown">
 				<a class="btn dropdown-toggle fa-animate" type="button" data-toggle="dropdown">
 					@if (Input::has('status'))
-			           {{ ucwords(Input::get('status')) }}
+						{{ ucwords(str_replace('_', ' ', Input::get('status'))) }}
 					@else
-						{{ ucWords(str_replace('_', ' ', $param['status_default'])) }}
+						{{ ucwords(str_replace('_', ' ', $param['status_default'])) }}
 					@endif
 					<span>
 						<i class="fa fa-lg fa-angle-down" aria-hidden="true"></i>
@@ -37,7 +37,7 @@
 					@foreach ($param['status'] as $item)
 						<li>
 							<a href="{{ route(Route::currentRouteName(), Input::only('q','sort')) }}&status={{$item}}">
-								{{ ucWords(str_replace('_', ' ', $item)) }}
+								{{ ucwords(str_replace('_', ' ', $item)) }}
 							</a>
 						</li>
 					@endforeach

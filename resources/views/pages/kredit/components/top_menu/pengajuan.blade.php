@@ -16,27 +16,62 @@
 				</a>
 			</div>
 			<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
-				<p class="text-muted text-lg p-t-sm">
-					<i class="fa fa-id-card-o"></i> {{ $page_datas->credit['debitur']['nama'] }} | {{ $page_datas->credit['debitur']['nik'] }}
+				<p class="text-muted p-t-sm text-md">
+					<span class="p-r-xs">
+						<i class="fa fa-user"></i>&nbsp;&nbsp;
+						{{ $page_datas->credit['debitur']['nama'] }}
+					</span>
+					<span>[ {{ $page_datas->credit['debitur']['nik'] }} ]</span>
 				</p>
 			</div>
-			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6 text-right">
+			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
 				<!-- <a href="#" data-toggle="modal" data-target="#modal-riwayat-note" class="btn p-r-sm p-l-sm">
 					<i class="fa fa-info-circle"></i> Riwayat Note
 				</a> -->
-				<!-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
+				<!-- <div class="dropdown pull-right">
+					<a class="btn p-r-sm p-l-none primary hidden-xs hidden-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<i class="fa fa-print" aria-hidden="true"></i> Print&nbsp;&nbsp;
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-right fa-ul" aria-labelledby="dropdownMenu1">
+						<li class="dropdown-header">Survei</li>
+						<li class="m-t-xs m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Kendaraan</a>
+						</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Tanah &amp; Bangunan</a>
+						</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Usaha</a>
+						</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Kepribadian</a>
+						</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Keuangan</a>
+						</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening</a>
+						</li>
+						<li class="dropdown-header">Realisasi</li>
+						<li class="m-b-xs">
+							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Surat PK</a>
+						</li>
+					</ul>
+				</div> -->
+				{{-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
-				</a> -->
-				<a href="#modal-tolak" data-toggle="modal" data-target="#modal-tolak" class="btn p-r-sm p-l-sm danger">
+				</a> --}}
+				{{-- <a href="#modal-tolak" data-toggle="modal" data-target="#modal-tolak" class="btn p-r-sm p-l-sm danger">
 					<i class="fa fa-times" aria-hidden="true"></i> Tolak
 				</a>					
 				<a href="{{route('credit.status', ['id' => $page_datas->id, 'status' => 'survei'])}}" data-toggle="modal" data-target="#modal-change-status" class="btn p-r-none p-l-sm success">
 					<i class="fa fa-check" aria-hidden="true"></i> Survei
-				</a>					
+				</a>					 --}}
 			</div>
 		</div>
 	</div>
-	<div class="col-md-12 " style="background-color: white;">
+	{{-- <div class="col-md-12 " style="background-color: white;">
 		<div class="row">
 			<div class="col-sm-12 p-l-none p-r-none menu-tabs" style>
 				<a href="#" class="arrow-left"><i class="fa fa-chevron-left"></i></a>
@@ -87,7 +122,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 </div>
 
 @section('page_modals')

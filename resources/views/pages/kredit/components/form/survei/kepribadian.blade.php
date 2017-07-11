@@ -10,14 +10,14 @@
 <fieldset class="form-group">
 	<label class="text-sm">Hubungan</label>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-5">
 			{!! Form::select('kepribadian[hubungan]', [
 				'orang_tua'		=> 'Orang Tua',
 				'pasangan'		=> 'Pasangan',
 				'saudara'		=> 'Saudara',
 				'rekan_kerja'	=> 'Rekan Kerja',
 				'tetangga'		=> 'Tetangga',
-			], (isset($param['data']['hubungan']) ? $param['data']['hubungan'] : 'orang_tua'), ['class' => 'form-control auto-tabindex quick-select']) !!}
+			], (isset($param['data']['hubungan']) ? $param['data']['hubungan'] : 'orang_tua'), ['class' => 'form-control auto-tabindex quick-select select']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -25,7 +25,7 @@
 	<label class="text-sm">Telepon</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::text('kepribadian[telepon_referens]', (isset($param['data']['telepon_referens']) ? $param['data']['telepon_referens'] : null), ['class' => 'form-control auto-tabindex mask-number']) !!}
+			{!! Form::text('kepribadian[telepon_referens]', (isset($param['data']['telepon_referens']) ? $param['data']['telepon_referens'] : null), ['class' => 'form-control auto-tabindex mask-no-handphone']) !!}
 		</div>
 	</div>
 </fieldset>

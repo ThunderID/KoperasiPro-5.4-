@@ -1,15 +1,16 @@
 @inject('dokcab', '\App\Service\Analis\LaciKasir')
 
 @php
-	$pemasukan 		= $dokcab->pemasukan();
-	$pengeluaran 	= $dokcab->pengeluaran();
+	$pemasukan 		= $dokcab->pemasukan([], $acl_logged_user);
+	$pengeluaran 	= $dokcab->pengeluaran([], $acl_logged_user);
 	$total_kas 		= $dokcab->formatMoneyTo($dokcab->formatMoneyFrom($pemasukan) - $dokcab->formatMoneyFrom($pengeluaran));
-	$list_pemasukan		= $dokcab->list_pemasukan();
-	$list_pengeluaran	= $dokcab->list_pengeluaran();
+	$list_pemasukan		= $dokcab->list_pemasukan([], $acl_logged_user);
+	$list_pengeluaran	= $dokcab->list_pengeluaran([], $acl_logged_user);
 @endphp
+	<div class="clearfix">&nbsp;</div>
 
 	<div class="row field">
-		<div class="col-sm-12 text-center">
+		<div class="col-sm-12 text-center p-r-none">
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
@@ -55,8 +56,8 @@
 									</div>
 
 								</div>
-							</div>									
-						</div>										
+							</div>
+						</div>
 					</div>											
 
 				</div>

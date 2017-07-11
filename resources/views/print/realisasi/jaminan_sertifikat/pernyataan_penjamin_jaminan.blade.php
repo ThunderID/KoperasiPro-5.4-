@@ -49,9 +49,9 @@
 					<p>
 						<ol>
 							<li>
-								<p>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['nama']}}</p>
-								<p>Pekerjaan&nbsp;&nbsp;: {{$kredit['kreditur']['pekerjaan']}}</p>
-								<p>Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['alamat'][0]['alamat']}}</p>
+								<p>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['nama']}}</p>
+								<p>Pekerjaan&nbsp;&nbsp;: {{$kredit['debitur']['pekerjaan']}}</p>
+								<p>Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['alamat'][0]['alamat']}}</p>
 								<p>Untuk selanjutnya disebut Pihak Pertama.</p>
 							</li>
 							<li>
@@ -70,7 +70,7 @@
 						Menerangkan :
 						<ul>
 							<li>
-								Bahwa {{$kredit['kreditur']['nama']}} (selanjutnya disebut Debitur) telah memperoleh fasilitas kredit dari Pihak Kedua, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}) sebagaimana tersebut dalam Perjanjian Kredit Nomer ........, tanggal...................... ;
+								Bahwa {{$kredit['debitur']['nama']}} (selanjutnya disebut Debitur) telah memperoleh fasilitas kredit dari Pihak Kedua, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}) sebagaimana tersebut dalam Perjanjian Kredit Nomer ........, tanggal...................... ;
 							</li>
 							<li>
 								Bahwa dalam memberikan kredit/pinjaman tersebut, Pihak Kedua membutuhkan jaminan pribadi Pihak Pertama untuk pelunasan hutang Debitur tersebut;
@@ -132,7 +132,7 @@
 				<div class="col-sm-4">
 				</div>
 				<div class="col-sm-4">
-					({{$kredit['kreditur']['nama']}})
+					({{$kredit['debitur']['nama']}})
 				</div>
 			</div>
 		

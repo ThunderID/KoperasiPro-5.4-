@@ -34,6 +34,7 @@ class PengajuanKredit
 	 */
 	public function __construct($jenis_kredit, $jangka_waktu, $pengajuan_kredit, $tanggal_pengajuan, $mobile = [], $spesimen_ttd = null, $foto_ktp = null, $lokasi = null, $referensi = null)
 	{
+		$this->pengajuan_id 		= null;
 		$this->jenis_kredit     	= $jenis_kredit;
 		$this->jangka_waktu     	= $jangka_waktu;
 		$this->pengajuan_kredit     = $pengajuan_kredit;
@@ -43,6 +44,7 @@ class PengajuanKredit
 		$this->foto_ktp				= $foto_ktp;
 		$this->lokasi				= $lokasi;
 		$this->referensi			= $referensi;
+		$this->notes				= [];
 	}
 
 	/**
@@ -57,7 +59,7 @@ class PengajuanKredit
 			// DB::BeginTransaction();
 
 			//1. simpan orang
-			if(!empty($this->debitur))
+			if(!empty($this->debitur) && !is_null($this->debitur['nik']))
 			{
 				$orang		= Orang::where('nik', $this->debitur['nik'])->first();
 				
@@ -68,6 +70,8 @@ class PengajuanKredit
 			}
 			elseif((array)$this->mobile)
 			{
+				\Log::info('Here lies mobile checker');
+
 				$mobile 	= Mobile::where('mobile_id', $this->mobile['id'])->where('mobile_model', $this->mobile['model'])->with(['pemilik'])->first();	
 
 				if(!empty($mobile['pemilik']) && !isset($orang))
@@ -81,10 +85,8 @@ class PengajuanKredit
 				$orang 		= new Orang;
 				$orang->save();
 			}
-			else
-			{
-				$orang 		= $this->simpanDebitur($orang, $this->debitur);
-			}
+
+			$orang 			= $this->simpanDebitur($orang, $this->debitur);
 
 			$pengajuan 		= new Pengajuan;
 			$pengajuan->fill([
@@ -177,7 +179,7 @@ class PengajuanKredit
 				]);
 			$riwayat->petugas_id 	= TAuth::loggedUser()['id'];
 			$riwayat->pengajuan_id 	= $pengajuan->id;
-			$riwayat->uraian 		= json_encode($this->notes);
+			$riwayat->uraian 		= $this->notes;
 			$riwayat->save();
 
 			// DB::commit();

@@ -4,7 +4,8 @@
 			'tolak' 				=> '#e74c3c',
 			'menunggu_persetujuan' 	=> '#9966cc',
 			'menunggu_realisasi' 	=> '#6666cc',
-			'terealisasi' 			=> '#48B5A3',
+			'realisasi' 			=> '#48B5A3',
+			'lunas' 				=> '#000',
 			'pengajuan'				=> '#0BB7D6',
 	];
 @endphp
@@ -26,7 +27,7 @@
 			<div class="sidebar-header p-b-sm">
 				@include('components.sidebar.basic_header',[ 'param' => [
 					'title' 			=> 'Data Kredit',
-					'status'			=> 	$cservice::statusLists(),
+					'status'			=> 	$cservice::statusLists($acl_active_office['role']),
 					'status_default'	=> 'semua'
 				]])
 			</div>
@@ -68,8 +69,10 @@
 					@include('pages.kredit.components.top_menu.menunggu_persetujuan')
 				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
 					@include('pages.kredit.components.top_menu.menunggu_realisasi')
-				@elseif ($page_datas->credit['status'] == 'terealisasi')
+				@elseif ($page_datas->credit['status'] == 'realisasi')
 					@include('pages.kredit.components.top_menu.terealisasi')
+				@elseif ($page_datas->credit['status'] == 'lunas')
+					@include('pages.kredit.components.top_menu.lunas')
 				@else
 					@include('pages.kredit.components.top_menu.tolak')
 				@endif
@@ -88,8 +91,10 @@
 					@include('pages.kredit.components.bottom_menu.menunggu_persetujuan')
 				@elseif ($page_datas->credit['status'] == 'menunggu_realisasi')
 					@include('pages.kredit.components.bottom_menu.menunggu_realisasi')
-				@elseif ($page_datas->credit['status'] == 'terealisasi')
+				@elseif ($page_datas->credit['status'] == 'realisasi')
 					@include('pages.kredit.components.bottom_menu.terealisasi')
+				@elseif ($page_datas->credit['status'] == 'lunas')
+					@include('pages.kredit.components.bottom_menu.lunas')
 				@else
 					@include('pages.kredit.components.bottom_menu.'.$page_datas->credit['status_sebelumnya'])
 				@endif

@@ -92,7 +92,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 					@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
-						@foreach ($page_datas->credit ['debitur']['alamat'] as $k => $v)
+						@foreach ((array)$page_datas->credit ['debitur']['alamat'] as $k => $v)
 							{{-- @if ($k == 0) --}}
 								<p class="text-capitalize text-light">
 									{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}

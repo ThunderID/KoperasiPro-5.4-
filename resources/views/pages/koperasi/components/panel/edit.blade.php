@@ -32,13 +32,7 @@
 					<label class="text-sm">Role</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::select('role', [
-								'komisaris'			=> 'Komisaris',
-								'pimpinan'			=> 'Pimpinan',
-								'kasir'				=> 'Kasir',
-								'marketing' 		=> 'Marketing',
-								'surveyor' 			=> 'Surveyor',
-							], $value['role'], ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
+							{!! Form::select('role', \App\Service\Helpers\UI\UserRole::lists(), $value['role'], ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
 						</div> 
 					</div> 
 				</fieldset>
@@ -110,10 +104,8 @@
 
 				<div class="clearfix">&nbsp;</div>
 
-				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}">Cancel</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-				</div>
+				<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-index" data-target="edit_{{ $value['id'] }}">Batal</a>
+				<button type="submit" class="btn btn-primary">Simpan</button>
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="clearfix">&nbsp;</div>

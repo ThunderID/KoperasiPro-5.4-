@@ -8,6 +8,7 @@ window.select = function(element, param) {
 
 	$('.select-get-ajax').on('select2:select', function(evt) {
 		var url = $(this).attr('data-url');
+		var id = $(this).find('option:selected').attr('data-id');
 		var val = $(this).find('option:selected').val();
 		var caption = $(this).find('option:selected').html();
 		var dataFlag = $(this).data('value-from-caption');
@@ -26,14 +27,14 @@ window.select = function(element, param) {
 		$.ajax({
 			type: "GET",
 			url: url,
-			data: {id: val},
+			data: {id: id},
 			cache: true,
 			success: function (data) {
 				console.log(data);
 				// parsing data ajax to content
 				elementTarget.html('');
 				$.each(data, function(index, value) {
-					var $option = $("<option value='" + index + "' data-id='" +index+ "'>" + value +"</option>");
+					var $option = $("<option value='" + value + "' data-id='" +index+ "'>" + value +"</option>");
 					// $option.val(v.id).text(v.nama);
 					// elementTarget.append($option);
 					elementTarget.append($option);

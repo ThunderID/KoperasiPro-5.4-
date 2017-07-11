@@ -51,7 +51,7 @@
 			<div class="row text-justify">
 				<div class="col-sm-12">
 					<p>
-						Pada hari ini {{$hari[strtolower(Carbon\Carbon::now()->format('l'))]}} tanggal {{Carbon\Carbon::now()->format('d-m-Y')}} sehubungan dengan pinjaman atas nama Sdr. {{$kredit['kreditur']['nama']}}  dengan alamat {{$kredit['kreditur']['alamat'][0]['alamat']}}. sesuai dengan Surat Perjanjian Kredit No. ……………………………………………. tanggal …………………………… yang telah terjadi wan prestasi / ingkar janji, dalam rangka memenuhi kewajiban selaku Pemberi Fidusia ataupun Pemegang Obyek Fidusia, sesuai dengan pasal 30 Undang-undang No. 42 tahun 1999 tentang Jaminan Fidusia, bersama dengan ini kami selaku pihak Pemberi Fidusia atau Pemegang Obyek Fidusia, menyerahkan dengan sukarela secara sadar dan tanpa paksaan dari pihak manapun kepada Penerima Fidusia atau pihak yang mewakilinya, atas obyek fidusia / barang jaminan berupa kendaraan bermotor dengan identitas sebagai berikut :
+						Pada hari ini {{$hari[strtolower(Carbon\Carbon::now()->format('l'))]}} tanggal {{Carbon\Carbon::now()->format('d-m-Y')}} sehubungan dengan pinjaman atas nama Sdr. {{$kredit['debitur']['nama']}}  dengan alamat {{$kredit['debitur']['alamat'][0]['alamat']}}. sesuai dengan Surat Perjanjian Kredit No. {{$kredit['nomor_kredit']}}. tanggal {{$kredit['tanggal_pengajuan']}} yang telah terjadi wan prestasi / ingkar janji, dalam rangka memenuhi kewajiban selaku Pemberi Fidusia ataupun Pemegang Obyek Fidusia, sesuai dengan pasal 30 Undang-undang No. 42 tahun 1999 tentang Jaminan Fidusia, bersama dengan ini kami selaku pihak Pemberi Fidusia atau Pemegang Obyek Fidusia, menyerahkan dengan sukarela secara sadar dan tanpa paksaan dari pihak manapun kepada Penerima Fidusia atau pihak yang mewakilinya, atas obyek fidusia / barang jaminan berupa kendaraan bermotor dengan identitas sebagai berikut :
 					</p>
 
 					<p>
@@ -102,7 +102,7 @@
 				<div class="clearfix">&nbsp;</div>
 
 				<div class="col-sm-4">
-					({{$kredit['kreditur']['nama']}})
+					({{$kredit['debitur']['nama']}})
 				</div>
 				<div class="col-sm-4">
 					(PETUGAS 1)
@@ -111,6 +111,11 @@
 					(PETUGAS 2)
 				</div>
 			</div>
+
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="clearfix">&nbsp;</div>
 		</div>
 	</body>
 </html>

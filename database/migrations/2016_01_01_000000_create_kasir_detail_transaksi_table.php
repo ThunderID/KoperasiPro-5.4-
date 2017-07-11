@@ -14,8 +14,8 @@ class CreateKasirDetailTransaksiTable extends Migration
     public function up()
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('header_transaksi_id');
+            $table->string('id', 255);
+            $table->string('header_transaksi_id', 255);
             $table->string('item')->nullable();
             $table->string('deskripsi');
             $table->integer('kuantitas');
@@ -23,6 +23,9 @@ class CreateKasirDetailTransaksiTable extends Migration
             $table->double('diskon_satuan');
             $table->timestamps();
             $table->softDeletes();
+           
+            $table->primary('id');
+            $table->index(['deleted_at', 'header_transaksi_id']);
         });
     }
 

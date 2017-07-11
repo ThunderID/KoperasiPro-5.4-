@@ -37,7 +37,7 @@ class JaminanTanahBangunan extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'survei_jaminan_tanah_bangunan';
+	protected $table				= 's_jaminan_tb';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -124,6 +124,8 @@ class JaminanTanahBangunan extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
+
+	protected $appends 				= 	['harga_taksasi'];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 	
 	/**
@@ -164,6 +166,14 @@ class JaminanTanahBangunan extends BaseModel
 	{
 		return $this->formatAlamatTo($value);
 	}
+
+	public function getHargaTaksasiAttribute($value)
+	{
+		$total 		= ($this->attributes['taksasi_tanah'] + $this->attributes['taksasi_bangunan']);
+		
+		return $this->formatMoneyTo($total);
+	}
+
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
 
 	public function setNilaiJaminanAttribute($value)

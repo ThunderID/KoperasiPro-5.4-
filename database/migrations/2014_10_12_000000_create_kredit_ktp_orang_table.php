@@ -40,6 +40,7 @@ class CreateKreditKTPOrangTable extends Migration
             $table->primary('id');
 			$table->index(['deleted_at', 'nama']);
 			$table->index(['deleted_at', 'nik']);
+			$table->index(['deleted_at', 'nip']);
 		});
 	}
 

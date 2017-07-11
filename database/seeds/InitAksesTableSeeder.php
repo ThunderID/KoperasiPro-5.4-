@@ -158,16 +158,23 @@ class InitAksesTableSeeder extends Seeder
 		$sba 				= new SessionBasedAuthenticator;
 		$sba 				= $sba->login($credentials);
 
-		$koperasi_baru_2	= new KoperasiBaru($visa_2['koperasi']['nama'], rand(1000000, 9999999), $visa_2['koperasi']['latitude'], $visa_2['koperasi']['longitude'], $visa_2['koperasi']['nomor_telepon'], $visa_2['koperasi']['alamat'], 'Holding');
-		$koperasi_baru_2 	= $koperasi_baru_2->save();
+		return true;
+		foreach (range(0, 999) as $key) 
+		{
+			$longitude 	= (float) -7.24917;
+			$latitude 	= (float) 112.75083;
+			$radius 	= rand(1,999); // in miles
 
-		$koperasi_baru_3 	= new KoperasiBaru($visa_3['koperasi']['nama'],  rand(1000000, 9999999), $visa_3['koperasi']['latitude'], $visa_3['koperasi']['longitude'], $visa_3['koperasi']['nomor_telepon'], $visa_3['koperasi']['alamat']);
-		$koperasi_baru_3 	= $koperasi_baru_3->save();
+			$lng[0] 	= $longitude - $radius / abs(cos(deg2rad($latitude)) * 69);
+			$lng[1] 	= $longitude + $radius / abs(cos(deg2rad($latitude)) * 69);
+			$lat[0] 	= $latitude - ($radius / 69);
+			$lat[1] 	= $latitude + ($radius / 69);
 
-		$admin_2 			= new GrantVisa($orang['id'], $visa_2['role'], $visa_2['scopes']);
-		$admin_2 			= $admin_2->save();
-
-		$admin_3 			= new GrantVisa($orang['id'], $visa_3['role'], $visa_3['scopes']);
-		$admin_3 			= $admin_3->save();
+			$koperasi_baru_2	= new KoperasiBaru($faker->company, rand(1000000, 9999999), $lat[rand(0,1)], $lng[rand(0,1)], $faker->phoneNumber, $faker->address, 'Holding');
+			$koperasi_baru_2 	= $koperasi_baru_2->save();
+	
+			$admin_2 			= new GrantVisa($orang['id'], $visa_3['role'], $visa_3['scopes']);
+			$admin_2 			= $admin_2->save();
+		}
 	}
 }

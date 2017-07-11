@@ -6,7 +6,7 @@ use App\Infrastructure\Models\BaseModel;
 use App\Infrastructure\Traits\GuidTrait;
 use App\Infrastructure\Traits\SurveiTrait;
 
-use Validator, Exception;
+use Validator, Exception, Carbon\Carbon;
 
 use App\Infrastructure\Traits\IDRTrait;
 use App\Infrastructure\Traits\TanggalTrait;
@@ -85,6 +85,8 @@ class Rekening extends BaseModel
 											'updated_at', 
 											'deleted_at', 
 										];
+
+	protected $appends 				= ['selisih_saldo', 'selisih_hari'];
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
@@ -109,6 +111,18 @@ class Rekening extends BaseModel
 	public function getSaldoAkhirAttribute($value)
 	{
 		return $this->formatMoneyTo($value);
+	}
+
+	public function getSelisihSaldoAttribute($value)
+	{
+		return $this->formatMoneyTo($this->attributes['saldo_akhir'] - $this->attributes['saldo_awal']) ;
+	}
+
+	public function getSelisihHariAttribute($value)
+	{
+		$selisih 	= Carbon::parse($this->attributes['tanggal_akhir'])->diffInDays(Carbon::parse($this->attributes['tanggal_awal']));
+
+		return $selisih;
 	}
 
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/

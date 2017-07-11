@@ -16,7 +16,7 @@
 				<div class="dropdown p-t-xs">
 					<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
 						<i class="fa fa-building" style="font-size: 15px;"></i>
-						<span class="text-capitalize">&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;</span>
+						<span class="text-capitalize">&nbsp; {{ $acl_active_office['koperasi']['nama'] }} &nbsp;&nbsp;</span>
 						<span class="caret"></span>
 					</a>
 				</div>
@@ -33,8 +33,8 @@
 							@include('components.notification')
 						</li>
 						<li>
-							<p class="name m-b-none">{{TAuth::loggedUser()['nama']}}</p>
-							<p class="role text-muted">{{ucwords(TAuth::activeOffice()['role'])}}</p>
+							<p class="name m-b-none">{{$acl_logged_user['nama']}}</p>
+							<p class="role text-muted">{{ucwords($acl_active_office['role'])}}</p>
 						</li>
 						<li>
 							<a class="primary" href="#modal-logout" data-target="#modal-logout" data-toggle="modal" no-data-pjax >
@@ -64,7 +64,7 @@
 			<div class="navbar-brand text-center">
 				{{ Config::get('app.name') }}
 				<a href="#modal-change-koperasi" data-toggle="modal" data-target="#modal-change-koperasi" class="btn btn-link">
-					<i class="fa fa-building"></i>&nbsp;&nbsp; {{ TAuth::activeOffice()['koperasi']['nama'] }} &nbsp;&nbsp;<span class="caret"></span>
+					<i class="fa fa-building"></i>&nbsp;&nbsp; {{ $acl_active_office['koperasi']['nama'] }} &nbsp;&nbsp;<span class="caret"></span>
 				</a>
 				<div class="pull-right" style="margin-right: -20px;">
 					@include('components.notification')

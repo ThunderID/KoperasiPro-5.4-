@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use Input, PDF, Carbon\Carbon, Exception, StdClass;
 
-use TCommands\ACL\DaftarkanPengguna;
-use TCommands\ACL\GrantVisa;
+use App\Service\Pengaturan\GrantVisa;
 
-use TImmigration\Models\Pengguna;
-use TImmigration\Models\Koperasi_RO;
+use App\Service\Helpers\UI\UploadKaryawan;
 
-use TAuth;
+use App\Domain\HR\Models\Orang;
+use App\Domain\Akses\Models\Koperasi;
+use App\Domain\Akses\Models\Visa;
+
+use TAuth, URL;
 
 /**
  * Kelas PenggunaController
@@ -56,9 +59,10 @@ class PenggunaController extends Controller
 	 */
 	public function show($id)
 	{
+		return $this->destroy($id);
 		$page_datas 				= new StdClass;
-		$page_datas->pengguna 		= Pengguna::paginate();
-		$page_datas->data 			= Pengguna::id($id)->with(['visas'])->firstorfail();
+		$page_datas->pengguna 		= Visa::paginate();
+		$page_datas->data 			= Visa::id($id)->with(['petugas'])->firstorfail();
 		$page_datas->id 			= $id;
 		
 		$page_attributes 			= new StdClass;
@@ -96,47 +100,27 @@ class PenggunaController extends Controller
 		try
 		{
 			\DB::BeginTransaction();
-			$data 					= Pengguna::find($id);
+			$data 					= Orang::findornew($id);
 
-			if(!$data)
+			$data->fill($this->request->only(['email', 'password', 'nama']));
+			$data->save();
+
+			$koperasi 					= Koperasi::findorfail(TAuth::ActiveOffice()['koperasi']['id']);
+
+			$visa['role'] 						= $this->request->get('role');
+			$visa['koperasi']['id'] 			= $koperasi['id'];
+			$visa['koperasi']['nama'] 			= $koperasi['nama'];
+			$visa['koperasi']['latitude'] 		= $koperasi['latitude'];
+			$visa['koperasi']['longitude'] 		= $koperasi['longitude'];
+			$visa['koperasi']['alamat'] 		= $koperasi['alamat'];
+			$visa['koperasi']['nomor_telepon'] 	= $koperasi['nomor_telepon'];
+
+			foreach ($this->request->get('scope') as $key => $value) 
 			{
-				$simpan 			= new DaftarkanPengguna($this->request->only(['email', 'password', 'nama']));
-				$simpan 			= $simpan->handle();
-
-				$data 				= Pengguna::find($simpan['id']);
+				$visa['scopes'][]			= ['list' => $value];
 			}
-			else
-			{
-				$data->fill($this->request->only(['email', 'password', 'nama']));
-				$data->save();
-			}
-
-			// if($this->request->has('add_visa'))
-			// {
-				$koperasi 					= Koperasi_RO::find(TAuth::ActiveOffice()['koperasi']['id']);
-
-				$visa['role'] 						= $this->request->get('role');
-				$visa['koperasi']['id'] 			= $koperasi['id'];
-				$visa['koperasi']['nama'] 			= $koperasi['nama'];
-				$visa['koperasi']['latitude'] 		= $koperasi['latitude'];
-				$visa['koperasi']['longitude'] 		= $koperasi['longitude'];
-				$visa['koperasi']['alamat'] 		= $koperasi['alamat'];
-				$visa['koperasi']['nomor_telepon'] 	= $koperasi['nomor_telepon'];
-
-				foreach ($this->request->get('scope') as $key => $value) 
-				{
-					$visa['scopes'][]			= ['list' => $value];
-				}
-				$simpan_visa 		= new GrantVisa($data['id'], $visa);
-				$simpan_visa 		= $simpan_visa->handle();
-			// }
-
-			if($this->request->has('remove_visa'))
-			{
-				$visa 				= $this->request->get('remove_visa');
-				$hapus_visa 		= new RemoveVisa($data['id'], $visa);
-				$hapus_visa 		= $hapus_visa->handle();
-			}
+			$simpan_visa 		= new GrantVisa($data['id'], $visa['role'], $visa['scopes']);
+			$simpan_visa 		= $simpan_visa->save();
 
 			\DB::commit();
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
@@ -169,12 +153,10 @@ class PenggunaController extends Controller
 	{
 		try
 		{
-			$data 					= Pengguna::findorfail($id);
+			$data 					= Visa::findorfail($id);
 			$data->delete();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil dihapus'];
-
-			return $this->generateRedirect(route('pengguna.index'));
 		}
 		catch (Exception $e)
 		{
@@ -187,7 +169,30 @@ class PenggunaController extends Controller
 				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
 			}
 		
-			return $this->generateRedirect(route('pengguna.show', $id));
 		}
+		return $this->generateRedirect(route('koperasi.show', 0));
 	}
+
+	public function batch()
+	{
+		if(Input::hasfile('pengguna'))
+		{
+			$file 		= Input::file('pengguna');
+
+			$fn 		= 'pengguna-'.Str::slug(microtime()).'.'.$file->getClientOriginalExtension(); 
+
+			$date 		= Carbon::now();
+			$dp 		= $date->format('Y/m/d');
+
+      		$file->move(public_path().'/'.$dp, $fn); // uploading file to given path
+
+			$karyawan 	= new UploadKaryawan(fopen(public_path().'/'.$dp.'/'.$fn, "r"), public_path().'/'.$dp.'/', 'password-'.$fn);
+      		$returned 	= $karyawan->save(); 
+			
+			return response()->download(public_path().'/'.$dp.'/'.$returned['url']);
+		}
+
+  		return $this->generateRedirect(route('koperasi.show', 0));
+	}
+
 }

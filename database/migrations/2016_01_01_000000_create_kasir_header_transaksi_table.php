@@ -14,11 +14,11 @@ class CreateKasirHeaderTransaksiTable extends Migration
     public function up()
     {
         Schema::create('header_transaksi', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id', 255);
             $table->string('orang_id')->nullable();
             $table->string('koperasi_id');
             $table->string('pengajuan_id')->nullable();
-            $table->string('nomor_transaksi');
+            $table->string('nomor_transaksi')->nullable();
             $table->enum('tipe', ['bukti_kas_keluar', 'bukti_kas_masuk']);
             $table->enum('status', ['pending', 'lunas']);
             $table->datetime('tanggal_dikeluarkan');
@@ -27,6 +27,9 @@ class CreateKasirHeaderTransaksiTable extends Migration
             
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->primary('id');
+            $table->index(['deleted_at', 'pengajuan_id']);
         });
     }
 

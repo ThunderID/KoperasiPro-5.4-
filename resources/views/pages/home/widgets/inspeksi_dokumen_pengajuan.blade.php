@@ -1,62 +1,79 @@
 @inject('dokcab', '\App\Service\Analis\InspeksiDokumenCabang')
 
 @php
-	$dokcab 	= $dokcab->pengajuan();
+	$dokcab 	= $dokcab->pengajuan([], $acl_logged_user);
 @endphp
-<div class="row" style="padding:15px;">
+<div class="row">
 	<div class="col-sm-12">
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="border-top: none;border-top-left-radius: 0; border-top-right-radius: 0;">
 			<div class="panel-body">
 				<div class="panel-title p-b-md text-left" style="border-bottom: 1px solid #E9E9E9">
-					Pengajuan Baru
+					<h4>Checklists Pengajuan</h4>
+					<p>Harap melengkapi dokumen berikut agar pengajuan dapat diproses.</p>
 				</div>							
 				<table class="table table-hover">
 					<thead>
 						<tr>
+							<th class="text-center">No</th>
 							<th class="text-left">Koperasi</th>
 							<th class="text-left">Nama Nasabah</th>
-							<th class="text-right">Kelengkapan Dokumen</th>
+							<th class="text-center">Kelengkapan Dokumen</th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
 						@forelse($dokcab as $key => $value)
 							<tr>
+								<td class="text-center">{{$key+1}}</td>
 								<td class="text-left">{{$value['koperasi']['nama']}}</td>
 								<td class="text-left">{{$value['debitur']['nama']}}</td>
 								<td class="text-right">
+									<p>
 									@if(!$value['data_nasabah'])
-										Data Nasabah <i class="fa fa-close"></i>
+										<span class="label label-danger">
+											Data Debitur	
+										</span>
 									@else
-										Data Nasabah <i class="fa fa-check"></i>
+										<span class="label label-success">
+											Data Debitur	
+										</span>
 									@endif
-									<br>
+									&nbsp;&nbsp;
 									@if(!$value['data_relasi'])
-										Data Relasi <i class="fa fa-close"></i>
+										<span class="label label-danger">
+											Data Relasi	
+										</span>
 									@else
-										Data Relasi <i class="fa fa-check"></i>
+										<span class="label label-success">
+											Data Relasi	
+										</span>
 									@endif
-									<br>
+									&nbsp;&nbsp;
 									@if(!$value['data_jaminan'])
-										Data Jaminan <i class="fa fa-close"></i>
+										<span class="label label-danger">
+											Data Jaminan	
+										</span>
 									@else
-										Data Jaminan <i class="fa fa-check"></i>
+										<span class="label label-success">
+											Data Jaminan	
+										</span>
 									@endif
+									</p>
 								</td>
 								<td class="text-right">
-									<a href="{{route('credit.show', $value['id'])}}" style="text-decoration: none;">
+									<a href="{{route('credit.show', ['id' => $value['id'], 'status' => 'pengajuan', 'q' => $value['debitur']['nama']])}}" style="text-decoration: none;">
 										Kerjakan
 									</a>
 								</td>
 							</tr>
 						@empty
 							<tr>
-								<td colspan="4" class="text-center"><i>Belum Ada</i></td>
+								<td colspan="5" class="text-center"><i>Belum Ada</i></td>
 							</tr>
 						@endforelse
 						@if(count($dokcab))
 							<tr>
-								<td colspan="4" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
+								<td colspan="5" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
 							</tr>
 						@endif
 					</tbody>

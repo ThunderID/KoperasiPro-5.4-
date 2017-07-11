@@ -30,7 +30,7 @@
 						{{-- button action form keluarga --}}
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-keluarga" data-target="keluarga-{{ $k }}">Cancel</a>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-keluarga" data-target="keluarga-{{ $k }}">Batal</a>
 							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
@@ -58,7 +58,7 @@
 				{{-- button action form keluarga --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-keluarga" data-target="keluarga">Cancel</a>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-keluarga" data-target="keluarga">Batal</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}

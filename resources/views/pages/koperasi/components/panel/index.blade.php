@@ -47,7 +47,7 @@
 							<a href="#" class="btn" data-toggle="hidden" data-target="edit_{{$value['id']}}" data-panel="data-index" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i> Edit
 							</a>				
-							<a href="#" data-url="#" data-toggle="modal" data-target="#modal-delete" class="btn danger" data-url="{{ route('pengguna.destroy',['id' => $value['id']] ) }}">
+							<a href="#" data-toggle="modal" data-target="#modal-delete" class="btn danger" data-url="{{ route('pengguna.destroy',['id' => $value['id']] ) }}">
 								<i class="fa fa-trash" aria-hidden="true"></i> Hapus
 							</a>										
 						</div>

@@ -22,7 +22,7 @@ class CreateKreditRelasiOrangTable extends Migration
 			$table->softDeletes();
 
             $table->primary('id');
-			$table->index(['deleted_at']);
+			$table->index(['deleted_at', 'orang_id', 'relasi_id']);
 		});
 	}
 

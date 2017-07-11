@@ -28,7 +28,7 @@ class JaminanKendaraan extends BaseModel
 	 *
 	 * @var string
 	 */
-	protected $table				= 'pengajuan_jaminan_kendaraan';
+	protected $table				= 'p_jaminan_k';
 
 	/**
 	 * The attributes that are mass assignable.

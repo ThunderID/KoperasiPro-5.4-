@@ -42,7 +42,7 @@
 					<label for="">Jenis Kendaraan</label>
 					<div class="row">
 						<div class="col-md-7">
-							{!! Form::select('jaminan_kendaraan[tipe][]', $data['select_jenis_kendaraan'], 'roda_2', ['class' => 'form-control quick-select  auto-tabindex', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
+							{!! Form::select('jaminan_kendaraan[tipe][]', $data['select_jenis_kendaraan'], '', ['class' => 'form-control quick-select  auto-tabindex', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih', 'data-other' => 'input-tipe-jaminan-kendaraan']) !!}
 							{!! Form::hidden('jaminan_kendaraan[tipe][]', 'roda_2', ['class' => 'input-tipe-jaminan-kendaraan input-kendaraan', 'data-field' => 'tipe']) !!}
 						</div>
 					</div>
@@ -60,8 +60,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							{!! Form::select('jaminan_kendaraan[merk][]', $data['select_merk_kendaraan'], 
-								(isset($param['data']['merk']) ? (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $param['data']['merk'] : 'lain_lain') : 'daihatsu'), 
-								['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
+								(isset($param['data']['merk']) ? (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $param['data']['merk'] : 'lain_lain') : ''), 
+								['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
 							{!! Form::text('jaminan_kendaraan[merk][]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;', 'data-field' => 'merk']) !!}
 						</div>
 					</div>

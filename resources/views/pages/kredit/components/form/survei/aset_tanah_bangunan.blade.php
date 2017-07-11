@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				{!! Form::text('aset_tanah_bangunan[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) ? $param['data']['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex']) !!}
+				{!! Form::text('aset_tanah_bangunan[nomor_sertifikat]', (isset($param['data']['nomor_sertifikat']) ? $param['data']['nomor_sertifikat'] : null), ['class' => 'form-control auto-tabindex mask-no-sertifikat']) !!}
 			</div>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 				'rumah'		=> 'Rumah',
 				'tambak'	=> 'Tambak',
 				'lain_lain'	=> 'Lain lain',
-				], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'ruko'), ['class' => 'form-control quick-select auto-tabindex focus']) !!}
+				], (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'ruko'), ['class' => 'form-control quick-select select auto-tabindex focus']) !!}
 		</div>
 	</div>
 </fieldset>

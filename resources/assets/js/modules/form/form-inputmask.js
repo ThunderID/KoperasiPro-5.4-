@@ -78,7 +78,7 @@ window.formInputMask = {
 		idKTP.mask(selector);
 	},
 	noTelp: function () {
-		var noTelp = new Inputmask('9999 999 999 999');
+		var noTelp = new Inputmask('9999 999 999 99');
 		var selector = $('.mask-no-telp');
 		var selector2 = $('.mask-no-handphone');
 		noTelp.mask(selector);

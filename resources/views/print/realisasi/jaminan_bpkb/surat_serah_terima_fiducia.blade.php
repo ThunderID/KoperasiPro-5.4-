@@ -53,7 +53,7 @@
 								{{$pimpinan['nama']}} jabatan Pimpinan BPR/BPR/KOPERASI, yang dalam hal ini bertindak untuk dan atas nama BPR/KOPERASI {{$koperasi['nama']}} yang berkedudukan di {{$koperasi['alamat']}}, selanjutnya disebut BPR/KOPERASI, dengan :
 							</li>
 							<li>
-								{{$kredit['kreditur']['nama']}}, beralamat di {{$kredit['kreditur']['alamat'][0]['alamat']}} yang dalam hal ini bertindak dan atas nama Pribadi selanjutnya disebut PEMINJAM.	
+								{{$kredit['debitur']['nama']}}, beralamat di {{$kredit['debitur']['alamat'][0]['alamat']}} yang dalam hal ini bertindak dan atas nama Pribadi selanjutnya disebut PEMINJAM.	
 							</li>
 						</ol>
 					</p>
@@ -64,7 +64,7 @@
 					<p>
 						<ol>
 							<li>
-								Oleh Kedua Belah Pihak telah dibuat dan ditandatangani Surat Perjanjian Kredit, tertanggal  di bawah nomor SPK: ..................... dan lampiran-lampirannya yang selanjutnya akan disebut sebagai PERJANJIAN dan merupakan bagian satu kesatuan tak terpisahkan dengan Surat Penyerahan Hak Milik Secara FIDUSIA ini;
+								Oleh Kedua Belah Pihak telah dibuat dan ditandatangani Surat Perjanjian Kredit, tertanggal  di bawah nomor SPK: {{$kredit['nomor_kredit']}} dan lampiran-lampirannya yang selanjutnya akan disebut sebagai PERJANJIAN dan merupakan bagian satu kesatuan tak terpisahkan dengan Surat Penyerahan Hak Milik Secara FIDUSIA ini;
 							</li>
 							<li>
 								Berdasarkan Perjanjian tersebut di atas, dengan ini PEMINJAM menyatakan dengan sesungguhnya telah dan secara sah berhutang dan menerima hutang   tersebut dari BPR/KOPERASI berupa uang sebesar {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}) yang jumlah tersebut beserta perinciannya tercantum dalam  Perjanjian, yang selanjutnya disebut juga sebagai pinjaman;							
@@ -93,7 +93,7 @@
 						Menerangkan :
 						<ul>
 							<li>
-								Bahwa {{$kredit['kreditur']['nama']}} (selanjutnya disebut Debitur) telah memperoleh fasilitas kredit dari Pihak Kedua, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}) sebagaimana tersebut dalam Perjanjian Kredit Nomer ........, tanggal...................... ;
+								Bahwa {{$kredit['debitur']['nama']}} (selanjutnya disebut Debitur) telah memperoleh fasilitas kredit dari Pihak Kedua, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}) sebagaimana tersebut dalam Perjanjian Kredit Nomer {{$kredit['nomor_kredit']}}, tanggal {{$kredit['tanggal_pengajuan']}} ;
 							</li>
 							<li>
 								Bahwa dalam memberikan kredit/pinjaman tersebut, Pihak Kedua membutuhkan jaminan pribadi Pihak Pertama untuk pelunasan hutang Debitur tersebut;
@@ -125,7 +125,7 @@
 					({{$pimpinan['nama']}})
 				</div>
 				<div class="col-sm-6">
-					({{$kredit['kreditur']['nama']}})
+					({{$kredit['debitur']['nama']}})
 				</div>
 			</div>
 		

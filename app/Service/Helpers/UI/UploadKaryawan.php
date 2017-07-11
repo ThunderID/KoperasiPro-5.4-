@@ -13,6 +13,8 @@ class UploadKaryawan
 {
 	protected $file;
 	protected $attributes;
+	protected $file_name;
+	protected $file_path;
 
 	/**
 	 * Create a new job instance.
@@ -20,9 +22,11 @@ class UploadKaryawan
 	 * @param  $file
 	 * @return void
 	 */
-	public function __construct($file)
+	public function __construct($file, $file_path = null, $file_name = null)
 	{
-		$this->file     = $file;
+		$this->file     	= $file;
+		$this->file_name    = $file_name;
+		$this->file_path    = $file_path;
 	}
 
 	/**
@@ -37,6 +41,12 @@ class UploadKaryawan
 
 			DB::begintransaction();
 
+			// create a file pointer connected to the output stream
+			$output 		= fopen($this->file_path.$this->file_name, "w");
+
+			// output the column headings
+			fputcsv($output, array('nama', 'nip', 'password'));
+
 			$header			= null;
 			while (($data = fgetcsv($this->file, 500, ",")) !== FALSE) 
 			{
@@ -46,7 +56,7 @@ class UploadKaryawan
 					$header = $data;
 					continue;
 				}
-			
+
 				$all_row 	= array_combine($header, $data);
 
 				$koperasi 				= Koperasi::where('kode', $all_row['kode_kantor'])->firstorfail();
@@ -77,13 +87,14 @@ class UploadKaryawan
 				$grant_visa 	= new GrantVisa($orang->id, $all_row['jabatan'], $scopes, $koperasi['id']);
 				$grant_visa->save();
 
-				$this->attributes[]		= $attributes;
-				
+				fputcsv($output, [$attributes['nama'], $attributes['nip'], $attributes['password']]);
 			}
+
+			fclose($output);
 
 			DB::commit();
 
-			return $this->attributes;
+			return ['url' => $this->file_name];
 		}
 		catch(Exception $e)
 		{
