@@ -483,8 +483,7 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing'])->first()->toArray();
-
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing', 'debitur.kredit' => function($q)use($id){$q->notid($id);}, 'debitur.kredit.jaminan_kendaraan', 'debitur.kredit.jaminan_tanah_bangunan'])->first()->toArray();
 
 			if((!count($this->page_datas->credit['debitur']) || !count($this->page_datas->credit['debitur']['relasi'])) && $this->page_datas->credit['status']=='pengajuan')
 			{
@@ -563,35 +562,51 @@ class KreditController extends Controller
 			return $this->generateRedirect(route('credit.index'));
 		}
 
-		$this->page_datas->id 						= $id;
+		$this->page_datas->id		= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['debitur']['id'];
+		$person_id					= $this->page_datas->credit['debitur']['id'];
 
+		$this->view					= view('pages.kredit.pengajuan');
 		//initialize view
 		switch ($this->page_datas->credit['status']) {
-			// case 'pengajuan':
-			// 	$this->view 						= view('pages.kredit.pengajuan');
-			// 	break;
+			case 'pengajuan':
+				// $this->view 						= view('pages.kredit.pengajuan');
+				$this->page_datas->credit['status_sebelumnya']	= null;
+				$this->page_datas->credit['status_berikutnya']	= 'survei';
+				break;
 			
-			// case 'survei':
-			// 	$this->view                  			= view('pages.kredit.survei');
-			// 	break;
+			case 'survei':
+				$this->page_datas->credit['status_sebelumnya']	= 'pengajuan';
+				$this->page_datas->credit['status_berikutnya']	= 'menunggu_persetujuan';
+				// $this->view                  		= view('pages.kredit.survei');
+				break;
 
-			// case 'menunggu_persetujuan':
-			// 	$this->view 						= view('pages.kredit.menunggu_persetujuan');
-			// 	break;
+			case 'menunggu_persetujuan':
+				$this->page_datas->credit['status_sebelumnya']	= 'survei';
+				$this->page_datas->credit['status_berikutnya']	= 'menunggu_realisasi';
+				// $this->view 						= view('pages.kredit.menunggu_persetujuan');
+				break;
 
-			// case 'menunggu_realisasi':
-			// 	$this->view 						= view('pages.kredit.menunggu_realisasi');
-			// 	break;
+			case 'menunggu_realisasi':
+				$this->page_datas->credit['status_sebelumnya']	= 'menunggu_persetujuan';
+				$this->page_datas->credit['status_berikutnya']	= 'terealisasi';
+				// $this->view 						= view('pages.kredit.menunggu_realisasi');
+				break;
 
-			// case 'terealisasi':
-			// 	$this->view 						= view('pages.kredit.terrealisasi');
-			// 	break;	
+			case 'terealisasi':
+				$this->page_datas->credit['status_sebelumnya']	= 'menunggu_realisasi';
+				$this->page_datas->credit['status_berikutnya']	= 'lunas';
+				// $this->view 						= view('pages.kredit.terrealisasi');
+				break;	
 
+			case 'lunas':
+				$this->page_datas->credit['status_sebelumnya']	= 'terealisasi';
+				$this->page_datas->credit['status_berikutnya']	= null;
+				// $this->view 						= view('pages.kredit.terrealisasi');
+				break;	
 			default:
-				$this->view 						= view('pages.kredit.pengajuan');
+				// $this->view 						= view('pages.kredit.pengajuan');
 				break;
 		}
 
