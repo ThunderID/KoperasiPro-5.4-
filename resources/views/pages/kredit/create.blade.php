@@ -75,30 +75,9 @@
 @endpush
 
 @push('scripts')
-	function autofilldebitur() 
-	{
-		var nik = '35-'+document.getElementById("debitur_id").value;
 
-		$.ajax({url: "{{route('ajax.debitur')}}?nik="+nik, success: function(result)
-		{
-			document.getElementById("debitur_nama").value = result.nama;
-			document.getElementById("debitur_tanggal_lahir").value = result.tanggal_lahir;
-			document.getElementById("debitur_jenis_kelamin").value = result.jenis_kelamin;
-			document.getElementById("debitur_status_perkawinan").value = result.status_perkawinan;
-			document.getElementById("debitur[alamat][0][alamat]").value = result.alamat.alamat;
-			document.getElementById("debitur[alamat][0][rt]").value = result.alamat.rt;
-			document.getElementById("debitur[alamat][0][rw]").value = result.alamat.rw;
-			document.getElementById("debitur[alamat][0][provinsi]").value = result.alamat.provinsi;
-			document.getElementById("debitur[alamat][0][regensi]").value = result.alamat.regensi;
-			document.getElementById("debitur[alamat][0][distrik]").value = result.alamat.distrik;
-			document.getElementById("debitur[alamat][0][desa]").value = result.alamat.desa;
-			document.getElementById("debitur[alamat][0][negara]").value = result.alamat.negara;
-			document.getElementById("debitur[telepon]").value = result.telepon;
-			document.getElementById("debitur_pekerjaan").value = result.pekerjaan;
-			document.getElementById("debitur_penghasilan_bersih").value = result.penghasilan_bersih;
-		}});
-	}
-
+	/* Not This Time: Due to API Support
+	
 	function autofillsertifikat() 
 	{
 		var jt = document.getElementById("jaminan_tanah_bangunan[nomor_sertifikat]").value;
@@ -134,4 +113,5 @@
 			document.getElementById("jaminan_kendaraan[atas_nama]").value 	= result.atas_nama;
 		}});
 	}
+	*/
 @endpush
