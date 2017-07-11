@@ -10,7 +10,7 @@
 	<div class="clearfix">&nbsp;</div>
 
 	<div class="row field">
-		<div class="col-sm-12 text-center">
+		<div class="col-sm-12 text-center p-r-none">
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
