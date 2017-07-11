@@ -86,23 +86,23 @@
 				<ul class="list-unstyled fa-ul m-l-xl m-b-lg" role="tablist" style="width:30%; display: inline-grid;">
 					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Debitur</strong></p>
 					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if (isset($page_datas->credit['kelengkapan_nasabah']) && ($page_datas->credit['kelengkapan_nasabah'] == false)) title="Kelengkapan Data Pribadi Belum Lengkap" @endif>
-							<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga
+						<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
+							<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Survei Kepribadian
+							<i class="fa-li fa fa-file-text-o"></i> Survei Kepribadian @if ($page_datas->credit['checklist']['kelengkapan_kepribadian'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#survei-keuangan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Survei Keuangan &amp; Rekening
+							<i class="fa-li fa fa-file-text-o"></i> Survei Keuangan &amp; Rekening @if ($page_datas->credit['checklist']['kelengkapan_keuangan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#survei-aset" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Survei Aset
+							<i class="fa-li fa fa-file-text-o"></i> Survei Aset @if ($page_datas->credit['checklist']['kelengkapan_aset'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
@@ -113,12 +113,12 @@
 					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Jaminan</strong></p>
 					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Jaminan
+							<i class="fa-li fa fa-file-text-o"></i> Jaminan @if ($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan
+							<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan  @if ($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>	
 				</ul>
