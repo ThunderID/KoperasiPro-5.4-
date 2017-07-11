@@ -91,6 +91,26 @@
 						</a>
 					</li>
 					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Riwayat Kredit
+						</a>
+					</li>
+					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Jaminan</strong></p>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Jaminan @if ($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
+				</ul>
+			
+				<ul class="list-unstyled fa-ul m-b-sm" role="tablist" style="width:30%; display: inline-grid;">
+					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Survei</strong></p>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan  @if ($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
 						<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
 							<i class="fa-li fa fa-file-text-o"></i> Survei Kepribadian @if ($page_datas->credit['checklist']['kelengkapan_kepribadian'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
@@ -105,67 +125,6 @@
 							<i class="fa-li fa fa-file-text-o"></i> Survei Aset @if ($page_datas->credit['checklist']['kelengkapan_aset'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Riwayat Kredit
-						</a>
-					</li>
-					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Jaminan</strong></p>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Jaminan @if ($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan  @if ($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
-						</a>
-					</li>	
-				</ul>
-			
-				<ul class="list-unstyled fa-ul m-b-sm" role="tablist" style="width:30%; display: inline-grid;">
-					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Angsuran</strong></p>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#data-angsuran" aria-controls="data-angsuran" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Angsuran
-						</a>
-					</li>
-					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Survei</strong></p>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#data-checklist-survei" aria-controls="data-checklist-survei" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-file-text-o"></i> Checklist Survei
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs" role="presentation">
-						<a class="text-capitalize" href="#print_form_survei_kepribadian" aria-controls="print_form_survei_kepribadian" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Kepribadian
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print_form_survei_keuangan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Keuangan
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print_form_survei_rekening" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Rekening
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print_form_survei_aset_usaha" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Aset Usaha
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print_form_survei_aset_kendaraan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Aset Kendaraan
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs">
-						<a class="text-capitalize" href="#print_form_survei_aset_tanah_bangunan" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Form Survei Aset Tanah &amp; Bangunan
-						</a>
-					</li>
 				</ul>
 				<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
 					<p class="text-capitalize text-md m-l-min-lg m-b-xs"><strong>Analis</strong></p>
@@ -176,13 +135,13 @@
 					</li>
 					<p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Pencairan</strong></p>
 					<li class="m-t-xs m-b-xs"><a href="#">
-						<a class="text-capitalize" href="#print_surat_pk" data-toggle="tab" role="tab">
-							<i class="fa-li fa fa-print"></i> Print Surat PK
-						</a>
-					</li>
-					<li class="m-t-xs m-b-xs"><a href="#">
 						<a class="text-capitalize" href="#print_form_nota_pencairan_kredit" data-toggle="tab" role="tab">
 							<i class="fa-li fa fa-file-text-o"></i> Nota Pencairan Kredit
+						</a>
+					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						<a class="text-capitalize" href="#data-angsuran" aria-controls="data-angsuran" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Angsuran
 						</a>
 					</li>
 				</ul>
