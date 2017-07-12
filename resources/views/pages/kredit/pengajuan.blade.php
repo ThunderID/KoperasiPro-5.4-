@@ -19,7 +19,7 @@
 				{{-- ALAMAT --}}
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					<p class="text-capitalize text-light m-b-xs">
-						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
+						@foreach ((array)$page_datas->credit['debitur']['alamat'] as $k => $v)
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
@@ -218,7 +218,11 @@
 		<div class="row button-action">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="text-center" style="width: 50px">
-					TTD
+					@if (isset($page_datas->credit['spesimen_ttd']) && !is_null($page_datas->credit['spesimen_ttd']))
+						<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels" />
+					@else
+						<img src="http://via.placeholder.com/350x200?text=Belum+ada" class="img img-responsive img-panels"/>
+					@endif
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
