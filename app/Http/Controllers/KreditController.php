@@ -740,14 +740,14 @@ class KreditController extends Controller
 		{
 			$nama 	= Input::get('q');
 
-			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->namaDebitur($nama)->with(['debitur'])->paginate($take);
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->namaDebitur($nama)->with(['debitur'])->orderby('created_at', 'desc')->paginate($take);
 			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->namaDebitur($nama)->count();
 
 			$this->credit_active_filters['q'] 		= Input::get('q');
 		}
 		else
 		{
-			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur'])->paginate($take);
+			$this->page_datas->credits				= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur'])->orderby('created_at', 'desc')->paginate($take);
 
 			$this->page_datas->total_credits		= $this->service->status($status)->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->count();
 		}
