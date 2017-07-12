@@ -46,11 +46,11 @@
 						Saya yang bertanda tangan dibawah ini :	
 					</p>
 					<p>
-					&emsp;&emsp;Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['nama']}}<br/>
+					&emsp;&emsp;Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['nama']}}<br/>
 
-					&emsp;&emsp;Pekerjaan&nbsp;&nbsp;: {{$kredit['kreditur']['pekerjaan']}}<br/>
+					&emsp;&emsp;Pekerjaan&nbsp;&nbsp;: {{$kredit['debitur']['pekerjaan']}}<br/>
 					
-					&emsp;&emsp;Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['kreditur']['alamat'][0]['alamat']}}<br/>
+					&emsp;&emsp;Alamat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$kredit['debitur']['alamat'][0]['alamat']}}<br/>
 					
 					&emsp;&emsp;( Selanjutnya  disebut Pemberi Kuasa )</p>
 					
@@ -58,6 +58,7 @@
 					<p>
 					&emsp;&emsp;BPR/KOPERASI {{$koperasi['nama']}}<br/>
 					&emsp;&emsp;{{$koperasi['alamat']}}<br/>
+					<br/>
 					
 					&emsp;&emsp;Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$pimpinan['nama']}}</br>
 					
@@ -80,7 +81,7 @@
 						------------------------------------------------------------------------
 					</p>
 					<p>
-						Dengan hak subtitusi untuk membebankan jaminan fiducia atas obyek jaminan fiducia yang akan disebut dibawah ini, guna menjamin pelunasan hutang kredit atas nama  {{$kredit['kreditur']['nama']}} selaku debitur, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}). Sejumlah uang yang dapat ditentukan dikemudian hari berdasarkan Perjanjian Kredit yang ditandatangani oleh debitur Pemberi Kuasa dengan BPR/KOPERASI {{$koperasi['nama']}} {{$koperasi['alamat']}} selaku kreditur dan dibuktikan dengn Perjanjian Kredit No. ............................. tertanggal ................... berikut penambahan, perubahan, perpanjangan serta pembaharuannya yang mungkin diadakan kemudian, sampai nilai penjaminan sebesar Rp ..................... atas obyek fiducia berupa kendaraan dengan spesifikasi sebagai berikut :
+						Dengan hak subtitusi untuk membebankan jaminan fiducia atas obyek jaminan fiducia yang akan disebut dibawah ini, guna menjamin pelunasan hutang kredit atas nama  {{$kredit['debitur']['nama']}} selaku debitur, sejumlah {{$kredit['pengajuan_kredit']}} ({{\App\Service\Helpers\Terbilang::dariRupiah($kredit['pengajuan_kredit'])}}). Sejumlah uang yang dapat ditentukan dikemudian hari berdasarkan Perjanjian Kredit yang ditandatangani oleh debitur Pemberi Kuasa dengan BPR/KOPERASI {{$koperasi['nama']}} {{$koperasi['alamat']}} selaku debitur dan dibuktikan dengn Perjanjian Kredit No. {{$kredit['nomor_kredit']}} tertanggal {{$kredit['tanggal_pengajuan']}} berikut penambahan, perubahan, perpanjangan serta pembaharuannya yang mungkin diadakan kemudian, sampai nilai penjaminan sebesar Rp ..................... atas obyek fiducia berupa kendaraan dengan spesifikasi sebagai berikut :
 					</p>
 					<p>
 						@foreach($kredit['jaminan_kendaraan'] as $key1 => $value1)
@@ -131,7 +132,7 @@
 				<div class="clearfix">&nbsp;</div>
 
 				<div class="col-sm-6">
-					({{$kredit['kreditur']['nama']}})
+					({{$kredit['debitur']['nama']}})
 				</div>
 				<div class="col-sm-6">
 					({{$pimpinan['nama']}})

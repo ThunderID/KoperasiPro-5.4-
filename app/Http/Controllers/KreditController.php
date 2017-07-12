@@ -23,6 +23,9 @@ use App\Service\Helpers\Kredit\MerkJaminanKendaraan;
 
 use App\Service\Teritorial\TeritoriIndonesia;
 
+use App\Domain\Akses\Models\Koperasi;
+use App\Domain\Akses\Models\Visa;
+
 use Input, PDF, Exception, TAuth;
 use Carbon\Carbon;
 
@@ -930,10 +933,12 @@ class KreditController extends Controller
 	 */
 	public function print_realisasi($id, $jj, $dokumen)
 	{
+		$this->setGlobal();
+
 		//check kredit
-		$kredit			= $this->service->id($id)->with(['jaminan_kendaraan', 'jaminan_tanah_bangunan'])->first();
-		$koperasi 		= Koperasi_RO::id($this->acl_active_office['koperasi']['id'])->first();
-		$pimpinan 		= Visa_A::where('immigration_ro_koperasi_id', $this->acl_active_office['koperasi']['id'])->where('role', 'pimpinan')->with(['pengguna'])->first()['pengguna'];
+		$kredit			= $this->service->id($id)->with(['jaminan_kendaraan', 'jaminan_tanah_bangunan', 'debitur'])->first()->toArray();
+		$koperasi 		= Koperasi::id($this->acl_active_office['koperasi']['id'])->first();
+		$pimpinan 		= Visa::where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->whereIn('role', ['pimpinan', 'komisaris'])->with(['petugas'])->orderby('role', 'asc')->first()['petugas'];
 
 		if(!empty($kredit['jaminan_kendaraan']) && $jj =='jk')
 		{
@@ -973,9 +978,6 @@ class KreditController extends Controller
 					break;
 				case 'pernyataan_penjamin':
 					return view('print.realisasi.jaminan_sertifikat.pernyataan_penjamin', compact('kredit', 'koperasi', 'pimpinan'));
-					break;
-				case 'surat_perjanjian_kredit':
-					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));
 					break;
 				case 'surat_perjanjian_kredit':
 					return view('print.realisasi.jaminan_sertifikat.surat_perjanjian_kredit', compact('kredit', 'koperasi', 'pimpinan'));

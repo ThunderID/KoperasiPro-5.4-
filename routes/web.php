@@ -32,7 +32,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	//Menu Status Kredit
 	Route::any('kredit/{id}/{status}',								['uses' => 'KreditController@status',				'as' => 'credit.status']);
 
-	Route::any('kredit/print/realisasi/{id}/{jj}/{dokumen}',		['uses' => 'KreditController@print_realisasi', 		'as' => 'creadit.print.realisasi']);
+	Route::any('kredit/print/realisasi/{id}/{jj}/{dokumen}',		['uses' => 'KreditController@print_realisasi', 		'as' => 'credit.print.realisasi']);
 	
 	//Menu jaminan
 	Route::any('hapus/jaminan/kendaraan/{kredit_id}/{jaminan_kendaraan_id}',			['uses' => 'KreditController@destroy', 	'as' => 'jaminan.kendaraan.destroy']);

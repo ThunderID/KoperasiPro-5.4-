@@ -29,7 +29,7 @@
 					<i class="fa fa-info-circle"></i> Riwayat Note
 				</a> -->
 				<div class="dropdown pull-right">
-					<a class="btn p-r-sm p-l-none primary hidden-xs hidden-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<!-- <a class="btn p-r-sm p-l-none primary hidden-xs hidden-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						<i class="fa fa-print" aria-hidden="true"></i> Print&nbsp;&nbsp;
 						<i class="fa fa-angle-down"></i>
 					</a>
@@ -57,7 +57,7 @@
 						<li class="m-b-xs">
 							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Surat PK</a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 				{{-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">
 					<i class="fa fa-print" aria-hidden="true"></i> Print
@@ -146,14 +146,14 @@
 
 	@component('components.modal', [
 			'id'			=> 'modal-change-status',
-			'title'			=> 'Survei',
+			'title'			=> ucwords(str_replace('_', ' ', $page_datas->credit['status_berikutnya'])),
 			'settings'		=> [
 				'hide_buttons'	=> true
 			]
 		])
 		<div class="row">
 			<div class="col-md-12">
-				{!! Form::open(['url' => route('credit.status', ['id' => $page_datas->credit['id'], 'status' => 'survei']), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
+				{!! Form::open(['url' => route('credit.status', ['id' => $page_datas->credit['id'], 'status' => $page_datas->credit['status_berikutnya']]), 'class' => 'form', 'role' => 'form', 'autocomplete' => 'off', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
 					<div class="form-group">
 						<label for="password">Password</label>
 						{!! Form::password('password', ['class' => 'form-control set-focus auto-tabindex', 'placeholder' => 'Masukkan Password Anda', 'required' => 'required']) !!}
@@ -166,7 +166,7 @@
 						<a type="button" class="btn btn-default" data-dismiss="modal" no-data-pjax="">
 							Batal
 						</a>
-						{!! Form::submit('Survei', ['id' => 'btn-login', 'class' => 'btn btn-custom auto-tabindex']) !!}
+						{!! Form::submit(ucwords(str_replace('_', ' ', $page_datas->credit['status_berikutnya'])), ['id' => 'btn-login', 'class' => 'btn btn-custom auto-tabindex']) !!}
 					</div>
 				{!! Form::close() !!}		
 			</div>
