@@ -2,9 +2,9 @@
 <fieldset class="form-group">
 	<label class="text-sm">Jenis Kendaraan</label>
 	<div class="row">
-		<div class="col-md-7">
-			{!! Form::select('jaminan_kendaraan[tipe]', $page_datas->select_jenis_kendaraan, (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'form-control auto-tabindex quick-select', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
-			{!! Form::hidden('jaminan_kendaraan[tipe]', (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'input-tipe-jaminan-kendaraan input-kendaraan', 'data-field' => 'tipe']) !!}
+		<div class="col-md-3">
+			{!! Form::select('jaminan_kendaraan[tipe]', $page_datas->select_jenis_kendaraan, (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'form-control auto-tabindex quick-select select', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
+			{{-- {!! Form::hidden('jaminan_kendaraan[tipe]', (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'input-tipe-jaminan-kendaraan input-kendaraan', 'data-field' => 'tipe']) !!} --}}
 		</div>
 	</div>
 </fieldset>
@@ -19,18 +19,18 @@
 <fieldset class="form-group">
 	<label class="text-sm">Merk</label>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-4">
 			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, 
 				(isset($param['data']['merk']) ? (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $param['data']['merk'] : 'lain_lain') : 'daihatsu'), 
-				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::text('jaminan_kendaraan[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['merk']) && (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : ''))), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+				['class' => 'form-control auto-tabindex quick-select select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
+			{{-- {!! Form::text('jaminan_kendaraan[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['merk']) && (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : ''))), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!} --}}
 		</div>
 	</div>
 </fieldset>
 <fieldset class="form-group">
 	<label class="text-sm">Warna</label>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-3">
 			{!! Form::select('jaminan_kendaraan[warna]', [
 					'biru'			=> 'Biru',
 					'hijau'			=> 'Hijau',
@@ -41,8 +41,8 @@
 					'lain_lain'		=> 'Lainnya',
 				], 
 				(isset($param['data']['warna']) ? (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange']) ? $param['data']['warna'] : 'lain_lain') : 'biru'), 
-				['class' => 'form-control auto-tabindex quick-select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
-			{!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['warna']) && (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange'])) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!}
+				['class' => 'form-control auto-tabindex quick-select select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!} <br/>
+			{{-- {!! Form::text('jaminan_kendaraan[warna]', (isset($param['data']['warna']) ? $param['data']['warna'] : 'biru'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['warna']) && (in_array($param['data']['warna'], ['biru', 'hijau', 'hitam', 'merah', 'merah_muda', 'orange'])) ? 'hidden' : (!isset($param['data']['warna']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!} --}}
 		</div>
 	</div>
 </fieldset>
