@@ -138,6 +138,11 @@ class JaminanTanahBangunan extends BaseModel
 		return $this->belongsTo('App\Domain\Pengajuan\Models\JaminanTanahBangunan', 'jaminan_tanah_bangunan_id');
 	}	
 
+	public function foto_jaminan()
+	{
+		return $this->hasMany('App\Domain\Survei\Models\FotoJaminan', 'jaminan_id');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

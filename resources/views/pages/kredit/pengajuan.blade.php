@@ -19,7 +19,7 @@
 				{{-- ALAMAT --}}
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					<p class="text-capitalize text-light m-b-xs">
-						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
+						@foreach ((array)$page_datas->credit['debitur']['alamat'] as $k => $v)
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
@@ -132,6 +132,11 @@
 							<i class="fa-li fa fa-file-text-o"></i> Survei Aset @if ($page_datas->credit['checklist']['kelengkapan_aset'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
 						</a>
 					</li>
+					<li class="m-t-xs m-b-xs" role="presentation">
+						{{-- <a class="text-capitalize" href="#survei-nasabah" data-toggle="tab" role="tab">
+							<i class="fa-li fa fa-file-text-o"></i> Survei Nasabah @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) <i class="text-danger fa fa-exclamation"></i> @endif
+						</a> --}}
+					</li>
 				</ul>
 				<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
 					<p class="text-capitalize text-sm m-l-min-lg"><strong>Analis</strong></p>
@@ -213,7 +218,11 @@
 		<div class="row button-action">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="text-center" style="width: 50px">
-					TTD
+					@if (isset($page_datas->credit['spesimen_ttd']) && !is_null($page_datas->credit['spesimen_ttd']))
+						<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels" />
+					@else
+						<img src="http://via.placeholder.com/350x200?text=Belum+ada" class="img img-responsive img-panels"/>
+					@endif
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
@@ -256,58 +265,6 @@
 		{!! Form::close() !!}
 	</div>
 	{{----------------  // FORM KREDIT  --------------}}
-
-	{{---------------- FORM JAMINAN TANAH & BANGUNAN --------------}}
-{{-- 	@if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
-		@foreach ($page_datas->credit['jaminan_tanah_bangunan'] as $k => $v)
-			<div class="hidden" data-form="jaminan-tanah-bangunan-{{ $k }}">
-				<div class="row">
-					<div class="col-sm-12">
-						<p class="text-capitalize m-b-sm text-lg">form jaminan tanah &amp; bangunan</p>
-						<hr/>
-					</div>
-				</div>
-				{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-					@include ('pages.kredit.components.form.pengajuan.jaminan_tanah_bangunan', [
-						'param' 	=> [
-							'data'		=> isset($v) ? $v : null,
-							'prefix'	=> 'pengajuan',
-						]
-					])
-
-					<div class="clearfix">&nbsp;</div>
-					<div class="text-right">
-						<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="jaminan-tanah-bangunan-{{ $k }}">Batal</a>
-						<button type="submit" class="btn btn-primary">Simpan</button>
-					</div>
-				{!! Form::close() !!}
-			</div>
-		@endforeach
-	@endif --}}
-
-	{{-- <div class="hidden" data-form="jaminan-tanah-bangunan">
-		<div class="row">
-			<div class="col-sm-12">
-				<p class="text-capitalize m-b-sm text-lg">form jaminan tanah &amp; bangunan</p>
-				<hr/>
-			</div>
-		</div>
-		{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-			@include ('pages.kredit.components.form.pengajuan.jaminan_tanah_bangunan', [
-				'param'		=> [
-					'prefix'	=> 'pengajuan',
-					'data'		=> null,
-				]
-			])
-
-			<div class="clearfix">&nbsp;</div>
-			<div class="text-right">
-				<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="jaminan-tanah-bangunan">Batal</a>
-				<button type="submit" class="btn btn-primary">Simpan</button>
-			</div>
-		{!! Form::close() !!}
-	</div> --}}
-	{{---------------- // FORM JAMINAN TANAH & BANGUNAN --------------}}
 @stop
 
 @section('page_modals')

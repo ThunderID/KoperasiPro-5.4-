@@ -16,6 +16,7 @@ use App\Domain\Survei\Models\Kepribadian;
 use App\Domain\Survei\Models\Keuangan;
 use App\Domain\Survei\Models\Nasabah;
 use App\Domain\Survei\Models\Rekening;
+use App\Domain\Survei\Models\FotoJaminan;
 
 use Exception, DB, TAuth, Carbon\Carbon;
 
@@ -94,7 +95,7 @@ class SurveiKredit
 		return $this;
 	}
 
-	public function tambahJaminanKendaraan($tipe, $merk, $warna, $tahun, $nomor_polisi, $nomor_bpkb, $nomor_mesin, $nomor_rangka, $masa_berlaku_stnk = null, $status_kepemilikan, $harga_taksasi, $fungsi_sehari_hari, $atas_nama, $alamat, $id = null, $url_barcode = null, $uraian = null)
+	public function tambahJaminanKendaraan($tipe, $merk, $warna, $tahun, $nomor_polisi, $nomor_bpkb, $nomor_mesin, $nomor_rangka, $masa_berlaku_stnk = null, $status_kepemilikan, $harga_taksasi, $fungsi_sehari_hari, $atas_nama, $alamat, $id = null, $url_barcode = null, $uraian = null, $foto_jaminan = [])
 	{
 		$this->jaminan_kendaraan[]	= [
 			'tipe'					=> $tipe,
@@ -114,12 +115,13 @@ class SurveiKredit
 			'alamat'				=> $alamat,
 			'uraian'				=> $uraian,
 			'id'					=> $id,
+			'foto_jaminan'			=> $foto_jaminan,
 		];
 
 		return $this;
 	}
 
-	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $id = null, $uraian = null)
+	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $id = null, $uraian = null, $foto_jaminan = [])
 	{
 		$this->jaminan_tanah_bangunan[]	= [
 			'tipe'						=> $tipe,
@@ -148,6 +150,7 @@ class SurveiKredit
 			'taksasi_bangunan'			=> $taksasi_bangunan,
 			'uraian'					=> $uraian,
 			'id'						=> $id,
+			'foto_jaminan'				=> $foto_jaminan,
 		];
 
 		return $this;
@@ -350,6 +353,24 @@ class SurveiKredit
 					]);
 				$jaminan_k['attributes']			= array_filter($jaminan_k['attributes']);
 				$jaminan_k->save();
+
+
+				foreach ((array)$value['foto_jaminan'] as $keyf => $valuef) 
+				{
+					if($keyf==0)
+					{
+						$delete 					= FotoJaminan::where('jaminan_id', $jaminan_k->id)->where('jaminan_type', get_class($jaminan_k))->delete();
+					}
+
+					$foto_jk 						= new FotoJaminan;
+					$foto_jk->fill([
+						'jaminan_id'				=> $jaminan_k->id,
+						'jaminan_type'				=> get_class($jaminan_k),
+						'url'						=> $valuef['url'],
+						'keterangan'				=> $valuef['keterangan'],
+					]);
+					$foto_jk->save();
+				}
 			}
 
 			//5. simpan jaminan tanah bangunan
@@ -412,6 +433,24 @@ class SurveiKredit
 					]);
 				$jaminan_tb['attributes']			= array_filter($jaminan_tb['attributes']);
 				$jaminan_tb->save();
+
+
+				foreach ((array)$value['foto_jaminan'] as $keytb => $valuetb) 
+				{
+					if($keytb==0)
+					{
+						$delete 					= FotoJaminan::where('jaminan_id', $jaminan_tb->id)->where('jaminan_type', get_class($jaminan_tb))->delete();
+					}
+					
+					$foto_jk 						= new FotoJaminan;
+					$foto_jk->fill([
+						'jaminan_id'				=> $jaminan_tb->id,
+						'jaminan_type'				=> get_class($jaminan_tb),
+						'url'						=> $valuef['url'],
+						'keterangan'				=> $valuef['keterangan'],
+					]);
+					$foto_jk->save();
+				}
 			}
 
 			//6. simpan kepribadian

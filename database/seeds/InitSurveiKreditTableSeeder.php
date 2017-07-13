@@ -19,6 +19,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 		DB::table('s_aset_u')->truncate();
 		DB::table('s_jaminan_k')->truncate();
 		DB::table('s_jaminan_tb')->truncate();
+		DB::table('s_foto_jaminan')->truncate();
 		DB::table('survei_kepribadian')->truncate();
 		DB::table('survei_keuangan')->truncate();
 		DB::table('survei_nasabah')->truncate();
@@ -54,6 +55,38 @@ class InitSurveiKreditTableSeeder extends Seeder
 		$jalan 				= ['batu', 'aspal', 'tanah'];
 		$ltk_t_jalan 		= ['sama_dengan_jalan', 'lebih_tinggi_dari_jalan', 'lebih_rendah_dari_jalan'];
 		$lingkungan 		= ['perumahan', 'perkantoran', 'pasar', 'pertokoan', 'industri', 'kampung', 'lain_lain'];
+
+		$foto_roda_2		= [
+									'http://1.bp.blogspot.com/-0MtNPLX1uh4/VH5lEoxepNI/AAAAAAAAC8Q/3zGwTVWtVr4/s1600/96.Jual%2BMotor%2BBekas%2BHarga%2B3jt2.jpg',
+									'https://lh3.googleusercontent.com/-b8UpslQVYno/VYnQMnqNcqI/AAAAAAAAAGg/f3z90Ol1L9Q/w1280-h960/2222.jpg',
+									'https://s.kaskus.id/c320x320/images/fjb/2017/07/08/tmp_phpvsquu1_9000171_1499509540.jpg',
+									'http://img.olx.biz.id/2BAB/76714/298241767_1_644x461_di-jual-motor-daerah-mataram-mataram-kota.jpg',
+									'http://3.bp.blogspot.com/-mm7YtbsSUNw/VH5lFgT6njI/AAAAAAAAC8c/sBOPrU4mGOY/s1600/96.Jual%2BMotor%2BBekas%2BHarga%2B3jt.jpg3.jpg',	
+							];
+
+		$foto_roda_4		= [
+									'http://hargamobil-terbaru.com/wp-content/uploads/2015/12/Jual-Mobil-Bekas-Subaru-Surabaya.jpg',
+									'http://www.batamniaga.com/premium/jual-mobil/honda-jazz-2008/mobil1.JPG',
+									'https://virgana.files.wordpress.com/2013/11/tphoto_00017.jpg',
+									'https://jualmobilhondastreamdibandung.files.wordpress.com/2011/09/jual-cepat-mobil-honda-stream-di-bandung.jpg',
+									'https://cdns.klimg.com/otosia.com/p/headline/476x238/0000384659.jpg'
+							];
+
+		$foto_tanah 		= [
+									'http://www.jualsewatanah.com/iklan/images/2015/05/1518_1.jpg',
+									'http://gambar-rumah.com/attachments/surabaya/94227d1335085552-jual-tanah-murah-berprospek-surabaya-barat-dsc_9885.jpg',
+									'http://cdn.gresnews.com/showimg.php?size=view&imgname=201512234947-jual-beli-tanah%20strategihukum%20net.jpg',
+									'http://gambar-rumah.com/attachments/bsd/180490d1346777589-jual-tanah-serpong-cilenggang-murah-strategis-5-menit-ke-serpong-cilenggang-gambar-depan.jpg',
+									'https://id1-cdn.pgimgs.com/listing/7293623/UPHO.32517404.V800/Di-Jual-Tanah-di-Jl-By-Pass-Ida-Bagus-Mantra-Desa-Lebih-Gianyar-Bali-View-Pantai-Langsung-Gianyar-Indonesia.jpg',
+							];
+
+		$foto_rumah 		= [
+									'https://picture.urbanindo.com/listing/603079917/16/83949044/ruko-dijual-bandung-barat-jual-ruko-bandung-barat-lokasi-padalarang/618/412.jpg',
+									'http://gambar-rumah.com/attachments/jakarta-pusat/6032320d1466878777-di-jual-rukan-di-jakarta-pusat-yg-sangat-strategis-rukan-1a.jpg',
+									'http://gambar-rumah.com/attachments/yogyakarta/7336954d1476275924-jual-rumah-di-berbah-sleman-jogja-rumah-dijual-dekat-jual-rumah-dekat-bandara-jogja-3-.jpg',
+									'http://gambardesainproperti.com/wp-content/uploads/2014/01/Tip-Menjual-Rumah.jpg',
+									'http://gambar-rumah.com/attachments/bekasi/40994d1323411675-di-jual-ruko-di-grand-wisata-bekasi-p9140010.jpg'
+							];
 
 		$faker			= \Faker\Factory::create();
 
@@ -93,14 +126,34 @@ class InitSurveiKreditTableSeeder extends Seeder
 					$taksasi 		= 2017 - $value2['tahun'];
 					$taksasi 		= $ha - ($ha * $taksasi * 0.05);
 
-					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], [['alamat' => $faker->address]]);
+					if(str_is($value2['tipe'], 'roda_2'))
+					{
+						$foto_j	= $foto_roda_2[rand(0,4)];
+					}
+					else
+					{
+						$foto_j	= $foto_roda_4[rand(0,4)];
+					}
+
+					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], [['alamat' => $faker->address]], null, null, null, [['url' => $foto_j, 'keterangan' => 'Foto Jaminan']]);
 				}
 			}
+
 
 			if($value->jaminan_tanah_bangunan->count())
 			{
 				foreach ($value->jaminan_tanah_bangunan as $key2 => $value2) 
 				{
+
+					if(str_is($value2['tipe'], 'tanah'))
+					{
+						$foto_j	= $foto_tanah[rand(0,4)];
+					}
+					else
+					{
+						$foto_j	= $foto_rumah[rand(0,4)];
+					}
+
 					$m_persegi 		= rand(500000, 4000000);
 					$m_bangunan 	= rand(200000, 500000);
 
@@ -108,7 +161,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 					$taksasi_tanah 		= ($value2->luas_tanah * $m_persegi); 
 					$taksasi_bangunan 	= ($value2->luas_bangunan * $m_bangunan); 
 
-					$survei->tambahJaminanTanahBangunan($value2['tipe'], $value2['jenis_sertifikat'], $value2['nomor_sertifikat'], $value2['masa_berlaku_sertifikat'], $value2['atas_nama'], $value2['luas_tanah'], $jalan[rand(0,2)], rand(3,4).' meter', $ltk_t_jalan[rand(0,2)], $lingkungan[rand(0,6)], 'Rp '.number_format($nilai_jaminan,0, "," ,"."), 'Rp '.number_format($taksasi_tanah,0, "," ,"."), 'Rp '.number_format($nilai_jaminan * 0.01,0, "," ,"."), $listrik[rand(0,2)], $air[rand(0,1)], null, $value2['alamat'], $value2['luas_bangunan'], $fs_bag[rand(0,1)], $bntk_bag[rand(0,2)], $kons_bag[rand(0,2)], $lantai_bag[rand(0,4)], $dinding_bag[rand(0,3)], 'Rp '.number_format($taksasi_bangunan,0, "," ,"."));
+					$survei->tambahJaminanTanahBangunan($value2['tipe'], $value2['jenis_sertifikat'], $value2['nomor_sertifikat'], $value2['masa_berlaku_sertifikat'], $value2['atas_nama'], $value2['luas_tanah'], $jalan[rand(0,2)], rand(3,4).' meter', $ltk_t_jalan[rand(0,2)], $lingkungan[rand(0,6)], 'Rp '.number_format($nilai_jaminan,0, "," ,"."), 'Rp '.number_format($taksasi_tanah,0, "," ,"."), 'Rp '.number_format($nilai_jaminan * 0.01,0, "," ,"."), $listrik[rand(0,2)], $air[rand(0,1)], null, $value2['alamat'], $value2['luas_bangunan'], $fs_bag[rand(0,1)], $bntk_bag[rand(0,2)], $kons_bag[rand(0,2)], $lantai_bag[rand(0,4)], $dinding_bag[rand(0,3)], 'Rp '.number_format($taksasi_bangunan,0, "," ,"."), null, null, [['url' => $foto_j, 'keterangan' => 'Foto Jaminan']]);
 				}
 			}
 

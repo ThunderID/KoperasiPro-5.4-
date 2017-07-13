@@ -118,6 +118,11 @@ class JaminanKendaraan extends BaseModel
 		return $this->belongsTo('App\Domain\Pengajuan\Models\JaminanKendaraan', 'jaminan_kendaraan_id');
 	}
 
+	public function foto_jaminan()
+	{
+		return $this->hasMany('App\Domain\Survei\Models\FotoJaminan', 'jaminan_id');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

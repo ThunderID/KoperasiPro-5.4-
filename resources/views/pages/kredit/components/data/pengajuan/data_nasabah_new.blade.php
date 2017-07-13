@@ -37,7 +37,7 @@
 			<p class="text-capitalize text-light m-b-xs">
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					<p class="text-capitalize text-light">
-						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
+						@foreach ((array)$page_datas->credit['debitur']['alamat'] as $k => $v)
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
