@@ -9,6 +9,32 @@ use Carbon\Carbon;
 
 class KewenanganKredit
 {
+	public static function template_scopes()
+	{
+		return [
+			'komisaris'					=> ['atur_akses', 'pengajuan_baru', 'survei', 'analis', 'setujui', 'tolak', 'realisasi', 'angsuran', 'lunas'];
+			'pimpinan'					=> ['atur_akses', 'pengajuan_baru', 'survei', 'analis', 'setujui', 'tolak', 'realisasi', 'angsuran', 'lunas'];
+			'kabag_kredit'				=> ['pengajuan_baru', 'survei', 'analis', 'realisasi', 'angsuran', 'lunas'];
+			'kabag_marketing'			=> ['pengajuan_baru', 'lunas'];
+			'kabag_kolektor'			=> ['angsuran'];
+			'kabag_operasional'			=> ['atur_akses', 'pengajuan_baru', 'survei', 'analis', 'realisasi', 'angsuran', 'lunas'];
+			'analis_kredit'				=> ['survei', 'analis'];
+			'marketing'					=> ['pengajuan_baru', 'lunas'];
+			'kolektor'					=> ['angsuran'];
+			'accounting_dan_tabungan'	=> ['angsuran', 'lunas'];
+			'admin_kredit'				=> ['pengajuan_baru', 'survei', 'analis', 'realisasi', 'angsuran', 'lunas'];
+			'admin_angsuran'			=> ['angsuran', 'lunas'];
+			'admin_collect'				=> ['angsuran', 'lunas'];
+			'teller'					=> ['realisasi', 'angsuran', 'lunas'];
+			'bagian_umum'				=> ['atur_akses'];
+		];
+	}
+
+	public static function roles()
+	{
+		return array_keys(self::template_scopes());
+	}
+
 	public static function statusLists($role)
 	{
 		switch (strtolower($role)) 
