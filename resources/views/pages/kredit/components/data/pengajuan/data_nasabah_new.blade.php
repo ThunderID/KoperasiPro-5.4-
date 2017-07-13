@@ -75,7 +75,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<p class="m-b-xs text-capitalize text-sm"><strong>foto KTP</strong></p>
 			@if (isset($page_datas->credit['foto_ktp']) && !is_null($page_datas->credit['foto_ktp']))
-				<img src="{{ $page_datas->credit['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded" style="width: 350px; height: 240px"/>
+				<img src="{{ $page_datas->credit['foto_ktp'] }}" class="img img-panels img-thumbnail img-rounded" style="width: 300px; height: 200px"/>
 			@else
 				<img src="http://via.placeholder.com/350x200?text=Belum+ada" class="img img-responsive img-panels img-thumbnail img-rounded"/>
 			@endif
