@@ -23,7 +23,7 @@ class KewenanganKredit
 				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'menunggu_realisasi', 'realisasi', 'tolak', 'lunas'];
 				break;
 			case 'analis kredit':
-				return ['pengajuan', 'survei', 'lunas'];
+				return ['pengajuan', 'survei', 'menunggu_persetujuan', 'lunas'];
 				break;
 			case 'marketing': case 'kolektor': case 'bagian umum' :
 				return ['pengajuan', 'lunas'];

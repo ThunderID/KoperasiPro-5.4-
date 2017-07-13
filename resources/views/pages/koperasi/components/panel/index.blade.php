@@ -18,10 +18,10 @@
 							</div>
 							<div class="row m-b-xs">
 								<div class="col-xs-5">
-									<p>Email</p>
+									<p>NIP</p>
 								</div>
 								<div class="col-xs-7">
-									<p>{{ $value['petugas']['email'] }}</p>
+									<p>{{ $value['petugas']['nip'] }}</p>
 								</div>
 							</div>
 							<div class="row m-b-xs">
