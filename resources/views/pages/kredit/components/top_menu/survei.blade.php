@@ -36,22 +36,34 @@
 					<ul class="dropdown-menu dropdown-right fa-ul" aria-labelledby="dropdownMenu1">
 						<li class="dropdown-header">Survei</li>
 						<li class="m-t-xs m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Kendaraan</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_kendaraan', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Kendaraan
+							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Tanah &amp; Bangunan</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_tanah_bangunan', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Tanah &amp; Bangunan
+							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Usaha</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_usaha', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Usaha
+							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Kepribadian</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_kepribadian', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Kepribadian
+							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Keuangan</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_keuangan', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Keuangan
+							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening</a>
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_rekening', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening
+							</a>
 						</li>
 						<!-- <li class="dropdown-header">Realisasi</li>
 						<li class="m-b-xs">

@@ -793,20 +793,41 @@ class KreditController extends Controller
 	public function prints($mode, $id)
 	{
 		// set page attributes (please check parent variable)
-		$this->page_attributes->title              = "Daftar Kredit";
-		$this->page_attributes->breadcrumb         = [
-															'Kredit'   => route('credit.index'),
-													 ];
+		$this->page_attributes->title 		= "Daftar Kredit";
+		$this->page_attributes->breadcrumb 	= [
+											'Kredit'   => route('credit.index'),
+											];
 
 		//initialize view
-		$this->view                                = view('pages.kredit.print.'.$mode);
+		switch ($mode) {
+			case 'survei_rekening':
+				$this->view 				= view('pages.kredit.print.form_survei_rekening');
+				break;
+			case 'survei_keuangan':
+				$this->view 				= view('pages.kredit.print.form_survei_keuangan');
+				break;
+			case 'survei_kepribadian':
+				$this->view 				= view('pages.kredit.print.form_survei_kepribadian');
+				break;
+			case 'survei_aset_usaha':
+				$this->view 				= view('pages.kredit.print.form_survei_aset_usaha');
+				break;
+			case 'survei_aset_kendaraan':
+				$this->view 				= view('pages.kredit.print.form_survei_aset_kendaraan');
+				break;
+			case 'survei_aset_tanah_bangunan':
+				$this->view  				= view('pages.kredit.print.form_survei_aset_tanah_bangunan');
+				break;
+			default:
+				// $this->page_datas->credit 	= $this->service->detailed
+				break;
+		}
 
-		//parsing master data here
-		$this->page_datas->credit 					= $this->service->detailed($id);
-		$this->page_datas->id 						= $id;
+		// $this->page_datas->credit 			= $this->service->detailed($id);
+		// $this->page_datas->id 				= $id;
 
 		// get active address on person
-		$person_id 									= $this->page_datas->credit['debitur']['id'];
+		// $person_id 						= $this->page_datas->credit['debitur']['id'];
 
 		//function from parent to generate view
 		return $this->generateView();
