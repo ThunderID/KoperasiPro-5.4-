@@ -72,7 +72,7 @@
 					<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
 				@endforeach
 			</select>
-			<!-- <input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="input-merk-kendaraan input-kendaraan" value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : 'daihatsu' }}" data-field="merk"> -->
+			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="input-merk-kendaraan input-kendaraan" value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : 'daihatsu' }}" data-field="merk">
 		</div>
 	</div>
 </fieldset>

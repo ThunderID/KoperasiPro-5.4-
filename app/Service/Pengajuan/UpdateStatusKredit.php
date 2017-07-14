@@ -10,13 +10,16 @@ use App\Domain\Kasir\Models\DetailTransaksi;
 
 use App\Domain\Survei\Models\Nasabah;
 
-use Exception, DB, TAuth, Carbon\Carbon;
+use Exception, DB, TAuth, Carbon\Carbon, Validator;
 
 use App\Infrastructure\Traits\IDRTrait;
+
+use App\Infrastructure\Traits\KewenanganTrait;
 
 class UpdateStatusKredit
 {
 	use IDRTrait;
+	use KewenanganTrait;
 
 	protected $id;
 	protected $pengajuan;
@@ -32,21 +35,53 @@ class UpdateStatusKredit
 	 */
 	public function __construct($id)
 	{
+		$this->active_office 		= TAuth::activeOffice();
+
 		$this->id     				= $id;
-		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->with(['debitur', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->firstorfail();
+		$this->pengajuan 			= Pengajuan::id($id)->where('akses_koperasi_id', $this->active_office['koperasi']['id'])->with(['debitur', 'jaminan_kendaraan', 'jaminan_tanah_bangunan'])->firstorfail();
 	}
 
 	public function toSurvei($note = null)
 	{
-		//0. validasi kelengkapan dokumen
+		$this->legal('survei');
+
+		//catatan dokumen
 		$catatan['surveyor'][]	= $note;
 
 		$this->status 			= 'survei';
 
-		//0. validate there is agunan
+		//0a. validate there is agunan
 		if(!$this->pengajuan->jaminan_tanah_bangunan->count() && !$this->pengajuan->jaminan_kendaraan->count())
 		{
 			throw new Exception("Belum ada jaminan", 1);
+		}
+
+		//0b. validasi data debitur
+		$rules 		= [
+			// 'is_ektp'				=> 'boolean',
+			'nik'					=> 'required|max:255',
+			'nama'					=> 'required|max:255',
+			'tanggal_lahir'			=> 'required|date_format:"d/m/Y"|min:today',
+			'jenis_kelamin'			=> 'required|in:laki-laki,perempuan',
+			'status_perkawinan'		=> 'required|in:kawin,belum_kawin,cerai,cerai_mati',
+			'cif'					=> 'required|max:255',
+			'telepon'				=> 'required|max:255',
+			'pekerjaan'				=> 'required|max:255',
+			'penghasilan_bersih'	=> 'required',
+			'alamat'				=> 'required',
+		];
+
+		$validating 		= Validator::make($this->pengajuan->debitur->toArray(), $rules);
+
+		if(!$validating->passes())
+		{
+			throw new Exception($validating->messages()->toJson(), 1);
+		}
+
+		//0c. check data KK
+		if(!$this->pengajuan->debitur->relasi->count())
+		{
+			throw new Exception("Belum ada data keluarga", 1);
 		}
 
 		//1. check status nasabah
@@ -136,7 +171,51 @@ class UpdateStatusKredit
 
 	public function toMenungguPersetujuan($note = null)
 	{
+		$this->legal('menunggu_persetujuan');
+		
 		$catatan['surveyor'][]	= $note;
+
+		//0a. check kelengkapan survei
+		foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key => $value) 
+		{
+			if(!$this->pengajuan->jaminan_kendaraan[$key]->survei_jaminan_kendaraan->count())
+			{
+				throw new Exception("Belum ada survei jaminan kendaraan dengan nomor BPKB ".$value['nomor_bpkb'], 1);
+			}
+		}
+
+		//0b. check kelengkapan survei
+		foreach ((array)$this->pengajuan->jaminan_tanah_bangunan->toArray() as $key => $value) 
+		{
+			if(!$this->pengajuan->jaminan_tanah_bangunan[$key]->survei_jaminan_tanah_bangunan->count())
+			{
+				throw new Exception("Belum ada survei jaminan sertifikat dengan nomor Sertifikat ".$value['nomor_sertifikat'], 1);
+			}
+		}
+
+		//0c. check kelengkapan survei
+		if(!count($this->pengajuan->survei_aset_kendaraan) && !count($this->pengajuan->survei_aset_kendaraan) && !count($this->pengajuan->survei_aset_kendaraan))
+		{
+			throw new Exception("Belum ada survei aset", 1);
+		}
+
+		//0d. check kelengkapan survei
+		if(!count($this->pengajuan->survei_kepribadian))
+		{
+			throw new Exception("Belum ada survei kepribadian", 1);
+		}
+
+		//0e. check kelengkapan survei
+		if(!count($this->pengajuan->survei_keuangan))
+		{
+			throw new Exception("Belum ada survei keuangan", 1);
+		}
+
+		//0f. check kelengkapan survei
+		if(!count($this->pengajuan->survei_rekening))
+		{
+			throw new Exception("Belum ada survei rekening", 1);
+		}
 
 		foreach ((array)$this->pengajuan->survei_aset_tanah_bangunan->toArray() as $key => $value) 
 		{
@@ -256,6 +335,8 @@ class UpdateStatusKredit
 
 	public function toMenungguRealisasi($note = null)
 	{
+		$this->legal('menunggu_realisasi');
+	
 		$catatan['surveyor'][]	= $note;
 	
 		//1. buat bukti relasasi
@@ -331,6 +412,8 @@ class UpdateStatusKredit
 
 	public function toRealisasi($note = null)
 	{
+		$this->legal('realisasi');
+
 		$catatan['surveyor'][]	= $note;
 		
 		$transaksi 		= HeaderTransaksi::where('pengajuan_id', $this->pengajuan->id)->firstorfail();
@@ -345,6 +428,7 @@ class UpdateStatusKredit
 
 	public function toTolak($note = null)
 	{
+		$this->legal('tolak');
 		$catatan['surveyor'][]	= $note;
 		
 		$this->status 	= 'tolak';
@@ -355,6 +439,7 @@ class UpdateStatusKredit
 
 	public function toLunas($note = null)
 	{
+		$this->legal('lunas');
 		$catatan['surveyor'][]	= $note;
 		
 		$this->status 	= 'lunas';
