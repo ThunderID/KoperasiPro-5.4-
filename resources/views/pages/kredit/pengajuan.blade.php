@@ -96,7 +96,7 @@
 						<li class="m-t-xs m-b-xs" role="presentation">
 							<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
 								<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga 
-								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'survei')))
+								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'pengajuan')))
 									<i class="text-danger fa fa-exclamation-circle"></i> 
 								@endif
 							</a>

@@ -98,7 +98,7 @@
 				data-field="provinsi" 
 				data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "jawa_timur") }}" 
 				data-value-from-caption="yes">
-				<option class="text-capitalize">satu</option>
+				<option class="text-capitalize">Jawa Timur</option>
 
 			</select>
 		</div>
