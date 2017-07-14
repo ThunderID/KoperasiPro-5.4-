@@ -152,6 +152,7 @@ class InitAksesTableSeeder extends Seeder
 			'scopes'			=> $visa_1['scopes'],
 			'orang_id'			=> $orang->id,
 			'akses_koperasi_id'	=> $koperasi_baru->id,
+			// 'limit_max'			=> 10000000
 			]);
 		$visa->save();
 

@@ -55,6 +55,7 @@ class Pengajuan extends BaseModel
 											'spesimen_ttd'			,
 											'foto_ktp'				,
 											'nomor_kredit'			,
+											'suku_bunga'			,
 										];
 	/**
 	 * Basic rule of database

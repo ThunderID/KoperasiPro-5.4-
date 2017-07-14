@@ -171,9 +171,15 @@ class UpdateStatusKredit
 
 	public function toMenungguPersetujuan($note = null)
 	{
-		$this->legal('menunggu_persetujuan');
+		$this->legal('menunggu_persetujuan', $this->formatMoneyFrom($this->pengajuan->pengajuan_kredit));
 		
 		$catatan['surveyor'][]	= $note;
+
+		//0a1. check suku bunga 
+		if(is_null($this->pengajuan->suku_bunga))
+		{
+			throw new Exception("Suku Bunga belum di set", 1);
+		}
 
 		//0a. check kelengkapan survei
 		foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key => $value) 
