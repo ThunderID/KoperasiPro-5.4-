@@ -22,6 +22,25 @@ class AuthenticatedMiddleware
 			}
 		}
 
+		if($request->has('password'))
+		{
+			$logged = TAuth::loggedUser();
+
+			$e2 	= TAuth::login(['nip' => $logged['nip'], 'password' => $request->get('password')]);
+	
+			if($e2 instanceOf Exception)
+			{
+				if(is_array($e2->getMessage()))
+				{
+					return redirect(route('login.index'))->with('msg', ['danger' => $e2->getMessage()]);
+				}
+				else
+				{
+					return redirect(route('login.index'))->with('msg', ['danger' => [$e2->getMessage()]]);
+				}
+			}
+		}
+
 		return $next($request);
 	}
 }

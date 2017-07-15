@@ -47,7 +47,7 @@ trait KewenanganTrait {
 				case 'tolak':
 					if($value['list']=='setujui_kredit')
 					{
-						if(!is_null($this->kewenangan_active_office['limit_max'] && $limit > $this->kewenangan_active_office['limit_max']))
+						if(!is_null($this->kewenangan_active_office['limit_max']) && $limit > $this->kewenangan_active_office['limit_max'])
 						{
 							throw new Exception("Anda tidak memiliki wewenang untuk menyetujui kredit ini", 1);
 						}
@@ -57,10 +57,6 @@ trait KewenanganTrait {
 				case 'realisasi':
 					if($value['list']=='realisasi_kredit')
 					{
-						if(!is_null($this->kewenangan_active_office['limit_max'] && $limit > $this->kewenangan_active_office['limit_max']))
-						{
-							throw new Exception("Anda tidak memiliki wewenang untuk menyetujui kredit ini", 1);
-						}
 						return true;
 					}
 					break;
