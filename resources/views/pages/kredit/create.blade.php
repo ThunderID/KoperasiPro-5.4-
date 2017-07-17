@@ -32,7 +32,7 @@
 				])
 			</section>
 			<h3>Data Nasabah</h3>
-			<section>
+			<section id="input-nasabah">
 				<div class="m-t-none m-b-md p-b-md">
 					<h4 class="m-t-none m-b-xs">Data Nasabah</h4>
 				</div>
@@ -42,11 +42,11 @@
 						'data'	=> null,
 					]
 				])
-			</section>
-			<h3>Data Pekerjaan</h3>
-			<section>
-				<div class="m-t-none m-b-md">
-					<h4 class="m-t-none m-b-xs">Data Pekerjaan</h4>
+
+				<hr>
+
+				<div class="m-t-none">
+					<h5 class="text-uppercase text-light">Data Pekerjaan</h5>
 				</div>
 
 				@include ('pages.kredit.components.form.pengajuan.pekerjaan', [
@@ -56,8 +56,9 @@
 					'data'	=> [
 						'select_jenis_pekerjaan'	=> $page_datas->select_jenis_pekerjaan,
 					]
-				])
+				])				
 			</section>
+			
 			<h3>Data Jaminan</h3>
 			<section>
 				<div class="m-t-none m-b-md">

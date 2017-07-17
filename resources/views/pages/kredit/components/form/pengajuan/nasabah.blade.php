@@ -37,8 +37,8 @@
 		<div class="col-md-7">
 			<div class="input-group">
 				<div class="input-group-addon">35-</div>
-				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('get.kreditur.index')]) !!}
-				<span class="input-group-addon debitur_id_loader" style="background-color: white; border-color:white; color: #46BE8A;visibility: hidden;">
+				{!! Form::text('debitur[nik]', (isset($param['data']['nik']) ? $param['data']['nik'] : null), ['id' => 'debitur_id', 'class' => 'form-control required mask-id-card input-search-ajax auto-tabindex', 'placeholder' => '00-00-360876-0001', 'data-parse' => 'is_ektp, nama, tanggal_lahir, jenis_kelamin, status_perkawinan, foto_ktp', 'data-url' => route('ajax.debitur') ]) !!}
+				<span class="input-group-addon input_loader debitur_id_loader">
 					<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
 					<span class="hidden-xs">Memeriksa NIK</span>
 				</span>				
@@ -102,11 +102,13 @@
 </fieldset>
 <fieldset class="form-group">
 	<label class="text-sm">Foto KTP</label>
-	<div class="row">
+	<div class="row p-b-md">
 		<div class="col-md-6">
 			<img src="{{URL::asset('/images/no-image.png')}}" id="ktp_previewer" class="img-responsive" alt="No Image Selected" style="width: 100%; display: block;">
-			</br>
-
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
 			<div class="input-group">
 				{!! Form::text(null, (isset($param['data']['foto_ktp'])) ? $param['data']['foto_ktp'] : null, ['class' => 'form-control input-upload', 'readonly' => true, 'placeholder' => 'Belum Ada Foto Dipilih'] ) !!}
 				<span class="input-group-btn">
@@ -119,6 +121,7 @@
 	</div>
 </fieldset>
 <hr/>
+
 
 {{-- form address --}}
 @include('components.helpers.forms.address', [
@@ -141,99 +144,11 @@
 	],
 ])
 
+
 @push('scripts')
-	/* Init */
-	$( document ).ready(function(){
-		// disable autofill inputs
-		document.getElementById("debitur_nama").disabled = true;
-		document.getElementById("debitur_tanggal_lahir").disabled = true;
-		document.getElementById("debitur_jenis_kelamin").disabled = true;
-		document.getElementById("debitur_status_perkawinan").disabled = true;
-		document.getElementById("debitur[alamat][0][alamat]").disabled = true;
-		document.getElementById("debitur[alamat][0][rt]").disabled = true;
-		document.getElementById("debitur[alamat][0][rw]").disabled = true;
-		document.getElementById("debitur[alamat][0][provinsi]").disabled = true;
-		document.getElementById("debitur[alamat][0][regensi]").disabled = true;
-		document.getElementById("debitur[alamat][0][distrik]").disabled = true;
-		document.getElementById("debitur[alamat][0][desa]").disabled = true;
-		document.getElementById("debitur[alamat][0][negara]").disabled = true;
-		document.getElementById("debitur[telepon]").disabled = true;
-		document.getElementById("debitur_pekerjaan").disabled = true;
-		document.getElementById("debitur_penghasilan_bersih").disabled = true;
-	});
-
-	/* Autofill based on NIK */
-	$(document).on('keypress', '#debitur_id', function(e) {
-		if($('#debitur_id').val()[$('#debitur_id').val().length -1] != '_'){
-			// UI
-			$('.debitur_id_loader').css("visibility", "visible");
-
-			// disable autofill inputs
-			document.getElementById("debitur_nama").disabled = true;
-			document.getElementById("debitur_tanggal_lahir").disabled = true;
-			document.getElementById("debitur_jenis_kelamin").disabled = true;
-			document.getElementById("debitur_status_perkawinan").disabled = true;
-			document.getElementById("debitur[alamat][0][alamat]").disabled = true;
-			document.getElementById("debitur[alamat][0][rt]").disabled = true;
-			document.getElementById("debitur[alamat][0][rw]").disabled = true;
-			document.getElementById("debitur[alamat][0][provinsi]").disabled = true;
-			document.getElementById("debitur[alamat][0][regensi]").disabled = true;
-			document.getElementById("debitur[alamat][0][distrik]").disabled = true;
-			document.getElementById("debitur[alamat][0][desa]").disabled = true;
-			document.getElementById("debitur[alamat][0][negara]").disabled = true;
-			document.getElementById("debitur[telepon]").disabled = true;
-			document.getElementById("debitur_pekerjaan").disabled = true;
-			document.getElementById("debitur_penghasilan_bersih").disabled = true;			
-			
-			// Ajax Data
-			var nik = '35-'+document.getElementById("debitur_id").value;
-
-			$.ajax({url: "{{route('ajax.debitur')}}?nik="+nik, success: function(result, enableNasabahForm)
-			{
-				// UI
-				$('.debitur_id_loader').css("visibility", "hidden");
-
-				// enable autofill inputs
-				document.getElementById("debitur_nama").disabled = false;
-				document.getElementById("debitur_tanggal_lahir").disabled = false;
-				document.getElementById("debitur_jenis_kelamin").disabled = false;
-				document.getElementById("debitur_status_perkawinan").disabled = false;
-				document.getElementById("debitur[alamat][0][alamat]").disabled = false;
-				document.getElementById("debitur[alamat][0][rt]").disabled = false;
-				document.getElementById("debitur[alamat][0][rw]").disabled = false;
-				document.getElementById("debitur[alamat][0][provinsi]").disabled = false;
-				document.getElementById("debitur[alamat][0][regensi]").disabled = false;
-				document.getElementById("debitur[alamat][0][distrik]").disabled = false;
-				document.getElementById("debitur[alamat][0][desa]").disabled = false;
-				document.getElementById("debitur[alamat][0][negara]").disabled = false;
-				document.getElementById("debitur[telepon]").disabled = false;
-				document.getElementById("debitur_pekerjaan").disabled = false;
-				document.getElementById("debitur_penghasilan_bersih").disabled = false;				
-
-				// if result, set the data 
-				if(result.nama){
-					document.getElementById("debitur_nama").value = result.nama;
-					document.getElementById("debitur_tanggal_lahir").value = result.tanggal_lahir;
-					document.getElementById("debitur_jenis_kelamin").value = result.jenis_kelamin;
-					document.getElementById("debitur_status_perkawinan").value = result.status_perkawinan;
-					document.getElementById("debitur[alamat][0][alamat]").value = result.alamat.alamat;
-					document.getElementById("debitur[alamat][0][rt]").value = result.alamat.rt;
-					document.getElementById("debitur[alamat][0][rw]").value = result.alamat.rw;
-					document.getElementById("debitur[alamat][0][provinsi]").value = result.alamat.provinsi;
-					document.getElementById("debitur[alamat][0][regensi]").value = result.alamat.regensi;
-					document.getElementById("debitur[alamat][0][distrik]").value = result.alamat.distrik;
-					document.getElementById("debitur[alamat][0][desa]").value = result.alamat.desa;
-					document.getElementById("debitur[alamat][0][negara]").value = result.alamat.negara;
-					document.getElementById("debitur[telepon]").value = result.telepon;
-					document.getElementById("debitur_pekerjaan").value = result.pekerjaan;
-					document.getElementById("debitur_penghasilan_bersih").value = result.penghasilan_bersih;				
-				}
-
-			}});
-		}
-	});	
 
 	/* Foto Ktp Previewer */
+	/*
 	$(document).on('change', 'file:input:file_ktp', function(e) {
 		var reader = new FileReader();
         
@@ -248,5 +163,5 @@
 
         reader.readAsDataURL($(this).context.files[0]);
 	});
-
+	*/
 @endpush

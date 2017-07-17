@@ -42,7 +42,8 @@
 	<label class="text-sm">Jenis Pekerjaan</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::select('debitur[pekerjaan]', $data['select_jenis_pekerjaan'], (isset($param['data']['pekerjaan']) ? (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? $param['data']['pekerjaan'] : 'lain_lain') : ''), ['id' => 'debitur_pekerjaan', 'class' => 'form-control quick-select auto-tabindex focus select select-pekerjaan', 'data-other' => 'input-jenis-pekerjaan', 'style' => 'width:40%;', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih']) !!} <br/>
+			{!! Form::select('debitur[pekerjaan]', $data['select_jenis_pekerjaan'], (isset($param['data']['pekerjaan']) ? (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? $param['data']['pekerjaan'] : 'lain_lain') : ''), ['id' => 'debitur_pekerjaan', 'class' => 'form-control quick-select auto-tabindex focus select select-pekerjaan', 'data-other' => 'input-jenis-pekerjaan', 'style' => 'width:40%;', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih']) !!} 
+			<!-- <br/> -->
 			<!-- {!! Form::text('debitur[pekerjaan]', (isset($param['data']['pekerjaan']) ? $param['data']['pekerjaan'] : 'tidak_bekerja'), ['class' => 'form-control auto-tabindex m-t-sm input-jenis-pekerjaan ' . (in_array($param['data']['pekerjaan'], ['tidak_bekerja', 'karyawan_swasta', 'nelayan', 'pegawai_negeri', 'petani', 'polri', 'wiraswasta']) ? 'hidden' : (!isset($param['data']['pekerjaan']) ? 'hidden' : '')), 'placeholder' => 'Sebutkan']) !!} -->
 		</div>
 	</div>

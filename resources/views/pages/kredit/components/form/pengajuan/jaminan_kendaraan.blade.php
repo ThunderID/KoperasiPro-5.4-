@@ -38,7 +38,7 @@
 	<label class="text-sm">No. BPKB</label>
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]' }}" value="{{ (isset($param['data']['nomor_bpkb']) && !is_null($param['data']['nomor_bpkb'])) ? $param['data']['nomor_bpkb'] : null }}" class="form-control auto-tabindex input-kendaraan" placeholder="Nomor BPKB" data-field="nomor_bpkb" onchange="autofillbpkb()">
+			<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[nomor_bpkb]' }}" value="{{ (isset($param['data']['nomor_bpkb']) && !is_null($param['data']['nomor_bpkb'])) ? $param['data']['nomor_bpkb'] : null }}" class="form-control auto-tabindex input-kendaraan" placeholder="Nomor BPKB" data-field="nomor_bpkb">
 		</div>
 	</div>
 </fieldset>
