@@ -90,7 +90,7 @@
 		<div class="col-md-6">
 			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[provinsi]' }}" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[provinsi]' }}"  
-				class="form-control auto-tabindex select select-get-ajax select-provinsi {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
+				class="form-control auto-tabindex select select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
 				placeholder="Pilih" 
 				data-placeholder="Pilih" 
 				data-url="{{ route('regensi.index') }}" 

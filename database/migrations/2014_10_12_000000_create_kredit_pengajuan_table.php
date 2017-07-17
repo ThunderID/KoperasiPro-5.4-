@@ -23,6 +23,9 @@ class CreateKreditPengajuanTable extends Migration
 			$table->string('orang_id', 255);
 			$table->string('nomor_kredit', 255)->nullable();
 			$table->string('petugas_id', 255)->nullable();
+			
+			$table->float('suku_bunga')->nullable();
+			
 			$table->string('akses_koperasi_id', 255)->nullable();
 			$table->string('hp_id', 255)->nullable();
 			$table->string('spesimen_ttd', 255)->nullable();

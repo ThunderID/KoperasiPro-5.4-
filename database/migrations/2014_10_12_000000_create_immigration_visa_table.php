@@ -19,10 +19,11 @@ class CreateImmigrationVisaTable extends Migration
 			$table->text('scopes');
 			$table->datetime('last_logged')->nullable();
 			$table->string('akses_koperasi_id');
+			$table->double('limit_max')->nullable();
 			$table->string('orang_id');
 			$table->timestamps();
 			$table->softDeletes();
-			
+
 			$table->primary('id');
 			$table->index(['deleted_at', 'orang_id', 'akses_koperasi_id']);
 		});

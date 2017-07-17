@@ -49,6 +49,8 @@ class UpdatePengajuanKredit
 		$debitur 					= $this->simpanDebitur($orang, $this->debitur);
 
 		$this->kredit->orang_id 	= $debitur->id;
-		$this->kredit->save();		
+		$this->kredit->save();
+
+		return $this->kredit->toArray();
 	}
 }

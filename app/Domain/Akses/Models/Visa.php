@@ -39,6 +39,7 @@ class Visa extends BaseModel
 											'role'							,
 											'scopes'						,
 											'last_logged'					,
+											'limit_max'						,
 											'akses_koperasi_id'				,
 											'orang_id'						,
 										];

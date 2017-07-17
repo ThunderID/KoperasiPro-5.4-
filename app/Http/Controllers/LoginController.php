@@ -55,12 +55,8 @@ class LoginController extends Controller
 		// $credentials['email']		= 'admin@ksp.id';
 		// $credentials['password']	= 'admin';
 
-		try
-		{
-			//do authenticate
-			$auth			= TAuth::login($credentials);
-		}
-		catch(Exception $e)
+		$e			= TAuth::login($credentials);
+		if($e instanceOf Exception)
 		{
 			if(is_array($e->getMessage()))
 			{

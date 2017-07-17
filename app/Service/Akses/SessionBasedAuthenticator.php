@@ -41,12 +41,12 @@ class SessionBasedAuthenticator
 
 		if(!$user)
 		{
-			throw new Exception("nip tidak terdaftar!", 1);
+			return new Exception("nip tidak terdaftar!", 1);
 		}
 
 		if(!Hash::check($credentials['password'], $user->password))
 		{
-			throw new Exception("Password Tidak Cocok!", 1);
+			return new Exception("Password Tidak Cocok!", 1);
 		}
 
 		$visa 	= Visa::id($user->visas[0]->id)->first();

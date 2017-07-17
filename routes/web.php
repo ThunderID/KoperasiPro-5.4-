@@ -25,6 +25,7 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('ajax/jaminan/tanah/bangunan',	['uses' => 'JaminanController@tanah_bangunan', 	'as' => 'ajax.jaminan.tb']);
 	Route::any('ajax/jaminan/kendaraan',		['uses' => 'JaminanController@kendaraan',	 	'as' => 'ajax.jaminan.k']);
 	Route::any('ajax/debitur',					['uses' => 'DebiturController@index', 			'as' => 'ajax.debitur']);
+	Route::any('ajax/role',						['uses' => 'PenggunaController@role', 			'as' => 'ajax.role.lists']);
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');

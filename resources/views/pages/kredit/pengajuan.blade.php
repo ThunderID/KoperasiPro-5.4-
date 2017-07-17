@@ -8,7 +8,7 @@
 		<div data-panel="data-kredit">
 			<div class="row m-b-md">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<h4>Info Kredit @if (isset($page_datas->credit['hp_i'])) <small class="label label-info">Pengajuan dari HP</small>@endif</h4>
+					<h4>Info Kredit @if (isset($page_datas->credit['hp_id'])) <small class="label label-info">Pengajuan dari HP</small>@endif</h4>
 				</div>
 			</div>
 			<div class="row">
@@ -76,6 +76,18 @@
 					<p class="text-capitalize text-light m-b-xs">
 						Pengajuan Tgl {{ (isset($page_datas->credit['tanggal_pengajuan']) && !is_null($page_datas->credit['tanggal_pengajuan'])) ? $page_datas->credit['tanggal_pengajuan'] : '-' }}
 					</p>
+					<p class="text-capitalize text-light m-b-xs">
+						@if($page_datas->credit['status']=='survei')
+						{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline', 'method' => 'PUT']) !!}
+							{!! Form::text('suku_bunga', (isset($page_datas->credit['suku_bunga']) ? $page_datas->credit['suku_bunga'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'Suku Bunga', 'data-field' => 'suku_bunga']) !!}
+							<button type="submit" class="btn btn-primary">Simpan</button>
+						{!! Form::close() !!}
+						@elseif($page_datas->credit['status']!='pengajuan')
+							<p class="text-capitalize text-light m-b-xs">
+								Suku Bunga {{$page_datas->credit['suku_bunga']}} % / bulan
+							</p>
+						@endif
+					</p>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
 					<hr>
@@ -96,7 +108,7 @@
 						<li class="m-t-xs m-b-xs" role="presentation">
 							<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
 								<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga 
-								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'survei')))
+								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'pengajuan')))
 									<i class="text-danger fa fa-exclamation-circle"></i> 
 								@endif
 							</a>
@@ -162,6 +174,11 @@
 					</ul>
 					<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
 						<p class="text-capitalize text-sm m-l-min-lg"><strong>Analis</strong></p>
+						<!-- <li class="m-t-xs m-b-xs">
+							<a class="text-capitalize" href="#suku-bunga" data-toggle="tab" role="tab">
+								<i class="fa-li fa fa-file-text-o"></i> Suku Bunga
+							</a>
+						</li> -->
 						<li class="m-t-xs m-b-xs">
 							<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
 								<i class="fa-li fa fa-history"></i> Riwayat Status
@@ -228,6 +245,10 @@
 						<div class="tab-pane" id="data-checklist-survei" role="tabpanel">
 							@include ('pages.kredit.components.panel.pengajuan.panel_data_checklist_survei')
 						</div>
+						{{-- panel suku bunga --}}
+						<!-- <div class="tab-pane fade" id="suku-bunga" role="tabpanel">
+							@include ('pages.kredit.components.panel.pengajuan.panel_suku_bunga')
+						</div> -->
 						{{-- panel riwayat status --}}
 						<div class="tab-pane fade" id="riwayat-status" role="tabpanel">
 							@include ('pages.kredit.components.panel.pengajuan.panel_riwayat_status')

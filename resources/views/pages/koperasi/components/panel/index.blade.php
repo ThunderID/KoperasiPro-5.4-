@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-xs-7">
 									@foreach($value['scopes'] as $keyScope => $scope)
-										<span class="badge badge-primary">{{ ucwords(str_replace("_"," ", $scope['list'])) }}</span>
+										<span class="label label-success">{{ ucwords(str_replace("_"," ", $scope['list'])) }}</span>
 									@endforeach
 								</div>
 							</div>																					

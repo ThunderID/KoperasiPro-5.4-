@@ -34,6 +34,6 @@ class CreateSurveiFotoJaminanTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('foto_jaminan');
+		Schema::dropIfExists('s_foto_jaminan');
 	}
 }

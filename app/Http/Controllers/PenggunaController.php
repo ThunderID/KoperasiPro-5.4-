@@ -15,7 +15,7 @@ use App\Domain\HR\Models\Orang;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Akses\Models\Visa;
 
-use TAuth, URL;
+use TAuth, URL, Response;
 
 /**
  * Kelas PenggunaController
@@ -115,7 +115,9 @@ class PenggunaController extends Controller
 			$visa['koperasi']['alamat'] 		= $koperasi['alamat'];
 			$visa['koperasi']['nomor_telepon'] 	= $koperasi['nomor_telepon'];
 
-			foreach ($this->request->get('scope') as $key => $value) 
+			$scopes 					= \App\Service\Helpers\ACL\KewenanganKredit::template_scopes()[$visa['role']];
+
+			foreach ($scopes as $key => $value) 
 			{
 				$visa['scopes'][]			= ['list' => $value];
 			}
@@ -195,4 +197,10 @@ class PenggunaController extends Controller
   		return $this->generateRedirect(route('koperasi.show', 0));
 	}
 
+	public function role()
+	{
+		$data 	= \App\Service\Helpers\ACL\KewenanganKredit::template_scopes()[Input::get('role')];
+
+		return Response::json($data);
+	}
 }

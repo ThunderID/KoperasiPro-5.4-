@@ -30,6 +30,27 @@ class KewenanganKredit
 		];
 	}
 
+	public static function lists()
+	{
+		return [
+			'komisaris' 				=> 'Komisaris',
+			'pimpinan' 					=> 'Pimpinan',
+			'kabag_kredit' 				=> 'Kabag Kredit',
+			'kabag_marketing' 			=> 'Kabag Marketing',
+			'kabag_kolektor' 			=> 'Kabag Kolektor',
+			'kabag_operasional' 		=> 'Kabag Operasional',
+			'analis_kredit' 			=> 'Analis Kredit',
+			'marketing' 				=> 'Marketing',
+			'kolektor' 					=> 'Kolektor',
+			'accounting_dan_tabungan' 	=> 'Accounting dan Tabungan',
+			'admin_kredit' 				=> 'Admin Kredit',
+			'admin_angsuran' 			=> 'Admin Angsuran',
+			'admin_collect' 			=> 'Admin Collect',
+			'teller' 					=> 'Teller',
+			'bagian_umum' 				=> 'Bagian Umum',
+		];
+	}
+
 	public static function roles()
 	{
 		return array_keys(self::template_scopes());
