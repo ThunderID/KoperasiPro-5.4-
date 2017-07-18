@@ -88,9 +88,23 @@
 	<label class="text-sm">Provinsi</label>
 	<div class="row">
 		<div class="col-md-6">
+			<select 
+				class="form-control auto-tabindex select select-provinsi"
+				placeholder="Pilih" 
+				data-placeholder="Pilih" 
+				disabled>
+					<option class="text-capitalize" value="JAWA TIMUR" selected }}>JAWA TIMUR</option>
+			</select>
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group" style="display: none;">
+	{{-- <label class="text-sm">Provinsi</label> --}}
+	<div class="row">
+		<div class="col-md-6">
 			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[provinsi]' }}" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[provinsi]' }}"  
-				class="form-control auto-tabindex select select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
+				class="form-control auto-tabindex select select-provinsi select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
 				placeholder="Pilih" 
 				data-placeholder="Pilih" 
 				data-url="{{ route('regensi.index') }}" 

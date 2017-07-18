@@ -103,20 +103,20 @@ $(document).on('pjax:end', function() {
 		iface_kredit_pengajuan_nasabah.init();
 	}
 });
-$("#modal-jaminan-tanah-bangunan").on("shown.bs.modal", function () { 
+$("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () { 
 	if(iface_kredit_pengajuan_nasabah.validate() == true){
+		// cleara all input
+		$(this).find('input').val('');
+
+		$(this).find('.select').each(function() {
+			// special case don't need to cleared
+			if (! $( this ).hasClass( "select-provinsi" ) ) {
+				window.selectDropdown.clear($(this));		
+			};
+		});
+
 		// init
 		$(this).find('.select-regensi').prop('disabled', false);
 		$(this).find('.select-distrik').prop('disabled', true);
-		$(this).find('.select-provinsi').val('JAWA TENGAH').trigger('change');
 	}
-});
-
-
-$(".modal").on("hide.bs.modal", function () { 
-	$(this).find('input').val('');
-
-	$(this).find('.select').each(function() {
-		$(this).val('').trigger('change.select2');
-	});	
 });

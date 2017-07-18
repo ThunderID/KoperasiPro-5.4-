@@ -35,7 +35,7 @@
 	<label class="text-sm">Tipe</label>
 	<div class="row">
 		<div class="col-md-4">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="form-control quick-select select auto-tabindex" data-field="tipe">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="form-control quick-select select auto-tabindex" data-field="tipe" placeholder="Pilih" data-placeholder="Pilih">
 				<option value="bangunan" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'bangunan')) ? 'selected' : '' }}>Bangunan</option>
 				<option value="tanah" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'tanah')) ? 'selected' : '' }}>Tanah</option>
 			</select>
@@ -47,7 +47,7 @@
 	<label class="text-sm">Jenis Sertifikat</label>
 	<div class="row">
 		<div class="col-md-5">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="form-control quick-select select auto-tabindex" data-field="jenis_sertifikat">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="form-control quick-select select auto-tabindex" data-field="jenis_sertifikat" placeholder="Pilih" data-placeholder="Pilih">
 				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>Hak Guna Bangunan (HGB)</option>
 				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
 			</select>
