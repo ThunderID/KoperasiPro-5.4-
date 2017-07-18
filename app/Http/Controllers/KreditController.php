@@ -11,6 +11,8 @@ use App\Service\Pengajuan\UpdatePengajuanKredit;
 use App\Service\Pengajuan\UpdateStatusKredit;
 use App\Service\Pengajuan\UpdateDebitur;
 use App\Service\Pengajuan\HapusDataKredit;
+use App\Service\Pengajuan\DuplikatKredit;
+
 use App\Service\Survei\SurveiKredit;
 
 use App\Service\Helpers\UI\UploadGambar;
@@ -444,6 +446,38 @@ class KreditController extends Controller
 			}
 			$u_status->save();
 			$this->page_attributes->msg['success']		= ['Status berhasil diupdate'];
+		}
+		catch(Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('credit.show', $id));
+	}
+
+
+	/**
+	 * duplikasi kredit
+	 *
+	 * @return Response
+	 */
+	public function duplikasi($id)
+	{
+		try
+		{
+			$kredit 	= new DuplikatKredit($id);
+			$copy 		= $kredit->semua();
+			$id 		= $copy['id'];
+		
+			$this->page_attributes->msg['success']		= ['Kredit berhasil diduplikasi'];
 		}
 		catch(Exception $e)
 		{
