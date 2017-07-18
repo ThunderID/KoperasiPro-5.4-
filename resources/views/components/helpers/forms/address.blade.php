@@ -96,10 +96,13 @@
 				data-url="{{ route('regensi.index') }}" 
 				data-target-parsing=".select-regensi" 
 				data-field="provinsi" 
-				data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "jawa_timur") }}" 
-				data-value-from-caption="yes">
-				<option class="text-capitalize">satu</option>
-
+				data-attribute-value='{{ (isset($settings["data_attribute_value"]) ? $settings["data_attribute_value"] : "jawa_timur") }}'
+				data-value-from-caption="yes"
+				data-select-preload="JAWA TIMUR"
+				disabled>
+				@foreach ($data['provinsi'] as $k => $v)
+					<option class="text-capitalize" value="{{ $v }}" data-id="{{ $k }}" {{ (isset($param['data']['provinsi']) && (strtolower($param['data']['provinsi']) == strtolower($v))) ? 'selected' : '' }}>{{ $v }}</option>
+				@endforeach
 			</select>
 		</div>
 	</div>
@@ -108,7 +111,8 @@
 	<label class="text-sm">Kota/Kabupaten</label>
 	<div class="row">
 		<div class="col-md-6">
-			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" class="form-control auto-tabindex select select-regensi select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" placeholder="Pilih" data-placeholder="Pilih" data-url="{{ route('distrik.index') }}" data-target-parsing=".select-distrik" data-field="regensi" data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" data-value-from-caption="yes">
+
+			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" class="input_loader form-control auto-tabindex select select-regensi select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" placeholder="Pilih" data-placeholder="Pilih" data-loader="kecamatan_loader" data-url="{{ route('distrik.index') }}" data-target-parsing=".select-distrik" data-field="regensi" data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" data-value-from-caption="yes">
 				{{-- @foreach ($data['provinsi'] as $k => $v)
 					<option value="{{ $v }}" data-id="{{ $k }}" {{ (isset($param['data'][0]['provinsi']) && !is_null($param['data'][0]['provinsi'])) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach --}}
@@ -138,6 +142,7 @@
 				@endforeach --}}
 			</select>
 
+
 			{{-- {!! Form::select( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[distrik]', [], (isset($param['data'][0]['distrik']) ? $param['data'][0]['distrik'] : null), [
 				'class' => 'form-control auto-tabindex select select-get-ajax select-distrik ' . (isset($settings["class"]) ? $settings["class"] : "") 
 					. (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : ""), 
@@ -149,6 +154,11 @@
 				'data-field' => 'distrik', 
 				'data-attribute-value' => (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null")
 			]) !!} --}}
+		</div>
+		<div class="col-md-1 p-l-none" style="margin-left: -10px;">
+			<span class="input-group-addon p-l-none input_loader kecamatan_loader">
+				<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+			</span>				
 		</div>
 	</div>
 </fieldset>

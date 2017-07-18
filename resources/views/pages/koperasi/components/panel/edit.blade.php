@@ -32,34 +32,21 @@
 					<label class="text-sm">Role</label>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::select('role', \App\Service\Helpers\UI\UserRole::lists(), $value['role'], ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
+							{!! Form::select('role', \App\Service\Helpers\ACL\KewenanganKredit::lists(), $value['role'], ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu', 'onchange' => 'check_scope_2()', 'id' => 'penggunarole_2']) !!}
 						</div> 
 					</div> 
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label class="text-sm">Password</label>
-					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::password('password', ['class' => 'form-control required', 'placeholder' => 'Password Pengguna']) !!}
-						</div>
-					</div>
-				</fieldset>	
-
-				<fieldset class="form-group">
-					<label class="text-sm">Konfirmasi Password</label>
-					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							{!! Form::password('confirm_password', ['class' => 'form-control required', 'placeholder' => 'Konfirmasi Password Pengguna']) !!}
-						</div>
-					</div>
-				</fieldset>
-
-				<fieldset class="form-group">
 					<label class="text-sm">Hak Akses Pengguna</label>
 					<div class="row">
-						<div class="col-md-4 col-xs-6">
-							<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
+						<div class="col-md-5 col-xs-6">
+							<div id="scopelists_2">
+								@foreach($hak_akses as $key2 => $value2)
+									<span class="label label-success">{{str_replace('_', ' ', $value2)}}</span>
+								@endforeach
+							</div>
+						<!--<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 								{!! Form::checkbox('scope[]', 'modifikasi_koperasi', ( in_array('modifikasi_koperasi', $hak_akses) ? true : false), ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 								Modifikasi Kredit
 							</label>
@@ -97,10 +84,29 @@
 							<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 								{!! Form::checkbox('scope[]', 'atur_akses', ( in_array('atur_akses', $hak_akses) ? true : false), ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 								Atur Akses
-							</label>					
+							</label>	 -->				
 						</div>				
 					</div>
 				</fieldset>
+
+				<fieldset class="form-group">
+					<label class="text-sm">Password</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							{!! Form::password('password', ['class' => 'form-control required', 'placeholder' => 'Password Pengguna']) !!}
+						</div>
+					</div>
+				</fieldset>	
+
+				<fieldset class="form-group">
+					<label class="text-sm">Konfirmasi Password</label>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							{!! Form::password('confirm_password', ['class' => 'form-control required', 'placeholder' => 'Konfirmasi Password Pengguna']) !!}
+						</div>
+					</div>
+				</fieldset>
+
 
 				<div class="clearfix">&nbsp;</div>
 

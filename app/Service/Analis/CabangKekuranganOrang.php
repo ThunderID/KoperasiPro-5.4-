@@ -54,13 +54,13 @@ class CabangKekuranganOrang
 
 		$koperasi_id 		= array_unique($koperasi_id);
 
-		$koperasi 			= $this->model->id($koperasi_id)->get()->toArray();
+		$koperasi 			= $this->model->id($koperasi_id)->with(['visas'])->get()->toArray();
 
 		foreach ($koperasi as $key => $value) 
 		{
-			$pengguna 		= collect(Visa::where('akses_koperasi_id', $value['id'])->get()->toArray());
+			$pengguna 		= collect($value['visas']);
 
-			$koperasi[$key]['total_user']		= $pengguna->groupby('immigration_pengguna_id')->count();
+			$koperasi[$key]['total_user']		= $pengguna->groupby('orang_id')->count();
 			$koperasi[$key]['scopes']			= [];
 
 			foreach ($pengguna as $key2 => $value2) 

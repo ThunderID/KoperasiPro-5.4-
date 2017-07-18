@@ -237,4 +237,36 @@
 	$(window).load( function() {
 		window.mapInit();
 	});
+
+	function check_scope()
+	{
+		var penggunarole 	= document.getElementById("penggunarole").value;
+
+		$.ajax({url: "{{route('ajax.role.lists')}}?role="+penggunarole, success: function(result)
+		{
+			var content 	= '';
+
+			$.each(result, function(i, item) {
+				content 	= content+'<span class="label label-success">'+item.replace(/_/g, " ")+'</span>&nbsp;';
+			});
+
+			$("#scopelists").html( content );
+		}});
+	}
+
+	function check_scope_2()
+	{
+		var penggunarole 	= document.getElementById("penggunarole_2").value;
+
+		$.ajax({url: "{{route('ajax.role.lists')}}?role="+penggunarole, success: function(result)
+		{
+			var content 	= '';
+
+			$.each(result, function(i, item) {
+				content 	= content+'<span class="label label-success">'+item.replace(/_/g, " ")+'</span>&nbsp;';
+			});
+
+			$("#scopelists_2").html( content );
+		}});
+	}
 @endpush

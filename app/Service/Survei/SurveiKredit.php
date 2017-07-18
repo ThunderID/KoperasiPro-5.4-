@@ -35,6 +35,7 @@ class SurveiKredit
 
 	protected $loggedUser;
 	protected $activeOffice;
+	protected $pengajuan;
 
 	/**
 	 * Create a new job instance.
@@ -44,7 +45,12 @@ class SurveiKredit
 	 */
 	public function __construct($pengajuan_id)
 	{
-		$this->pengajuan_id			= $pengajuan_id;
+		$this->pengajuan_id		= $pengajuan_id;
+	
+		$this->activeOffice 	= TAuth::activeOffice();
+		$this->loggedUser 		= TAuth::loggedUser();
+
+		$this->pengajuan 		= Pengajuan::id($this->pengajuan_id)->where('akses_koperasi_id', $this->activeOffice['koperasi']['id'])->status('survei')->firstorfail();
 	}
 
 	public function tambahAsetKendaraan($tipe, $nomor_bpkb, $id = null, $uraian = null)
@@ -217,6 +223,11 @@ class SurveiKredit
 		return $this;
 	}
 
+	public function setSukuBunga($suku_bunga)
+	{
+		$this->pengajuan->suku_bunga = $suku_bunga;
+	}
+
 	/**
 	 * Execute the job.
 	 *
@@ -226,17 +237,12 @@ class SurveiKredit
 	{
 		try
 		{
-			// DB::BeginTransaction();
-
-			$this->activeOffice 	= TAuth::activeOffice();
-			$this->loggedUser 		= TAuth::loggedUser();
-
-			$pengajuan 		= Pengajuan::id($this->pengajuan_id)->where('akses_koperasi_id', $this->activeOffice['koperasi']['id'])->firstorfail();
+			DB::BeginTransaction();
 
 			//1. simpan aset kendaraan
 			foreach ((array)$this->aset_kendaraan as $key => $value) 
 			{
-				$aset_k 	= AsetKendaraan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_k 	= AsetKendaraan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $this->pengajuan->id)->first();
 				
 				if(!$aset_k)
 				{
@@ -256,7 +262,7 @@ class SurveiKredit
 			//2. simpan aset tanah_bangunan
 			foreach ((array)$this->aset_tanah_bangunan as $key => $value) 
 			{
-				$aset_tb 	= AsetTanahBangunan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_tb 	= AsetTanahBangunan::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $this->pengajuan->id)->first();
 
 				if(!$aset_tb)
 				{
@@ -278,7 +284,7 @@ class SurveiKredit
 			//3. simpan aset usaha
 			foreach ((array)$this->aset_usaha as $key => $value) 
 			{
-				$aset_u 	= AsetUsaha::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $pengajuan->id)->first();
+				$aset_u 	= AsetUsaha::where('id', $value['id'])->where('petugas_id', $this->loggedUser['id'])->where('pengajuan_id', $this->pengajuan->id)->first();
 
 				if(!$aset_u)
 				{
@@ -308,7 +314,7 @@ class SurveiKredit
 			//4. simpan jaminan kendaraan
 			foreach ((array)$this->jaminan_kendaraan as $key => $value) 
 			{
-				$jaminan_kendaraan 	= PengajuanJaminanKendaraan::where('nomor_bpkb', $value['nomor_bpkb'])->where('pengajuan_id', $pengajuan->id)->first();
+				$jaminan_kendaraan 	= PengajuanJaminanKendaraan::where('nomor_bpkb', $value['nomor_bpkb'])->where('pengajuan_id', $this->pengajuan->id)->first();
 
 				if(!$jaminan_kendaraan)
 				{
@@ -376,7 +382,7 @@ class SurveiKredit
 			//5. simpan jaminan tanah bangunan
 			foreach ((array)$this->jaminan_tanah_bangunan as $key => $value) 
 			{
-				$jaminan_tanah_bangunan 	= PengajuanJaminanTanahBangunan::where('nomor_sertifikat', $value['nomor_sertifikat'])->where('pengajuan_id', $pengajuan->id)->first();
+				$jaminan_tanah_bangunan 	= PengajuanJaminanTanahBangunan::where('nomor_sertifikat', $value['nomor_sertifikat'])->where('pengajuan_id', $this->pengajuan->id)->first();
 
 				if(!$jaminan_tanah_bangunan)
 				{
@@ -456,7 +462,7 @@ class SurveiKredit
 			//6. simpan kepribadian
 			foreach ((array)$this->kepribadian as $key => $value) 
 			{
-				$kepribadian 	= Kepribadian::where('id', $value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$kepribadian 	= Kepribadian::where('id', $value['id'])->where('pengajuan_id', $this->pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$kepribadian)
 				{
@@ -477,7 +483,7 @@ class SurveiKredit
 			//7. simpan keuangan
 			foreach ((array)$this->keuangan as $key => $value) 
 			{
-				$keuangan 		= Keuangan::id($value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$keuangan 		= Keuangan::id($value['id'])->where('pengajuan_id', $this->pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$keuangan)
 				{
@@ -506,7 +512,7 @@ class SurveiKredit
 			//8. simpan nasabah
 			foreach ((array)$this->nasabah as $key => $value) 
 			{
-				$nasabah 		= Nasabah::where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$nasabah 		= Nasabah::where('pengajuan_id', $this->pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$nasabah)
 				{
@@ -527,7 +533,7 @@ class SurveiKredit
 			//9. simpan rekening
 			foreach ((array)$this->rekening as $key => $value) 
 			{
-				$rekening 		= Rekening::id($value['id'])->where('pengajuan_id', $pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
+				$rekening 		= Rekening::id($value['id'])->where('pengajuan_id', $this->pengajuan->id)->where('petugas_id', $this->loggedUser['id'])->first();
 
 				if(!$rekening)
 				{
@@ -548,13 +554,15 @@ class SurveiKredit
 				$rekening->save();	
 			}
 
-			// DB::commit();
+			$this->pengajuan->save();
 
-			return $pengajuan->toArray();
+			DB::commit();
+
+			return $this->pengajuan->toArray();
 		}
 		catch(Exception $e)
 		{
-			// DB::rollback();
+			DB::rollback();
 			throw $e;
 		}
 	}

@@ -7,7 +7,7 @@
  --}}
 <div class="template-clone-contact">
 	<fieldset class="form-group">
-	  	<label class="text-sm">No. Telp</label>
+	  	<label class="text-sm">No. Telpon Yang Dapat Dihubungi</label>
 		<div class="row">
 			<div class="col-xs-12 col-md-5">
 				{!! Form::text( (!is_null($param['prefix']) ? $param['prefix'] . '[telepon]' : 'telepon'), (isset($param['data']) ? $param['data'] : null), ['id' => (!is_null($param['prefix']) ? $param['prefix'] . '[telepon]' : 'telepon'), 'class' => 'form-control required auto-tabindex mask-no-handphone', 'placeholder' => 'Ex. 0341 2339 9001']) !!}

@@ -5,10 +5,41 @@ window.selectDropdown = {
 			theme: "bootstrap",
 			allowClear: true,
 			width: null,
+		});	
+
+		$(".select").each(function() {
+			if($(this).data('select-preload')){
+				$(this).val($(this).data('select-preload')).trigger('change');
+			}
 		});
 	},
-	getAjax: function () {
-		$('.select-get-ajax').on('select2:select', function(evt) {
+	getAjax: function () {		
+		$('.select-get-ajax').on('change', function(evt) {
+			// init
+			// get select2 to parsing data
+			var targetParsing = $(this).data('target-parsing');
+			// get parent select on aktif
+			var rootSelect = $(this).parent().parent().parent().parent();
+			var elementTarget = rootSelect.find(targetParsing);		
+
+
+			// ui
+			elementTarget.prop('disabled', true);
+			elementTarget.val('');
+
+
+			// loader
+			if($(this).val()){
+				// disable on this disabled state
+				if(!$(this).prop('disabled')){
+					if($(this).data('loader')){
+					// need loader effect
+						$('.' + $(this).data('loader')).css("visibility", "visible");
+					}
+				}
+			}
+
+			var el = $(this);
 			var url = $(this).attr('data-url');
 			var id = $(this).find('option:selected').attr('data-id');
 			var val = $(this).find('option:selected').val();
@@ -18,12 +49,6 @@ window.selectDropdown = {
 			if ((typeof dataFlag != 'undefined')) {
 				$(this).val(caption);
 			}
-
-			// get select2 to parsing data
-			var targetParsing = $(this).data('target-parsing');
-			// get parent select on aktif
-			var rootSelect = $(this).parent().parent().parent().parent();
-			var elementTarget = rootSelect.find(targetParsing);
 
 			// get data list on ajax
 			$.ajax({
@@ -42,17 +67,31 @@ window.selectDropdown = {
 					});
 					// remove default on selected
 					elementTarget.val('');
+
+					// ux
+					if(!el.prop('disabled'))
+					{
+						if(el.val()){
+							// remove disable select regensi
+							elementTarget.removeAttr('disabled');
+
+							// after get data, set focus to select-regensi
+							elementTarget.focus();	
+
+							// turn off loader if any
+							if(el.data('loader')){
+								$('.' + el.data('loader')).css("visibility", "hidden");
+							}
+						}
+					}
 				}
 			});
-			// remove disable select regensi
-			elementTarget.removeAttr('disabled');
-			// after get data, set focus to select-regensi
-			elementTarget.focus();
+
 		});
 	},
 	init: function () {
-		window.selectDropdown.default();
 		window.selectDropdown.getAjax();
+		window.selectDropdown.default();
 	}
 }
 // window.select = function(element, param) {

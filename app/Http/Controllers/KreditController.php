@@ -11,6 +11,8 @@ use App\Service\Pengajuan\UpdatePengajuanKredit;
 use App\Service\Pengajuan\UpdateStatusKredit;
 use App\Service\Pengajuan\UpdateDebitur;
 use App\Service\Pengajuan\HapusDataKredit;
+use App\Service\Pengajuan\DuplikatKredit;
+
 use App\Service\Survei\SurveiKredit;
 
 use App\Service\Helpers\UI\UploadGambar;
@@ -283,6 +285,11 @@ class KreditController extends Controller
 				}
 			}
 
+			if (Input::has('suku_bunga'))
+			{
+				$update->setsukubunga(Input::get('suku_bunga'));
+			}
+
 			if (Input::has('jangka_waktu'))
 			{
 				$update->setjangkawaktu(Input::get('jangka_waktu'));
@@ -314,14 +321,14 @@ class KreditController extends Controller
 			// jaminan kendaraan for survei
 			if (Input::has('jaminan_kendaraan'))
 			{
-				$update->tambahJaminanKendaraan(Input::get('jaminan_kendaraan')['tipe'], Input::get('jaminan_kendaraan')['merk'], Input::get('jaminan_kendaraan')['warna'], Input::get('jaminan_kendaraan')['tahun'], Input::get('jaminan_kendaraan')['nomor_polisi'], Input::get('jaminan_kendaraan')['nomor_bpkb'], Input::get('jaminan_kendaraan')['nomor_mesin'], Input::get('jaminan_kendaraan')['nomor_rangka'], Input::get('jaminan_kendaraan')['masa_berlaku_stnk'], Input::get('jaminan_kendaraan')['status_kepemilikan'], Input::get('jaminan_kendaraan')['harga_taksasi'], Input::get('jaminan_kendaraan')['fungsi_sehari_hari'], Input::get('jaminan_kendaraan')['atas_nama'], Input::get('jaminan_kendaraan')['alamat'], Input::get('jaminan_kendaraan')['id']);
+				$update->tambahJaminanKendaraan(Input::get('jaminan_kendaraan')['tipe'], Input::get('jaminan_kendaraan')['merk'], Input::get('jaminan_kendaraan')['warna'], Input::get('jaminan_kendaraan')['tahun'], Input::get('jaminan_kendaraan')['nomor_polisi'], Input::get('jaminan_kendaraan')['nomor_bpkb'], Input::get('jaminan_kendaraan')['nomor_mesin'], Input::get('jaminan_kendaraan')['nomor_rangka'], Input::get('jaminan_kendaraan')['masa_berlaku_stnk'], Input::get('jaminan_kendaraan')['status_kepemilikan'], Input::get('jaminan_kendaraan')['harga_taksasi'], Input::get('jaminan_kendaraan')['fungsi_sehari_hari'], Input::get('jaminan_kendaraan')['atas_nama'], Input::get('jaminan_kendaraan')['alamat'], Input::get('jaminan_kendaraan')['id'], null, null, []);
 			}
 
 			// jaminan tanah & bangunan for survei
 			if (Input::has('jaminan_tanah_bangunan'))
 			{
 				$barcode 	= null;
-				$update->tambahJaminanTanahBangunan(Input::get('jaminan_tanah_bangunan')['tipe'], Input::get('jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('jaminan_tanah_bangunan')['atas_nama'], Input::get('jaminan_tanah_bangunan')['luas_tanah'], Input::get('jaminan_tanah_bangunan')['jalan'], Input::get('jaminan_tanah_bangunan')['lebar_jalan'], Input::get('jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('jaminan_tanah_bangunan')['lingkungan'], Input::get('jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('jaminan_tanah_bangunan')['njop'], Input::get('jaminan_tanah_bangunan')['listrik'], Input::get('jaminan_tanah_bangunan')['air'], $barcode, Input::get('jaminan_tanah_bangunan')['alamat'], Input::get('jaminan_tanah_bangunan')['luas_bangunan'], Input::get('jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('jaminan_tanah_bangunan')['dinding'], Input::get('jaminan_tanah_bangunan')['taksasi_bangunan'], Input::get('jaminan_tanah_bangunan')['id']);
+				$update->tambahJaminanTanahBangunan(Input::get('jaminan_tanah_bangunan')['tipe'], Input::get('jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('jaminan_tanah_bangunan')['atas_nama'], Input::get('jaminan_tanah_bangunan')['luas_tanah'], Input::get('jaminan_tanah_bangunan')['jalan'], Input::get('jaminan_tanah_bangunan')['lebar_jalan'], Input::get('jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('jaminan_tanah_bangunan')['lingkungan'], Input::get('jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('jaminan_tanah_bangunan')['njop'], Input::get('jaminan_tanah_bangunan')['listrik'], Input::get('jaminan_tanah_bangunan')['air'], $barcode, Input::get('jaminan_tanah_bangunan')['alamat'], Input::get('jaminan_tanah_bangunan')['luas_bangunan'], Input::get('jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('jaminan_tanah_bangunan')['dinding'], Input::get('jaminan_tanah_bangunan')['taksasi_bangunan'], Input::get('jaminan_tanah_bangunan')['id'], null, []);
 			}
 
 			// rekening for survei
@@ -442,7 +449,38 @@ class KreditController extends Controller
 		}
 		catch(Exception $e)
 		{
-			dd($e);
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('credit.show', $id));
+	}
+
+
+	/**
+	 * duplikasi kredit
+	 *
+	 * @return Response
+	 */
+	public function duplikasi($id)
+	{
+		try
+		{
+			$kredit 	= new DuplikatKredit($id);
+			$copy 		= $kredit->semua();
+			$id 		= $copy['id'];
+		
+			$this->page_attributes->msg['success']		= ['Kredit berhasil diduplikasi'];
+		}
+		catch(Exception $e)
+		{
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();

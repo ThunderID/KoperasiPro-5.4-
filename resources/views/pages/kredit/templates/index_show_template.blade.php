@@ -44,7 +44,7 @@
 				            <p>{{$value['nomor_kredit']}}</p>
 				            <p class="list-group-item-text p-t-xs">
 				            	{{ $value['pengajuan_kredit'] }}
-				                <span class="pull-right">{{$value['tanggal']}}</span>
+				                <span class="pull-right">{{$value['tanggal_pengajuan']}}</span>
 				            </p>
 				        </a>
 				    @endforeach

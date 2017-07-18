@@ -27,7 +27,7 @@
 	<label class="text-sm">No. Sertifikat</label>
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" class="form-control auto-tabindex input-tanah-bangunan" data-field="nomor_sertifikat" placeholder="No. Sertifikat" value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}" onchange="autofillsertifikat()">
+			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" class="form-control auto-tabindex input-tanah-bangunan" data-field="nomor_sertifikat" placeholder="No. Sertifikat" value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}">
 		</div>
 	</div>
 </fieldset>
