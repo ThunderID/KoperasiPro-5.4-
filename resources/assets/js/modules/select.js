@@ -5,7 +5,7 @@ window.selectDropdown = {
 			theme: "bootstrap",
 			allowClear: true,
 			width: null,
-		});	
+		});
 	},
 	getAjax: function () {
 		$('.select-get-ajax').on('select2:select', function(evt) {

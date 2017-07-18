@@ -34,20 +34,26 @@
 						<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-right fa-ul" aria-labelledby="dropdownMenu1">
-						<li class="dropdown-header">Survei</li>
+						<li class="dropdown-header">Pengajuan</li>
 						<li class="m-t-xs m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_kendaraan', 'id' => $page_datas->credit['id']]) }}">
-								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Kendaraan
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'pengajuan_kredit', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Pengajuan Kredit
+							</a>
+						</li>
+						<li class="dropdown-header">Survei</li>
+						<li class="m-b-xs">
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_tanah_bangunan', 'id' => $page_datas->credit['id']]) }}">
-								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Tanah &amp; Bangunan
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_kendaraan', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Jaminan Kendaraan
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset_usaha', 'id' => $page_datas->credit['id']]) }}">
-								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset Usaha
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_tanah_bangunan', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Jaminan Tanah &amp; Bangunan
 							</a>
 						</li>
 						<li class="m-b-xs">
@@ -65,6 +71,12 @@
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening
 							</a>
 						</li>
+						<li class="m-b-xs">
+							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_all', 'id' => $page_datas->credit['id']]) }}">
+								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Semua
+							</a>
+						</li>
+
 						<!-- <li class="dropdown-header">Realisasi</li>
 						<li class="m-b-xs">
 							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Surat PK</a>

@@ -3,9 +3,9 @@
 	<div class="clearfix">&nbsp;</div>
 	<div class="row">
 		<div class="col-sm-12 text-center"  style="padding-left: 10px; padding-right: 10px;">
-			<h4 class="text-capitalize m-b-md" style="background-color: #eee; padding: 5px; font-size: 16px;">Form Survei Kepribadian</h4>
+			<h4 class="text-capitalize m-b-md" style="background-color: #eee; padding: 5px; font-size: 16px;">Form Survei Jaminan Tanah &amp; bangunan</h4>
 		</div>
 	</div>
-	@include('pages.kredit.print.components.kepribadian')
+	@include('pages.kredit.print.components.jaminan_tanah_bangunan')
 	<div class="clearfix">&nbsp;</div>
 @endpush

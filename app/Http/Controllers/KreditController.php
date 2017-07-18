@@ -810,14 +810,20 @@ class KreditController extends Controller
 			case 'survei_kepribadian':
 				$this->view 				= view('pages.kredit.print.form_survei_kepribadian');
 				break;
-			case 'survei_aset_usaha':
-				$this->view 				= view('pages.kredit.print.form_survei_aset_usaha');
+			case 'survei_aset':
+				$this->view 				= view('pages.kredit.print.form_survei_aset');
 				break;
-			case 'survei_aset_kendaraan':
-				$this->view 				= view('pages.kredit.print.form_survei_aset_kendaraan');
+			case 'survei_jaminan_kendaraan':
+				$this->view 				= view('pages.kredit.print.form_survei_jaminan_kendaraan');
 				break;
-			case 'survei_aset_tanah_bangunan':
-				$this->view  				= view('pages.kredit.print.form_survei_aset_tanah_bangunan');
+			case 'survei_jaminan_tanah_bangunan':
+				$this->view 				= view('pages.kredit.print.form_survei_jaminan_tanah_bangunan');
+				break;
+			case 'survei_all':
+				$this->view 				= view('pages.kredit.print.form_survei_all');
+				break;
+			case 'pengajuan_kredit':
+				$this->view 				= view('pages.kredit.print.form_pengajuan_kredit');
 				break;
 			default:
 				// $this->page_datas->credit 	= $this->service->detailed
