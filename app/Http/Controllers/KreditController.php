@@ -11,6 +11,8 @@ use App\Service\Pengajuan\UpdatePengajuanKredit;
 use App\Service\Pengajuan\UpdateStatusKredit;
 use App\Service\Pengajuan\UpdateDebitur;
 use App\Service\Pengajuan\HapusDataKredit;
+use App\Service\Pengajuan\DuplikatKredit;
+
 use App\Service\Survei\SurveiKredit;
 
 use App\Service\Helpers\UI\UploadGambar;
@@ -461,6 +463,38 @@ class KreditController extends Controller
 		return $this->generateRedirect(route('credit.show', $id));
 	}
 
+
+	/**
+	 * duplikasi kredit
+	 *
+	 * @return Response
+	 */
+	public function duplikasi($id)
+	{
+		try
+		{
+			$kredit 	= new DuplikatKredit($id);
+			$copy 		= $kredit->semua();
+			$id 		= $copy['id'];
+		
+			$this->page_attributes->msg['success']		= ['Kredit berhasil diduplikasi'];
+		}
+		catch(Exception $e)
+		{
+			if (is_array($e->getMessage()))
+			{
+				$this->page_attributes->msg['error'] 	= $e->getMessage();
+			}
+			else
+			{
+				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
+			}
+		}
+
+		//function from parent to redirecting
+		return $this->generateRedirect(route('credit.show', $id));
+	}
+
 	/**
 	 * lihat data credit tertentu
 	 *
@@ -814,14 +848,20 @@ class KreditController extends Controller
 			case 'survei_kepribadian':
 				$this->view 				= view('pages.kredit.print.form_survei_kepribadian');
 				break;
-			case 'survei_aset_usaha':
-				$this->view 				= view('pages.kredit.print.form_survei_aset_usaha');
+			case 'survei_aset':
+				$this->view 				= view('pages.kredit.print.form_survei_aset');
 				break;
-			case 'survei_aset_kendaraan':
-				$this->view 				= view('pages.kredit.print.form_survei_aset_kendaraan');
+			case 'survei_jaminan_kendaraan':
+				$this->view 				= view('pages.kredit.print.form_survei_jaminan_kendaraan');
 				break;
-			case 'survei_aset_tanah_bangunan':
-				$this->view  				= view('pages.kredit.print.form_survei_aset_tanah_bangunan');
+			case 'survei_jaminan_tanah_bangunan':
+				$this->view 				= view('pages.kredit.print.form_survei_jaminan_tanah_bangunan');
+				break;
+			case 'survei_all':
+				$this->view 				= view('pages.kredit.print.form_survei_all');
+				break;
+			case 'pengajuan_kredit':
+				$this->view 				= view('pages.kredit.print.form_pengajuan_kredit');
 				break;
 			default:
 				// $this->page_datas->credit 	= $this->service->detailed

@@ -24,7 +24,6 @@ class AuthenticatedMiddleware
 
 		if($request->has('password') || str_is(Route::currentRouteName(), 'credit.status'))
 		{
-			Session::flush();
 			
 			$logged = TAuth::loggedUser();
 
