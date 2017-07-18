@@ -1,5 +1,18 @@
 import $ from 'jquery';
 window.selectDropdown = {
+
+	/* OVERRIDES */
+	clear: function(e){
+		$(e).val('').trigger('change');
+	},
+
+	setValue: function(e, val){
+		$(e).val(val).trigger('change');
+	},	
+
+	/* END of OVERRIDES */
+
+
 	default: function () {
 		$('.select').select2({
 			theme: "bootstrap",
