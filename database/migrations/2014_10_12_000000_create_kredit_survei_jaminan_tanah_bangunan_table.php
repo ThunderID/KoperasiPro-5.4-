@@ -39,6 +39,7 @@ class CreateKreditSurveiJaminanTanahBangunanTable extends Migration
 			$table->double('taksasi_tanah')->nullable();
 			$table->double('taksasi_bangunan')->nullable();
 			$table->double('njop')->nullable();
+			$table->double('pbb_terakhir')->nullable();
 			$table->text('url_barcode')->nullable();
 			$table->text('alamat');
 			$table->text('uraian')->nullable();
