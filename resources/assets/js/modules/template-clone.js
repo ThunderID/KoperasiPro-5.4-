@@ -260,10 +260,12 @@ window.templateClone = {
 	 */
 	fillableAdd: function (countItem, availableAdd) {
 		if (countItem >= availableAdd) {
-			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+			// $('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').css('display', 'none');
 			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').siblings('.info-add').removeClass('hidden');
 		} else {
-			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+			// $('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').css('display', 'block');
 			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').siblings('.info-add').addClass('hidden');
 		}
 	},
