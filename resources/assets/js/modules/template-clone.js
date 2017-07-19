@@ -89,7 +89,7 @@ window.templateClone = {
 
 					contentItem.find('#'+ template + '-default').addClass('hidden');
 
-					cloneItem.find('.action').html('<a href="#" class="text-danger remove" data-typeclone="' +typeClone+ '"\
+					cloneItem.find('.action').html('<a href="#" class="text-danger remove pull-right" data-typeclone="' +typeClone+ '"\
 						 data-template="' +template+'" data-content="' +content+ '" data-availableadd="' +maxAdd+ '" data-inputprefix="' +param.prefix+ '"\
 						 ><i class="fa fa-trash"></i> Hapus</a>');
 

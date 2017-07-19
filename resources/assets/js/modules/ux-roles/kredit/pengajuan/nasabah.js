@@ -116,7 +116,9 @@ var kredit_pengajuan_nasabah = function(){
 				});
 
 				// init
-				$(this).find('.select-merk').prop('disabled', true);
+				if($(this).find('.select-merk').val() == ""){
+					$(this).find('.select-merk').prop('disabled', true);
+				}
 			}
 		});
 
