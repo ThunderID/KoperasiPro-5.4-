@@ -82,6 +82,44 @@ var kredit_pengajuan_nasabah = function(){
 				}});
 			}
 		});
+
+		//3. bind additional 
+		$("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () { 
+			if(iface_kredit_pengajuan_nasabah.validate() == true){
+				// cleara all input
+				$(this).find('input').val('');
+				$(this).find('.select').each(function() {
+					// special case don't need to cleared
+					if (! $( this ).hasClass( "select-provinsi" ) ) {
+						window.selectDropdown.clear($(this));		
+					};
+				});
+
+				// init
+				$(this).find('.select-regensi').prop('disabled', false);
+				$(this).find('.select-distrik').prop('disabled', true);
+				$(this).find('.select-distrik').prop('disabled', true);
+
+				// set dummies
+				$(this).find('.input-provinsi').val('JAWA TIMUR');
+			}
+		});
+		$("#modal-jaminan-kendaraan").on("show.bs.modal", function () { 
+			if(iface_kredit_pengajuan_nasabah.validate() == true){
+				// clear all input
+				$(this).find('input').val('');
+				$(this).find('.select').each(function() {
+					// special case don't need to cleared
+					if (! $( this ).hasClass( "select-provinsi" ) ) {
+						window.selectDropdown.clear($(this));		
+					};
+				});
+
+				// init
+				$(this).find('.select-merk').prop('disabled', true);
+			}
+		});
+
 	}
 
 	this.validate = function()
@@ -104,25 +142,5 @@ $(document).on('ready', function(kredit_pengajuan_nasabah) {
 $(document).on('pjax:end', function() { 
 	if(iface_kredit_pengajuan_nasabah.validate() == true){
 		iface_kredit_pengajuan_nasabah.init();
-	}
-});
-$("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () { 
-	if(iface_kredit_pengajuan_nasabah.validate() == true){
-		// cleara all input
-		$(this).find('input').val('');
-		$(this).find('.select').each(function() {
-			// special case don't need to cleared
-			if (! $( this ).hasClass( "select-provinsi" ) ) {
-				window.selectDropdown.clear($(this));		
-			};
-		});
-
-		// init
-		$(this).find('.select-regensi').prop('disabled', false);
-		$(this).find('.select-distrik').prop('disabled', true);
-		$(this).find('.select-distrik').prop('disabled', true);
-
-		// set dummies
-		$(this).find('.input-provinsi').val('JAWA TIMUR');
 	}
 });

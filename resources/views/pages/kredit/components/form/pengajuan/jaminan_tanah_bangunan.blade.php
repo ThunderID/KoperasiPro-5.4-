@@ -108,7 +108,6 @@
 
 <script type="text/javascript">
 	function uiJenisSertifikat(e){
-		console.log(e.value);
 		if(e.value){
 			if(e.value.toLowerCase() == 'shm'){
 				document.getElementById("masa-berlaku-shgb").style.display = 'none';

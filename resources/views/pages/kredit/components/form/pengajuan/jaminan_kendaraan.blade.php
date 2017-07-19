@@ -46,12 +46,27 @@
 	<label class="text-sm">Jenis Kendaraan</label>
 	<div class="row">
 		<div class="col-md-3">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="form-control quick-select select auto-tabindex" placeholder="" data-other="input-tipe-jaminan-kendaraan" data-default="roda_2">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="form-control select auto-tabindex" placeholder="Pilih" data-placeholder="Pilih" data-other="input-tipe-jaminan-kendaraan" onchange="uiMerkKendaraan(this);">
 				@foreach($data['select_jenis_kendaraan'] as $k => $v)
 					<option value="{{ $k }}" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == $k)) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach
 			</select>
-			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="input-tipe-jaminan-kendaraan input-kendaraan" value="{{ (isset($param['data']['tipe'])) ? $param['data']['tipe'] : 'roda_2' }}" data-field="tipe">
+			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[tipe]' }}" class="input-tipe-jaminan-kendaraan input-kendaraan" value="{{ (isset($param['data']['tipe'])) ? $param['data']['tipe'] : '' }}" data-field="tipe">
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label class="text-sm">Merk</label>
+	<div class="row">
+		<div class="col-md-4">
+			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="form-control select-merk select auto-tabindex " placeholder="Pilih" data-placeholder="Pilih" data-other="input-merk-kendaraan">
+			{{--
+				@foreach($data['select_merk_kendaraan'] as $k => $v)
+					<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
+				@endforeach
+			--}}
+			</select>
+			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="input-merk-kendaraan input-kendaraan" value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : 'daihatsu' }}" data-field="merk">
 		</div>
 	</div>
 </fieldset>
@@ -64,23 +79,44 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label class="text-sm">Merk</label>
-	<div class="row">
-		<div class="col-md-4">
-			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="form-control quick-select select auto-tabindex" placeholder="Merk Kendaraan" data-other="input-merk-kendaraan">
-				@foreach($data['select_merk_kendaraan'] as $k => $v)
-					<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
-				@endforeach
-			</select>
-			<input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="input-merk-kendaraan input-kendaraan" value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : 'daihatsu' }}" data-field="merk">
-		</div>
-	</div>
-</fieldset>
-<fieldset class="form-group">
-	<label class="text-sm">Atas Nama</label>
+	<label class="text-sm">Atas Nama BPKB</label>
 	<div class="row">
 		<div class="col-md-7">
-			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[atas_nama]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[atas_nama]' }}" value="{{ (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null }}" class="form-control auto-tabindex input-kendaraan" placeholder="Atas Nama" data-field="atas_nama">
+			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[atas_nama]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[atas_nama]' }}" value="{{ (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null }}" class="form-control auto-tabindex input-kendaraan" placeholder="Atas Nama BPKB" data-field="atas_nama">
 		</div>
 	</div>
 </fieldset>
+<script type="text/javascript">
+	function uiMerkKendaraan(e){
+
+		// init
+		var merk = [];
+
+		@foreach($data['select_merk_kendaraan'] as $kategori => $values)
+			merk["{{$kategori}}"] = [
+				@foreach($values as $merk)
+					'{{$merk}}',
+				@endforeach
+			];
+		@endforeach
+
+		// if val not empty
+		var elementTarget = $('.select-merk');
+		elementTarget.html('');
+
+		if(e.value != ''){
+			// set ux roles
+			$('.select-merk').prop('disabled', false);
+
+			// set options based on tipe
+			$.each(merk[e.value], function(index, value) {
+				var $option = $("<option value='" + value + "' data-id='" + value + "'>" +  window.ucWords(value) +"</option>");
+				elementTarget.append($option);
+			});					
+		}else{
+			$('.select-merk').prop('disabled', true);
+		}
+
+		elementTarget.val('');		
+	}
+</script>
