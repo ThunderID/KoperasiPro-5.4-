@@ -47,7 +47,7 @@
 	<label class="text-sm">Jenis Sertifikat</label>
 	<div class="row">
 		<div class="col-md-5">
-			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="form-control quick-select select auto-tabindex" data-field="jenis_sertifikat" placeholder="Pilih" data-placeholder="Pilih">
+			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" onchange="uiJenisSertifikat(this);" class="form-control select auto-tabindex" data-field="jenis_sertifikat" placeholder="Pilih" data-placeholder="Pilih">
 				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>Hak Guna Bangunan (HGB)</option>
 				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
 			</select>
@@ -55,11 +55,11 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="form-group">
+<fieldset class="form-group" id="masa-berlaku-shgb" style="display: none;">
 	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" class="form-control auto-tabindex mask-year input-tanah-bangunan" data-field="masa_berlaku_sertifikat" placeholder="Masa Berlaku" value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}">
+			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" class="form-control auto-tabindex mask-year input-tanah-bangunan" data-field="masa_berlaku_sertifikat" placeholder="20xx" value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}">
 		</div>
 	</div>
 </fieldset>
@@ -76,7 +76,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" class="form-control mask-number auto-tabindex input-tanah-bangunan" data-field="luas_tanah" placeholder="" value="{{ (isset($param['data']['luas_tanah']) && !is_null($param['data']['luas_tanah'])) ? $param['data']['luas_tanah'] : null }}">
+				<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" class="form-control mask-number auto-tabindex input-tanah-bangunan" data-field="luas_tanah" value="{{ (isset($param['data']['luas_tanah']) && !is_null($param['data']['luas_tanah'])) ? $param['data']['luas_tanah'] : null }}" placeholder="Luas Tanah" >
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -87,7 +87,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="input-group">
-				<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" class="form-control auto-tabindex mask-number input-tanah-bangunan" data-field="luas_bangunan" placeholder="" value="{{ (isset($param['data']['luas_bangunan']) && !is_null($param['data']['luas_bangunan'])) ? $param['data']['luas_bangunan'] : null }}">
+				<input type="text" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" class="form-control auto-tabindex mask-number input-tanah-bangunan" data-field="luas_bangunan" value="{{ (isset($param['data']['luas_bangunan']) && !is_null($param['data']['luas_bangunan'])) ? $param['data']['luas_bangunan'] : null }}" placeholder="Luas Bangunan">
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -105,3 +105,16 @@
 		'class'	=> 'input-tanah-bangunan'
 	]
 ])
+
+<script type="text/javascript">
+	function uiJenisSertifikat(e){
+		console.log(e.value);
+		if(e.value){
+			if(e.value.toLowerCase() == 'shm'){
+				document.getElementById("masa-berlaku-shgb").style.display = 'none';
+			}else{
+				document.getElementById("masa-berlaku-shgb").style.display = 'block';
+			}
+		}
+	}
+</script>
