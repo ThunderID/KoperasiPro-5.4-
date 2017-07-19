@@ -9,7 +9,7 @@
 @stop
 
 @push('content')
-	<div class="p-content">
+	<div class="p-content ux-pengajuan-kredit">
 		<div class="page-header m-t-none m-b-xl p-b-xs">
 			<h2 class="m-t-none m-b-xs">Pengajuan Baru</h2>
 		</div>

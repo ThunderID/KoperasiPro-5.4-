@@ -87,7 +87,10 @@ var kredit_pengajuan_nasabah = function(){
 	this.validate = function()
 	{
 		// check if this is nasabah page
-		return true;
+		if (top.location.pathname === '/credit/create'){
+			return true;
+		}
+		return false;
 	}
 }
 
