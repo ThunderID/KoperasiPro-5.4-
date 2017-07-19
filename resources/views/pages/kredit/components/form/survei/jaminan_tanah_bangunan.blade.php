@@ -249,10 +249,18 @@
 	</div>
 </fieldset>
 <fieldset class="form-group">
-	<label class="text-sm">Njop</label>
+	<label class="text-sm">NJOP</label>
 	<div class="row">
 		<div class="col-md-5">
 			{!! Form::text('jaminan_tanah_bangunan[njop]', (isset($param['data']['njop']) ? $param['data']['njop'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
+		</div>
+	</div>
+</fieldset>
+<fieldset class="form-group">
+	<label class="text-sm">PBB Terakhir</label>
+	<div class="row">
+		<div class="col-md-5">
+			{!! Form::text('jaminan_tanah_bangunan[pbb_terakhir]', (isset($param['data']['pbb_terakhir']) ? $param['data']['pbb_terakhir'] : null), ['class' => 'form-control auto-tabindex mask-money', 'placeholder' => '']) !!}
 		</div>
 	</div>
 </fieldset>

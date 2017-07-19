@@ -127,7 +127,7 @@ class SurveiKredit
 		return $this;
 	}
 
-	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $id = null, $uraian = null, $foto_jaminan = [])
+	public function tambahJaminanTanahBangunan($tipe, $jenis_sertifikat, $nomor_sertifikat, $masa_berlaku_sertifikat, $atas_nama, $luas_tanah, $jalan, $lebar_jalan, $letak_lokasi_terhadap_jalan, $lingkungan, $nilai_jaminan, $taksasi_tanah, $njop, $pbb_terakhir, $listrik, $air, $url_barcode, $alamat, $luas_bangunan = null, $fungsi_bangunan = null, $bentuk_bangunan = null, $konstruksi_bangunan = null, $lantai_bangunan = null, $dinding = null, $taksasi_bangunan = null, $id = null, $uraian = null, $foto_jaminan = [])
 	{
 		$this->jaminan_tanah_bangunan[]	= [
 			'tipe'						=> $tipe,
@@ -143,6 +143,7 @@ class SurveiKredit
 			'nilai_jaminan'				=> $nilai_jaminan,
 			'taksasi_tanah'				=> $taksasi_tanah,
 			'njop'						=> $njop,
+			'pbb_terakhir'				=> $pbb_terakhir,
 			'listrik'					=> $listrik,
 			'air'						=> $air,
 			'url_barcode'				=> $url_barcode,
@@ -433,6 +434,7 @@ class SurveiKredit
 						'taksasi_tanah'					=> $value['taksasi_tanah'],
 						'taksasi_bangunan'				=> $value['taksasi_bangunan'],
 						'njop'							=> $value['njop'],
+						'pbb_terakhir'					=> $value['pbb_terakhir'],
 						'url_barcode'					=> $value['url_barcode'],
 						'alamat'						=> $value['alamat'],
 						'uraian'						=> $value['uraian'],
