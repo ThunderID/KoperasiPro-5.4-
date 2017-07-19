@@ -86,7 +86,7 @@ var kredit_pengajuan_nasabah = function(){
 		//3. bind additional 
 		$("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () { 
 			if(iface_kredit_pengajuan_nasabah.validate() == true){
-				// cleara all input
+				// clear all input
 				$(this).find('input').val('');
 				$(this).find('.select').each(function() {
 					// special case don't need to cleared

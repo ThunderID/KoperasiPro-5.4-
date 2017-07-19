@@ -7,8 +7,8 @@ require('./input-image-previewer');
 
 
 /*
-	StringCaps
+	stringManipulator
 	---------------------
 	Desc : string case manipulation
 */
-require('./stringCaps');
+require('./stringManipulator');

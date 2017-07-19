@@ -97,6 +97,12 @@ window.selectDropdown = {
 							}
 						}
 					}
+				},
+				fail: function(){
+					// turn off loader if any
+					if(el.data('loader')){
+						$('.' + el.data('loader')).css("visibility", "hidden");
+					}
 				}
 			});
 
