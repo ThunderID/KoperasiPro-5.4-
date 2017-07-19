@@ -19,6 +19,37 @@ class MerkJaminanKendaraan
 	public function get()
 	{
 		return [
+				'roda_2'	=> [
+					'kawasaki',
+					'yamaha',
+					'honda',
+					'suzuki',
+					'lain_lain',
+				],
+				'roda_3'	=> [
+					'yamaha',
+					'lain_lain',
+				],
+				'roda_4'	=> [
+					'daihatsu',
+					'isuzu',
+					'kia',
+					'mitsubishi',
+					'nissan',
+					'toyota',
+					'honda',
+					'suzuki',
+					'lain_lain',
+				],
+				'roda_6'	=> [
+					'toyota',
+					'mitsubishi',
+					'suzuki',
+					'lain_lain',
+				]]
+				;
+
+		return [
 					'daihatsu'		=> 'Daihatsu',
 					'honda'			=> 'Honda',
 					'isuzu'			=> 'Isuzu',
