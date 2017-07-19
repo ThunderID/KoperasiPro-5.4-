@@ -107,7 +107,6 @@ $("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () {
 	if(iface_kredit_pengajuan_nasabah.validate() == true){
 		// cleara all input
 		$(this).find('input').val('');
-
 		$(this).find('.select').each(function() {
 			// special case don't need to cleared
 			if (! $( this ).hasClass( "select-provinsi" ) ) {
@@ -118,5 +117,9 @@ $("#modal-jaminan-tanah-bangunan").on("show.bs.modal", function () {
 		// init
 		$(this).find('.select-regensi').prop('disabled', false);
 		$(this).find('.select-distrik').prop('disabled', true);
+		$(this).find('.select-distrik').prop('disabled', true);
+
+		// set dummies
+		$(this).find('.input-provinsi').val('JAWA TIMUR');
 	}
 });
