@@ -88,13 +88,11 @@
 	<label class="text-sm">Provinsi</label>
 	<div class="row">
 		<div class="col-md-6">
-			<select 
-				class="form-control auto-tabindex select select-provinsi"
-				placeholder="Pilih" 
-				data-placeholder="Pilih" 
-				disabled>
-					<option class="text-capitalize" value="JAWA TIMUR" selected }}>JAWA TIMUR</option>
-			</select>
+			<input type="text" 
+				class="form-control input-provinsi" 
+				placeholder="Provinsi" 
+				value="JAWA TIMUR"
+				readonly>
 		</div>
 	</div>
 </fieldset>
@@ -184,7 +182,7 @@
 			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[desa]', (isset($param['data']['alamat']) ? $param['data']['alamat'] : null), [
 				'id' => (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[desa]',
 				'class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 
-				'placeholder' => 'Dusun Pakisaji Gang 6', 
+				'placeholder' => 'Desa/Dusun', 
 				'data-field' => 'desa',
 				'data-attribute-value' => (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null"),
 				'data-value-from-caption' => 'yes'
