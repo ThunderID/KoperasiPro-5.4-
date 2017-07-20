@@ -294,7 +294,12 @@ window.templateClone = {
 				} else {
 					value = v;
 				}
-				itemClone.find('.' + k).html(value);
+
+				if ((k == 'masa_berlaku_sertifikat') && (data.jenis_sertifikat == 'hgb')) {
+					itemClone.find('.jenis_sertifikat').append('<p class="text-sm text-light"><i>( ' + value + ' )</i></p>');
+				} else {
+					itemClone.find('.' + k).html(value);
+				}
 				inputHidden = window.templateClone.addInputHidden(prefix + '[' + k + '][]', v);
 				itemClone.append(inputHidden);
 			});

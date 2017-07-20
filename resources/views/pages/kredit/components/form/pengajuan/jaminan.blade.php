@@ -55,7 +55,6 @@
 					<th>Jenis Jaminan</th>
 					<th>Jenis Sertifikat</th>
 					<th>No. Sertifikat</th>
-					<th>Masa Berlaku</th>
 					<th>Atas Nama</th>
 					{{-- <th>Alamat</th> --}}
 					<th></th>
