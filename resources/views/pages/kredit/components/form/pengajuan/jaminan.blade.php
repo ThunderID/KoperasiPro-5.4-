@@ -70,9 +70,7 @@
 					<td class="tipe text-capitalize"></td>
 					<td class="jenis_sertifikat text-capitalize"></td>
 					<td class="nomor_sertifikat text-capitalize"></td>
-					<td class="masa_berlaku_sertifikat text-capitalize"></td>
 					<td class="atas_nama text-capitalize"></td>
-					{{-- <td class="alamat text-capitalize"></td> --}}
 					<td class="action text-capitalize"></td>
 				</tr>
 			</tbody>
