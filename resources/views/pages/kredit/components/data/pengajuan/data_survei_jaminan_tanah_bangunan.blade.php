@@ -384,7 +384,7 @@
 	@empty
 		<div class="row m-b-md">
 			<div class="col-sm-12">
-				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{$key}}-0" data-panel="survei-jaminan" no-data-pjax> Tambahkan Sekarang </a></p>
+				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{$key}}--1" data-panel="survei-jaminan" no-data-pjax> Tambahkan Sekarang </a></p>
 			</div>
 		</div>
 	@endforelse

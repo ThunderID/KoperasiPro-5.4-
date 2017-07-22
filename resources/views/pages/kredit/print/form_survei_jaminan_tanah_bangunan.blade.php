@@ -1,3 +1,7 @@
+@php
+// dd($page_datas->credit);
+
+@endphp
 @extends('template.print_template')
 @push('content')
 	<div class="clearfix">&nbsp;</div>
@@ -6,6 +10,8 @@
 			<h4 class="text-capitalize m-b-md" style="background-color: #eee; padding: 5px; font-size: 16px;">Form Survei Jaminan Tanah &amp; bangunan</h4>
 		</div>
 	</div>
-	@include('pages.kredit.print.components.jaminan_tanah_bangunan')
+	@include('pages.kredit.print.components.jaminan_tanah_bangunan', [
+		'datas' => $page_datas->credit['jaminan_tanah_bangunan']
+	])
 	<div class="clearfix">&nbsp;</div>
 @endpush
