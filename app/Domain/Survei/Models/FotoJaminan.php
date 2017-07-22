@@ -41,7 +41,7 @@ class FotoJaminan extends BaseModel
 											'jaminan_id'				,
 											'jaminan_type'				,
 											'url'						,
-											'keterangan'				,
+											'judul'						,
 										];
 	/**
 	 * Basic rule of database

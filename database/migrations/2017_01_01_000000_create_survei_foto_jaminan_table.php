@@ -18,7 +18,7 @@ class CreateSurveiFotoJaminanTable extends Migration
 			$table->string('jaminan_id', 255);
 			$table->string('jaminan_type', 255);
 			$table->text('url');
-			$table->text('keterangan');
+			$table->text('judul');
 			$table->timestamps();
 			$table->softDeletes();
 

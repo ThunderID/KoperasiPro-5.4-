@@ -3,7 +3,7 @@
 		<p class="text-sm text-capitalize">NIK</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none text-sm">
-		<p class="text-sm">: {{ str_repeat('.', 110) }}
+		<p class="text-sm">: {{ str_repeat('.', 102) }}
 			&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Menggunakan E-KTP
 		</p>
 	</div>
@@ -13,22 +13,15 @@
 		<p class="text-sm text-capitalize">Nama</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none">
-		<p class="text-sm">: {{ str_repeat('.', 152) }}</p>
+		<p class="text-sm">: {{ str_repeat('.', 145) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
 	<div class="col-sm-3 p-l-none p-r-none">
 		<p class="text-sm text-capitalize">Tgl Lahir</p>
 	</div>
-	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm">: {{ str_repeat('.', 48) }}</p>
-	</div>
-	<div class="col-sm-2 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">Kelamin</p>
-	</div>
-	<div class="col-sm-4 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">
-			: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Laki-laki
+	<div class="col-sm-9 p-l-none p-r-none">
+		<p class="text-sm">: {{ str_repeat('.', 45) }} &nbsp;&nbsp; Kelamin : <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Laki-laki
 			&nbsp;&nbsp;
 			<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Perempuan
 		</p>
@@ -60,7 +53,7 @@
 		<p class="text-sm text-capitalize">Alamat</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 152) }}</p>
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 145) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
@@ -68,13 +61,13 @@
 		<p class="text-sm text-capitalize">RT/RW</p>
 	</div>
 	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 23) }} / {{ str_repeat('.', 22) }}</p>
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 21) }} / {{ str_repeat('.', 21) }}</p>
 	</div>
-	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">Provinsi</p>
+	<div class="col-sm-2 p-l-none p-r-none">
+		<p class="text-sm text-capitalize">Desa/Dusun</p>
 	</div>
-	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 48) }}</p>
+	<div class="col-sm-4 p-l-none p-r-none">
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 62) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
@@ -82,21 +75,21 @@
 		<p class="text-sm text-capitalize">Kota/Kabupaten</p>
 	</div>
 	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 48) }}</p>
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 45) }}</p>
 	</div>
-	<div class="col-sm-3 p-l-none p-r-none">
+	<div class="col-sm-2 p-l-none p-r-none">
 		<p class="text-sm text-capitalize">Kecamatan</p>
 	</div>
-	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 48) }}</p>
+	<div class="col-sm-4 p-l-none p-r-none">
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 62) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
 	<div class="col-sm-3 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">Desa/Dusun</p>
+		<p class="text-sm text-capitalize">Provinsi</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 152) }}</p>
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 145) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
@@ -104,7 +97,7 @@
 		<p class="text-sm text-capitalize">No. Telp/HP</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: {{ str_repeat('.', 152) }}</p>
+		<p class="text-sm text-capitalize">: {{ str_repeat('.', 145) }}</p>
 	</div>
 </div>
 <div class="row m-l-none m-r-none">
@@ -161,6 +154,6 @@
 		<p class="text-sm text-capitalize">Penghasilan Bersih</p>
 	</div>
 	<div class="col-sm-9 p-l-none p-r-none">
-		<p class="text-sm text-capitalize">: Rp {{ str_repeat('.', 146) }}</p>
+		<p class="text-sm text-capitalize">: Rp {{ str_repeat('.', 140) }}</p>
 	</div>
 </div>

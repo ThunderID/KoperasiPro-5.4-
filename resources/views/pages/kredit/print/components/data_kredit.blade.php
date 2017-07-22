@@ -5,7 +5,7 @@
 				<p class="text-sm text-capitalize">Tgl Pengajuan</p>
 			</div>
 			<div class="col-sm-9 p-l-none p-r-none">
-				<p class="text-sm">: {{ str_repeat('.', 160) }}</p>
+				<p class="text-sm">: {{ str_repeat('.', 145) }}</p>
 			</div>
 		</div>
 		<div class="row">
@@ -13,7 +13,7 @@
 				<p class="text-sm text-capitalize">Jumlah Pinjaman</p>
 			</div>
 			<div class="col-sm-9 p-l-none p-r-none">
-				<p class="text-sm">: {{ str_repeat('.', 160) }}</p>
+				<p class="text-sm">: {{ str_repeat('.', 145) }}</p>
 			</div>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 				<p class="text-sm text-capitalize">Lama Angsuran</p>
 			</div>
 			<div class="col-sm-9 p-l-none p-r-none">
-				<p class="text-sm">: {{ str_repeat('.', 160) }}</p>
+				<p class="text-sm">: {{ str_repeat('.', 145) }}</p>
 			</div>
 		</div>
 	</div>

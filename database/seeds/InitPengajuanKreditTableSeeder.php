@@ -31,6 +31,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 		$sba 			= new SessionBasedAuthenticator;
 		$sba 			= $sba->login($credentials);
+		$logged 		= new SessionBasedAuthenticator;
+		$logged 		= $logged->loggedUser();
 
 		$jk   		= ['pa', 'pt', 'rumah_delta'];
 		$gndr   	= ['perempuan', 'laki-laki'];
@@ -70,7 +72,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 								'negara'			=> 'Indonesia',
 							];
 
-			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)]);
+
+			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)], null, ['id' => $logged['id']]);
 
 			$pengajuan->tambahJaminanKendaraan($type_k[rand(0,2)], $merk_k[rand(0,9)], rand(1990,2016), $char[rand(0,25)].' '.rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9), $faker->name);
 
@@ -117,7 +120,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$lt 			= rand(36,144);
 
-			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)]);
+			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)], null, ['id' => $logged['id']]);
 
 			$pengajuan->tambahJaminanTanahBangunan('tanah', $type_s[rand(0,1)], rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), rand(2018,2035), $faker->name, $alamat_tb_1, rand(36,144), 0);
 

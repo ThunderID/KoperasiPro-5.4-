@@ -135,7 +135,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 						$foto_j	= $foto_roda_4[rand(0,4)];
 					}
 
-					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], [['alamat' => $faker->address]], null, null, null, [['url' => $foto_j, 'keterangan' => 'Foto Jaminan']]);
+					$survei->tambahJaminanKendaraan($value2['tipe'], $value2['merk'], $color[rand(0,4)], $value2['tahun'], $char[rand(0,25)].' '.rand(1000,9999).' '.$char[rand(0,25)].$char[rand(0,25)], $value2['nomor_bpkb'], $faker->ean13, $faker->ean13, Carbon::parse('+'.rand(1,5).' years')->format('d/m/Y'), $s_usaha[rand(0,1)], 'Rp '.number_format($taksasi,0, "," ,"."), $fungsi_kend[rand(0,2)], $value2['atas_nama'], [['alamat' => $faker->address]], null, null, null, [['url' => $foto_j, 'judul' => 'Foto Jaminan']]);
 				}
 			}
 
@@ -161,7 +161,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 					$taksasi_tanah 		= ($value2->luas_tanah * $m_persegi); 
 					$taksasi_bangunan 	= ($value2->luas_bangunan * $m_bangunan); 
 
-					$survei->tambahJaminanTanahBangunan($value2['tipe'], $value2['jenis_sertifikat'], $value2['nomor_sertifikat'], $value2['masa_berlaku_sertifikat'], $value2['atas_nama'], $value2['luas_tanah'], $jalan[rand(0,2)], rand(3,4).' meter', $ltk_t_jalan[rand(0,2)], $lingkungan[rand(0,6)], 'Rp '.number_format($nilai_jaminan,0, "," ,"."), 'Rp '.number_format($taksasi_tanah,0, "," ,"."), 'Rp '.number_format(($nilai_jaminan /($m_persegi + $m_bangunan)),0, "," ,"."), 'Rp '.number_format($nilai_jaminan * 0.01,0, "," ,"."), $listrik[rand(0,2)], $air[rand(0,1)], null, $value2['alamat'], $value2['luas_bangunan'], $fs_bag[rand(0,1)], $bntk_bag[rand(0,2)], $kons_bag[rand(0,2)], $lantai_bag[rand(0,4)], $dinding_bag[rand(0,3)], 'Rp '.number_format($taksasi_bangunan,0, "," ,"."), null, null, [['url' => $foto_j, 'keterangan' => 'Foto Jaminan']]);
+					$survei->tambahJaminanTanahBangunan($value2['tipe'], $value2['jenis_sertifikat'], $value2['nomor_sertifikat'], $value2['masa_berlaku_sertifikat'], $value2['atas_nama'], $value2['luas_tanah'], $jalan[rand(0,2)], rand(3,4).' meter', $ltk_t_jalan[rand(0,2)], $lingkungan[rand(0,6)], 'Rp '.number_format($nilai_jaminan,0, "," ,"."), 'Rp '.number_format($taksasi_tanah,0, "," ,"."), 'Rp '.number_format(($nilai_jaminan /($m_persegi + $m_bangunan)),0, "," ,"."), 'Rp '.number_format($nilai_jaminan * 0.01,0, "," ,"."), $listrik[rand(0,2)], $air[rand(0,1)], null, $value2['alamat'], $value2['luas_bangunan'], $fs_bag[rand(0,1)], $bntk_bag[rand(0,2)], $kons_bag[rand(0,2)], $lantai_bag[rand(0,4)], $dinding_bag[rand(0,3)], 'Rp '.number_format($taksasi_bangunan,0, "," ,"."), null, null, [['url' => $foto_j, 'judul' => 'Foto Jaminan']]);
 				}
 			}
 

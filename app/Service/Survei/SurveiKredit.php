@@ -374,7 +374,7 @@ class SurveiKredit
 						'jaminan_id'				=> $jaminan_k->id,
 						'jaminan_type'				=> get_class($jaminan_k),
 						'url'						=> $valuef['url'],
-						'keterangan'				=> $valuef['keterangan'],
+						'judul'						=> $valuef['judul'],
 					]);
 					$foto_jk->save();
 				}
@@ -455,7 +455,7 @@ class SurveiKredit
 						'jaminan_id'				=> $jaminan_tb->id,
 						'jaminan_type'				=> get_class($jaminan_tb),
 						'url'						=> $valuef['url'],
-						'keterangan'				=> $valuef['keterangan'],
+						'judul'				=> $valuef['judul'],
 					]);
 					$foto_jk->save();
 				}
