@@ -6,6 +6,8 @@
 			<h4 class="text-capitalize m-b-md" style="background-color: #eee; padding: 5px; font-size: 16px;">Form Survei Kepribadian</h4>
 		</div>
 	</div>
-	@include('pages.kredit.print.components.kepribadian')
+	@include('pages.kredit.print.components.kepribadian', [
+		'datas' => $page_datas->credit['survei_kepribadian']
+	])
 	<div class="clearfix">&nbsp;</div>
 @endpush

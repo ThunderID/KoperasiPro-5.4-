@@ -76,7 +76,7 @@
 				<div class="hidden" data-form="survei-jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">
 					<div class="row">
 						<div class="col-sm-12">
-							<h4 class="text-uppercase">form jaminan tanah bangunan</h4>
+							<p class="text-capitalize m-b-sm text-lg">form survei tanah &amp; bangunan</p>
 							<hr/>
 						</div>
 					</div>
@@ -101,7 +101,7 @@
 			<div class="hidden" data-form="survei-jaminan-tanah-bangunan-{{ $k }}--1">
 				<div class="row">
 					<div class="col-sm-12">
-						<h4 class="text-uppercase">form jaminan tanah bangunan</h4>
+						<p class="text-capitalize m-b-sm text-lg">form survei jaminan tanah &amp; bangunan</p>
 						<hr/>
 					</div>
 				</div>
