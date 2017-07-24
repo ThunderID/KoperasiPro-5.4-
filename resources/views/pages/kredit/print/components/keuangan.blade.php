@@ -8,8 +8,8 @@
 			<div class="row m-l-none m-r-none">
 		@endif
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md m-b-sm text-sm">Keuangan {{ $k + 1 }}</p>
-			<p class="text-capitalize m-l-min-md text-sm"><strong>Penghasilan</strong></p>
+			<p class="text-capitalize m-l-min-md m-b-sm text-sm"><strong>Keuangan {{ $k + 1 }}</strong></p>
+			<p class="text-capitalize m-l-min-md text-sm"><u>Penghasilan</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Penghasilan Rutin</p>
@@ -89,7 +89,7 @@
 					</p>
 				</div>
 			</div>
-			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><strong>Pengeluaran</strong></p>
+			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><u>Pengeluaran</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Biaya Rutin</p>
@@ -204,8 +204,8 @@
 		
 		@if (count($datas) == 1)
 			<div class="col-sm-6 col-md-6">
-				<p class="text-capitalize m-l-min-md m-b-sm text-sm">Keuangan {{ count($datas) + 1 }}</p>
-				<p class="text-capitalize m-l-min-md text-sm"><strong>Penghasilan</strong></p>
+				<p class="text-capitalize m-l-min-md m-b-sm text-sm"><strong>Keuangan {{ count($datas) + 1 }}</strong></p>
+				<p class="text-capitalize m-l-min-md text-sm"><u>Penghasilan</u></p>
 				<div class="row">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-sm text-capitalize">Penghasilan Rutin</p>
@@ -247,7 +247,7 @@
 						<p class="text-sm">: Rp {{ str_repeat('.', 145) }}</p>
 					</div>
 				</div>
-				<p class="text-capitalize m-l-min-md m-t-sm text-sm"><strong>Pengeluaran</strong></p>
+				<p class="text-capitalize m-l-min-md m-t-sm text-sm"><u>Pengeluaran</u></p>
 				<div class="row">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-sm text-capitalize">Biaya Rutin</p>
@@ -317,8 +317,8 @@
 		@endif
 	@empty
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md m-b-sm text-sm">Keuangan 1</p>
-			<p class="text-capitalize m-l-min-md text-sm"><strong>Penghasilan</strong></p>
+			<p class="text-capitalize m-l-min-md m-b-sm text-sm"><strong>Keuangan 1</strong></p>
+			<p class="text-capitalize m-l-min-md text-sm"><u>Penghasilan</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Penghasilan Rutin</p>
@@ -360,7 +360,7 @@
 					<p class="text-sm">: Rp {{ str_repeat('.', 145) }}</p>
 				</div>
 			</div>
-			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><strong>Pengeluaran</strong></p>
+			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><u>Pengeluaran</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Biaya Rutin</p>
@@ -428,8 +428,8 @@
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md m-b-sm text-sm">Keuangan 2</p>
-			<p class="text-capitalize m-l-min-md text-sm"><strong>Penghasilan</strong></p>
+			<p class="text-capitalize m-l-min-md m-b-sm text-sm"><strong>Keuangan 2</strong></p>
+			<p class="text-capitalize m-l-min-md text-sm"><u>Penghasilan</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Penghasilan Rutin</p>
@@ -471,7 +471,7 @@
 					<p class="text-sm">: Rp {{ str_repeat('.', 145) }}</p>
 				</div>
 			</div>
-			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><strong>Pengeluaran</strong></p>
+			<p class="text-capitalize m-l-min-md m-t-sm text-sm"><u>Pengeluaran</u></p>
 			<div class="row">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class="text-sm text-capitalize">Biaya Rutin</p>

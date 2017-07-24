@@ -13,33 +13,33 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'bca') ? 'checked' : '' }}> BCA
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['rekening']) && $v['rekening'] == 'bca') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} BCA
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'bni') ? 'checked' : '' }}> BNI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['rekening']) && $v['rekening'] == 'bni') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} BNI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'bri') ? 'checked' : '' }}> BRI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['rekening']) && $v['rekening'] == 'bri') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} BRI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'danamon') ? 'checked' : '' }}> Danamon
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['rekening']) && $v['rekening'] == 'danamon') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Danamon
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'mandiri') ? 'checked' : '' }}> Mandiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['rekening']) && $v['rekening'] == 'mandiri') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Mandiri
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;" {{ (isset($v['rekening']) && $v['rekening'] == 'lainnya') ? 'checked' : '' }}> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['rekening']) && $v['rekening'] == 'lainnya') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Lainnya
 							</p>
 						</li>
 					</ul>
@@ -109,33 +109,33 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> BCA
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> BCA
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BNI
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> BNI
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BRI
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> BRI
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Danamon
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Danamon
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Mandiri
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Mandiri
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Lainnya
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 								</p>
 							</li>
 						</ul>
@@ -193,33 +193,33 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> BCA
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> BCA
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BNI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> BNI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BRI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> BRI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Danamon
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Danamon
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Mandiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Mandiri
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>
@@ -275,33 +275,33 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> BCA
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> BCA
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BNI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> BNI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> BRI
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> BRI
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Danamon
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Danamon
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Mandiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Mandiri
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>

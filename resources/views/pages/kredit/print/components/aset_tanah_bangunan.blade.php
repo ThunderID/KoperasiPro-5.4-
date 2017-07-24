@@ -14,23 +14,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="ruko" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'ruko') ? 'checked' : 'disabled' }}> Ruko
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['tipe']) && $v['tipe'] == 'ruko') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Ruko
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rumah" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'rumah') ? 'checked' : 'disabled' }}> Rumah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['tipe']) && $v['tipe'] == 'rumah') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Rumah
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tambak" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'tambak') ? 'checked' : 'disabled' }}> Tambak
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['tipe']) && $v['tipe'] == 'tambak') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Tambak
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'lainnya') ? 'checked' : 'disabled' }}> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['tipe']) && $v['tipe'] == 'lainnya') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -107,23 +107,23 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="ruko" style="height: 11px;"> Ruko
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> Ruko
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="rumah" style="height: 11px;"> Rumah
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Rumah
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="tambak" style="height: 11px;"> Tambak
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Tambak
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 								</p>
 							</li>
 						</ul>
@@ -200,23 +200,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="ruko" style="height: 11px;"> Ruko
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Ruko
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rumah" style="height: 11px;"> Rumah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Rumah
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tambak" style="height: 11px;"> Tambak
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Tambak
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -291,23 +291,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="ruko" style="height: 11px;"> Ruko
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Ruko
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rumah" style="height: 11px;"> Rumah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Rumah
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tambak" style="height: 11px;"> Tambak
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Tambak
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>

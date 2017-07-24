@@ -103,7 +103,7 @@
 	<label class="text-sm">Masa Berlaku STNK</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('jaminan_kendaraan[masa_berlaku_stnk]', (isset($param['data']['masa_berlaku_stnk']) ? $param['data']['masa_berlaku_stnk'] : null), ['class' => 'form-control auto-tabindex mask-date-format']) !!}
+			{!! Form::text('jaminan_kendaraan[masa_berlaku_stnk]', (isset($param['data']['masa_berlaku_stnk']) ? $param['data']['masa_berlaku_stnk'] : null), ['class' => 'form-control auto-tabindex mask-date']) !!}
 			<span class="help-block">format pengisian tanggal hari/bulan/tahun (dd/mm/yyyy)</span>
 		</div>
 	</div>

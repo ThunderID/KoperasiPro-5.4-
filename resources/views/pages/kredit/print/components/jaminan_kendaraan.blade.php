@@ -42,58 +42,58 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm text-capitalize" style="width: 90px">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="daihatsu" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'daihatsu') ? 'checked' : 'disabled' }}> Daihatsu
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: {!! (isset($v2['merk']) && $v2['merk'] == 'daihatsu') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Daihatsu
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="honda" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'honda') ? 'checked' : 'disabled' }}> Honda
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'honda') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Honda
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="isuzu" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'isuzu') ? 'checked' : 'disabled' }}> Isuzu
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'isuzu') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Isuzu
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="kawasaki" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'kawasaki') ? 'checked' : 'disabled' }}> Kawasaki
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'kawasaki') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Kawasaki
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="kia" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'kia') ? 'checked' : 'disabled' }}> Kia
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									&nbsp;&nbsp;{!! (isset($v2['merk']) && $v2['merk'] == 'kia') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Kia
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="mitsubishi" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'mitsubishi') ? 'checked' : 'disabled' }}> Mitsubishi
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'mitsubishi') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Mitsubishi
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="nissan" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'nissan') ? 'checked' : 'disabled' }}> Nissan
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'nissan') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Nissan
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="suzuki" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'suzuki') ? 'checked' : 'disabled' }}> Suzuki
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'suzuki') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Suzuki
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="toyota" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'toyota') ? 'checked' : 'disabled' }}> Toyota
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									&nbsp;&nbsp;{!! (isset($v2['merk']) && $v2['merk'] == 'toyota') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Toyota
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="yamaha" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'yamaha') ? 'checked' : 'disabled' }}> Yamaha
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'yamaha') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Yamaha
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;" {{ (isset($v2['merk']) && $v2['merk'] == 'lain_lain') ? 'checked' : 'disabled' }}> Lainnya
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['merk']) && $v2['merk'] == 'lainnya') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Lainnya
 								</p>
 							</li>
 						</ul>
@@ -106,38 +106,38 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="biru" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'biru') ? 'checked' : 'disabled' }}> Biru
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: {!! (isset($v2['warna']) && $v2['warna'] == 'biru') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Biru
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="hijau" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'hijau') ? 'checked' : 'disabled' }}> Hijau
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['warna']) && $v2['warna'] == 'hijau') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Hijau
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="hitam" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'hitam') ? 'checked' : 'disabled' }}> Hitam
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['warna']) && $v2['warna'] == 'hitam') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Hitam
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="merah" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'merah') ? 'checked' : 'disabled' }}> Merah
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['warna']) && $v2['warna'] == 'merah') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Merah
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="merah_muda" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'merah_muda') ? 'checked' : 'disabled' }}> Merah Muda
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									&nbsp;&nbsp;{!! (isset($v2['warna']) && $v2['warna'] == 'merah_muda') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Merah Muda
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="orange" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'orange') ? 'checked' : 'disabled' }}> Orange
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['warna']) && $v2['warna'] == 'orange') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Biru
 								</p>
 							</li>
 							<li class="text-sm text-capitalize" style="width: 90px;">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;" {{ (isset($v2['warna']) && $v2['warna'] == 'lain_lain') ? 'checked' : 'disabled' }}> Lainnya
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									{!! (isset($v2['warna']) && $v2['warna'] == 'lain_lain') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Biru
 								</p>
 							</li>
 						</ul>
@@ -377,38 +377,38 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="biru" style="height: 11px;"> Biru
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Biru
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hijau" style="height: 11px;"> Hijau
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hijau
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hitam" style="height: 11px;"> Hitam
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hitam
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="merah" style="height: 11px;"> Merah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="merah_muda" style="height: 11px;"> Merah Muda
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah Muda
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="orange" style="height: 11px;"> Orange
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Orange
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>
@@ -568,58 +568,58 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize" style="width: 90px">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="daihatsu" style="height: 11px;"> Daihatsu
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Daihatsu
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="honda" style="height: 11px;"> Honda
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Honda
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="isuzu" style="height: 11px;"> Isuzu
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Isuzu
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="kawasaki" style="height: 11px;"> Kawasaki
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Kawasaki
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="kia" style="height: 11px;"> Kia
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Kia
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="mitsubishi" style="height: 11px;"> Mitsubishi
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Mitsubishi
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="nissan" style="height: 11px;"> Nissan
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Nissan
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="suzuki" style="height: 11px;"> Suzuki
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Suzuki
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="toyota" style="height: 11px;"> Toyota
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Toyota
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="yamaha" style="height: 11px;"> Yamaha
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Yamaha
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>
@@ -632,38 +632,38 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="biru" style="height: 11px;"> Biru
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Biru
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hijau" style="height: 11px;"> Hijau
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hijau
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hitam" style="height: 11px;"> Hitam
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hitam
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="merah" style="height: 11px;"> Merah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="merah_muda" style="height: 11px;"> Merah Muda
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah Muda
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="orange" style="height: 11px;"> Orange
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Orange
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>
@@ -821,58 +821,58 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize" style="width: 90px">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="daihatsu" style="height: 11px;"> Daihatsu
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Daihatsu
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="honda" style="height: 11px;"> Honda
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Honda
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="isuzu" style="height: 11px;"> Isuzu
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Isuzu
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="kawasaki" style="height: 11px;"> Kawasaki
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Kawasaki
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="kia" style="height: 11px;"> Kia
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Kia
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="mitsubishi" style="height: 11px;"> Mitsubishi
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Mitsubishi
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="nissan" style="height: 11px;"> Nissan
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Nissan
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="suzuki" style="height: 11px;"> Suzuki
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Suzuki
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="toyota" style="height: 11px;"> Toyota
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Toyota
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="yamaha" style="height: 11px;"> Yamaha
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Yamaha
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>
@@ -885,38 +885,38 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="biru" style="height: 11px;"> Biru
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Biru
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hijau" style="height: 11px;"> Hijau
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hijau
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="hitam" style="height: 11px;"> Hitam
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Hitam
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="merah" style="height: 11px;"> Merah
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								&nbsp;&nbsp;<input class="m-b-none" type="checkbox" value="merah_muda" style="height: 11px;"> Merah Muda
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								&nbsp;&nbsp;<i class="fa fa-square-o" style="font-size: 11px;"></i> Merah Muda
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="orange" style="height: 11px;"> Orange
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Orange
 							</p>
 						</li>
 						<li class="text-sm text-capitalize" style="width: 90px;">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lainnya
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lainnya
 							</p>
 						</li>
 					</ul>

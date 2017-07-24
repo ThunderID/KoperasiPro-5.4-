@@ -37,23 +37,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="bagi_hasil" style="height: 11px;" {{ (isset($v['status']) && $v['status'] == 'bagi_hasil') ? 'checked' : 'disabled' }}> Bagi Hasil
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['status']) && $v['status'] == 'bagi_hasil') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Bagi Hasil
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_keluarga" style="height: 11px;" {{ (isset($v['status']) && $v['status'] == 'milik_keluarga') ? 'checked' : 'disabled' }}> Milik Keluarga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['status']) && $v['status'] == 'milik_keluarga') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Milik Keluarga
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;" {{ (isset($v['status']) && $v['status'] == 'milik_sendiri') ? 'checked' : 'disabled' }}> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['status']) && $v['status'] == 'milik_sendiri') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;" {{ (isset($v['status']) && $v['status'] == 'lain_lain') ? 'checked' : 'disabled' }}> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['status']) && $v['status'] == 'lain_lain') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -110,18 +110,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;" {{ (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'milik_sendiri') ? 'checked' : 'disabled' }}> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'milik_sendiri') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="sewa" style="height: 11px;" {{ (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'sewa') ? 'checked' : 'disabled' }}> Sewa
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'sewa') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Sewa
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;" {{ (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'lain_lain') ? 'checked' : 'disabled' }}> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['status_tempat_usaha']) && $v['status_tempat_usaha'] == 'lain_lain') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -218,23 +218,23 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="bagi_hasil" style="height: 11px;"> Bagi Hasil
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> Bagi Hasil
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="milik_keluarga" style="height: 11px;"> Milik Keluarga
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Keluarga
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lain-lain
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 								</p>
 							</li>
 						</ul>
@@ -291,18 +291,18 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="sewa" style="height: 11px;"> Sewa
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Sewa
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 								</p>
 							</li>
 						</ul>
@@ -393,23 +393,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="bagi_hasil" style="height: 11px;"> Bagi Hasil
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Bagi Hasil
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_keluarga" style="height: 11px;"> Milik Keluarga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Keluarga
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -466,18 +466,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="sewa" style="height: 11px;"> Sewa
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Sewa
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -566,23 +566,23 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="bagi_hasil" style="height: 11px;"> Bagi Hasil
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Bagi Hasil
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_keluarga" style="height: 11px;"> Milik Keluarga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Keluarga
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lainnya" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>
@@ -639,18 +639,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="milik_sendiri" style="height: 11px;"> Milik Sendiri
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Milik Sendiri
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="sewa" style="height: 11px;"> Sewa
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Sewa
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="lain_lain" style="height: 11px;"> Lain-lain
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Lain-lain
 							</p>
 						</li>
 					</ul>

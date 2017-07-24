@@ -22,28 +22,28 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;" {{ (isset($v['hubungan']) && $v['hubungan'] == 'orang_tua') ? 'checked' : 'disabled' }}> Orang Tua
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['hubungan']) && $v['hubungan'] == 'orang_tua') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Orang Tua
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;" {{ (isset($v['hubungan']) && $v['hubungan'] == 'pasangan') ? 'checked' : 'disabled' }}> Pasangan
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['hubungan']) && $v['hubungan'] == 'pasangan') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Pasangan
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;" {{ (isset($v['hubungan']) && $v['hubungan'] == 'saudara') ? 'checked' : 'disabled' }}> Saudara
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['hubungan']) && $v['hubungan'] == 'saudara') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Saudara
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;" {{ (isset($v['hubungan']) && $v['hubungan'] == 'rekan_kerja') ? 'checked' : 'disabled' }}> Rekan Kerja
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['hubungan']) && $v['hubungan'] == 'rekan_kerja') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Rekan Kerja
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;" {{ (isset($v['hubungan']) && $v['hubungan'] == 'tetangga') ? 'checked' : 'disabled' }}> Tetangga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['hubungan']) && $v['hubungan'] == 'tetangga') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Tetangga
 							</p>
 						</li>
 					</ul>
@@ -83,28 +83,28 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> Orang Tua
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> Orang Tua
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> Pasangan
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Pasangan
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Saudara
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Saudara
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Rekan Kerja
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Rekan Kerja
 								</p>
 							</li>
 							<li class="text-sm text-capitalize">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Tetangga
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Tetangga
 								</p>
 							</li>
 						</ul>
@@ -144,28 +144,28 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> Orang Tua
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Orang Tua
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> Pasangan
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Pasangan
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Saudara
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Saudara
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Rekan Kerja
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Rekan Kerja
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Tetangga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Tetangga
 							</p>
 						</li>
 					</ul>
@@ -203,28 +203,28 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="orang_tua" style="height: 11px;"> Orang Tua
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Orang Tua
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="pasangan" style="height: 11px;"> Pasangan
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Pasangan
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="saudara" style="height: 11px;"> Saudara
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Saudara
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="rekan_kerja" style="height: 11px;"> Rekan Kerja
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Rekan Kerja
 							</p>
 						</li>
 						<li class="text-sm text-capitalize">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="tetangga" style="height: 11px;"> Tetangga
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Tetangga
 							</p>
 						</li>
 					</ul>

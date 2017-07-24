@@ -14,18 +14,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'roda_2') ? 'checked' : 'disabled' }}> Roda 2
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: {!! (isset($v['tipe']) && $v['tipe'] == 'roda_2') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Roda 2
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'roda_4') ? 'checked' : 'disabled' }}> Roda 4
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['tipe']) && $v['tipe'] == 'roda_4') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Roda 4
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_6" style="height: 11px;" {{ (isset($v['tipe']) && $v['tipe'] == 'roda_6') ? 'checked' : 'disabled' }}> Roda 6
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								{!! (isset($v['tipe']) && $v['tipe'] == 'roda_6') ? '<i class="fa fa-check-square-o" style="font-size: 11px;"></i>' : '<i class="fa fa-square-o" style="font-size: 11px;"></i>' !!} Roda 6
 							</p>
 						</li>
 					</ul>
@@ -52,18 +52,18 @@
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Roda 2
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									: <i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 2
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Roda 4
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 4
 								</p>
 							</li>
 							<li class="text-sm">
-								<p class="text-sm text-capitalize m-b-xs">
-									<input class="m-b-none" type="checkbox" value="roda_6" style="height: 11px;"> Roda 6
+								<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+									<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 6
 								</p>
 							</li>
 						</ul>
@@ -90,18 +90,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Roda 2
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 2
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Roda 4
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 4
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_6" style="height: 11px;"> Roda 6
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 6
 							</p>
 						</li>
 					</ul>
@@ -126,18 +126,18 @@
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Roda 2
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								: <i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 2
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Roda 4
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 4
 							</p>
 						</li>
 						<li class="text-sm">
-							<p class="text-sm text-capitalize m-b-xs">
-								<input class="m-b-none" type="checkbox" value="roda_6" style="height: 11px;"> Roda 6
+							<p class="text-capitalize m-b-xs" style="font-size: 10px;">
+								<i class="fa fa-square-o" style="font-size: 11px;"></i> Roda 6
 							</p>
 						</li>
 					</ul>
