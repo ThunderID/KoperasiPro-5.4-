@@ -33,5 +33,5 @@
 	body{ background-color: #fff; }
 	.header { font-size: 16px !important; }
 	.title { font-size: 14px !important; }
-	.text { font-size: 1em !important; }
+	.text { font-size: 16px !important; }
 @endsection
