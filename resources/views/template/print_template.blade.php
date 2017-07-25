@@ -31,7 +31,22 @@
 
 @section('template-styles')
 	body{ background-color: #fff; }
-	.header { font-size: 16px !important; }
-	.title { font-size: 14px !important; }
+	.header { font-size: 18px !important; }
+	.title { font-size: 17px !important; }
 	.text { font-size: 16px !important; }
+	.label-fa-icon { font-size: 17px !important; }
+	.row-info { margin-top: 10px; margin-bottom: 10px; }
+	.money { 
+		position: absolute;
+		right: 0;
+		bottom: 15px;
+		margin-right: 35px;
+	}
+	.string { 
+		position: absolute;
+		bottom: 0px;
+		margin-bottom: 15px;
+	}
+	.line-info { margin-right: 30px; border-bottom: 1px }
+	.dot-line { color: #bbb; }
 @endsection
