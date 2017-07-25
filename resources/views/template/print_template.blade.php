@@ -37,16 +37,12 @@
 	.label-fa-icon { font-size: 17px !important; }
 	.row-info { margin-top: 10px; margin-bottom: 10px; }
 	.money { 
-		position: absolute;
-		right: 0;
-		bottom: 15px;
-		margin-right: 35px;
+		float: right;
+		bottom: 0px;
 	}
 	.string { 
-		position: absolute;
 		bottom: 0px;
-		margin-bottom: 15px;
 	}
 	.line-info { margin-right: 30px; border-bottom: 1px }
-	.dot-line { color: #bbb; }
+	.dot-line { margin-top: 2px; border-bottom: 2px dotted #bbb;  }
 @endsection

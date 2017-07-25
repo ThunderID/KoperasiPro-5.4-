@@ -16,7 +16,7 @@
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Tipe</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
+					<div class="col-sm-8 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
 							<li class="text-capitalize" style="width: 110px;">
 								<p class="text-capitalize m-b-xs text">
@@ -45,8 +45,7 @@
 							<li class=" text-capitalize" style="width: 300px;">
 								<p class="text-capitalize m-b-xs text">
 									{!! (isset($v2['jenis_sertifikat']) && $v2['jenis_sertifikat'] == 'hgb') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
-									<span class="string" style="margin-bottom: 10px;">{{ (isset($v2['masa_berlaku_sertifikat'])) ? $v2['masa_berlaku_sertifikat'] : '' }}</span>
-									<span class="dot-line">{{ str_repeat('.', 15) }}</span>
+									<span class="dot-line">{!! (isset($v2['masa_berlaku_sertifikat'])) ? $v2['masa_berlaku_sertifikat'] : str_repeat('&nbsp;', 12) !!}</span>
 								</p>
 							</li>
 						</ul>
@@ -56,111 +55,94 @@
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">No. Sertifikat</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['nomor_sertifikat'])) ? $v2['nomor_sertifikat'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['nomor_sertifikat'])) ? $v2['nomor_sertifikat'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Atas Nama</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['atas_nama'])) ? $v2['atas_nama'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['atas_nama'])) ? $v2['atas_nama'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Alamat</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['alamat'])) ? $v2['alamat'][0]['alamat'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['alamat'])) ? $v2['alamat'][0]['alamat'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">RT/RW</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">:
-							<span class="string">
-								{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['rt'])) ? $v2['alamat'][0]['rt'] : '' }}
-								/ {{ (isset($v2['alamat']) && isset($v2['alamat'][0]['rw'])) ? $v2['alamat'][0]['rw'] : '' }}
-							</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">
+							{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['rt'])) ? $v2['alamat'][0]['rt'] : '' }}
+							/ {{ (isset($v2['alamat']) && isset($v2['alamat'][0]['rw'])) ? $v2['alamat'][0]['rw'] : '' }}
+						</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Desa/Dusun</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['desa'])) ? $v2['alamat'][0]['desa'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['desa'])) ? $v2['alamat'][0]['desa'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Kecamatan</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['distrik'])) ? $v2['alamat'][0]['distrik'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['distrik'])) ? $v2['alamat'][0]['distrik'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Kota/Kabupaten</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['regensi'])) ? $v2['alamat'][0]['regensi'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['regensi'])) ? $v2['alamat'][0]['regensi'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Provinsi</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['provinsi'])) ? $v2['alamat'][0]['provinsi'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ (isset($v2['alamat']) && isset($v2['alamat'][0]['provinsi'])) ? $v2['alamat'][0]['provinsi'] : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Luas Tanah</p>
 					</div>
-					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ isset($v2['luas_tanah']) ? $v2['luas_tanah'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-						</p>
+					<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ isset($v2['luas_tanah']) ? $v2['luas_tanah'] : '' }}</span> 
+						<span style="float: right;">M<sup>2</sup></span>
+						<div class="dot-line"></div>
 					</div>
+					<div class="col-sm-1">&nbsp;</div>
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Luas Bangunan</p>
 					</div>
-					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-capitalize text">: 
-							<span class="string">{{ isset($v2['luas_bangunan']) ? $v2['luas_bangunan'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-						</p>
+					<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ isset($v2['luas_bangunan']) ? $v2['luas_bangunan'] : '' }}</span>
+						<span style="float: right;">M<sup>2</sup></span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
@@ -359,11 +341,10 @@
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">Lebar Jalan</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class=" text-capitalize text">: 
-							<span class="string">{{ isset($v2['lebar_jalan']) ? $v2['lebar_jalan'] : '' }}</span>
-							<span class="dot-line">{{ str_repeat('.', 84) }}</span> M<sup>2</sup>
-						</p>
+					<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+						: <span class="string">{{ isset($v2['lebar_jalan']) ? $v2['lebar_jalan'] : '' }}</span>
+						<span style="float: right">M<sup>2</sup></span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
@@ -443,65 +424,45 @@
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">Nilai Jaminan</p>
 					</div>
-					<div class="col-sm-9 p-l-none">
-						<p class=" text-capitalize text">: 
-							@if (isset($v2['nilai_jaminan']))
-								<span class="money"> {{ substr($v2['nilai_jaminan'], 3) }}</span>
-							@endif
-							Rp <span class="dot-line">{{ str_repeat('.', 85) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: Rp <span class="money">{{ isset($v2['nilai_jaminan']) ? substr($v2['nilai_jaminan'], 3) : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">Taksasi Tanah</p>
 					</div>
-					<div class="col-sm-9 p-l-none">
-						<p class=" text-capitalize text">: 
-							@if (isset($v2['taksasi_tanah']))
-								<span class="money"> {{ substr($v2['taksasi_tanah'], 3) }}</span>
-							@endif
-							Rp <span class="dot-line">{{ str_repeat('.', 85) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: Rp <span class="money"> {{ (isset($v2['taksasi_tanah'])) ? substr($v2['taksasi_tanah'], 3) : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">Taksasi bangunan</p>
 					</div>
-					<div class="col-sm-9 p-l-none">
-						<p class=" text-capitalize text">: 
-							@if (isset($v2['taksasi_bangunan']))
-								<span class="money"> {{ substr($v2['taksasi_bangunan'], 3) }}</span>
-							@endif
-							Rp <span class="dot-line">{{ str_repeat('.', 85) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: Rp <span class="money"> {{ (isset($v2['taksasi_bangunan'])) ? substr($v2['taksasi_bangunan'], 3) : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">Njop</p>
 					</div>
-					<div class="col-sm-9 p-l-none">
-						<p class=" text-capitalize text">: 
-							@if (isset($v2['njop']))
-								<span class="money"> {{ substr($v2['njop'], 3) }}</span>
-							@endif
-							Rp <span class="dot-line">{{ str_repeat('.', 85) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: Rp <span class="money"> {{ (isset($v2['njop'])) ? substr($v2['njop'], 3) : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class=" text-capitalize text">PBB Terakhir</p>
 					</div>
-					<div class="col-sm-9 p-l-none">
-						<p class=" text-capitalize text">: 
-							@if (isset($v2['pbb_terakhir']))
-								<span class="money"> {{ substr($v2['pbb_terakhir'], 3) }}</span>
-							@endif
-							Rp <span class="dot-line">{{ str_repeat('.', 85) }}</span>
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: Rp <span class="money"> {{ (isset($v2['pbb_terakhir'])) ? substr($v2['pbb_terakhir'], 3) : '' }}</span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
 			</div>
@@ -550,8 +511,8 @@
 						</li>
 						<li class=" text-capitalize" style="width: 300px;">
 							<p class="text-capitalize m-b-xs text">
-								<i class="fa fa-square-o label-fa-icon"></i> SHGB Berlaku sampai Th. 
-								<span class="dot-line">{{ str_repeat('.', 15) }}</span>
+								{!! (isset($v2['jenis_sertifikat']) && $v2['jenis_sertifikat'] == 'hgb') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
+								<span class="dot-line">{!! str_repeat('&nbsp;', 10) !!}</span>
 							</p>
 						</li>
 					</ul>
@@ -561,98 +522,81 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">No. Sertifikat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Atas Nama</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Alamat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">RT/RW</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Desa/Dusun</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kecamatan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kota/Kabupaten</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Provinsi</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Tanah</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
+				<div class="col-sm-1">&nbsp;</div>
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Bangunan</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -851,10 +795,9 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Lebar Jalan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 81) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -934,50 +877,40 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Nilai Jaminan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi Tanah</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi bangunan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Njop</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">PBB Terakhir</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 		</div>
@@ -1015,8 +948,8 @@
 						</li>
 						<li class=" text-capitalize" style="width: 300px;">
 							<p class="text-capitalize m-b-xs text">
-								<i class="fa fa-square-o label-fa-icon"></i> SHGB Berlaku sampai Th. 
-								<span class="dot-line">{{ str_repeat('.', 15) }}</span>
+								{!! (isset($v2['jenis_sertifikat']) && $v2['jenis_sertifikat'] == 'hgb') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
+								<span class="dot-line">{!! str_repeat('&nbsp;', 10) !!}</span>
 							</p>
 						</li>
 					</ul>
@@ -1026,98 +959,81 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">No. Sertifikat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Atas Nama</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Alamat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">RT/RW</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Desa/Dusun</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kecamatan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kota/Kabupaten</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Provinsi</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Tanah</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
+				<div class="col-sm-1">&nbsp;</div>
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Bangunan</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -1316,10 +1232,9 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Lebar Jalan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 81) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -1399,50 +1314,40 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Nilai Jaminan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi Tanah</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi bangunan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Njop</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">PBB Terakhir</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 		</div>
@@ -1482,8 +1387,8 @@
 						</li>
 						<li class=" text-capitalize" style="width: 300px;">
 							<p class="text-capitalize m-b-xs text">
-								<i class="fa fa-square-o label-fa-icon"></i> SHGB Berlaku sampai Th. 
-								<span class="dot-line">{{ str_repeat('.', 15) }}</span>
+								{!! (isset($v2['jenis_sertifikat']) && $v2['jenis_sertifikat'] == 'hgb') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
+								<span class="dot-line">{!! str_repeat('&nbsp;', 10) !!}</span>
 							</p>
 						</li>
 					</ul>
@@ -1493,98 +1398,81 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">No. Sertifikat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Atas Nama</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Alamat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">RT/RW</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Desa/Dusun</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kecamatan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Kota/Kabupaten</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Provinsi</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 90) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Tanah</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
+				<div class="col-sm-1">&nbsp;</div>
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Luas Bangunan</p>
 				</div>
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 17) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -1783,10 +1671,9 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Lebar Jalan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: 
-						<span class="dot-line">{{ str_repeat('.', 81) }}</span> M<sup>2</sup>
-					</p>
+				<div class="col-sm-2 p-l-none p-r-none text text-capitalize">
+					: <span style="float: right">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
@@ -1866,50 +1753,40 @@
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Nilai Jaminan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi Tanah</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Taksasi bangunan</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Njop</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">PBB Terakhir</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class=" text-capitalize text">: Rp 
-						<span class="dot-line">{{ str_repeat('.', 82) }}</span>
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: Rp <div class="dot-line"></div>
 				</div>
 			</div>
 		</div>
