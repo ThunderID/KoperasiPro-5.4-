@@ -11,7 +11,7 @@
 			@endif
 		
 			<div class="col-sm-6 col-md-6">
-				<p class="text-capitalize m-l-min-md text"><strong>jaminan tanah &amp; bangunan 1</strong></p>
+				<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan {{ $total_survei + 1 }}</strong></p>
 				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
 						<p class="text-capitalize text">Tipe</p>
@@ -478,7 +478,7 @@
 	@if ($total_survei == 0)
 		{{-- no data survei --}}
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md text"><strong>jaminan tanah &amp; bangunan 1</strong></p>
+			<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan 1</strong></p>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Tipe</p>
@@ -511,7 +511,7 @@
 						</li>
 						<li class=" text-capitalize" style="width: 300px;">
 							<p class="text-capitalize m-b-xs text">
-								{!! (isset($v2['jenis_sertifikat']) && $v2['jenis_sertifikat'] == 'hgb') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
+								<i class="fa fa-square-o label-fa-icon"></i> SHGB berlaku sampai th.
 								<span class="dot-line">{!! str_repeat('&nbsp;', 10) !!}</span>
 							</p>
 						</li>
@@ -915,7 +915,7 @@
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md text"><strong>jaminan tanah &amp; bangunan 2</strong></p>
+			<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan 2</strong></p>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Tipe</p>
@@ -1354,7 +1354,7 @@
 	@elseif ($total_survei == 1)
 		{{-- data survei hanya 1 --}}
 		<div class="col-sm-6 col-md-6">
-			<p class="text-capitalize m-l-min-md text"><strong>jaminan tanah &amp; bangunan 2</strong></p>
+			<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan 2</strong></p>
 			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
 					<p class=" text-capitalize text">Tipe</p>

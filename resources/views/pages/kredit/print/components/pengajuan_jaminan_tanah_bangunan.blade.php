@@ -1,153 +1,227 @@
 <div class="row m-l-none m-r-none">
-	@forelse($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
-		<div class="col-sm-12">
-			<p class="text-capitalize m-l-min-md text-sm"><strong>jaminan tanah &amp; bangunan {{$key+1}}</strong></p>
-			<!-- <div class="row">
+	@forelse($datas as $k => $v)
+		<div class="col-sm-12 m-b-md">
+			<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan {{ $k + 1 }}</strong></p>
+			<div class="row row-info m-b-xs">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Tipe</p>
+					<p class="text text-capitalize">Jenis Sertifikat</p>
 				</div>
 				<div class="col-sm-9 p-l-none p-r-none">
 					<ul class="list-inline m-b-none">
-						<li class="text-sm text-capitalize" style="width: 90px;">
-							: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Tanah
+						<li class="text-capitalize" style="width: 100px;">
+							<p class="text-capitalize m-b-xs text">
+								: {!! (isset($v['jenis_sertifikat']) && $v['jenis_sertifikat'] == 'shm') ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHM
+							</p>
 						</li>
-						<li class="text-sm text-capitalize" style="width: 150px;">
-							<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Tanah &amp; Bangunan
-						</li>
-					</ul>
-				</div>
-			</div> -->
-			<div class="row m-b-xs">
-				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Jenis Sertifikat</p>
-				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<ul class="list-inline m-b-none">
-						<li class="text-sm text-capitalize" style="width: 90px">
-							: <input class="m-b-none" type="checkbox" @if($value['jenis_sertifikat'] == 'shm') checked @endif value="shm" style="height: 11px;"> SHM
-						</li>
-						<li class="text-sm text-capitalize" style="width: 300px;">
-							<input class="m-b-none" type="checkbox" @if($value['jenis_sertifikat'] == 'shgb' || $value['jenis_sertifikat'] == 'hgb') checked @endif value="shgb" style="height: 11px;"> SHGB Sampai Tahun @if($value['jenis_sertifikat'] == 'shgb' || $value['jenis_sertifikat'] == 'hgb') {{$value['masa_berlaku_sertifikat']}} @else {{ str_repeat('.', 8) }} @endif 
+						<li class=" text-capitalize" style="width: 300px;">
+							<p class="text-capitalize m-b-xs text">
+								{!! (isset($v['jenis_sertifikat']) && ($v['jenis_sertifikat'] == 'hgb' || $v['jenis_sertifikat'] == 'shgb')) ? '<i class="fa fa-check-square-o label-fa-icon"></i>' : '<i class="fa fa-square-o label-fa-icon"></i>' !!} SHGB berlaku sampai th.
+								<span class="dot-line">{!! (isset($v['masa_berlaku_sertifikat'])) ? $v['masa_berlaku_sertifikat'] : str_repeat('&nbsp;', 12) !!}</span>
+							</p>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="row" style="padding-top:2px;">
+			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">No Sertifikat</p>
+					<p class="text text-capitalize">No Sertifikat</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">: {{ $value['nomor_sertifikat'] }}</p>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['nomor_sertifikat'])) ? $v['nomor_sertifikat'] : '' }}</span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
-			<div class="row" style="padding-top:2px;">
+			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Atas Nama</p>
+					<p class="text text-capitalize">Atas Nama</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">: {{ $value['atas_nama'] }}</p>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['atas_nama'])) ? $v['atas_nama'] : '' }}</span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
-			<div class="row" style="padding-top:2px;">
+			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Alamat</p>
+					<p class="text text-capitalize">Luas Tanah</p>
 				</div>
-				<div class="col-sm-9 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">: 
-						{{ $value['alamat'][0]['alamat'] }} RT/RW {{ $value['alamat'][0]['rt']}}/{{ $value['alamat'][0]['rw'] }} @if(isset($value['alamat'][0]['desa'])) Desa/Dusun  {{ $value['alamat'][0]['desa'] }} @endif
-						@if(isset($value['alamat'][0]['distrik'])) Kec. {{ $value['alamat'][0]['distrik'] }} @endif @if(isset($value['alamat'][0]['regensi'])) Kota/Kab {{ $value['alamat'][0]['regensi'] }} @endif Provinsi Jawa Timur 
-					</p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <span class="string">{{ (isset($v['luas_tanah'])) ? $v['luas_tanah'] : '' }}</span>
+					<span style="float: right;">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Luas Tanah</p>
+					<p class="text text-capitalize">Luas Bangunan</p>
 				</div>
-				<div class="col-sm-4 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">: {{ $value['luas_tanah'] }} M<sup>2</sup></p>
+				<div class="col-sm-8 p-l-none p-r-none text">
+					: <span class="string">{{ (isset($v['luas_bangunan'])) ? $v['luas_bangunan'] : '' }}</span>
+					<span style="float: right;">M<sup>2</sup></span>
+					<div class="dot-line"></div>
 				</div>
-				<div class="col-sm-2 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">Luas Bangunan</p>
-				</div>
+			</div>
+			<div class="row row-info">
 				<div class="col-sm-3 p-l-none p-r-none">
-					<p class="text-sm text-capitalize">: {{ $value['luas_bangunan'] }} M<sup>2</sup></p>
+					<p class="text-capitalize text">Alamat</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['alamat']) && isset($v['alamat'][0]['alamat'])) ? $v['alamat'][0]['alamat'] : '' }}</span>
+					<div class="dot-line"></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-sm-3 p-l-none p-r-none">
+					<p class="text-capitalize text">RT/RW</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">
+						{{ (isset($v['alamat']) && isset($v['alamat'][0]['rt'])) ? $v['alamat'][0]['rt'] . ' / ' : '' }}
+						{{ (isset($v['alamat']) && isset($v['alamat'][0]['rw'])) ? $v['alamat'][0]['rw'] : '' }}
+					</span>
+					<div class="dot-line"></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-sm-3 p-l-none p-r-none">
+					<p class="text-capitalize text">Desa/Dusun</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['alamat']) && isset($v['alamat'][0]['desa'])) ? $v['alamat'][0]['desa'] : '' }}</span>
+					<div class="dot-line"></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-sm-3 p-l-none p-r-none">
+					<p class="text-capitalize text">Kecamatan</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['alamat']) && isset($v['alamat'][0]['distrik'])) ? $v['alamat'][0]['distrik'] : '' }}</span>
+					<div class="dot-line"></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-sm-3 p-l-none p-r-none">
+					<p class="text-capitalize text">Kota/Kabupaten</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['alamat']) && isset($v['alamat'][0]['regensi'])) ? $v['alamat'][0]['regensi'] : '' }}</span>
+					<div class="dot-line"></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-sm-3 p-l-none p-r-none">
+					<p class="text-capitalize text">Provinsi</p>
+				</div>
+				<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+					: <span class="string">{{ (isset($v['alamat']) && isset($v['alamat'][0]['provinsi'])) ? $v['alamat'][0]['provinsi'] : '' }}</span>
+					<div class="dot-line"></div>
 				</div>
 			</div>
 		</div>
 	@empty
-		@foreach(range(1,3) as $key)
-			<div class="col-sm-12">
-				<p class="text-capitalize m-l-min-md text-sm"><strong>jaminan tanah &amp; bangunan {{$key}}</strong></p>
-				<!-- <div class="row">
+		@foreach(range(1,3) as $k)
+			<div class="col-sm-12 m-b-md">
+				<p class="text-capitalize m-l-min-md" style="font-size: 12px;"><strong>jaminan tanah &amp; bangunan {{ $k }}</strong></p>
+				<div class="row row-info m-b-xs">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Tipe</p>
+						<p class="text text-capitalize">Jenis Sertifikat</p>
 					</div>
 					<div class="col-sm-9 p-l-none p-r-none">
 						<ul class="list-inline m-b-none">
-							<li class="text-sm text-capitalize" style="width: 90px;">
-								: <input class="m-b-none" type="checkbox" value="roda_2" style="height: 11px;"> Tanah
+							<li class=" text-capitalize" style="width: 110px">
+								<p class="text-capitalize m-b-xs text">
+									: <i class="fa fa-square-o label-fa-icon"></i> SHM
+								</p>
 							</li>
-							<li class="text-sm text-capitalize" style="width: 150px;">
-								<input class="m-b-none" type="checkbox" value="roda_4" style="height: 11px;"> Tanah &amp; Bangunan
-							</li>
-						</ul>
-					</div>
-				</div> -->
-				<div class="row m-b-xs">
-					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Jenis Sertifikat</p>
-					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<ul class="list-inline m-b-none">
-							<li class="text-sm text-capitalize" style="width: 90px">
-								: <input class="m-b-none" type="checkbox" value="shm" style="height: 11px;"> SHM
-							</li>
-							<li class="text-sm text-capitalize" style="width: 300px;">
-								<input class="m-b-none" type="checkbox" value="shgb" style="height: 11px;"> SHGB Sampai Tahun {{ str_repeat('.', 8) }}
+							<li class=" text-capitalize" style="width: 300px;">
+								<p class="text-capitalize m-b-xs text">
+									<i class="fa fa-square-o label-fa-icon"></i> SHGB berlaku sampai th.
+									<span class="dot-line">{!! str_repeat('&nbsp;', 10) !!}</span>
+								</p>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="row" style="padding-top:2px;">
+				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">No Sertifikat</p>
+						<p class="text text-capitalize">No Sertifikat</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">: {{ str_repeat('.', 145) }}</p>
+					<div class="col-sm-8 p-l-none p-r-none">
+						: <div class="dot-line"></div>
 					</div>
 				</div>
-				<div class="row" style="padding-top:2px;">
+				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Atas Nama</p>
+						<p class="text text-capitalize">Luas Tanah</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">: {{ str_repeat('.', 145) }}</p>
+					<div class="col-sm-8 p-l-none p-r-none text">
+						: <span style="float: right">M<sup>2</sup></span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
-				<div class="row" style="padding-top:2px;">
+				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Alamat</p>
+						<p class="text text-capitalize">Luas Bangunan</p>
 					</div>
-					<div class="col-sm-9 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">: 
-							{{ str_repeat('.', 145) }} <br/><br/>
-							RT/RW {{ str_repeat('.', 12)}}/{{ str_repeat('.', 12) }} Desa/Dusun {{ str_repeat('.', 40) }}
-							Kec. {{ str_repeat('.', 38) }} <br/><br/> Kota/Kab {{ str_repeat('.', 58) }} Provinsi {{ str_repeat('.', 58) }}
-						</p>
+					<div class="col-sm-8 p-l-none p-r-none text">
+						: <span style="float: right">M<sup>2</sup></span>
+						<div class="dot-line"></div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Luas Tanah</p>
+						<p class="text text-capitalize">Atas Nama</p>
 					</div>
-					<div class="col-sm-4 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">: {{ str_repeat('.', 55) }} M<sup>2</sup></p>
+					<div class="col-sm-8 p-l-none p-r-none text">
+						: <div class="dot-line"></div>
 					</div>
-					<div class="col-sm-2 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">Luas Bangunan</p>
-					</div>
+				</div>
+				<div class="row row-info">
 					<div class="col-sm-3 p-l-none p-r-none">
-						<p class="text-sm text-capitalize">: {{ str_repeat('.', 40) }} M<sup>2</sup></p>
+						<p class="text-capitalize text">Alamat</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
+					</div>
+				</div>
+				<div class="row row-info">
+					<div class="col-sm-3 p-l-none p-r-none">
+						<p class="text-capitalize text">RT/RW</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
+					</div>
+				</div>
+				<div class="row row-info">
+					<div class="col-sm-3 p-l-none p-r-none">
+						<p class="text-capitalize text">Desa/Dusun</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
+					</div>
+				</div>
+				<div class="row row-info">
+					<div class="col-sm-3 p-l-none p-r-none">
+						<p class="text-capitalize text">Kecamatan</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
+					</div>
+				</div>
+				<div class="row row-info">
+					<div class="col-sm-3 p-l-none p-r-none">
+						<p class="text-capitalize text">Kota/Kabupaten</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
+					</div>
+				</div>
+				<div class="row row-info">
+					<div class="col-sm-3 p-l-none p-r-none">
+						<p class="text-capitalize text">Provinsi</p>
+					</div>
+					<div class="col-sm-8 p-l-none p-r-none text text-capitalize">
+						: <div class="dot-line"></div>
 					</div>
 				</div>
 			</div>
