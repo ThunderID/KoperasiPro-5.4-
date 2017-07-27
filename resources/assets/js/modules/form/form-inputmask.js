@@ -109,11 +109,22 @@ window.formInputMask = {
 		numberSmall.mask(selector);
 	},
 	numberDefault: function () {
-		var number = new Inputmask(
-			'numeric', {
-				rightAlign: false,
-				mask: "9{1,6}",
+		// var number = new Inputmask(
+		// 	'numeric', {
+		// 		rightAlign: false,
+		// 		mask: "9{1,6}",
+		// });
+		var number = new Inputmask({
+			alias: "decimal",
+			allowMinus: false,
+			autoGroup: true,
+			digitsOptional: true,
+			digits: 3,
+			groupSeparator: '.',
+			rightAlign: false,
+			radixPoint: ',',
 		});
+
 		var selector = $('.mask-number');
 		number.mask(selector);
 	},
