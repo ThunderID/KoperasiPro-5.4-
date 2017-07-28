@@ -122,4 +122,8 @@ Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => '
 Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
 
 // route to get daftar nik from daftar kreditur
-Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 'as' => 'get.kreditur.index']);
+Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 	'as' => 'get.kreditur.index']);
+
+
+Route::any('upload/foto',						['uses' => 'HelperController@storeGambar', 		'as' => 'helper.gambar.store']);
+Route::any('hapus/foto',						['uses' => 'HelperController@destroyGambar', 	'as' => 'helper.gambar.destroy']);
