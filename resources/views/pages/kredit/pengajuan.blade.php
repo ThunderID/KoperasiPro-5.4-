@@ -77,14 +77,16 @@
 						Pengajuan Tgl {{ (isset($page_datas->credit['tanggal_pengajuan']) && !is_null($page_datas->credit['tanggal_pengajuan'])) ? $page_datas->credit['tanggal_pengajuan'] : '-' }}
 					</p>
 					<p class="text-capitalize text-light m-b-xs">
-						@if($page_datas->credit['status']=='survei')
-						{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline', 'method' => 'PUT']) !!}
-							{!! Form::text('suku_bunga', (isset($page_datas->credit['suku_bunga']) ? $page_datas->credit['suku_bunga'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'Suku Bunga', 'data-field' => 'suku_bunga']) !!}
-							<button type="submit" class="btn btn-primary">Simpan</button>
-						{!! Form::close() !!}
-						@elseif($page_datas->credit['status']!='pengajuan')
+						@if ($page_datas->credit['status']=='survei')
+							{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline m-t-md', 'method' => 'PUT']) !!}
+								<div class="input-group">
+									{!! Form::text('suku_bunga', (isset($page_datas->credit['suku_bunga']) ? $page_datas->credit['suku_bunga'] : null), ['class' => 'form-control input-md auto-tabindex', 'placeholder' => 'Suku Bunga', 'data-field' => 'suku_bunga', 'style' => 'width: 60%; height: 36px; border-right-color: #46BE8A;']) !!}
+									<button type="submit" class="input-group-addon btn-success">Simpan</button>
+								</div>
+							{!! Form::close() !!}
+						@elseif ($page_datas->credit['status'] != 'pengajuan')
 							<p class="text-capitalize text-light m-b-xs">
-								Suku Bunga {{$page_datas->credit['suku_bunga']}} % / bulan
+								Suku Bunga {{ $page_datas->credit['suku_bunga'] }} % / bulan
 							</p>
 						@endif
 					</p>
@@ -207,7 +209,7 @@
 
 			{{-- data content --}}
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div class="tab-content">
 						{{-- panel pribadi --}}
 						<div class="tab-pane fade" id="data-pribadi" role="tabpanel">

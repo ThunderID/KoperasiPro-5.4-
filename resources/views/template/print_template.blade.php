@@ -45,4 +45,8 @@
 	}
 	.line-info { margin-right: 30px; border-bottom: 1px }
 	.dot-line { margin-top: 2px; border-bottom: 2px dotted #bbb;  }
+	.word-justify { 
+		text-align: justify;
+		text-justify: inter-word;
+	}
 @endsection
