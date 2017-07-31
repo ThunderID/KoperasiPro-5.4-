@@ -355,6 +355,20 @@ class KreditController extends Controller
 				$update->setNasabah(Input::get('nasabah')['status'], Input::get('nasabah')['kredit_terdahulu'], Input::get('nasabah')['jaminan_terdahulu']);
 			}
 
+			if (Input::has('ceklist'))
+			{
+				if(isset(Input::get('ceklist')['is_added']))
+				{
+					$is_added 	= true;
+				}
+				else
+				{
+					$is_added 	= false;
+				}
+
+				$update->setCeklist(Input::get('ceklist')['id'], $is_added);
+			}
+
 			$update->save();
 
 			$this->page_attributes->msg['success']		= ['Data berhasil disimpan'];
@@ -528,7 +542,7 @@ class KreditController extends Controller
 		//parsing master data here
 		try
 		{
-			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing', 'riwayat_status', 'debitur.kredit' => function($q)use($id){$q->notid($id);}, 'debitur.kredit.jaminan_kendaraan', 'debitur.kredit.jaminan_tanah_bangunan'])->first()->toArray();
+			$this->page_datas->credit				= Pengajuan::id($id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->with(['debitur', 'debitur.relasi', 'survei_kepribadian', 'survei_kepribadian.surveyor', 'survei_kepribadian.surveyor.visas', 'survei_nasabah', 'survei_nasabah.surveyor', 'survei_nasabah.surveyor.visas', 'survei_aset_usaha', 'survei_aset_usaha.surveyor', 'survei_aset_usaha.surveyor.visas', 'survei_aset_tanah_bangunan', 'survei_aset_tanah_bangunan.surveyor', 'survei_aset_tanah_bangunan.surveyor.visas', 'survei_aset_kendaraan', 'survei_aset_kendaraan.surveyor', 'survei_aset_kendaraan.surveyor.visas', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor', 'jaminan_kendaraan.survei_jaminan_kendaraan.surveyor.visas', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan.surveyor.visas', 'survei_rekening', 'survei_rekening.surveyor', 'survei_rekening.surveyor.visas', 'survei_keuangan', 'survei_keuangan.surveyor', 'survei_keuangan.surveyor.visas', 'marketing', 'riwayat_status', 'debitur.kredit' => function($q)use($id){$q->notid($id);}, 'debitur.kredit.jaminan_kendaraan', 'debitur.kredit.jaminan_tanah_bangunan', 'dokumen_ceklist'])->first()->toArray();
 
 			if((!count($this->page_datas->credit['debitur']) || !count($this->page_datas->credit['debitur']['relasi'])) && $this->page_datas->credit['status']=='pengajuan')
 			{
@@ -590,6 +604,16 @@ class KreditController extends Controller
 				if(!count($value['survei_jaminan_tanah_bangunan']) && $this->page_datas->credit['status']=='survei')
 				{
 					$this->page_datas->credit['checklist']['kelengkapan_survei_jaminan']	= false;
+				}
+			}
+
+			$this->page_datas->credit['checklist']['kelengkapan_dokumen_fisik']			= true;
+
+			foreach ((array)$this->page_datas->credit['dokumen_ceklist'] as $key => $value) 
+			{
+				if(!$value['is_added'])
+				{
+					$this->page_datas->credit['checklist']['kelengkapan_dokumen_fisik']	= false;
 				}
 			}
 		}

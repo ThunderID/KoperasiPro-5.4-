@@ -49,7 +49,7 @@ class InspeksiDokumenCabang
 			}
 		}
 
-		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('pengajuan')->with(['debitur', 'debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->get()->toArray();
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('pengajuan')->with(['debitur', 'debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->skip(0)->take(30)->get()->toArray();
 
 		foreach ($kredit_aktif as $key => $value) 
 		{
@@ -118,7 +118,7 @@ class InspeksiDokumenCabang
 			}
 		}
 
-		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('survei')->with(['survei_kepribadian', 'survei_nasabah', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'koperasi', 'debitur'])->get()->toArray();
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('survei')->with(['survei_kepribadian', 'survei_nasabah', 'survei_aset_usaha', 'survei_aset_tanah_bangunan', 'survei_aset_kendaraan', 'jaminan_kendaraan', 'jaminan_kendaraan.survei_jaminan_kendaraan', 'jaminan_tanah_bangunan', 'jaminan_tanah_bangunan.survei_jaminan_tanah_bangunan', 'survei_rekening', 'survei_keuangan', 'koperasi', 'debitur'])->skip(0)->take(30)->get()->toArray();
 
 		foreach ($kredit_aktif as $key => $value) 
 		{

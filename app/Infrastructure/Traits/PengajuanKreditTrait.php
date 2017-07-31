@@ -4,8 +4,11 @@ namespace App\Infrastructure\Traits;
 
 
 use App\Domain\Akses\Models\Koperasi;
+
 use App\Domain\HR\Models\Orang;
+
 use App\Domain\Pengajuan\Models\Pengajuan;
+use App\Domain\Pengajuan\Models\DokumenCeklist;
 use App\Domain\Pengajuan\Models\JaminanKendaraan;
 use App\Domain\Pengajuan\Models\JaminanTanahBangunan;
 
@@ -223,5 +226,30 @@ trait PengajuanKreditTrait {
 		$orang->save();
 
 		return $orang;
+	}
+
+	public function setCeklist($id, $is_added)
+	{
+		$this->ceklist 				= DokumenCeklist::findorfail($id);
+		$this->ceklist->is_added  	= $is_added;
+		// if(!$this->ceklist->is_added)
+		// {
+		// 	$this->ceklist->is_added 	= true;
+		// }
+		// else
+		// {
+		// 	$this->ceklist->is_added 	= false;
+
+		// }
+		
+		return $this;
+	}
+
+	private function simpanCeklist(DokumenCeklist $ceklist, $kredit_id)
+	{
+		$ceklist->pengajuan_kredit_id 	= $kredit_id;
+		$ceklist->save();
+
+		return $this;
 	}
 }

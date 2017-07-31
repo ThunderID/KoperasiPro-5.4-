@@ -3,9 +3,12 @@
 namespace App\Service\Pengajuan;
 
 use App\Domain\HR\Models\Orang;
+
 use App\Domain\Akses\Models\Koperasi;
-use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Akses\Models\Mobile;
+
+use App\Domain\Pengajuan\Models\Pengajuan;
+use App\Domain\Pengajuan\Models\DokumenCeklist;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
 
 use App\Infrastructure\Traits\PengajuanKreditTrait;
@@ -56,7 +59,7 @@ class PengajuanKredit
 	{
 		try
 		{
-			// DB::BeginTransaction();
+			DB::BeginTransaction();
 
 			//1. simpan orang
 			if(!empty($this->debitur) && !is_null($this->debitur['nik']))
@@ -182,15 +185,61 @@ class PengajuanKredit
 			$riwayat->uraian 		= $this->notes;
 			$riwayat->save();
 
-			// DB::commit();
+			//7. initiate checklists
+			foreach ($this->initiateChecklists() as $key => $value) 
+			{
+				$checklist 		= new DokumenCeklist;
+				$checklist->fill($value);
+				$checklist->pengajuan_kredit_id 	= $pengajuan->id;
+				$checklist->is_added 				= false;
+				$checklist->save();
+			}
+
+			DB::commit();
 
 			return $pengajuan->toArray();
 		}
 		catch(Exception $e)
 		{
-			// DB::rollback();
+			DB::rollback();
 			throw $e;
 		}
 	}
 
+	private function initiateChecklists()
+	{
+		return 	[
+					['kode_dokumen' => '001_KTP_DEB', 		'judul' => 'FC KTP Pemohon'],
+					['kode_dokumen' => '001_KTP_REL', 		'judul' => 'FC KTP Suami/Istri/Orang Tua'],
+					['kode_dokumen' => '001_KK', 			'judul' => 'FC Buku Nikah/Akta Cerai/Pisah Harta'],
+					['kode_dokumen' => '001_KTP_TAX', 		'judul' => 'FC NPWP/SIUP/Surat Pengangkatan Karyawan'],
+					
+					['kode_dokumen' => '002_BPKB',			'judul' => 'FC BPKB'],
+					['kode_dokumen' => '002_STNK', 			'judul' => 'FC Faktur & STNK'],
+					['kode_dokumen' => '002_KWITANSI_JB', 	'judul' => 'FC Kwitansi Jual\Beli'],
+					['kode_dokumen' => '002_SURAT_KIR', 	'judul' => 'FC Surat KIR'],
+					['kode_dokumen' => '002_SERTIFIKAT', 	'judul' => 'Sertifikat Tanah Asli & FC'],
+					['kode_dokumen' => '002_PBB', 			'judul' => 'FC PBB Terakhir (Max 1 tahun sebelumnya)'],
+					['kode_dokumen' => '002_IMB', 			'judul' => 'FC IMB (untuk SHM/SHGB  di lokasi industri, perdagangan , perumahan)'],
+					['kode_dokumen' => '002_FOTO', 			'judul' => 'Foto Jaminan'],
+					['kode_dokumen' => '002_NOKA_NOSIN', 	'judul' => 'Gesekan Noka/Nosin'],
+					['kode_dokumen' => '002_REK_BULANAN', 	'judul' => 'FC Rekening Air/Listrik/Telepon'],
+					['kode_dokumen' => '002_SLIP_GAJI', 	'judul' => 'FC Slip Gaji (3 Bulan Terakhir)'],
+					['kode_dokumen' => '002_REKENING', 		'judul' => 'FC Buku Tabungan & Transaksi (3 Bulan Terakhir)'],
+					['kode_dokumen' => '002_ANGSURAN', 		'judul' => 'FC Bukti Pembayaran Angsuran (Lain)'],
+
+					['kode_dokumen' => '003_PERMOHONAN', 		'judul' => 'Aplikasi Permohonan Kredit'],
+					['kode_dokumen' => '003_SURVEY', 			'judul' => 'Survey Report'],
+					['kode_dokumen' => '003_KOMITE', 			'judul' => 'Persetujuan Komite Kredit'],
+					['kode_dokumen' => '003_SPK_1', 			'judul' => 'Surat Perjanjian Kredit (Intern)'],
+					['kode_dokumen' => '003_SPK_2', 			'judul' => 'Surat Perjanjian Kredit (Notaris)'],
+					['kode_dokumen' => '003_SPO',	 			'judul' => 'Surat Persetujuan Orang Tua (untuk anak dibawah umur)'],
+					['kode_dokumen' => '003_SP_PLANG',	 		'judul' => 'Surat Persetujuan Pemasangan Plang Jaminan'],
+					['kode_dokumen' => '003_SK_JUAL',	 		'judul' => 'Surat Kuasa Menjual & Menarik Jaminan'],
+					['kode_dokumen' => '003_SK_PEMBEBANAN',	 	'judul' => 'Surat Kuasa Pembebanan FEO'],
+					['kode_dokumen' => '003_SJ_FIDUSIA',	 	'judul' => 'Sertifikat Jaminan Fiducia'],
+					['kode_dokumen' => '003_SKMHT',	 		'judul' => 'SKMHT'],
+					['kode_dokumen' => '003_APHT',	 		'judul' => 'APHT'],
+				];
+	}
 }

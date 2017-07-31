@@ -135,7 +135,6 @@ class Pengajuan extends BaseModel
 		return $this->belongsTo('App\Domain\HR\Models\Orang', 'petugas_id');
 	}
 
-
 	/**
 	 * relationship jaminan kendaraan
 	 *
@@ -195,6 +194,15 @@ class Pengajuan extends BaseModel
 	{
 		return $this->hasMany('App\Domain\Pengajuan\Models\RiwayatKredit', 'pengajuan_id')->orderby('created_at', 'asc');
 	}
+
+	/**
+	 * relationship dokumen ceklist
+	 */	
+	public function dokumen_ceklist()
+	{
+		return $this->hasMany('App\Domain\Pengajuan\Models\DokumenCeklist', 'pengajuan_kredit_id')->orderby('kode_dokumen', 'asc');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
