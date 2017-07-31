@@ -122,7 +122,7 @@
 
 			// set options based on tipe
 			$.each(merk[e.value], function(index, value) {
-				var $option = $("<option value='" + value + "' data-id='" + value + "'>" +  window.stringManipulator.ucWords(window.stringManipulator.toSpace(value)) +"</option>");
+				var $option = $("<option value='" + value + "' data-id='" + value + "'>" +  window.thunder.stringManipulator.ucWords(window.thunder.stringManipulator.toSpace(value)) +"</option>");
 				elementTarget.append($option);
 			});					
 		}else{

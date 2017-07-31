@@ -105,8 +105,7 @@
 	<div class="row p-b-md">
 		<div class="col-md-6">
 			<img src="{{URL::asset('/images/no-image.png')}}" 
-				id="ktp_previewer" 
-				class="img-responsive " 
+				class="img-responsive thunder-imagePreview-canvas" 
 				alt="No Image Selected" 
 				style="width: 100%; display: block;">
 		</div>
@@ -115,17 +114,14 @@
 		<div class="col-md-6">
 			<div class="input-group">
 				{!! Form::text(null, (isset($param['data']['foto_ktp'])) ? $param['data']['foto_ktp'] : null, [
-					'id' 			=> 'ktp_path',
-					'class'	 		=> 'form-control ktp_path', 
+					'class'	 		=> 'form-control thunder-imagePreview-path', 
 					'readonly' 		=> true, 
 					'placeholder' 	=> 'Belum Ada Foto Dipilih'
 				] ) !!}
 				<span class="input-group-btn">
 					<label class="btn btn-primary" style="padding-top: 9.5px; padding-bottom: 9.5px; margin-left: -2px;">
 						{!! Form::file('debitur[foto_ktp]', [
-							'class' 							=> 'hidden btn-upload auto-tabindex file-preview-source',
-							'data-target-canvas-previewer' 		=> 'ktp_previewer',
-							'data-target-path-previewer' 		=> 'ktp_path',
+							'class' 							=> 'hidden btn-upload auto-tabindex thunder-imagePreview-source',
 						]) !!} Pilih Foto
 					</label>
 				</span>

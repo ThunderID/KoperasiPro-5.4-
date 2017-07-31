@@ -55,7 +55,7 @@
 	<label class="text-sm">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::text('pengajuan_kredit', (isset($param['data']['pengajuan_kredit']) ? $param['data']['pengajuan_kredit'] : null), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Jumlah pinjaman']) !!}
+			{!! Form::text('pengajuan_kredit', (isset($param['data']['pengajuan_kredit']) ? $param['data']['pengajuan_kredit'] : null), ['class' => 'form-control required mask-money auto-tabindex', 'placeholder' => 'Jumlah pinjaman', 'thunder-validation-rules' => 'number required']) !!}
 			<span class="help-block">Minimal Jumlah Pinjaman Rp 2.500.000</span>
 		</div>
 	</div>
