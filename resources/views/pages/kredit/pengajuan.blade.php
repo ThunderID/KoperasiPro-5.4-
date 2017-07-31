@@ -174,29 +174,23 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="list-unstyled fa-ul" style="width: 30%; display: inline-grid;">
-						<p class="text-capitalize text-sm m-l-min-lg"><strong>Analis</strong></p>
-						<!-- <li class="m-t-xs m-b-xs">
-							<a class="text-capitalize" href="#suku-bunga" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Suku Bunga
+
+					<ul class="list-unstyled fa-ul m-l-xl m-b-lg" role="tablist" style="width:30%; display: inline-grid;">
+						<p class="text-capitalize text-sm m-l-min-lg"><strong>Ceklist</strong></p>
+						<li class="m-t-xs m-b-xs" role="presentation">
+							<a class="text-capitalize" href="#dokumen-ceklist" data-toggle="tab" role="tab">
+								<i class="fa-li fa fa-check-square-o"></i> Ceklist Dokumen
+								@if (($page_datas->credit['checklist']['kelengkapan_dokumen_fisik'] == false))
+									<i class="text-danger fa fa-exclamation-circle"></i> 
+								@endif
 							</a>
-						</li> -->
-						<li class="m-t-xs m-b-xs">
+						</li>
+						<p class="text-capitalize text-sm m-l-min-lg m-t-sm"><strong>Analis</strong></p>
+						<li class="m-t-xs m-b-xs" role="presentation">
 							<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
 								<i class="fa-li fa fa-history"></i> Riwayat Status
 							</a>
 						</li>
-						<!-- <p class="text-capitalize text-md m-l-min-lg m-t-sm m-b-xs"><strong>Pencairan</strong></p>
-						<li class="m-t-xs m-b-xs"><a href="#">
-							<a class="text-capitalize" href="#print_form_nota_pencairan_kredit" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Nota Pencairan Kredit
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#data-angsuran" aria-controls="data-angsuran" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Angsuran
-							</a>
-						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -255,6 +249,12 @@
 						<div class="tab-pane fade" id="riwayat-status" role="tabpanel">
 							@include ('pages.kredit.components.panel.pengajuan.panel_riwayat_status')
 						</div>
+						
+						{{-- panel dokumen ceklist --}}
+						<div class="tab-pane fade" id="dokumen-ceklist" role="tabpanel">
+							@include ('pages.kredit.components.panel.pengajuan.panel_dokumen_ceklist')
+						</div>
+
 						{{-- panel nasabah --}}
 						<div class="tab-pane fade" id="survei-nasabah" role="tabpanel">
 							@include ('pages.kredit.components.panel.pengajuan.panel_survei_nasabah')
