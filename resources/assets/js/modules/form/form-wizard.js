@@ -76,10 +76,15 @@ window.wizard = {
 			/* Event */
 			onStepChanging: function (event, currentIndex, newIndex) {
 				form = $('.wizard');
-				// // check previous tanpa memunculkan error
-				// if (currentIndex > newIndex) {
+				if (currentIndex < newIndex) {
+					// validation
+					// return console.log(window.thunder.formValidation.validateForm(event.target));
 					return true;
-				// }
+				}else{
+					return true
+				}
+				
+				// // check previous tanpa memunculkan error
 
 				// // check next apabila ada error di stage sebelumnya
 				// if (currentIndex < newIndex) {

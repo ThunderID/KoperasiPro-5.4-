@@ -1,0 +1,11 @@
+{
+    "plugins": {
+    	"formValidation" : "./formValidation.js",
+    	"imageUploader" : "./imageUploader.js",
+    	"cloner" : "./cloner.js",
+    	"imagePreviewer" : "./imagePreviewer.js",
+    	"stringManipulator" : "./stringManipulator"
+    },
+    "autoload" : true,
+    "debug" : true
+}

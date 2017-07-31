@@ -148,4 +148,4 @@ $(document).ready( function() {
 require('./plugins/map/jquery-gmaps-latlon-picker.js');
 
 // THunderlab buundle plugin
-require('./plugins/thunderlab/manifest.js');
+require('./plugins/thunderlab/core.js');
