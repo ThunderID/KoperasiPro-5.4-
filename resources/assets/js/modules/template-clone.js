@@ -14,6 +14,11 @@ window.templateClone = {
 		$('.add').click(function(e) {
 			e.preventDefault();
 
+			//validate
+			if(window.thunder.formValidation.validateForm($(e.target).closest('.thunder-validation-form')) == false){
+				return false;
+			}
+
 			window.templateClone.template 	= this.dataset.template;
 			window.templateClone.content 	= this.dataset.content;
 			window.templateClone.typeClone 	= this.dataset.typeclone;

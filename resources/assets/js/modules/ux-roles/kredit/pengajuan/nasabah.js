@@ -38,7 +38,10 @@ var kredit_pengajuan_nasabah = function(){
 
 	this.init = function(){
 		// 1. disable all input
-		disableInput();
+		if($('#debitur_id').val().length == 0){
+			disableInput();
+		}
+
 
 		// 2. bind keypress on nik input
 		$(document).on('keypress', '#debitur_id', function(e) {
@@ -46,6 +49,8 @@ var kredit_pengajuan_nasabah = function(){
 
 				// UI
 				$('.debitur_id_loader').css("visibility", "visible");
+				// rm error msg
+				$(this).trigger('blur');
 
 				// disable autofill inputs
 				disableInput();		
@@ -119,6 +124,16 @@ var kredit_pengajuan_nasabah = function(){
 				if($(this).find('.select-merk').val() == ""){
 					$(this).find('.select-merk').prop('disabled', true);
 				}
+			}
+		});
+
+		//3. layout adjuster
+		$(document).on('change', '#input_foto_ktp', function(e) {
+			// input_foto_ktp
+			var rslt = window.thunder.imagePreviewer.preview($(e.target).prop('files')[0], $('.thunder-imagePreview-canvas'));
+			rslt.onloadend = function(){
+				window.wizard.resizeContent();
+				$('.thunder-imagePreview-path').val($(e.target).prop('files')[0].name);
 			}
 		});
 

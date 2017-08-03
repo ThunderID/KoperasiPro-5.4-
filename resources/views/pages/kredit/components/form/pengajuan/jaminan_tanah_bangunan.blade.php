@@ -29,10 +29,11 @@
 		<div class="col-md-3">
 			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[nomor_sertifikat]' }}" 
-				class="form-control mask-no-sertifikat auto-tabindex input-tanah-bangunan" 
+				class="form-control mask-no-sertifikat auto-tabindex input-tanah-bangunan thunder-validation-input" 
 				data-field="nomor_sertifikat" 
 				placeholder="No. Sertifikat" 
-				value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}">
+				value="{{ (isset($param['data']['nomor_sertifikat']) && !is_null($param['data']['nomor_sertifikat'])) ? $param['data']['nomor_sertifikat'] : null }}"
+				thunder-validation-rules='required'>
 		</div>
 	</div>
 </fieldset>
@@ -41,11 +42,13 @@
 	<div class="row">
 		<div class="col-md-4">
 			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" 
-				class="form-control quick-select select auto-tabindex input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="tipe" 
+				class="form-control quick-select select auto-tabindex input-tipe-jaminan-tanah-bangunan input-tanah-bangunan thunder-validation-input" 
+				data-field="tipe" 
 				placeholder="Pilih" 
-				data-placeholder="Pilih">
-				<option value="bangunan" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'bangunan')) ? 'selected' : '' }}>Bangunan</option>
-				<option value="tanah" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'tanah')) ? 'selected' : '' }}>Tanah</option>
+				data-placeholder="Pilih"
+				thunder-validation-rules='required'>
+					<option value="bangunan" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'bangunan')) ? 'selected' : '' }}>Bangunan</option>
+					<option value="tanah" {{ (isset($param['data']['tipe']) && ($param['data']['tipe'] == 'tanah')) ? 'selected' : '' }}>Tanah</option>
 			</select>
 			{{-- <input type="hidden" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[tipe]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="tipe" value="{{ (isset($param['data']['tipe']) && !is_null($param['data']['tipe'])) ? $param['data']['tipe'] : 'bangunan' }}">  --}}
 		</div>
@@ -57,10 +60,11 @@
 		<div class="col-md-5">
 			<select name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" 
 				onchange="uiJenisSertifikat(this);" 
-				class="form-control select auto-tabindex input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" 
+				class="form-control select auto-tabindex input-tipe-jaminan-tanah-bangunan input-tanah-bangunan thunder-validation-input" 
 				data-field="jenis_sertifikat" 
 				placeholder="Pilih" 
-				data-placeholder="Pilih">
+				data-placeholder="Pilih"
+				thunder-validation-rules='required'>
 				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>Hak Guna Bangunan (HGB)</option>
 				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
 			</select>
@@ -74,10 +78,11 @@
 		<div class="col-md-3">
 			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" 
-				class="form-control auto-tabindex mask-year input-tanah-bangunan" 
+				class="form-control auto-tabindex mask-year input-tanah-bangunan thunder-validation-input" 
 				data-field="masa_berlaku_sertifikat" 
 				placeholder="20xx" 
-				value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}">
+				value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}"
+				thunder-validation-rules='required'>
 		</div>
 	</div>
 </fieldset>
@@ -88,10 +93,11 @@
 			<input type="text" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[atas_nama]' }}" 
 				id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[atas_nama]' }}" 
-				class="form-control auto-tabindex input-tanah-bangunan" 
+				class="form-control auto-tabindex input-tanah-bangunan thunder-validation-input" 
 				data-field="atas_nama" 
 				placeholder="Atas Nama" 
-				value="{{ (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null }}">
+				value="{{ (isset($param['data']['atas_nama']) && !is_null($param['data']['atas_nama'])) ? $param['data']['atas_nama'] : null }}"
+				thunder-validation-rules='required'>
 		</div>
 	</div>
 </fieldset>
@@ -102,10 +108,11 @@
 			<div class="input-group">
 				<input type="text" 
 					name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_tanah]' }}" 
-					class="form-control mask-number auto-tabindex input-tanah-bangunan" 
+					class="form-control mask-number auto-tabindex input-tanah-bangunan thunder-validation-input" 
 					data-field="luas_tanah" 
 					value="{{ (isset($param['data']['luas_tanah']) && !is_null($param['data']['luas_tanah'])) ? $param['data']['luas_tanah'] : null }}" 
-					placeholder="Luas Tanah" >
+					placeholder="Luas Tanah" 
+					thunder-validation-rules='required'>
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>
@@ -119,10 +126,11 @@
 				<input type="text" 
 					name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" 
 					id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[luas_bangunan]' }}" 
-					class="form-control auto-tabindex mask-number input-tanah-bangunan" 
+					class="form-control auto-tabindex mask-number input-tanah-bangunan thunder-validation-input" 
 					data-field="luas_bangunan" 
 					value="{{ (isset($param['data']['luas_bangunan']) && !is_null($param['data']['luas_bangunan'])) ? $param['data']['luas_bangunan'] : null }}" 
-					placeholder="Luas Bangunan">
+					placeholder="Luas Bangunan"
+					thunder-validation-rules='required'>
 				<div class="input-group-addon">M<sup>2</sup></div>
 			</div>
 		</div>

@@ -76,10 +76,19 @@ window.wizard = {
 			/* Event */
 			onStepChanging: function (event, currentIndex, newIndex) {
 				form = $('.wizard');
+
+				if (currentIndex < newIndex) {
+					// validation
+					var frm = $(event.target).attr('id') + '-p-' + currentIndex;
+
+					var result = window.thunder.formValidation.validateForm($(event.target).find('#'+ frm));
+					if(result == false){window.wizard.resizeContent();}
+					return result;
+				}else{
+					return true
+				}
+				
 				// // check previous tanpa memunculkan error
-				// if (currentIndex > newIndex) {
-					return true;
-				// }
 
 				// // check next apabila ada error di stage sebelumnya
 				// if (currentIndex < newIndex) {

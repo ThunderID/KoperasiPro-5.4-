@@ -36,7 +36,13 @@ var stringManipulator = function(){
 	this.toSpace = function(str) {
 		return str.replace(/_/g, ' ');
 	}
+
+	// init
+	this.init = function(){
+		return true;
+	}
 }
 
 
-window.stringManipulator = new stringManipulator();
+// interface
+window.thunder.stringManipulator = new stringManipulator();
