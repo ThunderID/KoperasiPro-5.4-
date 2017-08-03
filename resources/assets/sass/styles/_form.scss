@@ -16,9 +16,18 @@
 .no-resize { resize: none; }
 .help-block { font-size: 11px !important; }
 
-.input_loader{
-	background-color: white; 
-	border-color:white; 
-	color: #46BE8A;
-	visibility: hidden;
+.form-group{
+	.input_loader{
+		background-color: white !important; 
+		border-color:white !important; 
+		color: #46BE8A !important;
+		visibility: hidden;
+	}	
+}
+
+// select 2 error state on disable 
+.form-group.has-error{
+	.select2-selection {
+	    border-color: #e74c3c !important;
+	}
 }

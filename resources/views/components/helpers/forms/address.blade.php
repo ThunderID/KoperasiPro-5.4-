@@ -68,7 +68,7 @@
 	<label class="text-sm">Jalan</label>
 	<div class="row">
 		<div class="col-md-6">
-			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', (isset($param['data']['alamat']) ? $param['data']['alamat'] : null), ['id' => (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', 'class' => 'form-control auto-tabindex ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Jln. Blimbing No. 8', 'data-field' => 'alamat']) !!}
+			{!! Form::text( (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', (isset($param['data']['alamat']) ? $param['data']['alamat'] : null), ['id' => (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[alamat]', 'class' => 'form-control auto-tabindex thunder-validation-input ' . (isset($settings["class"]) ? $settings["class"] : ""), 'placeholder' => 'Jln. Blimbing No. 8', 'data-field' => 'alamat', 'thunder-validation-rules' => 'required']) !!}
 		</div>
 	</div>
 </fieldset>

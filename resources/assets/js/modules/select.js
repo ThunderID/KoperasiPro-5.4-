@@ -25,6 +25,16 @@ window.selectDropdown = {
 				$(this).val($(this).data('select-preload')).trigger('change');
 			}
 		});
+
+		// validate on blur
+		// turned off for a moment, please not delete this code
+		/*
+		$('.select').on('change', function(evt) {
+			if($(this).hasClass('thunder-validation-input')){
+				window.thunder.formValidation.validateInput($(this));
+			}
+		});
+		*/
 	},
 	getAjax: function () {		
 		$('.select-get-ajax').on('change', function(evt) {

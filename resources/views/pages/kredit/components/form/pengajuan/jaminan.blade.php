@@ -41,7 +41,7 @@
 		</table>
 		<fieldset class="form-group">
 			<a href="#" class="p-t-md p-b-md modal-add-jaminan" data-toggle="modal" data-target="#modal-jaminan-kendaraan"><i class="fa fa-plus"></i> Tambah Jaminan Kendaraan</a>
-			<span class="text-muted text-capitalize text-sm p-l-lg p-t-md p-b-md text-info hidden info-add"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 2</em></span>
+			<span class="text-muted text-capitalize text-sm p-l-xs p-t-md p-b-md text-info hidden info-add"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 2</em></span>
 		</fieldset>
 	</div>
 </div>
@@ -76,7 +76,7 @@
 		</table>
 		<fieldset class="form-group">
 			<a href="#" class="p-t-md p-b-md modal-add-jaminan" data-toggle="modal" data-target="#modal-jaminan-tanah-bangunan"><i class="fa fa-plus"></i> Tambah Jaminan Tanah &amp; Bangunan</a>
-			<span class="text-muted text-capitalize text-sm p-l-lg p-t-md p-b-md text-info hidden info-add"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 3</em></span>
+			<span class="text-muted text-capitalize text-sm p-l-xs p-t-md p-b-md text-info hidden info-add"><em><i class="fa fa-exclamation-circle"></i> tidak bisa menambahkan jaminan kendaraan lebih dari 3</em></span>
 		</fieldset>
 	</div>
 </div>
@@ -85,7 +85,7 @@
 <div class="clearfix">&nbsp;</div>
 
 @push('modals')
-	{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
+	{!! Form::open(['url' => '', 'class' => 'form no-enter thunder-validation-form']) !!}
 		@component('components.modal', [
 			'id' 		=> 'modal-jaminan-kendaraan',
 			'title'		=> 'Tambah Jaminan Kendaraan',
@@ -111,7 +111,7 @@
 		@endcomponent
 	{!! Form::close() !!}
 
-	{!! Form::open(['url' => '', 'class' => 'form no-enter']) !!}
+	{!! Form::open(['url' => '', 'class' => 'form no-enter thunder-validation-form']) !!}
 		@component('components.modal', [
 			'id' 		=> 'modal-jaminan-tanah-bangunan',
 			'title'		=> 'Tambah Jaminan Tanah &amp; Bangunan',
