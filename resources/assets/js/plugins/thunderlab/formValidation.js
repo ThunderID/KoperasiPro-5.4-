@@ -33,6 +33,24 @@ var formValidation = function(){
 	*/	
 	const continue_validating_on_error = false;
 
+	/*
+		2. Validate on lost focus
+		Description 	: set false if you dont want validate input on input's lost focus event
+	*/	
+	const validate_on_lost_focus = false;
+
+	/*
+		3. Validate on disabled
+		Description 	: continue validate on disabled
+	*/	
+	const validate_on_disabled = true;
+
+	/*
+		4. Validate on hidden
+		Description 	: continue validate on disabled
+	*/	
+	const validate_on_hidden = false;		
+
 
 	/* overrides core settings */
 
@@ -62,15 +80,17 @@ var formValidation = function(){
 
 	*/
 	const error_message = {
-		"required" : "Input &label& Harus Diisi",
-		"email" : "Email Tidak Valid",
-		"number" : "Harus Berupa Angka",
-		'numberLessThan' : "Tidak boleh lebih besar dari &parameter&",
-		'numberGreaterThan' : "Tidak boleh lebih kecil dari &parameter&",
-		"string" : "Harus Berupa Huruf",
-		'minLength' : "Tidak Boleh Kurang Dari &parameter& Karakter",
-		'maxLength' : "Tidak Boleh Lebih Dari &parameter& Karakter",
-		'password' : "Password harus 8-20 karakter dan terdiri dari 3 hal berikut: huruf besar, huruf kecil, angka"
+		"required" : "Input &label& harus diisi",
+		"email" : "Email tidak valid",
+		"number" : "Harus berupa angka",
+		'numbermin' : "Tidak boleh lebih kecil dari &parameter&",
+		'numbermax' : "Tidak boleh lebih besar dari &parameter&",
+		"string" : "Harus berupa huruf",
+		'minLength' : "Tidak boleh kurang dari &parameter& karakter",
+		'maxLength' : "Tidak boleh lebih dari &parameter& karakter",
+		'password' : "Password harus 8-20 karakter dan terdiri dari 3 hal berikut: huruf besar, huruf kecil, angka",
+		'minCurrency' : "Input tidak sesuai",
+		'maxCurrency' : "Input tidak sesuai",
 	};
 
 	/*
@@ -79,13 +99,37 @@ var formValidation = function(){
 		Note 			: use bool true/false, false will reset form style to its 
 							original styling after validation return true
 	*/
-	const ui_validate_success = true;
+	const ui_validate_success = false;
 
 	/*
 		6. Target Custom Error Message Attribute 
 		Description 	: Selector used to retrieve custom error msg from html, rather than this default error msg.
 	*/
 	const target_custom_error_message_attribute = 'thunder-validation-custom-message';
+
+	/*
+		7. Validate On Submit
+		Description 	: Selector used to retrieve custom error msg from html, rather than this default error msg.
+	*/
+	const target_validate_on_submit_attribute = 'thunder-validation-submitvalidation';
+
+	/*
+		8. Target No Message Attribute 
+		Description 	: Selector used to define no message label
+	*/
+	const target_no_msg_attribute = 'thunder-validation-no-message';
+
+	/*
+		8. Ui Caption
+		Description 	: Prefix caption for error msg label
+	*/
+	const ui_caption = "";
+
+	/*
+		9. error using feedback bs
+		Description 	: set true if u want add some fancy icons inside input
+	*/	
+	const error_using_feedback = false;	
 
 
 	/* bootstrap classes */
@@ -131,34 +175,36 @@ var formValidation = function(){
 
 	// initialize
 	this.init = function() {
-		// init
-		var mousedownHappened = false;
-
 		// validate inputs on form submit
 		$(document).on( "submit", document.getElementsByClassName(target_form_class), function(e) {
-			e.preventDefault();
+			if($(e.target).attr(target_validate_on_submit_attribute) && $(e.target).attr(target_validate_on_submit_attribute) != false){
+				e.preventDefault();
 
-			// validate, if everything good, continue posting
-			if(validateForm($(e.target)) == true){
-				// post form
-				e.target.submit();
+				// validate, if everything good, continue posting
+				if(validateForm($(e.target)) == true){
+					// post form
+					e.target.submit();
+				}
 			}
 		});
 
 		// validate input on lost focus event
-		$( document ).on( "blur", "." + target_input_class, function(e) {
-			// fix jQuery Blur and Submit propagation issue: blur firstly fire rather than submit 
-			if(!e.relatedTarget || e.relatedTarget.type != "submit"){
-				validateInput($(e.target));
-			}
-		});
+		if(validate_on_lost_focus == true){
+			$( document ).on( "blur", "." + target_input_class, function(e) {
+				// fix jQuery Blur and Submit propagation issue: blur firstly fire rather than submit 
+				if(!e.relatedTarget || e.relatedTarget.type != "submit"){
+					validateInput($(e.target));
+				}
+			});
+		}
 
 		return true;
 	}
+	this.validateInput = function(el){
+		return validateInput(el);
+	}
 	this.validateForm = function(el){
 		// el will be the form target
-		console.log($(el));
-
 		return validateForm(el);
 	}
 
@@ -174,6 +220,20 @@ var formValidation = function(){
 			console.log("%cWarning: formValidation" + "\n" + "on: validateInput" + "\n" + "detail: Can't validate because 'form-group' class that should wrapp this following input not found (Validation rules will be ignored)" + "\n" + "input id : " + el.attr('id'), 'color: orange;');
 			return true;
 		}
+
+		// handling disabled
+		if(validate_on_disabled == false){
+			if(el.prop('disabled') == true){
+				return true;
+			}
+		}
+
+		// handling hidden
+		if(validate_on_hidden == false){
+			if(el.css('display') == 'none' || el.attr('type') == 'hidden' || el.closest('.form-group').css('display') == 'none' || el.closest('.form-group').attr('type') == 'hidden'){
+				return true;
+			}
+		}		
 
 		var err_msg = [];
 
@@ -242,7 +302,6 @@ var formValidation = function(){
 	// UI form validation
 	var validateForm = function(el) {
 		var result = true;
-		console.log($(el));
 
 		// event on submit
 		$(el).find(':input.' + target_input_class).each(function(){
@@ -258,8 +317,7 @@ var formValidation = function(){
 
 
 	// list of rules
-	var ruleInterpreter = function(object, rule, rule_parameter){
-
+	var ruleInterpreter = function(object, rule, rule_parameter){		
 		// interpret the rule
 		var result = true;
 
@@ -274,14 +332,14 @@ var formValidation = function(){
 				result = TestNumberInput(object);
 				break;
 			}
-			case "numbergreaterthan":
+			case "NumberMax":
 			{
-				result = TestNumberGreaterThan(object, rule_parameter);
+				result = TestNumberMax(object, rule_parameter);
 				break;
 			}
-			case "numberlessthan":
+			case "numbermin":
 			{
-				result = TestNumberLessThan(object, rule_parameter);
+				result = TestNumberMin(object, rule_parameter);
 				break;
 			}						
 			case "string":
@@ -308,7 +366,17 @@ var formValidation = function(){
 			{
 				result = TestPassword(object);
 				break;
-			}			
+			}
+			case "mincurrency":
+			{
+				result = TestMinCurrency(object, rule_parameter);
+				break;
+			}	
+			case "maxcurrency":
+			{
+				result = TestMaxCurrency(object, rule_parameter);
+				break;
+			}							
 		}
 
 		// returns
@@ -318,13 +386,17 @@ var formValidation = function(){
 	/* validation functions */
 	// required
 	var TestRequiredInput = function(object){
+		//cek validation
 		var ret = true;
 
-		//cek validation
-		if (IsEmpty(object.val())){
+		if(object.val() == null){
 			ret = false;
-		}else if (object.getcal && !object.getcal()){
-			ret = false;
+		}else{
+			if (IsEmpty(object.val())){
+				ret = false;
+			}else if (object.getcal && !object.getcal()){
+				ret = false;
+			}
 		}
 
 		// return
@@ -341,7 +413,7 @@ var formValidation = function(){
 		// validation
 		return $.isNumeric(object.val());
 	}
-	var TestNumberGreaterThan = function(object, rule){
+	var TestNumberMin = function(object, rule){
 		// empty set handler
 		if(object.val() == ''){
 			return isEmptySetAllowed(object);
@@ -355,7 +427,7 @@ var formValidation = function(){
 		// validation
 		return parseInt(object.val()) < parseInt(rule) ? false : true;
 	}	
-	var TestNumberLessThan = function(object, rule){
+	var TestNumberMax = function(object, rule){
 		// empty set handler
 		if(object.val() == ''){
 			return isEmptySetAllowed(object);
@@ -444,10 +516,44 @@ var formValidation = function(){
 		return object.val().match(passw) ? true : false; 
 	}
 
+	// currency
+	var TestMinCurrency = function(object, rule_parameter){
+		// empty set handler
+		if(isEmptySetAllowed(object)){
+			return false;
+		}
+
+		// setups
+		val = object.val().replace(/\./g,'');
+		val = val.replace('Rp ','');
+
+		// validate
+		if(IsEmpty(val)){
+			return false;
+		}
+		return parseInt(val) < parseInt(rule_parameter) ? false : true;
+	}
+
+	var TestMaxCurrency = function(object, rule_parameter){
+		// empty set handler
+		if(isEmptySetAllowed(object)){
+			return false;
+		}
+
+		// setups
+		val = object.val().replace(/\./g,'');
+		val = val.replace('Rp ','');
+
+		// validate
+		if(IsEmpty(val)){
+			return false;
+		}
+		return parseInt(val) > parseInt(rule_parameter) ? false : true;
+	}
+
 	/* ui */
 	function drawError(msg, object){
 		/* settings & default */
-		var ui_caption = "* ";
 		var label = '';
 		var err_msg = '';
 
@@ -494,11 +600,19 @@ var formValidation = function(){
 
 		/* UI */
 		// handle error styling
-		object.closest( bs_form_group ).addClass( bs_feedback + ' ' + bs_danger );
+		if(error_using_feedback == true){
+			object.closest( bs_form_group ).addClass( bs_feedback + ' ' + bs_danger );
+		}else{
+			object.closest( bs_form_group ).addClass( bs_danger );
+		}
 
 		// display error msg
 		removeErrorMessage(object);
-		object.parent().append('<div class="' + bs_error_message_css_class + ' thunder-validation-msg-for-' + object.attr('id') + '"><small>' + err_msg + '</small></div>');
+		if((object.attr(target_no_msg_attribute)) != true){
+			object.closest('.form-group').append('<div class="' + bs_error_message_css_class + ' thunder-validation-msg thunder-validation-msg-for-' + object.attr('id') + '"><small>' + err_msg + '</small></div>');
+			// object.parent().append('<div class="' + bs_error_message_css_class + ' thunder-validation-msg thunder-validation-msg-for-' + object.attr('id') + '"><small>' + err_msg + '</small></div>');
+		}
+
 
 		/* functions */
 
@@ -543,7 +657,8 @@ var formValidation = function(){
 	}
 
 	function removeErrorMessage(object){
-		object.closest('.form-group').find( '.thunder-validation-msg-for-' + object.attr('id') ).remove();
+		object.closest('.form-group').find('.thunder-validation-msg').remove();
+		// object.closest('.form-group').find( '.thunder-validation-msg-for-' + object.attr('id') ).remove();
 	}
 
 	/* --------------------------

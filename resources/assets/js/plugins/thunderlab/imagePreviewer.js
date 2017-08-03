@@ -89,7 +89,6 @@ var imagePreviewer = function(){
 	}
 
 	var drawPath = function (el){
-		console.log(el.val());
 		if(el.val()){
 			el.closest('.form-group').find('.' + target_path_class).val(el.val().replace(/C:\\fakepath\\/i, ''));
 		}
