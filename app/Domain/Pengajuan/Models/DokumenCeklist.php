@@ -29,7 +29,7 @@ class DokumenCeklist extends BaseModel
 	protected $fillable				=	[
 											'pengajuan_kredit_id'	,
 											'kode_dokumen'			,
-											'title'					,
+											'judul'					,
 											'is_added'				,
 										];
 	/**
