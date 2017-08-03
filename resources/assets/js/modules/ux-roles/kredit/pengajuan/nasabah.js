@@ -37,9 +37,13 @@ var kredit_pengajuan_nasabah = function(){
 	}
 
 	this.init = function(){
-		// 1. disable all input
+		// 1. with files or not
 		if($('#debitur_id').val().length == 0){
 			disableInput();
+		}else{
+			$(document).on('ready', function(){
+				window.selectDropdown.setValue($('#debitur[alamat][0][provinsi]'), 'JAWA TIMUR');
+			});
 		}
 
 

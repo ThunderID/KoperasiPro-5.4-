@@ -107,6 +107,13 @@ window.selectDropdown = {
 							}
 						}
 					}
+
+					// sets preload
+					var _preload = elementTarget.attr('data-preload');
+					if(_preload){
+						window.selectDropdown.setValue(elementTarget, _preload);
+						elementTarget.removeAttr('disabled');
+					}					
 				},
 				fail: function(){
 					// turn off loader if any
