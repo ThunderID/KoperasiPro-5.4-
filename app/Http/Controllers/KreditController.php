@@ -122,6 +122,12 @@ class KreditController extends Controller
 	 */
 	public function store()
 	{
+		/* debug : always return error
+		$this->page_attributes->msg['error'] 	= ['error pkoke'];
+
+		return $this->generateRedirect(route('credit.create'));
+		*/
+
 		try
 		{
 			//============ DATA KREDIT ============//
