@@ -61,6 +61,8 @@
 			description:	this parameters can use data-attribute on select option
 	===================================================================
 **/
+
+	//dd(Input::old());
  @endphp
 
 <h5 class="text-uppercase text-light">Alamat</h5>
@@ -124,7 +126,21 @@
 	<div class="row">
 		<div class="col-md-6">
 
-			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" class="input_loader form-control auto-tabindex select select-regensi select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" placeholder="Pilih" data-placeholder="Pilih" data-loader="kecamatan_loader" data-url="{{ route('distrik.index') }}" data-target-parsing=".select-distrik" data-field="regensi" data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" data-value-from-caption="yes">
+			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" 
+				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[regensi]' }}" 
+				class="input_loader form-control auto-tabindex select select-regensi select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
+				placeholder="Pilih" 
+				data-placeholder="Pilih" 
+				data-loader="kecamatan_loader" 
+				data-url="{{ route('distrik.index') }}" 
+				data-target-parsing=".select-distrik" 
+				data-field="regensi" 
+				data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" 
+				data-value-from-caption="yes"
+				@if(isset(Input::old($param['prefix'])['alamat'][0]['regensi']) || isset(Input::old($param['prefix'])['alamat']['regensi']))
+					data-preload="{{ isset(Input::old($param['prefix'])['alamat'][0]['regensi']) ? Input::old($param['prefix'])['alamat'][0]['regensi'] : Input::old($param['prefix'])['alamat']['regensi'] }}"
+				@endif
+				>
 				{{-- @foreach ($data['provinsi'] as $k => $v)
 					<option value="{{ $v }}" data-id="{{ $k }}" {{ (isset($param['data'][0]['provinsi']) && !is_null($param['data'][0]['provinsi'])) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach --}}
@@ -148,7 +164,20 @@
 	<label class="text-sm">Kecamatan</label>
 	<div class="row">
 		<div class="col-md-6">
-			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[distrik]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[distrik]' }}" class="form-control auto-tabindex select select-distrik select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" placeholder="Pilih" data-placeholder="Pilih" data-url="{{ route('desa.index') }}" data-target-parsing=".select-desa" data-field="distrik" data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" data-value-from-caption="yes">
+			<select id = "{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[distrik]' }}" 
+				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[alamat][0]' : 'alamat') . '[distrik]' }}" 
+				class="form-control auto-tabindex select select-distrik select-get-ajax {{ (isset($settings["class"]) ? $settings["class"] : "") }} {{ (isset($settings["data_attribute_flag"]) ? $settings["data_attribute_flag"] : "") }}" 
+				placeholder="Pilih" 
+				data-placeholder="Pilih" 
+				data-url="{{ route('desa.index') }}" 
+				data-target-parsing=".select-desa" 
+				data-field="distrik" 
+				data-attribute-value="{{ (isset($settings["data_attribute_value"]) ? $settings['data_attribute_value'] : "null") }}" 
+				data-value-from-caption="yes"
+				@if(isset(Input::old($param['prefix'])['alamat'][0]['distrik']) || isset(Input::old($param['prefix'])['alamat']['distrik']))
+					data-preload="{{ isset(Input::old($param['prefix'])['alamat'][0]['distrik']) ? Input::old($param['prefix'])['alamat'][0]['distrik'] : Input::old($param['prefix'])['alamat']['distrik'] }}"
+				@endif
+				>
 				{{-- @foreach ($data['provinsi'] as $k => $v)
 					<option value="{{ $v }}" data-id="{{ $k }}" {{ (isset($param['data'][0]['provinsi']) && !is_null($param['data'][0]['provinsi'])) ? 'selected' : '' }}>{{ $v }}</option>
 				@endforeach --}}

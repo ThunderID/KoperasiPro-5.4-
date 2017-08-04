@@ -16,6 +16,7 @@ window.templateClone = {
 
 			//validate
 			if(window.thunder.formValidation.validateForm($(e.target).closest('.thunder-validation-form')) == false){
+				$('.modal').scrollTop(0);
 				return false;
 			}
 

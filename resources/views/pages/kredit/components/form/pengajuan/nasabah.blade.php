@@ -29,6 +29,14 @@
  * 			contoh: 		tanggal_pengajuan
  */
 @endphp
+
+@php
+	// dd($page_datas);
+	// dd($param);
+	// dd(Input::old());
+@endphp
+
+
 {!! Form::hidden('debitur[debitur_id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
 <h5 class="text-uppercase text-light">Identitas Nasabah</h5>
 <fieldset class="form-group">
@@ -161,6 +169,7 @@
 						{!! Form::file('debitur[foto_ktp]', [
 							'id'								=> 'input_foto_ktp',
 							'class' 							=> 'hidden btn-upload auto-tabindex',
+							'accept' 							=> 'image/jpeg'
 						]) !!} Pilih Foto
 					</label>
 				</span>
@@ -169,6 +178,7 @@
 	</div>
 </fieldset>
 <hr/>
+
 
 
 {{-- form address --}}

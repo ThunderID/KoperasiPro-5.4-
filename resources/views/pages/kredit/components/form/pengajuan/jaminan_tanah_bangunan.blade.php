@@ -82,7 +82,7 @@
 				data-field="masa_berlaku_sertifikat" 
 				placeholder="20xx" 
 				value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}"
-				thunder-validation-rules='required'>
+				thunder-validation-rules='required numbermin={{ (date("Y")) }}'>
 		</div>
 	</div>
 </fieldset>

@@ -37,9 +37,13 @@ var kredit_pengajuan_nasabah = function(){
 	}
 
 	this.init = function(){
-		// 1. disable all input
+		// 1. with files or not
 		if($('#debitur_id').val().length == 0){
 			disableInput();
+		}else{
+			$(document).on('ready', function(){
+				window.selectDropdown.setValue($('#debitur[alamat][0][provinsi]'), 'JAWA TIMUR');
+			});
 		}
 
 
@@ -68,20 +72,22 @@ var kredit_pengajuan_nasabah = function(){
 
 					// if result, set the data 
 					if(result.nama){
+						console.log(result);
 						document.getElementById("debitur_nama").value = result.nama;
 						document.getElementById("debitur_tanggal_lahir").value = result.tanggal_lahir;
-						document.getElementById("debitur_jenis_kelamin").value = result.jenis_kelamin;
-						document.getElementById("debitur_status_perkawinan").value = result.status_perkawinan;
-						document.getElementById("debitur[alamat][0][alamat]").value = result.alamat.alamat;
-						document.getElementById("debitur[alamat][0][rt]").value = result.alamat.rt;
-						document.getElementById("debitur[alamat][0][rw]").value = result.alamat.rw;
-						document.getElementById("debitur[alamat][0][provinsi]").value = result.alamat.provinsi;
-						document.getElementById("debitur[alamat][0][regensi]").value = result.alamat.regensi;
-						document.getElementById("debitur[alamat][0][distrik]").value = result.alamat.distrik;
-						document.getElementById("debitur[alamat][0][desa]").value = result.alamat.desa;
-						document.getElementById("debitur[alamat][0][negara]").value = result.alamat.negara;
+						window.selectDropdown.setValue($(document.getElementById("debitur_jenis_kelamin")), result.jenis_kelamin);
+						window.selectDropdown.setValue($(document.getElementById("debitur_status_perkawinan")), result.status_perkawinan);
+						document.getElementById("debitur[alamat][0][alamat]").value = result.alamat['0'].alamat;
+						document.getElementById("debitur[alamat][0][rt]").value = result.alamat['0'].rt;
+						document.getElementById("debitur[alamat][0][rw]").value = result.alamat['0'].rw;
+
+						$(document.getElementById("debitur[alamat][0][regensi]")).attr('data-preload', result.alamat['0'].regensi);
+						$(document.getElementById("debitur[alamat][0][distrik]")).attr('data-preload', result.alamat['0'].distrik);
+						window.selectDropdown.setValue($(document.getElementById("debitur[alamat][0][provinsi]")), 'JAWA TIMUR');
+
+						document.getElementById("debitur[alamat][0][desa]").value = result.alamat['0'].desa;
 						document.getElementById("debitur[telepon]").value = result.telepon;
-						document.getElementById("debitur_pekerjaan").value = result.pekerjaan;
+						window.selectDropdown.setValue($(document.getElementById("debitur_pekerjaan")), result.pekerjaan);
 						document.getElementById("debitur_penghasilan_bersih").value = result.penghasilan_bersih;				
 					}
 				}});
