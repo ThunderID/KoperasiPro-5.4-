@@ -221,6 +221,17 @@ class KreditController extends Controller
 		}
 		catch (Exception $e)
 		{
+			//reset foto
+			if(!is_null($foto_ktp))
+			{
+				$filename 	= str_replace(url('/'), public_path(), $foto_ktp);
+
+				if (file_exists($filename) && str_is(public_path().'*', $filename)) 
+				{
+					unlink($filename);
+				} 				
+			}
+
 			if (is_array($e->getMessage()))
 			{
 				$this->page_attributes->msg['error'] 	= $e->getMessage();
