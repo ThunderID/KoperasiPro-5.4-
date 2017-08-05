@@ -13,6 +13,9 @@
 	2. wrap your input file with div wrapper, with class selector 
 		matching variable target_input_file_wrapper_class
 	3. Notice: if you're using bs 4, please change "btn-default" class, to desired bs 4 btn class 
+
+	next dev
+	1. validation functions
 */
 
 var imageUploader = function(){
@@ -26,7 +29,7 @@ var imageUploader = function(){
 		1. Upload Async Using Ajax
 		Description 	: use ajax to upload or manually uploaded on form submit.
 	*/	
-	const upload_async_using_ajax = true;
+	// const upload_async_using_ajax = true;
 
 	/*
 		2. Validate On Remove
@@ -100,7 +103,7 @@ var imageUploader = function(){
 	/*
 		1. Append section
 	*/
-	const cloner_parent = 'thunder-cloner-data';
+	const cloner_parent = 'thunder-cloner-append';
 
 	/*
 		2. Appended section
@@ -172,10 +175,39 @@ var imageUploader = function(){
 	/*
 		Template Status no Upload
 		this is the default template, you can create your own by editing file.
-		path : assets/imageUploader/noUpload.html
+		path : assets/imageUploader/statusnoUpload.html
 	*/ 
 
 	const html_tmplate_status_no_upload = require('./assets/imageUploader/statusNoUpload.html');		
+
+	/*
+		Template Status Deleting
+		this is the default template, you can create your own by editing file.
+		path : assets/imageUploader/statusdeleting.html
+	*/ 
+	const html_tmplate_status_deleting = require('./assets/imageUploader/statusDeleting.html');	
+
+	/*
+		Template Status Delete Fail
+		this is the default template, you can create your own by editing file.
+		path : assets/imageUploader/statusdeleting.html
+	*/ 
+	const html_tmplate_status_delete_fail = require('./assets/imageUploader/statusDeleteFail.html');	
+
+	/*
+		Caption delete
+		using fa icon html code
+	*/ 
+
+	const html_delete_caption = "<i class='fa fa-trash-o' aria-hidden='true'></i>";
+
+	/*
+		Caption loading
+		using fa icon html code
+	*/ 
+
+	const html_loading_caption = "<i class='fa fa-circle-o-notch fa-spin fa-fw'></i>";	
+
 
 	/* --------------------------
 	Core Engine
@@ -240,6 +272,9 @@ var imageUploader = function(){
 		// this only happened if validation turned on
 		if(el_pointer_helper != null){
 			// do deletion
+			removeSelectedImage(el_pointer_helper);
+
+			/*
 			if(upload_async_using_ajax == true){
 				// ajaxRemoveImage(null,null);
 				// uiRemoveImage(el_pointer_helper);
@@ -248,6 +283,7 @@ var imageUploader = function(){
 				// ui remove
 				removeSelectedImage(el_pointer_helper);
 			}
+			*/
 		}else{
 			console.log("%cError: imageUploader" + "\n" + "on: removeValidated" + "\n" + "detail: can't get value from el_pointer_helper"  , 'color: red;');
 		}
@@ -289,13 +325,12 @@ var imageUploader = function(){
 		header_el.find('#btn-upload').text(el.attr(target_btn_upload_attribute) ? ' ' + el.attr(target_btn_upload_attribute) : ' ' + default_btn_upload);
 		
 		// deal with ajax
-		if(upload_async_using_ajax){ 
-			// set buttons     
-			el.find('#content').find('#content-template').find('.' + target_btn_remove_attribute).attr('disabled', '');
-			// set helpers
-			el.find('#input-helper').attr('name', inp_name);
-			inp.removeAttr('name');
-		}
+		// set buttons     
+		el.find('#content').find('#content-template').find('.' + target_btn_remove_attribute).attr('disabled', '');
+
+		// set helpers
+		inp.attr('input-name', inp_name);
+		inp.removeAttr('name');
 	}
 
 	var addSelectedImage = function(el){
@@ -319,6 +354,9 @@ var imageUploader = function(){
 				latest_append.find('#loader').remove();
 			}
 
+			ajaxStartUpload(_file, el.closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), latest_append);
+
+			/*
 			// ajax upload?
 			if(upload_async_using_ajax == true){
 				// call upload function
@@ -328,6 +366,7 @@ var imageUploader = function(){
 				status.find('#uploading').css('display', 'none');
 				status.find('#noUpload').css('display', 'block');
 			}
+			*/
 		});
 
 		// ui manage
@@ -341,6 +380,18 @@ var imageUploader = function(){
 	}
 
 	var removeSelectedImage = function(el){
+		// if ajax has error recently
+
+		// cek this
+		// console.log(el);
+		// console.log(el.closest('.' + cloner_data));
+		// console.log(el.closest('.' + cloner_data).find(':input.data-url'));
+		var _file = el.closest('.' + cloner_data).find(':input.data-url').val();
+		if(_file != ''){
+			ajaxRemoveImage(_file, el.closest('.' + cloner_data));
+			return true;
+		}
+		/*
 		// if ajax, remove data from server
 		if(upload_async_using_ajax == true){
 			// if ajax has error recently
@@ -349,6 +400,7 @@ var imageUploader = function(){
 				return true;
 			}
 		}
+		*/
 
 		uiRemoveImage(el);
 		return true;
@@ -356,7 +408,7 @@ var imageUploader = function(){
 
 	var uiManagement = function(el){
 		// get cloned number
-		var ctr = el.find('.' + cloner_parent).length;
+		var ctr = el.find('.' + cloner_data).length;
 
 		if(ctr == 0){
 			// display no data
@@ -370,7 +422,7 @@ var imageUploader = function(){
 	function uiRemoveImage(el){
 		// ui
 		var parent_of_the_removed = el.closest('#content');
-		window.thunder.cloner.remove(el.closest('.' + cloner_parent));
+		window.thunder.cloner.remove(el.closest('.' + cloner_data));
 
 		// Ui management
 		uiManagement(parent_of_the_removed);
@@ -443,14 +495,19 @@ var imageUploader = function(){
 		    status.append($(html_tmplate_status_uploaded).html());
 			el.find('.' + target_btn_remove_attribute).attr('disabled', false);
 
-			//set filesname
-			console.log(response);
+			// get current file names
+			var inp_name = el.closest('.form-group').find('input:file').attr('input-name');
+			var target = el.find('.data-url');
+			target.attr('name', inp_name + '[]');
+			target.val(response.data.url);
+			return true;
 		}
 
 		var onFail = function(response){
 			status.empty();
 		    status.append($(html_tmplate_status_fail).html());
 			el.find('.' + target_btn_remove_attribute).attr('disabled', false);
+			return true;
 		}
 		var progressHandling = function (event) {
 		    var percent = 0;
@@ -464,8 +521,46 @@ var imageUploader = function(){
 		}		
 	}
 
-	var ajaxRemoveImage = function(filename, url){
+	var ajaxRemoveImage = function(file, el){
+	    // sets ui
+	    var status = el.find('#status');
+	    status.empty();
+	    status.append($(html_tmplate_status_deleting).html());
+		el.find('.' + target_btn_remove_attribute).attr('disabled', true);
 
+		// sets param
+		var url = el.closest('.thunder-imgUploader').attr(target_ajax_remove_url) + "?url=" + file + "&token=";
+	    var _token = $(el).closest('form').find('#_token').val();
+
+		$.ajax({
+	        type: "GET",
+	        url: url,
+	        xhr: function () {
+	            var myXhr = $.ajaxSettings.xhr();
+	            return myXhr;
+	        },		    
+	        success: function (response) {
+	            onSuccess(response);
+	        },
+	        error: function (error) {
+	            onFail(error);
+	        },
+	        async: true,
+	        cache: false,
+	        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	        processData: false,
+	        timeout: 60000
+		});
+
+		var onSuccess = function(response){
+			uiRemoveImage(el.find('.' +  target_btn_remove_attribute));
+		}
+
+		var onFail = function(response){
+			status.empty();
+		    status.append($(html_tmplate_status_delete_fail).html());
+			el.find('.' + target_btn_remove_attribute).attr('disabled', false);
+		}
 	}
 }
 
