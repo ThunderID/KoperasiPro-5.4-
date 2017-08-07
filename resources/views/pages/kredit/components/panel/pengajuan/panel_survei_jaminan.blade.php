@@ -16,7 +16,7 @@
 		{{----------------  FORM SURVEI JAMINAN KENDARAAN  --------------}}
 		@forelse ((array)$page_datas->credit['jaminan_kendaraan'] as $k => $v)
 			@forelse((array)$v['survei_jaminan_kendaraan'] as $k2 => $v2)
-				<div class="hidden" data-form="survei-jaminan-kendaraan-{{ $k }}-{{ $k2 }}">
+				<div class="hidden survei-jaminan-kendaraan" data-form="survei-jaminan-kendaraan-{{ $k }}-{{ $k2 }}">
 					<div class="row">
 						<div class="col-sm-12">
 							<p class="text-capitalize m-b-sm text-lg">form survei jaminan kendaraan</p>
@@ -42,7 +42,7 @@
 			@endforelse
 	
 			@php $v['id']	= null; @endphp
-			<div class="hidden" data-form="survei-jaminan-kendaraan-{{ $k }}--1">
+			<div class="hidden survei-jaminan-kendaraan" data-form="survei-jaminan-kendaraan-{{ $k }}--1">
 				<div class="row">
 					<div class="col-sm-12">
 						<p class="text-capitalize m-b-sm text-lg">form survei jaminan kendaraan</p>
@@ -73,7 +73,7 @@
 		{{---------------- FORM JAMINAN TANAH & BANGUNAN --------------}}
 		@forelse ((array)$page_datas->credit['jaminan_tanah_bangunan'] as $k => $v)
 			@forelse((array)$v['survei_jaminan_tanah_bangunan'] as $k2 => $v2)
-				<div class="hidden" data-form="survei-jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">
+				<div class="hidden survei-jaminan-tanah-bangunan" data-form="survei-jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">
 					<div class="row">
 						<div class="col-sm-12">
 							<p class="text-capitalize m-b-sm text-lg">form survei tanah &amp; bangunan</p>
@@ -98,7 +98,7 @@
 			@endforelse
 		
 			@php $v['id']	= null; @endphp
-			<div class="hidden" data-form="survei-jaminan-tanah-bangunan-{{ $k }}--1">
+			<div class="hidden survei-jaminan-tanah-bangunan" data-form="survei-jaminan-tanah-bangunan-{{ $k }}--1">
 				<div class="row">
 					<div class="col-sm-12">
 						<p class="text-capitalize m-b-sm text-lg">form survei jaminan tanah &amp; bangunan</p>
