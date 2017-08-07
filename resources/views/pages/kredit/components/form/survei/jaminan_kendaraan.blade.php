@@ -4,7 +4,14 @@
 	<label class="text-sm">Jenis Kendaraan</label>
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::select('jaminan_kendaraan[tipe]', $page_datas->select_jenis_kendaraan, (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'form-control auto-tabindex quick-select select', 'placeholder' => '', 'data-other' => 'input-tipe-jaminan-kendaraan', 'data-default' => 'roda_2']) !!}
+			{!! Form::select('jaminan_kendaraan[tipe]', $page_datas->select_jenis_kendaraan, (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), [
+				'id' 	=> 'add-survei-jenis-kendaraan',
+				'class' => 'form-control auto-tabindex quick-select select', 
+				'placeholder' => 'Pilih',
+				'data-placeholder' => 'Pilih', 
+				'data-other' => 'input-tipe-jaminan-kendaraan',
+				'onChange' 	=> 'uiJenisKendaraan(this);' 
+			]) !!}
 			{{-- {!! Form::hidden('jaminan_kendaraan[tipe]', (isset($param['data']['tipe']) ? $param['data']['tipe'] : 'roda_2'), ['class' => 'input-tipe-jaminan-kendaraan input-kendaraan', 'data-field' => 'tipe']) !!} --}}
 		</div>
 	</div>
@@ -13,9 +20,13 @@
 	<label class="text-sm">Merk</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, 
-				(isset($param['data']['merk']) ? (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? $param['data']['merk'] : 'lain_lain') : 'daihatsu'), 
-				['class' => 'form-control auto-tabindex quick-select select', 'placeholder' => 'Merk Kendaraan', 'data-other' => 'input-merk-kendaraan']) !!}
+			{!! Form::select('jaminan_kendaraan[merk]', $page_datas->select_merk_kendaraan, null, [
+				'id'	=> 'merk-kendaraan',
+				'class' => 'form-control auto-tabindex quick-select select', 
+				'placeholder' => 'Merk Kendaraan', 
+				'data-other' => 'input-merk-kendaraan',
+				'data-preload' => $param['data']['merk']
+			]) !!}
 			{{-- {!! Form::text('jaminan_kendaraan[merk]', (isset($param['data']['merk']) ? $param['data']['merk'] : 'daihatsu'), ['class' => 'form-control auto-tabindex m-t-sm input-merk-kendaraan input-kendaraan ' . (isset($param['data']['merk']) && (in_array($param['data']['merk'], ['daihatsu', 'honda', 'isuzu', 'kawasaki', 'kia', 'mitsubishi', 'nissan', 'suzuki', 'toyota', 'yamaha']) ? 'hidden' : (!isset($param['data']['merk']) ? 'hidden' : ''))), 'placeholder' => 'Sebutkan', 'style' => 'width:40%;']) !!} --}}
 		</div>
 	</div>
@@ -147,3 +158,50 @@
 		</div>
 	</div>
 </fieldset>
+
+
+<script type="text/javascript">
+	//init 
+	function initJaminanKendaraan(){
+		$(document).find('.survei-jaminan-kendaraan').each(function(){
+			uiJenisKendaraan($(this).find('#add-survei-jenis-kendaraan'));
+		});
+	}
+
+
+	function uiJenisKendaraan(e){
+		if($(e).val()){
+			// init
+			var merk = [];
+			@foreach($page_datas->select_merk_kendaraan as $kategori => $values)
+				merk["{{$kategori}}"] = [
+					@foreach($values as $merk)
+						'{{$merk}}',
+					@endforeach
+				];
+			@endforeach
+
+			// if val not empty
+			var elementTarget = $(e).closest('.form-group').next('.form-group').find('#merk-kendaraan');
+
+			elementTarget.html('');
+
+			if($(e).val() != ''){
+				// set ux roles
+				elementTarget.prop('disabled', false);
+
+				// set options based on tipe
+				$.each(merk[$(e).val()], function(index, value) {
+					var $option = $("<option value='" + value + "' data-id='" + value + "'>" +  window.thunder.stringManipulator.ucWords(window.thunder.stringManipulator.toSpace(value)) +"</option>");
+					elementTarget.append($option);
+				});					
+			}else{
+				elementTarget.prop('disabled', true);
+			}
+
+			// preload
+			window.selectDropdown.setValue(elementTarget, elementTarget.attr('data-preload'));
+		}
+	}
+
+</script>
