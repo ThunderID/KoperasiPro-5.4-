@@ -265,7 +265,8 @@ var imageUploader = function(){
 
 	this.retryUpload = function(el){
 		// get image fo re upload? for img maybe?
-		ajaxStartUpload([], $(el).closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), $(el).closest('.' + cloner_data));
+		var img = $(el).closest(".thunder-cloner-data").find('#canvas').attr('src');
+		ajaxStartUpload(img, $(el).closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), $(el).closest('.' + cloner_data));
 	}
 
 	this.removeValidated = function(){
@@ -273,17 +274,6 @@ var imageUploader = function(){
 		if(el_pointer_helper != null){
 			// do deletion
 			removeSelectedImage(el_pointer_helper);
-
-			/*
-			if(upload_async_using_ajax == true){
-				// ajaxRemoveImage(null,null);
-				// uiRemoveImage(el_pointer_helper);
-				removeSelectedImage(el_pointer_helper);
-			}else{
-				// ui remove
-				removeSelectedImage(el_pointer_helper);
-			}
-			*/
 		}else{
 			console.log("%cError: imageUploader" + "\n" + "on: removeValidated" + "\n" + "detail: can't get value from el_pointer_helper"  , 'color: red;');
 		}
@@ -352,21 +342,8 @@ var imageUploader = function(){
 			var drawer =  window.thunder.imagePreviewer.preview(_file,latest_append.find('#canvas'));
 			drawer.onloadend = function(){
 				latest_append.find('#loader').remove();
+				ajaxStartUpload(drawer.result , el.closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), latest_append);
 			}
-
-			ajaxStartUpload(_file, el.closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), latest_append);
-
-			/*
-			// ajax upload?
-			if(upload_async_using_ajax == true){
-				// call upload function
-				ajaxStartUpload(_file, el.closest('.' + target_input_file_wrapper_class).attr(target_ajax_store_url), latest_append);
-			}else{
-				var status = latest_append.find('#status');
-				status.find('#uploading').css('display', 'none');
-				status.find('#noUpload').css('display', 'block');
-			}
-			*/
 		});
 
 		// ui manage
@@ -377,30 +354,17 @@ var imageUploader = function(){
 			var content = el.closest('.' + target_input_file_wrapper_class).find('#content');
 			return window.thunder.cloner.clone(content, content.find('#content-template'));
 		}
+
+		// reset input
+		el.val('');
 	}
 
 	var removeSelectedImage = function(el){
-		// if ajax has error recently
-
-		// cek this
-		// console.log(el);
-		// console.log(el.closest('.' + cloner_data));
-		// console.log(el.closest('.' + cloner_data).find(':input.data-url'));
 		var _file = el.closest('.' + cloner_data).find(':input.data-url').val();
 		if(_file != ''){
 			ajaxRemoveImage(_file, el.closest('.' + cloner_data));
 			return true;
 		}
-		/*
-		// if ajax, remove data from server
-		if(upload_async_using_ajax == true){
-			// if ajax has error recently
-			if(el.closest('.' + cloner_data).find('#failed').css('display') == 'none'){
-				ajaxRemoveImage(null, null);
-				return true;
-			}
-		}
-		*/
 
 		uiRemoveImage(el);
 		return true;
@@ -428,14 +392,6 @@ var imageUploader = function(){
 		uiManagement(parent_of_the_removed);
 	}
 
-	function disableSubmitButton(el){
-
-	}
-
-	function enableSubmitButton(el){
-
-	}
-
 	/* --------------------------
 	AJAX
 	-------------------------- */
@@ -448,19 +404,22 @@ var imageUploader = function(){
 	    status.append($(html_tmplate_status_uploading).html());
 		el.find('.' + target_btn_remove_attribute).attr('disabled', true);
 
+		// sets image data
+		var base64result = img.substr(img.indexOf(',') + 1);
+	    formData.append("_file", base64result);
 
-	    // add assoc key values, this will be posts values
-	    formData.append("file", img, img.filename);
-	    formData.append("upload_file", true);
+	    // sets token crsf if any
+	    if($(el).closest('form').find('input[name="_token"]').val()){
+		    var _token = $(el).closest('form').find('input[name="_token"]').val();
+		    formData.append("_token", _token);
+	    }else{
+			console.log("%Warning: imageUploader" + "\n" + "on: uploadImage" + "\n" + "detail: Data sends without csrf token"  , 'color: orange;');
+	    }
 
-	    var _token = $(el).closest('form').find('#_token').val();
-
+	    // send ajax
 	    $.ajax({
 	        type: "POST",
 	        url: url,
-	        headers: {
-		        'X-CSRF-TOKEN': _token
-		    },
 	        xhr: function () {
 	            var myXhr = $.ajaxSettings.xhr();
 	            if (myXhr.upload) {
@@ -476,21 +435,25 @@ var imageUploader = function(){
 	        },
 	        async: true,
 	        data: formData,
+	        dataType : "json",
 	        cache: false,
-	        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-	        processData: false,
+	        contentType: false,
+			processData: false,
 	        timeout: 60000
 		});
 
-	    function uint8ToString(buf) {
-		    var i, length, out = '';
-		    for (i = 0, length = buf.length; i < length; i += 1) {
-		        out += String.fromCharCode(buf[i]);
-		    }
-		    return out;
-		}
-
 		var onSuccess = function(response){
+			// try validate
+			try {
+				if(response.status != 'success'){
+					status.empty();
+				    status.append($(html_tmplate_status_fail).html());
+					el.find('.' + target_btn_remove_attribute).attr('disabled', false);
+					return true;
+				}
+			} catch(e) {}
+
+			// set success
 			status.empty();
 		    status.append($(html_tmplate_status_uploaded).html());
 			el.find('.' + target_btn_remove_attribute).attr('disabled', false);
@@ -553,6 +516,15 @@ var imageUploader = function(){
 		});
 
 		var onSuccess = function(response){
+			// try validate
+			try {
+				if(response.status != 'success'){
+					status.empty();
+				    status.append($(html_tmplate_status_delete_fail).html());
+					el.find('.' + target_btn_remove_attribute).attr('disabled', false);
+				}
+			} catch(e) {}
+
 			uiRemoveImage(el.find('.' +  target_btn_remove_attribute));
 		}
 
