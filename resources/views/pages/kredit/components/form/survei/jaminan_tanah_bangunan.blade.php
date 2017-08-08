@@ -338,7 +338,6 @@
 
 
 	function uiJenisSertifikat(e){
-		console.log('tanah');
 		if($(e).val()){
 			if($(e).val().toLowerCase() == 'shm'){
 				$(e).closest('form').find('#masa_berlaku_sertifikat').closest('.form-group').css('display','none');
