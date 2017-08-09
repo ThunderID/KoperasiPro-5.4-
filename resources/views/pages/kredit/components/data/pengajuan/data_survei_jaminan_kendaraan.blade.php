@@ -177,7 +177,7 @@
 		<!-- No data -->
 		<div class="row m-t-md">
 			<div class="col-sm-12">
-				<p class="text-light"><a href="#" data-toggle="hidden" data-target="survei-jaminan-kendaraan-{{ $key }}--1" data-panel="survei-jaminan" no-data-pjax> Tambahkan Survei </a></p>
+				<p class="text-light"><a href="#" data-toggle="hidden" data-target="survei-jaminan-kendaraan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanKendaraan();" no-data-pjax> Tambahkan Survei </a></p>
 			</div>
 		</div>
 		<div class="clearfix">&nbsp;</div>
@@ -185,7 +185,7 @@
 		<!-- No data -->
 		<div class="row m-b-md">
 			<div class="col-sm-12">
-				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-kendaraan-{{ $key }}--1" data-panel="survei-jaminan" no-data-pjax> Tambahkan Sekarang </a></p>
+				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-kendaraan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanKendaraan();" no-data-pjax> Tambahkan Sekarang </a></p>
 			</div>
 		</div>
 	@endforelse

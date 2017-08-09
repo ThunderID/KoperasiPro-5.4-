@@ -114,8 +114,10 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::get('/notification',					['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
 
 	//here lies test routes
+	/*
 	Route::get('/index', 						['uses' => 'DashboardController@indextest1', 	'as' => 'dashboard.sample.index']);
 	Route::get('/index2', 						['uses' => 'DashboardController@indextest2', 	'as' => 'dashboard.sample.index2']);
+	*/
 });
 
 // route to get json from helper for get address to select2

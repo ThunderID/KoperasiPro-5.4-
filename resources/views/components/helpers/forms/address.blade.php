@@ -59,13 +59,14 @@
 			required:		yes (if usage 'data_attribute_flag')
 			value:			string
 			description:	this parameters can use data-attribute on select option
+	4. title
+		required:			no
+		description:		input section title	
 	===================================================================
 **/
-
-	//dd(Input::old());
  @endphp
 
-<h5 class="text-uppercase text-light">Alamat</h5>
+<h5 class="text-uppercase text-light">{{ isset($title) ? $title : 'Alamat' }}</h5>
 <fieldset class="form-group">
 	<label class="text-sm">Jalan</label>
 	<div class="row">

@@ -81,7 +81,7 @@
 	<label class="text-sm">Merk</label>
 	<div class="row">
 		<div class="col-md-4">
-			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="thunder-validation-input form-control select-merk select auto-tabindex input-merk-kendaraan input-kendaraan" placeholder="Pilih" data-placeholder="Pilih" data-other="input-merk-kendaraan" data-field="merk" thunder-validation-rules='required'>
+			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="thunder-validation-input form-control select-merk select auto-tabindex input-merk-kendaraan input-kendaraan" placeholder="Pilih" data-placeholder="Pilih" data-other="input-merk-kendaraan" data-field="merk" thunder-validation-rules='required' data-preload="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : '' }}">
 			@if(isset($param['data']['merk']))
 				<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
 			@endif
@@ -137,6 +137,7 @@
 			$('.select-merk').prop('disabled', true);
 		}
 
-		elementTarget.val('');		
+		// preload
+		window.selectDropdown.setValue(elementTarget, elementTarget.attr('data-preload'));	
 	}
 </script>

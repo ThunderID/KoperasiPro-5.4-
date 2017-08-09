@@ -5,6 +5,7 @@ use App\Service\Teritorial\TeritoriIndonesia;
 // use TQueries\Kredit\DaftarKreditur;
 use App\Service\Helpers\UI\UploadBase64Gambar;
 use App\Service\Helpers\API\JSend;
+use Illuminate\Http\Request;
 
 use Input;
 /**
@@ -84,9 +85,9 @@ Class HelperController extends Controller
 	// 	return response()->json($kreditur[0]);
 	// }
 
-	public function storeGambar()
-	{
-		$input 		= Input::get('survei');
+	public function storeGambar(Request $request)
+	{		
+		$input 		= $request->input('_file');
 
 		$survei 	= base64_decode($input);
 		$gambar 	= new UploadBase64Gambar('survei', ['image' => $survei]);
