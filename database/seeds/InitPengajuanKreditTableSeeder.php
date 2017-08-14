@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use App\Service\Pengajuan\PengajuanKredit;
+use App\Service\Pengajuan\UpdateDebitur;
 
 use Carbon\Carbon;
 use App\Service\Akses\SessionBasedAuthenticator;
@@ -30,6 +31,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 		$sba 			= new SessionBasedAuthenticator;
 		$sba 			= $sba->login($credentials);
+		$logged 		= new SessionBasedAuthenticator;
+		$logged 		= $logged->loggedUser();
 
 		$jk   		= ['pa', 'pt', 'rumah_delta'];
 		$gndr   	= ['perempuan', 'laki-laki'];
@@ -54,6 +57,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 			'https://balyanurmd.files.wordpress.com/2013/12/ktp-masa-depan.jpg',
 			'https://pbs.twimg.com/media/BXjQAxjIEAAVhox.jpg',
 		];
+		
+		$hubungan	= ['orang_tua', 'pasangan', 'anak'];
 
 		//jaminan kendaraan
 		foreach (range(0, 20) as $key) 
@@ -67,7 +72,8 @@ class InitPengajuanKreditTableSeeder extends Seeder
 								'negara'			=> 'Indonesia',
 							];
 
-			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)]);
+
+			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)], null, ['id' => $logged['id']]);
 
 			$pengajuan->tambahJaminanKendaraan($type_k[rand(0,2)], $merk_k[rand(0,9)], rand(1990,2016), $char[rand(0,25)].' '.rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9).rand(1,9), $faker->name);
 
@@ -75,7 +81,11 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), [$alamat]);
 
-			$pengajuan->save();
+			$pengajuan 		= $pengajuan->save();
+
+			$debitur 		= new UpdateDebitur($pengajuan['orang_id']);
+			$debitur->tembahRelasi($hubungan[rand(0,2)], null, $faker->name, null, null, null, $faker->phoneNumber, null, null, true, [$alamat], null);
+			$debitur->save();
 		}
 
 		//jaminan tanah dan bangunan
@@ -110,7 +120,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$lt 			= rand(36,144);
 
-			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)]);
+			$pengajuan 		= new PengajuanKredit($jk[rand(0,2)], $jw[rand(0,10)], 'Rp '.rand(10,100).'.000.000', Carbon::now()->subDays(rand(1,30))->format('d/m/Y'), [], null, $foto[rand(0,4)], null, ['id' => $logged['id']]);
 
 			$pengajuan->tambahJaminanTanahBangunan('tanah', $type_s[rand(0,1)], rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), rand(2018,2035), $faker->name, $alamat_tb_1, rand(36,144), 0);
 
@@ -118,9 +128,11 @@ class InitPengajuanKreditTableSeeder extends Seeder
 
 			$pengajuan->setDebitur('35-73-03-'.rand(100000,710000).'-000'.rand(1,4).'', $faker->name, Carbon::parse(rand(17,60).' years ago')->format('d/m/Y'), $gndr[rand(0,1)], $sp[rand(0,3)], $faker->phoneNumber, $pekerjaan[rand(0,5)], 'Rp '.rand(1,9).rand(1,9).'00.000', rand(0,1), [$alamat]);
 
-			$pengajuan->save();
-		}
+			$pengajuan 		= $pengajuan->save();
 
-		
+			$debitur 		= new UpdateDebitur($pengajuan['orang_id']);
+			$debitur->tembahRelasi($hubungan[rand(0,2)], null, $faker->name, null, null, null, $faker->phoneNumber, null, null, true, [$alamat], null);
+			$debitur->save();
+		}
 	}
 }

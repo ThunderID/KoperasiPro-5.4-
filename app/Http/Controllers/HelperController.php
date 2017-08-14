@@ -3,7 +3,11 @@ namespace App\Http\Controllers;
 
 use App\Service\Teritorial\TeritoriIndonesia;
 // use TQueries\Kredit\DaftarKreditur;
+use App\Service\Helpers\UI\UploadBase64Gambar;
+use App\Service\Helpers\API\JSend;
+use Illuminate\Http\Request;
 
+use Input;
 /**
  * Class HelperController
  * Description: digunakan untuk membantu UI untuk mengambil data
@@ -16,7 +20,7 @@ Class HelperController extends Controller
 	 * fungsi get cities
 	 * Description: berfungsi untuk mendapatkan city dari id province tertentu
 	 */
-	function getRegensi()
+	public function getRegensi()
 	{
 		$id 			= request()->input('id');
 		$call 		= new TeritoriIndonesia;
@@ -34,7 +38,7 @@ Class HelperController extends Controller
 	 * fungsi get distrik
 	 * Description: untuk mendapatkan distrik dari regensi tertentu
 	 */
-	function getDistrik()
+	public function getDistrik()
 	{
 		$id 			= request()->input('id');
 		$call 		= new TeritoriIndonesia;
@@ -52,7 +56,7 @@ Class HelperController extends Controller
 	 * fungsi get desa
 	 * Description: untuk mendapatkan desa dari distrik tertentu
 	 */
-	function getDesa()
+	public function getDesa()
 	{
 		$id 			= request()->input('id');
 		$call		= new TeritoriIndonesia;
@@ -70,7 +74,7 @@ Class HelperController extends Controller
 	 * fungsi get data kreditur
 	 * description: untuk mendapatkan data kreditur yang sudah ada
 	 */
-	// function getDaftarKreditur()
+	// public function getDaftarKreditur()
 	// {
 	// 	$id 			= request()->input('nik');
 	// 	$call 			= new DaftarKreditur;
@@ -80,4 +84,30 @@ Class HelperController extends Controller
 
 	// 	return response()->json($kreditur[0]);
 	// }
+
+	public function storeGambar(Request $request)
+	{		
+		$input 		= $request->input('_file');
+
+		$survei 	= base64_decode($input);
+		$gambar 	= new UploadBase64Gambar('survei', ['image' => $survei]);
+		$gambar 	= $gambar->handle();
+
+		return JSend::success($gambar)->asArray();
+	}
+
+	public function destroyGambar()
+	{
+		$filename	= Input::get('url');
+		$filename 	= str_replace(url('/'), public_path(), $filename);
+
+		if (file_exists($filename) && str_is(public_path().'*', $filename)) 
+		{
+			unlink($filename);
+
+			return JSend::success([])->asArray();
+		} 
+
+		return JSend::error(['File tidak ada!'])->asArray();
+	}
 }

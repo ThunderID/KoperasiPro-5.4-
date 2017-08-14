@@ -53,7 +53,7 @@
 						<li class="m-b-xs">
 							<a href="#"><i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening</a>
 						</li> -->
-						@if(count($page_datas->credit['jaminan_kendaraan']) )
+						<!-- @if(count($page_datas->credit['jaminan_kendaraan']) ) -->
 							<li class="dropdown-header">Legalitas Jaminan Kendaraan</li>
 								<li class="m-b-xs">
 									<a href="{{route('credit.print.realisasi', ['id' => $page_datas->credit['id'], 'jj' => 'jk', 'dokumen' => 'berita_acara_penyerahan_jaminan'])}}"><i class="fa fa-file-text-o"></i>&nbsp; Berita Acara Penyerahan Jaminan </a>
@@ -63,7 +63,7 @@
 									<a href="{{route('credit.print.realisasi', ['id' => $page_datas->credit['id'], 'jj' => 'jk', 'dokumen' => 'surat_perjanjian_kredit'])}}"><i class="fa fa-file-text-o"></i>&nbsp; Surat Perjanjian Kredit </a>
 								</li>
 							</li>
-						@endif
+						<!-- @endif -->
 
 						@if(count($page_datas->credit['jaminan_tanah_bangunan']) )
 							<li class="dropdown-header">Legalitasi Jaminan Tanah Bangunan</li>
@@ -74,11 +74,11 @@
 								</li>
 							</li>
 						@endif
-						<!-- <li class="dropdown-header">Realisasi</li>
+						<li class="dropdown-header">Realisasi</li>
 							<li class="m-b-xs">
 								<a href="{{route('credit.print.realisasi', ['id' => $page_datas->credit['id'], 'jj' => 'jtb', 'dokumen' => 'pernyataan_penjamin_jaminan'])}}"><i class="fa fa-file-text-o"></i>&nbsp; Nota Pencairan </a>
 							</li>
-						</li> -->
+						</li>
 					</ul>
 				</div>
 				{{-- <a href="#" data-url="{{ route('credit.print', ['mode' => 'pengajuan', 'id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary btn-print hidden-xs hidden-sm">

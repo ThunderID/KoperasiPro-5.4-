@@ -31,4 +31,22 @@
 
 @section('template-styles')
 	body{ background-color: #fff; }
+	.header { font-size: 18px !important; }
+	.title { font-size: 17px !important; }
+	.text { font-size: 16px !important; }
+	.label-fa-icon { font-size: 17px !important; }
+	.row-info { margin-top: 10px; margin-bottom: 10px; }
+	.money { 
+		float: right;
+		bottom: 0px;
+	}
+	.string { 
+		bottom: 0px;
+	}
+	.line-info { margin-right: 30px; border-bottom: 1px }
+	.dot-line { margin-top: 2px; border-bottom: 2px dotted #bbb;  }
+	.word-justify { 
+		text-align: justify;
+		text-justify: inter-word;
+	}
 @endsection

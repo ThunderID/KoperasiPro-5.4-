@@ -14,6 +14,12 @@ window.templateClone = {
 		$('.add').click(function(e) {
 			e.preventDefault();
 
+			//validate
+			if(window.thunder.formValidation.validateForm($(e.target).closest('.thunder-validation-form')) == false){
+				$('.modal').scrollTop(0);
+				return false;
+			}
+
 			window.templateClone.template 	= this.dataset.template;
 			window.templateClone.content 	= this.dataset.content;
 			window.templateClone.typeClone 	= this.dataset.typeclone;
@@ -89,7 +95,7 @@ window.templateClone = {
 
 					contentItem.find('#'+ template + '-default').addClass('hidden');
 
-					cloneItem.find('.action').html('<a href="#" class="text-danger remove" data-typeclone="' +typeClone+ '"\
+					cloneItem.find('.action').html('<a href="#" class="text-danger remove pull-right" data-typeclone="' +typeClone+ '"\
 						 data-template="' +template+'" data-content="' +content+ '" data-availableadd="' +maxAdd+ '" data-inputprefix="' +param.prefix+ '"\
 						 ><i class="fa fa-trash"></i> Hapus</a>');
 
@@ -260,10 +266,12 @@ window.templateClone = {
 	 */
 	fillableAdd: function (countItem, availableAdd) {
 		if (countItem >= availableAdd) {
-			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+			// $('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').addClass('disabled');
+			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').css('display', 'none');
 			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').siblings('.info-add').removeClass('hidden');
 		} else {
-			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+			// $('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').removeClass('disabled');
+			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').css('display', 'block');
 			$('#' + window.templateClone.content).parent().parent().find('.modal-add-jaminan').siblings('.info-add').addClass('hidden');
 		}
 	},
@@ -292,7 +300,12 @@ window.templateClone = {
 				} else {
 					value = v;
 				}
-				itemClone.find('.' + k).html(value);
+
+				if ((k == 'masa_berlaku_sertifikat') && (data.jenis_sertifikat == 'hgb')) {
+					itemClone.find('.jenis_sertifikat').append('<p class="text-sm text-light"><i>( ' + value + ' )</i></p>');
+				} else {
+					itemClone.find('.' + k).html(value);
+				}
 				inputHidden = window.templateClone.addInputHidden(prefix + '[' + k + '][]', v);
 				itemClone.append(inputHidden);
 			});

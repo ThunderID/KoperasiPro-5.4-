@@ -71,6 +71,7 @@ class JaminanTanahBangunan extends BaseModel
 											'taksasi_tanah'				,
 											'taksasi_bangunan'			,
 											'njop'						,
+											'pbb_terakhir'				,
 											'url_barcode'				,
 											'alamat'					,
 											'uraian'					,
@@ -105,6 +106,7 @@ class JaminanTanahBangunan extends BaseModel
 											'taksasi_tanah'				=> 'numeric',
 											'taksasi_bangunan'			=> 'numeric',
 											'njop'						=> 'numeric',
+											'pbb_terakhir'				=> 'numeric',
 										];
 	/**
 	 * Date will be returned as carbon
@@ -138,6 +140,11 @@ class JaminanTanahBangunan extends BaseModel
 		return $this->belongsTo('App\Domain\Pengajuan\Models\JaminanTanahBangunan', 'jaminan_tanah_bangunan_id');
 	}	
 
+	public function foto_jaminan()
+	{
+		return $this->hasMany('App\Domain\Survei\Models\FotoJaminan', 'jaminan_id');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/
@@ -162,6 +169,11 @@ class JaminanTanahBangunan extends BaseModel
 		return $this->formatMoneyTo($value);
 	}
 
+	public function getPbbTerakhirAttribute($value)
+	{
+		return $this->formatMoneyTo($value);
+	}
+
 	public function getAlamatAttribute($value)
 	{
 		return $this->formatAlamatTo($value);
@@ -178,26 +190,32 @@ class JaminanTanahBangunan extends BaseModel
 
 	public function setNilaiJaminanAttribute($value)
 	{
-		$this->attributes['nilai_jaminan']				= $this->formatMoneyFrom($value);
+		$this->attributes['nilai_jaminan']			= $this->formatMoneyFrom($value);
 	}
 
 	public function setTaksasiTanahAttribute($value)
 	{
-		$this->attributes['taksasi_tanah']				= $this->formatMoneyFrom($value);
+		$this->attributes['taksasi_tanah']			= $this->formatMoneyFrom($value);
 	}
 
 	public function setTaksasiBangunanAttribute($value)
 	{
-		$this->attributes['taksasi_bangunan']			= $this->formatMoneyFrom($value);
+		$this->attributes['taksasi_bangunan']		= $this->formatMoneyFrom($value);
 	}
 
 	public function setAlamatAttribute($value)
 	{
-		$this->attributes['alamat']		  	= $this->formatAlamatFrom($value);
+		$this->attributes['alamat']		  			= $this->formatAlamatFrom($value);
 	}
+
 	public function setNjopAttribute($value)
 	{
-		$this->attributes['njop']						= $this->formatMoneyFrom($value);
+		$this->attributes['njop']					= $this->formatMoneyFrom($value);
+	}
+
+	public function setPbbTerakhirAttribute($value)
+	{
+		$this->attributes['pbb_terakhir']			= $this->formatMoneyFrom($value);
 	}
 
 	/* ---------------------------------------------------------------------------- FUNCTIONS ----------------------------------------------------------------------------*/

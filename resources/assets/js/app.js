@@ -47,3 +47,6 @@ require ('./modules/tab-scrolling.js');
 
 // add module map
 require ('./modules/map.js');
+
+// UX
+require ('./modules/ux-roles/manifest.js');

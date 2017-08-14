@@ -3,7 +3,7 @@
 	<div class="clearfix">&nbsp;</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<h1 class="text-capitalize">Form Survei Aset Kendaraan</h1>
+			<h1 class="text-capitalize">Form Survei Aset Usaha</h1>
 		</div>
 	</div>
 	<div class="clearfix">&nbsp;</div>

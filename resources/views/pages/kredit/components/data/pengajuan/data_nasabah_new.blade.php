@@ -37,7 +37,7 @@
 			<p class="text-capitalize text-light m-b-xs">
 				@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 					<p class="text-capitalize text-light">
-						@foreach ($page_datas->credit['debitur']['alamat'] as $k => $v)
+						@foreach ((array)$page_datas->credit['debitur']['alamat'] as $k => $v)
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
@@ -75,7 +75,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<p class="m-b-xs text-capitalize text-sm"><strong>foto KTP</strong></p>
 			@if (isset($page_datas->credit['foto_ktp']) && !is_null($page_datas->credit['foto_ktp']))
-				<img src="{{ $page_datas->credit['foto_ktp'] }}" class="img img-responsive img-panels img-thumbnail img-rounded" style="width: 350px; height: 240px"/>
+				<img src="{{ $page_datas->credit['foto_ktp'] }}" class="img img-panels img-thumbnail img-rounded" style="width: 300px; height: 200px"/>
 			@else
 				<img src="http://via.placeholder.com/350x200?text=Belum+ada" class="img img-responsive img-panels img-thumbnail img-rounded"/>
 			@endif

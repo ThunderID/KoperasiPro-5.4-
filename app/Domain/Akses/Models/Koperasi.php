@@ -64,6 +64,11 @@ class Koperasi extends BaseModel
 		return $this->belongsto('App\Domain\Akses\Models\Koperasi', 'pusat_id');
 	}
 
+	public function visas()
+	{
+		return $this->hasMany('App\Domain\Akses\Models\Koperasi', 'id', 'akses_koperasi_id');
+	}
+
 	/* ---------------------------------------------------------------------------- RELATIONSHIP ----------------------------------------------------------------------------*/
 
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/

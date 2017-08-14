@@ -1,0 +1,60 @@
+<input id="input-helper" type="hidden" >
+<div class="thunder-cloner">
+	<div id='header'>
+		<div class='row'>
+			<div class='col-xs-8 col-8'>
+				<h4 id='title'>Unggah Foto</h4>
+				<p>
+					<small id='subtitle'>Label Keterangan</small>
+				</p>
+			</div>
+			<div class='col-xs-4 col-4'>
+				<a class='btn btn-success btn-sm pull-right thunder-imgUploader-btn-upload'>
+					<i class="fa fa-upload" aria-hidden="true"></i>
+					<span class="hidden-sm-down hidden-xs" id="btn-upload"> Upload</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div id='content' class="thunder-cloner-append">
+		<div id='default'>
+			<div class='row'>
+				<div class='col-xs-12 col-12'>
+					<h5 class='text-center'>Belum Ada Gambar Dipilih</h5>
+				</div>
+			</div>
+		</div>
+		<div id='content-template' class="thunder-cloner-template">
+			<input class="data-url" type="hidden" >
+			<div class='row' style='padding-left: 15px; padding-right: 15px;'>
+				<div class='col-xs-12 col-12 col-sm-3'>
+					<div id="loader">
+						<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+					</div>
+					<img id="canvas" src='' class='img-responsive'>
+				</div>
+				<div class='col-xs-12 col-12 hidden-sm-up hidden-sm hidden-md hidden-lg'>
+					&nbsp;
+				</div>
+				<div class='col-xs-10 col-10 col-sm-7'>
+					<div class='row'>
+						<div class='col-xs-12 col-12'>
+							<h4 id="fileName">Image Label</h4>
+						</div>
+					</div>
+					<div class='row'>
+						<div id="status" class='col-xs-12 col-12'>
+						</div>
+					</div>					            		
+				</div>
+				<div class='col-xs-2 col-2 col-sm-2'>
+					<a href='javascript:void(0);' onClick='window.thunder.imageUploader.removeImage(this);' class='btn btn-danger btn-sm pull-right thunder-imgUploader-btn-remove '>
+						<i class='fa fa-trash-o' aria-hidden='true' disabled></i>
+					</a>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+</div>

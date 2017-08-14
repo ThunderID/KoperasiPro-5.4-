@@ -54,7 +54,7 @@ $(document).ready(function(){
 		window.noEnterToSubmit.init();
 		window.formInputMask.init();
 		window.wizard.init();
-		window.select();
+		window.selectDropdown.init();
 		// $('.input-switch').bootstrapSwitch();
 		window.printModule.init();
 		
@@ -146,3 +146,6 @@ $(document).ready( function() {
 
 // Map
 require('./plugins/map/jquery-gmaps-latlon-picker.js');
+
+// THunderlab buundle plugin
+require('./plugins/thunderlab/core.js');

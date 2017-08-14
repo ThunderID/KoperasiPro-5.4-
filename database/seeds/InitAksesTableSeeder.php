@@ -152,6 +152,7 @@ class InitAksesTableSeeder extends Seeder
 			'scopes'			=> $visa_1['scopes'],
 			'orang_id'			=> $orang->id,
 			'akses_koperasi_id'	=> $koperasi_baru->id,
+			// 'limit_max'			=> 10000000
 			]);
 		$visa->save();
 
@@ -170,7 +171,7 @@ class InitAksesTableSeeder extends Seeder
 			$lat[0] 	= $latitude - ($radius / 69);
 			$lat[1] 	= $latitude + ($radius / 69);
 
-			$koperasi_baru_2	= new KoperasiBaru($faker->company, rand(1000000, 9999999), $lat[rand(0,1)], $lng[rand(0,1)], $faker->phoneNumber, $faker->address, 'Holding');
+			$koperasi_baru_2	= new KoperasiBaru($faker->company.$key, rand(1000000, 9999999), $lat[rand(0,1)], $lng[rand(0,1)], $faker->phoneNumber, $faker->address, 'Holding');
 			$koperasi_baru_2 	= $koperasi_baru_2->save();
 	
 			$admin_2 			= new GrantVisa($orang['id'], $visa_3['role'], $visa_3['scopes']);

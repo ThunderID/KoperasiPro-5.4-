@@ -51,7 +51,7 @@ class Controller extends BaseController
 			// return Redirect::back()
 			return Redirect::to($route_to)
 					->withInput(Request::all())
-					->with('msg', ['danger' => $this->page_attributes->msg['error']])
+					->with('msg', ['error' => $this->page_attributes->msg['error']])
 					;
 		}
 

@@ -59,6 +59,12 @@ class GrantVisa
 				'orang_id'			=> $orang->id,
 				'akses_koperasi_id'	=> $kid,
 				]);
+
+			if($this->role=='pimpinan')
+			{
+				$visa->limit_max 	= 10000000;
+			}
+
 			$visa->save();
 
 			DB::commit();

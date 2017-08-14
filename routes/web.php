@@ -11,6 +11,8 @@
 |
 */
 //Menu Login
+Route::get('privacy/policy', 	['uses' => 'WebController@privacypolicy', 		'as' => 'privacy.policy.index']);
+
 
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
@@ -25,12 +27,14 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('ajax/jaminan/tanah/bangunan',	['uses' => 'JaminanController@tanah_bangunan', 	'as' => 'ajax.jaminan.tb']);
 	Route::any('ajax/jaminan/kendaraan',		['uses' => 'JaminanController@kendaraan',	 	'as' => 'ajax.jaminan.k']);
 	Route::any('ajax/debitur',					['uses' => 'DebiturController@index', 			'as' => 'ajax.debitur']);
+	Route::any('ajax/role',						['uses' => 'PenggunaController@role', 			'as' => 'ajax.role.lists']);
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
 
 	//Menu Status Kredit
-	Route::any('kredit/{id}/{status}',								['uses' => 'KreditController@status',				'as' => 'credit.status']);
+	Route::any('kredit/{id}/{status}',			['uses' => 'KreditController@status',				'as' => 'credit.status']);
+	Route::any('duplikasi/kredit/{id}',			['uses' => 'KreditController@duplikasi',			'as' => 'credit.duplikasi']);
 
 	Route::any('kredit/print/realisasi/{id}/{jj}/{dokumen}',		['uses' => 'KreditController@print_realisasi', 		'as' => 'credit.print.realisasi']);
 	
@@ -110,8 +114,10 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::get('/notification',					['uses' => 'DashboardController@notification', 	'as' => 'notification.index']);
 
 	//here lies test routes
+	/*
 	Route::get('/index', 						['uses' => 'DashboardController@indextest1', 	'as' => 'dashboard.sample.index']);
 	Route::get('/index2', 						['uses' => 'DashboardController@indextest2', 	'as' => 'dashboard.sample.index2']);
+	*/
 });
 
 // route to get json from helper for get address to select2
@@ -120,4 +126,8 @@ Route::any('distrik',							['uses'	=> 'HelperController@getDistrik',		'as' => '
 Route::any('desa',								['uses' => 'HelperController@getDesa',			'as' => 'desa.index']);
 
 // route to get daftar nik from daftar kreditur
-Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 'as' => 'get.kreditur.index']);
+Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur', 	'as' => 'get.kreditur.index']);
+
+
+Route::any('upload/foto',						['uses' => 'HelperController@storeGambar', 		'as' => 'helper.gambar.store']);
+Route::any('hapus/foto',						['uses' => 'HelperController@destroyGambar', 	'as' => 'helper.gambar.destroy']);

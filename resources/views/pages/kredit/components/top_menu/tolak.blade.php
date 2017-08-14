@@ -29,6 +29,9 @@
 					<i class="fa fa-info-circle"></i> Riwayat Note
 				</a> -->
 				<div class="dropdown pull-right">
+					<a href="{{ route('credit.duplikasi', ['id' => $page_datas->credit['id']]) }}" class="btn p-r-sm p-l-none primary">
+						<i class="fa fa-copy" aria-hidden="true"></i> Duplikasi
+					</a>
 					<!-- <a class="btn p-r-sm p-l-none primary hidden-xs hidden-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						<i class="fa fa-print" aria-hidden="true"></i> Print&nbsp;&nbsp;
 						<i class="fa fa-angle-down"></i>

@@ -29,33 +29,19 @@
 			<label class="text-sm">Role</label>
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-md-11">
-					{!! Form::select('role', \App\Service\Helpers\UI\UserRole::lists(), null, ['class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu']) !!}
+					{!! Form::select('role', \App\Service\Helpers\ACL\KewenanganKredit::lists(), null, ['id' => 'penggunarole', 'class' => 'form-control quick-select','placeholder' => 'Pilih Salah Satu', 'onchange' => 'check_scope()']) !!}
 				</div> 
 			</div> 
-		</fieldset>
-
-		<fieldset class="form-group">
-			<label class="text-sm">Password</label>
-			<div class="row">
-				<div class="col-xs-12 col-sm-11 col-md-11">
-					{!! Form::password('password', ['class' => 'form-control required', 'placeholder' => 'Password Pengguna']) !!}
-				</div>
-			</div>
-		</fieldset>	
-
-		<fieldset class="form-group">
-			<label class="text-sm">Konfirmasi Password</label>
-			<div class="row">
-				<div class="col-xs-12 col-sm-11 col-md-11">
-					{!! Form::password('confirm_password', ['class' => 'form-control required', 'placeholder' => 'Konfirmasi Password Pengguna']) !!}
-				</div>
-			</div>
 		</fieldset>
 
 		<fieldset class="form-group">
 			<label class="text-sm">Hak Akses Pengguna</label>
 			<div class="row">
 				<div class="col-md-5 col-xs-6">
+					<div id="scopelists">
+						<i>Pilih Role terlebih dahulu</i>
+					</div>
+				<!-- 
 					<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 						{!! Form::checkbox('scope[]', 'modifikasi_koperasi', false, ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 						Modifikasi Kredit
@@ -94,8 +80,26 @@
 					<label class="checkbox" style="margin-left: 20px;font-weight: 100;">
 						{!! Form::checkbox('scope[]', 'atur_akses', false, ['style' => 'margin: 0px;top: -10px;left: -20px;font-size: 26px;']) !!}
 						Atur Akses
-					</label>					
+					</label> -->					
 				</div>				
+			</div>
+		</fieldset>
+
+		<fieldset class="form-group">
+			<label class="text-sm">Password</label>
+			<div class="row">
+				<div class="col-xs-12 col-sm-11 col-md-11">
+					{!! Form::password('password', ['class' => 'form-control required', 'placeholder' => 'Password Pengguna']) !!}
+				</div>
+			</div>
+		</fieldset>	
+
+		<fieldset class="form-group">
+			<label class="text-sm">Konfirmasi Password</label>
+			<div class="row">
+				<div class="col-xs-12 col-sm-11 col-md-11">
+					{!! Form::password('confirm_password', ['class' => 'form-control required', 'placeholder' => 'Konfirmasi Password Pengguna']) !!}
+				</div>
 			</div>
 		</fieldset>
 
