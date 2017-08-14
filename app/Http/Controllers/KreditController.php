@@ -403,7 +403,7 @@ class KreditController extends Controller
 				$this->page_attributes->msg['error'] 	= [$e->getMessage()];
 			}
 
-			return $this->generateRedirect(route('credit.index'));
+			return $this->generateRedirect(route('credit.show', ['id' => $id]));
 		}
 	}
 

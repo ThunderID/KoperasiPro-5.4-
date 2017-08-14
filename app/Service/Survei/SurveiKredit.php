@@ -226,7 +226,12 @@ class SurveiKredit
 
 	public function setSukuBunga($suku_bunga)
 	{
-		$this->pengajuan->suku_bunga = $suku_bunga;
+		if($suku_bunga >= 0 && $suku_bunga <= 5)
+		{
+			$this->pengajuan->suku_bunga = $suku_bunga;
+		}
+
+		throw new Exception("Suku bunga antara 0% - 5%", 1);
 	}
 
 	/**
