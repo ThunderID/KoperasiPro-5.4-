@@ -4,7 +4,8 @@
     	"imageUploader" : "./imageUploader.js",
     	"cloner" : "./cloner.js",
     	"imagePreviewer" : "./imagePreviewer.js",
-    	"stringManipulator" : "./stringManipulator"
+    	"stringManipulator" : "./stringManipulator",
+    	"scrollTo" : "./scrollTo"
     },
     "autoload" : true,
     "debug" : true

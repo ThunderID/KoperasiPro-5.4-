@@ -104,94 +104,134 @@
 				{{-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					
 				</div> --}}
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<ul class="list-unstyled fa-ul m-l-xl m-b-lg" role="tablist" style="width:30%; display: inline-grid;">
-						<p class="text-capitalize text-sm m-l-min-lg"><strong>Debitur</strong></p>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
-								<i class="fa-li fa fa-file-text-o"></i> Data Pribadi &amp; Keluarga 
-								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'pengajuan')))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Riwayat Kredit
-							</a>
-						</li>
-						<p class="text-capitalize text-sm m-l-min-lg m-t-sm"><strong>Jaminan</strong></p>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Jaminan 
-								@if (($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) && ($page_datas->credit['status'] == 'pengajuan'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-					</ul>
-				
-					<ul class="list-unstyled fa-ul m-b-sm" role="tablist" style="width:30%; display: inline-grid;">
-						<p class="text-capitalize text-sm m-l-min-lg m-t-sm"><strong>Survei</strong></p>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Survei Jaminan  
-								@if (($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) && ($page_datas->credit['status'] == 'survei'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Survei Kepribadian 
-								@if (($page_datas->credit['checklist']['kelengkapan_kepribadian'] == false) && ($page_datas->credit['status'] == 'survei'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#survei-keuangan" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Survei Keuangan &amp; Rekening 
-								@if (($page_datas->credit['checklist']['kelengkapan_keuangan'] == false) && ($page_datas->credit['status'] == 'survei'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#survei-aset" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Survei Aset 
-								@if (($page_datas->credit['checklist']['kelengkapan_aset'] == false) && ($page_datas->credit['status'] == 'survei'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#survei-nasabah" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-file-text-o"></i> Survei Nasabah 
-								@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && ($page_datas->credit['status'] == 'survei'))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-					</ul>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tab-with-scroll">
+					<div class="row" role="tablist">
 
-					<ul class="list-unstyled fa-ul m-l-xl m-b-lg" role="tablist" style="width:30%; display: inline-grid;">
-						<p class="text-capitalize text-sm m-l-min-lg"><strong>Ceklist</strong></p>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#dokumen-ceklist" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-check-square-o"></i> Ceklist Dokumen
-								@if (($page_datas->credit['checklist']['kelengkapan_dokumen_fisik'] == false))
-									<i class="text-danger fa fa-exclamation-circle"></i> 
-								@endif
-							</a>
-						</li>
-						<p class="text-capitalize text-sm m-l-min-lg m-t-sm"><strong>Analis</strong></p>
-						<li class="m-t-xs m-b-xs" role="presentation">
-							<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
-								<i class="fa-li fa fa-history"></i> Riwayat Status
-							</a>
-						</li>
-					</ul>
+						<div class="col-xs-12 col-sm-4">
+							<div class="row m-t-xs m-b-xs">
+								<div class="col-md-12">
+									<p class="text-capitalize text-sm"><strong>Debitur</strong></p>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation" >
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
+										<i class="fa fa-file-text-o"></i>&nbsp;Data Pribadi &amp; Keluarga 
+										@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && (($page_datas->credit['status'] == 'pengajuan') && ($page_datas->credit['status'] == 'pengajuan')))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Riwayat Kredit
+									</a>
+								</div>
+							</div>
+							<p class="text-capitalize text-sm m-t-sm"><strong>Jaminan</strong></p>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Jaminan 
+										@if (($page_datas->credit['checklist']['kelengkapan_jaminan'] == false) && ($page_datas->credit['status'] == 'pengajuan'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-4">
+							<div class="row m-t-xs m-b-xs">
+								<div class="col-md-12">
+									<p class="text-capitalize text-sm"><strong>Survei</strong></p>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation" >
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#survei-jaminan" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Survei Jaminan  
+										@if (($page_datas->credit['checklist']['kelengkapan_survei_jaminan'] == false) && ($page_datas->credit['status'] == 'survei'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation" >
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Survei Kepribadian 
+										@if (($page_datas->credit['checklist']['kelengkapan_kepribadian'] == false) && ($page_datas->credit['status'] == 'survei'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>	
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">							
+									<a class="text-capitalize" href="#survei-keuangan" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Survei Keuangan &amp; Rekening 
+										@if (($page_datas->credit['checklist']['kelengkapan_keuangan'] == false) && ($page_datas->credit['status'] == 'survei'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#survei-aset" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Survei Aset 
+										@if (($page_datas->credit['checklist']['kelengkapan_aset'] == false) && ($page_datas->credit['status'] == 'survei'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#survei-nasabah" data-toggle="tab" role="tab">
+										<i class="fa fa-file-text-o"></i> Survei Nasabah 
+										@if (($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) && ($page_datas->credit['status'] == 'survei'))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-4">
+							<div class="row m-t-xs m-b-xs">
+								<div class="col-md-12">
+									<p class="text-capitalize text-sm"><strong>Ceklist</strong></p>
+								</div>
+							</div>	
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#dokumen-ceklist" data-toggle="tab" role="tab">
+										<i class="fa fa-check-square-o"></i> Ceklist Dokumen
+										@if (($page_datas->credit['checklist']['kelengkapan_dokumen_fisik'] == false))
+											<i class="text-danger fa fa-exclamation-circle"></i> 
+										@endif
+									</a>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs">
+								<div class="col-md-12">							
+									<p class="text-capitalize text-sm m-t-sm"><strong>Analis</strong></p>
+								</div>
+							</div>
+							<div class="row m-t-xs m-b-xs" role="presentation">
+								<div class="col-md-12">
+									<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
+										<i class="fa fa-history"></i> Riwayat Status
+									</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
 

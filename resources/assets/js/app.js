@@ -50,3 +50,6 @@ require ('./modules/map.js');
 
 // UX
 require ('./modules/ux-roles/manifest.js');
+
+// menuScroll
+require ('./modules/tabScroll.js');
