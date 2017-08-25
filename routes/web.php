@@ -11,6 +11,8 @@
 |
 */
 //Menu Login
+Route::get('privacy/policy', 	['uses' => 'WebController@privacypolicy', 		'as' => 'privacy.policy.index']);
+
 
 Route::get('login', 	['uses' => 'LoginController@index', 		'as' => 'login.index']);
 Route::post('login',	['uses' => 'LoginController@logging', 		'as' => 'login.store']);
