@@ -31,6 +31,9 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
+	Route::any('kredit/simulasi/create',		['uses' => 'KreditController@simulasiCreate',	'as' => 'credit.simulasi.create']);
+	Route::any('kredit/simulasi/store',			['uses' => 'KreditController@simulasiStore',	'as' => 'credit.simulasi.store']);
+	Route::any('kredit/simulasi/print',			['uses' => 'KreditController@simulasiPrint',	'as' => 'credit.simulasi.print']);
 
 	//Menu Status Kredit
 	Route::any('kredit/{id}/{status}',			['uses' => 'KreditController@status',				'as' => 'credit.status']);

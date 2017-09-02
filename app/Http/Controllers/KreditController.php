@@ -28,8 +28,10 @@ use App\Service\Teritorial\TeritoriIndonesia;
 use App\Domain\Akses\Models\Koperasi;
 use App\Domain\Akses\Models\Visa;
 
-use Input, PDF, Exception, TAuth;
+use Input, PDF, Exception, TAuth, Session;
 use Carbon\Carbon;
+
+use App\Infrastructure\Traits\IDRTrait;
 
 /**
  * Kelas CreditController
@@ -40,6 +42,7 @@ use Carbon\Carbon;
  */
 class KreditController extends Controller
 {
+	use IDRTrait;
 	private $credit_active_filters = [];
 
 	/**
@@ -1071,6 +1074,81 @@ class KreditController extends Controller
 		$path 			= $file->storeAs('photos', $location . $name . '.jpg');
 
 		return $path;
+	}
+
+	public function simulasiCreate()
+	{
+		$this->setGlobal();
+
+		$this->page_datas->pokok 			= 'Rp 0';
+		$this->page_datas->bunga 			= 0;
+		$this->page_datas->tenor 			= 6;
+		$this->page_datas->angsuran_pokok 	= 'Rp 0';
+		$this->page_datas->angsuran_bunga 	= 'Rp 0';
+		$this->page_datas->angsuran 		= 'Rp 0';
+
+		if(!Session::has('simulasi'))
+		{
+			Session::put('simulasi', $this->page_datas);
+		}
+	
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title 				= "Simulasi Kredit";
+		$this->page_attributes->breadcrumb 			= [
+															'Kredit'   => route('credit.create'),
+														];
+		//initialize view
+		$this->view 								= view('pages.kredit.simulasi.create');
+		$this->getParamToView(['jangka_waktu']);
+		
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
+	public function simulasiStore()
+	{
+		$this->setGlobal();
+
+		//1. hitung pinjaman
+		//pokok pinjaman 
+		$pokok 		= $this->formatMoneyFrom(Input::get('pinjaman'));
+		$bunga 		= Input::get('suku_bunga');
+		$tenor 		= Input::get('jangka_waktu');
+
+		$this->page_datas->pokok 			= $this->formatMoneyTo($pokok);
+		$this->page_datas->bunga 			= $bunga;
+		$this->page_datas->tenor 			= $tenor;
+		$this->page_datas->angsuran_pokok 	= $this->formatMoneyTo($pokok/max(1, $tenor));
+		$this->page_datas->angsuran_bunga 	= $this->formatMoneyTo($pokok * $bunga/100);
+		$this->page_datas->angsuran 		= $this->formatMoneyTo(($pokok/max(1, $tenor)) + ($pokok * $bunga/100));
+
+		Session::put('simulasi', $this->page_datas);
+
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title 				= "Simulasi Kredit";
+		$this->page_attributes->breadcrumb 			= [
+															'Kredit'   => route('credit.create'),
+														];
+		//initialize view
+		$this->view 								= view('pages.kredit.simulasi.create');
+		$this->getParamToView(['jangka_waktu']);
+		
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
+
+	public function simulasiPrint()
+	{
+		$this->setGlobal();
+
+		$this->page_datas 	= Session::get('simulasi');
+
+		//initialize view
+		$this->view			= view('print.pengajuan.simulasi');
+		
+		//function from parent to generate view
+		return $this->generateView();
 	}
 
 
