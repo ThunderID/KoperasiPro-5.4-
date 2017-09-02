@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Domain\Pengajuan\Models\Pengajuan;
+use App\Domain\Pengajuan\Models\FollowUp;
 use App\Service\Pengajuan\PengajuanKredit;
 use App\Service\Pengajuan\UpdatePengajuanKredit;
 
@@ -1137,7 +1138,6 @@ class KreditController extends Controller
 		return $this->generateView();
 	}
 
-
 	public function simulasiPrint()
 	{
 		$this->setGlobal();
@@ -1149,6 +1149,28 @@ class KreditController extends Controller
 		
 		//function from parent to generate view
 		return $this->generateView();
+	}
+
+	public function followupStore($akta_id)
+	{
+		$this->setGlobal();
+		$validate_kredit 			= Pengajuan::id($akta_id)->status(KewenanganKredit::statusLists($this->acl_active_office['role']))->where('akses_koperasi_id', $this->acl_active_office['koperasi']['id'])->firstorfail();
+
+		$followup 					= FollowUp::where('pengajuan_id', $akta_id)->first();
+
+		if($followup->is_called)
+		{
+			$followup->is_called 	= false;
+		}
+		else
+		{
+			$followup->is_called 	= true;
+		}
+
+		$followup->save();
+
+		//function from parent to generate view
+		return $this->generateRedirect(route('home.index'));
 	}
 
 

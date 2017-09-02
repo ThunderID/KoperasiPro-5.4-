@@ -15,11 +15,10 @@
 					<thead>
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-left">Sudah Dihubungi ? </th>
 							<th class="text-left">Koperasi</th>
-							<th class="text-left">Nama Nasabah</th>
-							<th class="text-left">Nomor Telepon</th>
-							<th class="text-center">Kelengkapan Dokumen</th>
+							<th class="text-left">Nasabah</th>
+							<!-- <th class="text-left">Nomor Telepon</th> -->
+							<th class="text-center">Pengajuan</th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
@@ -27,47 +26,64 @@
 						@forelse($dokcab as $key => $value)
 							<tr>
 								<td class="text-center">{{$key+1}}</td>
-								<td class="text-left">{{$value['followup']['is_called']}}</td>
-								<td class="text-left">{{$value['koperasi']['nama']}}</td>
-								<td class="text-left">{{$value['debitur']['nama']}}</td>
-								<td class="text-left">{{$value['debitur']['telepon']}}</td>
-								<td class="text-right">
+								<td class="text-left">
+									{{$value['koperasi']['nama']}}
+<!-- 									{{$value['tanggal_pengajuan']}}
+									<br> ke <strong>{{$value['koperasi']['nama']}}</strong> -->
+								</td>
+								<td class="text-left">
+									{{$value['debitur']['nama']}}
+									<br> ({{$value['debitur']['telepon']}})
+									<br> Nomor Pengajuan : 
+									<br> <small>{{$value['id']}}</small>
+								</td>
+								<td class="text-left">
 									<p>
-									@if(!$value['data_nasabah'])
-										<span class="label label-danger">
-											Data Debitur	
-										</span>
-									@else
-										<span class="label label-success">
-											Data Debitur	
-										</span>
-									@endif
-									&nbsp;&nbsp;
-									@if(!$value['data_relasi'])
-										<span class="label label-danger">
-											Data Relasi	
-										</span>
-									@else
-										<span class="label label-success">
-											Data Relasi	
-										</span>
-									@endif
-									&nbsp;&nbsp;
-									@if(!$value['data_jaminan'])
-										<span class="label label-danger">
-											Data Jaminan	
-										</span>
-									@else
-										<span class="label label-success">
-											Data Jaminan	
-										</span>
-									@endif
+										{{$value['tanggal_pengajuan']}}
+										<br/>
+										{{$value['pengajuan_kredit'].'/'.$value['jangka_waktu']}} bulan
+										<br/>
+										Suku Bunga : 0-5% / bulan
+										<br/>
+										Jaminan : 
+										@foreach((array)$value['jaminan_kendaraan'] as $key2 => $value2)
+											<span class="label label-primary">{{$value2['merk']}} {{str_replace('_',' ',$value2['tipe'])}} ({{$value2['tahun']}}) &nbsp; &nbsp; </span>
+										@endforeach
+										@foreach((array)$value['jaminan_tanah_bangunan'] as $key2 => $value2)
+											<span class="label label-primary">{{$value2['jenis_sertifikat']}} {{$value2['tipe']}} ({{$value2['masa_berlaku_sertifikat']}}) &nbsp; &nbsp; </span>
+										@endforeach
+										<br/>
+										Data Yang Kurang :
+										@if(!$value['data_nasabah'])
+											<span class="label label-danger">
+												Data Debitur	
+											</span>
+										@endif
+										&nbsp;&nbsp;
+										@if(!$value['data_relasi'])
+											<span class="label label-danger">
+												Data Relasi	
+											</span>
+										@endif
+										&nbsp;&nbsp;
+										@if(!$value['data_jaminan'])
+											<span class="label label-danger">
+												Data Jaminan	
+											</span>
+										@endif
 									</p>
 								</td>
-								<td class="text-right">
-									<a href="{{route('credit.show', ['id' => $value['id'], 'status' => 'pengajuan', 'q' => $value['debitur']['nama']])}}" style="text-decoration: none;">
-										Kerjakan
-									</a>
+								<td class="text-left">
+									@if($value['followup']['is_called'])
+										<i class="fa fa-check-square-o"></i> Sudah dihubungi 
+										<br/>
+										({{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value['followup']['updated_at'])->format('d/m/Y')}})
+									@else
+										<a href="{{route('credit.followup.store', ['akta_id' => $value['id']]) }}" style="text-decoration: none;">
+											<i class="fa fa-square-o"></i> Hubungi
+										</a>
+									@endif
+
 								</td>
 							</tr>
 						@empty
@@ -75,11 +91,11 @@
 								<td colspan="5" class="text-center"><i>Belum Ada</i></td>
 							</tr>
 						@endforelse
-						@if(count($dokcab))
+						<!-- @if(count($dokcab))
 							<tr>
 								<td colspan="5" class="text-right"><a href="{{route('credit.index', ['status' => 'pengajuan'])}}">Lihat Lainnya</a></td>
 							</tr>
-						@endif
+						@endif -->
 					</tbody>
 				</table>
 			</div>
