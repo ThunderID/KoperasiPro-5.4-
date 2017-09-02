@@ -34,8 +34,9 @@ class HomeController extends Controller
 				switch ($value['list']) 
 				{
 					case 'pengajuan_kredit' :
-						$this->page_attributes->content['Kredit']['konten']				= 'pages.home.widgets.kredit';
-						$this->page_attributes->content['Kredit']['sub']['pengajuan']	= 'pages.home.widgets.inspeksi_dokumen_pengajuan';
+						$this->page_attributes->content['Kredit']['konten']						= 'pages.home.widgets.kredit';
+						$this->page_attributes->content['Kredit']['sub']['pengajuan_online']	= 'pages.home.widgets.pengajuan_online';
+						$this->page_attributes->content['Kredit']['sub']['pengajuan']			= 'pages.home.widgets.inspeksi_dokumen_pengajuan';
 						break;
 
 					case 'survei_kredit' :

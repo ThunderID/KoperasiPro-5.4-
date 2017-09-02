@@ -10,6 +10,7 @@ use App\Domain\Akses\Models\Mobile;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\DokumenCeklist;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
+use App\Domain\Pengajuan\Models\FollowUp;
 
 use App\Infrastructure\Traits\PengajuanKreditTrait;
 
@@ -124,6 +125,12 @@ class PengajuanKredit
 				$mobile->save();
 
 				$pengajuan->hp_id 	= $mobile->id;
+
+				//simpan follow up
+				$follow_up 			= new FollowUp;
+				$follow_up->pengajuan_id 	= $pengajuan->id;
+				$follow_up->is_called 		= false;
+				$follow_up->save();
 			}
 
 			//3. check assign koperasi id

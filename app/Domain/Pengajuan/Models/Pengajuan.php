@@ -116,6 +116,16 @@ class Pengajuan extends BaseModel
 	}
 
 	/**
+	 * relationship followup
+	 *
+	 * @return Kredit $model
+	 */	
+ 	public function followup()
+	{
+		return $this->hasOne('App\Domain\Pengajuan\Models\FollowUp', 'pengajuan_id');
+	}
+
+	/**
 	 * relationship kreditur
 	 *
 	 * @return Kredit $model

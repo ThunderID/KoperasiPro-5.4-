@@ -36,6 +36,15 @@ class InspeksiDokumenCabang
 	 */
 	public function pengajuan($queries = [], $user)
 	{
+		$koperasi_ids 		= $this->getKoperasiIDS($user);
+
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_ids)->status('pengajuan')->with(['debitur', 'debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->skip(0)->take(30)->get()->toArray();
+		
+		return $this->dokumenChecker($kredit_aktif);
+	}
+
+	private function getKoperasiIDS($user)
+	{
 		$koperasi_id 		= [];
 
 		foreach ($user['visas'] as $key => $value) 
@@ -49,8 +58,11 @@ class InspeksiDokumenCabang
 			}
 		}
 
-		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_id)->status('pengajuan')->with(['debitur', 'debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->skip(0)->take(30)->get()->toArray();
+		return $koperasi_id;
+	}
 
+	private function dokumenChecker($kredit_aktif)
+	{
 		foreach ($kredit_aktif as $key => $value) 
 		{
 			//check data pengajuan
@@ -94,6 +106,15 @@ class InspeksiDokumenCabang
 		}
 
 		return $kredit_aktif;
+	}
+
+	public function pengajuan_online($queries = [], $user)
+	{
+		$koperasi_ids 		= $this->getKoperasiIDS($user);
+
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_ids)->status('pengajuan')->wherehas('followup', function($q){$q->where('is_called', false);})->with(['debitur', 'followup', 'koperasi'])->get()->toArray();
+
+		return $this->dokumenChecker($kredit_aktif);
 	}
 
 
