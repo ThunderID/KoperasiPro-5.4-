@@ -112,7 +112,7 @@ class InspeksiDokumenCabang
 	{
 		$koperasi_ids 		= $this->getKoperasiIDS($user);
 
-		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_ids)->status('pengajuan')->wherehas('followup', function($q){$q;})->with(['debitur', 'followup','debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi'])->get()->toArray();
+		$kredit_aktif 		= $this->model->whereIn('akses_koperasi_id', $koperasi_ids)->status('pengajuan')->wherehas('followup', function($q){$q;})->with(['debitur', 'followup','debitur.relasi', 'jaminan_kendaraan', 'jaminan_tanah_bangunan', 'koperasi', 'dokumen_ceklist'])->get()->toArray();
 
 		return $this->dokumenChecker($kredit_aktif);
 	}

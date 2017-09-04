@@ -71,6 +71,16 @@
 												Data Jaminan	
 											</span>
 										@endif
+
+
+										<!-- @foreach($value['dokumen_ceklist'] as $kdc => $vdc)
+											@if(!$vdc['is_added'])
+												<span class="label label-danger">
+													{{$vdc['judul']}}	
+												</span>
+												<div style="padding:5px;"></div>
+											@endif
+										@endforeach -->
 									</p>
 								</td>
 								<td class="text-left">
@@ -83,7 +93,14 @@
 											<i class="fa fa-square-o"></i> Hubungi
 										</a>
 									@endif
-
+									<br>
+									<br>
+									<a href="{{$value['foto_ktp']}}" target="__blank" style="text-decoration: none;">
+										 Lihat Foto KTP
+									</a> &nbsp; |
+									<a href="{{route('credit.show', ['id' => $value['id']]) }}" target="__blank" style="text-decoration: none;">
+										 Lihat Kredit
+									</a>
 								</td>
 							</tr>
 						@empty
