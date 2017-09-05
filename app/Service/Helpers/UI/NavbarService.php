@@ -45,6 +45,15 @@ class NavbarService
 													'data_kredit' 		=> route('credit.index'),
 												]				
 								],
+				'laporan'	=>	[
+									'route' => null,
+									'sub'	=> 	[
+													'pengajuan_kredit' 		=> route('laporan.pengajuan_kredit.index'),
+													'pergerakan_jaminan' 	=> route('laporan.movement_jaminan.index'),
+													'loan_to_value_ratio'	=> route('laporan.loan_to_value.index'),
+													'penanganan_kredit'		=> route('laporan.employee_to_system.index'),
+												]				
+								],
 				// 'kasir'		=> 	[
 				// 					'route' => null,
 				// 					'sub'	=> 	[
