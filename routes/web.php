@@ -142,3 +142,17 @@ Route::any('daftar/kreditur',					['uses' => 'HelperController@getDaftarKreditur
 
 Route::any('upload/foto',						['uses' => 'HelperController@storeGambar', 		'as' => 'helper.gambar.store']);
 Route::any('hapus/foto',						['uses' => 'HelperController@destroyGambar', 	'as' => 'helper.gambar.destroy']);
+
+//laporan
+//kredit
+//pengajuan kredit
+Route::any('laporan/pengajuan/kredit',	['uses' => 'LaporanController@pengajuan_kredit', 	'as' => 'laporan.pengajuan_kredit.index']);
+//keluar/masuk jaminan (jaminan saat ini)
+Route::any('laporan/jaminan/movement',	['uses' => 'LaporanController@movement_jaminan', 	'as' => 'laporan.movement_jaminan.index']);
+//loan to value (persentasi kredit vs taksasi jaminan)
+Route::any('laporan/loan/to/value',			['uses' => 'LaporanController@loan_to_value', 		'as' => 'laporan.loan_to_value.index']);
+//employee to system
+Route::any('laporan/employee/to/system',	['uses' => 'LaporanController@employee_to_system',	'as' => 'laporan.employee_to_system.index']);
+
+//history jaminan
+//history nasabah
