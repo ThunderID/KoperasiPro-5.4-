@@ -230,8 +230,10 @@ class SurveiKredit
 		{
 			$this->pengajuan->suku_bunga = $suku_bunga;
 		}
-
-		throw new Exception("Suku bunga antara 0% - 5%", 1);
+		else
+		{
+			throw new Exception("Suku bunga antara 0% - 5%", 1);
+		}
 	}
 
 	/**
