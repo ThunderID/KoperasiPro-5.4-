@@ -84,7 +84,7 @@
 	});
 	$(document).on('click', '.applyBtn', function(){
 		let start = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
+		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_end]').val();
 		qs = {'start': start, 'end': end};
 		window.location.href= url + '?date=' + JSON.stringify(qs);
 	});
