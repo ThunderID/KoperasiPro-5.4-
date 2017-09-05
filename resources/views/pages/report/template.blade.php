@@ -28,7 +28,7 @@
 					<span>Filter</span>&nbsp;<b class="caret"></b>
 				</button>
 				{{-- List Filter Here, please set empty the url --}}
-				<ul class="dropdown-menu" role="menu">
+				<ul class="dropdown-menu" role="menu" style="right:0px;left:auto;">
 					<li><a href="#">Tablet</a></li>
 					<li><a href="#">Smartphone</a></li>
 				</ul>
@@ -39,7 +39,7 @@
 					<span>Sort</span>&nbsp;<b class="caret"></b>
 				</button>
 				{{-- List Sort Here, please set empty the url --}}
-				<ul class="dropdown-menu" role="menu">
+				<ul class="dropdown-menu" role="menu" style="right:0px;left:auto;">
 					<li><a href="#">Tablet</a></li>
 					<li><a href="#">Smartphone</a></li>
 				</ul>
