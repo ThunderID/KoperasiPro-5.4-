@@ -40,7 +40,7 @@ class NavbarService
 				'kredit'	=>	[
 									'route' => null,
 									'sub'	=> 	[
-													'simulasi_kredit' 	=> route('credit.simulasi.create'),
+													'simulasi_kredit' 	=> route('simulasi.index'),
 													'pengajuan_baru' 	=> route('credit.create'),
 													'data_kredit' 		=> route('credit.index'),
 												]				
