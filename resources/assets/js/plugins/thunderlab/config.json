@@ -5,7 +5,8 @@
     	"cloner" : "./cloner.js",
     	"imagePreviewer" : "./imagePreviewer.js",
     	"stringManipulator" : "./stringManipulator",
-    	"scrollTo" : "./scrollTo"
+        "scrollTo" : "./scrollTo",
+    	"dataBox" : "./dataBox"
     },
     "autoload" : true,
     "debug" : true
