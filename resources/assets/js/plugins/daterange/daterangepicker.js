@@ -1058,7 +1058,7 @@
 
             if (this.opens == 'left') {
                 this.container.css({
-                    top: containerTop,
+                    top: containerTop + 3,
                     right: parentRightEdge - this.element.offset().left - this.element.outerWidth(),
                     left: 'auto'
                 });
@@ -1070,7 +1070,7 @@
                 }
             } else if (this.opens == 'center') {
                 this.container.css({
-                    top: containerTop,
+                    top: containerTop + 3,
                     left: this.element.offset().left - parentOffset.left + this.element.outerWidth() / 2
                             - this.container.outerWidth() / 2,
                     right: 'auto'
@@ -1083,7 +1083,7 @@
                 }
             } else {
                 this.container.css({
-                    top: containerTop,
+                    top: containerTop + 3,
                     left: this.element.offset().left - parentOffset.left,
                     right: 'auto'
                 });

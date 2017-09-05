@@ -22,14 +22,28 @@
 	<div class="row p-t-none p-b-lg field">
 		<div class="col-md-12 text-right">
 			<!-- filter & tools	 -->
-			<div id="daterange" class="btn btn-default btn-sm">
-				<i class="fa fa-filter" aria-hidden="true"></i>&nbsp;
-				<span>Filter</span>&nbsp;<b class="caret"></b>
+			<div class="btn-group">
+				<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-filter" aria-hidden="true"></i>&nbsp;
+					<span>Filter</span>&nbsp;<b class="caret"></b>
+				</button>
+				{{-- List Filter Here, please set empty the url --}}
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Tablet</a></li>
+					<li><a href="#">Smartphone</a></li>
+				</ul>
 			</div>
-			<div id="daterange" class="btn btn-default btn-sm">
-				<i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>&nbsp;
-				<span>Urutkan</span>&nbsp;<b class="caret"></b>
-			</div>			
+			<div class="btn-group">
+				<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>&nbsp;
+					<span>Sort</span>&nbsp;<b class="caret"></b>
+				</button>
+				{{-- List Sort Here, please set empty the url --}}
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Tablet</a></li>
+					<li><a href="#">Smartphone</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="row p-b-md field">
