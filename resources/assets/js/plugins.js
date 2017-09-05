@@ -149,3 +149,42 @@ require('./plugins/map/jquery-gmaps-latlon-picker.js');
 
 // THunderlab buundle plugin
 require('./plugins/thunderlab/core.js');
+
+// date range
+require('./plugins/daterange/daterangepicker.js');
+$('#daterange').daterangepicker({
+	autoUpdateInput: false,
+	locale: {
+		cancelLabel: 'Clear',
+		format: 'DD/MM/YYYY',
+		startDate: null,
+		endDate: null,
+		separator:  '/',
+		applyLabel: 'OK',
+		cancelLabel: 'Hapus',	
+		daysOfWeek: [
+                "Sen",
+                "Sel",
+                "Rab",
+                "Kam",
+                "Jum",
+                "Sab",
+                "Min"
+            ],
+            monthNames: [
+                "Januari",
+                "Februari",
+                "Maret",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Agustus",
+                "September",
+                "Oktober",
+                "November",
+                "Desember"
+            ],
+            firstDay: 0
+	}
+});	

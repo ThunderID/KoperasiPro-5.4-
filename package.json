@@ -20,6 +20,7 @@
     "vue": "^2.0.1"
   },
   "dependencies": {
-    "jquery-validation": "^1.16.0"
+    "jquery-validation": "^1.16.0",
+    "moment": "^2.18.1"
   }
 }
