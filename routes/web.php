@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// reporting
+Route::get('/report', 					['uses' => 'ReportController@index', 		'as' => 'report.index']);
+
 //Menu Login
 Route::get('privacy/policy', 	['uses' => 'WebController@privacypolicy', 		'as' => 'privacy.policy.index']);
 
