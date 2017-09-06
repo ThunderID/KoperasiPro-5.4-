@@ -157,6 +157,6 @@ Route::any('laporan/riwayat/jaminan',	['uses' => 'LaporanController@riwayat_jami
 Route::any('laporan/loan/to/value',			['uses' => 'LaporanController@loan_to_value', 		'as' => 'laporan.loan_to_value.index']);
 //employee to system
 Route::any('laporan/employee/to/system',	['uses' => 'LaporanController@employee_to_system',	'as' => 'laporan.employee_to_system.index']);
+Route::any('laporan/log/survei',			['uses' => 'LaporanController@log_survei',			'as' => 'laporan.log_survei.index']);
 
-//history jaminan
 //history nasabah
