@@ -32,13 +32,13 @@
 
 @php
 	// dd($page_datas);
-	// dd($param);
+	// dd($param['data']);
 	// dd(Input::old());
 @endphp
 
 
 {!! Form::hidden('debitur[debitur_id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
-<h5 class="text-uppercase text-light">Identitas Nasabah</h5>
+<h5 class="text-uppercase">Identitas Nasabah</h5>
 <fieldset class="form-group">
 	<label class="text-sm">NIK</label>
 	<div class="row">
@@ -81,7 +81,7 @@
 </fieldset>
 
 <hr>
-<h5 class="text-uppercase text-light">Profil Nasabah</h5>
+<h5 class="text-uppercase">Profil Nasabah</h5>
 <fieldset class="form-group">
 	<label class="text-sm">Nama</label>
 	<div class="row">
@@ -149,7 +149,7 @@
 	<label class="text-sm">Foto KTP</label>
 	<div class="row p-b-md">
 		<div class="col-md-6">
-			<img src="{{URL::asset('/images/no-image.png')}}" 
+			<img src="{{ (isset($page_datas->credit['foto_ktp'])) ? 'http:' . $page_datas->credit['foto_ktp'] : null }}" 
 				class="img-responsive thunder-imagePreview-canvas" 
 				alt="No Image Selected" 
 				style="width: 100%; display: block;">
@@ -158,7 +158,8 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="input-group">
-				{!! Form::text(null, (isset($param['data']['foto_ktp'])) ? $param['data']['foto_ktp'] : null, [
+				{{-- khusus foto ktp gunakan variable $data_pages karena diluar variable $param --}}
+				{!! Form::text(null, (isset($page_datas->credit['foto_ktp'])) ? 'http:' . $page_datas->credit['foto_ktp'] : null, [
 					'class'	 		=> 'form-control thunder-imagePreview-path thunder-validation-input', 
 					'readonly' 		=> true, 
 					'placeholder' 	=> 'Belum Ada Foto Dipilih',
@@ -193,7 +194,7 @@
 	]
 ])
 <hr />
-<h5 class="text-uppercase text-light">Kontak</h5>
+<h5 class="text-uppercase">Kontak</h5>
 {{-- panel contact --}}
 @include('components.helpers.forms.contact', [ 
 	'param'		=> [

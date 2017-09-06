@@ -14,14 +14,14 @@
 	@forelse($page_datas->credit['jaminan_kendaraan'] as $key => $value)
 		<p class="m-t-sm m-b-xs text-capitalize">
 			@if (!empty($page_datas->credit['jaminan_kendaraan']) && count($page_datas->credit['jaminan_kendaraan']) != 0)
-				<strong>kendaraan {{ $key+1 }}</strong>
+				<span class="text-regular text-muted text-sm">kendaraan {{ $key+1 }}</span>
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					<span class="pull-right">
-						<a class="text-danger m-r-md" href="#" data-url="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+						<a class="text-danger m-r-md text-sm" href="#" data-url="{{ route('jaminan.kendaraan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_kendaraan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 							<i class="fa fa-trash" aria-hidden="true"></i>
 							 Hapus
 						</a> &nbsp;
-						<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
+						<a href="#" class="button-edit" class="text-sm" data-toggle="hidden" data-target="jaminan-kendaraan-{{ $key }}" data-panel="data-jaminan" data-flag="data-jaminan-kendaraan" data-index="{{ $key }}" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -54,7 +54,7 @@
 	@if ((count($page_datas->credit['jaminan_kendaraan']) < 2) && (count($page_datas->credit['jaminan_kendaraan']) != 0))
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Kendaraan</a>
+				<a href="#" class="text-sm" data-toggle="hidden" data-target="jaminan-kendaraan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Kendaraan</a>
 			</div>
 		</div>
 	@endif

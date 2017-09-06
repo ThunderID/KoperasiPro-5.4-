@@ -3,20 +3,47 @@
 @endphp
 @extends('pages.kredit.templates.index_show_template')
 
+@push('styles')
+	.label-info-device {
+		padding: 5px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
+	.label-web {
+		background-color: #777;
+	}
+	.label-mobile {
+		background-color: #337ab7;
+	}
+@endpush
+
 @section('page_content')
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
 		<div data-panel="data-kredit">
 			<div class="row m-b-md">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<h4>Info Kredit @if (isset($page_datas->credit['hp_id'])) <small class="label label-info">Pengajuan dari HP</small>@endif</h4>
+					<h4>
+						Info Kredit 
+						@if (isset($page_datas->credit['hp_id'])) 
+							<small class="label label-info-device label-info text-sm text-light">
+								Pengajuan dari Mobile
+							</small>
+						@else
+							<small class="label label-info-device label-default text-sm text-light">Pengajuan dari Kantor</small>
+						@endif
+					</h4>
 				</div>
 			</div>
 			<div class="row">
+				{{-- section nasabah --}}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-					<p class="text-capitalize text-light text-sm m-b-xs"><strong>Nasabah</strong></p>
+					<p class="text-capitalize text-bold text-sm m-b-xs">Nasabah</p>
 					<p class="text-capitalize text-light m-b-xs">
 						{{ (isset($page_datas->credit['debitur']['nama']) && !is_null($page_datas->credit['debitur']['nama'])) ? $page_datas->credit['debitur']['nama'] : '-' }}
 					</p>
+					@php
+						// dd($page_datas->credit);
+					@endphp
 					{{-- ALAMAT --}}
 					@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 						<p class="text-capitalize text-light m-b-xs">
@@ -24,11 +51,13 @@
 								@if ($k == 0)
 									{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 									RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-									{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-									{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' }} <br/>
-									{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-									{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-									{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+									<span class="text-uppercase">
+										{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} -
+										{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' }} <br/>
+										{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+										Jawa Timur <br/>
+										{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+									</span>
 								@endif
 							@endforeach
 						</p>
@@ -45,8 +74,9 @@
 						<p>Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="kontak" data-panel="data-nasabah" no-data-pjax> Tambahkan Sekarang </a></p>
 					@endif
 				</div>
+				{{-- section kredit --}}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-					<p class="text-capitalize text-light text-sm m-b-xs">
+					<p class="text-capitalize text-bold text-sm m-b-xs">
 						<span class="pull-right">
 							@if ($page_datas->credit['status'] == 'pengajuan')
 								<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" class="btn p-r-none text-sm m-b-none p-t-none" no-data-pjax>
@@ -54,7 +84,7 @@
 								</a>
 							@endif
 						</span>
-						<strong>Kredit</strong>
+						Kredit
 					</p>
 					<p class="text-capitalize text-light m-b-xs">
 						Pinjaman {{ (isset($page_datas->credit['pengajuan_kredit']) && !is_null($page_datas->credit['pengajuan_kredit'])) ? $page_datas->credit['pengajuan_kredit'] : '-' }}
@@ -91,6 +121,34 @@
 						@endif
 					</p>
 				</div>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			{{-- section button action --}}
+			<div class="row button-action">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					<div class="text-center" style="width: 200px;">
+						@if (isset($page_datas->credit['spesimen_ttd']) && !is_null($page_datas->credit['spesimen_ttd']))
+							<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels text-center" />
+						@else
+							<img src="http://via.placeholder.com/250x150/cccccc/ffffff?text=TTD+tidak+ada" class="img img-responsive img-panels text-center"/>
+						@endif
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right" style="height: 100px;">
+					<div style="position: absolute; bottom: 0; right: 15px;">
+						<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger btn-sm">
+							<i class="fa fa-times"></i> Tolak
+						</a> 
+						&nbsp;&nbsp;
+						<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
+							<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
+						</a>
+					</div>
+				</div>	
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			{{-- section line --}}
+			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
 					<hr>
 				</div>
@@ -110,9 +168,10 @@
 						<div class="col-xs-12 col-sm-4">
 							<div class="row m-t-xs m-b-xs">
 								<div class="col-md-12">
-									<p class="text-capitalize text-sm"><strong>Debitur</strong></p>
+									<p class="text-capitalize text-sm text-bold">Debitur</p>
 								</div>
 							</div>
+							{{-- menu pribadi & keluarga --}}
 							<div class="row m-t-xs m-b-xs" role="presentation" >
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#data-pribadi" aria-controls="data-pribadi" data-toggle="tab" role="tab" @if ($page_datas->credit['checklist']['kelengkapan_nasabah'] == false) title="Data Pribadi Belum Lengkap" @endif>
@@ -123,6 +182,7 @@
 									</a>
 								</div>
 							</div>
+							{{-- menu riwayat kredit --}}
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#riwayat-kredit" data-toggle="tab" role="tab">
@@ -130,7 +190,8 @@
 									</a>
 								</div>
 							</div>
-							<p class="text-capitalize text-sm m-t-sm"><strong>Jaminan</strong></p>
+							{{-- menu jaminan --}}
+							<p class="text-capitaliz text-sm m-t-sm text-bold">Jaminan</p>
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#data-jaminan" data-toggle="tab" role="tab">
@@ -144,9 +205,10 @@
 						</div>
 
 						<div class="col-xs-12 col-sm-4">
+							{{-- menu survei jaminan --}}
 							<div class="row m-t-xs m-b-xs">
 								<div class="col-md-12">
-									<p class="text-capitalize text-sm"><strong>Survei</strong></p>
+									<p class="text-capitalize text-sm text-bold">Survei</p>
 								</div>
 							</div>
 							<div class="row m-t-xs m-b-xs" role="presentation" >
@@ -159,6 +221,7 @@
 									</a>
 								</div>
 							</div>
+							{{-- menu survei kepribadian --}}
 							<div class="row m-t-xs m-b-xs" role="presentation" >
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#survei-kepribadian" data-toggle="tab" role="tab">
@@ -169,6 +232,7 @@
 									</a>
 								</div>	
 							</div>
+							{{-- menu survei keuangan & rekening --}}
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">							
 									<a class="text-capitalize" href="#survei-keuangan" data-toggle="tab" role="tab">
@@ -179,6 +243,7 @@
 									</a>
 								</div>
 							</div>
+							{{-- menu survei aset --}}
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#survei-aset" data-toggle="tab" role="tab">
@@ -189,6 +254,7 @@
 									</a>
 								</div>
 							</div>
+							{{-- menu survei nasabah --}}
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#survei-nasabah" data-toggle="tab" role="tab">
@@ -202,9 +268,10 @@
 						</div>
 
 						<div class="col-xs-12 col-sm-4">
+							{{-- menu checklist  --}}
 							<div class="row m-t-xs m-b-xs">
 								<div class="col-md-12">
-									<p class="text-capitalize text-sm"><strong>Ceklist</strong></p>
+									<p class="text-capitalize text-sm text-bold">Ceklist</p>
 								</div>
 							</div>	
 							<div class="row m-t-xs m-b-xs" role="presentation">
@@ -217,11 +284,13 @@
 									</a>
 								</div>
 							</div>
+							{{-- menu analis --}}
 							<div class="row m-t-xs m-b-xs">
 								<div class="col-md-12">							
-									<p class="text-capitalize text-sm m-t-sm"><strong>Analis</strong></p>
+									<p class="text-capitalize text-sm m-t-sm text-bold">Analis</p>
 								</div>
 							</div>
+							{{-- menu riwayat status --}}
 							<div class="row m-t-xs m-b-xs" role="presentation">
 								<div class="col-md-12">
 									<a class="text-capitalize" href="#riwayat-status" data-toggle="tab" role="tab">
@@ -302,25 +371,6 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="row button-action">
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-					<div class="text-center" style="width: 200px;">
-						@if (isset($page_datas->credit['spesimen_ttd']) && !is_null($page_datas->credit['spesimen_ttd']))
-							<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels text-center" />
-						@else
-							<img src="http://via.placeholder.com/350x200?text=TTD+tidak+ada" class="img img-responsive img-panels text-center"/>
-						@endif
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
-					<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger"><i class="fa fa-times"></i> Tolak</a> 
-					&nbsp;&nbsp;
-					<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary">
-						<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
-					</a>
-				</div>	
-			</div>
 		</div>
 
 		{{----------------  FORM status  --------------}}
@@ -359,3 +409,21 @@
 @section('page_modals')
 	@stack('show_modals')
 @append
+
+@push('scripts')
+	data = {!! (isset($page_datas->credit) ? json_encode($page_datas->credit) : 'null') !!}
+
+	function uiJenisSertifikat (e) {
+		panel = e.dataset.panel;
+		console.log($(e).siblings('#' + panel));
+		if (e.value) {
+			if (e.value.toLowerCase() == 'shm') {
+				console.log(1);
+				$(document.getElementById(panel)).css('display', 'none');
+			} else {
+				console.log(2);
+				$(document.getElementById(panel)).css('display', 'block');
+			}
+		}
+	}
+@endpush

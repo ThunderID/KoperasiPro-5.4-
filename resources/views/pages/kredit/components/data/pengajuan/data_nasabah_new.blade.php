@@ -6,12 +6,12 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<p class="text-capitalize text-md m-b-sm">Informasi Pribadi
+		<p class="text-capitalize text-md m-b-sm"><u>Informasi Pribadi</u>
 			@if (!empty($page_datas->credit['debitur']))
 				@if ($edit == true)
-					<span class=" text-md pull-right text-capitalize">
+					<span class=" text-sm pull-right text-capitalize">
 						{{-- <small> --}}
-							<a href="#" data-toggle="hidden" data-target="nasabah" data-panel="data-pribadi" no-data-pjax>
+							<a href="#" class="button-edit" data-toggle="hidden" data-target="nasabah" data-panel="data-pribadi" data-index="" data-flag="data-nasabah{" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 								 Edit
 							</a>
@@ -41,11 +41,13 @@
 							@if ($k == 0)
 								{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 								RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-								{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-								{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' }} <br/>
-								{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-								{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-								{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+								<span class="text-uppercase">
+									{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} - 
+									{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' }} <br/>
+									{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+									jawa timur <br/>
+									{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+								</span>
 							@endif
 						@endforeach
 					</p>

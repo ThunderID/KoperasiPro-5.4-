@@ -20,6 +20,7 @@
  * no parameters
  *
  */
+// dd($data);
 @endphp
 
 {!! Form::hidden( (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[id]', (isset($param['data']['id']) ? $param['data']['id'] : null)) !!}
@@ -64,15 +65,20 @@
 				data-field="jenis_sertifikat" 
 				placeholder="Pilih" 
 				data-placeholder="Pilih"
-				thunder-validation-rules='required'>
-				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>Hak Guna Bangunan (HGB)</option>
-				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>Sertifikat Hak Milik (SHM)</option>
+				thunder-validation-rules='required'
+				data-panel="{{ (isset($param['prefix']) ? $param['prefix'] .  '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa-berlaku-shgb]' }}">
+				<option value="hgb" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'hgb')) ? 'selected' : '' }}>
+					Hak Guna Bangunan (HGB)
+				</option>
+				<option value="shm" {{ (isset($param['data']['jenis_sertifikat']) && ($param['data']['jenis_sertifikat'] == 'shm')) ? 'selected' : '' }}>
+					Sertifikat Hak Milik (SHM)
+				</option>
 			</select>
 			{{-- <input type="hidden" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[jenis_sertifikat]' }}" class="input-tipe-jaminan-tanah-bangunan input-tanah-bangunan" data-field="jenis_sertifikat" value="{{ (isset($param['data']['jenis_sertifikat']) && !is_null($param['data']['jenis_sertifikat'])) ? $param['data']['jenis_sertifikat'] : 'hgb' }}"> --}}
 		</div>
 	</div>
 </fieldset>
-<fieldset class="form-group" id="masa-berlaku-shgb" style="display: none;">
+<fieldset class="form-group" id="{{ (isset($param['prefix']) ? $param['prefix'] .  '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa-berlaku-shgb]' }}" style="display: none;">
 	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-3">
@@ -141,7 +147,7 @@
 @include('components.helpers.forms.address', [
 	'param'		=> [
 		'prefix'	=> (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan'),
-		'data'		=> isset($data['alamat']) ? $data['alamat'] : null,
+		'data'		=> isset($param['data']['alamat']) ? $param['data']['alamat'] : null,
 	],
 	'data'		=> ['provinsi' 	=> $page_datas->provinsi],
 	'settings'	=> [
@@ -150,13 +156,14 @@
 ])
 
 <script type="text/javascript">
-	function uiJenisSertifikat(e){
-		if(e.value){
-			if(e.value.toLowerCase() == 'shm'){
-				document.getElementById("masa-berlaku-shgb").style.display = 'none';
-			}else{
-				document.getElementById("masa-berlaku-shgb").style.display = 'block';
-			}
-		}
-	}
+	// function uiJenisSertifikat(e){
+	// 	console.log(e);
+	// 	if(e.value){
+	// 		if(e.value.toLowerCase() == 'shm'){
+	// 			document.getElementById("masa-berlaku-shgb").style.display = 'none';
+	// 		}else{
+	// 			document.getElementById("masa-berlaku-shgb").style.display = 'block';
+	// 		}
+	// 	}
+	// }
 </script>

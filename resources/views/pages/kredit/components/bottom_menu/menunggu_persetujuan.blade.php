@@ -4,6 +4,7 @@
 		<div class="state text-center {{ ($page_datas->credit['status'] == 'tolak') ? 'failed' : 'complete' }}">2. Survei</div>
 		<div class="state text-center {{ ($page_datas->credit['status'] != 'tolak') ? 'active' : 'failed' }}">3. Menunggu Persetujuan</div>
 		<div class="state text-center">4. Menunggu Realisasi</div>
-		<div class="state text-center">5. Selesai</div>
+		<div class="state text-center">5. Kredit Aktif</div>
+		<div class="state text-center">6. Lunas</div>
 	</div>
 </div>	

@@ -37,8 +37,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary">Simpan</button>
+							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}">Batal</a>
+							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -67,8 +67,8 @@
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan">Batal</a>
+					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
@@ -84,6 +84,7 @@
 							<hr/>
 						</div>
 					</div>
+
 					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
 						@include ('pages.kredit.components.form.pengajuan.jaminan_tanah_bangunan', [
 							'param' 	=> [
@@ -94,8 +95,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary">Simpan</button>
+							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}">Batal</a>
+							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -119,16 +120,11 @@
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan">Batal</a>
+					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
 		{{---------------- // FORM JAMINAN TANAH & BANGUNAN --------------}}
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
-		<hr>
 	</div>
 </div>
