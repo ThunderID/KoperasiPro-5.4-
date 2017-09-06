@@ -34,9 +34,11 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('ajax/role',						['uses' => 'PenggunaController@role', 			'as' => 'ajax.role.lists']);
 
 	//Menu Simulasi
-	Route::any('kredit/simulasi/create',			['uses' => 'SimulasiController@index',		'as' => 'simulasi.index']);
+	Route::any('kredit/simulasi/',			['uses' => 'SimulasiController@index',		'as' => 'simulasi.index']);
 	Route::any('kredit/simulasi/store',				['uses' => 'SimulasiController@store',		'as' => 'simulasi.store']);
-	Route::any('kredit/simulasi/clear',				['uses' => 'SimulasiController@clear',		'as' => 'simulasi.clear']);
+	Route::any('kredit/simulasi/clear/{id}',		['uses' => 'SimulasiController@clear',		'as' => 'simulasi.clear']);
+	Route::any('kredit/simulasi/ajukan/{id}',			['uses' => 'SimulasiController@ajukan',		'as' => 'simulasi.ajukan']);
+
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');

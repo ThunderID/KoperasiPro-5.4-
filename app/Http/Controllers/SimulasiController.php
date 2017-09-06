@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Infrastructure\Traits\IDRTrait;
 
-use Input, Session;
+use Input, Session, App;
 /**
  * Class LaporanController
  * Description: digunakan untuk membantu UI untuk mengambil data
@@ -25,6 +25,12 @@ Class SimulasiController extends Controller
 
 		// get from session of data
 		$this->page_datas->data_simulasi 			= Session::get('simulasi') != null ? Session::get('simulasi') : [];
+
+		if(Session::has('simulasi_input')){
+			$this->page_datas->input_simulasi 		= Session::pull('simulasi_input');
+		}else{
+			$this->page_datas->input_simulasi 		= null;
+		}
 
 		//function from parent to generate view
 		return $this->generateView();
@@ -48,17 +54,41 @@ Class SimulasiController extends Controller
 		}
 
 		Session::put('simulasi', $session);
+		Session::put('simulasi_input', $inputs);
 
 		// return to index
 		return $this->generateRedirect(route('simulasi.index'));
 	}
 
-	public function clear(){
+	public function clear($id = null){
+		if($id == null){
+			App::Abort(404);
+		}
 
-		Session::forget('simulasi');
+		if($id == 'all'){
+			Session::forget('simulasi');
+		}else{
+			$tmp = Session::get('simulasi');
+			array_splice($tmp, $id, 1);
+			Session::put('simulasi', $tmp);
+		}
 
 		// return to index
 		return $this->generateRedirect(route('simulasi.index'));
+	}
+
+	public function ajukan($id = null){
+		if($id == null){
+			App::Abort(404);
+		}
+
+		$tmp = Session::get('simulasi')[$id]['pengajuan'];
+
+		Session::put('_old_input.pengajuan_kredit', $tmp['pinjaman']);
+		Session::put('_old_input.jenis_kredit', $tmp['angsuran']);
+		Session::put('_old_input.jangka_waktu', $tmp['jangka_waktu']);
+
+		return $this->generateRedirect(route('credit.create'));
 	}
 
 

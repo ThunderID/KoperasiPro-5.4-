@@ -6,7 +6,8 @@
     	"imagePreviewer" : "./imagePreviewer.js",
     	"stringManipulator" : "./stringManipulator",
         "scrollTo" : "./scrollTo",
-    	"dataBox" : "./dataBox"
+    	"dataBox" : "./dataBox",
+        "printElement":"./printElement"
     },
     "autoload" : true,
     "debug" : true

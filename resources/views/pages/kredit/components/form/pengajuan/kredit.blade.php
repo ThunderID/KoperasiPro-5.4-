@@ -64,8 +64,7 @@
 	<label class="text-sm">Jenis Kredit</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('jenis_kredit', $data['select_jenis_kredit'], (isset($param['data']['jenis_kredit']) ? $param['data']['jenis_kredit'] : ''), ['class' => 'form-control quick-select required auto-tabindex select thunder-validation-input', 'data-other' => 'input-jenis-kredit', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih', 'thunder-validation-rules' => 'required']) !!}
-			{!! Form::hidden('jenis_kredit', 'pa', ['class' => 'form-control m-t-sm auto-tabindex input-jenis-kredit', 'style' => 'width:60%', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih']) !!}
+			{!! Form::select('jenis_kredit', $data['select_jenis_kredit'], (isset($param['data']['jenis_kredit']) ? $param['data']['jenis_kredit'] : ''), ['class' => 'form-control quick-select required auto-tabindex select thunder-validation-input', 'data-other' => 'input-jenis-kredit', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih', 'thunder-validation-rules' => 'required', 'data-preload' => 'pa']) !!}
 		</div>
 	</div>
 </fieldset>
@@ -73,7 +72,7 @@
 	<label class="text-sm">Lama Angsuran</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::select('jangka_waktu', $data['select_jangka_waktu'], (isset($param['data']['jangka_waktu']) ? $param['data']['jangka_waktu'] : ''), ['class' => 'form-control select required auto-tabindex thunder-validation-input', 'placeholder' => 'Pilih', 'data-placeholder' => 'Pilih', 'thunder-validation-rules' => 'required']) !!}
+			{!! Form::text('jangka_waktu', (isset($param['data']['jangka_waktu']) ? $param['data']['jangka_waktu'] : ''), ['class' => 'form-control required auto-tabindex thunder-validation-input', 'placeholder' => 'Jangka Waktu', 'data-placeholder' => 'Jangka Waktu', 'thunder-validation-rules' => 'required']) !!}
 		</div>
 	</div>
 </fieldset>
