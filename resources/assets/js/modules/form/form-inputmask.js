@@ -85,7 +85,7 @@ window.formInputMask = {
 		noTelp.mask(selector2);
 
 		// if (selector.inputmask) noTelp.inputmask.unmaskedvalue();
-		if (selector2.inputmask) noTelp.inputmask.unmaskedvalue();
+		// if (selector2.inputmask) noTelp.inputmask.unmaskedvalue();
 	},
 	noSertifikat: function () {
 		var noSertifikat = new Inputmask('99999');
