@@ -82,6 +82,11 @@ class RiwayatKredit extends BaseModel
 		return $this->belongsTo('App\Domain\Pengajuan\Models\Pengajuan', 'pengajuan_id');
 	}
 
+	public function petugas()
+	{
+		return $this->belongsTo('App\Domain\HR\Models\Orang', 'petugas_id');
+	}
+
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- MUTATOR ----------------------------------------------------------------------------*/
