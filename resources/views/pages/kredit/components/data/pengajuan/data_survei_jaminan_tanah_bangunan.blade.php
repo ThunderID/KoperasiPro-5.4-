@@ -13,8 +13,8 @@
 @forelse((array)$page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-			<p class="m-b-xs text-capitalize">
-				jaminan tanah &amp; bangunan {{ $key+1 }}
+			<p class="m-b-xs text-capitalize text-sm">
+				data jaminan tanah &amp; bangunan {{ $key+1 }}
 			</p>
 		</div>
 	</div>
@@ -49,23 +49,23 @@
 			@endif
 		@endforeach
 	</p>
-	<p class="text-capitalize text-light m-b-md">
+	<p class="text-capitalize text-light m-b-lg">
 		Sertifikat berlaku sampai th. {{ (isset($value['masa_berlaku_sertifikat']) && !is_null($value['masa_berlaku_sertifikat'])) ? $value['masa_berlaku_sertifikat'] : '-' }}
 	</p>
 
 	@forelse($value['survei_jaminan_tanah_bangunan'] as $k => $v)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize">
-					survei {{ $k+1 }}
+				<p class="m-b-xs text-capitalize text-sm">
+					Hasil survei {{ $k+1 }}
 
 					@if ($edit == true)
 						<span class="pull-right">
-							<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+							<a class="text-danger text-sm m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 								<i class="fa fa-trash" aria-hidden="true"></i>
 								 Hapus
 							</a> &nbsp;
-							<a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}-{{$k}}" data-panel="survei-jaminan" no-data-pjax>
+							<a href="#" class="button-edit text-sm" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}-{{$k}}" data-panel="survei-jaminan" data-flag="data-survei-jaminan-tanah-bangunan" data-index="{{ $key }}" data-index-child="{{ $k }}" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 								 Edit
 							</a>
@@ -81,9 +81,9 @@
 				@endif
 			</div>
 		</div>
-		<div class="row p-t-lg">
+		<div class="row p-t-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info jaminan</strong></p>
+				<p class="m-t-xs m-b-xs text-capitalize text-sm"><strong>info jaminan</strong></p>
 			</div>
 		</div>
 		<div class="row m-b-sm">
@@ -136,7 +136,7 @@
 			</div>
 		</div>
 	
-		<div class="row p-t-lg">
+		<div class="row p-t-sm">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info {{ (isset($v['tipe']) && !is_null($v['tipe'])) ? str_replace('_', ' ', $v['tipe']) : '-' }} </strong></p>
 			</div>
@@ -211,7 +211,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<p class="text-capitalize text-light">
-					{{ (isset($v['dinding_bangunan']) && !is_null($v['dinding_bangunan'])) ? str_replace('_', ' ', $v['dinding_bangunan']) : '-'  }}
+					{{ (isset($v['dinding']) && !is_null($v['dinding'])) ? str_replace('_', ' ', $v['dinding']) : '-'  }}
 				</p>
 			</div>
 		</div>
@@ -223,17 +223,23 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<p class="text-capitalize text-light">
-					{{ (isset($v['alamat']['alamat']) && !is_null($v['alamat']['alamat'])) ? $v['alamat']['alamat'] : '' }}
-					RT {{ (isset($v['alamat']['rt']) ? $v['alamat']['rt'] : '-') }} / RW {{ isset($v['alamat']['rw']) ? $v['alamat']['rw'] : '-' }} <br/>
-					{{ (isset($v['alamat']['desa']) && !is_null($v['alamat']['desa'])) ? $v['alamat']['desa'] : '' }} 
-					{{ (isset($v['alamat']['distrik']) && !is_null($v['alamat']['distrik'])) ? $v['alamat']['distrik'] .'<br/>' : '' }}
-					{{ (isset($v['alamat']['regensi']) && !is_null($v['alamat']['regensi'])) ? $v['alamat']['regensi'] : '' }} - 
-					{{ (isset($v['alamat']['provinsi']) && !is_null($v['alamat']['provinsi'])) ? $v['alamat']['provinsi'] : '' }} - 
-					{{ (isset($v['alamat']['negara']) && !is_null($v['alamat']['negara'])) ? $v['alamat']['negara'] : '' }}
+					@foreach ($v['alamat'] as $k2 => $v2)
+						@if ($k2 == 0)
+							{{ (isset($v2['alamat']) && !is_null($v2['alamat'])) ? $v2['alamat'] : '' }} <br/>
+							RT {{ (isset($v2['rt']) ? $v2['rt'] : '-') }} / RW {{ isset($v2['rw']) ? $v2['rw'] : '-' }} <br/>
+							<span class="text-uppercase">
+								{{ (isset($v2['desa']) && !is_null($v2['desa'])) ? $v2['desa'] : '' }} -
+								{{ (isset($v2['distrik']) && !is_null($v2['distrik'])) ? $v2['distrik']  : '' }} <br/>
+								{{ (isset($v2['regensi']) && !is_null($v2['regensi'])) ? $v2['regensi'] : '' }} - 
+								jawa timur <br/>
+								{{ (isset($v2['negara']) && !is_null($v2['negara'])) ? $v2['negara'] : '' }}
+							</span>
+						@endif
+					@endforeach
 				</p>
 			</div>
 		</div>
-		<div class="row p-t-lg">
+		<div class="row p-t-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>info umum</strong></p>
 			</div>
@@ -282,7 +288,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<p class="text-capitalize text-light">
-					{{ (isset($v['lebar_jalan']) && !is_null($v['lebar_jalan'])) ? str_replace('_', ' ', $v['lebar_jalan']) : '-'  }}
+					{{ (isset($v['lebar_jalan']) && !is_null($v['lebar_jalan'])) ? str_replace('_', ' ', $v['lebar_jalan']) : '-'  }} M
 				</p>
 			</div>
 		</div>
@@ -311,7 +317,7 @@
 			</div>
 		</div>
 
-		<div class="row p-t-lg">
+		<div class="row p-t-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<p class="m-t-sm m-b-xs text-capitalize text-sm"><strong>lain-lain</strong></p>
 			</div>
@@ -367,6 +373,40 @@
 		<div class="row m-b-sm">
 			<div class="col-xs-12 col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<p class="text-capitalize text-light">
+					PBB Terakhir
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<p class="text-capitalize text-light">
+					{{ (isset($v['pbb_terakhir']) && !is_null($v['pbb_terakhir'])) ? str_replace('_', ' ', $v['pbb_terakhir']) : '-'  }}
+				</p>
+			</div>
+		</div>
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					harga taksasi
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<p class="text-capitalize text-light">
+					{{ (isset($v['harga_taksasi']) && !is_null($v['harga_taksasi'])) ? str_replace('_', ' ', $v['harga_taksasi']) : '-'  }}
+				</p>
+			</div>
+		</div>
+		{{-- <div class="row m-b-sm">
+			<div class="col-xs-12 col-xs-12 col-sm-6 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
+					Gambar Pendukung
+				</p>
+				<div class="img-responsive">
+					{{ (isset($v['njop']) && !is_null($v['njop'])) ? str_replace('_', ' ', $v['njop']) : '-'  }}
+				</div>
+			</div>
+		</div> --}}
+		<div class="row m-b-sm">
+			<div class="col-xs-12 col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<p class="text-capitalize text-light">
 					uraian
 				</p>
 			</div>
@@ -379,14 +419,18 @@
 		<!-- No data -->
 		<div class="row m-t-md">
 			<div class="col-sm-12">
-				<p class="text-light"><a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanTanahBangunan();" no-data-pjax> Tambahkan Survei </a></p>
+				<p class="text-light text-sm">
+					<a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanTanahBangunan();" no-data-pjax>
+						<i class="fa fa-plus"></i> Tambahkan Survei 
+					</a>
+				</p>
 			</div>
 		</div>
 		<div class="clearfix">&nbsp;</div>
 	@empty
 		<div class="row m-b-md">
 			<div class="col-sm-12">
-				<p class="text-light">Belum ada data disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{$key}}--1" data-panel="survei-jaminan" no-data-pjax onClick="initJaminanTanahBangunan();"> Tambahkan Sekarang </a></p>
+				<p class="text-light">Belum ada data survei disimpan. <a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{$key}}--1" data-panel="survei-jaminan" no-data-pjax onClick="initJaminanTanahBangunan();"> Tambahkan Sekarang </a></p>
 			</div>
 		</div>
 	@endforelse

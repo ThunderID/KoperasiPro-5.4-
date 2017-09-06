@@ -14,16 +14,16 @@
 	@forelse ($page_datas->credit['survei_aset_usaha'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize">
+				<p class="m-b-xs text-capitalize text-sm">
 					aset usaha {{ $key+1 }} 
 					
 					@if (!empty($page_datas->credit['survei_aset_usaha']))
 						@if($edit == true)
 							<span class="pull-right">
-								<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.aset.usaha.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_usaha_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+								<a class="text-danger text-sm m-r-md" href="#" data-url="{{ route('survei.aset.usaha.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_aset_usaha_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 									<i class="fa fa-trash" aria-hidden="true"></i> Hapus
 								</a> &nbsp;
-								<a href="#aset-usaha" data-toggle="hidden" data-target="aset-usaha-{{ $key }}" data-panel="data-aset" no-data-pjax>
+								<a href="#aset-usaha" class="button-edit text-sm" data-toggle="hidden" data-target="aset-usaha-{{ $key }}" data-panel="data-aset" data-flag="data-aset-usaha" data-index="{{ $key }}" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i> Edit
 								</a>
 							</span>
@@ -112,7 +112,7 @@
 	@if (count($page_datas->credit['survei_aset_usaha']) > 0)
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#" data-toggle="hidden" data-target="aset-usaha" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Usaha</a>
+				<a href="#" class="text-sm" data-toggle="hidden" data-target="aset-usaha" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Usaha</a>
 			</div>
 		</div>
 	@endif

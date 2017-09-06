@@ -14,7 +14,7 @@
 	@forelse ($page_datas->credit['survei_aset_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize">
+				<p class="m-b-xs text-capitalize text-sm">
 					aset tanah &amp; bangunan {{ $key+1 }}
 
 					@if (!empty($page_datas->credit['survei_aset_tanah_bangunan']))
@@ -25,7 +25,7 @@
 									 Hapus
 								</a> &nbsp;
 
-								<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan-{{ $key }}" data-panel="data-aset" no-data-pjax>
+								<a href="#aset-tanah-bangunan" class="button-edit" data-toggle="hidden" data-target="aset-tanah-bangunan-{{ $key }}" data-panel="data-aset" data-flag="data-aset-tanah-bangunan" data-index="{{ $key }}" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
 								</a>
@@ -58,13 +58,15 @@
 				<p class="text-capitalize text-light">
 					@foreach ($value['alamat'] as $k => $v)
 						@if ($k == 0)
-							{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+							{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 							RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-							{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-							{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
-							{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-							{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-							{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+							<span class="text-uppercase">
+								{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} -
+								{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik']  : '' }} <br/>
+								{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+								jawa timur <br/>
+								{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+							</span>
 						@endif
 					@endforeach
 				</p>
@@ -97,7 +99,7 @@
 	@if (count($page_datas->credit['survei_aset_tanah_bangunan']) > 0)
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Tanah &amp; Bangunan</a>
+				<a href="#aset-tanah-bangunan" class="text-sm" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Tanah &amp; Bangunan</a>
 			</div>
 		</div>
 	@endif

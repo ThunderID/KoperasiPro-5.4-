@@ -28,23 +28,18 @@
 					</p>
 				@endif
 
-				<p class="text-light m-b-md">
-					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline m-t-md', 'method' => 'PUT']) !!}
-						<label class="text-light m-b-md" style="display:block;padding-left:15px;text-indent:-15px;"> 
-						<input type="checkbox" @if($value['is_added']) checked @endif name="ceklist[is_added]" value="{{$value['is_added']}}" style="width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -1px; *overflow: hidden;" onChange = "this.form.submit()">
-							{{$value['judul']}}
+				
+				{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => '', 'method' => 'PUT', 'data-pjax' => 'true', 'data-ajax-submit' => 'true']) !!}
+					<div class="checkbox">
+						<label class="text-light">
+							<input type="checkbox" {{ ($value['is_added']) ? 'checked' : '' }} name="ceklist[is_added]" value="{{ $value['is_added'] }}" onChange="this.form.submit()" style="height: inherit">
+							<p class="text-regular">{{ $value['judul'] }}</p>
+							{{ Form::hidden('ceklist[id]', $value['id']) }}
 						</label>
-						{{Form::hidden('ceklist[id]', $value['id'])}}
-					{{Form::close()}}
-				</p>
+					</div>
+				{!! Form::close() !!}
 			@empty
 			@endforelse	
-
 		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
-		<hr>
 	</div>
 </div>
