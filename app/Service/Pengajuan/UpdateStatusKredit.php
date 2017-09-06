@@ -182,20 +182,26 @@ class UpdateStatusKredit
 		}
 
 		//0a. check kelengkapan survei
-		foreach ((array)$this->pengajuan->jaminan_kendaraan->toArray() as $key => $value) 
+		if(count($this->pengajuan->jaminan_kendaraan))
 		{
-			if(!$this->pengajuan->jaminan_kendaraan[$key]->survei_jaminan_kendaraan->count())
+			foreach ($this->pengajuan->jaminan_kendaraan as $key => $value) 
 			{
-				throw new Exception("Belum ada survei jaminan kendaraan dengan nomor BPKB ".$value['nomor_bpkb'], 1);
+				if(!$value->survei_jaminan_kendaraan->count())
+				{
+					throw new Exception("Belum ada survei jaminan kendaraan dengan nomor BPKB ".$value['nomor_bpkb'], 1);
+				}
 			}
 		}
 
 		//0b. check kelengkapan survei
-		foreach ((array)$this->pengajuan->jaminan_tanah_bangunan->toArray() as $key => $value) 
+		if(count($this->pengajuan->jaminan_tanah_bangunan))
 		{
-			if(!$this->pengajuan->jaminan_tanah_bangunan[$key]->survei_jaminan_tanah_bangunan->count())
+			foreach ($this->pengajuan->jaminan_tanah_bangunan as $key => $value) 
 			{
-				throw new Exception("Belum ada survei jaminan sertifikat dengan nomor Sertifikat ".$value['nomor_sertifikat'], 1);
+				if(!$value->survei_jaminan_tanah_bangunan->count())
+				{
+					throw new Exception("Belum ada survei jaminan sertifikat dengan nomor Sertifikat ".$value['nomor_sertifikat'], 1);
+				}
 			}
 		}
 
