@@ -31,14 +31,14 @@
 				<div class="col-sm-12">
 					<fieldset class="form-group">
 						<label class="text-sm">Pinjaman</label>
-						{!! Form::text('pinjaman', null, ['class' => 'form-control required mask-money', 'placeholder' => 'Masukkan jumlah pinjaman']) !!}
+						{!! Form::text('pinjaman', $page_datas->input_simulasi['pinjaman'], ['class' => 'form-control required mask-money', 'placeholder' => 'Masukkan jumlah pinjaman']) !!}
 					</fieldset>
 				</div>
 				<div class="col-sm-12">
 					<fieldset class="form-group">
 						<label class="text-sm">Jangka Waktu</label>
 						<div class="input-group">
-							{!! Form::text('jangka_waktu', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
+							{!! Form::text('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
 							<span class="input-group-addon">Bulan</span>
 						</div>
 					</fieldset>
@@ -47,7 +47,7 @@
 					<fieldset class="form-group">
 						<label class="text-sm">Suku Bunga</label>
 						<div class="input-group">
-							{!! Form::text('suku_bunga', null, ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
+							{!! Form::text('suku_bunga', $page_datas->input_simulasi['suku_bunga'], ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
 							<span class="input-group-addon">% / tahun</span>
 						</div>
 					</fieldset>
@@ -55,7 +55,7 @@
 				<div class="col-sm-12">
 					<fieldset class="form-group">
 						<label class="text-sm">Jenis Kredit</label>
-						{!! Form::hidden('angsuran', 'PA', null) !!}
+						{!! Form::hidden('angsuran', 'pa', null) !!}
 						{!! Form::text('angsuran_dummy', 'Angsuran', ['class' => 'form-control required', 'disabled' => 'disabled']) !!}
 					</fieldset>
 				</div>				
@@ -76,10 +76,12 @@
 					</h4>
 				</div>
 				<div class="col-xs-4 col-sm-5 col-md-6 text-right p-t-xs">
-					<a href="{{ route('simulasi.clear') }}" class="btn btn-sm btn-default text-danger">
+					@if(count($page_datas->data_simulasi) > 0)
+					<a href="{{ route('simulasi.clear', ['id' => 'all']) }}" class="btn btn-sm btn-default text-danger">
 						<i class="fa fa-times" aria-hidden="true"></i>
 						<span class="hidden-xs">&nbsp;Hapus Semua Simulasi</span>
 					</a>
+					@endif
 				</div>
 			</div>
 			<div class="row" id="simulasi-canvas">
@@ -92,12 +94,12 @@
 						<?php
 							// dd($data);
 						?>
-						<div class="row m-b-lg p-b-md ilustrasi">
+						<div class="row m-b-lg p-b-md" id="area-print">
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-12">
 										<h4 class="text-light">Simulasi {{ $key + 1 }}</h4>
-										<hr class="m-t-sm m-b-sm" style="border-bottom: 1px solid #E9E9E9">
+										<hr class="m-t-sm m-b-md" style="border-bottom: 1px solid #E9E9E9">
 									</div>
 								</div>
 								<div class="row p-b-xs">
@@ -155,7 +157,7 @@
 										<table class="table m-b-xs">
 											<thead>
 												<tr>
-													<th style="width: 10%;">Agsuran</th>
+													<th style="width: 10%;">Angsuran</th>
 													<th class="text-right">Angsuran Pokok</th>
 													<th class="text-right">Angsuran Bunga</th>
 													<th class="text-right">Biaya Lainnya</th>
@@ -189,11 +191,42 @@
 										<hr class="m-t-xs m-b-none" style="border-bottom: 1px solid #E9E9E9">		
 									</div>
 								</div>
+								<div class="row p-t-lg p-b-lg">
+									<div class="col-md-12">
+										<p class="text-muted">
+											Perhitungan Simulasi kredit ini dicetak pada {{ date("d/m/Y")}}<br>
+											Adapun hasil perhitungan diatas merupakan simulasi belaka, jumlah angka yang tertera dapat berubah dan tidak mengikat.
+										</p>
+									</div>
+								</div>								
+								<div class="row p-t-sm p-b-md hidden-print">
+									<div class="col-sm-6">
+										<a href="javascript:void(0);" class="btn btn-sm btn-info trigger-print">
+											<i class="fa fa-print" aria-hidden="true"></i>
+											Print
+										</a>																				
+									</div>
+									<div class="col-sm-6 text-right">
+										<a href="{{ route('simulasi.clear',['id' => $key]) }}" class="btn btn-sm btn-danger m-r-sm">
+											<i class="fa fa-times" aria-hidden="true"></i>
+											Hapus
+										</a>
+										<a href="{{ route('simulasi.ajukan', ['id' => $key]) }}" class="btn btn-sm btn-primary">
+											<i class="fa fa-check" aria-hidden="true"></i>
+											Ajukan
+										</a>
+									</div>
+									<div class="col-md-12">
+										<hr class="m-t-sm m-b-none" style="border-bottom: 1px solid #E9E9E9">		
+									</div>
+								</div>							
+
 							</div>
 						</div>
 					@empty
 						<p class="text-muted">Belum Ada Data</p>
 					@endforelse
+
 				</div>
 			</div>			
 		</div>
