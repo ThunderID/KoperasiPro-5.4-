@@ -38,7 +38,7 @@
 					<fieldset class="form-group">
 						<label class="text-sm">Jangka Waktu</label>
 						<div class="input-group">
-							{!! Form::text('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
+							{!! Form::number('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
 							<span class="input-group-addon">Bulan</span>
 						</div>
 					</fieldset>
@@ -47,7 +47,7 @@
 					<fieldset class="form-group">
 						<label class="text-sm">Suku Bunga</label>
 						<div class="input-group">
-							{!! Form::text('suku_bunga', $page_datas->input_simulasi['suku_bunga'], ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
+							{!! Form::number('suku_bunga', $page_datas->input_simulasi['suku_bunga'], ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
 							<span class="input-group-addon">% / tahun</span>
 						</div>
 					</fieldset>
