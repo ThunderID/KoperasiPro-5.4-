@@ -1,3 +1,5 @@
+@inject('skservice', '\App\Service\Helpers\Kredit\StatusKreditService')
+
 @extends('template.cms_template')
 
 @section('laporan')
@@ -12,7 +14,13 @@
 	<div class="row p-b-md field">
 		<div class="col-md-6">
 			<h2>Laporan Pengajuan Kredit</h2>
-			<p class="text-muted">Laporan ini untuk melihat kredit yang diajukan per tanggal tertentu.</p>
+			<p class="text-muted">Laporan ini untuk melihat kredit yang diajukan 
+			@if($page_datas->start==$page_datas->end)
+				tanggal {{$page_datas->start}}
+			@else
+				antara tanggal {{$page_datas->start}} - {{$page_datas->end}}
+			@endif
+			</p>
 		</div>
 		<div class="col-md-6 p-t-md">
 			<div id="daterange" class="btn btn-default btn-sm pull-right selectbox daterange">
@@ -64,27 +72,53 @@
 	<div class="row p-b-md field">
 		<div class="col-md-12">
 			<!-- table -->
-			<table class="table table-bordered">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" style="width: 25%;" colspan="2">Nama Nasabah</th>
-						<th class="text-center" style="width: 25%;">Pengajuan Kredit</th>
-						<th class="text-center" style="width: 25%;">Tanggal Pengajuan</th>
-						<th class="text-center" style="width: 25%;">Status Terakhir</th>
+						<th class="text-center">No</th>
+						<th class="text-left" colspan="2">Nama Nasabah</th>
+						<th class="text-center">Nomor Pengajuan</th>
+						<th class="text-right">Pengajuan Kredit</th>
+						<th class="text-center">Status Terakhir</th>
+						<th class="text-center">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
+					@php $date_flag = null @endphp
 					@forelse ($page_datas->pengajuan as $key => $data)
+						@if($date_flag != $data['tanggal_pengajuan'])
+							@php $date_flag = $data['tanggal_pengajuan'] @endphp
+							<tr>
+								<td class="text-left" colspan="7">
+									<strong>{{$date_flag}}</strong>
+								</td>
+							</tr>
+						@endif
 						<tr>
-							<td class="text-left" style="border-right:0px;">{{ $data['debitur']['nama'] }}</td>
-							<td class="text-right" style="border-left:0px;">@if(is_array($data['hp'])) <span class="label label-info">Mobile</span> @endif</td>
-							<td class="text-right">{{ $data['pengajuan_kredit'] }} </td>
-							<td class="text-center">{{ $data['tanggal_pengajuan'] }}</td>
-							<td class="text-center">{{ $data['status'] }}</td>
+							<td class="text-center" style="vertical-align: middle;">{{($key+1)}}</td>
+							<td class="text-left" style="border-right:0px;vertical-align: middle;">{{ $data['debitur']['nama'] }}</td>
+							<td class="text-right" style="border-left:0px;vertical-align: middle;">@if(is_array($data['hp'])) <span class="label label-info">Mobile</span> @endif</td>
+							<td class="text-center" style="vertical-align: middle;">{{ $data['id'] }}</td>
+							<td class="text-right" style="vertical-align: middle;">{{ $data['pengajuan_kredit'] }} </td>
+							<td class="text-left">
+								@foreach($skservice->get() as $k => $v)
+									@if($data['status']==$k)
+										<span class="label label-success">{{$v}}</span>
+									@else
+										<span class="label label-default">{{$v}}</span>
+									@endif
+									@if($k=='menunggu_persetujuan')
+										<div class="p-t-sm"></div>
+									@endif
+								@endforeach
+							</td>
+							<td class="text-center" style="vertical-align: middle;">
+								<a href="{{route('credit.show', ['id' => $data['id']])}}">Lihat</a>
+							</td>
 						</tr>
 					@empty
 						<tr>
-							<td colspan="5" class="text-center">Belum ada data</td>
+							<td colspan="7" class="text-center">Belum ada data</td>
 						</tr>
 					@endforelse
 				</tbody>
