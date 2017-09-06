@@ -163,28 +163,28 @@ $('#daterange').daterangepicker({
 		applylabel: 'ok',
 		cancellabel: 'hapus',	
 		daysofweek: [
-				"sen",
-				"sel",
-				"rab",
-				"kam",
-				"jum",
-				"sab",
-				"min"
-			],
-			monthnames: [
-				"januari",
-				"februari",
-				"maret",
-				"april",
-				"mei",
-				"juni",
-				"juli",
-				"agustus",
-				"september",
-				"oktober",
-				"november",
-				"desember"
-			],
-			firstday: 0
+			"sen",
+			"sel",
+			"rab",
+			"kam",
+			"jum",
+			"sab",
+			"min"
+		],
+		monthnames: [
+			"januari",
+			"februari",
+			"maret",
+			"april",
+			"mei",
+			"juni",
+			"juli",
+			"agustus",
+			"september",
+			"oktober",
+			"november",
+			"desember"
+		],
+		firstday: 0
 	}
 });	
