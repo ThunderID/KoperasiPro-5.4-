@@ -20,7 +20,7 @@
 <div class="col-md-12">
 	<div class="row">
 {{-- Left Sidebar --}}
-		<div class="col-xs-12 col-sm-4 col-md-3 p-t-md p-l-sm _window"  data-padd-top="auto" data-padd-bottom="0" style="border-right: 1px solid #E8E8E8;">
+		<div class="col-xs-12 col-sm-4 col-md-3 p-t-md p-l-sm _window no-window-mobile sidebar-responsive"  data-padd-top="auto" data-padd-bottom="0">
 			<div class="row p-b-sm">
 				<div class="col-md-12">
 					<h4>Buat Simulasi</h4>
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="row" id="simulasi-canvas">
-				<div class="col-md-12 _window p-t-lg" data-padd-top="auto" data-padd-bottom="0">
+				<div class="col-md-12 _window p-t-lg no-window-mobile" data-padd-top="auto" data-padd-bottom="0">
 						<?php
 							// dd($page_datas->data_simulasi);
 						?>
@@ -200,13 +200,13 @@
 									</div>
 								</div>								
 								<div class="row p-t-sm p-b-md hidden-print">
-									<div class="col-sm-6">
+									<div class="col-xs-6">
 										<a href="javascript:void(0);" class="btn btn-sm btn-info trigger-print">
 											<i class="fa fa-print" aria-hidden="true"></i>
 											Print
 										</a>																				
 									</div>
-									<div class="col-sm-6 text-right">
+									<div class="col-xs-6 text-right">
 										<a href="{{ route('simulasi.clear',['id' => $key]) }}" class="btn btn-sm btn-danger m-r-sm">
 											<i class="fa fa-times" aria-hidden="true"></i>
 											Hapus
