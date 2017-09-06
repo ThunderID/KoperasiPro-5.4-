@@ -61,6 +61,8 @@ $(document).ready(function(){
 		// khusus module template clone
 		window.templateClone.init();
 		$('.add.init-add-one').trigger('click');
+
+		// date range
 	});
 
 	// Form Submit with get method
