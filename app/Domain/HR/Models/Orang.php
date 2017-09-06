@@ -102,7 +102,7 @@ class Orang extends BaseModel
 	{
 		return $this->hasMany('App\Domain\Pengajuan\Models\Pengajuan', 'orang_id');
 	}
-
+	
 	/**
 	 * relationship relasi
 	 *

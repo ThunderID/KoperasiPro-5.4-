@@ -1,0 +1,132 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\Infrastructure\Traits\IDRTrait;
+
+use Input, Session;
+/**
+ * Class LaporanController
+ * Description: digunakan untuk membantu UI untuk mengambil data
+ *
+ * author: @agilma <https://github.com/agilma>
+ */
+Class SimulasiController extends Controller
+{
+	use IDRTrait;
+
+	public function index()
+	{
+		$this->setGlobal();
+	
+		// set page attributes (please check parent variable)
+		$this->page_attributes->title 				= "Simulasi Kredit";
+
+		$this->view 								= view('pages.kredit.simulasi.create');
+
+		// get from session of data
+		$this->page_datas->data_simulasi 			= Session::get('simulasi') != null ? Session::get('simulasi') : [];
+		
+		//function from parent to generate view
+		return $this->generateView();
+	}
+
+	public function store()
+	{
+		$this->setGlobal();
+		
+		// get input
+		$inputs 									= Input::only('pinjaman', 'jangka_waktu', 'suku_bunga', 'angsuran'); 
+		$rslt 										= json_decode(json_encode($this->hitung(Input::all())), true);
+		// dd($rslt);
+
+		// update session
+		if(Session::has('simulasi')){
+			// dd(Session::get('simulasi'));
+			$session 								= Session::get('simulasi');
+			array_push($session, $rslt);
+		}else{
+			$session 								= [0 => $rslt];
+		}
+
+		Session::put('simulasi', $session);
+
+		// return to index
+		return $this->generateRedirect(route('simulasi.index'));
+	}
+
+	public function clear(){
+
+		Session::forget('simulasi');
+
+		// return to index
+		return $this->generateRedirect(route('simulasi.index'));
+	}
+
+
+	public function hitung($request)
+	{
+		$jenis_pinjaman				= request()->input('angsuran');
+		$suku_bunga_pertahun		= request()->input('suku_bunga');
+		$pokok_pinjaman				= request()->input('pinjaman');
+		$jangka_waktu				= request()->input('jangka_waktu');
+		$net_pinjaman				= request()->input('net_pinjaman');
+
+		$data_pengajuan 			= 	[	
+											'angsuran' 				=> $jenis_pinjaman,
+											'suku_bunga' 			=> $suku_bunga_pertahun,
+											'pinjaman'				=> $pokok_pinjaman,
+											'jangka_waktu' 			=> $jangka_waktu
+										];
+
+		switch (strtolower($jenis_pinjaman)) 
+		{
+			case 'pa':
+				// dd($this->hitung_flat($suku_bunga_pertahun, $pokok_pinjaman, $jangka_waktu, $net_pinjaman));
+				$rslt = $this->hitung_flat($suku_bunga_pertahun, $pokok_pinjaman, $jangka_waktu, $net_pinjaman);
+				$rslt['pengajuan'] 	= $data_pengajuan;
+				return response()->json($rslt);
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+
+		\App::abort(404);
+	}
+
+	private function hitung_flat($suku_bunga_pertahun, $pokok_pinjaman = null, $jangka_waktu, $net_pinjaman = null)
+	{
+		if(!is_null($pokok_pinjaman))
+		{
+			$pokok 			= $this->formatMoneyFrom($pokok_pinjaman);
+		}
+		else
+		{
+			$pokok 			= 0;
+		}
+
+		if(!is_null($net_pinjaman))
+		{
+			$net 			= $this->formatMoneyFrom($net_pinjaman);
+		}
+		else
+		{
+			$net 			= 0;
+		}
+		//untuk sementara net tidak dihitung
+
+		$angsuran_pokok 	= $this->formatMoneyTo($pokok/max(1, $jangka_waktu));
+		$angsuran_bunga 	= $this->formatMoneyTo(($pokok * $suku_bunga_pertahun/100)/12);
+		$angsuran 			= $this->formatMoneyTo(($pokok/max(1, $jangka_waktu)) + (($pokok * $suku_bunga_pertahun/100)/12));
+
+		$rekon 				= [];
+
+		foreach (range(1, $jangka_waktu) as $key) 
+		{
+			$rekon['angsuran'][$key] 		= ['angsuran_pokok' => $angsuran_pokok, 'angsuran_bunga' => $angsuran_bunga, 'total_angsuran' => $angsuran];
+		}
+
+		return $rekon;
+	}
+}
