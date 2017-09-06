@@ -102,7 +102,7 @@ class JaminanKendaraan extends BaseModel
 	 */
 	protected $hidden				= 	[
 											// 'id', 
-											'created_at', 
+											// 'created_at', 
 											'updated_at', 
 											'deleted_at', 
 										];
@@ -123,6 +123,11 @@ class JaminanKendaraan extends BaseModel
 		return $this->hasMany('App\Domain\Survei\Models\FotoJaminan', 'jaminan_id');
 	}
 
+	public function petugas()
+	{
+		return $this->belongsTo('App\Domain\HR\Models\Orang', 'petugas_id');
+	}
+	
 	/* ---------------------------------------------------------------------------- QUERY BUILDER ----------------------------------------------------------------------------*/
 	
 	/* ---------------------------------------------------------------------------- ACCESSOR ----------------------------------------------------------------------------*/

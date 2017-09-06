@@ -8,6 +8,9 @@ use App\Domain\HR\Models\Orang;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
 
+use App\Domain\Survei\Models\JaminanKendaraan as SJaminanKendaraan;
+use App\Domain\Survei\Models\JaminanTanahBangunan as SJaminanTanahBangunan;
+
 /**
  * Class LaporanController
  * Description: digunakan untuk membantu UI untuk mengambil data
@@ -264,6 +267,36 @@ Class LaporanController extends Controller
 
 		return $this->generateView();
 		// return response()->json($employee);
+	}
+
+	public function log_survei()
+	{
+		$this->setGlobal();
+
+		$tanggal	= ['start' =>  Carbon::now()->startOfDay(), 'end' =>  Carbon::now()->endOfDay()];
+		$mode 		= 'in';
+
+		if(request()->has('date'))
+		{
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start'])->startOfDay();
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end'])->endOfDay();
+		}
+
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+
+		$jaminan_k 		= collect(SJaminanKendaraan::where('created_at', '>=', $tanggal['start']->format('Y-m-d H:i:s'))->where('created_at', '<=', $tanggal['end']->format('Y-m-d H:i:s'))->with(['petugas', 'jaminan_kendaraan'])->orderby('created_at', 'asc')->get()->toArray());
+		$jaminan_tb 	= SJaminanTanahBangunan::where('created_at', '>=', $tanggal['start']->format('Y-m-d H:i:s'))->where('created_at', '<=', $tanggal['end']->format('Y-m-d H:i:s'))->with(['petugas', 'jaminan_tanah_bangunan'])->get()->toArray();
+
+		$jaminan_k->merge($jaminan_tb);
+
+		$this->page_datas->log 	= $jaminan_k;
+		$this->view				= view('pages.laporan.log_karyawan');
+
+		return $this->generateView();
+		// return response()->json($pengajuan);
 	}
 
 
