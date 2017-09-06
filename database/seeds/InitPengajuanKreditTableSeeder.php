@@ -61,7 +61,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 		$hubungan	= ['orang_tua', 'pasangan', 'anak'];
 
 		//jaminan kendaraan
-		foreach (range(0, 20) as $key) 
+		foreach (range(0, 100) as $key) 
 		{
 			$alamat		= 	[
 								'alamat'			=> $faker->address,
@@ -89,7 +89,7 @@ class InitPengajuanKreditTableSeeder extends Seeder
 		}
 
 		//jaminan tanah dan bangunan
-		foreach (range(0, 9) as $key) 
+		foreach (range(0, 100) as $key) 
 		{
 			$alamat		= 	[
 					'alamat'			=> $faker->address,

@@ -101,7 +101,7 @@ class InitSurveiKreditTableSeeder extends Seeder
 		$sba 			= new SessionBasedAuthenticator;
 		$sba 			= $sba->login($credentials);
 
-		$pengajuan 		= Pengajuan::where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->take(10)->get();
+		$pengajuan 		= Pengajuan::where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('status', 'pengajuan')->skip(rand(0,Pengajuan::where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('status', 'pengajuan')->count()/2))->take(Pengajuan::where('akses_koperasi_id', TAuth::activeOffice()['koperasi']['id'])->where('status', 'pengajuan')->count()/2)->get();
 
 		foreach ($pengajuan as $key => $value) 
 		{
@@ -117,6 +117,8 @@ class InitSurveiKreditTableSeeder extends Seeder
 			$survei->tambahAsetTanahBangunan(rand(11,19).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(11,99).'-'.rand(0,9).'-'.rand(10001, 99999), $at_b[rand(0,4)], rand(36,144), [['alamat' => $faker->address]]);
 
 			$survei->tambahAsetUsaha($bu[rand(0,2)], $faker->company, Carbon::parse(rand(2,10).' years ago')->format('d/m/Y'), $s_usaha[rand(0,3)], $s_tempat_usaha[rand(0,2)], rand(36,144), rand(4,15), 'Rp '.number_format(rand(10000000,100000000),0, "," ,"."), rand(100,5000), rand(100,5000), rand(4,20), [['alamat' => $faker->address]]);
+
+			$survei->setSukuBunga(rand(1,5)/rand(1,100));
 
 			if($value->jaminan_kendaraan->count())
 			{

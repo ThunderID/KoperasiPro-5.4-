@@ -4,7 +4,7 @@
     active in
 @stop
 
-@section('log_karyawan')
+@section('log_survei')
     active
 @stop
 
@@ -40,9 +40,9 @@
 				</button>
 				{{-- List Filter Here, please set empty the url --}}
 				<ul class="dropdown-menu" role="menu" style="right:0px;left:auto;">
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'in']))}}">Jaminan Masuk</a></li>
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'out']))}}">Jaminan Keluar</a></li>
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'current']))}}">Jaminan Tersimpan</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'in']))}}">Jaminan Masuk</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'out']))}}">Jaminan Keluar</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'current']))}}">Jaminan Tersimpan</a></li>
 				</ul>
 			</div> -->
 			<!-- <div class="btn-group">

@@ -368,7 +368,6 @@ class SurveiKredit
 				$jaminan_k['attributes']			= array_filter($jaminan_k['attributes']);
 				$jaminan_k->save();
 
-
 				foreach ((array)$value['foto_jaminan'] as $keyf => $valuef) 
 				{
 					if($keyf==0)
@@ -450,19 +449,19 @@ class SurveiKredit
 				$jaminan_tb->save();
 
 
-				foreach ((array)$value['foto_jaminan'] as $keytb => $valuetb) 
+				foreach ((array)$value['foto_jaminan'] as $keyf => $valuef) 
 				{
-					if($keytb==0)
+					if($keyf==0)
 					{
 						$delete 					= FotoJaminan::where('jaminan_id', $jaminan_tb->id)->where('jaminan_type', get_class($jaminan_tb))->delete();
 					}
 					
 					$foto_jk 						= new FotoJaminan;
 					$foto_jk->fill([
-						'jaminan_id'				=> $jaminan_tb->id,
-						'jaminan_type'				=> get_class($jaminan_tb),
-						'url'						=> $valuef['url'],
-						'judul'				=> $valuef['judul'],
+						'jaminan_id'			=> $jaminan_tb->id,
+						'jaminan_type'			=> get_class($jaminan_tb),
+						'url'					=> $valuef['url'],
+						'judul'					=> $valuef['judul'],
 					]);
 					$foto_jk->save();
 				}
@@ -562,7 +561,6 @@ class SurveiKredit
 					]);
 				$rekening->save();	
 			}
-
 			$this->pengajuan->save();
 
 			DB::commit();
