@@ -43,3 +43,20 @@
 		padding-right: 16px;
 	}
 }
+
+.sidebar-responsive{
+	border-right: 1px solid #E8E8E8;
+	border-bottom: none;
+}
+
+@media screen and (max-width: 767px) {
+	._window.no-window-mobile{
+		height: auto!important;
+	}
+	.sidebar-responsive{
+		border-right: none;
+		border-bottom: 1px solid #E8E8E8;
+		padding-bottom: 20px;
+		margin-bottom: 25px;
+	}
+}

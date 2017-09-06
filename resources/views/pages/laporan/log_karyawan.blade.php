@@ -4,7 +4,7 @@
     active in
 @stop
 
-@section('log_karyawan')
+@section('log_survei')
     active
 @stop
 
@@ -40,9 +40,9 @@
 				</button>
 				{{-- List Filter Here, please set empty the url --}}
 				<ul class="dropdown-menu" role="menu" style="right:0px;left:auto;">
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'in']))}}">Jaminan Masuk</a></li>
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'out']))}}">Jaminan Keluar</a></li>
-					<li><a href="{{route('laporan.log_karyawan.index', array_merge(Input::all(), ['mode' => 'current']))}}">Jaminan Tersimpan</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'in']))}}">Jaminan Masuk</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'out']))}}">Jaminan Keluar</a></li>
+					<li><a href="{{route('laporan.log_survei.index', array_merge(Input::all(), ['mode' => 'current']))}}">Jaminan Tersimpan</a></li>
 				</ul>
 			</div> -->
 			<!-- <div class="btn-group">
@@ -126,18 +126,3 @@
 		</div>
 	</div>
 @endpush
-
-@push('scripts')
-	var url = window.location.href;
-	url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);
-	
-	$(document).on('click', '.cancelBtn', function(){
-		window.location.href = url;
-	});
-	$(document).on('click', '.applyBtn', function(){
-		let start = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		qs = {'start': start, 'end': end};
-		window.location.href= url + '?date=' + JSON.stringify(qs);
-	});
-@endPush

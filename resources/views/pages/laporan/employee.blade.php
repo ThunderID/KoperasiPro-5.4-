@@ -94,18 +94,3 @@
 		</div>
 	</div>
 @endpush
-
-@push('scripts')
-	var url = window.location.href;
-	url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);
-	
-	$(document).on('click', '.cancelBtn', function(){
-		window.location.href = url;
-	});
-	$(document).on('click', '.applyBtn', function(){
-		let start = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		qs = {'start': start, 'end': end};
-		window.location.href= url + '?date=' + JSON.stringify(qs);
-	});
-@endPush

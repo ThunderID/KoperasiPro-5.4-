@@ -20,7 +20,7 @@
 <div class="col-md-12">
 	<div class="row">
 {{-- Left Sidebar --}}
-		<div class="col-xs-12 col-sm-4 col-md-3 p-t-md p-l-sm _window"  data-padd-top="auto" data-padd-bottom="0" style="border-right: 1px solid #E8E8E8;">
+		<div class="col-xs-12 col-sm-4 col-md-3 p-t-md p-l-sm _window no-window-mobile sidebar-responsive"  data-padd-top="auto" data-padd-bottom="0">
 			<div class="row p-b-sm">
 				<div class="col-md-12">
 					<h4>Buat Simulasi</h4>
@@ -38,7 +38,7 @@
 					<fieldset class="form-group">
 						<label class="text-sm">Jangka Waktu</label>
 						<div class="input-group">
-							{!! Form::text('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
+							{!! Form::number('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
 							<span class="input-group-addon">Bulan</span>
 						</div>
 					</fieldset>
@@ -47,7 +47,7 @@
 					<fieldset class="form-group">
 						<label class="text-sm">Suku Bunga</label>
 						<div class="input-group">
-							{!! Form::text('suku_bunga', $page_datas->input_simulasi['suku_bunga'], ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
+							{!! Form::number('suku_bunga', $page_datas->input_simulasi['suku_bunga'], ['class' => 'form-control required', 'placeholder' => 'Masukkan suku bunga', 'min' => 0, 'max' => 5, 'step' => 0.01]) !!}
 							<span class="input-group-addon">% / tahun</span>
 						</div>
 					</fieldset>
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="row" id="simulasi-canvas">
-				<div class="col-md-12 _window p-t-lg" data-padd-top="auto" data-padd-bottom="0">
+				<div class="col-md-12 _window p-t-lg no-window-mobile" data-padd-top="auto" data-padd-bottom="0">
 						<?php
 							// dd($page_datas->data_simulasi);
 						?>
@@ -200,13 +200,13 @@
 									</div>
 								</div>								
 								<div class="row p-t-sm p-b-md hidden-print">
-									<div class="col-sm-6">
+									<div class="col-xs-6">
 										<a href="javascript:void(0);" class="btn btn-sm btn-info trigger-print">
 											<i class="fa fa-print" aria-hidden="true"></i>
 											Print
 										</a>																				
 									</div>
-									<div class="col-sm-6 text-right">
+									<div class="col-xs-6 text-right">
 										<a href="{{ route('simulasi.clear',['id' => $key]) }}" class="btn btn-sm btn-danger m-r-sm">
 											<i class="fa fa-times" aria-hidden="true"></i>
 											Hapus

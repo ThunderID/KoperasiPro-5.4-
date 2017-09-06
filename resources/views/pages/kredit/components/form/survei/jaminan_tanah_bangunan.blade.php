@@ -320,7 +320,7 @@
 	<label for="jaminan_kendaraan[foto]" class="text-sm">Foto Jaminan</label>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="thunder-imgUploader" thunder-imgUploader-subtitle = "* File maksimum 200kb" thunder-imageUploader-store-url="{{ route('helper.gambar.store') }}" thunder-imageUploader-remove-url="{{ route('helper.gambar.destroy') }}">
+			<div class="thunder-imgUploader" thunder-imgUploader-subtitle = "* File maksimum 1MB" thunder-imageUploader-store-url="{{ route('helper.gambar.store') }}" thunder-imageUploader-remove-url="{{ route('helper.gambar.destroy') }}">
 	            <input id="jaminan_kendaraan[foto]" name="jaminan_kendaraan[foto]" type="file" multiple accept='image/jpeg'/>
 	        </div>		
 		</div>

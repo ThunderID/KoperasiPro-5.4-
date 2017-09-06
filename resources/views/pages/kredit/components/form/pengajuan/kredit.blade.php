@@ -72,7 +72,10 @@
 	<label class="text-sm">Lama Angsuran</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('jangka_waktu', (isset($param['data']['jangka_waktu']) ? $param['data']['jangka_waktu'] : ''), ['class' => 'form-control required auto-tabindex thunder-validation-input', 'placeholder' => 'Jangka Waktu', 'data-placeholder' => 'Jangka Waktu', 'thunder-validation-rules' => 'required']) !!}
+			<div class="input-group">
+				{!! Form::number('jangka_waktu', (isset($param['data']['jangka_waktu']) ? $param['data']['jangka_waktu'] : ''), ['class' => 'form-control required auto-tabindex thunder-validation-input', 'placeholder' => 'Jangka Waktu', 'data-placeholder' => 'Jangka Waktu', 'thunder-validation-rules' => 'required']) !!}
+				<span class="input-group-addon">Bulan</span>
+			</div>
 		</div>
 	</div>
 </fieldset>
