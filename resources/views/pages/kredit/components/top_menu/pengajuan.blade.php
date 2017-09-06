@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<p class="text-muted p-t-sm">
-					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['debitur']['nik'] }}</span>
+					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['id'] }}</span>
 				</p>
 			</div>
 		</div>
@@ -22,7 +22,6 @@
 					<span class="m-r-xs">
 						<i class="fa fa-user"></i> {{ $page_datas->credit['debitur']['nama'] }}
 					</span>
-					|
 					<span class="m-l-xs">
 						<i class="fa fa-file-o"></i> {{ $page_datas->credit['id'] }}
 					</span>

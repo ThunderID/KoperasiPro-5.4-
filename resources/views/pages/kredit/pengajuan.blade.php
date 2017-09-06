@@ -1,6 +1,3 @@
-@php
-	// dd($page_datas->credit);
-@endphp
 @extends('pages.kredit.templates.index_show_template')
 
 @push('styles')
@@ -41,9 +38,7 @@
 					<p class="text-capitalize text-light m-b-xs">
 						{{ (isset($page_datas->credit['debitur']['nama']) && !is_null($page_datas->credit['debitur']['nama'])) ? $page_datas->credit['debitur']['nama'] : '-' }}
 					</p>
-					@php
-						// dd($page_datas->credit);
-					@endphp
+					
 					{{-- ALAMAT --}}
 					@if (isset($page_datas->credit['debitur']['alamat']) && !empty($page_datas->credit['debitur']['alamat']))
 						<p class="text-capitalize text-light m-b-xs">
@@ -106,20 +101,22 @@
 					<p class="text-capitalize text-light m-b-xs">
 						Pengajuan Tgl {{ (isset($page_datas->credit['tanggal_pengajuan']) && !is_null($page_datas->credit['tanggal_pengajuan'])) ? $page_datas->credit['tanggal_pengajuan'] : '-' }}
 					</p>
-					<p class="text-capitalize text-light m-b-xs">
-						@if ($page_datas->credit['status']=='survei')
-							{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline m-t-md', 'method' => 'PUT']) !!}
-								<div class="input-group">
-									{!! Form::text('suku_bunga', (isset($page_datas->credit['suku_bunga']) ? $page_datas->credit['suku_bunga'] : null), ['class' => 'form-control input-md auto-tabindex', 'placeholder' => 'Suku Bunga', 'data-field' => 'suku_bunga', 'style' => 'width: 60%; height: 36px; border-right-color: #46BE8A;']) !!}
-									<button type="submit" class="input-group-addon btn-success">Simpan</button>
+
+					@if ($page_datas->credit['status']=='survei')
+						{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter form-inline m-t-md', 'method' => 'PUT']) !!}
+							<div class="form-group form-group-sm">
+								<div class="input-group input-group-sm">
+									{!! Form::text('suku_bunga', (isset($page_datas->credit['suku_bunga']) ? $page_datas->credit['suku_bunga'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'Suku Bunga', 'data-field' => 'suku_bunga', 'style' => '']) !!}
+									<div class="input-group-addon text-sm">&#37; / tahun</div>
 								</div>
-							{!! Form::close() !!}
-						@elseif ($page_datas->credit['status'] != 'pengajuan')
-							<p class="text-capitalize text-light m-b-xs">
-								Suku Bunga {{ $page_datas->credit['suku_bunga'] }} % / bulan
-							</p>
-						@endif
-					</p>
+							</div>
+							<button type="submit" class="btn btn-success btn-sm">Simpan</button>
+						{!! Form::close() !!}
+					@elseif ($page_datas->credit['status'] != 'pengajuan')
+						<p class="text-capitalize text-light m-b-xs">
+							Suku Bunga {{ $page_datas->credit['suku_bunga'] }} &#37; / tahun
+						</p>
+					@endif
 				</div>
 			</div>
 			<div class="clearfix">&nbsp;</div>
@@ -397,8 +394,8 @@
 				{{-- button action form kredit --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="kredit">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-kredit" data-target="kredit">Batal</a>
+					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
