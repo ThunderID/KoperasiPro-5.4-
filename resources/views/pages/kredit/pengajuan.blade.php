@@ -74,7 +74,7 @@
 					<p class="text-capitalize text-bold text-sm m-b-xs">
 						<span class="pull-right">
 							@if ($page_datas->credit['status'] == 'pengajuan')
-								<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" class="btn p-r-none text-sm m-b-none p-t-none" no-data-pjax>
+								<a href="#" data-toggle="hidden" data-target="kredit" data-panel="data-kredit" class="btn p-r-none m-b-none p-t-none" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i> Edit
 								</a>
 							@endif
@@ -126,18 +126,16 @@
 					<div class="text-center" style="width: 200px;">
 						@if (isset($page_datas->credit['spesimen_ttd']) && !is_null($page_datas->credit['spesimen_ttd']))
 							<img src="{{ $page_datas->credit['spesimen_ttd'] }}" class="img img-responsive img-panels text-center" />
-						@else
-							<img src="http://via.placeholder.com/250x150/cccccc/ffffff?text=TTD+tidak+ada" class="img img-responsive img-panels text-center"/>
 						@endif
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right" style="height: 100px;">
 					<div style="position: absolute; bottom: 0; right: 15px;">
-						<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger btn-sm">
+						<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger">
 							<i class="fa fa-times"></i> Tolak
 						</a> 
 						&nbsp;&nbsp;
-						<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary btn-sm">
+						<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary">
 							<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
 						</a>
 					</div>

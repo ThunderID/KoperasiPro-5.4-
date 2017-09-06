@@ -9,9 +9,9 @@
 		<p class="text-capitalize text-md m-b-sm"><u>Informasi Pribadi</u>
 			@if (!empty($page_datas->credit['debitur']))
 				@if ($edit == true)
-					<span class=" text-sm pull-right text-capitalize">
+					<span class="pull-right text-capitalize">
 						{{-- <small> --}}
-							<a href="#" class="button-edit" data-toggle="hidden" data-target="nasabah" data-panel="data-pribadi" data-index="" data-flag="data-nasabah{" no-data-pjax>
+							<a href="#" class="button-edit" data-toggle="hidden" data-target="nasabah" data-panel="data-pribadi" data-index="" data-flag="data-nasabah" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 								 Edit
 							</a>

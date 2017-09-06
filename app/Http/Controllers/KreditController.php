@@ -164,7 +164,7 @@ class KreditController extends Controller
 			{
 				$foto_ktp 		= null;
 			}
-dd(Input::all());
+
 			//============ DATA JAMINAN ============//
 			// JAMINAN KENDARAAN
 			$jaminan_kendaraan 	= Input::get('jaminan_kendaraan');
@@ -349,7 +349,36 @@ dd(Input::all());
 			if (Input::has('survei_jaminan_tanah_bangunan'))
 			{
 				$barcode 	= null;
-				$update->tambahJaminanTanahBangunan(Input::get('survei_jaminan_tanah_bangunan')['tipe'], Input::get('survei_jaminan_tanah_bangunan')['jenis_sertifikat'], Input::get('survei_jaminan_tanah_bangunan')['nomor_sertifikat'], Input::get('survei_jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], Input::get('survei_jaminan_tanah_bangunan')['atas_nama'], Input::get('survei_jaminan_tanah_bangunan')['luas_tanah'], Input::get('survei_jaminan_tanah_bangunan')['jalan'], Input::get('survei_jaminan_tanah_bangunan')['lebar_jalan'], Input::get('survei_jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], Input::get('survei_jaminan_tanah_bangunan')['lingkungan'], Input::get('survei_jaminan_tanah_bangunan')['nilai_jaminan'], Input::get('survei_jaminan_tanah_bangunan')['taksasi_tanah'], Input::get('survei_jaminan_tanah_bangunan')['njop'], Input::get('survei_jaminan_tanah_bangunan')['pbb_terakhir'], Input::get('survei_jaminan_tanah_bangunan')['listrik'], Input::get('survei_jaminan_tanah_bangunan')['air'], $barcode, Input::get('survei_jaminan_tanah_bangunan')['alamat'], Input::get('survei_jaminan_tanah_bangunan')['luas_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['fungsi_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['bentuk_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['konstruksi_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['lantai_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['dinding'], Input::get('survei_jaminan_tanah_bangunan')['taksasi_bangunan'], Input::get('survei_jaminan_tanah_bangunan')['id'], null, []);
+				$update->tambahJaminanTanahBangunan(
+						Input::get('survei_jaminan_tanah_bangunan')['tipe'], 
+						Input::get('survei_jaminan_tanah_bangunan')['jenis_sertifikat'], 
+						Input::get('survei_jaminan_tanah_bangunan')['nomor_sertifikat'], 
+						Input::get('survei_jaminan_tanah_bangunan')['masa_berlaku_sertifikat'], 
+						Input::get('survei_jaminan_tanah_bangunan')['atas_nama'], 
+						Input::get('survei_jaminan_tanah_bangunan')['luas_tanah'], 
+						Input::get('survei_jaminan_tanah_bangunan')['jalan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['lebar_jalan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['letak_lokasi_terhadap_jalan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['lingkungan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['nilai_jaminan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['taksasi_tanah'], 
+						Input::get('survei_jaminan_tanah_bangunan')['njop'], 
+						Input::get('survei_jaminan_tanah_bangunan')['pbb_terakhir'], 
+						Input::get('survei_jaminan_tanah_bangunan')['listrik'], 
+						Input::get('survei_jaminan_tanah_bangunan')['air'], 
+						$barcode, 
+						Input::get('survei_jaminan_tanah_bangunan')['alamat'], 
+						Input::get('survei_jaminan_tanah_bangunan')['luas_bangunan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['fungsi_bangunan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['bentuk_bangunan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['konstruksi_bangunan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['lantai_bangunan'], 
+						Input::get('survei_jaminan_tanah_bangunan')['dinding'], 
+						Input::get('survei_jaminan_tanah_bangunan')['taksasi_bangunan'],
+						Input::get('survei_jaminan_tanah_bangunan')['uraian'], 
+						Input::get('survei_jaminan_tanah_bangunan')['id'], 
+						null, 
+						[]);
 			}
 
 			// rekening for survei

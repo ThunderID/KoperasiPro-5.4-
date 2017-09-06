@@ -136,7 +136,11 @@
 	<label class="text-sm">Status Kepemilikan</label>
 	<div class="row">
 		<div class="col-md-4">
-			{!! Form::text('jaminan_kendaraan[status_kepemilikan]', (isset($param['data']['status_kepemilikan']) ? $param['data']['status_kepemilikan'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => '']) !!}
+			{!! Form::select('jaminan_kendaraan[status_kepemilikan]', [
+				'milik_sendiri'		=> 'Milik Sendiri',
+				'milik_orang_tua'	=> 'Milik Orang Tua',
+				'milik_relatif'		=> 'Milik Relatif'
+			], (isset($param['data']['status_kepemilikan']) ? $param['data']['status_kepemilikan'] : null), ['class' => 'form-control quick-select select']) !!}
 		</div>
 	</div>
 </fieldset>

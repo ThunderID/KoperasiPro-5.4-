@@ -37,43 +37,43 @@
 					<ul class="dropdown-menu dropdown-right fa-ul" aria-labelledby="dropdownMenu1">
 						<li class="dropdown-header">Pengajuan</li>
 						<li class="m-t-xs m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'pengajuan_kredit', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'pengajuan_kredit', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Pengajuan Kredit
 							</a>
 						</li>
 						<li class="dropdown-header">Survei</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_aset', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Aset
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_kendaraan', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_kendaraan', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Jaminan Kendaraan
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_tanah_bangunan', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_jaminan_tanah_bangunan', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Jaminan Tanah &amp; Bangunan
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_kepribadian', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_kepribadian', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Kepribadian
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_keuangan', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_keuangan', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Keuangan
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_rekening', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_rekening', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Rekening
 							</a>
 						</li>
 						<li class="m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_all', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'survei_all', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Survei Semua
 							</a>
 						</li>

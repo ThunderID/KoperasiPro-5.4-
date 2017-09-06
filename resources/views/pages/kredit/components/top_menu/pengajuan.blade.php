@@ -36,7 +36,7 @@
 					<ul class="dropdown-menu dropdown-right fa-ul" aria-labelledby="dropdownMenu1">
 						<li class="dropdown-header">Pengajuan</li>
 						<li class="m-t-xs m-b-xs">
-							<a href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'pengajuan_kredit', 'id' => $page_datas->credit['id']]) }}">
+							<a target="_blank" href="#" class="btn-print" data-url="{{ route('credit.print', ['mode' => 'pengajuan_kredit', 'id' => $page_datas->credit['id']]) }}">
 								<i class="fa fa-file-text-o"></i>&nbsp; Form Pengajuan Kredit
 							</a>
 						</li>

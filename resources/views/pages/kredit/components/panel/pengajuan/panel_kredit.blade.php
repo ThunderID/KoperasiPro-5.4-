@@ -31,8 +31,8 @@
 				{{-- button action form kredit --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-kredit" data-target="kredit">Cancel</a>
-					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-kredit" data-target="kredit">Cancel</a>
+					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>

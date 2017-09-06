@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-5">
 			@if (isset($param['data']['id']))
-				{!! Form::text('nasabah[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control auto-tabindex', 'readonly' => true]) !!}
+				{!! Form::text('nasabah[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : $page_datas->credit['debitur']['nama']), ['class' => 'form-control auto-tabindex', 'readonly' => true]) !!}
 			@else
 				{!! Form::text('nasabah[nama]', (isset($param['data']['nama']) ? $param['data']['nama'] : null), ['class' => 'form-control auto-tabindex']) !!}
 			@endif

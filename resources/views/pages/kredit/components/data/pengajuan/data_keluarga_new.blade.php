@@ -15,9 +15,9 @@
 	@forelse ($page_datas->credit['debitur']['relasi'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-sm text-capitalize">
+				<p class="m-b-xs text-capitalize">
 					@if (!empty($page_datas->credit['debitur']['relasi']))
-						{{ (isset($value['pivot']['hubungan']) && !is_null($value['pivot']['hubungan'])) ? str_replace('_', ' ', $value['pivot']['hubungan']) : '-'  }}
+						<span class="text-sm">{{ (isset($value['pivot']['hubungan']) && !is_null($value['pivot']['hubungan'])) ? str_replace('_', ' ', $value['pivot']['hubungan']) : '-'  }}</span>
 
 						@if ($edit == true)
 							<span class="pull-right">
@@ -75,7 +75,7 @@
 	@if (count($page_datas->credit['debitur']['relasi']) > 0)
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#" class="text-sm" data-toggle="hidden" data-target="keluarga" data-panel="data-pribadi" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Keluarga</a>
+				<a href="#" data-toggle="hidden" data-target="keluarga" data-panel="data-pribadi" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Keluarga</a>
 			</div>
 		</div>
 	@endif

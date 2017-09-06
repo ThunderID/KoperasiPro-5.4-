@@ -17,11 +17,11 @@
 			@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					<span class="pull-right">
-						<a class="text-danger m-r-md text-sm" href="#" data-url="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+						<a class="text-danger m-r-md" href="#" data-url="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 							<i class="fa fa-trash" aria-hidden="true"></i>
 							 Hapus
 						</a> &nbsp;
-						<a href="#" class="text-sm button-edit" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" data-flag="data-jaminan-tanah-bangunan" data-index="{{ $key }}" no-data-pjax>
+						<a href="#" class="button-edit" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" data-flag="data-jaminan-tanah-bangunan" data-index="{{ $key }}" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -78,7 +78,7 @@
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				@if ($page_datas->credit['status'] == 'pengajuan')
-					<a href="#" class="text-sm" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
+					<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
 				@endif
 			</div>
 		</div>

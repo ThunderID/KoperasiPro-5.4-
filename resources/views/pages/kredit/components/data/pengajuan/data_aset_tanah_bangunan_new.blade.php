@@ -14,8 +14,8 @@
 	@forelse ($page_datas->credit['survei_aset_tanah_bangunan'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize text-sm">
-					aset tanah &amp; bangunan {{ $key+1 }}
+				<p class="m-b-xs text-capitalize">
+					<span class="text-sm">aset tanah &amp; bangunan {{ $key+1 }}</span>
 
 					@if (!empty($page_datas->credit['survei_aset_tanah_bangunan']))
 						@if($edit == true)
@@ -99,7 +99,7 @@
 	@if (count($page_datas->credit['survei_aset_tanah_bangunan']) > 0)
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#aset-tanah-bangunan" class="text-sm" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Tanah &amp; Bangunan</a>
+				<a href="#aset-tanah-bangunan" data-toggle="hidden" data-target="aset-tanah-bangunan" data-panel="data-aset" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Aset Tanah &amp; Bangunan</a>
 			</div>
 		</div>
 	@endif

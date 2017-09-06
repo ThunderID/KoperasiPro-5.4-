@@ -37,8 +37,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan-{{ $k }}">Batal</a>
+							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -67,8 +67,8 @@
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan">Batal</a>
-					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-kendaraan">Batal</a>
+					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
@@ -95,8 +95,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan-{{ $k }}">Batal</a>
+							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -120,8 +120,8 @@
 
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan">Batal</a>
-					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-jaminan" data-target="jaminan-tanah-bangunan">Batal</a>
+					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
