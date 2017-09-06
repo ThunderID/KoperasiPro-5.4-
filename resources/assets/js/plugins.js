@@ -206,7 +206,7 @@ window.initDateRange = function(){
 		url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);
 		
 		let start = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
-		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
+		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_end]').val();
 		qs = {'start': start, 'end': end};
 		window.location.href= url + '?date=' + JSON.stringify(qs);
 	});	
