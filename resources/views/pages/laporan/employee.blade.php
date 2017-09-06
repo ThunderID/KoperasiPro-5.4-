@@ -15,13 +15,13 @@
 			<p class="text-muted">Laporan ini untuk melihat jumlah pengajuan kredit yang ditangani karyawan, dengan yang di setujui dan ditolak.</p>
 		</div>
 		<div class="col-md-6 p-t-md">
-			<div id="daterange" class="btn btn-default btn-sm pull-right selectbox daterange">
+			<!-- <div id="daterange" class="btn btn-default btn-sm pull-right selectbox daterange">
 				<i class="fa fa-calendar"></i>&nbsp;
 				<?php
 					$filter_date = json_decode(Input::get('date'), true);
 				?>
 				<span>{{ $filter_date['start'] ? $filter_date['start'] : 'DD/MM/YYY' }} - {{ $filter_date['end'] ? $filter_date['end'] : 'DD/MM/YYY' }}</span>&nbsp;<b class="caret"></b>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="row p-t-none p-b-lg field">
@@ -64,26 +64,28 @@
 	<div class="row p-b-md field">
 		<div class="col-md-12">
 			<!-- table -->
-			<table class="table table-bordered">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" style="width: 25%;">Nama Karyawan</th>
-						<th class="text-center" style="width: 25%;">Total Pengajuan ditangani</th>
-						<th class="text-center" style="width: 25%;">Total yang Di Setujui</th>
-						<th class="text-center" style="width: 25%;">Total yang Di Tolak</th>
+						<th class="text-center">No</th>
+						<th class="text-left">Nama Karyawan</th>
+						<th class="text-center">Total Pengajuan ditangani</th>
+						<th class="text-center">Total Pengajuan dietujui</th>
+						<th class="text-center">Total Pengajuan ditolak</th>
 					</tr>
 				</thead>
 				<tbody>
 					@forelse ($page_datas->employee as $key => $data)
 						<tr>
-							<td class="text-left" style="border-right:0px;">{{ $data['nama'] }}</td>
-							<td class="text-right">{{ $data['total_pengajuan'] }} </td>
-							<td class="text-right">{{ $data['total_terima'] }} </td>
-							<td class="text-right">{{ $data['total_tolak'] }}</td>
+							<td class="text-center">{{ ($key + 1) }}</td>
+							<td class="text-left">{{ $data['nama'] }}</td>
+							<td class="text-center">{{ $data['total_pengajuan'] }} </td>
+							<td class="text-center">{{ $data['total_terima'] }} </td>
+							<td class="text-center">{{ $data['total_tolak'] }}</td>
 						</tr>
 					@empty
 						<tr>
-							<td colspan="4" class="text-center">Belum ada data</td>
+							<td colspan="5" class="text-center">Belum ada data</td>
 						</tr>
 					@endforelse
 				</tbody>

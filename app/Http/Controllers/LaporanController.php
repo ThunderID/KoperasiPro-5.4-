@@ -24,24 +24,29 @@ Class LaporanController extends Controller
 	{
 		$this->setGlobal();
 
-		$tanggal 		= ['start' => null, 'end' => null];
+		$tanggal 		= ['start' =>  Carbon::now(), 'end' =>  Carbon::now()];
 		$status 		= 'pengajuan';
 
 		if(request()->has('date'))
 		{
-			$data 		= request()->get('date');
-			$tanggal	= json_decode($data, true);
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start']);
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end']);
 		}
 
-		if(request()->has('status'))
-		{
-			$status 	= request()->get('status');
-		}
+		// if(request()->has('status'))
+		// {
+		// 	$status 	= request()->get('status');
+		// }
 
-		$ids			= $this->getIDS($status, $tanggal['start'], $tanggal['end']);
+		// $ids			= $this->getIDS($status, $tanggal['start'], $tanggal['end']);
 
 		$this->page_datas->status 		= $status;
-		$this->page_datas->pengajuan 	= Pengajuan::id($ids)->with(['debitur', 'hp'])->get()->toArray();
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+		$this->page_datas->pengajuan 	= Pengajuan::where('tanggal_pengajuan', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal_pengajuan', '<=', $tanggal['end']->format('Y-m-d'))->orderby('tanggal_pengajuan', 'asc')->with(['debitur', 'hp'])->get()->toArray();
+		// $this->page_datas->pengajuan 	= Pengajuan::id($ids)->with(['debitur', 'hp'])->orderby('tanggal_pengajuan', 'desc')->get()->toArray();
 
 		$this->view		= view('pages.laporan.kredit');
 
@@ -53,13 +58,15 @@ Class LaporanController extends Controller
 	{
 		$this->setGlobal();
 
-		$tanggal 	= ['start' => null, 'end' => null];
+		$tanggal	= ['start' =>  Carbon::now(), 'end' =>  Carbon::now()];
 		$mode 		= 'in';
 
 		if(request()->has('date'))
 		{
-			$data 		= request()->get('date');
-			$tanggal	= json_decode($data, true);
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start']);
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end']);
 		}
 
 		if(request()->has('mode'))
@@ -67,22 +74,28 @@ Class LaporanController extends Controller
 			$mode 		= request()->get('mode');
 		}
 
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+
 		//realisasi
 		switch ($mode) 
 		{
 			case 'in':
-				$ids	= $this->getIDS('realisasi', $tanggal['start'], $tanggal['end']);
+				$this->page_datas->pengajuan 	= RiwayatKredit::selectraw('riwayat_kredit.*')->where('status', 'realisasi')->where('tanggal', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal', '<=', $tanggal['end']->format('Y-m-d'))->with(['pengajuan', 'pengajuan.jaminan_kendaraan', 'pengajuan.jaminan_tanah_bangunan', 'pengajuan.debitur'])->orderby('tanggal','asc')->get()->toArray();
+				$this->page_datas->mode 		= 'masuk';
 				break;
 			case 'out':
-				$ids	= $this->getIDS('lunas', $tanggal['start'], $tanggal['end']);
+				$this->page_datas->pengajuan 	= RiwayatKredit::selectraw('riwayat_kredit.*')->where('status', 'lunas')->where('tanggal', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal', '<=', $tanggal['end']->format('Y-m-d'))->with(['pengajuan', 'pengajuan.jaminan_kendaraan', 'pengajuan.jaminan_tanah_bangunan', 'pengajuan.debitur'])->orderby('tanggal','asc')->get()->toArray();
+				$this->page_datas->mode 		= 'keluar';
+				break;
+			case 'current':
+				$this->page_datas->pengajuan 	= RiwayatKredit::selectraw('riwayat_kredit.*')->where('status', 'realisasi')->where('tanggal', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal', '<=', $tanggal['end']->format('Y-m-d'))->with(['pengajuan', 'pengajuan.jaminan_kendaraan', 'pengajuan.jaminan_tanah_bangunan', 'pengajuan.debitur'])->orderby('tanggal','asc')->get()->toArray();
+				$this->page_datas->mode 		= 'tersimpan';
 				break;
 			default:
 				throw new Exception("Error Processing Request", 1);
 				break;
 		}
-
-		$this->page_datas->pengajuan 	= Pengajuan::id($ids)->with(['jaminan_kendaraan', 'jaminan_tanah_bangunan', 'riwayat_status'])->get();
-
 		$this->view	= view('pages.laporan.jaminan');
 
 		return $this->generateView();
@@ -92,22 +105,23 @@ Class LaporanController extends Controller
 	public function loan_to_value()
 	{
 		$this->setGlobal();
-		$tanggal['start']	= Carbon::now()->startOfDay()->format('Y-m-d H:i:s');
-		$tanggal['end']		= Carbon::now()->endOfDay()->format('Y-m-d H:i:s');
-
-		$mode 		= 'in';
+		$tanggal['start']	= Carbon::now()->startOfDay();
+		$tanggal['end']		= Carbon::now()->endOfDay();
 
 		if(request()->has('date'))
 		{
 			$tanggal			= json_decode(request()->get('date'), true);
-			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start'])->startOfDay()->format('Y-m-d H:i:s');
-			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end'])->endOfDay()->format('Y-m-d H:i:s');
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start'])->startOfDay();
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end'])->endOfDay();
 		}
 
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+
 		$this->page_datas->kredit		= Pengajuan::selectraw('pengajuan_kredit.*')
-							->where('pengajuan_kredit.created_at', '>=', $tanggal['start'])
-							->where('pengajuan_kredit.created_at', '<=', $tanggal['end'])
-							->status(['realisasi', 'lunas'])
+							->where('pengajuan_kredit.tanggal_pengajuan', '>=', $tanggal['start']->format('Y-m-d'))
+							->where('pengajuan_kredit.tanggal_pengajuan', '<=', $tanggal['end']->format('Y-m-d'))
+							// ->status(['realisasi', 'lunas'])
 							->leftjoin('p_jaminan_k', function ($join) 
 								{
 									$join->on ( 'pengajuan_kredit.id', '=', 'p_jaminan_k.pengajuan_id' )
@@ -128,8 +142,8 @@ Class LaporanController extends Controller
 									$join->on ( 'p_jaminan_k.id', '=', 's_jaminan_tb.jaminan_tanah_bangunan_id' )
 									->wherenull('s_jaminan_tb.deleted_at')
 									;
-							})->selectraw('IFNULL(SUM(IFNULL(s_jaminan_tb.taksasi_tanah, 0) + IFNULL(s_jaminan_tb.taksasi_tanah, 0) + IFNULL(s_jaminan_k.harga_taksasi,0)),0) as taksasi')
-							->selectraw('IFNULL(SUM(pengajuan_kredit.pengajuan_kredit/(IFNULL(s_jaminan_tb.taksasi_tanah, 0) + IFNULL(s_jaminan_tb.taksasi_tanah, 0) + IFNULL(s_jaminan_k.harga_taksasi,0))  * 100),0) as lvr')->groupby('pengajuan_kredit.id')->with(['debitur'])->get();
+							})->selectraw('IFNULL(SUM(IFNULL(s_jaminan_tb.taksasi_tanah, 0) + IFNULL(s_jaminan_tb.taksasi_bangunan, 0) + IFNULL(s_jaminan_k.harga_taksasi,0)),0) as taksasi')
+							->groupby('pengajuan_kredit.id')->with(['debitur'])->orderby('tanggal_pengajuan', 'asc')->get();
 
 		$this->view	= view('pages.laporan.ltv');
 

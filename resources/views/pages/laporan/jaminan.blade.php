@@ -11,8 +11,15 @@
 @push('content')
 	<div class="row p-b-md field">
 		<div class="col-md-6">
-			<h2>Laporan Masuk/Keluar Jaminan</h2>
-			<p class="text-muted">Laporan ini untuk melihat jaminan yang masuk/keluar pada tanggal periode tertentu, berdasarkan data kredit.</p>
+			<h2>Laporan Jaminan {{ucwords($page_datas->mode)}}</h2>
+			<p class="text-muted">Laporan ini untuk melihat jaminan {{$page_datas->mode}} 
+			@if($page_datas->start==$page_datas->end)
+				pada tanggal {{$page_datas->start}}
+			@else
+				antara tanggal {{$page_datas->start}} - {{$page_datas->end}}
+			@endif 
+			diurut berdasarkan tanggal {{$page_datas->mode}}
+			</p>
 		</div>
 		<div class="col-md-6 p-t-md">
 			<div id="daterange" class="btn btn-default btn-sm pull-right selectbox daterange">
@@ -36,6 +43,7 @@
 				<ul class="dropdown-menu" role="menu" style="right:0px;left:auto;">
 					<li><a href="{{route('laporan.movement_jaminan.index', array_merge(Input::all(), ['mode' => 'in']))}}">Jaminan Masuk</a></li>
 					<li><a href="{{route('laporan.movement_jaminan.index', array_merge(Input::all(), ['mode' => 'out']))}}">Jaminan Keluar</a></li>
+					<li><a href="{{route('laporan.movement_jaminan.index', array_merge(Input::all(), ['mode' => 'current']))}}">Jaminan Tersimpan</a></li>
 				</ul>
 			</div>
 			<!-- <div class="btn-group">
@@ -59,57 +67,72 @@
 	<div class="row p-b-md field">
 		<div class="col-md-12">
 			<!-- table -->
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="text-center" style="width: 50%;">Jaminan</th>
-						<th class="text-center" style="width: 25%;">Tanggal Jaminan Masuk</th>
-						<th class="text-center" style="width: 25%;">Tanggal Jaminan Keluar</th>
+						<th class="text-center">No</th>
+						<th class="text-center">Jaminan</th>
+						<th class="text-center">Kredit</th>
+						<th class="text-center">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
+					@php $date_flag = null @endphp
+					@php $idx = 0 @endphp
 					@forelse ($page_datas->pengajuan as $key => $data)
-						<tr><td colspan="3">Kredit a.n. {{$data['debitur']['nama']}}</td></tr>
-						@php $tanggal_in 	= date('d/m/Y') @endphp
-						@php $tanggal_out 	= date('d/m/Y') @endphp
-						@forelse($data['riwayat_status'] as $k => $v)
-							@if($v['status']=='realisasi')
-								@php $tanggal_in = $v['tanggal'] @endphp
-							@elseif($v['status']=='lunas')
-								@php $tanggal_out = $v['tanggal'] @endphp
-							@endif
-						@empty
-						@endforelse
-
-						@forelse($data['jaminan_kendaraan'] as $k => $v)
+						@if($date_flag != $data['tanggal'])
+							@php $date_flag = $data['tanggal'] @endphp
 							<tr>
-								<td class="text-left" style="border-right:0px;padding-left:50px;">
-									Kendaraan {{ str_replace('_',' ',$v['tipe']) }}
-									<br/>
-									Merk {{ $v['merk'] }}/{{ $v['tahun'] }}
+								<td class="text-left " colspan="4" style="vertical-align:middle;">
+									<strong>{{$date_flag}}</strong>
 								</td>
-								<td class="text-center">{{ $tanggal_in }} </td>
-								<td class="text-center">{{ $tanggal_out }} </td>
+							</tr>
+						@endif
+
+						@forelse($data['pengajuan']['jaminan_kendaraan'] as $k => $v)
+							@php $idx = $idx+1 @endphp
+							<tr>
+								<td class="text-center" style="vertical-align:middle;">{{$idx}}</td>
+								<td class="text-left" style="border-right:0px;padding-left:50px;vertical-align:middle;">
+									Kendaraan {{ str_replace('_',' ',$v['tipe']) }} 
+									({{ $v['merk'] }} / {{ $v['tahun'] }})
+									<br/>
+									Nomor BPKB : {{$v['nomor_bpkb']}}
+								</td>
+								<td style="vertical-align:middle;">
+									Nomor Pengajuan : {{$data['pengajuan']['id']}} <br/>
+									Nasabah : {{$data['pengajuan']['debitur']['nama']}}
+								</td>
+								<td style="vertical-align:middle;">
+									<a href="{{route('credit.show', ['id' => $data['pengajuan_id']])}}">Lihat</a>
+								</td>
 							</tr>
 						@empty
 						@endforelse
 
-						@forelse($data['jaminan_tanah_bangunan'] as $k => $v)
+						@forelse($data['pengajuan']['jaminan_tanah_bangunan'] as $k => $v)
+							@php $idx = $idx+1 @endphp
 							<tr>
-								<td class="text-left" style="border-right:0px;padding-left:50px;">
+								<td class="text-center" style="vertical-align:middle;">{{$idx}}</td>
+								<td class="text-left" style="border-right:0px;padding-left:50px;vertical-align:middle;">
 									{{ $v['jenis_sertifikat'] }}
 									<br/>
-									Nomor {{ $v['nomor_sertifikat'] }}
+									Nomor Sertifikat : {{ $v['nomor_sertifikat'] }}
 								</td>
-								<td class="text-center">{{ $tanggal_in }} </td>
-								<td class="text-center">{{ $tanggal_out }} </td>
+								<td style="vertical-align:middle;">
+									Nomor Pengajuan : {{$data['pengajuan']['id']}} <br/>
+									Nasabah : {{$data['pengajuan']['debitur']['nama']}}
+								</td>
+								<td style="vertical-align:middle;">
+									<a href="{{route('credit.show', ['id' => $data['pengajuan_id']])}}">Lihat</a>
+								</td>
 							</tr>
 						@empty
 						@endforelse
 
 					@empty
 						<tr>
-							<td colspan="3" class="text-center">Belum ada data</td>
+							<td colspan="4" class="text-center">Belum ada data</td>
 						</tr>
 					@endforelse
 				</tbody>
