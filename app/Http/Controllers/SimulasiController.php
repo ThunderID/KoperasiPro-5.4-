@@ -25,7 +25,7 @@ Class SimulasiController extends Controller
 
 		// get from session of data
 		$this->page_datas->data_simulasi 			= Session::get('simulasi') != null ? Session::get('simulasi') : [];
-		
+
 		//function from parent to generate view
 		return $this->generateView();
 	}
@@ -37,15 +37,14 @@ Class SimulasiController extends Controller
 		// get input
 		$inputs 									= Input::only('pinjaman', 'jangka_waktu', 'suku_bunga', 'angsuran'); 
 		$rslt 										= json_decode(json_encode($this->hitung(Input::all())), true);
-		// dd($rslt);
 
 		// update session
 		if(Session::has('simulasi')){
 			// dd(Session::get('simulasi'));
 			$session 								= Session::get('simulasi');
-			array_push($session, $rslt);
+			array_push($session, $rslt['original']);
 		}else{
-			$session 								= [0 => $rslt];
+			$session 								= [0 => $rslt['original']];
 		}
 
 		Session::put('simulasi', $session);
@@ -122,10 +121,22 @@ Class SimulasiController extends Controller
 
 		$rekon 				= [];
 
+		$total_angsuran_pokok 				= 0;
+		$total_angsuran_bunga 				= 0;
+		$total_angsuran 					= 0;
 		foreach (range(1, $jangka_waktu) as $key) 
 		{
 			$rekon['angsuran'][$key] 		= ['angsuran_pokok' => $angsuran_pokok, 'angsuran_bunga' => $angsuran_bunga, 'total_angsuran' => $angsuran];
+			$total_angsuran_pokok 			= $this->formatMoneyFrom($angsuran_pokok) + $total_angsuran_pokok;
+			$total_angsuran_bunga 			= $this->formatMoneyFrom($angsuran_bunga) + $total_angsuran_bunga;
+			$total_angsuran  				= $this->formatMoneyFrom($angsuran ) + $total_angsuran ;
 		}
+
+		$rekon['total'] 					= 	[
+													'angsuran_pokok' => $this->formatMoneyTo($total_angsuran_pokok),
+													'angsuran_bunga' => $this->formatMoneyTo($total_angsuran_bunga), 
+													'total_angsuran' => $this->formatMoneyTo($total_angsuran)
+												];
 
 		return $rekon;
 	}
