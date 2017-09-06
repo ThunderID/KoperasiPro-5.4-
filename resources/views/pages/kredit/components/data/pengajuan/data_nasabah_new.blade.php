@@ -27,6 +27,9 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<p class="text-capitalize text-light m-b-xs m-t-xs">
+				{{ (isset($page_datas->credit['debitur']['nik']) && !is_null($page_datas->credit['debitur']['nik'])) ? $page_datas->credit['debitur']['nik'] : '-' }}
+			</p>
+			<p class="text-capitalize text-light m-b-xs">
 				{{ (isset($page_datas->credit['debitur']['nama']) && !is_null($page_datas->credit['debitur']['nama'])) ? $page_datas->credit['debitur']['nama'] : '-' }}
 				&nbsp; ( {{ (isset($page_datas->credit['debitur']['jenis_kelamin']) && !is_null($page_datas->credit['debitur']['jenis_kelamin'])) ? $page_datas->credit['debitur']['jenis_kelamin'] : '-' }} )
 			</p>

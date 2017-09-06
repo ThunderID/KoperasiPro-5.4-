@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<p class="text-muted p-t-sm">
-					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['debitur']['nik'] }}</span>
+					<span class="p-r-xs"><i class="fa fa-id-card-o"></i> &nbsp; {{ $page_datas->credit['debitur']['nama'] }}</span>-<span class="p-l-xs">{{ $page_datas->credit['id'] }}</span>
 				</p>
 			</div>
 		</div>
@@ -17,11 +17,12 @@
 			</div>
 			<div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
 				<p class="text-muted p-t-sm text-md">
-					<span class="p-r-xs">
-						<i class="fa fa-user"></i>&nbsp;&nbsp;
-						{{ $page_datas->credit['debitur']['nama'] }}
+					<span class="m-r-xs">
+						<i class="fa fa-user"></i> {{ $page_datas->credit['debitur']['nama'] }}
 					</span>
-					<span>[ {{ $page_datas->credit['debitur']['nik'] }} ]</span>
+					<span class="m-l-xs">
+						<i class="fa fa-file-o"></i> {{ $page_datas->credit['id'] }}
+					</span>
 				</p>
 			</div>
 			<div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">

@@ -126,7 +126,7 @@
 	<label class="text-sm">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::textarea('aset_usaha[uraian]', (isset($param['data']['uraian']) ? $param['data']['uraian'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'Uraian']) !!}
+			{!! Form::textarea('aset_usaha[uraian]', (isset($param['data']['uraian']) ? $param['data']['uraian'] : null), ['class' => 'form-control auto-tabindex', 'placeholder' => 'Uraian', 'rows' => '5', 'cols' => '25', 'style' => 'resize: none;']) !!}
 		</div>
 	</div>
 </fieldset>
