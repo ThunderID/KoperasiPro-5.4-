@@ -196,12 +196,12 @@ window.initDateRange = function(){
 		}
 	});	
 
-	$(document).on('click', '#daterange .cancelBtn', function(){
+	$(document).on('click', '.cancelBtn', function(){
 		var url = window.location.href;
 		url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);			
 		window.location.href = url;
 	});
-	$(document).on('click', '#daterange .applyBtn', function(){
+	$(document).on('click', '.applyBtn', function(){
 		var url = window.location.href;
 		url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);
 		
