@@ -63,6 +63,7 @@ $(document).ready(function(){
 		$('.add.init-add-one').trigger('click');
 
 		// date range
+		window.initDateRange();
 	});
 
 	// Form Submit with get method
@@ -154,39 +155,59 @@ require('./plugins/thunderlab/core.js');
 
 // date range
 require('./plugins/daterange/daterangepicker.js');
-$('#daterange').daterangepicker({
-	autoUpdateInput: false,
-	locale: {
-		cancelLabel: 'Clear',
-		format: 'DD/MM/YYYY',
-		startDate: null,
-		endDate: null,
-		separator:  '/',
-		applyLabel: 'OK',
-		cancelLabel: 'Hapus',	
-		daysOfWeek: [
-				"Sen",
-				"Sel",
-				"Rab",
-				"Kam",
-				"Jum",
-				"Sab",
-				"Min"
-			],
-			monthNames: [
-				"Januari",
-				"Februari",
-				"Maret",
-				"April",
-				"Mei",
-				"Juni",
-				"Juli",
-				"Agustus",
-				"September",
-				"Oktober",
-				"November",
-				"Desember"
-			],
-			firstDay: 0
-	}
-});	
+$(document).ready( function() {
+	window.initDateRange();
+});
+window.initDateRange = function(){
+	$('#daterange').daterangepicker({
+		autoUpdateInput: false,
+		locale: {
+			cancelLabel: 'Clear',
+			format: 'DD/MM/YYYY',
+			startDate: null,
+			endDate: null,
+			separator:  '/',
+			applyLabel: 'OK',
+			cancelLabel: 'Hapus',	
+			daysOfWeek: [
+					"Sen",
+					"Sel",
+					"Rab",
+					"Kam",
+					"Jum",
+					"Sab",
+					"Min"
+				],
+				monthNames: [
+					"Januari",
+					"Februari",
+					"Maret",
+					"April",
+					"Mei",
+					"Juni",
+					"Juli",
+					"Agustus",
+					"September",
+					"Oktober",
+					"November",
+					"Desember"
+				],
+				firstDay: 0
+		}
+	});	
+
+	$(document).on('click', '#daterange .cancelBtn', function(){
+		var url = window.location.href;
+		url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);			
+		window.location.href = url;
+	});
+	$(document).on('click', '#daterange .applyBtn', function(){
+		var url = window.location.href;
+		url = url.substring(0, url.indexOf('?') > 0 ? url.indexOf('?') : url.length);
+		
+		let start = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
+		let end = $(this).closest('.daterangepicker').find('input[name=daterangepicker_start]').val();
+		qs = {'start': start, 'end': end};
+		window.location.href= url + '?date=' + JSON.stringify(qs);
+	});	
+}
