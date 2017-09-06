@@ -33,11 +33,13 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('ajax/debitur',					['uses' => 'DebiturController@index', 			'as' => 'ajax.debitur']);
 	Route::any('ajax/role',						['uses' => 'PenggunaController@role', 			'as' => 'ajax.role.lists']);
 
+	//Menu Simulasi
+	Route::any('kredit/simulasi/create',			['uses' => 'SimulasiController@index',		'as' => 'simulasi.index']);
+	Route::any('kredit/simulasi/store',				['uses' => 'SimulasiController@store',		'as' => 'simulasi.store']);
+	Route::any('kredit/simulasi/clear',				['uses' => 'SimulasiController@clear',		'as' => 'simulasi.clear']);
+
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
-	Route::any('kredit/simulasi/create',			['uses' => 'KreditController@simulasiCreate',	'as' => 'credit.simulasi.create']);
-	Route::any('kredit/simulasi/store',				['uses' => 'KreditController@simulasiStore',	'as' => 'credit.simulasi.store']);
-	Route::any('kredit/simulasi/print',				['uses' => 'KreditController@simulasiPrint',	'as' => 'credit.simulasi.print']);
 
 	Route::any('kredit/{akta_id}/followup/store',	['uses' => 'KreditController@followupStore',	'as' => 'credit.followup.store']);
 

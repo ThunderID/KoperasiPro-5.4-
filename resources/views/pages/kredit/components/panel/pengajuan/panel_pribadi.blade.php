@@ -34,7 +34,7 @@
 				<hr/>
 				
 				{{-- content form pekerjaan nasabah --}}
-				<h5 class="text-uppercase text-light">Pekerjaan</h5>
+				<h5 class="text-uppercase">Pekerjaan</h5>
 				@include('pages.kredit.components.form.pengajuan.pekerjaan', [
 					'param'		=> [
 						'data'		=> isset($page_datas->credit['debitur']) ? $page_datas->credit['debitur'] : null,
@@ -47,8 +47,8 @@
 				{{-- button action form nasabah --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-pribadi" data-target="nasabah">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-pribadi" data-target="nasabah">Batal</a>
+					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
@@ -75,8 +75,8 @@
 						{{-- button action form keluarga --}}
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-pribadi" data-target="keluarga-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary">Simpan</button>
+							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-pribadi" data-target="keluarga-{{ $k }}">Batal</a>
+							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -103,65 +103,10 @@
 				{{-- button action form keluarga --}}
 				<div class="clearfix">&nbsp;</div>
 				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-pribadi" data-target="keluarga">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
+					<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="data-pribadi" data-target="keluarga">Batal</a>
+					<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
 				</div>
 			{!! Form::close() !!}
 		</div>
-
-		{{-- FORM UNTUK EDIT DATA KEPRIBADIAN --}}
-		{{-- @if (isset($page_datas->credit['survei_kepribadian']))
-			@foreach ($page_datas->credit['survei_kepribadian'] as $k => $v)
-				<div class="hidden" data-form="kepribadian-{{ $k }}">
-					<div class="row">
-						<div class="col-sm-12">
-							<p class="text-capitalize m-b-sm text-lg">form kepribadian</p>
-							<hr/>
-						</div>
-					</div>
-					{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-						@include ('pages.kredit.components.form.survei.kepribadian', [
-							'param'	=> [
-								'data'	=> isset($v) ? $v : null,
-							]
-						])
-
-						<div class="clearfix">&nbsp;</div>
-						<div class="text-right">
-							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-pribadi" data-target="kepribadian-{{ $k }}">Batal</a>
-							<button type="submit" class="btn btn-primary">Simpan</button>
-						</div>
-					{!! Form::close() !!}
-				</div>
-			@endforeach
-		@endif --}}
-
-		{{-- <div class="hidden" data-form="kepribadian">
-			<div class="row">
-				<div class="col-sm-12">
-					<p class="text-capitalize m-b-sm text-lg">form kepribadian</p>
-					<hr/>
-				</div>
-			</div>
-			{!! Form::open(['url' => route('credit.update', ['id' => $page_datas->credit['id']]), 'class' => 'form no-enter', 'method' => 'PUT']) !!}
-				@include ('pages.kredit.components.form.survei.kepribadian', [
-					'param'	=> [
-						'data'	=> null,
-					]
-				])
-
-				<div class="clearfix">&nbsp;</div>
-				<div class="text-right">
-					<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="data-pribadi" data-target="kepribadian">Batal</a>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-				</div>
-			{!! Form::close() !!}
-		</div> --}}
-		{{---------------- // FORM KEPRIBADIAN --------------}}
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-l-none p-r-none">
-		<hr class="m-b-sm">
 	</div>
 </div>

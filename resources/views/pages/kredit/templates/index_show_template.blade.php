@@ -59,7 +59,6 @@
 			</div>			
 		</div>
 		<div class="col-xs-12 col-sm-9">
-
 			@if (isset($page_datas->credit['debitur']['id']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.top_menu.pengajuan')
@@ -77,11 +76,7 @@
 					@include('pages.kredit.components.top_menu.tolak')
 				@endif
 			@endif
-
-			<div class="row _window" data-padd-top="auto" data-padd-bottom="39" style="padding:16px;overflow-y: auto;">
-				@yield('page_content')
-			</div>
-
+			
 			@if (isset($page_datas->credit['debitur']['id']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					@include('pages.kredit.components.bottom_menu.pengajuan')
@@ -99,7 +94,11 @@
 					@include('pages.kredit.components.bottom_menu.'.$page_datas->credit['status_sebelumnya'])
 				@endif
 			@endif
-				
+
+
+			<div class="row _window" data-padd-top="auto" data-padd-bottom="0" style="padding:16px;overflow-y: auto;">
+				@yield('page_content')
+			</div>				
 		</div>
 	</div>  
 @endpush

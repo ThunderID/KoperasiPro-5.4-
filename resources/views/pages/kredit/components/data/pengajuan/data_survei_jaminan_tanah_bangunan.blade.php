@@ -37,13 +37,15 @@
 	<p class="text-capitalize text-light m-b-xs">
 		@foreach ($value['alamat'] as $k => $v)
 			@if ($k == 0)
-				{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+				{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 				RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-				{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-				{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
-				{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-				{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-				{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+				<span class="text-uppercase">
+					{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} -
+					{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik']  : '' }} <br/>
+					{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+					jawa timur <br/>
+					{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+				</span>
 			@endif
 		@endforeach
 	</p>

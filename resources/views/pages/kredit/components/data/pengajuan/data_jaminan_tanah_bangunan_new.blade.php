@@ -13,15 +13,15 @@
 @if (isset($page_datas->credit['jaminan_tanah_bangunan']) && !empty($page_datas->credit['jaminan_tanah_bangunan']))
 	@forelse ($page_datas->credit['jaminan_tanah_bangunan'] as $key => $value)
 		<p class="m-t-sm m-b-xs text-capitalize text-sm">
-			<strong>tanah &amp; bangunan {{ $key+1 }}</strong>
+			<span class="text-regular text-muted text-sm">tanah &amp; bangunan {{ $key+1 }}</span>
 			@if (!empty($page_datas->credit['jaminan_tanah_bangunan']))
 				@if ($page_datas->credit['status'] == 'pengajuan')
 					<span class="pull-right">
-						<a class="text-danger m-r-md" href="#" data-url="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+						<a class="text-danger m-r-md text-sm" href="#" data-url="{{ route('jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'jaminan_tanah_bangunan_id' => $value['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 							<i class="fa fa-trash" aria-hidden="true"></i>
 							 Hapus
 						</a> &nbsp;
-						<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" no-data-pjax>
+						<a href="#" class="text-sm button-edit" data-toggle="hidden" data-target="jaminan-tanah-bangunan-{{ $key }}" data-panel="data-jaminan" data-flag="data-jaminan-tanah-bangunan" data-index="{{ $key }}" no-data-pjax>
 							<i class="fa fa-pencil" aria-hidden="true"></i>
 							 Edit
 						</a>
@@ -47,13 +47,15 @@
 		<p class="text-capitalize text-light m-b-xs">
 			@foreach ($value['alamat'] as $k => $v)
 				@if ($k == 0)
-					{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
+					{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }} <br/>
 					RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-					{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-					{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
-					{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-					{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-					{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+					<span class="text-uppercase">
+						{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} -
+						{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] : '' }} <br/>
+						{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+						Jawa Timur <br/>
+						{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+					</span>
 				@endif
 			@endforeach
 		</p>
@@ -76,7 +78,7 @@
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				@if ($page_datas->credit['status'] == 'pengajuan')
-					<a href="#" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
+					<a href="#" class="text-sm" data-toggle="hidden" data-target="jaminan-tanah-bangunan" data-panel="data-jaminan" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Jaminan Tanah &amp; Bangunan</a>
 				@endif
 			</div>
 		</div>

@@ -42,7 +42,7 @@
  * 			contoh: 		tanggal_pengajuan
  */
 @endphp
-<fieldset class="form-group">
+<fieldset class="form-group m-b-sm">
 	<label class="text-sm">Tanggal Pengajuan</label>
 	<div class="row">
 		<div class="col-xs-12 col-sm-4 col-md-4">
@@ -51,7 +51,7 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="form-group">
+<fieldset class="form-group m-b-sm">
 	<label class="text-sm">Jumlah Pinjaman</label>
 	<div class="row">
 		<div class="col-md-5">

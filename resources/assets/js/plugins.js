@@ -27,7 +27,7 @@ Note :
 */
 window.pjax = require('./plugins/pjax/pjax');
 $(document).ready(function(){
-    $(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
+	$(document).pjax("a:not('[no-data-pjax]')", '#pjax-container');
 
 	//using nprogress to indicate loading
 	$(document).on('pjax:start', function() { 
@@ -63,16 +63,16 @@ $(document).ready(function(){
 		$('.add.init-add-one').trigger('click');
 	});
 
-    // Form Submit with get method
-    $(document).on('submit', 'form[data-pjax]', function(event) {
+	// Form Submit with get method
+	$(document).on('submit', 'form[data-pjax]', function(event) {
 		$.pjax.submit(event, '#pjax-container')
 		$('.modal').modal('hide');
-    })    
+	})    
 
-    // does current browser support PJAX
-    if ($.support.pjax) {
-        $.pjax.defaults.timeout = 5000; // time in milliseconds
-    }
+	// does current browser support PJAX
+	if ($.support.pjax) {
+		$.pjax.defaults.timeout = 5000; // time in milliseconds
+	}
 });
 
 /**
@@ -89,11 +89,11 @@ window.steps = require('./plugins/jquery-steps/jquery.steps');
  */
 window.validate = require('./plugins/jquery-validate/jquery.validate');
 
-/**
- * 6. Jquery Cookies
- * Description: plugin jQuery browser cookies for save state jQuery steps
- * Usage & Documentation: https://github.com/js-cookie/js-cookie
- */
+// *
+//  * 6. Jquery Cookies
+//  * Description: plugin jQuery browser cookies for save state jQuery steps
+//  * Usage & Documentation: https://github.com/js-cookie/js-cookie
+ 
 // window.cookies = require('./plugins/jquery-cookie/js.cookie.js');
 // $(document).ready( function() {
 // 	window.cookies();
@@ -163,28 +163,28 @@ $('#daterange').daterangepicker({
 		applyLabel: 'OK',
 		cancelLabel: 'Hapus',	
 		daysOfWeek: [
-                "Sen",
-                "Sel",
-                "Rab",
-                "Kam",
-                "Jum",
-                "Sab",
-                "Min"
-            ],
-            monthNames: [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember"
-            ],
-            firstDay: 0
+				"Sen",
+				"Sel",
+				"Rab",
+				"Kam",
+				"Jum",
+				"Sab",
+				"Min"
+			],
+			monthNames: [
+				"Januari",
+				"Februari",
+				"Maret",
+				"April",
+				"Mei",
+				"Juni",
+				"Juli",
+				"Agustus",
+				"September",
+				"Oktober",
+				"November",
+				"Desember"
+			],
+			firstDay: 0
 	}
 });	

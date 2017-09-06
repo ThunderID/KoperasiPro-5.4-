@@ -7,7 +7,7 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<p class="text-capitalize text-md m-b-sm">Informasi Keluarga</p>
+		<p class="text-capitalize text-md m-b-sm"><u>Informasi Keluarga</u></p>
 	</div>
 </div>
 
@@ -15,7 +15,7 @@
 	@forelse ($page_datas->credit['debitur']['relasi'] as $key => $value)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize">
+				<p class="m-b-xs text-sm text-capitalize">
 					@if (!empty($page_datas->credit['debitur']['relasi']))
 						{{ (isset($value['pivot']['hubungan']) && !is_null($value['pivot']['hubungan'])) ? str_replace('_', ' ', $value['pivot']['hubungan']) : '-'  }}
 
@@ -25,7 +25,7 @@
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									 Hapus
 								</a>&nbsp;
-								<a href="#" data-toggle="hidden" data-target="keluarga-{{ $key }}" data-panel="data-pribadi" no-data-pjax>
+								<a href="#" class="button-edit" data-toggle="hidden" data-target="keluarga-{{ $key }}" data-panel="data-pribadi" data-index="{{ $key }}" data-flag="data-keluarga" no-data-pjax>
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									Edit
 								</a>
@@ -46,11 +46,13 @@
 						@if ($k == 0)
 							{{ (isset($v['alamat']) && !is_null($v['alamat'])) ? $v['alamat'] : '' }}
 							RT {{ (isset($v['rt']) ? $v['rt'] : '-') }} / RW {{ isset($v['rw']) ? $v['rw'] : '-' }} <br/>
-							{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} 
-							{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik'] .'<br/>' : '' }}
-							{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
-							{{ (isset($v['provinsi']) && !is_null($v['provinsi'])) ? $v['provinsi'] : '' }} - 
-							{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+							<span class="text-uppercase">
+								{{ (isset($v['desa']) && !is_null($v['desa'])) ? $v['desa'] : '' }} -
+								{{ (isset($v['distrik']) && !is_null($v['distrik'])) ? $v['distrik']  : '' }} <br/>
+								{{ (isset($v['regensi']) && !is_null($v['regensi'])) ? $v['regensi'] : '' }} - 
+								jawa timur <br/>
+								{{ (isset($v['negara']) && !is_null($v['negara'])) ? $v['negara'] : '' }}
+							</span>
 						@endif
 					@endforeach
 				</p>
@@ -73,7 +75,7 @@
 	@if (count($page_datas->credit['debitur']['relasi']) > 0)
 		<div class="row m-t-md m-b-md">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#" data-toggle="hidden" data-target="keluarga" data-panel="data-pribadi" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Keluarga</a>
+				<a href="#" class="text-sm" data-toggle="hidden" data-target="keluarga" data-panel="data-pribadi" no-data-pjax><i class="fa fa-plus"></i> Tambahkan Keluarga</a>
 			</div>
 		</div>
 	@endif

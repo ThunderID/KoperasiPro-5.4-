@@ -1,5 +1,5 @@
 .step {
-	border-top: 1px solid $border-color-default;
+	border-bottom: 1px solid $border-color-default;
 	.step-content {
 		height: 38px; 
 		overflow: hidden;  
@@ -10,8 +10,8 @@
 			height: 38px;
 			padding: 5px;
 			padding-top: 10px;
-			width: 20%;
-			font-size: 13px;
+			width: 16.6%;
+			font-size: 12px;
 			&.active {
 				background-color: $color-active;
 				color: $color-white;
