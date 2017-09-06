@@ -28,3 +28,9 @@ window.printModule = {
 $(document).ready( function() {
 	window.printModule.init();
 });
+
+$(document).on('click', '.trigger-print', function() {
+	var target = $(this).closest('#area-print')[0];
+	window.thunder.printElement.setElementPrint(target);
+	window.thunder.printElement.print();
+});

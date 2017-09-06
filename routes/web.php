@@ -34,9 +34,11 @@ Route::group(['middleware' => ['pjax', 'authenticated']], function()
 	Route::any('ajax/role',						['uses' => 'PenggunaController@role', 			'as' => 'ajax.role.lists']);
 
 	//Menu Simulasi
-	Route::any('kredit/simulasi/create',			['uses' => 'SimulasiController@index',		'as' => 'simulasi.index']);
+	Route::any('kredit/simulasi/',			['uses' => 'SimulasiController@index',		'as' => 'simulasi.index']);
 	Route::any('kredit/simulasi/store',				['uses' => 'SimulasiController@store',		'as' => 'simulasi.store']);
-	Route::any('kredit/simulasi/clear',				['uses' => 'SimulasiController@clear',		'as' => 'simulasi.clear']);
+	Route::any('kredit/simulasi/clear/{id}',		['uses' => 'SimulasiController@clear',		'as' => 'simulasi.clear']);
+	Route::any('kredit/simulasi/ajukan/{id}',			['uses' => 'SimulasiController@ajukan',		'as' => 'simulasi.ajukan']);
+
 
 	//Menu Kredit
 	Route::resource('credit', 'KreditController');
@@ -147,12 +149,16 @@ Route::any('hapus/foto',						['uses' => 'HelperController@destroyGambar', 	'as'
 //kredit
 //pengajuan kredit
 Route::any('laporan/pengajuan/kredit',	['uses' => 'LaporanController@pengajuan_kredit', 	'as' => 'laporan.pengajuan_kredit.index']);
+Route::any('laporan/proses/kredit',		['uses' => 'LaporanController@proses_kredit', 	'as' => 'laporan.proses_kredit.index']);
+Route::any('laporan/realisasi/kredit',	['uses' => 'LaporanController@realisasi_kredit', 	'as' => 'laporan.realisasi_kredit.index']);
 //keluar/masuk jaminan (jaminan saat ini)
-Route::any('laporan/jaminan/movement',	['uses' => 'LaporanController@movement_jaminan', 	'as' => 'laporan.movement_jaminan.index']);
+Route::any('laporan/pergerakan/jaminan',['uses' => 'LaporanController@movement_jaminan', 	'as' => 'laporan.movement_jaminan.index']);
+Route::any('laporan/riwayat/jaminan',	['uses' => 'LaporanController@riwayat_jaminan', 	'as' => 'laporan.riwayat_jaminan.index']);
+
 //loan to value (persentasi kredit vs taksasi jaminan)
 Route::any('laporan/loan/to/value',			['uses' => 'LaporanController@loan_to_value', 		'as' => 'laporan.loan_to_value.index']);
 //employee to system
 Route::any('laporan/employee/to/system',	['uses' => 'LaporanController@employee_to_system',	'as' => 'laporan.employee_to_system.index']);
+Route::any('laporan/log/survei',			['uses' => 'LaporanController@log_survei',			'as' => 'laporan.log_survei.index']);
 
-//history jaminan
 //history nasabah

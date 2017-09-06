@@ -8,6 +8,9 @@ use App\Domain\HR\Models\Orang;
 use App\Domain\Pengajuan\Models\Pengajuan;
 use App\Domain\Pengajuan\Models\RiwayatKredit;
 
+use App\Domain\Survei\Models\JaminanKendaraan as SJaminanKendaraan;
+use App\Domain\Survei\Models\JaminanTanahBangunan as SJaminanTanahBangunan;
+
 /**
  * Class LaporanController
  * Description: digunakan untuk membantu UI untuk mengambil data
@@ -49,6 +52,109 @@ Class LaporanController extends Controller
 		// $this->page_datas->pengajuan 	= Pengajuan::id($ids)->with(['debitur', 'hp'])->orderby('tanggal_pengajuan', 'desc')->get()->toArray();
 
 		$this->view		= view('pages.laporan.kredit');
+
+		return $this->generateView();
+		// return response()->json($pengajuan);
+	}
+
+	public function realisasi_kredit()
+	{
+		$this->setGlobal();
+
+		$tanggal 		= ['start' =>  Carbon::now(), 'end' =>  Carbon::now()];
+
+		if(request()->has('date'))
+		{
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start']);
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end']);
+		}
+
+
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+		$this->page_datas->kredit 		= RiwayatKredit::selectraw('riwayat_kredit.*')->where('status', 'realisasi')->where('tanggal', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal', '<=', $tanggal['end']->format('Y-m-d'))->with(['pengajuan', 'pengajuan.debitur'])->orderby('tanggal','asc')->get()->toArray();
+
+		$this->view		= view('pages.laporan.realisasi_kredit');
+
+		return $this->generateView();
+		// return response()->json($pengajuan);
+	}
+
+	public function proses_kredit()
+	{
+		$this->setGlobal();
+
+		$tanggal 		= ['start' =>  Carbon::now(), 'end' =>  Carbon::now()];
+		$status 		= ['survei', 'menunggu_realisasi', 'realisasi', 'tolak', 'lunas', 'menunggu_persetujuan'];
+
+		if(request()->has('date'))
+		{
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start']);
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end']);
+		}
+
+		if(request()->has('mode') && in_array(request()->get('mode'), $status))
+		{
+			$status 	= request()->get('mode');
+		}
+
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+		$this->page_datas->kredit 		= RiwayatKredit::selectraw('riwayat_kredit.*')->selectraw(DB::raw('IFNULL((select riwayat_kredit_prev.status from riwayat_kredit as riwayat_kredit_prev join riwayat_kredit on riwayat_kredit.pengajuan_id = riwayat_kredit_prev.pengajuan_id where riwayat_kredit_prev.tanggal < riwayat_kredit.tanggal and riwayat_kredit.status <> riwayat_kredit_prev.status order by riwayat_kredit_prev.tanggal desc limit 1), "pengajuan") as status_prev'))
+
+		->status($status)->where('tanggal', '>=', $tanggal['start']->format('Y-m-d'))->where('tanggal', '<=', $tanggal['end']->format('Y-m-d'))->with(['pengajuan', 'pengajuan.debitur', 'petugas'])->orderby('tanggal','asc')->get()->toArray();
+
+		$this->view		= view('pages.laporan.proses_kredit');
+
+		return $this->generateView();
+		// return response()->json($pengajuan);
+	}
+
+	public function riwayat_jaminan()
+	{
+		$this->setGlobal();
+
+		$this->page_datas->jaminan 	= [];
+		$this->page_datas->nomor 	= null;
+
+		$mode 			= 'kendaraan';
+		$placeholder 	= 'nomor BPKB';
+		if(request()->has('mode'))
+		{
+			if(request()->get('mode')=='kendaraan')
+			{
+				$mode 	= 'kendaraan';
+			}
+			elseif(request()->get('mode')=='tanah_bangunan')
+			{
+				$mode 			= 'tanah_bangunan';
+				$placeholder 	= 'nomor sertifikat';
+			}
+		}
+
+		$this->page_datas->mode 		= $mode;
+		$this->page_datas->placeholder 	= $placeholder;
+
+		if(request()->has('nomor'))
+		{
+			$nomor 		= request()->get('nomor');
+			switch ($mode) 
+			{
+				case 'kendaraan':
+					$this->page_datas->jaminan 		= Pengajuan::wherehas('jaminan_kendaraan', function($q)use($nomor){$q->where('nomor_bpkb', $nomor);})->with(['jaminan_kendaraan' => function($q)use($nomor){$q->where('nomor_bpkb', $nomor);}, 'debitur'])->get();
+					break;
+				case 'tanah_bangunan':
+					$this->page_datas->jaminan 		= Pengajuan::wherehas('jaminan_tanah_bangunan', function($q)use($nomor){$q->where('nomor_sertifikat', $nomor);})->with(['jaminan_tanah_bangunan' => function($q)use($nomor){$q->where('nomor_sertifikat', $nomor);}, 'debitur'])->get();
+					break;
+			}
+			$this->page_datas->nomor 	= $nomor;
+		}
+
+		$this->view	= view('pages.laporan.riwayat_jaminan');
 
 		return $this->generateView();
 		// return response()->json($pengajuan);
@@ -161,6 +267,36 @@ Class LaporanController extends Controller
 
 		return $this->generateView();
 		// return response()->json($employee);
+	}
+
+	public function log_survei()
+	{
+		$this->setGlobal();
+
+		$tanggal	= ['start' =>  Carbon::now()->startOfDay(), 'end' =>  Carbon::now()->endOfDay()];
+		$mode 		= 'in';
+
+		if(request()->has('date'))
+		{
+			$data 				= request()->get('date');
+			$tanggal			= json_decode($data, true);
+			$tanggal['start']	= Carbon::createFromFormat('d/m/Y', $tanggal['start'])->startOfDay();
+			$tanggal['end']		= Carbon::createFromFormat('d/m/Y', $tanggal['end'])->endOfDay();
+		}
+
+		$this->page_datas->start 		= $tanggal['start']->format('d/m/Y');
+		$this->page_datas->end 			= $tanggal['end']->format('d/m/Y');
+
+		$jaminan_k 		= collect(SJaminanKendaraan::where('created_at', '>=', $tanggal['start']->format('Y-m-d H:i:s'))->where('created_at', '<=', $tanggal['end']->format('Y-m-d H:i:s'))->with(['petugas', 'jaminan_kendaraan'])->orderby('created_at', 'asc')->get()->toArray());
+		$jaminan_tb 	= SJaminanTanahBangunan::where('created_at', '>=', $tanggal['start']->format('Y-m-d H:i:s'))->where('created_at', '<=', $tanggal['end']->format('Y-m-d H:i:s'))->with(['petugas', 'jaminan_tanah_bangunan'])->get()->toArray();
+
+		$jaminan_k->merge($jaminan_tb);
+
+		$this->page_datas->log 	= $jaminan_k;
+		$this->view				= view('pages.laporan.log_karyawan');
+
+		return $this->generateView();
+		// return response()->json($pengajuan);
 	}
 
 
