@@ -212,7 +212,7 @@ class KreditController extends Controller
 
 			$simpan 	= new PengajuanKredit($kredit['jenis_kredit'], $kredit['jangka_waktu'], $kredit['pengajuan_kredit'], Carbon::now()->format('d/m/Y'), [], null, $foto_ktp, null, null);
 
-			$simpan->setDebitur($kredit['debitur']['nik'], $kredit['debitur']['nama'], $kredit['debitur']['tanggal_lahir'], $kredit['debitur']['jenis_kelamin'], $kredit['debitur']['status_perkawinan'], $kredit['debitur']['telepon'], $kredit['debitur']['pekerjaan'], $kredit['debitur']['penghasilan_bersih'], $kredit['debitur']['is_ektp'], $kredit['debitur']['alamat']);
+			$simpan->setDebitur($kredit['debitur']['nik'], $kredit['debitur']['nama'], $kredit['debitur']['tanggal_lahir'], $kredit['debitur']['jenis_kelamin'], $kredit['debitur']['status_perkawinan'], str_replace('_', '', $kredit['debitur']['telepon']), $kredit['debitur']['pekerjaan'], $kredit['debitur']['penghasilan_bersih'], $kredit['debitur']['is_ektp'], $kredit['debitur']['alamat']);
 
 			foreach ($temp_jaminan_kendaraan as $key => $value) 
 			{
@@ -285,13 +285,13 @@ class KreditController extends Controller
 				$debitur 		= Input::get('debitur');
 				$debitur['nik'] = '35-'.$debitur['nik'];
 
-				$update->setDebitur($debitur['nik'], $debitur['nama'], $debitur['tanggal_lahir'], $debitur['jenis_kelamin'], $debitur['status_perkawinan'], $debitur['telepon'], $debitur['pekerjaan'], $debitur['penghasilan_bersih'], $debitur['is_ektp'], $debitur['alamat']);
+				$update->setDebitur($debitur['nik'], $debitur['nama'], $debitur['tanggal_lahir'], $debitur['jenis_kelamin'], $debitur['status_perkawinan'], str_replace('_', '', $debitur['telepon']), $debitur['pekerjaan'], $debitur['penghasilan_bersih'], $debitur['is_ektp'], $debitur['alamat']);
 			}
 
 			if (Input::has('relasi'))
 			{
 				$debitur 		= new UpdateDebitur($kredit->orang_id);
-				$debitur->tembahRelasi(Input::get('relasi')['hubungan'], null, Input::get('relasi')['nama'], null, null, null, Input::get('relasi')['telepon'], null, null, true, Input::get('relasi')['alamat'], Input::get('relasi')['id']);
+				$debitur->tembahRelasi(Input::get('relasi')['hubungan'], null, Input::get('relasi')['nama'], null, null, null, str_replace('_', '', Input::get('relasi')['telepon']), null, null, true, Input::get('relasi')['alamat'], Input::get('relasi')['id']);
 				$debitur->save();
 			}
 
@@ -400,7 +400,7 @@ class KreditController extends Controller
 			// kepribadian for survei
 			if (Input::has('kepribadian'))
 			{
-				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], Input::get('kepribadian')['telepon_referens'], Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian'], Input::get('kepribadian')['id']);
+				$update->tambahKepribadian(Input::get('kepribadian')['nama_referens'], str_replace('_', '', Input::get('kepribadian')['telepon_referens']), Input::get('kepribadian')['hubungan'], Input::get('kepribadian')['uraian'], Input::get('kepribadian')['id']);
 			}
 
 			// nasabah for survei

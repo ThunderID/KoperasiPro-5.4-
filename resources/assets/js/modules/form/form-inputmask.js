@@ -106,7 +106,7 @@ window.formInputMask = {
 		var numberSmall = new Inputmask(
 			'numeric', {
 				rightAlign: false,
-				mask: '9{1,2}',
+				mask: '9{1,3}',
 		});
 		var selector = $('.mask-number-small');
 		numberSmall.mask(selector);
