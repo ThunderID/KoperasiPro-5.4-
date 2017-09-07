@@ -129,17 +129,19 @@
 						@endif
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right" style="height: 100px;">
-					<div style="position: absolute; bottom: 0; right: 15px;">
-						<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger">
-							<i class="fa fa-times"></i> Tolak
-						</a> 
-						&nbsp;&nbsp;
-						<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary">
-							<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
-						</a>
-					</div>
-				</div>	
+				@if ($page_datas->credit['status'] != 'lunas')
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right" style="height: 100px;">
+						<div style="position: absolute; bottom: 0; right: 15px;">
+							<a href="#" data-toggle="modal" data-target="#modal-tolak" class="btn btn-danger">
+								<i class="fa fa-times"></i> Tolak
+							</a> 
+							&nbsp;&nbsp;
+							<a href="#" data-url="{{route('credit.status', ['id' => $page_datas->id, 'status' => $page_datas->credit['status_berikutnya']])}}" data-toggle="modal" data-target="#modal-change-status" class="btn btn-primary">
+								<i class="fa fa-check" aria-hidden="true"></i> Lanjutkan
+							</a>
+						</div>
+					</div>	
+				@endif
 			</div>
 			<div class="clearfix">&nbsp;</div>
 			{{-- section line --}}

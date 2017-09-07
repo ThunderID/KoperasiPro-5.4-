@@ -167,7 +167,7 @@
 						<a type="button" class="btn btn-default" data-dismiss="modal" no-data-pjax="">
 							Batal
 						</a>
-						{!! Form::submit(ucwords(str_replace('_', ' ', $page_datas->credit['status_berikutnya'])), ['id' => 'btn-login', 'class' => 'btn btn-custom auto-tabindex']) !!}
+						{!! Form::submit('Disetujui', ['id' => 'btn-login', 'class' => 'btn btn-custom auto-tabindex']) !!}
 					</div>
 				{!! Form::close() !!}		
 			</div>
