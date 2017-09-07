@@ -27,18 +27,19 @@
 				</div>
 			</div>
 			<div class="row">
-			{!! Form::open(['url' => route('simulasi.store'), 'data-ajax-submit' => true, 'data-pjax' => 'true']) !!}
+			{!! Form::open(['url' => route('simulasi.store'), 'data-ajax-submit' => 'false', 'data-pjax' => 'false', 'class' => 'thunder-validation-form','thunder-validation-submitvalidation' => false]) !!}
 				<div class="col-sm-12">
 					<fieldset class="form-group">
 						<label class="text-sm">Pinjaman</label>
-						{!! Form::text('pinjaman', $page_datas->input_simulasi['pinjaman'], ['class' => 'form-control required mask-money', 'placeholder' => 'Masukkan jumlah pinjaman']) !!}
+						{!! Form::text('pinjaman', $page_datas->input_simulasi['pinjaman'], ['class' => 'form-control required mask-money', 'placeholder' => 'Masukkan jumlah pinjaman', 'thunder-validation-rules' => 'required minCurrency=2500000', 'thunder-validation-no-message' => true]) !!}
+						<span class="help-block m-b-none">Minimal jumlah pinjaman Rp 2.500.000</span>
 					</fieldset>
 				</div>
 				<div class="col-sm-12">
 					<fieldset class="form-group">
 						<label class="text-sm">Jangka Waktu</label>
 						<div class="input-group">
-							{!! Form::number('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu']) !!}
+							{!! Form::number('jangka_waktu', $page_datas->input_simulasi['jangka_waktu'], ['class' => 'form-control required', 'placeholder' => 'Masukkan jangka waktu', 'thunder-validation-rules' => 'required number']) !!}
 							<span class="input-group-addon">Bulan</span>
 						</div>
 					</fieldset>
