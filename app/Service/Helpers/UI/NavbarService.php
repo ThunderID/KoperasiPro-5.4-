@@ -49,13 +49,13 @@ class NavbarService
 									'route' => null,
 									'sub'	=> 	[
 													'pengajuan_kredit' 		=> route('laporan.pengajuan_kredit.index'),
-													'realisasi_kredit'			=> route('laporan.realisasi_kredit.index'),
+													'realisasi_kredit'		=> route('laporan.realisasi_kredit.index'),
 													'proses_kredit'			=> route('laporan.proses_kredit.index'),
 													'pergerakan_jaminan' 	=> route('laporan.movement_jaminan.index'),
 													'riwayat_jaminan'		=> route('laporan.riwayat_jaminan.index'),
 													'loan_to_value_ratio'	=> route('laporan.loan_to_value.index'),
-													'penanganan_kredit'		=> route('laporan.employee_to_system.index'),
-													'log_survei'			=> route('laporan.log_survei.index'),
+													// 'penanganan_kredit'		=> route('laporan.employee_to_system.index'),
+													// 'log_survei'			=> route('laporan.log_survei.index'),
 												]
 								],
 				// 'kasir'		=> 	[

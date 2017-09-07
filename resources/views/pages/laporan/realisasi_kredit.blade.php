@@ -78,8 +78,9 @@
 						<th class="text-center">No</th>
 						<th class="text-left">Nama Nasabah</th>
 						<th class="text-center">Nomor Kredit</th>
+						<th class="text-center">Janis Pinjaman</th>
 						<th class="text-right">Pinjaman </th>
-						<th class="text-center">Status Terakhir</th>
+						<th class="text-center">Suku Bunga</th>
 						<th class="text-center">&nbsp;</th>
 					</tr>
 				</thead>
@@ -89,7 +90,7 @@
 						@if($date_flag != $data['tanggal'])
 							@php $date_flag = $data['tanggal'] @endphp
 							<tr>
-								<td class="text-left" colspan="6">
+								<td class="text-left" colspan="7">
 									<strong>{{$date_flag}}</strong>
 								</td>
 							</tr>
@@ -98,18 +99,10 @@
 							<td class="text-center" style="vertical-align: middle;">{{($key+1)}}</td>
 							<td class="text-left" style="border-right:0px;vertical-align: middle;">{{ $data['pengajuan']['debitur']['nama'] }}</td>
 							<td class="text-center" style="vertical-align: middle;">{{ $data['pengajuan']['nomor_kredit'] }}</td>
+							<td class="text-center" style="vertical-align: middle;">{{ $skservice->jenisPinjaman()[$data['pengajuan']['jenis_kredit']] }}</td>
 							<td class="text-right" style="vertical-align: middle;">{{ $data['pengajuan']['pengajuan_kredit'] }} </td>
-							<td class="text-left">
-								@foreach($skservice->get() as $k => $v)
-									@if($data['status']==$k)
-										<span class="label label-success">{{$v}}</span>
-									@else
-										<span class="label label-default">{{$v}}</span>
-									@endif
-									@if($k=='menunggu_persetujuan')
-										<div class="p-t-sm"></div>
-									@endif
-								@endforeach
+							<td class="text-right">
+								{{ $data['pengajuan']['suku_bunga'] }} %
 							</td>
 							<td class="text-center" style="vertical-align: middle;">
 								<a href="{{route('credit.show', ['id' => $data['pengajuan']['id']])}}">Lihat</a>
@@ -117,7 +110,7 @@
 						</tr>
 					@empty
 						<tr>
-							<td colspan="6" class="text-center">Belum ada data</td>
+							<td colspan="7" class="text-center">Belum ada data</td>
 						</tr>
 					@endforelse
 				</tbody>
