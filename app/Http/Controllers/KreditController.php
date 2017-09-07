@@ -274,6 +274,10 @@ class KreditController extends Controller
 			{
 				$update 		= new SurveiKredit($id);
 			}
+			else
+			{
+				throw new Exception("Perubahan pada status ini tidak diijinkan", 1);
+			}
 
 			//update data debitur
 			if (Input::has('debitur'))
