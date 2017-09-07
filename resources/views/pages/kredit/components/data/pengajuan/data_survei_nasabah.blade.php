@@ -40,7 +40,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 			<p class="text-capitalize text-light">
-				{{ (isset($page_datas->credit['survei_nasabah']['nama']) && !is_null($page_datas->credit['survei_nasabah']['nama'])) ? $page_datas->credit['survei_nasabah']['nama'] : '-' }}
+				{{ (isset($page_datas->credit['debitur']['nama']) && !is_null($page_datas->credit['debitur']['nama'])) ? $page_datas->credit['debitur']['nama'] : '-' }}
 			</p>
 		</div>
 	</div>

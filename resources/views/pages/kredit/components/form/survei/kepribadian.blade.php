@@ -33,7 +33,7 @@
 	<label class="text-sm">Uraian</label>
 	<div class="row">
 		<div class="col-md-5">
-			{!! Form::textarea('kepribadian[uraian]', (isset($param['data']['uraian']) ? $param['data']['uraian'] : null), ['class' => 'form-control auto-tabindex']) !!}
+			{!! Form::textarea('kepribadian[uraian]', (isset($param['data']['uraian']) ? $param['data']['uraian'] : null), ['class' => 'form-control auto-tabindex', 'rows' => '5', 'cols' => '25', 'style' => 'resize: none;']) !!}
 		</div>
 	</div>
 </fieldset>

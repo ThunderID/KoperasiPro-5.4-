@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
 				<p class="m-b-xs text-capitalize">
-					keuangan {{ $key+1 }}
+					<span class="text-sm">keuangan {{ $key+1 }}</span>
 
 					@if (!empty($page_datas->credit['survei_keuangan']))
 						@if ($edit == true)
