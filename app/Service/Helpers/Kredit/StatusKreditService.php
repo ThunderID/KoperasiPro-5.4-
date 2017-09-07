@@ -28,4 +28,9 @@ class StatusKreditService
 					'lunas'					=> 'Lunas',
 				];
 	}
+	
+	public static function jenisPinjaman()
+	{
+		return ['pa' => 'Angsuran', 'pt' => 'Musiman', 'rumah_delta' => 'Rumah Delta', 'lainnya' => 'Lainnya'];
+	}
 }

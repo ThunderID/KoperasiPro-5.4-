@@ -81,12 +81,21 @@
 	<label class="text-sm">Merk</label>
 	<div class="row">
 		<div class="col-md-4">
-			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="thunder-validation-input form-control select-merk select auto-tabindex input-merk-kendaraan input-kendaraan" placeholder="Pilih" data-placeholder="Pilih" data-other="input-merk-kendaraan" data-field="merk" thunder-validation-rules='required' data-preload="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : '' }}">
+			{{--
+			<select id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="thunder-validation-input form-control select-merk select auto-tabindex input-merk-kendaraan input-kendaraan" placeholder="Pilih" data-placeholder="Pilih" data-other="input-merk-kendaraan" data-field="merk" thunder-validation-rules='required' data-preload="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : '' }}">
 			@if(isset($param['data']['merk']))
 				<option value="{{ $k }}" {{ (isset($param['data']['merk']) ? ($param['data']['merk'] == $k ? 'selected' : 'lain-lain') : '') }}>{{ $v }}</option>
 			@endif
 			</select>
+			--}}
 			{{-- <input type="hidden" name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" class="input-merk-kendaraan input-kendaraan" value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : '' }}" data-field="merk"> --}}
+			<input type="text" 
+				id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}" 
+				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_kendaraan]' : 'jaminan_kendaraan') . '[merk]' }}"
+				class="thunder-validation-input form-control input-merk-kendaraan input-kendaraan"
+				thunder-validation-rules='required'
+				value="{{ (isset($param['data']['merk'])) ? $param['data']['merk'] : '' }}" data-field="merk"
+				placeholder="Merk Kendaraan">
 		</div>
 	</div>
 </fieldset>
