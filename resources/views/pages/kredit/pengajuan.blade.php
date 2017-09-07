@@ -407,18 +407,4 @@
 
 @push('scripts')
 	data = {!! (isset($page_datas->credit) ? json_encode($page_datas->credit) : 'null') !!}
-
-	function uiJenisSertifikat (e) {
-		panel = e.dataset.panel;
-		console.log($(e).siblings('#' + panel));
-		if (e.value) {
-			if (e.value.toLowerCase() == 'shm') {
-				console.log(1);
-				$(document.getElementById(panel)).css('display', 'none');
-			} else {
-				console.log(2);
-				$(document.getElementById(panel)).css('display', 'block');
-			}
-		}
-	}
 @endpush

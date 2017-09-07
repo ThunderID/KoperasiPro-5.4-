@@ -4,11 +4,8 @@ var kredit_pengajuan_show = function() {
 		$(document).on('click', '.button-edit', function(e) {
 			flag = $(this).attr('data-flag');
 
-			console.log(data);
 			if (flag == 'data-nasabah') {
 				let dataAddress = data.debitur.alamat;
-				console.log(1);
-				console.log(dataAddress);
 
 				if (typeof (dataAddress) !== 'undefined') {
 					$(document.getElementById("debitur[alamat][0][regensi]")).attr('data-preload', dataAddress[0].regensi);

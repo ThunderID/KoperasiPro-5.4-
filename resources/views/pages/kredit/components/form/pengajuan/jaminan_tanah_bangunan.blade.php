@@ -78,13 +78,13 @@
 		</div>
 	</div>
 </fieldset>
-<fieldset class="form-group" id="{{ (isset($param['prefix']) ? $param['prefix'] .  '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa-berlaku-shgb]' }}" style="display: none;">
+<fieldset class="form-group" id="{{ (isset($param['prefix']) ? $param['prefix'] .  '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa-berlaku-shgb]' }}">
 	<label class="text-sm">Masa Berlaku</label>
 	<div class="row">
 		<div class="col-md-3">
 			<input type="text" id="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" 
 				name="{{ (isset($param['prefix']) ? $param['prefix'] . '[jaminan_tanah_bangunan]' : 'jaminan_tanah_bangunan') . '[masa_berlaku_sertifikat]' }}" 
-				class="form-control auto-tabindex mask-year input-tanah-bangunan thunder-validation-input" 
+				class="form-control auto-tabindex mask-year input-tanah-bangunan thunder-validation-input masa-berlaku" 
 				data-field="masa_berlaku_sertifikat" 
 				placeholder="20xx" 
 				value="{{ (isset($param['data']['masa_berlaku_sertifikat']) && !is_null($param['data']['masa_berlaku_sertifikat'])) ? $param['data']['masa_berlaku_sertifikat'] : null }}"
@@ -156,14 +156,16 @@
 ])
 
 <script type="text/javascript">
-	// function uiJenisSertifikat(e){
-	// 	console.log(e);
-	// 	if(e.value){
-	// 		if(e.value.toLowerCase() == 'shm'){
-	// 			document.getElementById("masa-berlaku-shgb").style.display = 'none';
-	// 		}else{
-	// 			document.getElementById("masa-berlaku-shgb").style.display = 'block';
-	// 		}
-	// 	}
-	// }
+	function uiJenisSertifikat(e){
+		panel = $(e).attr('data-panel');
+		if (e.value){
+			if (e.value.toLowerCase() == 'shm') {
+				$(e).closest('form').find('.masa-berlaku').closest('.form-group').css('display','none');
+				$(e).closest('form').find('.masa-berlaku').closest('.form-group').prev('.form-group').addClass('p-b-sm');
+			} else {
+				$(e).closest('form').find('.masa-berlaku').closest('.form-group').css('display','block');
+				$(e).closest('form').find('.masa-berlaku').closest('.form-group').prev('.form-group').removeClass('p-b-sm');				
+			}
+		}
+	}
 </script>
