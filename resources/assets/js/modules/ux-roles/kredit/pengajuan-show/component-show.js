@@ -4,7 +4,6 @@ var kredit_pengajuan_show = function() {
 		$(document).on('click', '.button-edit', function(e) {
 			flag = $(this).attr('data-flag');
 
-			console.log(data);
 			if (flag == 'data-nasabah') {
 				let dataAddress = data.debitur.alamat;
 

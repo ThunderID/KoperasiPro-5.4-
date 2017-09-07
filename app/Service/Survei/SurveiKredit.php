@@ -6,6 +6,7 @@ use App\Domain\Pengajuan\Models\Pengajuan;
 
 use App\Domain\Pengajuan\Models\JaminanKendaraan as PengajuanJaminanKendaraan;
 use App\Domain\Pengajuan\Models\JaminanTanahBangunan as PengajuanJaminanTanahBangunan;
+use App\Domain\Pengajuan\Models\DokumenCeklist;
 
 use App\Domain\Survei\Models\AsetKendaraan;
 use App\Domain\Survei\Models\AsetTanahBangunan;
@@ -561,6 +562,12 @@ class SurveiKredit
 					]);
 				$rekening->save();	
 			}
+
+			if(isset($this->ceklist))
+			{
+				$this->simpanceklist($this->ceklist, $this->pengajuan->id);
+			}
+
 			$this->pengajuan->save();
 
 			DB::commit();
@@ -572,5 +579,23 @@ class SurveiKredit
 			DB::rollback();
 			throw $e;
 		}
+	}
+
+
+	public function setCeklist($id, $is_added)
+	{
+		$this->ceklist 				= DokumenCeklist::findorfail($id);
+		$this->ceklist->is_added  	= $is_added;
+		
+		return $this;
+	}
+
+
+	private function simpanCeklist(DokumenCeklist $ceklist, $kredit_id)
+	{
+		$ceklist->pengajuan_kredit_id 	= $kredit_id;
+		$ceklist->save();
+
+		return $this;
 	}
 }

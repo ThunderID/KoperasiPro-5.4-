@@ -35,8 +35,8 @@
 	@forelse ((array)$value['survei_jaminan_kendaraan'] as $k => $v)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize text-sm">
-					hasil survei {{ $k+1 }}
+				<p class="m-b-xs text-capitalize">
+					<span class="text-sm">hasil survei {{ $k+1 }}</span>
 					@if (!empty($page_datas->credit['jaminan_kendaraan']))
 						@if($edit == true)
 							<span class="pull-right">
@@ -194,7 +194,7 @@
 		<!-- No data -->
 		<div class="row m-t-md">
 			<div class="col-sm-12">
-				<p class="text-light text-sm">
+				<p class="text-light">
 					<a href="#" data-toggle="hidden" data-target="survei-jaminan-kendaraan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanKendaraan();" no-data-pjax> 
 						<i class="fa fa-plus"></i> Tambahkan Survei 
 					</a>

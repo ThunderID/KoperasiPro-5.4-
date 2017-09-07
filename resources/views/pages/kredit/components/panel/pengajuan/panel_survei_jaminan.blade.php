@@ -33,8 +33,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-kendaraan-{{ $k }}-{{ $k2 }}">Batal</a>
-							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-kendaraan-{{ $k }}-{{ $k2 }}">Batal</a>
+							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -59,8 +59,8 @@
 
 					<div class="clearfix">&nbsp;</div>
 					<div class="text-right">
-						<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-kendaraan-{{ $k }}--1">Batal</a>
-						<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+						<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-kendaraan-{{ $k }}--1">Batal</a>
+						<button type="submit" class="btn btn-primary">Simpan</button>
 					</div>
 				{!! Form::close() !!}
 			</div>
@@ -89,8 +89,8 @@
 
 						<div class="clearfix">&nbsp;</div>
 						<div class="text-right">
-							<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">Batal</a>
-							<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+							<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-tanah-bangunan-{{ $k }}-{{$k2}}">Batal</a>
+							<button type="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					{!! Form::close() !!}
 				</div>
@@ -114,8 +114,8 @@
 
 					<div class="clearfix">&nbsp;</div>
 					<div class="text-right">
-						<a href="#" class="btn btn-default btn-sm" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-tanah-bangunan-{{ $k }}--1">Batal</a>
-						<button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+						<a href="#" class="btn btn-default" data-dismiss="panel" data-panel="survei-jaminan" data-target="survei-jaminan-tanah-bangunan-{{ $k }}--1">Batal</a>
+						<button type="submit" class="btn btn-primary">Simpan</button>
 					</div>
 				{!! Form::close() !!}
 			</div>

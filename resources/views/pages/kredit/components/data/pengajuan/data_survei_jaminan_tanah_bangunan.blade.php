@@ -56,16 +56,16 @@
 	@forelse($value['survei_jaminan_tanah_bangunan'] as $k => $v)
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-capitalize text-muted">
-				<p class="m-b-xs text-capitalize text-sm">
-					Hasil survei {{ $k+1 }}
+				<p class="m-b-xs text-capitalize">
+					<span class="text-sm">Hasil survei {{ $k+1 }}</span>
 
 					@if ($edit == true)
 						<span class="pull-right">
-							<a class="text-danger text-sm m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
+							<a class="text-danger m-r-md" href="#" data-url="{{ route('survei.jaminan.tanah.bangunan.destroy', ['kredit_id' => $page_datas->credit['id'], 'survei_jaminan_tanah_bangunan_id' => $v['id']]) }}" data-toggle="modal" data-target="#modal-delete">
 								<i class="fa fa-trash" aria-hidden="true"></i>
 								 Hapus
 							</a> &nbsp;
-							<a href="#" class="button-edit text-sm" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}-{{$k}}" data-panel="survei-jaminan" data-flag="data-survei-jaminan-tanah-bangunan" data-index="{{ $key }}" data-index-child="{{ $k }}" no-data-pjax>
+							<a href="#" class="button-edit" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}-{{$k}}" data-panel="survei-jaminan" data-flag="data-survei-jaminan-tanah-bangunan" data-index="{{ $key }}" data-index-child="{{ $k }}" no-data-pjax>
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 								 Edit
 							</a>
@@ -419,7 +419,7 @@
 		<!-- No data -->
 		<div class="row m-t-md">
 			<div class="col-sm-12">
-				<p class="text-light text-sm">
+				<p class="text-light">
 					<a href="#" data-toggle="hidden" data-target="survei-jaminan-tanah-bangunan-{{ $key }}--1" data-panel="survei-jaminan" onClick="initJaminanTanahBangunan();" no-data-pjax>
 						<i class="fa fa-plus"></i> Tambahkan Survei 
 					</a>

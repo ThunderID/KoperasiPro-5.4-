@@ -97,7 +97,7 @@
 							</tr>
 						@endif
 						
-						@php $float 	= number_format((float)min(100, $curservice->formatMoneyFrom($data['pengajuan_kredit']) / max(1, $data['taksasi'])), 2, '.', '') @endphp
+						@php $float 	= number_format((float)$curservice->formatMoneyFrom($data['pengajuan_kredit']) / max(1, $data['taksasi']), 2, '.', '') @endphp
 
 						<tr @if($float > 1) style="background-color:#ffdede;" @endif>
 							<td class="text-center" style="vertical-align:middle;">{{ ($key + 1) }}</td>
